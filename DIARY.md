@@ -185,3 +185,33 @@ ablation ladder (m0-only / +waves / +r / +bytes-thread) as standard evidence; W3
 as-gemm is the decisive 1-vs-2-feature test (1-feature => draft null-paper skeleton);
 tolerance-latitude section promoted from footnote using the true e2 error distribution.
 Home check clean: kernelbench 0 new; ai_consciousness v2 notif = morning item, no action.
+
+## 2026-10-17 ~21:35-21:50 UTC — session 7 (W4 v1: ladder verdict + err regen + transfer)
+Reflection #7 answered 21:43Z (next due 00:43Z): follow-up = #6's 3 decisions executed;
+backward-analysis => W3 conv-as-gemm under the identical ladder is the decisive next step,
+null-paper pivot rule pre-written (1-feature on conv => draft null skeleton; >=2 => spine exhibit).
+
+### W4 v1 (lab/w4_dispatcher_v1.py -> results/w4_v1.json; pre-reg in docstring 21:40Z)
+Ablation ladder A(M)/B(+K0)/C(+r)/D(both)/E(+bytes-per-thread), LOO-K, hand prior fold-refit
+(always tsplit_S64_KT64 wins the refit). VERDICT: **E wins — hand iff M>=16 AND bt>=1024**
+(bt = 2*bytes/(ctas*128), shape-derived): mean regret 0.0327 vs torch 0.0450, med 0.000,
+77% oracle-equal, worse-than-torch-1% 6/60 -> **4/60**. A-D collapse to the same 1-feature
+rule (identical stats; K0/r0 never bind) — replicates #6's one-coordinate finding on this
+family, now with a real 2nd coordinate in E. K=2^12 fold FLIPS to gate-win (0.100 vs torch
+0.112; v0 lost it): bt>=1024 acts as the launch-bound guard without any measured time —
+the shipped gate needs NO probe kernel (v0's r-circularity dissolved, not fixed).
+TRANSFER (pre-registered framing): final-fit E rule on e2b M* grid, 144 pts, hand arm =
+tsplit_pinned (wave-pinned, DIFFERENT selector): gate mean regret 0.0696 vs torch 0.0883,
+**0/144 worse-than-torch-1%** — adoption bar ("never worse") passes out-of-sample with a
+hand policy the gate never trained on. In-sample LOO bar still 4/60: stated, not hidden.
+Errors (results/e2_v3_err.json, 1260 meas, 3 seeds): med 2-5e-4 abs, max 4.2e-2;
+S64_KT64 tightest (max 4.5e-3). KT16-"anomaly" confirmed as the garbage artifact.
+Per-fold family instability: A on one fold, E on five — final single model = E(16,1024).
+
+### Debt queue (reordered per reflection #7 decision)
+1. W3 conv-as-gemm under ladder A-E, identical pre-reg — THE decisive 1-vs-2-feature test;
+   null-paper pivot rule pre-written (see reflection, echoed here).
+2. e3 grid-geometry (urgency down: gate is probe-free). 3. CTA-edge 32/128 bisection.
+4. 24h E1 repeat (rides any tick). 5. v2/v3/e2b reconciliation atlas entry — now waits only
+on W3; correctness column is in. 6. In-sample 4/60 worse-points: error-bar the E gate
+(bt threshold sensitivity) before any adoption claim beyond transfer.
