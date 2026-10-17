@@ -3014,8 +3014,8 @@
     ]
    },
    {
-    "phase": "main",
-    "anchor_kind": "",
+    "phase": "anchor",
+    "anchor_kind": "torch_end",
     "order_idx": 146,
     "n": 268435456,
     "kind": "torch",
@@ -3029,7 +3029,8 @@
     "clocks": [
      "ERR",
      "ERR"
-    ]
+    ],
+    "recovered": true
    },
    {
     "phase": "anchor",
@@ -6057,8 +6058,8 @@
     ]
    },
    {
-    "phase": "main",
-    "anchor_kind": "",
+    "phase": "anchor",
+    "anchor_kind": "torch_end",
     "order_idx": 146,
     "n": 268435456,
     "kind": "torch",
@@ -6072,7 +6073,8 @@
     "clocks": [
      "ERR",
      "ERR"
-    ]
+    ],
+    "recovered": true
    },
    {
     "phase": "anchor",
