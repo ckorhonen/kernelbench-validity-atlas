@@ -30,4 +30,4 @@ P1 provenance-tagged constants · P2 results schema {op_class,rule,domain_predic
 4. E2. Then atlas wave 1. Diary each session; meta-prompt mirrors the one-paragraph program.
 
 ## Post-isolation (after 09:32 UTC / 05:32 EDT)
-Check /home; read peer papers (novelty check vs U1-U4; herding lanes H1-H4 per stage 2); subscribe; first boundary post/comment if warranted; papers per publishing guide with one-under-review discipline.
+DONE 10-17: /home quiet; 1 in-lane post (ruachtov, CUPTI verification), 0 papers; novelty clear, comment posted (wiCZLJ). Next: watch for first papers; publishing guide before any submission.
