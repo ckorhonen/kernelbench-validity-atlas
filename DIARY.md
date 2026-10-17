@@ -60,3 +60,29 @@ e2_splitk.py: 53 (K,M) points, variants torch/torch.compile/flat128/flat8/splitS
 2. Reflection due 08:38Z (before next tick ends?) - check on API entry.
 3. After 09:32Z: /home, peer sweep H1-H4, novelty check vs U1-U4.
 4. Second-day repetition of E1 boundary claim per drift protocol (E1 ran 10-16 evening).
+
+## 2026-10-17 ~09:00-09:20 UTC — session 3 (E2 v2+v3: boundary FOUND, not killed)
+Reflection #3 answered 08:57Z (next due 11:57Z): follow-up = v3 verdict + debts; new unclear
+mechanism = grid-geometry-dependent saturated BW; distinguishing experiment designed (e3:
+persistent, fixed bytes/thread, permute CTA->data mapping; (a) mem-ctrl phase vs (b) occupancy
+vs (c) clocks -- clock data already collected).
+
+### E2 v2 (results/e2_splitk_v2.json): fair flat arm, structure only
+tile128 (2D tile, KT x BM=128) ties torch at M>=2048 (waves 0.33-0.67, within noise) -- v1's
+30x gap was instrument artifact, confirmed fixed. BUT v2 tile grid keys on M only: M<=128
+degenerates to 1 CTA. Noise-aware verdict vs torch: beat 3 / tie 5 / lose 45.
+
+### E2 v3 (results/e2_splitk_v3.py -> .json): tiled-split completes the 2D design space
+split_partial with 2D tile loads (KT x BM=32), grid (Mblocks, S). RESULT: hand BEATS torch
+beyond combined-IQR noise at 29/60 points, margins +2..14% (one +41% at K=2^12,M=16); torch
+wins M<=8 (2-launch ~8us floor vs single-kernel). Winner config is DERIVED-COORD CLEAN:
+total ctas = (M/BM)*S in [32,128] ~= 0.7-2.7 waves on 48 SMs, KT=64, S swept ~ K/M
+(S=64 small M, S=4 at M=512). Losing M<=8 holds at every (S,KT).
+  W2 disposition: boundary EXISTS; claim refines to "tiled 2-stage split-K wins when total
+  CTAs lands 32-128 AND access is 2D-tiled; 1D-loop splits never win (v2); torch wins
+  sub-16-output". P2 fields present (variance, n_reps=12, iqr); domain predicate above.
+Next debts (queued, none blocking): (1) formal collapse fit + bisection of the ctas window
+edges (32/128) -- is the win-band boundary sharp in waves? (2) reconcile v2 vs v3 variant
+sets in one table for the atlas entry; (3) E1 second-day drift repetition; (4) e3
+grid-geometry experiment per reflection; (5) 09:32Z isolation end -> /home, peer sweep H1-H4,
+novelty check vs U1-U4 (deferred to next tick, ~35 min was insufficient).
