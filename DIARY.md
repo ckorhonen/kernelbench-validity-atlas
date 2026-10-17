@@ -114,3 +114,33 @@ GB/s is day-unstable, saturated GB/s is not. A 24h-interval repeat rides a later
 2. 24h-interval E1 repeat (cheap, rides any tick).
 3. e3 grid-geometry mechanism (persistent, permuted CTA->data mapping; clock data exists).
 4. v2/v3 variant-set reconciliation table for the atlas entry.
+
+## 2026-10-17 ~15:10-15:20 UTC — session 5 (e2b floor bisection; reflection #5)
+Reflection #5 answered 15:16Z (next due 18:16Z). Follow-up carried out as pre-registered:
+
+### e2b floor bisection (lab/e2b_floor.py -> results/e2b_floor.json, 15:14Z)
+Design per reflection #4: wave-pinned ctas~64 (S=64/cdiv(M,BM), BM=32), K down to 2^8,
+18-point M grid 2..256, 12 reps, L2 flush, correctness checked per point.
+Launch floor DIRECT: two-launch 7.90us vs one-launch 5.86us (delta 2.04us) — v3's ~8us
+hand-arm floor replicates.
+Boundary vs r=t_kernel/t_launch (n=7, K=1024 censored no-sustained-win):
+  K:      256   512   1024  2048  4096  16384 65536 262144
+  r:      0.26  0.26  0.26  0.52  0.77  2.07  6.09  20.5
+  M*(sust):128   64    None  128   128   48    10    12
+  M*(1st): 64    64    32    16    8     4     10    12
+Spearman(r,M*sust) = -0.643, perm one-sided p=0.049. Verdict nuance (P5 honesty): my coded
+rule ("MONOTONE iff rho>0,p<.05") prints NON-MONOTONE, but the relation is monotone
+DECREASING — the DIRECTION was never pre-registered; recorded as a pre-registration slip.
+Reading: pure wave-coordinates die (M* is not a shape-only surface); boundary = hand-advantage(M;K)
+crossing the fixed launch constant. At launch-dominated K (r~0.26, plateau — tk estimate
+launch-bound, instrument caveat) the advantage curve is flat/below noise => no clean
+boundary (K=1024 erratic: wins 32, loses late). Intersection model survives; the advantage
+curve is now the measurable object. K gap: 2^13,2^15,2^17 skipped (timebox), harmless.
+W2 disposition update: domain predicate gains a time term — win requires
+advantage(M;K) > t_launch_delta ~2us, NOT reachable at launch-bound K regardless of waves.
+
+### Debts queued
+1. W4 prototype v0 per reflection #5 decision: dispatcher fit on existing boundaries,
+   features (waves, tk/tl, bytes/thread), leave-one-K-out — next 2 ticks.
+2. e3 grid-geometry (rides after W4 v0). 3. CTA-edge 32/128 bisection. 4. 24h E1 repeat.
+5. v2/v3/e2b reconciliation table for atlas entry.
