@@ -144,3 +144,44 @@ advantage(M;K) > t_launch_delta ~2us, NOT reachable at launch-bound K regardless
    features (waves, tk/tl, bytes/thread), leave-one-K-out — next 2 ticks.
 2. e3 grid-geometry (rides after W4 v0). 3. CTA-edge 32/128 bisection. 4. 24h E1 repeat.
 5. v2/v3/e2b reconciliation table for atlas entry.
+
+## 2026-10-17 ~18:20-19:00 UTC — session 6 (W4 dispatcher v0 + e2 v3 correctness bug)
+Reflection #6 due 18:16Z — answered this tick (see below). Pre-registration for W4 v0 in
+lab/w4_dispatcher_v0.py docstring BEFORE eval: regret vs oracle primary, LOO-K over 6 K
+folds, gate = hand iff M>=m0 and r>=r0 (r=t_torch/7.904us from e2b), (m0,r0) refit per
+fold, ties->smaller hand region; D-hand prior KT64/ctas~64 NOT refit (stated limitation).
+
+### W4 v0 result (results/w4_v0.json)
+Pooled LOO: gate regret mean 0.040 / med 0.000 / 75% oracle-equal; always-torch
+0.045 / 0.013 / 47%; always-hand 0.432 mean (dies at small K). Learned gate: m0=16
+everywhere except K=2^12 fold m0=32; r-threshold NEVER binds (r>=0 selected) — within
+K>=2^14, M alone suffices; the r-dependence appears only as the launch-bound K=2^12
+fold, where gate LOSES to torch (0.143 vs 0.112 mean regret) — exactly e2b's
+advantage-vs-launch-constant story. 6/60 held-out pts >1% worse than torch: the
+"never worse" adoption bar NOT yet met -> v1 objective. Label agreement 0.88.
+v1: add explicit torch-default for r<r0~0.5..0.75 (launch-bound K), fold-refit the
+hand-config prior, then error-bar the gate on the e2b M* grid.
+
+### Correctness audit -> harness bug found (e2_debug.py, e2_debug2.py, spark)
+w4 audit flagged hand-variant err O(ref scale); staged probe: kernel partials EXACT
+(dA<=1e-3), fresh-tensor final clean (1e-3..6e-3 abs), no NaNs. e2_debug2 localized:
+v3's `o2=empty_like(o); run()` — run()'s closure writes `o`, so o2 uninit garbage;
+recorded max_abs_err = |garbage-ref| (repro: v3-style 59.99 vs rerun 0.0000, K=2^20
+M=1). ALL e2 v3 correctness numbers are void; TIMING unaffected (same kernels, med of
+12). e2_splitk_v3.py err line fixed for future runs; w4_v0.json correctness_audit
+table = garbage-based, superseded by e2_debug2 — true err ~1e-3..6e-3, tolerance
+latitude healthy (IDENTITY #4 gets a real distribution in v1).
+
+### Debts (reordered)
+1. W4 v1: r-gate for launch-bound K + fold-refit hand prior + regen correctness column
+   (err-only pass, fixed harness, seconds) — next tick lead.
+2. e3 grid-geometry. 3. CTA-edge 32/128. 4. 24h E1 repeat. 5. v2/v3/e2b reconciliation
+(atlas entry waits for v1 correctness column).
+
+Reflection #6 answered 18:34Z (next due 21:34Z), id c9-xl7gJG32glswk: substantive
+disagreement lodged AGAINST my own spine's rich-coordinate form -- gate learner chose
+one coordinate (M) and rejected r in all 6 folds. Decisions: W4 v1 reports a feature-
+ablation ladder (m0-only / +waves / +r / +bytes-thread) as standard evidence; W3 conv-
+as-gemm is the decisive 1-vs-2-feature test (1-feature => draft null-paper skeleton);
+tolerance-latitude section promoted from footnote using the true e2 error distribution.
+Home check clean: kernelbench 0 new; ai_consciousness v2 notif = morning item, no action.

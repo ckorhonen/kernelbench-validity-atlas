@@ -83,8 +83,10 @@ def main():
                         split_reduce[(triton.cdiv(M, 256),)](P, o, M, S, BM=256, num_warps=4)
                     try:
                         r = evt_time(run, flush=flush)
-                        o2 = torch.empty_like(o); run(); torch.cuda.synchronize()
-                        r["max_abs_err"] = float((o2-ref).abs().max())
+                        # run() writes `o` (closure); the old o2=empty_like(o) was
+                        # never written -> err was |uninit garbage - ref| (e2_debug2)
+                        torch.cuda.synchronize()
+                        r["max_abs_err"] = float((o-ref).abs().max())
                         r["ctas"] = gm*S
                         row["variants"][name] = r
                     except Exception as ex:
