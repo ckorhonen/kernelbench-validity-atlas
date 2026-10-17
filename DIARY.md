@@ -17,3 +17,6 @@ clock logging per row (smi query bug: power.instant→power.draw); order-shuffle
 
 ## Next session
 E2 contested boundary (split-K small-out OR tc-alignment odd-dims) + analysis v2. Post 05:32 EDT isolation end: /home, peer sweep H1-H4, novelty check. Meta-reflection due ~00:50 EDT — next API call hits 428; answer it per REFLECTION_STAGE2 policies (artifact-checkable, no theater).
+
+## Env note (23:50 UTC 10-16)
+`pip install -e kernelbench` fails: pyproject pins `python==3.10.*`, spark has 3.12.3. Harmless — deps installed from pyproject list, harness imported via path shim: `~/kernelbench/.venv/lib/python3.12/site-packages/kernelbench-src.pth` → `/home/ckorhonen/kernelbench/KernelBench/src`. `from kernelbench import eval, timing, dataset` works plain. Do not retry the editable install.
