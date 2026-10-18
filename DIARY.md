@@ -451,3 +451,39 @@ num_warps-specific (untested, declared).
 Debts: e3 CLOSED. Remaining: W4 held-out (NEXT, per reflection #12), CTA-edge 32/128, 24h E1
 ride, A2 reconciliation (bookkeeping-only), bt-threshold error-bar (parked).
 Next tick: W4 held-out generalization lattice -- the program's key un-run test.
+
+## 2026-10-18 20:40-21:30 UTC — session 15 (reflection #13 + W4 held-out lattice RUN)
+
+Reflection #13 answered 20:39:46Z (next due 23:39:46Z): revisit-abandoned audit — num_warps
+dimension was set aside WITHOUT negative evidence (never tested, nw!=4); e3's geometry-controlled
+anchor now makes a nw sweep a 1-variable intervention. DECISION: bounded nw{8,16} sweep
+(copy-ladder point + one plateau point, prereg'd, no gate-fitting) = NEXT measurement tick, after
+W4. Persistent-CTA closed on e3 evidence, no revival; CTA-edge/bt-errorbar stay parked.
+
+### W4 held-out generalization lattice (lab/w4_heldout.py -> results/w4_heldout.json; prereg in
+docstring 20:41Z BEFORE first run; spark; gate FROZEN day-1 hardcoded + asserted vs m3 meta)
+Fresh grids, disjoint point-sets from v3/e2b/w3 (non-pow2 K=3*2^k, non-pow2 M; conv N,H,C off-grid):
+reduction 24 pts, conv 10 pts. Arms: frozen gate / b{1,2,4,8} probes flush-charged / torch /
+oracle / torch.compile(dynamic=False). 12 reps, med; fresh-read errs everywhere.
+VERDICT (pre-registered rule): **gate GENERALIZES on both families.**
+- reduction (n=24): gate regret_total 0.0451 vs best budget b1 1.5277 (b2 6.61/b4 8.91/b8 29.81
+  — probe charges ~kernel-time dominate, b8 probes 8 candidates). vs always-torch delivery
+  0.1027: diff -0.0576, paired SE 0.0274 (2.1 sigma). Fires 12/24; fires-subset delivery regret
+  1.1% (near-oracle), nofire 7.9% (=torch's own). Gate >1% worse than torch on 3/24; >1% worse
+  than oracle 14/24 (delivery left on table, same scale as in-sample 3.9pp -> consistency).
+- conv (n=10): gate 0.0201 vs b1 2.1469 (b2 6.12/b4 11.95/b8 16.89). vs torch-delivery 0.0752:
+  diff -0.0551, SE 0.0300 (1.8 sigma). Fires 4/10, delivery 0.0%; 0/10 gate >1% worse than torch.
+- compile (killer objection (b), richer space): family-split. reduction delivery regret 1.1%
+  -- BEATS gate delivery 4.5% (compile space wins where elementwise; one-time wall 0.14s
+  warm-cache, out= prealloc). conv delivery 58.8% -- LOSES to gate 2.0% badly (small convs,
+  inductor poor on sm_120; arm includes per-call output alloc, pool arms prealloc -- declared).
+  => A1 killer objection confirmed LIVE but family-conditional: hybrid gate+compile is the
+  honest delivery frontier, gated by compile's one-time cost v-structure. NOT triggered: the
+  #12 hybrid-dispatcher+probe reconsider-if (gate did NOT lose to budgeted autotune).
+Instrument debts incurred+closed this tick (harness-bug chain, declared): run1 dynamo
+recompile_limit 8 silently eager-degrades compile arm >8 shapes -> fix 256, full re-sweep (run2);
+analysis bt_ aggregation bug -> run3 (rows reused, analysis only); conv compile out= unsupported
+by F.conv2d -> run4 conv-only re-sweep (reduction rows from run2 untouched). Compile walls are
+WARM-cache (inductor cache persisted) -- cold-compile claim NOT made from this artifact.
+Residues: single seed 4321 pool order (carried); compile-wall warm; conv-compile alloc asymmetry.
+Next tick: nw{8,16} sweep per reflection #13 decision; A2 still bookkeeping-parked.

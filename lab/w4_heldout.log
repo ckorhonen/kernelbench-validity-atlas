@@ -1,0 +1,75 @@
+red K24576 M3: oracle 0.0161 gate torch fires=False bt=72
+red K24576 M12: oracle 0.0233 gate torch fires=False bt=288
+red K24576 M20: oracle 0.0304 gate torch fires=False bt=480
+red K24576 M48: oracle 0.0550 gate torch fires=False bt=576
+red K24576 M192: oracle 0.1513 gate torch fires=False bt=768
+red K24576 M384: oracle 0.2332 gate torch fires=False bt=768
+red K98304 M3: oracle 0.0213 gate torch fires=False bt=288
+red K98304 M12: oracle 0.0550 gate torch fires=False bt=1152
+red K98304 M20: oracle 0.0796 gate tsplit_S64_KT64 fires=True bt=1920
+red K98304 M48: oracle 0.1554 gate tsplit_S64_KT64 fires=True bt=2304
+red K98304 M192: oracle 0.3948 gate tsplit_S64_KT64 fires=True bt=3072
+red K98304 M384: oracle 0.7165 gate tsplit_S64_KT64 fires=True bt=3072
+red K393216 M3: oracle 0.0560 gate torch fires=False bt=1152
+red K393216 M12: oracle 0.1595 gate torch fires=False bt=4608
+red K393216 M20: oracle 0.2127 gate tsplit_S64_KT64 fires=True bt=7680
+red K393216 M48: oracle 0.4021 gate tsplit_S64_KT64 fires=True bt=9216
+red K393216 M192: oracle 1.3535 gate tsplit_S64_KT64 fires=True bt=12288
+red K393216 M384: oracle 2.6468 gate tsplit_S64_KT64 fires=True bt=12288
+red K1572864 M3: oracle 0.1545 gate torch fires=False bt=4608
+red K1572864 M12: oracle 0.4400 gate torch fires=False bt=18432
+red K1572864 M20: oracle 0.6110 gate tsplit_S64_KT64 fires=True bt=30720
+red K1572864 M48: oracle 1.3811 gate tsplit_S64_KT64 fires=True bt=36864
+red K1572864 M192: oracle 5.2139 gate tsplit_S64_KT64 fires=True bt=49152
+red K1572864 M384: oracle 10.3995 gate tsplit_S64_KT64 fires=True bt=49152
+conv N2 H5 C32: oracle 0.0181 gate imp_B32x32 fires=True
+conv N2 H5 C96: oracle 0.0386 gate torch fires=False
+conv N2 H8 C32: oracle 0.0202 gate imp_B32x32 fires=True
+conv N2 H8 C96: oracle 0.0304 gate torch fires=False
+conv N2 H12 C32: oracle 0.0202 gate imp_B32x32 fires=True
+conv N2 H12 C96: oracle 0.0324 gate torch fires=False
+conv N2 H24 C32: oracle 0.0202 gate torch fires=False
+conv N2 H24 C96: oracle 0.0406 gate torch fires=False
+conv N3 H5 C32: oracle 0.0181 gate imp_B32x32 fires=True
+conv N3 H12 C96: oracle 0.0315 gate torch fires=False
+{
+ "reduction": {
+  "n": 24,
+  "gate_fires_frac": 0.5,
+  "gate_regret_total": 0.0451165728490495,
+  "best_b": 1,
+  "best_b_regret_total": 1.5277373759961599,
+  "gate_vs_best_b_SE": 0.09112517520941318,
+  "verdict": "GENERALIZES",
+  "vacuity_check": {
+   "gate_vs_torch_delivery_SE": 0.02736706129026014,
+   "fires_frac": 0.5
+  },
+  "gate_delivery_worse1pct_vs_torch": 0.125,
+  "gate_delivery_worse1pct_vs_oracle": 0.5833333333333334,
+  "compile_delivery_regret": 0.01096378882460281,
+  "compile_wall_s_mean": 0.14472786255646497,
+  "compile_wall_s_max": 0.3800520689692348,
+  "gate_delivery_regret": 0.0451165728490495
+ },
+ "conv": {
+  "n": 10,
+  "gate_fires_frac": 0.4,
+  "gate_regret_total": 0.02386081048405337,
+  "best_b": 1,
+  "best_b_regret_total": 5.095219771787368,
+  "gate_vs_best_b_SE": 0.46716033531705004,
+  "verdict": "GENERALIZES",
+  "vacuity_check": {
+   "gate_vs_torch_delivery_SE": 0.029869664880703688,
+   "fires_frac": 0.4
+  },
+  "gate_delivery_worse1pct_vs_torch": 0.0,
+  "gate_delivery_worse1pct_vs_oracle": 0.1,
+  "compile_delivery_regret": null,
+  "compile_wall_s_mean": null,
+  "compile_wall_s_max": null,
+  "gate_delivery_regret": 0.02386081048405337
+ }
+}
+wrote /home/ckorhonen/kb-lab/results/w4_heldout.json 34 rows
