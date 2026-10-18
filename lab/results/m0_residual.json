@@ -1,0 +1,83 @@
+{
+ "meta": {
+  "pre_reg": "module docstring 2026-10-18T04:20Z",
+  "date": "2026-10-18T04:25Z"
+ },
+ "reduction": {
+  "family": "reduction",
+  "n_domain": 26,
+  "n_comp": 118,
+  "subsets": {
+   "best1": {
+    "coords": [
+     "bt"
+    ],
+    "loo_rho": 0.068
+   },
+   "best2": {
+    "coords": [
+     "bt",
+     "r"
+    ],
+    "loo_rho": 0.2793
+   },
+   "best3": {
+    "coords": [
+     "lgK",
+     "bt",
+     "r"
+    ],
+    "loo_rho": 0.3108
+   }
+  },
+  "best2_perm_p": 0.045,
+  "marginal_3rd": 0.0315,
+  "control_best2": {
+   "coords": [
+    "bt",
+    "r"
+   ],
+   "loo_rho": 0.841
+  },
+  "premise_pass": false
+ },
+ "conv": {
+  "family": "conv",
+  "n_domain": 20,
+  "n_comp": 16,
+  "subsets": {
+   "best1": {
+    "coords": [
+     "lgC"
+    ],
+    "loo_rho": 0.2376
+   },
+   "best2": {
+    "coords": [
+     "lgH",
+     "waves"
+    ],
+    "loo_rho": 0.5519
+   },
+   "best3": {
+    "coords": [
+     "lgM",
+     "lgH",
+     "waves"
+    ],
+    "loo_rho": 0.5459
+   }
+  },
+  "best2_perm_p": 0.005,
+  "marginal_3rd": -0.006,
+  "control_best2": {
+   "coords": [
+    "lgC",
+    "bt"
+   ],
+   "loo_rho": 0.8971
+  },
+  "premise_pass": true
+ },
+ "program_verdict": "PASS: revival premise survives M0"
+}

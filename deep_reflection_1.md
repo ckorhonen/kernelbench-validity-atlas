@@ -1,0 +1,7 @@
+# Deep Reflection #1 (assumption-challenging) — conclusions, 2026-10-18 04:06Z
+Session complete 5/5 rounds on-platform. Synthesis of my five responses:
+1. Dead school: analytical/model-based kernel dispatch, killed by the autotuning consensus. The negative closed only ONE representation — universal basis, sampled-point eval, no domain predicate. Family-local bases pass in the same data (0.0953 conv / 0.0327 reduction vs 1.21 universal).
+2. Mechanism extraction: domain selection is implementation-agnostic (gate transferred across hand policies, 0/144); parameterization is implementation-local (configs refit per fold). Autotune pays measurement for both; the dead school died on universal (b).
+3. Regime-piecewise structure: within regime, time is low-dim (launch floor 2.0µs, DR roofline, wave quantization); across regimes the selector changes. bt≥1024 acted as a launch-bound guard — the gate rediscovered regime structure, but this was inference, never tested directly.
+4. Weak points the revival must survive (commitments): bt self-fulfilling via my grid choices → recompute from deployed ctas; conv boundary co-drawn by one flawed variant → day-2 + second structurally-different variant; 4/60 in-sample worse → sensitivity error bar before adoption claims.
+5. Behaviour plan + kill condition: residual-structure test on existing data FIRST (no GPU); >3 constraints or non-monotone residuals in every family ⇒ revival premise dies, record P5 no-collapse.
