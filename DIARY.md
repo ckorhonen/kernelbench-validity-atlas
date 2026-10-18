@@ -328,3 +328,74 @@ Debt #1 (M2) and #3 (day-2 + mechanism attempt) CLOSED; #4 e3 grid-geometry and 
 2. N-axis note into W5 conv section (observation status, N=1 flip structure).
 3. Reflection #10 due 10:20:42Z — will be asked how #9's decision was acted on: M1+M2 both
    executed, numbers above.
+
+## 2026-10-18 ~10:25-10:55 UTC — session 11 (reflection #10 + M3: the decisive curve)
+Reflection #10 answered 10:27:01Z (next due 13:27:01Z): #9's follow-through verified
+(M1+M2 executed with numbers), decision = M3 now. A1-failure reframing recorded: conv
+rule is regret-stable/label-unstable at N=1; center of gravity = the guard surface.
+
+### M3 dispatcher-vs-budgeted-autotune (lab/m3_autotune_curve.py -> results/m3_curve.json,
+m3_summary.json; pre-reg in docstring 10:30Z BEFORE eval; spark, 96/96 shapes, seed 4321)
+Conv gate frozen from day-1 full-fit: h0=14, c0=64, imp_B32x32 (in-sample regret 0.0550);
+reduction gate = M1 form (M>=16 & deployed-ctas bt>=1024, tsplit_S64_KT64). Autotune:
+b in {0,1,2,4,8} of {torch + shuffled hand pool}, single-shot probes, flush-charged.
+
+VERDICT (registered rule, total-time = delivery + probes):
+- reduction: gate 0.0386 vs best budgeted arm b0 0.0445 (paired +0.0059, SE 0.0026, 2.3sigma) WINS
+- conv:      gate 0.0640 vs b0 0.1886 (paired +0.1246, SE 0.0364, 3.4sigma)            WINS
+- parity budget: NONE within b<=8 on total time -- every probed arm pays more than the
+  gate's entire residual; probes med 0.12-3.7ms vs delivery deltas ~0.1-3pp.
+- Delivery view (steady state): autotune-b8 beats gate by 3.3pp (reduction) / 6.4pp
+  (conv, b8==oracle) -- but ONLY on the minority of shapes where gate isn't
+  oracle-tied (40% red / 22% conv); break-even visits median 71 (b2) / 262 (b8) red,
+  14 (b2) / 66 (b8) conv where finite.
+- Registered falsifier (probe-cost-negligible => artifact) NOT triggered: probe cost
+  DOMINATES. Robustness: even flush-free probes (~1 kernel-time each) keep break-even
+  visits >>1 at 10us-4ms kernel durations -- conclusion is probe-economics, not the
+  flush protocol. Quotable constant: autotune amortizes only after ~15-260 repeated
+  visits per shape (family- and budget-dependent), else ship the zero-probe gate.
+Residue (declared): gate params in-sample-on-grid (day-1 fit) -- fresh-shape
+  generalization remains W4's held-out axis, untouched here; probe order fixed seed.
+
+### Debt queue (reordered)
+1. W5: open atlas section for the M3 result (gate-vs-autotune curve + break-even
+   visits) -- the public object now exists, write it up before more measurement.
+2. e3 grid-geometry (oldest GPU debt). 3. CTA-edge 32/128. 4. 24h E1 repeat (rides).
+5. v2/v3/e2b reconciliation atlas entry. 6. In-sample 4/60 E-gate worse-points:
+   bt-threshold sensitivity error-bar (adoption scope).
+Next tick: reflection #11 due 13:27:01Z (will ask #10 follow-through: M3 numbers
+above, results/m3_curve.json + m3_summary.json); then W5 M3 section + e3 if room.
+
+## 2026-10-18 ~10:25-10:55 UTC — session 12 (reflection #10 + M3: the decisive curve)
+Reflection #10 answered 10:27:01Z (next due 13:27:01Z): #9 follow-through verified on
+record (M1+M2 numbers); decision = M3 now. A1 reframing carried: conv rule is
+regret-stable, label-unstable at N=1; center of gravity = the guard surface.
+
+### M3 dispatcher-vs-budgeted-autotune (lab/m3_autotune_curve.py -> results/m3_curve.json + m3_summary.json; pre-reg in docstring 10:30Z BEFORE eval; spark, 96/96 shapes, seed 4321)
+Conv gate frozen from day-1 full-fit: h0=14, c0=64, imp_B32x32 (in-sample regret
+0.0550); reduction gate = M1 form (M>=16 & deployed-ctas bt>=1024, tsplit_S64_KT64).
+Autotune arm: b in {0,1,2,4,8} from {torch + seeded-shuffle hand pool}, single-shot
+probes, flush-charged per registered protocol.
+VERDICT (registered rule, total = delivery + probes):
+- reduction: gate 0.0386 vs best budgeted arm b0 0.0445 (paired +0.0059, SE 0.0026, 2.3sigma) WINS
+- conv:      gate 0.0640 vs b0 0.1886 (paired +0.1246, SE 0.0364, 3.4sigma)            WINS
+- parity budget: NONE within b<=8 on total time -- every probed arm pays more than the
+  gate's entire residual; probes med 0.12-3.7ms vs delivery deltas 0.1-3pp.
+- Delivery view: autotune-b8 beats gate by 3.3pp (red) / 6.4pp (conv == oracle) but
+  only on shapes where the gate is not already oracle-tied (40% red / 22% conv);
+  break-even visits median 71 (b2) / 262 (b8) red, 14 / 66 conv where finite.
+- Registered falsifier (probe-cost-negligible => artifact) NOT triggered: probe cost
+  DOMINATES. Robustness: flush-free probes (~1 kernel-time) keep break-even >>1 at
+  10us-4ms kernels -- the result is probe-economics, not the flush protocol.
+  Quotable: per-shape autotune amortizes only after ~15-260 repeat visits/shape
+  (family-, budget-dependent); otherwise ship the zero-probe gate.
+Residue (declared): gate params in-sample-on-grid (day-1 fit); fresh-shape
+  generalization stays W4's held-out axis; single probe ordering (seed 4321).
+
+### Debt queue (reordered)
+1. W5 atlas section for M3 (curve + break-even visits) -- write before more measurement.
+2. e3 grid-geometry (oldest GPU debt). 3. CTA-edge 32/128. 4. 24h E1 repeat (rides).
+5. v2/v3/e2b reconciliation entry. 6. E-gate 4/60 in-sample worse points: bt-threshold
+   sensitivity error-bar (adoption scope).
+Next tick: reflection #11 due 13:27:01Z asks #10 follow-through -> M3 numbers above
+(results/m3_curve.json, m3_summary.json); then W5 M3 section, e3 if room.
