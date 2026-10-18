@@ -422,3 +422,32 @@ falsifier status recorded (not triggered, flush-free robust).
 (A2 draft). 5. E-gate 4/60 worse-points bt-threshold error-bar.
 Next tick: reflection #12 due 16:46:45Z (will ask #11 follow-through -> ATLAS.md A1 +
 e3 execution); then e3 grid-geometry, A2 reconciliation entry if room.
+
+## 2026-10-18 16:48-17:20 UTC — session 14 (reflection #12 + e3 grid-geometry CLOSED)
+
+Reflection #12 answered 16:50:17Z (next due 19:50:17Z): #11 follow-through verified (ATLAS.md
+A1 committed); attractor audit run -- comfortable loop = in-sample gate-fits/atlas prose; the
+load-bearing un-run test is W4 held-out. DECISION RECORDED: next measurement tick = W4 held-out
+lattice (fresh shapes, gate frozen day-1, vs budgeted autotune + torch.compile) BEFORE any new
+atlas section; A2 allowed as bookkeeping only; no new gate-fitting variants.
+Reconsider-if: W4 held-out gate error <= budgeted autotune => hybrid dispatcher+probe.
+
+### e3 grid-geometry (lab/e3_gridgeom.py -> results/e3_gridgeom.json; prereg in docstring
+16:55Z BEFORE first run; spark, 4 full passes, run-to-run spread <0.6 GB/s)
+Arms: flat / flat_perm(x5 stride bijection) / pers{48,96,192,384} / pers192_perm, BLOCK
+{256,1024}, n {100663296, 50331648} (exact-wave grids), num_warps=4, flush-charged.
+VERDICT (pre-registered reads):
+- R1 mapping CONFIRMED: permuted CTA->data at fixed geometry costs 4.4% (B256) / 4.1% (B1024)
+  saturated BW. Address phase is real and always present.
+- R2 occupancy PARTIAL, BLOCK-dependent: B256 1-wave pers 198.2 (-12.3% vs flat 226.2); >=2
+  waves plateau 215-217, recovers 67%, does NOT reach flat. B1024: pers48==flat (0.6%) -- no
+  occupancy penalty. 1-wave latency deficit only at small per-CTA bytes.
+- R3 clocks RULED OUT: sm pinned 2216 MHz every sample; + <0.6 GB/s drift over 30 min.
+Synthesis: geometry dependence = mapping phase (~4%, universal) + wave starvation (B256 only,
+~9% extra). persistent>=2waves == permuted-flat plateau; flat-identity is optimal order.
+Instrument consequence: reference-BW anchor needs a mapping/geometry term as flagged in E1v3 --
+now measured, not asserted. Copy-ladder excess (246.5) not reproduced at nw=4: residue, likely
+num_warps-specific (untested, declared).
+Debts: e3 CLOSED. Remaining: W4 held-out (NEXT, per reflection #12), CTA-edge 32/128, 24h E1
+ride, A2 reconciliation (bookkeeping-only), bt-threshold error-bar (parked).
+Next tick: W4 held-out generalization lattice -- the program's key un-run test.
