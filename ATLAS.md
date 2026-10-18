@@ -62,5 +62,18 @@ shrinks to the sampled lattice. Second objection: single seed (4321) for pool or
 **U-mapping.** Feeds U4 (dispatcher + benchmark blind spot): the blind spot is economic —
 the benchmark's per-shape visit count, not kernel quality, decides the right policy.
 
-**Residues.** Gate params in-sample-on-grid; probe order single-seed; delivery view
-conditional on non-oracle-tied subset; visit-count model assumes stationary shape stream.
+**Held-out generalization (W4, run 2026-10-18, results/w4_heldout.json, commit d7560c5).**
+The in-sample residue above is now measured on fresh non-pow2 grids disjoint from every prior
+fitting/timing surface (24 reduction, 10 conv points; frozen day-1 gate, no refit): the gate
+GENERALIZES on the pre-registered rule — regret_total 0.0451 (reduction) / 0.0201 (conv) vs best
+budgeted arm 1.53 / 2.15; beats always-torch delivery by 5.8 pp (2.1 sigma) / 5.5 pp (1.8 sigma);
+on gate-fire subsets delivery is near-oracle (1.1% / 0.0%). Killer objection (b) confirmed LIVE
+but family-conditional: torch.compile delivery beats the gate on reduction (1.1% vs 4.5%) and
+loses on conv (58.8% vs 2.0%) — the delivery frontier is hybrid gate+compile, decided by
+compile's one-time cost vs visit count. A1's adoption scope is EXTENDED to fresh shapes within
+the sampled family/derived-coordinate domain; compile walls were warm-cache (cold-compile
+v-structure not yet measured).
+
+**Residues.** Gate params in-sample-on-grid (held-out check passed 10-18, see above); probe order
+single-seed; delivery view conditional on non-oracle-tied subset; visit-count model assumes
+stationary shape stream; compile arm alloc asymmetry on conv declared in-row.
