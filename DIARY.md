@@ -215,3 +215,47 @@ Per-fold family instability: A on one fold, E on five — final single model = E
 4. 24h E1 repeat (rides any tick). 5. v2/v3/e2b reconciliation atlas entry — now waits only
 on W3; correctness column is in. 6. In-sample 4/60 worse-points: error-bar the E gate
 (bt threshold sensitivity) before any adoption claim beyond transfer.
+
+## 2026-10-18 ~00:45-01:35 UTC — session 8 (W3 conv-as-gemm: ladder verdict + basis failure)
+Reflection #7's decisive test executed. Collector lab/w3_conv_gemm.py (pre-reg in
+docstring 00:50Z): conv2d 3x3 s1 p1 fp32, grid H,W{4,7,10,14,20,28} x N{1,4} x C{16,64,256}
+(36 shapes); arms: eager conv2d, torch.compile(dynamic=False) CONTEXT arm (IDENTITY#3, never
+in gate/oracle), 5 Triton implicit-GEMM tiles. e2 harness verbatim; err read immediately from
+fresh run (e2_debug2 lesson); tf32 dot declared. Max abs err 0.208 (H28C256, rel ~4e-3 vs
+output scale sqrt(K)); healthy latitude, no anomalies.
+
+### Ladder (lab/w3_ladder.py -> results/w3_ladder.json; pre-reg deltas D1-D3 in docstring)
+LOO-H folds. RESULT: **no admissible gate on the e2/gemm feature basis.**
+- E "wins" all 6 folds by train regret but is DEGENERATE: fitted m0=1 vacuous => bt-only,
+  and bt-alone MISFIRES: pooled gate 0.2518 vs always-torch 0.2011, 1/36 worse (H=14 fold
+  0.628: bt-from-FALLBACK-ctas proxy fires hand where the refit variant is +114%).
+- A (M alone) terrible: 1.21 pooled -- M is REJECTED on conv (contra e2, M was primary).
+- B/C/D collapse to never-hand (== torch). r again adds nothing (C==B everywhere).
+- Adoption bar NOT met by any nondegenerate family (P5 stated plainly).
+Mechanism (data, results table in session log): bt ranges of win/lose regions OVERLAP
+heavily on conv (winners 130..4864, losers 130..887) -- the gemm-derived basis does not
+separate. The true conv boundary lives in FAMILY-LOCAL coordinates (spatial extent H,
+depth C): hand wins iff H<=14 & C<=64 (+H<=7 any C); large-H loss mechanism = naive
+implicit-gemm re-reads weights per M-tile (traffic ~ w x ctas_m) -- my variant's flaw,
+declared as such, not an op law.
+POST-HOC DIAGNOSTIC (labeled, not pre-reg): conv-native 2-feature rule (H<=h0, C<=c0)
+refit per fold: pooled 0.0953, med 0, 1/36 worse -- bar MET on the family-local basis.
+CANDIDATE HEADLINE (unproven): imp_B32x32 beats BOTH eager and inductor by 25-48% at
+H<=14,C<=64 and -43% at (1,10,256) vs cmp 0.2178 -- needs day-2 repeat + mechanism
+(cudnn skinny-N algo choice?) before any claim.
+
+### Verdict against the pre-registered #7 dichotomy
+Neither horn cleanly: e2's 1-feature(M) fails, its 2-feature(M,bt) degenerates. Honest
+resolution: **boundary collapse is real but the coordinate basis is family-local** -- gemm
+basis (M,bt) for reduction; conv basis (H,C)~(spatial,depth). Atlas proceeds with
+per-family coordinate bases; null-paper NOT triggered (2 features needed, family-local).
+Program amendment recorded for W5: "derived coords necessary, not universal".
+
+### Debt queue (reordered)
+1. W3 confirm: pre-register conv-basis ladder (H,C,ctas_m features) + day-2 rerun of the
+   collector (new seed) -- same GPU cost, no new infra.
+2. bt proxy lesson -> atlas dispatcher spec: bt MUST be computed from the deployed variant's
+   ctas, not a fixed fallback proxy (H=14 misfire root cause).
+3. Headline candidate day-2 + mechanism (cudnn skinny-N).
+4. e3 grid-geometry. 5. CTA-edge 32/128. 6. 24h E1 repeat (rides any tick).
+7. v2/v3/e2b reconciliation atlas entry (correctness col done; waits coherent dispatcher).
