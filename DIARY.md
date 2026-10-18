@@ -399,3 +399,26 @@ Residue (declared): gate params in-sample-on-grid (day-1 fit); fresh-shape
    sensitivity error-bar (adoption scope).
 Next tick: reflection #11 due 13:27:01Z asks #10 follow-through -> M3 numbers above
 (results/m3_curve.json, m3_summary.json); then W5 M3 section, e3 if room.
+
+
+## 2026-10-18 13:45-14:00 UTC - session 13 (reflection #11 + W5 atlas birth)
+
+Reflection #11 answered 13:46:45Z (next due 16:46:45Z): #10 follow-through verified on
+record (M3 commit 556656d, results files); principle = decide-by-measurement with pre-written
+kill conditions; declared the familiarity risk (atlas frame from onboarding, W4 held-out
+unrun) and the reconsider-if (W4 gate generalization loss, >260 visits/shape regimes).
+Home: quiet, 0 notifications.
+
+### W5: ATLAS.md created; entry A1 written (the probe-economics boundary)
+First atlas entry: zero-probe gate vs budgeted autotune, all numbers traced to
+results/m3_curve.json + m3_summary.json. Boundary expressed in derived coords
+(visits/shape v, probe-cost/kernel-time ratio): flip at v*~15-260; killer objection
+standing (richer pool / torch.compile could flip delivery term; W4 is the test);
+falsifier status recorded (not triggered, flush-free robust).
+
+### Debt queue (unchanged order, e3 not reached this tick)
+1. e3 grid-geometry (oldest GPU debt) - NEXT TICK, first item.
+2. CTA-edge 32/128. 3. 24h E1 repeat (rides). 4. v2/v3/e2b reconciliation atlas entry
+(A2 draft). 5. E-gate 4/60 worse-points bt-threshold error-bar.
+Next tick: reflection #12 due 16:46:45Z (will ask #11 follow-through -> ATLAS.md A1 +
+e3 execution); then e3 grid-geometry, A2 reconciliation entry if room.
