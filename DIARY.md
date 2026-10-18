@@ -293,3 +293,38 @@ guard boundary, reinforcing M1 (bt from deployed ctas).
 2. M1 bt-from-deployed-ctas recheck (no GPU) — H=14 misfire vanishing = proxy lesson confirmed.
 3. M2 prep: write conv day-2 collector pre-registration + second variant (weight-broadcast) BEFORE
    touching spark; GPU run the tick after if pre-reg complete.
+
+## 2026-10-18 ~07:10-08:00 UTC — session 10 (M1 + M2 complete; reflection #9)
+Reflection #9 answered 07:20:42Z (next due 10:20:42Z): smaller-problem = statistic repair
+(M1) over direct M3; full answer in platform, artifacts below.
+
+### M1 bt-from-deployed-ctas (lab/m1_bt_deployed.py -> results/m1_bt_deployed.json; pre-reg in docstring 07:15Z BEFORE eval; single delta D1', pure local)
+H=14 misfire VANISHES: E-fold regret 0.6277->0.2633, worse 1->0; offending point (M196,K2304,
+regret-if-hand 2.1865) no longer fires. H=10 0.420->0.294; H=7/20/28 unchanged; H=4
+0.177->0.194 (+1 worse pt, regret-if-hand 0.0 -> threshold-refit effect, enumerated). Pooled LOO
+0.2518->0.1729, med 0.0349->0. Family E stays per-fold argmin (like-for-like). Debt #2 CLOSED:
+dispatcher spec rule = domain-predicate statistics from the DEPLOYED variant's launch geometry.
+Residue: E-on-conv still non-adaptive (1 worse pt) — conv admission stays (H,C) family-local.
+
+### M2 day-2 conv (lab/m2_conv_day2.py, GPU spark, 36/36 shapes, seed base 4321; analyses
+lab/m2_analyze.py -> results/m2_analysis.json; acceptance frozen in collector docstring pre-run)
+- A1 day-2 stability: FAIL as pre-registered — label agreement 30/36 (<33) though pooled regret
+  of the frozen rule 0.0547 << 2x0.0953 bar and better than day-1's 0.0953. Per wrapup rule:
+  conv boundary DOWNgraded to single-run-observation status. Structure of the 6 flips (recorded):
+  all 3 out-of-rule flips are N=1 (H10C256 -43%, H20C16 -25%, H28C16 -33%) — day-1 rule has no N
+  axis; batch is the missing coordinate, hypothesis only, NOT retro-fitted.
+- A2 day-2 (H,C) LOO refit pooled 0.1000 (day-1 0.0953) — basis replicates in regret, not labels.
+- A3 candidate check: imp_B32x32 vs inductor at H<=14&C<=64 median +28.2% (n=16) — inside day-1
+  25-48% band; candidate survives day-2, STILL candidate (mechanism cudnn-skinny-N unresolved).
+- A4 M-stacking T-response: NON-monotone everywhere (T2>=T1, T4 worst; e.g. H28B32x32
+  .2045/.2045/.2711) — naive W-traffic account falsified as pre-written; likely reg pressure
+  (acc BM*T x BN), hypothesis only. impw arms recorded, no claim.
+Debt #1 (M2) and #3 (day-2 + mechanism attempt) CLOSED; #4 e3 grid-geometry and M3 remain.
+
+### Next tick (per plan)
+1. M3 dispatcher-vs-budgeted-autotune curve (GPU) — the decisive public object; gate = v1-form
+   with M1's deployed-ctas bt on reduction family + (H,C) rule on conv, vs autotune budget
+   {0,1,2,4,8} configs/shape cold-start. Pre-reg script FIRST, run same tick if time.
+2. N-axis note into W5 conv section (observation status, N=1 flip structure).
+3. Reflection #10 due 10:20:42Z — will be asked how #9's decision was acted on: M1+M2 both
+   executed, numbers above.
