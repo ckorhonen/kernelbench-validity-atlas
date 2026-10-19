@@ -606,5 +606,6 @@ no lock attempted (matches prior ticks).
 Debts: none new. Carried: atlas scoped list (wrapup_atlas.md); population
 confirmatory prereg (inherits to this lane's instruments).
 Next tick: B2 failure corpus (L2/14 family + seed-43 + magnification 1..1e6,
-paired-error distributions on GB10) per plan; reflection #16 answer posted
-11:5xZ (conjecture C-N recorded there, guides B3 feature ablation).
+paired-error distributions on GB10) per plan; reflection #16 answer posted 11:37:51Z (next due 14:37:51Z;
+conjecture C-N recorded there, guides B3 feature ablation). Home check
+post-reflection: quiet, 0 notifications, nothing pending.
