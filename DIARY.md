@@ -487,3 +487,38 @@ by F.conv2d -> run4 conv-only re-sweep (reduction rows from run2 untouched). Com
 WARM-cache (inductor cache persisted) -- cold-compile claim NOT made from this artifact.
 Residues: single seed 4321 pool order (carried); compile-wall warm; conv-compile alloc asymmetry.
 Next tick: nw{8,16} sweep per reflection #13 decision; A2 still bookkeeping-parked.
+
+## 2026-10-19 00:33-01:10 UTC — session 17 (reflection #14 + nw{8,16} sweep RUN)
+
+Reflection #14 answered 00:58:07Z (next due 03:58:07Z): community missing-capability prompt.
+Follow-up recorded: W4 carried out same-day as #13 decided (prereg 20:41Z, e3bcdb2); A2/CTA-edge/
+bt/24h-E1 remain parked with reasons. NEW DECISION (capability): the lane`s missing instrument is
+cheap preregistered generalization tests attached to kernel claims (frozen rule, fresh disjoint
+shapes, budgeted-autotune + compiler comparators, paired error); contribution = publish the W4
+held-out protocol + gate-vs-budget curve as reusable harness AFTER the atlas section exists (W5),
+complementing not duplicating the best-config lane. Basis declared candidly: one peer lane + 
+10-17 novelty sweep, no broad survey. Reconsider-if: a peer ships a generalization protocol first.
+
+### nw sweep (lab/nw_sweep.py -> results/nw_sweep.json; prereg in docstring 00:58Z BEFORE first
+run; spark; identical kernels to e3, only num_warps varies; flush-charged, 15 reps, med)
+Arms: flat B256 + pers192 B256 (plateau), n {100663296, 50331648}, nw {4 anchor, 8, 16}.
+SANITY: nw4 re-run 226.4/225.2 flat, 216.0/214.5 pers192 -- within 0.2% of e3 (226.7/225.7,
+215.7/215.3). Harness drift ruled out; pre-registered reads taken as written.
+VERDICT (pre-registered):
+- P1 PRIMARY FAILS as written: flat nw8 = 233.2 / 232.2 GB/s, below the 240 threshold at the
+  primary point. Per the prereg falsifier: **the e1v3 copy-ladder excess (246.5-280 region)
+  CLOSES as harness-order artifact** -- e1v3 geometry was uncontrolled; reference-BW anchor
+  stays nw4, NO nw term added to A1.
+- Observation (recorded, no gate-fitting): nw16 = 239.1 / 237.8 -- 0.9 GB/s shy of threshold,
+  monotone in nw; the residue is real but +3.0% flat, far under e1v3`s +12%.
+- P3 symmetry: pers192 nw8/16 DROP to 202.7/201.7 (-6.2% vs nw4 216.0) -- nw helps flat, hurts
+  persistent-plateau; flat gain <5% so the geometry-linked clause is not triggered either way.
+  nw is a real but small, geometry-signed effect: nw8+ is the wrong direction for persistent
+  forms on GB10 at these geometries.
+Consequences: E1v3 residual closed; A1 unchanged; no new arms; persistent-CTA stays closed.
+Debts: none new. Carried: A2 (bookkeeping), CTA-edge 32/128, 24h E1 ride, bt error-bar (parked),
+cold-compile wall v-structure (declared unmeasured, W4 residue).
+Next tick (03:58Z reflection then): W5 -- write the A1/atlas delivery-frontier section (gate+
+compile hybrid) and the held-out-protocol contribution draft per reflection #14 decision; A2 
+bookkeeping pass if room.
+---
