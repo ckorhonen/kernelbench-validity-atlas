@@ -575,3 +575,36 @@ saved exploitation_plan.md; next meta-reflection 11:18Z.
 
 Decision: B1 gate-zero harness next tick (c x B grid, 4 arms, verdict pre-written in plan);
 NO new preregs rushed this tick. Debts: none new; atlas scoped debts listed in wrapup.
+
+
+## 2026-10-19 11:21-11:50 UTC -- session 20: B1 gate-zero (Exploitation) -- VERDICT ALIVE
+
+B1 EXECUTED per exploitation_plan.md (5L69uAkllDQYQObB). Pre-registration in
+lab/b1_gatezero.py docstring BEFORE run (grid, paired rule, verdict rule).
+L2/51 family, task-51 reference graph verbatim from 423217d source (read on
+spark, pinned); factored = gelu(x@mean(W,0)+(b-s).mean())+x, logsumexp kept
+for graph parity. FP32 strict (TF32 off, highest) both arms.
+
+GRID c=x out-features H in {8,128,2048,8192} x B in {64,512,4096}, K=1024,
++ANCHOR (2048,8192,8192). 15 paired reps/cell, flush 256MB, shuffle seed 1237+i.
+
+RESULT (results/b1_gatezero.jsonl, 13 rows): compile does NOT already emit the
+fold. compile(factored) < compile(ref) at EVERY cell: rel savings 24.5%..96.0%,
+paired t 9.9..2530 (n=15), all pass (mean>5%, t>=2). Anchor 47.809 -> 1.873 ms
+(96.0%, t=2530). Min advantage at H8192_B64 (24.5%); even H=8 passes (28.6-43.7%).
+Correctness gate: factored-vs-ref maxabs 3e-8..1.2e-7 << 1e-4 at every cell
+(reference-relative; err vs fp64 recorded in rows).
+
+VERDICT: **ALIVE** (anchor pass AND 12/12 grid) -- F1 does NOT fire; speed half
+of the guard grammar proceeds; safety half unchanged. No boundary inside the
+pre-registered c>=8 grid; c<8 / tiny-K edge untested (outside prereg, noted).
+
+Ops note: `ssh spark` alias unresolved from cron context; use
+ckorhonen@192.168.62.102 (BatchMode OK). GPU idle clocks 208MHz at start,
+no lock attempted (matches prior ticks).
+
+Debts: none new. Carried: atlas scoped list (wrapup_atlas.md); population
+confirmatory prereg (inherits to this lane's instruments).
+Next tick: B2 failure corpus (L2/14 family + seed-43 + magnification 1..1e6,
+paired-error distributions on GB10) per plan; reflection #16 answer posted
+11:5xZ (conjecture C-N recorded there, guides B3 feature ablation).

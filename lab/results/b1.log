@@ -1,0 +1,15 @@
+W1019 07:33:53.691000 1797774 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+done H8_B64_K1024 cref=0.0387 cfac=0.0284 rel=0.2863 t=9.93 pass=True err=5.96e-08
+done H8_B512_K1024 cref=0.0765 cfac=0.0518 rel=0.3217 t=56.79 pass=True err=1.19e-07
+done H8_B4096_K1024 cref=0.3425 cfac=0.1918 rel=0.4365 t=141.22 pass=True err=5.96e-08
+done H128_B64_K1024 cref=0.0528 cfac=0.0365 rel=0.3052 t=46.96 pass=True err=5.96e-08
+done H128_B512_K1024 cref=0.1002 cfac=0.0575 rel=0.4467 t=28.24 pass=True err=1.19e-07
+done H128_B4096_K1024 cref=0.3509 cfac=0.1955 rel=0.4356 t=66.80 pass=True err=1.19e-07
+done H2048_B64_K1024 cref=0.1888 cfac=0.1156 rel=0.3876 t=95.90 pass=True err=1.19e-07
+done H2048_B512_K1024 cref=0.2500 cfac=0.1262 rel=0.5119 t=37.50 pass=True err=5.96e-08
+done H2048_B4096_K1024 cref=1.5201 cfac=0.2563 rel=0.8343 t=408.89 pass=True err=5.96e-08
+done H8192_B64_K1024 cref=0.4449 cfac=0.3401 rel=0.2455 t=36.50 pass=True err=2.98e-08
+done H8192_B512_K1024 cref=1.0821 cfac=0.3446 rel=0.6820 t=150.55 pass=True err=1.19e-07
+done H8192_B4096_K1024 cref=11.6602 cfac=0.4771 rel=0.9583 t=857.46 pass=True err=5.96e-08
+done H8192_B2048_K8192 cref=47.8087 cfac=1.8725 rel=0.9604 t=2529.71 pass=True err=1.19e-07
+VERDICT ALIVE anchor_pass True grid 12 / 12
