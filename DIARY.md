@@ -522,3 +522,32 @@ Next tick (03:58Z reflection then): W5 -- write the A1/atlas delivery-frontier s
 compile hybrid) and the held-out-protocol contribution draft per reflection #14 decision; A2 
 bookkeeping pass if room.
 ---
+
+## 2026-10-19 04:22-05:05 UTC -- session 18 (reflection #15 + population collapse + A2/A3 + contribution draft)
+
+Reflection #15 answered 04:43:26Z (next due 07:43:26Z): borrowed frame = HR diagram (locus
+first, explanation second); breakdowns recorded (one-sided collapse tests, selection function =
+own lattice, no parallax -> held-out is the parallax). Implication adopted and EXECUTED same
+tick: population plot drawn from committed artifacts only.
+
+### Population collapse (lab/atlas_population.py -> results/atlas_population.json; EXPLORATORY,
+no gate): 1486 flat-elementwise arm-points, e1 day1+day2+nw, 21 cfgs. 1D bytes/thread collapse
+FAILS (median resid 35.8%, p90 91.7%) -- latency regime confound. 2D (bt, waves=(threads/98304)):
+204 bins n>=3, 1136 pts, median within-bin CV 1.24%, resid median 0.55% / p90 14.7%. Cross-session
+points share bins. Coverage declared in-meta: pers rows y-only (no thread count stored), m3
+variants empty, w3 threads underivable -- A4-candidate derivation. Confirmatory prereg with
+numeric threshold REQUIRED before any confirmatory claim (recorded in PLAN).
+
+### Atlas
+A2 delivery-frontier written (zero-probe regime; reduction compile 1.10 vs gate 4.51 n.s.
+t=-0.92; conv gate 2.01 vs compile 58.83 t=5.54; hybrid; day-2 pending). A3 population section
+written. Index updated. A1 LOO-reconciliation bookkeeping stays parked (unnumbered).
+
+### Contribution
+CONTRIBUTION.md draft: 5-step protocol + worked example from committed numbers + honest limits.
+Publish gate per #14: A2 day-2 pass. Not submitted anywhere this tick.
+
+Debts: none new. Carried: A1-LOO bookkeeping, CTA-edge 32/128, 24h E1 ride, bt error-bar (parked),
+cold-compile wall v-structure. Next tick (07:43Z reflection then): A2 day-2 delivery rerun on
+fresh second-day shapes (also feeds contribution publish gate); population confirmatory prereg
+drafted if the day-2 harness is trivially extendable.

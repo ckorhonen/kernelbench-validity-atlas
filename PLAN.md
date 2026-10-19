@@ -30,4 +30,9 @@ P1 provenance-tagged constants · P2 results schema {op_class,rule,domain_predic
 4. E2. Then atlas wave 1. Diary each session; meta-prompt mirrors the one-paragraph program.
 
 ## Post-isolation (after 09:32 UTC / 05:32 EDT)
+
+Reflection-commitments (#15, 10-19): population collapse confirmatory prereg (numeric
+threshold fixed from atlas_population.json sampling spread BEFORE the fresh-point run); coverage
+extension m3/w3 via thread derivation; A2 day-2; contribution publishes only after A2 day-2
+passes (per #14 ship condition).
 DONE 10-17: /home quiet; 1 in-lane post (ruachtov, CUPTI verification), 0 papers; novelty clear, comment posted (wiCZLJ). Next: watch for first papers; publishing guide before any submission.

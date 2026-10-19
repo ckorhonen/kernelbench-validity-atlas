@@ -11,6 +11,8 @@ claim type requires it (IDENTITY drift protocol).
 | # | name | op_class | status |
 |---|------|----------|--------|
 | A1 | probe-economics boundary: zero-probe gate vs budgeted autotune | reduction+conv | written 10-18 |
+| A2 | delivery frontier at zero probes: gate vs compile, one-shot | reduction+conv | written 10-19, day-2 pending |
+| A3 | population collapse in (bytes/thread, waves) | elementwise-flat | exploratory 10-19 |
 
 ---
 
@@ -77,3 +79,59 @@ v-structure not yet measured).
 **Residues.** Gate params in-sample-on-grid (held-out check passed 10-18, see above); probe order
 single-seed; delivery view conditional on non-oracle-tied subset; visit-count model assumes
 stationary shape stream; compile arm alloc asymmetry on conv declared in-row.
+
+
+---
+
+## A2 — Delivery frontier at zero probes: no single always-delivery arm; hybrid gate+compile
+
+**Claim.** In the one-shot regime (the v->0 end of A1's visit axis: deploy immediately, pay
+nothing per-shape, never revisit), no single delivery arm dominates on delivery regret across
+families on GB10. torch.compile edges the gate on reduction (1.10% vs 4.51% mean delivery regret;
+paired delta -3.42 pp, sd 18.1, t=-0.92, n=24 -- not separable) and loses badly on conv-as-gemm
+(58.83% vs 2.01%; +56.8 pp, sd 32.4, t=+5.54, n=10). The honest frontier is the hybrid: compile
+where it does not lose (reduction, practically a tie), gate where it wins decisively (conv). The
+gate carries zero compile-time/turbulence risk; compile carries a one-time wall (0.14 s on the
+sampled row, warm-cache) that pays only via A1's visit economics.
+
+**Boundary in derived coordinates.** Axes: deployment visit count v (A1's axis) at its v->0 end,
+family, compile-wall amortization. The only decisive asymmetry measured is conv, where inductor's
+sm_120 small-conv paths are the loss source (58.8%); reduction is unresolved at n=24.
+
+**Validity domain.** Fresh non-pow2 grids disjoint from every prior fitting/timing surface, 24
+reduction + 10 conv points, frozen day-1 gate (results/w4_heldout.json, run 2026-10-18); GB10
+sm_120 48 SMs, torch 2.14.1+cu130. Compile walls warm-cache; dynamo recompile-limit silent
+eager-degrade debt closed in-tick (declared in #14 follow-up).
+
+**Killer objection.** The reduction leg is n.s., so "compile >= gate" there is unresolved; an
+adversary reads the frontier as conv-only. Recorded response: separating 3.4 pp at sd 18 needs
+~3x n -- day-2 candidate, not asserted.
+
+**U-mapping.** U4 (dispatcher): the delivery rule is family-conditional, the atlas's dispatcher
+shape. Worked example for CONTRIBUTION.md.
+
+**Status.** written 10-19; day-2 check pending (single-run delivery comparison).
+
+## A3 — Population collapse: (bytes/thread, waves), not bytes/thread alone
+
+**Claim (exploratory-descriptive; reflection #15 implication, HR-diagram order: locus first).**
+Across 1486 flat-elementwise arm-points from three independent session artifacts (e1 day1, e1
+day2, nw sweep; 21 configs), collapse in bytes/thread ALONE fails: median within-bin residual
+35.8%, p90 91.7% -- latency-regime points share b/t with saturation points. Adding the second
+derived coordinate, deployed waves (threads / (48 SMs x 2048)), collapses the population: 204
+bins with n>=3 (1136 points), median within-bin CV 1.24%, residual vs bin median 0.55% (p90
+14.7%). Cross-session points share bins, so this is also a replication check.
+
+**Why it matters.** Population-level version of the spine: A1/A2 become annotations on this
+surface. First atlas artifact built purely from committed results, no GPU time
+(results/atlas_population.json; script lab/atlas_population.py).
+
+**Validity domain.** Flat triton elementwise arms with exact deployed threads only. Persistent
+(80 rows) listed y-only -- deployed thread count not stored; m3 variants empty in artifact; w3
+gemm threads not derivable without config assumptions (all declared in the artifact meta). One
+arch, one family, descriptive bins: NO confirmatory claim before a preregistered numeric
+threshold (P5).
+
+**Next.** Confirmatory prereg on FRESH points with the threshold fixed from this look's
+sampling distribution BEFORE the run; coverage extension to m3/w3 via thread-count derivation.
+A1's LOO-reconciliation bookkeeping stays parked, unaffected by numbering.
