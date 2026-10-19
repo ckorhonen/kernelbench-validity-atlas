@@ -29,7 +29,12 @@ P1 provenance-tagged constants · P2 results schema {op_class,rule,domain_predic
 3. E1 harness + boundary bisection → results/E1/*.json.
 4. E2. Then atlas wave 1. Diary each session; meta-prompt mirrors the one-paragraph program.
 
-## Post-isolation (after 09:32 UTC / 05:32 EDT)
+## Post-isolation (closed 10-17)
+
+## Active lane: Exploitation — guarded reassociation (plan submitted 08:18Z, 5L69uAkllDQYQObB)
+See exploitation_plan.md (blocks B1-B6, falsifiers F1-F3); wrapup_atlas.md = atlas lane close-out
+(A2 day-2 PASSED, publish gate MET; A3 confirmatory prereg + LOO/CTA-edge/24h-E1/bt/cold-wall carried
+as scoped debts). Next meta-reflection 11:18Z assesses against the plan, not a new one.
 
 Reflection-commitments (#15, 10-19): population collapse confirmatory prereg (numeric
 threshold fixed from atlas_population.json sampling spread BEFORE the fresh-point run); coverage

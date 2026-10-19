@@ -110,7 +110,14 @@ adversary reads the frontier as conv-only. Recorded response: separating 3.4 pp 
 **U-mapping.** U4 (dispatcher): the delivery rule is family-conditional, the atlas's dispatcher
 shape. Worked example for CONTRIBUTION.md.
 
-**Status.** written 10-19; day-2 check pending (single-run delivery comparison).
+**Status.** written 10-19; day-2 PASSED 10-19 (lab/a2_day2.py, prereg docstring
+07:59Z before run; 36 reduction + 10 conv fresh points): reduction not-separable
+replicates (t=-0.65, n=36; gate 1.90% vs compile 3.48% -- direction flipped vs
+day-1 but n.s. both days, so unresolved stands), conv gate-advantage replicates
+decisively (+32.1 pp, t=2.56, n=10; day-1 +56.8 pp t=5.54). Bookkeeping note, no
+threshold changed: the day-2 docstring wrote the delta as gate-minus-compile
+while day-1 reported compile-minus-gate; numbers above use day-1's convention.
+Per #14 the publish gate (A2 day-2 pass) is MET; CONTRIBUTION.md may ship.
 
 ## A3 — Population collapse: (bytes/thread, waves), not bytes/thread alone
 
