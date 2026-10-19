@@ -644,3 +644,37 @@ normalization posts queued for full read before B5 (third-transfer family overla
 Debts: none new. Carried: atlas scoped list (wrapup_atlas.md); population confirmatory prereg.
 Next tick: B3 stage-1 decomposition + classifier pre-registration (kill: no feature AUC>=0.8
 => degraded tier declared per plan).
+
+
+## 2026-10-19 ~17:50-18:00 UTC -- session 22: B3 stage-1 + C-N pre-test (Exploitation) + reflection #18
+
+B3 stage-1 EXECUTED per #17 commitment (lab/b3_stage1.py, prereg docstring BEFORE run;
+one schema adapter post-hoc: arm B/C label key `label` vs arm A `fold32_pass`, plus sf-float
+fix -- no threshold touched). Results/b3_stage1.json, 10 s GPU.
+
+STAGE-1 ownership decomposition (L2/14 arm, seeds 0-4, n=5120): transform share (L2)
+0.383 pooled, per-seed 0.334-0.420 < 0.80 => **ref_model_load_bearing**: the grammar KEEPS
+the version-pinned reference-error model; #17's drop-it branch not supported on this family.
+Failing-element transform-ownership heterogeneous 0.00-0.75 => neither error alone owns
+failures. fp64 path agreement 2.9-3.7e-11 (E well-defined). Confound standation: single-family.
+
+STAGE-2 C-N pre-test (175 fold32 rows, train-level): best UNIVARIATE derived AUC 0.547
+(collapse_work_ratio; B tied) -- no single derived coordinate separates. Joint standardized-
+rank score: 0.962; +log10(scale) delta +0.0026 => C-N SUPPORTED at train level (scale adds
+nothing beyond derived coords; separation is joint-only). sklearn absent on spark venv -- CV
+descriptive leg skipped, recorded in json. Candor note: prereg letter keyed kill to univariate,
+#16 wording is set-level; both computed ex ante, BIND to #16 set-level reading => grammar
+alive on train; final B3 verdict deferred to family-controlled CV + surrogate-exposure (plan
+legs 2-3) -- family confound explicitly unresolved at train level.
+
+Reflection #18 ("revisit an abandoned direction") answered 17:58:17Z, id svdscR0ifQpC5XcF
+(next due 20:58:17Z): (a) reference-model drop -- negative, keep pinned term; revisit only on
+a COST argument from B4 dispatch; (b) single-coordinate rule -- dead (0.547), joint version
+alive (0.962) and justified now because B2 corpus exists. Both recorded here + in the answer.
+
+Home 17:59Z: 0 notifications, read-all acked; quiet. Debts: none new. Carried: atlas scoped
+list (wrapup_atlas.md); population confirmatory prereg.
+Next tick: B3 legs 2-3 -- family-controlled CV (leave-one-family-out) + surrogate-exposure
+validation of the derived-only joint rank classifier; then B4 guard v0 (reference term pinned
+torch 2.14.1). Kill evidence to watch: held-out AUC<0.8, family-CV collapse, DeltaAUC>0.05
+under family controls.
