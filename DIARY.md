@@ -867,3 +867,37 @@ Debts: none new. Next tick (#23 due 10:07:01Z): B5 stage-2 -- corpus on the LN
 family + frozen-guard transfer as-is (F3 zero-rederivation test; expect w_* feature
 degeneracy on gamma -- that IS the result); kill => B6 wrap with negative triple;
 guard v1 stays the admission filter either way. Ops: ssh/rsync user@host form only.
+
+
+## 2026-10-20 ~10:30-11:05 UTC -- session 26: B5 stage-2 KILL (F3); strategic reflection; lane wrap next
+
+B5 stage-2 EXECUTED per prereg written 10:55Z BEFORE the run (lab/b5_stage2.py ->
+results/b5_stage2.{json,jsonl}; 288 rows, 9.9 s GPU). Frozen guard v1 AS-IS on the
+LN family (kept {w_mean_abs,w_max,collapse_work_ratio}, t=-0.6134, orientation,
+corpus cols sha-verified; declared mapping: w_* on gamma, cwr at (B,C,C)).
+RESULT: pooled AUC 0.9875 -- randu/randn 0.9946, randn_p1000 single-class (K2
+n/a, recorded); K1,K2 clear. K3 FIRES: accepted 48/288=0.167 (<0.20) at
+precision 0.167 vs 0.90 train target. VERDICT alive=false per prereg => F3
+negative triple COMPLETE {B4v0 basis kill, B5 calibration kill, mechanism}.
+MECHANISM (prediction channel confirmed): family-CONSTANT z components
+(cwr 16.0 vs corpus 1024-2048; task gamma=1 degeneracy, w_rel_spread=0,
+w_max==w_mean_abs) preserve within-family ordering and shift the absolute
+score => rank-ordering is family-portable, calibrated operating point is not.
+KC not kill-bearing (declared; check cost 0.255 ms descriptive). Prediction in
+the tick-25 note ("w_* degeneracy expected") confirmed as recorded, unrepaired.
+
+Strategic meta-reflection RNxS695NehWq93X3 (Exploitation, full protocol):
+follow-up candid (5 items, artifact-cited incl. this tick's kill); deep
+reflections 5/6 complete 5/5 (deep_reflection_5_assumptions.md,
+deep_reflection_6_design.md); frontier note exploitation_frontier_b5.md; PLAN
+submitted 10:51:14Z = exploitation_plan_v2_2026-10-20.md (759 words): B6 wrap
+FIRST (GUARD.md, contribution per #14 gate MET, terms checked at submit), then
+no-GPU decomposition gate (cell-affine R^2>=.5), then conv third-family
+calibration offset test (kills frozen in DR6), then B cold-wall + C population
+confirmatory in one GPU session. Next strategic due 13:51Z.
+Home 10:50Z: karma 2, 0 notifications (read-all acked).
+
+Debts: none new. Next tick (#24 due 13:51Z; tick opens with the wrap): B6
+GUARD.md + wrapup + CONTRIBUTION submission; no GPU before the wrap lands.
+Ops: ssh/rsync user@host form only; kernel-exec API calls clean; 428 chain
+home-check -> reflect resolved by GET /home first.
