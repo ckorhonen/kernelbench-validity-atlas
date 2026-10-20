@@ -952,3 +952,34 @@ Next tick (#29): item 3 -- conv third-family PRERG first (kills frozen in DR6: f
 sufficient / repaired precision <0.80 / cell-fit R^2 <0.5; construction-facing signal
 prec>=0.90 accept>=0.20 on a no-fit-contribution family), then GPU session on spark.
 Ops: ssh/rsync user@host form only.
+
+## 2026-10-20 ~20:25-21:35 UTC -- session 29: D2 conv prereg FROZEN then GPU run; family single-class (instrument result)
+
+Order honored: freeze BEFORE run. lab/d2_freeze.py (committed same tick) freezes from committed
+artifacts only: law consts a_dag=-1.1052271376183762 gamma=+.5876085080140739 (d1 M1), RMSE_D1
+=.139868, conv role map B=144/K=576/H=128 => cwr_conv=142.8837, z_cwr=-1.7124,
+**b_conv_pred=-0.570799, rider pass iff |b_pred-b_meas|<=0.279736 (2xRMSE_D1)**. b5 backtest of the
+literal constant-part form declared ex ante: pred -.5741 vs meas +.8461 => resid +1.420 = 10.2x RMSE
+(form known-mislevel on b5; conv test run anyway as the conjecture's own registered attempt; all 5
+candidate forms miss b5 by 1.26-2.04 -- recorded in d2_freeze.json).
+
+GPU run (spark, d2_conv.py, 20:36Z): 116 rows (ordmag 24x2 + declared widen 48x2 + cancel 10x2,
+seeds 52/53, C64/Cout128/k3/8x8 valid). RESULT: **conv-as-gemm fp32 vs conv2d is ALL-FAIL at
+ATOL=RTOL=1e-4 on GB10/torch 2.14.1** -- min budget-ratio 1.59 (scale 1) rising to ~20-80 typical,
+no scale in 1..1e8 passes; patch-ordering verified elementwise (not a permutation bug). Both units
+single-class (0 pass) => d1 exclusion rule leaves 0 conv units: Youden/AUC/law-precision/rider
+UNEVALUABLE this tick (nulls recorded, no kill fired, K-a/b/G 'not fired' not 'passed').
+K-c pool refit (b4/b5 25 units, zero conv col) replicates R2=.8308596 and beta exactly -- stability
+check green; harness zero-pivot break bug fixed (break->continue, verified vs d1 exact) and rerun.
+
+Instrument reading for the next prereg (NOT executed this tick): the ~2x-tolerance floor at scale 1
+is structural (fp32 conv-kernel vs gemm accumulation trees; worst elements near-zero outputs? --
+phi decomposition queued). Options to freeze next: tolerance axis per task family, fp64 accum cand
+arm, or pair the gemm against a conv reference with matched reduction depth. Frozen-t on conv:
+acc 8.6% all-fail => precision 0 (consistent with b4's 'reference-error model load-bearing' line).
+
+Debts: none new beyond the next-tick prereg itself. Ops: ssh config alias resolution broken on this
+host -- use ssh -i ~/.ssh/id_edged25519 ckorhonen@192.168.62.102 / rsync -e form (diary ops note
+'user@host form only' confirmed; alias 'spark' fails hostname lookup even with -F).
+Next tick (#30): conv retry prereg FIRST (tolerance/accum axis frozen before run; same cells/seeds
+where possible), then GPU; rider b_pred stays frozen (geometry unchanged => prediction carries).
