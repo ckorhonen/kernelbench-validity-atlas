@@ -164,9 +164,14 @@ extended from response boundaries to decision boundaries.
 
 **Validity domain.** Two families so far (split-K-style reduction corpus; LayerNorm transfer
 probe), one arch (GB10 sm_120), features {w_mean_abs, w_max, collapse_work_ratio} + degenerate
-dim-features. Cell-affine gate PASSED in-sample 10-20 (R² 0.831, see readout below); the
-fresh-data third-family test (plan v2 item 3) is pending — until then this entry stays
-hypothesis-labeled per P5 discipline.
+dim-features. Cell-affine gate PASSED in-sample 10-20 (R² 0.831, see readout below);
+fresh-data third-family test EXECUTED 10-20/21 (plan v2 item 3): instrument-negative —
+the 1e-4 elementwise-all lens fails for conv-as-gemm everywhere on GB10 (min budget ratio
+1.59; required symmetric tolerance t* median 2.8e-3 ordmag / 7.2e-3 cancel, up to 250x;
+fp64 accumulation moves t* <5% => not a precision artifact; near-zero-output explanature
+falsified, phi_cond = 0.0, passing elements not near-zero either) — family exits, frozen
+kills unevaluable by construction (`lab/results/d3_margin.json`, prereg `d3_freeze`);
+entry stays hypothesis-labeled, lens caveat recorded per P5.
 
 **Killer objection (written).** If the cell-affine decomposition readout gives R² < 0.5 on
 committed artifacts, the "global surface + offset" factorization is empty and the class reduces

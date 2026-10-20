@@ -32,3 +32,9 @@ sufficient / repaired precision <0.80 / cell-fit R² <0.5).
 bind-time shapes + weight stats determine the FULL threshold surface. **If
 false**, per-family refit is load-bearing and the atlas records the
 hierarchy — either branch is an entry (A4 already carries both branches).
+
+**Status 00:05Z 10-21 (tick 30): rider carried, unevaluable 2nd tick.** Conv family
+closed instrument-negative (plan v2 item 3 STATUS): the 1e-4 lens fails everywhere for
+conv-as-gemm on GB10 => no two-class units => b_meas undefined; b_conv_pred=-0.570799 /
+bound 0.279736 remain frozen and carry (geometry unchanged). Any future conv evaluation
+under a repaired lens tests the SAME frozen prediction, no re-freeze.
