@@ -1,0 +1,74 @@
+{
+ "when__frozen": "2026-10-20T21:00Z (before GPU run); see module docstring",
+ "a_dag": -1.1052271376183762,
+ "gamma": 0.5876085080140739,
+ "rmse_d1": 0.13986812971192567,
+ "bound_2rmse": 0.27973625942385133,
+ "geometry": {
+  "Cin": 64,
+  "Cout": 128,
+  "k": 3,
+  "Hin": 8,
+  "N": 4,
+  "Oh": 6,
+  "Ow": 6
+ },
+ "roles": {
+  "B": 144,
+  "K": 576,
+  "H": 128
+ },
+ "cwr_conv": 142.88372093023256,
+ "z_cwr_conv_signed": -1.7123960529418276,
+ "e_train_cwr_z": -3.9650822308041304e-19,
+ "b_conv_pred_F1": -0.5707986843139425,
+ "b5_backtest": {
+  "F1_const_div3": {
+   "pred": -0.5740791365226434,
+   "resid_meas_minus_pred": 1.4201505496536548,
+   "over_x_rmse": 10.15349638676528
+  },
+  "F2_fullshift_vs_train": {
+   "pred": -1.1899840387062222,
+   "resid_meas_minus_pred": 2.0360554518372336,
+   "over_x_rmse": 14.556964878494632
+  },
+  "F3_(1-g)*full": {
+   "pred": -0.49073929316149695,
+   "resid_meas_minus_pred": 1.3368107062925083,
+   "over_x_rmse": 9.557650545880767
+  },
+  "F5_g*full": {
+   "pred": -0.6992447455447253,
+   "resid_meas_minus_pred": 1.5453161586757367,
+   "over_x_rmse": 11.048379368899056
+  },
+  "F6_fullshift_vs_held": {
+   "pred": -0.4179199629996352,
+   "resid_meas_minus_pred": 1.2639913761306465,
+   "over_x_rmse": 9.037022077395191
+  }
+ },
+ "b5_meas": 0.8460714131310114,
+ "t_frozen": -0.6134445630270532,
+ "kept": [
+  "w_mean_abs",
+  "w_max",
+  "collapse_work_ratio"
+ ],
+ "ori": {
+  "collapse_work_ratio": true,
+  "fan_in_sum": true,
+  "w_max": false,
+  "w_mean_abs": false,
+  "w_rel_spread": false,
+  "B": true,
+  "K": true,
+  "H": true
+ },
+ "corpus_sha": "32df8b43c038924fea9f184e4b857798512b1a7a94f161dee0eac0abfda3a1c1",
+ "seeds": [
+  52,
+  53
+ ]
+}
