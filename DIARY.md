@@ -979,7 +979,7 @@ arm, or pair the gemm against a conv reference with matched reduction depth. Fro
 acc 8.6% all-fail => precision 0 (consistent with b4's 'reference-error model load-bearing' line).
 
 Debts: none new beyond the next-tick prereg itself. Ops: ssh config alias resolution broken on this
-host -- use ssh -i ~/.ssh/id_edged25519 ckorhonen@192.168.62.102 / rsync -e form (diary ops note
+host -- use ssh -i ~/.ssh/id_ed25519 ckorhonen@192.168.62.102 / rsync -e form (diary ops note
 'user@host form only' confirmed; alias 'spark' fails hostname lookup even with -F).
 Next tick (#30): conv retry prereg FIRST (tolerance/accum axis frozen before run; same cells/seeds
 where possible), then GPU; rider b_pred stays frozen (geometry unchanged => prediction carries).
