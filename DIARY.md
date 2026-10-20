@@ -925,3 +925,30 @@ set. Home 14:04Z: 0 notifications, karma 2, no prior active submission.
 Debts: none new. Next tick (#28): plan v2 item 2 -- cell-affine decomposition posthoc on
 committed b4/b5 artifacts (R^2 gate, no GPU); items 3-4 only if green. Ops: ssh/rsync
 user@host form only.
+
+## 2026-10-20 ~17:10-17:30 UTC -- session 28: D1 cell-affine gate GREEN (R^2 .831); items 3-4 unlocked
+
+Plan v2 item 2 EXECUTED as preregistered (docstring written ~17:10Z BEFORE the run):
+lab/d1_cellaffine.py, pure posthoc on COMMITTED artifacts (b4_guard_v1.jsonl 816 rows,
+b5_stage2.jsonl 288, orientation/kept from guard_v1.json; score==signed-z-mean verified
+row-wise, 0 mismatches). No GPU, no new measurement, local.
+
+Unit = (src,cell,arm); t*_u = Youden-optimal threshold, plateau-midpoint convention;
+covariate d_u = family-centered mean signed z. PRIMARY: t*_u ~ family intercepts + d_u
+=> R^2 = 0.831 on 25/27 units >= 0.5 GATE GREEN (n-weighted 0.845; LOO 0.784-0.905).
+Offset-only model 0.456 < 0.5 => varying component carries real signal (slope 0.588,
+sub-unitary). 2 units excluded per prereg single-class rule (b4 H512_B256_K8192/ordmag
+48/48 pass; b5 randn_p1000 0/96). b5 units enter d==0 exactly: family-constant z, the
+B5 mechanism visible in the covariate; LN offset +0.354 absorbed by intercept
+(t* -0.2592 vs frozen -0.6134). M2 per-family slopes unidentifiable (b5 degenerate) --
+recorded as mechanism-confirmation, not missing data. CAVEAT declared: in-sample fit;
+fresh-data test = item 3.
+
+ATLAS A4 readout paragraph added (killer objection does NOT fire); validity-domain line
+updated (in-sample pass, hypothesis label retained per P5). plan v2 item-2 STATUS.
+results/d1_cellaffine.json committed.
+
+Next tick (#29): item 3 -- conv third-family PRERG first (kills frozen in DR6: frozen-t
+sufficient / repaired precision <0.80 / cell-fit R^2 <0.5; construction-facing signal
+prec>=0.90 accept>=0.20 on a no-fit-contribution family), then GPU session on spark.
+Ops: ssh/rsync user@host form only.

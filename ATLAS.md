@@ -164,9 +164,22 @@ extended from response boundaries to decision boundaries.
 
 **Validity domain.** Two families so far (split-K-style reduction corpus; LayerNorm transfer
 probe), one arch (GB10 sm_120), features {w_mean_abs, w_max, collapse_work_ratio} + degenerate
-dim-features. The third-family test and the cell-affine decomposition gate are pending (plan v2
-items 2–3); until then this entry is labeled hypothesis per P5 discipline.
+dim-features. Cell-affine gate PASSED in-sample 10-20 (R² 0.831, see readout below); the
+fresh-data third-family test (plan v2 item 3) is pending — until then this entry stays
+hypothesis-labeled per P5 discipline.
 
 **Killer objection (written).** If the cell-affine decomposition readout gives R² < 0.5 on
 committed artifacts, the "global surface + offset" factorization is empty and the class reduces
 to per-family refits — recorded then as the result, per plan v2 kill conditions.
+
+**Cell-affine readout (2026-10-20, plan v2 item 2; posthoc, in-sample).** Unit-optimal
+thresholds t*_u (Youden, plateau-midpoint; the 2 single-class units excluded by prereg)
+regressed on the family-centered unit score-shift d_u with family intercepts: **R² = 0.831** on
+25 units (n-weighted 0.845; leave-one-unit-out 0.784–0.905) — gate R² ≥ 0.5 **GREEN**
+(`lab/results/d1_cellaffine.json`; prereg in the `lab/d1_cellaffine.py` docstring, written
+before the run). Offset-only model reaches 0.456 < 0.5: the varying component carries signal
+beyond a pure per-family constant (slope 0.588, sub-unitary — thresholds move less than
+one-for-one with the score shift). The LN units enter with d_u ≡ 0 (family-constant z): the B5
+mechanism visible in the covariate itself, their +0.354 offset absorbed by the intercept
+(t* −0.259 vs frozen −0.613). Caveat recorded: in-sample fit on the same rows as the AUC
+constraints above; the fresh-data test is the third family (plan v2 item 3).
