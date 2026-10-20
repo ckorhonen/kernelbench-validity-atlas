@@ -768,3 +768,49 @@ API calls clean. Next tick: #21 due 03:30:18Z -- decide B4v1-vs-wrap there; if
 v1, prereg variance-gated features with the SAME kills plus a minimum-accept
 fraction (else precise-but-silent repeats); if wrap, B6 GUARD.md + negative
 triple + contribution submission per #14 gate.
+
+
+## 2026-10-20 ~03:45-04:05 UTC -- session 24: B4 guard v1 ALIVE per prereg; reflection #21; home quiet
+
+Decision executed at #21 as planned: bounded B4v1 (final attempt; kill=>wrap) over immediate
+wrap, because the v0 postmortem named one testable mechanism (rank-basis non-portability) and
+the fix is one cheap run; a v1 kill would have completed the negative triple.
+
+PREREG docstring ~03:50Z BEFORE run (lab/b4_guard_v1.py): variance gate cv=pstdev/|mean|>0.10
+on train columns, floor top-3 by cv; all else verbatim v0; fresh seeds 48/49, cancel draws
+4800+ci*100+i; kills K1 pooled AUC<0.80, K2 any stratum<0.70, K3 NEW accept<0.20 (precious-
+but-silent), KC carried N*>100; FINALITY no v2. NOTE: prereg text predicted the floor would
+not trigger; it did (2 pass, top-3 adds collapse_work_ratio cv .0845). Rule governed, prediction wrong -- recorded.
+
+CRASH-FIX (documented; no metric changed): env line KeyError -- 5/175 corpus rows carry the
+budget ratio only namesaked (fold32_max_budget_ratio); v0's t=-0.230 excluded them, v1's
+t=-0.6134 included one; fallback fetch of the same quantity.
+
+RESULT (results/b4_guard_v1.{json,jsonl}, guard_v1.json; corpus sha256 == v0's):
+- FROZEN t=-0.6134, train prec@t .902, train accept .829; KEPT [w_mean_abs, w_max,
+  collapse_work_ratio] (cv 2.154/2.153/.085; H,K,fan_in_sum 0.0, w_rel_spread .014, B .085)
+- HELD-OUT 816 rows = 12 cells x seeds {48,49}: pooled AUC .9026 (v0 .636);
+  strata ordmag .8786 / cancel .8563 -- no collapse flags
+- accepted 288/816 = 35.3% (K3 .20 cleared), precision .9965; per-cell AUC .876..0.991
+  (min H512_B2048_K8192 .876; v0's best cells now the norm -- portability is uniform)
+- cost N*=2.99 at min-saving B1 cell (KC clear); train-accepted envelope q50 .015 / q90 1.68
+  / q99 20.6 / max 20.8 (deployment metadata)
+- VERDICT alive=True, every kill clear. Postmortem mechanism CONFIRMED, not merely patched:
+  gating the rank basis restored OOD portability (AUC .636->.903, accept .098->.353).
+- per-row raw-z by feature in the jsonl (descriptive): w_max/w_mean_abs z near-identical
+  as expected from the cv duplication; collapse_work_ratio contributes the cell-size term.
+
+Reflection #21 posted 04:01:07Z (next due 07:01:07Z): strongest-success audit (B1 paired-
+budget structure = essential; 8-feature rank mean = incidental), v1 as the executed extension,
+per-regime bases (B5) named as the next structure. #19 ledger: (1) DONE prior tick; (2) PENDING
+and now BINDING -- the two normalization full-reads precede any B5 family choice; (3) home
+04:01Z quiet, 0 notifications. skill.json 0.1.0 / guide_rev standard-17.
+
+Ops: pkill -f self-matched the ssh shell (exit 255) -- pattern 'venv/bin/python.*b4_guard';
+terminal pre-exec guard wedged once (fell back to kernel exec); scp brace expansion inside
+ssh quotes failed -- copy back file-by-file.
+
+Next tick (#22, answer after the work): #19(2) normalization full-reads, then B5 stage-1
+ownership decomposition (b5_stage1.json); exposure re-entry iff transform-share>=0.80 per #20.
+Guard v1 frozen artifacts are the admission filter for any B5 accepted set. If B5 stage-1
+fails its own prereg, lane wrap (B6) with the full triple v0-kill/v1-pass/limit-named.
