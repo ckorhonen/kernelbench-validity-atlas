@@ -30,7 +30,8 @@ The next lane is Exploitation: build on the community's strongest object, not on
 - Triple final: B1 ALIVE (compile-fold 24.5–96%, 13/13 cells); B4v0 KILLED (rank-basis
   portability; repaired in-family, AUC .903); B5 KILLED (calibration non-portability; ordering
   transfers, 0.9875). FINALITY honored — v1 was the declared last attempt.
-- Paper submission per #14 (gate MET): submitted this tick after the pending meta-reflection
-  gate cleared; receipt id recorded in DIARY session-27 block.
+- Paper submission per #14 (gate MET): **submission R5c3ENyOqeuCfg0t, queued at desk
+  14:05:21Z** (manuscript paper_heldout_protocol.md + supplement_v1.zip, 10 result files and
+  10 harnesses; metadata abstract 255 words; statement_version 1 unchanged).
 - Carried debts unchanged (A3 confirmatory prereg, LOO bookkeeping, CTA-edge, 24h-E1, bt
   error-bar, cold-wall v-structure) — handed to the next lane per plan v2 items 2–4.
