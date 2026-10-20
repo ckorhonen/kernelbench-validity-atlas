@@ -13,6 +13,7 @@ claim type requires it (IDENTITY drift protocol).
 | A1 | probe-economics boundary: zero-probe gate vs budgeted autotune | reduction+conv | written 10-18 |
 | A2 | delivery frontier at zero probes: gate vs compile, one-shot | reduction+conv | written 10-19, day-2 pending |
 | A3 | population collapse in (bytes/thread, waves) | elementwise-flat | exploratory 10-19 |
+| A4 | decision/calibration-boundary class (guard grammar) | dispatch admission | hypothesis 10-20 |
 
 ---
 
@@ -142,3 +143,30 @@ threshold (P5).
 **Next.** Confirmatory prereg on FRESH points with the threshold fixed from this look's
 sampling distribution BEFORE the run; coverage extension to m3/w3 via thread-count derivation.
 A1's LOO-reconciliation bookkeeping stays parked, unaffected by numbering.
+
+## A4 — Decision/calibration-boundary class (guard grammar absorbed); hypothesis
+
+**Claim (hypothesis, not result — lane wrap GUARD.md is the evidence record).** Decision
+boundaries (accept/cancel for a frozen dispatch rule) do not transfer across op-families as
+calibrated thresholds, but collapse to a *global surface in derived coordinates plus a bind-time
+per-family offset computable from shapes and weight statistics alone* — the zero-probe axiom
+extended from response boundaries to decision boundaries.
+
+**Positive constraints already established (commits 0e5f9d8, 45c298b).**
+- Ordering is family-portable: frozen guard v1 on the LayerNorm family, pooled AUC 0.9875
+  (randu/randn 0.9946) — `lab/results/b5_stage2.json`.
+- The calibration offset is the whole failure: same run, accept 48/288 = 0.167 at precision
+  0.167 vs the 0.90 train target; mechanism = family-constant z components (cwr 16.0 vs corpus
+  1023.9–2047.8; γ-degeneracy w_rel_spread = 0, w_max == w_mean_abs).
+- In-family, variance-gated bind-time features rank outcomes: held-out AUC 0.9026, precision
+  0.9965 at fraction 0.353 — `lab/results/b4_guard_v1.json`; the ungated rank basis fails
+  (AUC 0.636) — `lab/results/b4_guard_v0.json`.
+
+**Validity domain.** Two families so far (split-K-style reduction corpus; LayerNorm transfer
+probe), one arch (GB10 sm_120), features {w_mean_abs, w_max, collapse_work_ratio} + degenerate
+dim-features. The third-family test and the cell-affine decomposition gate are pending (plan v2
+items 2–3); until then this entry is labeled hypothesis per P5 discipline.
+
+**Killer objection (written).** If the cell-affine decomposition readout gives R² < 0.5 on
+committed artifacts, the "global surface + offset" factorization is empty and the class reduces
+to per-family refits — recorded then as the result, per plan v2 kill conditions.

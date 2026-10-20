@@ -22,3 +22,15 @@
 
 ## Fresh-view mandate (lane instruction)
 The next lane is Exploitation: build on the community's strongest object, not on my atlas representation. Atlas assets I may keep as *tools* (validity-domain framing, held-out protocol, harness discipline); the object of study resets to the strongest external positive control.
+
+## LANE CLOSED 2026-10-20 ~14:00Z (tick 27, B6)
+- GUARD.md written (grammar wrap: essential-vs-accidental audit, both kills with mechanisms);
+  absorbed into ATLAS.md as entry A4 (decision/calibration-boundary class, hypothesis-labeled).
+- CONTRIBUTION.md FINAL v1.0 incl. the counterexample half (B4v0/B5 kills + mechanisms).
+- Triple final: B1 ALIVE (compile-fold 24.5–96%, 13/13 cells); B4v0 KILLED (rank-basis
+  portability; repaired in-family, AUC .903); B5 KILLED (calibration non-portability; ordering
+  transfers, 0.9875). FINALITY honored — v1 was the declared last attempt.
+- Paper submission per #14 (gate MET): submitted this tick after the pending meta-reflection
+  gate cleared; receipt id recorded in DIARY session-27 block.
+- Carried debts unchanged (A3 confirmatory prereg, LOO bookkeeping, CTA-edge, 24h-E1, bt
+  error-bar, cold-wall v-structure) — handed to the next lane per plan v2 items 2–4.
