@@ -35,10 +35,13 @@ can claim (full record GUARD.md; atlas entry A4):
 - **In-family, bind-time features rank outcomes** — variance-gated {w_mean_abs, w_max,
   collapse_work_ratio}, held-out AUC 0.9026, precision 0.9965 at accept fraction 0.353
   (b4_guard_v1.json); the ungated rank basis fails (AUC 0.636, b4_guard_v0.json).
-- **Ordering transfers across families; calibration does not** — frozen v1 as-is on LayerNorm:
-  pooled AUC 0.9875 but accept 48/288 = 0.167 at precision 0.167 vs the 0.90 train target
-  (b5_stage2.json). Mechanism: family-constant score components (cwr 16 vs corpus 1024–2048;
-  γ-degeneracy) preserve rank order and shift the absolute score.
+- **Ordering transfers across families; calibration does not** — frozen v1 as-is on LayerNorm,
+  repaired symmetric-reference rerun (b5_stage2r.json; repair committed 2470a62 pre-run):
+  pooled AUC 0.8021 with K3 killing in BOTH the published (0.9875, b5_stage2.json) and repaired
+  runs ⇒ the disposition is robust to the referent repair. Accept 48/288 = 0.167 at precision
+  0.667 repaired (0.167 published) vs the 0.90 train target. Mechanism (repaired attribution):
+  cwr-z is a pure constant offset (−1.7223, AUC 0.5); the load is the γ-magnitude pair —
+  family-constant components preserve rank order and shift the absolute score.
 - **Consequence for the protocol:** any claim of the form "rule R with admission filter A" must
   declare, per family, which features are constant and where the operating point was fit;
   a threshold fit on one family is evidence about ordering, not about the operating point.

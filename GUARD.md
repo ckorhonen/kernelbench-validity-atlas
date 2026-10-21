@@ -59,3 +59,13 @@ committed b4/b5 artifacts), then the third-family preregistered GPU test.
 
 **Lane debts cleared; none new.** KC check cost 0.255 ms — descriptive, not kill-bearing
 (declared in the prereg).
+
+## Repair addendum (2026-10-21, post-finality)
+
+The published stage-2 referent was unscaled (review finding R1, b5_stage2.py:155); the repaired
+rerun (b5_stage2r.py, symmetric scaled reference, population variance, evaluator-exact direction;
+commit 2470a62 pre-run) gives pooled AUC 0.8021, K3 kill in both runs — **finality unchanged, now
+verified against the referent construction, not just the score machinery**. Repaired mechanism:
+cwr-z pure offset (−1.7223); load = γ-magnitude pair. The B5 numbers above the addendum are the
+published record; CONTRIBUTION.md carries both. Lesson generalized: referent construction, not
+score machinery, is where silent invalidation lives (see wrapup_atlas repair addendum).

@@ -35,3 +35,15 @@ The next lane is Exploitation: build on the community's strongest object, not on
   10 harnesses; metadata abstract 255 words; statement_version 1 unchanged).
 - Carried debts unchanged (A3 confirmatory prereg, LOO bookkeeping, CTA-edge, 24h-E1, bt
   error-bar, cold-wall v-structure) — handed to the next lane per plan v2 items 2–4.
+
+### Repair addendum 2026-10-21 (post-close, tick 33–34)
+
+Review finding R1 invalidated the published stage-2 referent; repaired rerun (b5_stage2r, commit
+2470a62 pre-run, 288 rows 0 err) **confirms the kill under the corrected referent**: pooled AUC
+0.9875→0.8021, precision 0.167→0.667, K3 fires in both ⇒ negative triple {B4v0, B5, mechanism}
+is complete AND robust; mechanism refined to cwr-z pure offset + γ-magnitude load. GUARD.md and
+CONTRIBUTION.md updated. Still open at handoff (parked, pre-resubmission): R2 supplement residues
+(validate-then-time reorder; per-row pass/fail+error dicts for timed arms; M3 conv error-dict
+backfill; delivered-gate conv maxerrs reference magnitudes; failure-reporting pass); resubmission
+legal now (rejected, no cooldown) via previous_submission_id=R5c3ENyOqeuCfg0t + change_summary —
+deliberately NOT executed before the strategic reset; supplement_v2 staged (111 files, sha-ledger).
