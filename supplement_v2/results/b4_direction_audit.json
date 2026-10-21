@@ -1,0 +1,44 @@
+{
+ "n_heldout": 816,
+ "legacy_reproduction_mismatches": 0,
+ "n_label_flips": 0,
+ "legacy": {
+  "n_pass": 574,
+  "n_fail": 242,
+  "pooled_auc": 0.9026046016068189,
+  "auc_by_arm": {
+   "ordmag": 0.8785955834419817,
+   "cancel": 0.856280193236715
+  },
+  "accepted_n": 288,
+  "accepted_precision": 0.9965277777777778,
+  "accepted_frac": 0.35294117647058826,
+  "cells_auc_min": 0.8758454106280193,
+  "cells_auc_max": 0.9910714285714286,
+  "collapse_flags": {}
+ },
+ "exact_cand_scaled": {
+  "n_pass": 574,
+  "n_fail": 242,
+  "pooled_auc": 0.9026046016068189,
+  "auc_by_arm": {
+   "ordmag": 0.8785955834419817,
+   "cancel": 0.856280193236715
+  },
+  "accepted_n": 288,
+  "accepted_precision": 0.9965277777777778,
+  "accepted_frac": 0.35294117647058826,
+  "cells_auc_min": 0.8758454106280193,
+  "cells_auc_max": 0.9910714285714286,
+  "collapse_flags": {}
+ },
+ "alive_legacy": true,
+ "alive_exact": true,
+ "frozen_t": -0.6134445630270532,
+ "kept": [
+  "w_mean_abs",
+  "w_max",
+  "collapse_work_ratio"
+ ],
+ "note": "scores/features/limit-threshold frozen from guard_v1.json; ONLY pass labels re-derived"
+}

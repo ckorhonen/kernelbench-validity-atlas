@@ -1,0 +1,54 @@
+{
+ "when": "2026-10-20T20:38:45Z",
+ "widened_contingency": true,
+ "n_rows": 116,
+ "units": {
+  "cancel": {
+   "n": 20,
+   "n_pos": 0,
+   "youden_J": null,
+   "t_star": null,
+   "d_raw": -1.7222374095679303,
+   "d_cen": null
+  },
+  "ordmag": {
+   "n": 96,
+   "n_pos": 0,
+   "youden_J": null,
+   "t_star": null,
+   "d_raw": -1.3490859708282121,
+   "d_cen": null
+  }
+ },
+ "prec_frozen": 0.0,
+ "acc_frozen": 0.08620689655172414,
+ "prec_law": null,
+ "acc_law": null,
+ "prec_oracle": null,
+ "acc_oracle": null,
+ "pooled_R2_3family": 0.8308596474565519,
+ "pooled_beta": [
+  -1.1052271376183762,
+  0.8460714131310114,
+  0.0,
+  0.5876085080140739
+ ],
+ "rider": null,
+ "auc_all": NaN,
+ "auc_arm": {
+  "ordmag": NaN,
+  "cancel": NaN
+ },
+ "verdicts": {
+  "K-a_frozen_t_sufficient": false,
+  "K-b_repaired_below_0.80": false,
+  "K-c_cellfit_R2_below_0.5": false,
+  "G_construction_signal": false
+ },
+ "env": {
+  "torch": "2.14.1+cu130",
+  "dev": "cuda",
+  "gpu": "NVIDIA GB10"
+ },
+ "freeze_sha": "8eed185a93efe96a"
+}

@@ -1,0 +1,47 @@
+{
+ "when__frozen": "2026-10-20T23:50Z (before any d3 run); see module docstring",
+ "universe": {
+  "n_rows": 116,
+  "arms": {
+   "cancel": 20,
+   "ordmag": 96
+  },
+  "elem_per_row": 36864,
+  "cell": "C64_K576_Cout128_8x8_N4"
+ },
+ "atol": 0.0001,
+ "rtol": 0.0001,
+ "near_band": 0.001,
+ "phi_branch": 0.5,
+ "remedy_green": 1.0,
+ "remedy_partial": 0.5,
+ "metrics": {
+  "primary": "phi_cond=P(near|fail) pooled",
+  "descriptive": [
+   "phi_abs",
+   "phi_argmax",
+   "phi_pass",
+   "median_absR_fail",
+   "median_absR_pass",
+   "tstar_row_cand32",
+   "tstar_row_cand64"
+  ]
+ },
+ "branch_A": "phi-heavy: fp64-accum remedy candidate; re-eval if two-class",
+ "branch_B": "flat: family exits, negative numerics-axis entry; fp64 descriptive",
+ "cand64": "d2 cand path float64 accum, cast fp32, label64 vs fp32 conv2d",
+ "carried": {
+  "b_conv_pred": -0.5707986843139425,
+  "bound": 0.27973625942385133,
+  "a_dag": -1.1052271376183762,
+  "gamma": 0.5876085080140739,
+  "t_frozen_d2": -0.6134445630270532
+ },
+ "reeval": "d2 verdict machinery verbatim on label64; single-class => nulls",
+ "shas": {
+  "d2_freeze": "8eed185a93efe96ac2231906ae8e03dac5bbd53ac9bd971921e572e17cf62d99",
+  "d2_conv": "91521bec14b3a495ca0c74f9ca1dfb7257d3ce7701a6dcab7aabc29c7e4329fc",
+  "guard_v1": "a7ceab171e87a1b6004535c939e09c81aa593082b2193f194e0e8d7f6a4e4204"
+ },
+ "runner": "lab/d3_margin.py (spark); tie-out rel 1e-9 vs d2_conv.jsonl"
+}

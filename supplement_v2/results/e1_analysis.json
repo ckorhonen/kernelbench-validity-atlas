@@ -1,0 +1,160 @@
+{
+ "meta": {
+  "date": "2026-10-17T02:29:01Z",
+  "device": "NVIDIA GB10",
+  "sm_count": 48,
+  "calibration_launch_single_ms": 0.007455999962985516,
+  "calibration_launch_b2b_ms": 0.002939840078353882,
+  "note": "c0 anchor from calibration, not fitted; see analysis"
+ },
+ "c0_anchor_ms": 0.007455999962985516,
+ "configs": {
+  "triton_persistent{\"BLOCK\": 1024, \"cap\": 192, \"kind\": \"persistent\", \"num_warps\": 4}": {
+   "c0_fit_ms": 0.03997,
+   "BW_eff_Gbps": 218.7,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0219,
+   "n_points": 37
+  },
+  "triton_persistent{\"BLOCK\": 1024, \"cap\": 48, \"kind\": \"persistent\", \"num_warps\": 4}": {
+   "c0_fit_ms": 0.04656,
+   "BW_eff_Gbps": 222.9,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0097,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 1024, \"kind\": \"flat\", \"num_warps\": 1}": {
+   "c0_fit_ms": 0.09563,
+   "BW_eff_Gbps": 228.4,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.023,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 1024, \"kind\": \"flat\", \"num_warps\": 2}": {
+   "c0_fit_ms": 0.08175,
+   "BW_eff_Gbps": 227.6,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0169,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 1024, \"kind\": \"flat\", \"num_warps\": 4}": {
+   "c0_fit_ms": 0.11398,
+   "BW_eff_Gbps": 233.1,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0256,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 1024, \"kind\": \"flat\", \"num_warps\": 8}": {
+   "c0_fit_ms": 0.13557,
+   "BW_eff_Gbps": 238.8,
+   "transition_n_at_20pct": 131072,
+   "resid_rms_large_n": 0.0403,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 16384, \"kind\": \"flat\", \"num_warps\": 1}": {
+   "c0_fit_ms": -0.65264,
+   "BW_eff_Gbps": 67.3,
+   "transition_n_at_20pct": null,
+   "resid_rms_large_n": 2.1293,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 16384, \"kind\": \"flat\", \"num_warps\": 2}": {
+   "c0_fit_ms": 0.02075,
+   "BW_eff_Gbps": 174.4,
+   "transition_n_at_20pct": 1448,
+   "resid_rms_large_n": 0.2714,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 16384, \"kind\": \"flat\", \"num_warps\": 4}": {
+   "c0_fit_ms": 0.07155,
+   "BW_eff_Gbps": 226.3,
+   "transition_n_at_20pct": 46340,
+   "resid_rms_large_n": 0.0152,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 16384, \"kind\": \"flat\", \"num_warps\": 8}": {
+   "c0_fit_ms": 0.05066,
+   "BW_eff_Gbps": 228.5,
+   "transition_n_at_20pct": 23170,
+   "resid_rms_large_n": 0.0291,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 256, \"kind\": \"flat\", \"num_warps\": 1}": {
+   "c0_fit_ms": 0.12977,
+   "BW_eff_Gbps": 239.9,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0427,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 256, \"kind\": \"flat\", \"num_warps\": 2}": {
+   "c0_fit_ms": 0.14342,
+   "BW_eff_Gbps": 240.4,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0438,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 256, \"kind\": \"flat\", \"num_warps\": 4}": {
+   "c0_fit_ms": 0.12811,
+   "BW_eff_Gbps": 244.7,
+   "transition_n_at_20pct": 131072,
+   "resid_rms_large_n": 0.0589,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 256, \"kind\": \"flat\", \"num_warps\": 8}": {
+   "c0_fit_ms": 0.10181,
+   "BW_eff_Gbps": 247.7,
+   "transition_n_at_20pct": 131072,
+   "resid_rms_large_n": 0.0771,
+   "n_points": 37
+  },
+  "triton_persistent{\"BLOCK\": 4096, \"cap\": 192, \"kind\": \"persistent\", \"num_warps\": 4}": {
+   "c0_fit_ms": 0.04309,
+   "BW_eff_Gbps": 220.6,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0169,
+   "n_points": 37
+  },
+  "triton_persistent{\"BLOCK\": 4096, \"cap\": 48, \"kind\": \"persistent\", \"num_warps\": 4}": {
+   "c0_fit_ms": 0.05225,
+   "BW_eff_Gbps": 223.0,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0112,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 4096, \"kind\": \"flat\", \"num_warps\": 1}": {
+   "c0_fit_ms": 0.07159,
+   "BW_eff_Gbps": 226.0,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0136,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 4096, \"kind\": \"flat\", \"num_warps\": 2}": {
+   "c0_fit_ms": 0.06618,
+   "BW_eff_Gbps": 226.8,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0178,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 4096, \"kind\": \"flat\", \"num_warps\": 4}": {
+   "c0_fit_ms": 0.0666,
+   "BW_eff_Gbps": 226.1,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.0161,
+   "n_points": 37
+  },
+  "triton_flat{\"BLOCK\": 4096, \"kind\": \"flat\", \"num_warps\": 8}": {
+   "c0_fit_ms": 0.08274,
+   "BW_eff_Gbps": 228.8,
+   "transition_n_at_20pct": 92681,
+   "resid_rms_large_n": 0.019,
+   "n_points": 37
+  },
+  "torch_add{}": {
+   "c0_fit_ms": 0.11119,
+   "BW_eff_Gbps": 233.0,
+   "transition_n_at_20pct": 131072,
+   "resid_rms_large_n": 0.0254,
+   "n_points": 37
+  }
+ }
+}
