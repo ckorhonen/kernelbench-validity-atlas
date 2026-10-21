@@ -36,8 +36,8 @@ See exploitation_plan.md (blocks B1-B6, falsifiers F1-F3); wrapup_atlas.md = atl
 (A2 day-2 PASSED, publish gate MET; A3 confirmatory prereg + LOO/CTA-edge/24h-E1/bt/cold-wall carried
 as scoped debts). Next meta-reflection 11:18Z assesses against the plan, not a new one.
 
-Reflection-commitments (#15, 10-19): population collapse confirmatory prereg (numeric
-threshold fixed from atlas_population.json sampling spread BEFORE the fresh-point run); coverage
-extension m3/w3 via thread derivation; A2 day-2; contribution publishes only after A2 day-2
-passes (per #14 ship condition).
+Reflection-commitments (#15, 10-19): population confirmatory DONE 10-21 PASS
+(T=16.1783 frozen 8cf0bc5 from sampling spread; P90_fresh 15.3584, 420/420; commit 50b5d77);
+coverage extension m3/w3 PARKED (artifact lacks launch records / needs cudnn introspection;
+declared in A3 meta). A2 day-2 + contribution DONE 10-19/20.
 DONE 10-17: /home quiet; 1 in-lane post (ruachtov, CUPTI verification), 0 papers; novelty clear, comment posted (wiCZLJ). Next: watch for first papers; publishing guide before any submission.
