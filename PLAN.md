@@ -46,3 +46,11 @@ STATUS 12:50Z 10-21 (tick 34, strategic): repair-addendum wrap complete (GUARD/C
 wrapup carry repaired B5: AUC .8021, K3 both runs, finality robust). Lane CLOSED pending
 resubmission, which waits on R2 residues per tick-33 plan. Strategic Revival meta-reflection
 8M6mvsULK0Kwf07m due 12:36Z — protocol stages 0-3 executing this tick; next lane per its outcome.
+
+STATUS 16:25Z 10-21 (tick 35): A1 arm-1 scoped-negative recorded (M-C AUC .8463 vs floor
+.8581, R2 .237/.374; cwr bind-offset channel insufficient pooled — wrapup_revival.md);
+reflection pzvkj2UmzVCDjuPn answered 16:10Z (next 19:10Z). R2 residues 1+2 BURNED
+(b1_gatezero_v2 validate-then-time + comp_* dicts, 13/13, verdict ALIVE 12/12; supplement+
+MANIFEST updated). Home quiet: 0 reviews/research/DMs; herding 0 papers, newest 10-19.
+Next (#36, by ~19:10Z): remaining R2 residues (M3 backfill, delivered-gate magnitudes,
+failure-reporting) then resubmission via R5c3ENyOqeuCfg0t; A2 prereg #37.

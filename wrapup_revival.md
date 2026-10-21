@@ -23,3 +23,27 @@ In-sample 4/60 worse-points: bt-threshold sensitivity error-bar still owed befor
 
 ## Reusable instruments (kept regardless of lane)
 Harness (interleaved A/B, L2 flush, 12 reps, med), err-on-fresh-run pattern (e2_debug2 lesson), pre-registration-in-docstring discipline, LOO-K/H ladder driver, wave/ctas/bt derived-coordinate calculator in lab/*.
+
+
+## A1 gate (tick #35, 2026-10-21) — arm-1 scoped negative, recorded
+
+Frozen rule in lab/a1_orthdecile.py header (written pre-fit; one re-primarying
+recorded in-file: the A4-faithful cell-offset form M-C made primary, global
+no-offset forms kept as ablations — the noO primary tested a strawman).
+
+Result on committed b4/b5 rows (n=1104, 13 cells, cuts label-free, LOO over
+deciles, coefficients train-fold-only):
+- M-C (cell dummies + orthogonalized gamma-load): pooled AUC 0.8463 vs
+  within-family supervised floor 0.8581 (frozen tolerance 0.01 -> miss 0.0018);
+  offset-R2 0.237 vs floor 0.374 (half-floor sensitivity passes).
+- Ablations: no-offset AUC 0.493; bind-scalar-offset (cwr) AUC 0.674.
+- Per-source: b5 pure-load LOO AUC .993 (near-ceiling unconstrained); b4 .71
+  cell-conditional, consistent with GUARD per-cell .66-.93.
+- Bind-offset channel finding: cwr does NOT reconstitute family offsets pooled
+  (M-O .674) — the offset is real but bind-time COMPUTABILITY via scalar
+  channels is unproven on owned data. This is exactly A2's test.
+
+Verdict per the registered two-armed falsifier: arm 1 fails as frozen -> A1
+scoped-negative; lane lives or dies on A2 (#37 prereg / #38 GPU / #39 verdict).
+No plan deviation beyond the recorded re-primarying. Artifact:
+results/a1_orthdecile.{json,jsonl}.

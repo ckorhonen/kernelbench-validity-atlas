@@ -1,0 +1,112 @@
+{
+ "when": "2026-10-21T16:07:54Z",
+ "runtime_s": 0.02,
+ "primary": {
+  "tag": "primary: b4_guard_v1 + b5_stage2 (published)",
+  "n": 1104,
+  "n_cells": 13,
+  "base_rate": 0.5271739130434783,
+  "orth": {
+   "b0": -1.3211955301521537e-17,
+   "b1": -1.6184763858208244e-07
+  },
+  "PRIMARY": "M-C (cell offsets + global load; A4-faithful, re-primarying recorded)",
+  "LOO_offset_R2": 0.23738793805012737,
+  "LOO_auc": 0.8463318455319877,
+  "LOO_offset_R2_noO": -0.3005697039403088,
+  "LOO_auc_noO": 0.49326374899606323,
+  "LOO_offset_R2_O": -0.18297583428990283,
+  "LOO_auc_O": 0.6741896090900712,
+  "floor_R2_supervised": 0.3735585330844159,
+  "floor_auc": 0.8580565101183658,
+  "floor_R2_per_src": {
+   "b4/ordmag": 0.26809660596989526,
+   "b4/cancel": 0.554513303251242,
+   "b5/randu": 0.1615632093783027,
+   "b5/randn": 0.1615632093783027,
+   "b5/randn_p1000": NaN
+  },
+  "pass_R2": false,
+  "pass_R2_half": true,
+  "pass_auc": false,
+  "per_source": {
+   "b5": {
+    "n": 288,
+    "looR2_C": -3.258925322997131,
+    "looAUC_C": 0.6892857142857143,
+    "looAUC_noO": 0.9928571428571429
+   },
+   "b4": {
+    "n": 816,
+    "looR2_C": -0.03820626568941843,
+    "looAUC_C": 0.7111757422178708,
+    "looAUC_noO": 0.6415649206669163
+   }
+  },
+  "folds": [
+   {
+    "dec": 0,
+    "n": 111,
+    "n_unseen_cell": 0,
+    "b1": -0.1557159477124454
+   },
+   {
+    "dec": 1,
+    "n": 110,
+    "n_unseen_cell": 0,
+    "b1": -0.15767712731882053
+   },
+   {
+    "dec": 2,
+    "n": 111,
+    "n_unseen_cell": 0,
+    "b1": -0.15304152148472805
+   },
+   {
+    "dec": 3,
+    "n": 110,
+    "n_unseen_cell": 0,
+    "b1": -0.14688772434016872
+   },
+   {
+    "dec": 4,
+    "n": 110,
+    "n_unseen_cell": 0,
+    "b1": -0.14889663707569095
+   },
+   {
+    "dec": 5,
+    "n": 111,
+    "n_unseen_cell": 0,
+    "b1": -0.15280383474806933
+   },
+   {
+    "dec": 6,
+    "n": 110,
+    "n_unseen_cell": 0,
+    "b1": -0.15662074645104834
+   },
+   {
+    "dec": 7,
+    "n": 111,
+    "n_unseen_cell": 0,
+    "b1": -0.148830207349509
+   },
+   {
+    "dec": 8,
+    "n": 110,
+    "n_unseen_cell": 0,
+    "b1": -0.14763634511864074
+   },
+   {
+    "dec": 9,
+    "n": 110,
+    "n_unseen_cell": 0,
+    "b1": -0.3383956162134874
+   }
+  ],
+  "PASS": false
+ },
+ "sensitivity": null,
+ "rule": "see lab/a1_orthdecile.py docstring (frozen; re-primarying recorded)"
+}

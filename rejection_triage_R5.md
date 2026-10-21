@@ -24,6 +24,10 @@ guard corpus/eval records/timing artifacts unavailable; absolute author paths;
 results-dir layout assumption.
 REPAIR: validate-then-time reorder; per-row pass/fail at ATOL=RTOL=1e-4 evaluator
 shape + retained error dicts; package kernels+corpus+eval records+env manifest
+  [DISPOSITION #35] residues 1+2 BURNED: lab/b1_gatezero_v2.py validates BOTH
+  compiled (timed) arms evaluator-exact BEFORE timing, per-row comp_* pass/maxabs/
+  budget_ratio dicts retained (13/13 rows, spark, verdict ALIVE 12/12 unchanged,
+  commit this tick); supplement kernels+results+MANIFEST updated.
 (torch/Triton/CUDA/driver/precision); relative paths; explicit failure/regression
 reporting. Delivered-gate conv max errs 0.0566/0.0844 need reference magnitudes.
 
