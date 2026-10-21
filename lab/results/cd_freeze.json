@@ -1,0 +1,38 @@
+{
+ "when": "2026-10-21T06:29:39Z",
+ "universe": "116 kept d2 rows verbatim (d3 recorder pattern), tie-out vs d2_conv.jsonl",
+ "reference": "conv64 = F.conv2d fp64; all t* = max d/(1+|conv64|)",
+ "arms": {
+  "tA1": "conv32 vs conv64",
+  "tA2": "gemm64raw vs conv64",
+  "tB1": "gemm32 vs conv64 (descriptive)",
+  "paths": [
+   "default",
+   "cudnn.benchmark=True",
+   "channels_last"
+  ]
+ },
+ "thresholds": {
+  "confirm_tA1": 0.001,
+  "dead_tA1": 0.0002,
+  "exact_agree": 1e-06,
+  "path_spread": 0.1
+ },
+ "verdicts": {
+  "V1": "med tA1>=1e-3 => conv-side CONFIRMED, reopen note",
+  "V2": "med tA1<=2e-4 => conv-side DEAD, atlas closure stands",
+  "V3": "else partial, recorded only",
+  "R1": "path spread<=0.10 invariant; degenerate voids",
+  "F1": "med tA2>1e-6 => halt interpretation"
+ },
+ "env_pin": {
+  "dtype": "fp32",
+  "tf32": false,
+  "device": "cuda"
+ },
+ "shas": {
+  "d2_freeze": "8eed185a93efe96ac2231906ae8e03dac5bbd53ac9bd971921e572e17cf62d99",
+  "d2_conv": "91521bec14b3a495ca0c74f9ca1dfb7257d3ce7701a6dcab7aabc29c7e4329fc",
+  "guard_v1": "a7ceab171e87a1b6004535c939e09c81aa593082b2193f194e0e8d7f6a4e4204"
+ }
+}
