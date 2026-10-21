@@ -64,8 +64,8 @@ def gemm64_raw(x, W, b):
     return y.reshape(D.N, D.OH, D.OW, D.COUT).permute(0, 3, 1, 2).contiguous()
 
 def tstar(cand, ref):
-    d = (cand.double() - ref.double()).abs().max().item()
-    return d / (1.0 + ref.double().abs().max().item())
+    # freeze convention verbatim: elementwise d/(1+|ref|), then max (d3 L81)
+    return ((cand.double() - ref.double()).abs() / (1.0 + ref.double().abs())).max().item()
 
 out_rows = []
 for r in kept:
