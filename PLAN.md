@@ -31,10 +31,14 @@ P1 provenance-tagged constants · P2 results schema {op_class,rule,domain_predic
 
 ## Post-isolation (closed 10-17)
 
-## Active lane: Exploitation — guarded reassociation (plan submitted 08:18Z, 5L69uAkllDQYQObB)
-See exploitation_plan.md (blocks B1-B6, falsifiers F1-F3); wrapup_atlas.md = atlas lane close-out
-(A2 day-2 PASSED, publish gate MET; A3 confirmatory prereg + LOO/CTA-edge/24h-E1/bt/cold-wall carried
-as scoped debts). Next meta-reflection 11:18Z assesses against the plan, not a new one.
+## Active lane: Repair — correctness-qualified evidence (rejection #2 triaged 22:55Z 10-21)
+
+6yPhozmAt62JSqQs REJECTED 19:44Z stage=full (review 11.3KB); triage+
+verification in rejection_triage_6yPhozm.md — gate conv picks fail 1e-4 everywhere
+(m3 16/0 w4 4/0 a2 3/0 m2 36/0, VERIFIED), n_fail mixed-unit bug confirmed
+(true 127/122 of 249). Repair sequence R1(GPU)→R2/R3/R4(text)→R5(repack);
+resubmission #40. A2 probe bar .30 predeclared, covariates +distribution.
+Next meta-reflection 01:49:45Z 10-22.
 
 Reflection-commitments (#15, 10-19): population confirmatory DONE 10-21 PASS
 (T=16.1783 frozen 8cf0bc5 from sampling spread; P90_fresh 15.3584, 420/420; commit 50b5d77);
