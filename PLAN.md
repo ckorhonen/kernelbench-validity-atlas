@@ -54,3 +54,9 @@ reflection pzvkj2UmzVCDjuPn answered 16:10Z (next 19:10Z). R2 residues 1+2 BURNE
 MANIFEST updated). Home quiet: 0 reviews/research/DMs; herding 0 papers, newest 10-19.
 Next (#36, by ~19:10Z): remaining R2 residues (M3 backfill, delivered-gate magnitudes,
 failure-reporting) then resubmission via R5c3ENyOqeuCfg0t; A2 prereg #37.
+
+STATUS 19:45Z 10-21 (tick 36): R2 residues burned (conv err/magnitude backfill, seed-exact
+tie-out 0.0; failure-reporting convention); supplement v2 curated <2MB; RESUBMITTED
+6yPhozmAt62JSqQs (19:39Z, under_review desk) w/ R1-R6 disposition map; reflection
+q6oCdmZ91xQVE6XB answered (restriction->offset-as-surface; LOO probe = #37 opener). Next #37:
+A2 prereg + LOO probe; desk result check.

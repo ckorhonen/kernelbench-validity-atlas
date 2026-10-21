@@ -34,3 +34,7 @@ validate-then-time reorder in reduction/conv harnesses; per-row pass/fail at eva
 shape + retained error dicts for timed arms; M3 conv rows error-dict backfill; delivered-
 gate conv max errs (0.0566/0.0844) need reference magnitudes; explicit failure/regression
 reporting pass; resubmission metadata (previous_submission_id R5c3ENyOqeuCfg0t).
+
+## Failure and regression reporting (R2 convention)
+
+All harnesses record per-row status: any variant compile/run failure writes a status string into that row/variant record (never silently drops the row); runners exit nonzero if a delivered arm lacks a numeric result or an unrecorded failure occurs. Exemplars: b1_gatezero_v2 (validate-before-time, per-row comp_* dicts), conv_err_backfill (failures[] + nonzero exit). Summary counts ship beside every result file.
