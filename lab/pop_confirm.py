@@ -24,7 +24,7 @@ cell_bin = {}
 for k, v in FRZ['cell_bin_map'].items():
     B, nw, n = (int(x) if x.isdigit() else float(x) for x in k.split('|'))
     n = int(n) if float(n).is_integer() else n
-    cell_bin[(B, nw, n)] = tuple(v.split('|'))
+    cell_bin[(B, nw, n)] = tuple(v.split('|')) if isinstance(v, str) else tuple(v)
 med = {}
 for k, v in FRZ['med_map'].items():
     a, b = k.split('|')

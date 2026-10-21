@@ -1,0 +1,20 @@
+clocks start: 507 MHz, 6.02 W, 44
+n=1.02e+03 (1/39) 1s clocks=507 MHz, 10.21 W, 45
+n=1.64e+04 (9/39) 3s clocks=2405 MHz, 22.45 W, 47
+n=2.62e+05 (17/39) 6s clocks=2405 MHz, 22.53 W, 47
+n=4.19e+06 (25/39) 9s clocks=2405 MHz, 23.14 W, 48
+n=5.03e+07 (33/39) 14s clocks=2405 MHz, 24.74 W, 49
+clocks end: 2405 MHz, 24.57 W, 51
+{
+ "date_utc": "2026-10-21T03:10:48Z",
+ "verdict": "PASS",
+ "P90_fresh_pct": 15.3584,
+ "T_pct": 16.1783,
+ "freeze_sha": "21164420bed6",
+ "n_eval": 420,
+ "n_excl_binlt3": 178,
+ "median_res_pct": 1.2756,
+ "max_res_pct": 81.25,
+ "prereg": "lab/pop_freeze.py docstring; threshold frozen pre-run",
+ "runtime_s": 29.8
+}
