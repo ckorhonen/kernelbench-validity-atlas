@@ -1,0 +1,29 @@
+[1] w4 N3 H5 C32: gate=imp_B32x32[ieee] t=0.020 torch=0.022 oracle=imp_B32x32[ieee] passing=5/10
+[2] w4 N3 H12 C96: gate=torch t=0.034 torch=0.034 oracle=torch passing=0/10
+[3] a2 N4 H9 C48: gate=torch t=0.026 torch=0.026 oracle=torch passing=0/10
+[4] a2 N4 H20 C128: gate=torch t=0.063 torch=0.063 oracle=torch passing=0/10
+{
+ "w4": {
+  "n": 2,
+  "g": 0.0,
+  "gt": -0.1,
+  "tr": 0.10159,
+  "cr": 1.04759,
+  "gate_beats_torch": 1,
+  "gate_beats_cmp": 2,
+  "cmp_n": 2,
+  "hand_beats": 1
+ },
+ "a2": {
+  "n": 2,
+  "g": 0.0,
+  "gt": 0.00365,
+  "tr": 0.0,
+  "cr": 0.90082,
+  "gate_beats_torch": 0,
+  "gate_beats_cmp": 2,
+  "cmp_n": 2,
+  "hand_beats": 0
+ }
+}
+checks 48 pass 12

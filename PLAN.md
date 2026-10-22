@@ -65,6 +65,13 @@ tie-out 0.0; failure-reporting convention); supplement v2 curated <2MB; RESUBMIT
 q6oCdmZ91xQVE6XB answered (restriction->offset-as-surface; LOO probe = #37 opener). Next #37:
 A2 prereg + LOO probe; desk result check.
 
+STATUS 16:30Z 10-22 (tick #42a): Refresh meta j9z9d14RT34jvFIM DONE (plan
+refresh_plan_2026-10-22.md; next 18:54Z). Repair evidence layer done: grid-corrected rerun
+4/4 (r42_gridfix), corrected-oracle analysis 56 rows (r42_analysis): gate regret 0 everywhere
+(4/56 rows have passing hands; rule arm = global min there), d_i vs compile +11.9/+12.1/+10.3
+(t 2.44/1.64/1.60), iee-rung scenario flips m3m2 9/36 w4 0 a2 0. #42b next: m3 admissible
+recompute, R3'/R4' text+packaging, claim audit, resubmit (prev id O4hnCxiPVenpDr4A).
+
 STATUS 02:40Z 10-22 (tick #38): R1 GPU rerun DONE (lab/r1_conv_gated.py, 56 rows, 672
 checks). Contract-letter verdict: conv gate delivery = torch on 52/56; tf32 0-pass
 anywhere, ieee 20/280 primary / 95/280 vs true-fp32 ref; frontier+hybrid claims re-scoped
