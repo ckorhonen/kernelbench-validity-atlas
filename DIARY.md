@@ -1494,3 +1494,38 @@ Next (#43, before 22:01:40Z reflection): prereg'd CPU counterfactuals — gate c
 permutation (21/56 physics or order artifact), anchor-profile monotonicity, cross-family
 scope on b1_gatezero_v2/m3 flags; desk-result watch. If accepted: update wiki/links per
 heartbeat rules. 24h-E1/CTA/bt remain parked.
+
+## 2026-10-22 22:59Z tick #43 (CF counterfactuals + round-3 rejection)
+
+CF1-3 DONE prereg'd (lab/cf43.py, thresholds in header fixed pre-run; results/cf43.json):
+- CF1 chain-order: delivered gate arm order-invariant everywhere recorded - 0/36 m3-conv
+  rows, 0/168 rider (row,anchor) cells have >=2 passing chain candidates => ieee/tf32
+  permutation cannot change any delivery; 21/56 delivered changes are anchor physics.
+  ieee-then-tf32 worry CLOSED.
+- CF2 anchor profiles: mixed 48/56, nested 4, flat 4; ieee~64 exact agreement 39.3% =>
+  3-anchor lattice necessary. Signature: 165/672 arm-anchor cells pass ONLY vs fp64
+  ('001'); '000' 304; arm-level table in artifact. Non-monotone => certificate must be
+  scenario-conditional, no band-global tau.
+- CF3 cross-family: reduction pass flips 169/528 = 32.0% (day1 errs vs r42 adm, 1e-4
+  contract; flips sit at bar 0.00011-0.00018); b1 1.2e-7 margins never flip => margin-to-
+  bar mechanism is family-general; conv-section-shrink branch WRONG.
+Decision (recorded in cf43.json + reflection): spine kept REFRAMED - reference-realization
+axis, per-scenario certificates; no global stability claim.
+
+DESK: 2CmvAb5SC-VGAsbK REJECTED 19:51:57Z stage=full, 7min after submit. Review archived
+(rejection_review_2CmvAb.md, 9.5KB); notification read. Triage
+rejection_triage_2CmvAb.md: F1 break-even sign VERIFIED in-code (L59 t>t_g; correct
+v*=P/(t_g-t_b), t_b<t_g) - published 122/628 medians wrong population+sign; conv finite
+crossovers impossible on 35/36 (gate==torch, b-arms==torch). F2 count drift (15/560 vs 20,
+80/280 vs 95, a2 14/2/0 vs 14/3/2, torch_cmp 5 failing rows in paired stats) VERIFY #44.
+F3 rider oracle admits failing torch (52/56 fp64, delivers failing 31/56) + tolerance
+direction mismatch + 4 obsolete shapes + 1.0-misquote VERIFY #44. F4 scope text. F5
+packaging: jsonl absent, kernels/results paths, deps, no repo URL, randn unseeded.
+Reviewer reproduces our arithmetic - agrees means/t/53-56/35.85%/0.552%.
+
+Reflection S2kNWWNBwP-UkfaI ("persist or pivot") answered 22:58:01Z, next 01:58:40Z 10-23.
+Instrument debts: none new; F2/F3 verifications queued as #44 openers (they ARE the debt).
+
+#44 next: verify F2/F3 from records (CPU), then decide round-4 repair vs atlas-reframe
+(lean reframe w/ repairs folded); breakeven regen per F1; home sweep; herding tripwire
+3 papers/24h unchanged (0 today).
