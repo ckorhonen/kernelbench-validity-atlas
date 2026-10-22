@@ -1,0 +1,97 @@
+[1] m3m2 N1 H4 C16: gate=torch t=0.016 torch=0.016 oracle=torch passing=0/10
+[2] m3m2 N1 H4 C64: gate=torch t=0.024 torch=0.024 oracle=torch passing=0/10
+[3] m3m2 N1 H4 C256: gate=torch t=0.114 torch=0.114 oracle=torch passing=0/10
+[4] m3m2 N4 H4 C16: gate=torch t=0.016 torch=0.016 oracle=torch passing=0/10
+[5] m3m2 N4 H4 C64: gate=torch t=0.029 torch=0.029 oracle=torch passing=0/10
+[6] m3m2 N4 H4 C256: gate=torch t=0.115 torch=0.115 oracle=torch passing=0/10
+[7] m3m2 N1 H7 C16: gate=torch t=0.016 torch=0.016 oracle=torch passing=0/10
+[8] m3m2 N1 H7 C64: gate=imp_B32x32[ieee] t=0.034 torch=0.037 oracle=imp_B32x32[ieee] passing=5/10
+W1021 22:07:58.254000 3181630 torch/_dynamo/convert_frame.py:2008] [0/8] torch._dynamo hit config.recompile_limit (8)
+W1021 22:07:58.254000 3181630 torch/_dynamo/convert_frame.py:2008] [0/8]    function: '<lambda>' (/home/ckorhonen/kb-lab/r1_conv_gated.py:170)
+W1021 22:07:58.254000 3181630 torch/_dynamo/convert_frame.py:2008] [0/8]    last reason: 0/7: tensor 'w' size mismatch at index 0. expected 64, actual 256
+W1021 22:07:58.254000 3181630 torch/_dynamo/convert_frame.py:2008] [0/8] To log all recompilation reasons, use TORCH_LOGS="recompiles".
+W1021 22:07:58.254000 3181630 torch/_dynamo/convert_frame.py:2008] [0/8] To diagnose recompilation issues, see https://docs.pytorch.org/docs/main/user_guide/torch_compiler/compile/programming_model.recompilation.html
+[9] m3m2 N1 H7 C256: gate=torch t=0.129 torch=0.129 oracle=torch passing=0/10
+[10] m3m2 N4 H7 C16: gate=torch t=0.016 torch=0.016 oracle=torch passing=0/10
+[11] m3m2 N4 H7 C64: gate=torch t=0.038 torch=0.038 oracle=torch passing=0/10
+[12] m3m2 N4 H7 C256: gate=torch t=0.130 torch=0.130 oracle=torch passing=0/10
+[13] m3m2 N1 H10 C16: gate=torch t=0.016 torch=0.016 oracle=torch passing=0/10
+[14] m3m2 N1 H10 C64: gate=torch t=0.051 torch=0.051 oracle=torch passing=0/10
+[15] m3m2 N1 H10 C256: gate=torch t=0.218 torch=0.218 oracle=torch passing=0/10
+[16] m3m2 N4 H10 C16: gate=torch t=0.016 torch=0.016 oracle=torch passing=0/10
+[17] m3m2 N4 H10 C64: gate=torch t=0.052 torch=0.052 oracle=torch passing=0/10
+[18] m3m2 N4 H10 C256: gate=torch t=0.219 torch=0.219 oracle=torch passing=0/10
+[19] m3m2 N1 H14 C16: gate=torch t=0.016 torch=0.016 oracle=torch passing=0/10
+[20] m3m2 N1 H14 C64: gate=torch t=0.061 torch=0.061 oracle=torch passing=0/10
+[21] m3m2 N1 H14 C256: gate=torch t=0.075 torch=0.075 oracle=torch passing=0/10
+[22] m3m2 N4 H14 C16: gate=torch t=0.020 torch=0.020 oracle=torch passing=0/10
+[23] m3m2 N4 H14 C64: gate=torch t=0.064 torch=0.064 oracle=torch passing=0/10
+[24] m3m2 N4 H14 C256: gate=torch t=0.108 torch=0.108 oracle=torch passing=0/10
+[25] m3m2 N1 H20 C16: gate=torch t=0.016 torch=0.016 oracle=torch passing=0/10
+[26] m3m2 N1 H20 C64: gate=torch t=0.024 torch=0.024 oracle=torch passing=0/10
+[27] m3m2 N1 H20 C256: gate=torch t=0.082 torch=0.082 oracle=torch passing=0/10
+[28] m3m2 N4 H20 C16: gate=torch t=0.020 torch=0.020 oracle=torch passing=0/10
+[29] m3m2 N4 H20 C64: gate=torch t=0.033 torch=0.033 oracle=torch passing=0/10
+[30] m3m2 N4 H20 C256: gate=torch t=0.143 torch=0.143 oracle=torch passing=0/10
+[31] m3m2 N1 H28 C16: gate=torch t=0.018 torch=0.018 oracle=torch passing=0/10
+[32] m3m2 N1 H28 C64: gate=torch t=0.028 torch=0.028 oracle=torch passing=0/10
+[33] m3m2 N1 H28 C256: gate=torch t=0.109 torch=0.109 oracle=torch passing=0/10
+[34] m3m2 N4 H28 C16: gate=torch t=0.026 torch=0.026 oracle=torch passing=0/10
+[35] m3m2 N4 H28 C64: gate=torch t=0.048 torch=0.048 oracle=torch passing=0/10
+[36] m3m2 N4 H28 C256: gate=torch t=0.207 torch=0.207 oracle=torch passing=0/10
+[37] w4 N2 H5 C32: gate=imp_B32x32[ieee] t=0.020 torch=0.022 oracle=imp_B32x32[ieee] passing=5/10
+[38] w4 N2 H5 C96: gate=torch t=0.049 torch=0.049 oracle=torch passing=0/10
+[39] w4 N2 H8 C32: gate=torch t=0.022 torch=0.022 oracle=torch passing=0/10
+[40] w4 N2 H8 C96: gate=torch t=0.031 torch=0.031 oracle=torch passing=0/10
+[41] w4 N2 H12 C32: gate=torch t=0.020 torch=0.020 oracle=torch passing=0/10
+[42] w4 N2 H12 C96: gate=torch t=0.031 torch=0.031 oracle=torch passing=0/10
+[43] w4 N2 H24 C32: gate=torch t=0.020 torch=0.020 oracle=torch passing=0/10
+[44] w4 N2 H24 C96: gate=torch t=0.040 torch=0.040 oracle=torch passing=0/10
+[45] w4 N2 H3 C5: gate=imp_B32x32[ieee] t=0.014 torch=0.014 oracle=imp_B32x32[ieee] passing=5/10
+[46] w4 N2 H3 C12: gate=torch t=0.018 torch=0.018 oracle=torch passing=0/10
+[47] a2 N2 H6 C48: gate=torch t=0.028 torch=0.028 oracle=torch passing=0/10
+[48] a2 N2 H6 C128: gate=torch t=0.060 torch=0.060 oracle=torch passing=0/10
+[49] a2 N2 H10 C48: gate=torch t=0.020 torch=0.020 oracle=torch passing=0/10
+[50] a2 N2 H10 C128: gate=torch t=0.085 torch=0.085 oracle=torch passing=0/10
+[51] a2 N2 H18 C48: gate=torch t=0.022 torch=0.022 oracle=torch passing=0/10
+[52] a2 N2 H18 C128: gate=torch t=0.045 torch=0.045 oracle=torch passing=0/10
+[53] a2 N2 H26 C48: gate=torch t=0.028 torch=0.028 oracle=torch passing=0/10
+[54] a2 N2 H26 C128: gate=torch t=0.055 torch=0.055 oracle=torch passing=0/10
+[55] a2 N2 H4 C9: gate=imp_B32x32[ieee] t=0.014 torch=0.010 oracle=imp_B32x32[ieee] passing=5/10
+[56] a2 N2 H4 C20: gate=torch t=0.020 torch=0.020 oracle=torch passing=0/10
+{
+ "m3m2": {
+  "n": 36,
+  "g": 0.0,
+  "gt": -3.44097,
+  "tr": 0.05937,
+  "cr": 4.2739,
+  "gate_beats_torch": 1,
+  "gate_beats_cmp": 24,
+  "cmp_n": 36,
+  "hand_beats": 1
+ },
+ "w4": {
+  "n": 10,
+  "g": 0.0,
+  "gt": -0.67317,
+  "tr": 0.10143,
+  "cr": 0.16479,
+  "gate_beats_torch": 1,
+  "gate_beats_cmp": 7,
+  "cmp_n": 10,
+  "hand_beats": 1
+ },
+ "a2": {
+  "n": 10,
+  "g": 0.0,
+  "gt": -0.39002,
+  "tr": -0.29638,
+  "cr": -0.16598,
+  "gate_beats_torch": 0,
+  "gate_beats_cmp": 7,
+  "cmp_n": 10,
+  "hand_beats": 0
+ }
+}
+checks 672 pass 128

@@ -1270,3 +1270,38 @@ sha-manifested supplement copies.
 Next (#38, by ~01:49Z reflection then): R1 harness rework + spark rerun (correctness-gated
 m3/w4/a2 + reduction-side error verification); A2 probe prereg freeze BEFORE any fitting.
 24h-E1/CTA-edge/bt stay parked.
+
+## 2026-10-22 ~02:00-02:40Z — session 38 (tick #38): R1 conv rerun DONE; reference-TF32 confound found
+
+A2 prereg FROZEN pre-fit (lab/a2_loo_prereg.md, commit eb973d9): LOO-over-13-cells offset
+recovery, ridge on declared bind-time features incl. distribution-marginals (regenerated
+seeded inputs), bar .30 on FULL set only; ablations descriptive. Probe run later tick.
+
+**R1 rerun complete** (lab/r1_conv_gated.py -> results/r1_conv_gated.jsonl 56 rows = m3m2 36
++ w4 10 + a2 10; summary + r1_analysis.json). Design: per-arm declared precision
+(ieee/tf32 as separate arms, input_precision= const), validate-then-time, gate/oracle over
+passing-only, single check population (672 arm-checks).
+
+1. **Instrument finding (the big one): cudnn default fp32 conv on sm_120 IS TF32** --
+   2.2e-4 rel from fp64, tile-independently; allow_tf32=False gives 2.7e-7. The benchmark
+   reference carries the error; any 1e-4-absolute comparison vs torch eager/compile refs
+   inherits it. Explains day-1 "failures" pattern (all tiles identical err).
+2. **Primary contract (vs default ref): hand convs pass 20/560; tf32 0/280, ieee 20/280**
+   (only shapes m3m2 1/7/64, w4 2/5/32 + 2/3/5, a2 2/4/9; rel 3-4e-6 there). Gate honest
+   delivery = torch on 52/56 rows; gate regret vs true oracle 0.000 (m3m2, w4),
+   0.042 (a2: one in-rule row delivered hand +42% vs torch -- rule has no min-torch guard,
+   recorded). **Conv delivery-frontier + hybrid recommendation DO NOT survive the
+   contract; delivery is torch**, which beats compile on 24/36 + 7/10 + 7/10 rows.
+3. **Secondary (vs true-fp32 ref, separated per triage): ieee 95/280, tf 0/280** -- hand
+   kernels are true-fp32-correct on 1/3 of shapes; the rescue claim is bounded, not
+   blanket. Where admissible, hand beats compile 12/14 + 3/3 + 1/2 (tiny n, reported).
+4. Reduction side VERIFIED CLEAN, no repair: b1_gatezero_v2 evaluator-exact 13/13
+   comp_pass, max 8e-8; ref itself 9.6e-8 from fp64. (atol-only scan of m3/w4/a2
+   reduction errs is ref-blind pessimism -- large-K sums ride rtol; documented.)
+5. Analysis-note debt: in-run "oracle" field = best passing hand, NOT min-with-torch;
+   corrected CPU-side in r1_analysis.json (true-oracle regrets). No GPU rerun needed.
+   Day-1-vs-tf32-arm median cross-check deferred to #39 text pass (stability rider).
+
+Next (#39): R2/R3/R4 text+analysis pass (offset-withdrawal wording, distribution
+covariate class, bandwidth relabel, matched-n, R1 numbers above into manuscript;
+reference-TF32 paragraph); R5 repack + A2 probe run + resubmission #40. 24h-E1/CTA/bt parked.

@@ -64,3 +64,13 @@ tie-out 0.0; failure-reporting convention); supplement v2 curated <2MB; RESUBMIT
 6yPhozmAt62JSqQs (19:39Z, under_review desk) w/ R1-R6 disposition map; reflection
 q6oCdmZ91xQVE6XB answered (restriction->offset-as-surface; LOO probe = #37 opener). Next #37:
 A2 prereg + LOO probe; desk result check.
+
+STATUS 02:40Z 10-22 (tick #38): R1 GPU rerun DONE (lab/r1_conv_gated.py, 56 rows, 672
+checks). Contract-letter verdict: conv gate delivery = torch on 52/56; tf32 0-pass
+anywhere, ieee 20/280 primary / 95/280 vs true-fp32 ref; frontier+hybrid claims re-scoped
+(delivery torch; hand only under declared fp32-ref on admitted subset). Instrument
+finding: cudnn default fp32 conv on sm_120 = TF32 (2.2e-4 from fp64), reference-side,
+tile-independent. Reduction side clean (b1_gatezero_v2 13/13, 8e-8). A2 prereg frozen
+eb973d9 (bar .30, distribution-marginal covariates). Next #39: R2/R3/R4 text pass with
+these numbers; #40 R5 repack + A2 probe run + resubmit
+(previous_submission_id=6yPhozmAt62JSqQs).
