@@ -16,22 +16,32 @@ protocol is the primary artifact; the empirical boundaries are its worked instan
 
 Exact claims:
 
-1. **Protocol.** A dispatch claim is falsifiable only with: a frozen rule (and admission filter)
-   written before test shapes are drawn; test shapes fresh and disjoint from every prior fitting
-   or timing surface; comparators charged honestly for probes and compile walls, with delivery
+1. **Protocol.** A dispatch claim is falsifiable by construction when it carries: a frozen rule
+   (and admission filter)
+   written before test shapes are drawn; test shapes disjoint from every prior fitting or timing
+   surface, with seeds independent of them; comparators charged honestly for probes and compile
+   walls, with delivery
    and total regret reported separately; paired per-shape statistics with $n$; and a structured
    per-claim record (op class, rule, domain predicate, derived coordinates, boundary reference,
    variance, repetitions, date).
-2. **Probe economics (positive).** On total time including probe charges, a zero-probe
-   family-local gate beat every cold-start budgeted autotune arm ($b \le 8$); per-shape
-   autotuning pays only after ~15–260 revisits of the same shape.
-3. **Delivery frontier (positive, replicated; correctness-qualified).** At zero probes no single
+2. **Probe economics (positive; contract-enforced).** Under the validate-then-time correctness
+   contract (§4), on total time including probe charges no budgeted autotune arm ($b \le 8$)
+   reaches the zero-probe family-local gate on either family (preregistered decision rule,
+   met on both); the cold-start $b{=}0$ gap is marginal on reduction ($\Delta{+}0.0040$, SE
+   $0.0021$, $n{=}60$) and not demonstrated on conv-as-gemm ($\Delta{+}0.0034$, SE $0.0034$,
+   $n{=}36$; one admissible hand row), and a positive crossover exists only on a minority of
+   shapes, at medians $122$–$628$ revisits ($b{=}2$–$8$, reduction) where it exists at all.
+3. **Delivery frontier (positive; correctness-qualified, paired).** At zero probes no single
    delivery arm dominates: on reduction-like work no gate–compile difference is demonstrated
-   (day-1 $t=-0.92$, day-2 $t=-0.65$; no equivalence margin is claimed), and on conv-as-gemm the
-   compile arm loses decisively — to the correctness-gated gate, whose delivered arm is
-   **torch** on 52/56 rows under the benchmark's $10^{-4}$ contract (24/36, 7/10 and 7/10 rows
-   per family; `r1_conv_gated.jsonl`), not a hand kernel. Hand-conv delivery is admissible only
-   under a declared fp32 reference on the passing subset (secondary analysis, §4).
+   (day-1 $t=-0.92$, day-2 $t=-0.65$; no equivalence margin is claimed). On conv-as-gemm, paired
+   per-row delivery regret against the corrected oracle (min passing hand, torch) puts compile
+   behind the gate on every grid: $d_i$ $= +11.9\%$ ($t{=}2.44$, 24/36 rows), $+12.1\%$
+   ($t{=}1.64$, 7/10), $+10.3\%$ ($t{=}1.60$, 8/10) on the grid-repaired families
+   (`r42_analysis.json`; the earlier $+56.8/+32.1$ pp figures were an inadmissible
+   hand-only-oracle comparison, attributed in that analysis). The gate's delivered conv arm is
+   **torch** on 53/56 rows under the benchmark's $10^{-4}$ contract; hand-conv delivery is
+   admissible only under a declared fp32 reference, on the 3-row passing subset (secondary
+   analysis, §4).
 4. **Population collapse (positive, descriptive).** Elementwise-arm achieved bandwidth collapses
    in (bytes/thread, deployed waves): median within-bin residual 0.55% vs 35.8% for bytes/thread
    alone; on the common retained subset the contrast is 0.55% vs 31.7%, and a pure total-bytes
@@ -53,20 +63,41 @@ impossibility.
 
 ## 3. The protocol
 
-We propose the five requirements below as reporting practices for dispatch claims; a claim meeting them is falsifiable by construction. Per claim:
+We propose the five requirements below as reporting practices for dispatch claims; a claim
+carrying them is falsifiable by construction. We demonstrate their value on the claims below;
+they are offered as sufficient reporting discipline, not as proven-necessary conditions. Per claim:
 
 1. **Frozen rule.** The predicate/config rule and any admission filter, written with their
    domains before test shapes exist; no refit after seeing them. The freeze is a checked-in
    artifact with a content hash (here: threshold, feature list, corpus sha256).
-2. **Fresh disjoint shapes.** Test shapes sampled from the benchmark's own generators, disjoint
-   from every prior fitting and timing surface (here: non-power-of-two grids, new seeds).
+2. **Disjoint evaluation populations.** Test shapes disjoint from every prior fitting and timing
+   surface, with independently drawn seeds. The evaluation populations in this paper are declared
+   DESIGNED GRIDS (enumerations stated at each harness), not draws from a benchmark shape
+   distribution — KernelBench fixes per-task shapes and supplies no shape distribution; "fresh"
+   here means disjoint-with-new-seeds relative to every surface the claim touched. The
+   requirement map below states which experiment evidences which requirement.
 3. **Charged comparators.** Frozen rule; budgeted autotune at $b \in \{1,2,4,8\}$; torch.compile;
    post-hoc oracle. Delivery regret (kernel time) and total regret (probes + walls + delivery)
-   are reported separately — they rank arms differently.
+   are reported separately — they rank arms differently. Every timed arm is validated
+   validate-then-time: correctness is read from a fresh buffer before selection, and only
+   contract-passing arms are selectable; certification is offline on the deployed domain (each
+   grid point's admissibility is recorded before selection; the deployed rule reads the recorded
+   verdict), and the alternative runtime-charged accounting is bounded by the recorded probe
+   costs (§4).
 4. **Paired per-shape statistics.** Regret vs oracle per shape; paired deltas vs each comparator
    with $t$, $n$; numerics within benchmark tolerance with the observed error stored in-row.
 5. **Record schema.** One row per claim:
    ``{op_class, rule, domain_predicate, derived_coords, boundary_ref, variance, n_reps, date}``.
+
+**Requirement map (which experiment evidences which requirement).**
+
+| experiment | population | requirements evidenced |
+|---|---|---|
+| probe economics (`m3_r42`) | designed in-sample grids (day-1 fit region; reduction $K\times M$) | R3 charged comparators (contract-enforced), R4 paired stats, R5 record; **not** a fresh-shape claim |
+| delivery frontier (`w4_heldout`, `a2_day2`, `r42_gridfix`) | held-out designed grids, frozen $(N,H,C)$, new seeds | R1 frozen rule, R2 disjoint populations, R4, R5 |
+| correctness rerun (`r1_conv_gated`, 56 rows) | same grids, per-arm precision declared | R4 numerics in-row, R5; qualifies claims 2–3 |
+| population collapse (`atlas_population`, `pop_confirm`) | 3 session artifacts, flat elementwise arms | repeatability only (descriptive; confirmatory band preregistered) |
+| calibration transfer (`b4/b5`) | layer-norm extension, declared single-shape/cwr | R1, R2, R5 for the negative claim |
 
 Runtime scale: the full held-out evaluation below is minutes on the accelerator, not hours; the
 gate itself is evaluated with zero probes.
@@ -76,35 +107,81 @@ gate itself is evaluated with zero probes.
 All numbers below are quoted from committed result files; preregistration timestamps are in the
 script docstrings and precede every run.
 
-**Probe economics (claim 2).** Paired total regret, zero-probe gate vs budgeted autotune. The quoted comparator is the sweep's $b{=}0$ arm (torch, zero probes); the $b{\ge}1$ arms carry probe charges, quoted per-budget in `m3_curve.json` — reduction 0.0386 vs 0.0445 ($\Delta +0.0059$, SE 0.0026, $n=60$); conv-as-gemm 0.0640 vs 0.1886 ($\Delta +0.1246$, SE 0.0364, $n=36$). The gate's advantage on total time holds at every $b \le 8$; no budget reaches parity. The gate is uncompiled and its rule frozen once on day-1 data (no per-deployment fit), so no compile wall or fitting charge enters its total; comparator compile walls are reported alongside delivery times, warm-cache. The
-break-even visit count is large because probe medians (0.06–3.7 ms) dominate small delivery
-deltas — median 71 revisits ($b=2$) to 262 ($b=8$) on reduction, 14 to 66 on conv
-(`m3_curve.json`, `m3_summary.json`); medians are over finite-crossover rows only
-(reduction $b{=}2$: 14/60, $b{=}8$: 24/60; conv $b{=}2$: 3/36, $b{=}8$: 8/36) — the remainder are
-shapes with no positive crossover, where autotuning never pays. The test lattices are designed
-enumerations (the RED_KS/RED_MS reduction grids and CONV_POINTS conv grids in the harness
-sources `w4_heldout.py`/`a2_day2.py`), not draws from the benchmark generator; task mappings and
-domain restrictions are declared at each lattice definition.
+**Probe economics, contract-enforced (claim 2).** Rerun on the unchanged m3 grids, seed and
+budgets with validate-then-time arms (analysis `m3_r42_analysis.json`; per-row ledger `m3_r42.jsonl` in the repository): every
+arm timed med-of-12 and checked once against the deployed reference ($10^{-4}$ contract);
+selection only over contract-passing arms; oracle $=$ min(passing hand, torch) — the corrected
+basis of `r42_analysis.json`. Admissibility population: reduction 55/60 rows have ${\ge}1$
+passing hand arm (mean 5.0/6); conv-as-gemm 1/36 rows — under the contract the conv gate
+${\equiv}$ torch except on a single row. Paired total-regret differences, gate minus arm
+($n$ rows): reduction gate $0.0372$ vs $b{=}0$ $0.0412$ ($\Delta{+}0.0040$, SE $0.0021$), vs
+$b{=}1$ $1.234$ (SE $0.032$), $b{=}2$ $10.24$ (SE $2.22$), $b{=}4$ $14.12$, $b{=}8$ $44.82$;
+conv-as-gemm gate $0.0000$ vs $b{=}0$ $0.0034$ (SE $0.0034$ — the entire gap is the one
+admissible hand row), $b{=}1$ $1.648$ (SE $0.173$), $b{=}2$ $1.315$ (SE $0.093$), $b{=}4$
+$1.496$, $b{=}8$ $1.641$. Preregistered decision rule (gate WINS iff mean total regret
+${\le}$ best arm $-$ pooled SE): **met on both families; no $b \le 8$ reaches parity.** The
+cold-start reading is the honest one: against uncompiled torch with zero probes the gate's
+edge is marginal on reduction and rests on one admissible row on conv; the robust statement is
+vs probe-carrying budgets, where probe charges (0.06–3.7 ms medians) dominate delivery deltas.
+Break-even visit counts, on rows where any positive crossover exists: reduction $b{=}2$ median
+122 ($n_{fin}{=}10$/60), $b{=}8$ 628 ($n_{fin}{=}1$); conv $b{=}2$ 34, $b{=}8$ 145
+($n_{fin}{=}1$/36) — on the majority of shapes no $b$ ever pays. Certification is offline on
+the deployed domain (per-row recorded checks; §3); the gate is uncompiled with a rule frozen
+once on day-1 data, so no compile wall or fitting charge enters its total; comparator walls
+warm-cache, cold start unmeasured (§5). The published pre-contract crossover
+(`m3_summary.json`; per-row curve `m3_curve.json` in the repository, rev `423217d` lineage,
+medians 71–262 reduction / 14–66 conv) is retained as the uncontracted
+record; it selected arms by timing alone and is superseded by this analysis.
 
-**Delivery frontier, held-out and correctness-qualified (claim 3).** On fresh grids (24 reduction, 10 conv points; gate
-frozen day-1): torch.compile 1.10% vs gate 4.51% mean delivery regret on reduction — paired $-3.42$ pp, $t=-0.92$ (difference not demonstrated at $n=24$; no equivalence margin is claimed, so equality is not asserted); on conv-as-gemm 58.83% vs 2.01%, $+56.8$ pp, $t=5.54$ (`w4_heldout.json`). Independent day-2 replication on new grids (36 reduction, 10 conv):
-conv advantage replicates at $+32.1$ pp, $t=2.56$; reduction remains not-separable ($t=-0.65$)
-(`a2_day2.json`). Inductor's small-conv path on sm_120 is the candidate loss source; an allocation-matched conv comparison was not run, so the attribution stays descriptive.
+**Delivery frontier and correctness (claims 3; paired, grid-repaired).** The 56-row corrected
+corpus (`r42_analysis.json` = `r1_conv_gated` minus 4 mis-gridded rows plus `r42_gridfix` on
+the frozen $(N,H,C)$) gives the primary paired table: $d_i = (t_{\rm cmp}-t_{\rm gate})/t_{\rm
+oracle}$ with the corrected oracle — m3m2 $+11.87\%$, $t{=}2.44$ ($n{=}36$); w4 $+12.08\%$,
+$t{=}1.64$ ($n{=}10$); a2 $+10.30\%$, $t{=}1.60$ ($n{=}10$); gate beats compile on 24/36, 7/10,
+8/10 rows. Gate regret vs the corrected oracle is 0 on every row (the rule arm is the global
+min wherever any hand arm passes; no min-guard, recorded). The gate's delivered arm is torch
+on 53/56 rows; 3 rows deliver an ieee hand variant (m3m2 1, w4 2, a2 0 passing rows). Against
+the default reference the hand arms pass 20/560 arm-checks (ieee 20/280, tf32 0/280); against
+a true-fp32 reference ieee passes 95/280 — on those scenario rows the best passing hand
+variant beats compile on 12/14, 3/3, 1/2 (tiny $n$, reported as such). The day-1/2 margins
+quoted above for reduction predate correctness gating and are retained only for the
+no-difference finding; the earlier conv $+56.8/+32.1$ pp figures are attributed as the
+inadmissible comparison they were (hand-only oracle) and replaced by the paired table.
+Inductor's small-conv path on sm_120 remains the candidate loss source; attribution stays
+descriptive.
 
-**Correctness gating changes the delivered arm (rerun `r1_conv_gated.jsonl`, 56 rows / 672 arm-checks, per-arm precision declared, validate-then-time).** Under the benchmark contract
-($\mathrm{atol}=\mathrm{rtol}=10^{-4}$ vs the default reference) the gate's honest conv delivery is
-**torch on 52/56 rows**; on the 4 remaining rows (m3m2 1, w4 2, a2 1) the gate delivers an ieee
-hand variant that passes the contract. Gate regret vs the true (passing-only) oracle is 0.000 on
-m3m2 and w4 and
-0.042 on a2 — the single nonzero-regret row is one in-rule a2 row delivered to a hand variant
-42% slower than
-torch (the rule carries no min-torch guard; recorded). Against the default reference the hand
-arms pass 20/560 arm-checks (ieee 20/280, tf32 0/280); against a true-fp32 reference the ieee
-arms pass 95/280 — on the 14/3/2 rows with an admissible ieee arm, the best passing hand variant
-beats compile on 12/14, 3/3, 1/2 (m3m2/w4/a2; tiny $n$, reported as such) and torch on 11/14, 2/3, 1/2. The day-1/2 margins above were computed before correctness gating; the
-**direction** (compile loses conv at zero probes) survives with torch as the delivered arm; the
-hybrid recommendation is re-scoped accordingly — compile where it wins, torch otherwise, hand
-conv only under a declared fp32 reference on the passing subset.
+**Reference-realization stability (scenario columns; prereg `reflect_2026-10-22` s2t4).**
+Claim 3's denominators are conditional on the reference realization. Under the fp64 anchor
+(`gate_stability.*`, rider commit `8eee9c5`): the delivered arm changes on 21/56 rows, the
+admissible set on 48/56, gate-vs-true-oracle regret delta 0..+66.6 pp, torch-arm flip
+fraction 1.0. Under the ieee-reference rung the delivered-arm flips reproduce only on m3m2
+(9/36; w4 0, a2 0) — the def→64 instability does not reproduce at that rung; the sensitivity
+is a profile, not a point. The element-bootstrap interval is declared-null (resampling unit
+underdeclared at #41; tile-invariant structure contradicts exchangeability); per-row
+reference-error artifacts (`gate_stability.jsonl`) are the inspectable basis for all three
+rungs.
+
+**Delivery frontier, held-out (day-1/2 record; reduction no-difference finding).** On held-out
+grids (24 reduction, 10 conv points; gate frozen day-1): torch.compile 1.10% vs gate 4.51% mean
+delivery regret on reduction — paired $-3.42$ pp, $t=-0.92$ (difference not demonstrated at
+$n=24$; no equivalence margin is claimed, so equality is not asserted). Independent day-2
+replication on new grids (36 reduction, 10 conv): reduction remains not-separable ($t=-0.65$)
+(`a2_day2.json`). The conv day-1/2 margins ($+56.8$/$+32.1$ pp) predate correctness gating and
+are superseded by the paired corrected table above; Inductor's small-conv path on sm_120
+remains the candidate loss source, attribution descriptive.
+
+**Correctness gating on the grid-repaired corpus (56 rows / 672 arm-checks, per-arm precision
+declared, validate-then-time; `r42_analysis.json`).** Under the benchmark contract
+($\mathrm{atol}=\mathrm{rtol}=10^{-4}$ vs the default reference) the gate's honest conv delivery
+is **torch on 53/56 rows**; on the 3 remaining rows (m3m2 1, w4 2, a2 0) it delivers an ieee
+hand variant that passes the contract. Gate regret vs the corrected oracle
+(min passing hand, torch) is 0.000 on every row — the rule arm is the global min wherever any
+hand arm passes; the rule carries no min-torch guard (recorded). Against the default reference
+the hand arms pass 20/560 arm-checks (ieee 20/280, tf32 0/280); against a true-fp32 reference
+the ieee arms pass 95/280 — on the 14/3/2 rows with an admissible ieee arm, the best passing
+hand variant beats compile on 12/14, 3/3, 1/2 (m3m2/w4/a2; tiny $n$, reported as such) and
+torch on 11/14, 2/3, 1/2. The hybrid recommendation stands re-scoped: compile where it wins,
+torch otherwise, hand conv only under a declared fp32 reference on the passing subset.
 
 **Instrument finding: the default fp32 conv reference on sm_120 is TF32.** cudnn's default fp32
 convolution carries $2.2\times10^{-4}$ relative error vs fp64, tile-independently
@@ -165,8 +242,11 @@ the population result covers
 flat elementwise arms only, on designed lattices (§4), not benchmark draws. Pool seeds fixed per experiment; compile walls are warm-cache, the
 cold-start structure declared unmeasured; the deployment accounting implemented is warmed
 candidate kernels with a zero-probe gate — no compile wall or probe enters the gate's total by
-construction, and cold-start compile behavior remains unmeasured. The population collapse is confirmatory at the preregistered band on one accelerator and one family; cross-family population claims await the same discipline. Conv-family correctness is reported from the
-correctness-gated rerun (`r1_conv_gated.jsonl`): under the benchmark's $10^{-4}$ rule vs the
+construction, and cold-start compile behavior remains unmeasured; the probe-economics claim is the
+contract-enforced rerun of §4 (the pre-contract crossover is retained as record), and its
+conv-as-gemm cold-start contrast rests on a single admissible hand row. The population collapse is confirmatory at the preregistered band on one accelerator and one family; cross-family population claims await the same discipline. Conv-family correctness is reported from the
+grid-repaired corpus (`r42_analysis.json`: `r1_conv_gated` plus `r42_gridfix` on the frozen
+$(N,H,C)$): under the benchmark's $10^{-4}$ rule vs the
 default (TF32-carrying, §4) reference, hand arms pass on a small admitted subset and the gate's
 delivery is torch; fp32-within-conv conditioning is a measured error source on sm_120
 (`cd_discrim.json`) and bounds any tolerance-latitude claim. The negative result is two kills plus
@@ -178,7 +258,24 @@ specified and pending; none of the positive delivery claims extends beyond the t
 Benchmark: KernelBench at pinned revision 423217d (MIT). Harness and analysis scripts, frozen rule
 files, and every result JSON cited above are in the supplement, with the preregistration
 docstring (timestamped) at the head of each script; the guard freeze records its corpus sha256.
-The supplement also carries: all kernel sources including the held-out harnesses; guard and failure corpora with per-row records; evaluation records reordered validate-before-time with per-row pass/error dicts for timed arms (`b1_gatezero_v2`); the correctness-gated conv rerun with per-arm declared precision (`r1_conv_gated.jsonl` + summary) and its text-support computations (`r39_text_support.json`: matched-subset binning, degeneracy check, day-1/rerun stability); a conv error/magnitude backfill keyed to the published rows (seed-exact re-evaluation, bit-identical tie-out to recorded gate errors, timings untouched) supplying the reference magnitude of every delivered error; the A2 leave-one-out offset-recovery preregistration and result (`a2_loo.json`, prereg `a2_loo_prereg.md`, frozen at eb973d9); the spark environment manifest; and a failure-reporting convention (per-row status fields, nonzero runner exit on any unrecorded failure). Freeze artifacts carry git-commit dates. Every number in this paper appears in exactly one committed results file, named in place.
+The supplement also carries: all kernel sources including the held-out harnesses; guard and failure corpora with per-row records; evaluation records reordered validate-before-time with per-row pass/error dicts for timed arms (`b1_gatezero_v2`); the correctness-gated conv rerun with per-arm declared precision (`r1_conv_gated.jsonl` + summary) and its text-support computations (`r39_text_support.json`: matched-subset binning, degeneracy check, day-1/rerun stability); a conv error/magnitude backfill keyed to the published rows (seed-exact re-evaluation, bit-identical tie-out to recorded gate errors, timings untouched) supplying the reference magnitude of every delivered error; the A2 leave-one-out offset-recovery preregistration and result (`a2_loo.json`, prereg
+`a2_loo_prereg.md`, frozen at eb973d9); the contract-enforced probe-economics rerun and
+analysis (`m3_r42.py`, `m3_r42_analysis.py/.json`; per-row ledger `m3_r42.jsonl` in the repository; grids/seed/budgets/decision rule
+unchanged from `m3_autotune_curve.py`); the grid-corrected held-out rerun and corrected-oracle
+analysis (`r42_gridfix.py/.jsonl`, `r42_analysis.py/.json`); the reference-realization rider
+(`r41_gate_stability.py`, `gate_stability.jsonl/_summary.json`, commit `8eee9c5`) and the
+day-1 conv grid artifact (`w3_conv_gemm.json`) with the machine calibration
+(`calibration.py/.json`) and orthogonal-decile probe (`a1_orthdecile.py/.json`); the pre-repair
+summary record (`m3_summary.json`) and freeze artifacts; the spark
+environment manifest; and a failure-reporting convention (per-row status fields, nonzero runner
+exit on any unrecorded failure). Packaging is byte-identical: every supplement file is a
+byte-copy of its repository counterpart, so the release sha256 equals the repository sha256
+(`MANIFEST.sha256`, verified at build); reference-magnitude columns (`ref_absmax`,
+`ref32_absmax`) are output absmax MAGNITUDES, not errors — the per-row reference-error columns
+live in `gate_stability.jsonl` and the r1 per-arm `err`/`err_vs_fp32ref` fields; the day-1
+magnitude backfill (`conv_err_backfill.*`) remains in the repository. Freeze
+artifacts carry git-commit dates. Every number in this paper appears in exactly one committed
+results file, named in place.
 
 ## 7. References
 

@@ -35,6 +35,7 @@ Provenance: spark GB10 sm_120, torch 2.14.1+cu130 (source used 2.5.1+cu121/3090 
 version-pinned reference-error model is the object of study). TF32 off, grad off.
 FP32 strict; correctness only, no timing (check-cost timing is B4's business).
 """
+import os
 import json, time, pathlib
 import torch
 
@@ -43,7 +44,7 @@ torch.backends.cuda.matmul.allow_tf32 = False
 torch.backends.cudnn.allow_tf32 = False
 ATOL = RTOL = 1e-4
 
-ROOT = pathlib.Path("/home/ckorhonen/kb-lab")
+ROOT = pathlib.Path(__file__).resolve().parent  # de-absolutized #42b (R4): lab layout root
 RESULTS = ROOT / "results"; RESULTS.mkdir(exist_ok=True)
 
 def summarize(a, b):
@@ -56,7 +57,7 @@ def summarize(a, b):
 
 def load_task(n):
     import importlib.util
-    p = next(pathlib.Path("/home/ckorhonen/kernelbench/KernelBench/KernelBench/level2").glob(f"{n}_*.py"))
+    p = next(pathlib.Path(os.path.expanduser("~/kernelbench/KernelBench/KernelBench/level2")).glob(f"{n}_*.py"))
     spec = importlib.util.spec_from_file_location(f"task{n}", p)
     mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
     return mod

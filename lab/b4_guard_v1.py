@@ -95,7 +95,7 @@ PRECISION_TARGET = 0.90
 ACCEPT_MIN = 0.20  # v1 K3: precise-but-silent kill (prereg)
 REPS_COST = 20
 
-ROOT = pathlib.Path("/home/ckorhonen/kb-lab")
+ROOT = pathlib.Path(__file__).resolve().parent  # de-absolutized #42b (R4): lab layout root
 RES = ROOT / "results"; RES.mkdir(exist_ok=True)
 DERIVED = ["collapse_work_ratio", "fan_in_sum", "w_max", "w_mean_abs", "w_rel_spread", "B", "K", "H"]
 

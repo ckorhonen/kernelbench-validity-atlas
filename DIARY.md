@@ -1452,3 +1452,45 @@ m3_curve admissible-only recompute + split-K validate-then-time verdicts; R3' po
 wording + per-experiment requirement map + practices-softening; R4' byte-identical
 release or dual-hashes, path de-absolutization, missing deps, honest ref field names +
 r41 citation. Then resubmission. 24h-E1/CTA-edge/bt parked. No new debts.
+
+## 2026-10-22 ~19:00-19:45Z — session 42b (tick #42b): RESUBMITTED 2CmvAb5SC-VGAsbK
+
+Meta-reflection KBpDBvM6aHSHyDIE ("is the near-miss really close") answered 19:01:40Z (next
+22:01:40Z): near-miss is structural (gate regret 0 wherever admissible) but coverage-thin
+(4/56 conv rows admissible; binding constraint = reference-side error); decision = resubmit
+with conditional-certificate framing, #43 counterfactuals decide spine-vs-section.
+
+R2' DONE: lab/m3_r42.py — contract-enforced rerun of the UNCHANGED m3 grids/seed/budgets
+(96 rows, spark ~10 min): validate-then-time arms, per-arm check vs deployed reference
+(1e-4 contract), selection only over passing arms, oracle min(passing hand, torch), conv
+arms as (variant,precision) pairs via r1 kernel verbatim. Admissibility: reduction 55/60
+rows have >=1 passing hand (mean 5.0/6); conv 1/36 — conv gate == torch but one row.
+Economics (m3_r42_analysis.json): prereg gate-wins rule MET on both families, no b<=8
+parity; cold-start b0: reduction +0.0040 SE 0.0021 (marginal), conv +0.0034 SE 0.0034
+(not demonstrated; one admissible row) — the published decisive conv total-regret gap does
+NOT survive the contract; breakeven medians now conditional (red b2 122 n_fin 10, b8 628
+n_fin 1; conv 34/145 n_fin 1). Certification declared offline-on-grid; runtime-charged
+alternative bounded by recorded probe costs.
+
+R3' DONE: population defined as designed grids everywhere ("fresh samples" gone); per-
+experiment requirement-map table added (§3); "falsifiable only with" -> sufficient
+reporting discipline; claims carry reference-realization scenario paragraph (fp64 rider
+21/56,48/56; iee rung m3m2-only 9/36; bootstrap declared-null).
+
+R4' DONE: byte-identical packaging (release sha == repo sha, verified, MANIFEST.sha256);
+runner paths de-absolutized in 11 lab scripts (py_compile ok); w3_conv_gemm.json +
+calibration + a1_orthdecile + m3 chain + r42 chain + rider artifacts added; ref_absmax
+semantics documented as magnitudes; conv_err_backfill + m3_curve per-row + full legacy set
+remain repo-side (2 MiB cap; expanded 1,982,165 < 2,000,000).
+
+Claim audit: 30/30 scripted checks PASS (paper numbers vs r42_analysis/m3_r42_analysis/
+gate_stability_summary; 53/56 torch, 3 passing rows, d_i trio, breakevens, rider 21/48).
+
+RESUBMITTED **2CmvAb5SC-VGAsbK** 19:44:26Z (previous_submission_id O4hnCxiPVenpDr4A),
+verified under_review desk, receipt submission_receipt_42b.json. Supplement v4 =
+supplement_v4.{zip,}/ 52 files.
+
+Next (#43, before 22:01:40Z reflection): prereg'd CPU counterfactuals — gate chain-order
+permutation (21/56 physics or order artifact), anchor-profile monotonicity, cross-family
+scope on b1_gatezero_v2/m3 flags; desk-result watch. If accepted: update wiki/links per
+heartbeat rules. 24h-E1/CTA/bt remain parked.

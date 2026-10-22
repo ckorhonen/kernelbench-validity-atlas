@@ -1,0 +1,98 @@
+conv gate from day-1 fit: {'h0': 14, 'c0': 64, 'variant': 'imp_B32x32', 'mean_regret': 0.054957797} n= 36
+red K4096 M1: oracle 0.0059 (('torch', 0.0058559998869895935)) gate torch adm 7/7
+red K4096 M2: oracle 0.0059 (('torch', 0.005888000130653381)) gate torch adm 7/7
+red K4096 M4: oracle 0.0079 (('torch', 0.007935999892652035)) gate torch adm 7/7
+red K4096 M8: oracle 0.0100 (('tsplit_S16_KT64', 0.009952000342309475)) gate torch adm 7/7
+red K4096 M16: oracle 0.0120 (('tsplit_S16_KT64', 0.012000000104308128)) gate torch adm 7/7
+red K4096 M32: oracle 0.0120 (('torch', 0.012032000347971916)) gate torch adm 7/7
+red K4096 M64: oracle 0.0181 (('torch', 0.018144000321626663)) gate torch adm 7/7
+red K4096 M128: oracle 0.0284 (('tsplit_S16_KT16', 0.028384000062942505)) gate torch adm 7/7
+red K4096 M256: oracle 0.0427 (('tsplit_S16_KT16', 0.0427200011909008)) gate torch adm 7/7
+red K4096 M512: oracle 0.0765 (('tsplit_S4_KT64', 0.07651200145483017)) gate torch adm 7/7
+red K16384 M1: oracle 0.0080 (('torch', 0.007968000136315823)) gate torch adm 7/7
+red K16384 M2: oracle 0.0120 (('tsplit_S64_KT64', 0.012000000104308128)) gate torch adm 7/7
+red K16384 M4: oracle 0.0140 (('tsplit_S64_KT64', 0.014047999866306782)) gate torch adm 7/7
+red K16384 M8: oracle 0.0120 (('torch', 0.012032000347971916)) gate torch adm 7/7
+red K16384 M16: oracle 0.0161 (('torch', 0.016127999871969223)) gate torch adm 7/7
+red K16384 M32: oracle 0.0274 (('torch', 0.02735999971628189)) gate torch adm 7/7
+red K16384 M64: oracle 0.0427 (('tsplit_S16_KT64', 0.0427200011909008)) gate torch adm 7/7
+red K16384 M128: oracle 0.0764 (('tsplit_S16_KT64', 0.07638400048017502)) gate torch adm 7/7
+red K16384 M256: oracle 0.1380 (('tsplit_S16_KT64', 0.13795199990272522)) gate torch adm 7/7
+red K16384 M512: oracle 0.2117 (('tsplit_S4_KT64', 0.21171200275421143)) gate torch adm 7/7
+red K65536 M1: oracle 0.0182 (('torch', 0.018239999189972878)) gate torch adm 7/7
+red K65536 M2: oracle 0.0120 (('torch', 0.012000000104308128)) gate torch adm 7/7
+red K65536 M4: oracle 0.0163 (('torch', 0.016256000846624374)) gate torch adm 7/7
+red K65536 M8: oracle 0.0274 (('torch', 0.02735999971628189)) gate torch adm 7/7
+red K65536 M16: oracle 0.0448 (('torch', 0.04479999840259552)) gate tsplit_S64_KT64 adm 7/7
+red K65536 M32: oracle 0.0796 (('tsplit_S64_KT64', 0.07958400249481201)) gate tsplit_S64_KT64 adm 7/7
+red K65536 M64: oracle 0.1369 (('tsplit_S16_KT64', 0.1369280070066452)) gate tsplit_S64_KT64 adm 7/7
+red K65536 M128: oracle 0.2117 (('tsplit_S16_KT64', 0.21171200275421143)) gate tsplit_S64_KT64 adm 6/7
+red K65536 M256: oracle 0.3551 (('tsplit_S16_KT64', 0.3550719916820526)) gate tsplit_S64_KT64 adm 7/7
+red K65536 M512: oracle 0.6408 (('tsplit_S4_KT64', 0.6407999992370605)) gate tsplit_S64_KT64 adm 5/7
+red K262144 M1: oracle 0.0171 (('torch', 0.01711999997496605)) gate torch adm 7/7
+red K262144 M2: oracle 0.0274 (('torch', 0.02735999971628189)) gate torch adm 7/7
+red K262144 M4: oracle 0.0458 (('torch', 0.045791998505592346)) gate torch adm 7/7
+red K262144 M8: oracle 0.0806 (('torch', 0.08060800284147263)) gate torch adm 7/7
+red K262144 M16: oracle 0.1390 (('torch', 0.13897599279880524)) gate tsplit_S64_KT64 adm 7/7
+red K262144 M32: oracle 0.2147 (('tsplit_S64_KT64', 0.2146880030632019)) gate tsplit_S64_KT64 adm 6/7
+red K262144 M64: oracle 0.3622 (('tsplit_S64_KT16', 0.3622080087661743)) gate tsplit_S64_KT64 adm 4/7
+red K262144 M128: oracle 0.6356 (('tsplit_S16_KT64', 0.6355839967727661)) gate tsplit_S64_KT64 adm 6/7
+red K262144 M256: oracle 1.2388 (('torch', 1.2387839555740356)) gate tsplit_S64_KT64 adm 2/7
+red K262144 M512: oracle 2.3458 (('tsplit_S4_KT64', 2.345792055130005)) gate tsplit_S64_KT64 adm 5/7
+red K1048576 M1: oracle 0.0448 (('torch', 0.04476799815893173)) gate torch adm 7/7
+red K1048576 M2: oracle 0.0795 (('torch', 0.07948800176382065)) gate torch adm 7/7
+red K1048576 M4: oracle 0.1380 (('torch', 0.13795199990272522)) gate torch adm 7/7
+red K1048576 M8: oracle 0.2138 (('torch', 0.21376000344753265)) gate torch adm 7/7
+red K1048576 M16: oracle 0.3551 (('torch', 0.3550719916820526)) gate tsplit_S64_KT64 adm 2/7
+red K1048576 M32: oracle 0.6479 (('torch', 0.6479039788246155)) gate torch adm 1/7
+red K1048576 M64: oracle 1.2122 (('tsplit_S64_KT16', 1.2121599912643433)) gate tsplit_S64_KT64 adm 4/7
+red K1048576 M128: oracle 2.3262 (('tsplit_S16_KT64', 2.326240062713623)) gate tsplit_S64_KT64 adm 7/7
+red K1048576 M256: oracle 4.5852 (('tsplit_S16_KT64', 4.585216045379639)) gate tsplit_S64_KT64 adm 5/7
+red K1048576 M512: oracle 9.3397 (('torch', 9.339743614196777)) gate torch adm 1/7
+red K4194304 M1: oracle 0.1359 (('torch', 0.13593600690364838)) gate torch adm 6/7
+red K4194304 M2: oracle 0.2137 (('torch', 0.21372799575328827)) gate torch adm 7/7
+red K4194304 M4: oracle 0.3561 (('torch', 0.35606399178504944)) gate torch adm 7/7
+red K4194304 M8: oracle 0.6442 (('torch', 0.6441919803619385)) gate torch adm 7/7
+red K4194304 M16: oracle 1.2111 (('tsplit_S64_KT64', 1.2111040353775024)) gate tsplit_S64_KT64 adm 4/7
+red K4194304 M32: oracle 2.2914 (('tsplit_S64_KT64', 2.291424036026001)) gate tsplit_S64_KT64 adm 7/7
+red K4194304 M64: oracle 4.6016 (('tsplit_S64_KT16', 4.601600170135498)) gate tsplit_S64_KT64 adm 5/7
+red K4194304 M128: oracle 9.6724 (('torch', 9.67244815826416)) gate torch adm 1/7
+red K4194304 M256: oracle 18.8096 (('torch', 18.809568405151367)) gate torch adm 1/7
+red K4194304 M512: oracle 36.9651 (('torch', 36.965087890625)) gate torch adm 1/7
+conv N1 H4 C16: oracle 0.0161 (('torch', 0.016095999628305435)) gate torch adm 1/11
+conv N1 H4 C64: oracle 0.0243 (('torch', 0.024320000782608986)) gate torch adm 1/11
+conv N1 H4 C256: oracle 0.1154 (('torch', 0.11535999923944473)) gate torch adm 1/11
+conv N4 H4 C16: oracle 0.0161 (('torch', 0.016095999628305435)) gate torch adm 1/11
+conv N4 H4 C64: oracle 0.0263 (('torch', 0.02630399912595749)) gate torch adm 1/11
+conv N4 H4 C256: oracle 0.1145 (('torch', 0.11452800035476685)) gate torch adm 1/11
+conv N1 H7 C16: oracle 0.0161 (('torch', 0.016095999628305435)) gate torch adm 1/11
+conv N1 H7 C64: oracle 0.0325 (('imp_B32x32|ieee', 0.03251200169324875)) gate imp_B32x32|ieee adm 6/11
+conv N1 H7 C256: oracle 0.1277 (('torch', 0.1276800036430359)) gate torch adm 1/11
+conv N4 H7 C16: oracle 0.0161 (('torch', 0.016063999384641647)) gate torch adm 1/11
+conv N4 H7 C64: oracle 0.0385 (('torch', 0.03852799907326698)) gate torch adm 1/11
+conv N4 H7 C256: oracle 0.1299 (('torch', 0.12985600531101227)) gate torch adm 1/11
+conv N1 H10 C16: oracle 0.0161 (('torch', 0.016063999384641647)) gate torch adm 1/11
+conv N1 H10 C64: oracle 0.0507 (('torch', 0.05071999877691269)) gate torch adm 1/11
+conv N1 H10 C256: oracle 0.2167 (('torch', 0.21673600375652313)) gate torch adm 1/11
+conv N4 H10 C16: oracle 0.0161 (('torch', 0.016127999871969223)) gate torch adm 1/11
+conv N4 H10 C64: oracle 0.0497 (('torch', 0.049695998430252075)) gate torch adm 1/11
+conv N4 H10 C256: oracle 0.2178 (('torch', 0.21782399713993073)) gate torch adm 1/11
+conv N1 H14 C16: oracle 0.0161 (('torch', 0.016063999384641647)) gate torch adm 1/11
+conv N1 H14 C64: oracle 0.0632 (('torch', 0.0631679967045784)) gate torch adm 1/11
+conv N1 H14 C256: oracle 0.0754 (('torch', 0.07539200037717819)) gate torch adm 1/11
+conv N4 H14 C16: oracle 0.0202 (('torch', 0.020160000771284103)) gate torch adm 1/11
+conv N4 H14 C64: oracle 0.0652 (('torch', 0.06518399715423584)) gate torch adm 1/11
+conv N4 H14 C256: oracle 0.1082 (('torch', 0.10822399705648422)) gate torch adm 1/11
+conv N1 H20 C16: oracle 0.0161 (('torch', 0.016095999628305435)) gate torch adm 1/11
+conv N1 H20 C64: oracle 0.0243 (('torch', 0.024288000538945198)) gate torch adm 1/11
+conv N1 H20 C256: oracle 0.0775 (('torch', 0.07753600180149078)) gate torch adm 1/11
+conv N4 H20 C16: oracle 0.0202 (('torch', 0.020160000771284103)) gate torch adm 1/11
+conv N4 H20 C64: oracle 0.0325 (('torch', 0.03248000144958496)) gate torch adm 1/11
+conv N4 H20 C256: oracle 0.1420 (('torch', 0.1420159935951233)) gate torch adm 1/11
+conv N1 H28 C16: oracle 0.0183 (('torch', 0.01833599992096424)) gate torch adm 1/11
+conv N1 H28 C64: oracle 0.0284 (('torch', 0.028351999819278717)) gate torch adm 1/11
+conv N1 H28 C256: oracle 0.1072 (('torch', 0.1072319969534874)) gate torch adm 1/11
+conv N4 H28 C16: oracle 0.0263 (('torch', 0.026335999369621277)) gate torch adm 1/11
+conv N4 H28 C64: oracle 0.0478 (('torch', 0.047807998955249786)) gate torch adm 1/11
+conv N4 H28 C256: oracle 0.2076 (('torch', 0.2075520008802414)) gate torch adm 1/11
+wrote m3_r42 rows: 96

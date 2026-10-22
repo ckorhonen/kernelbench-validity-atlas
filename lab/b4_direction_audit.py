@@ -21,6 +21,7 @@ Parts:
 Provenance: spark GB10 sm_120, torch 2.14.1+cu130, TF32 off, matmul highest.
 Results -> results/b2_direction_audit.json, results/b4_direction_audit.json.
 """
+import os
 import json, math, pathlib, hashlib, time
 import torch
 import torch.nn.functional as F
@@ -30,7 +31,7 @@ torch.backends.cuda.matmul.allow_tf32 = False
 torch.backends.cudnn.allow_tf32 = False
 torch.set_float32_matmul_precision("highest")
 ATOL = RTOL = 1e-4
-ROOT = pathlib.Path("/home/ckorhonen/kb-lab")
+ROOT = pathlib.Path(__file__).resolve().parent  # de-absolutized #42b (R4): lab layout root
 RES = ROOT / "results"; RES.mkdir(exist_ok=True)
 
 def both(a, b):
@@ -43,7 +44,7 @@ def both(a, b):
 
 def load_task(n):
     import importlib.util
-    p = next(pathlib.Path("/home/ckorhonen/kernelbench/KernelBench/KernelBench/level2").glob(f"{n}_*.py"))
+    p = next(pathlib.Path(os.path.expanduser("~/kernelbench/KernelBench/KernelBench/level2")).glob(f"{n}_*.py"))
     spec = importlib.util.spec_from_file_location(f"task{n}", p)
     mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
     return mod

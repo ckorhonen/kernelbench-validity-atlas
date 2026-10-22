@@ -28,6 +28,7 @@ b4+b5_stage2r (repaired b5), same rule, reported not pass-bearing.
 
 Run: spark venv python. Output results/a2_loo.json + .jsonl per-fold.
 """
+import os
 import json, pathlib, time, hashlib, math
 import numpy as np
 import torch
@@ -89,7 +90,7 @@ def b4_row_tensors(r):
     return x.contiguous(), W
 
 
-def b5_globals(repo="/home/ckorhonen/kernelbench/KernelBench/KernelBench/level1"):
+def b5_globals(repo=os.path.expanduser("~/kernelbench/KernelBench/KernelBench/level1")):
     key = ("b5g", repo)
     if key in _CACHE:
         return _CACHE[key]

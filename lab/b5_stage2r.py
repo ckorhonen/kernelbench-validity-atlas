@@ -41,6 +41,7 @@ jsonl (cwr z is a constant offset on this family; no refit, no threshold move).
 Provenance: spark GB10 sm_120, torch 2.14.1+cu130, TF32 off, matmul highest, grad off.
 Results -> results/b5_stage2r.{json,jsonl} (published b5_stage2.* left untouched).
 """
+import os
 import json, time, hashlib, pathlib
 import torch
 
@@ -50,7 +51,7 @@ torch.backends.cudnn.allow_tf32 = False
 torch.set_float32_matmul_precision("highest")
 ATOL = RTOL = 1e-4
 
-ROOT = pathlib.Path("/home/ckorhonen/kb-lab")
+ROOT = pathlib.Path(__file__).resolve().parent  # de-absolutized #42b (R4): lab layout root
 RES = ROOT / "results"; RES.mkdir(exist_ok=True)
 
 # ---------------- frozen guard (load; re-verify corpus sha) ----------------
@@ -94,7 +95,7 @@ def deployed_scores(eval_rows, feats):
 
 # ---------------- family (b5_stage1 verbatim) ----------------
 import importlib.util
-p = next(pathlib.Path("/home/ckorhonen/kernelbench/KernelBench/KernelBench/level1").glob("40_*.py"))
+p = next(pathlib.Path(os.path.expanduser("~/kernelbench/KernelBench/KernelBench/level1")).glob("40_*.py"))
 spec = importlib.util.spec_from_file_location("task40", p)
 mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 model = mod.Model(*mod.get_init_inputs()).cuda().eval()

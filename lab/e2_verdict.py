@@ -2,9 +2,10 @@
 Class: beat (hand faster beyond combined-IQR noise and >1%), tie, lose.
 Also: where does the best hand variant's derived-coords boundary sit; monotonicity of
 m*(K) in programs-per-SM coords. P2 fields only; no claims beyond the data."""
+import os
 import json, sys
 
-P = "/Users/ckorhonen/rstation/kernelbench/lab/results/e2_splitk_v2.json"
+P = os.path.expanduser("~/rstation/kernelbench/lab/results/e2_splitk_v2.json")
 d = json.load(open(P))
 sm = d["meta"]["sm_count"]
 

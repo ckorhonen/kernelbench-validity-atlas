@@ -56,6 +56,7 @@ each cell. No thresholds, no labels used in regeneration.
 Provenance: spark GB10 sm_120, torch 2.14.1+cu130, TF32 off, grad off;
 correctness only. Results -> results/b3_leg23.json.
 """
+import os
 import json, math, pathlib, importlib.util
 import torch
 
@@ -64,11 +65,11 @@ torch.backends.cuda.matmul.allow_tf32 = False
 torch.backends.cudnn.allow_tf32 = False
 ATOL = 1e-4
 
-ROOT = pathlib.Path("/home/ckorhonen/kb-lab")
+ROOT = pathlib.Path(__file__).resolve().parent  # de-absolutized #42b (R4): lab layout root
 RESULTS = ROOT / "results"; RESULTS.mkdir(exist_ok=True)
 
 def load_task(n):
-    p = next(pathlib.Path("/home/ckorhonen/kernelbench/KernelBench/KernelBench/level2").glob(f"{n}_*.py"))
+    p = next(pathlib.Path(os.path.expanduser("~/kernelbench/KernelBench/KernelBench/level2")).glob(f"{n}_*.py"))
     spec = importlib.util.spec_from_file_location(f"task{n}", p)
     mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
     return mod
