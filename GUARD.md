@@ -69,3 +69,15 @@ verified against the referent construction, not just the score machinery**. Repa
 cwr-z pure offset (−1.7223); load = γ-magnitude pair. The B5 numbers above the addendum are the
 published record; CONTRIBUTION.md carries both. Lesson generalized: referent construction, not
 score machinery, is where silent invalidation lives (see wrapup_atlas repair addendum).
+
+## Repair addendum 2 (#39, 2026-10-22 — R2 dispositions, post-rejection)
+
+(a) The offset-as-whole-repair reading is withdrawn: on the repaired records a family constant
+cannot reach 0.90 — max precision over retained thresholds 2/3; randn_p1000 96/96 fail (16
+accepted-and-failing); randu/randn 16/16 accepted-pass; frozen-t constant-drop accepts 120 at
+precision .567. (b) Input distribution is a first-class covariate: the score (gain statistics +
+family-constant cwr) is blind to it at matched gain/scale — mechanism, stated. (c) Coverage
+(48/288 = .167) and precision (.167 published / .667 repaired) are reported separately
+everywhere; the published-referent run is kill-robustness evidence only, never a precision
+estimate. (d) Transfer claims carry seed/gain/input-conditioned uncertainty; .8021-vs-.80 is a
+single-configuration point estimate, not population transfer. Manuscript: paper §4 claim 5.

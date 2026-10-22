@@ -188,3 +188,35 @@ one-for-one with the score shift). The LN units enter with d_u ≡ 0 (family-con
 mechanism visible in the covariate itself, their +0.354 offset absorbed by the intercept
 (t* −0.259 vs frozen −0.613). Caveat recorded: in-sample fit on the same rows as the AUC
 constraints above; the fresh-data test is the third family (plan v2 item 3).
+
+---
+
+## Addenda (#39, 2026-10-22 — correctness-qualified re-scope; paper §4 carries the full version)
+
+**A1.** Conv delivery claims above predate correctness gating. Rerun `lab/results/r1_conv_gated.jsonl`
+(56 rows / 672 arm-checks, per-arm precision declared, validate-then-time): gate conv delivery =
+torch on 52/56 (4 admitted ieee rows), true-oracle regret .000/.000/.042 (m3m2/w4/a2; the .042
+row = in-rule hand +42% vs torch, rule has no min-torch guard). The probe-economics mechanism
+(probes ≫ delivery deltas) is unaffected; the b≥1 delivery terms inherit the same contract.
+
+**A2.** Hybrid recommendation as originally stated does not survive the contract: torch beats
+compile on 24/36 + 7/10 + 7/10 rows; hand delivery admissible only under declared fp32 ref
+(ieee 95/280 arm-checks; on the 14/3/2 admissible rows hand beats compile 12/14+3/3+1/2, tiny n).
+Instrument: cudnn default fp32 conv on sm_120 IS TF32 — 2.2e-4 rel vs fp64, tile-independent;
+allow_tf32=False 2.7e-7; reference-side, explains the day-1 failure pattern. Stability: day-1
+hand-arm err median 7.0e-2 (68 arm-instances, per-src .047–.082) sits on the rerun tf32 arm
+(.0770), not ieee (.0149). Reduction side clean (b1_gatezero_v2 13/13, 8e-8).
+
+**A3.** Residuals are bandwidth (achieved GB/s), not latency. Matched-n on the 1136 retained
+points: 1D bytes/thread 31.7% median (17 log2-bins) vs 2D 0.55% — no common-subset artifact.
+Degeneracy: the pair determines total bytes exactly (bt×threads; waves×98304, both exact);
+bytes-log2-binning alone 0.84% — the 2D pair keeps ~1.5× edge. Claim scoped to bandwidth lookup
+repeatability on retained bins; no unseen-shape prediction. (`lab/results/r39_text_support.json`)
+
+**A4.** "Offset is the whole failure" withdrawn as a sufficient repair: on the repaired records a
+family constant cannot reach 0.90 (max precision over retained thresholds 2/3; randn_p1000 96/96
+fail w/ 16 accepted-and-failing; randu/randn 16/16 accepted-pass; frozen-t constant-drop 120
+accepted at .567). Coverage (.167) separated from precision throughout; published-referent run =
+kill-robustness evidence only. The score is blind to input distribution at matched gain/scale ⇒
+distribution is a first-class covariate (A2 LOO prereg eb973d9 carries distribution-marginals).
+.8021-vs-.80: single-configuration point estimate, not population transfer.

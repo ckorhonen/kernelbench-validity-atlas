@@ -23,10 +23,13 @@ the evidence record below.
 ## Worked example (numbers from committed artifacts only)
 - Gate-vs-budget (total regret, fresh shapes): reduction 0.0451 vs 1.53 (b1) / 29.8 (b8, probe
   charges dominate); conv 0.0201 vs 2.15 -- A1 generalized (w4_heldout.json, prereg 2026-10-18T20:41Z).
-- Delivery frontier (zero-probe): compile 1.10% vs gate 4.51% reduction (n.s., t=-0.92); gate
-  2.01% vs compile 58.83% conv (t=5.54) -- hybrid, A2.
-- Population surface: (bytes/thread, waves) collapse, median residual 0.55% (A3,
-  atlas_population.json) -- the domain picture a claim should be checked against.
+- Delivery frontier (zero-probe, correctness-qualified #39): reduction gate-vs-compile not
+  separable (day-1 t=-0.92, day-2 -0.65); on conv compile loses to the gate's correctness-gated
+  delivery, which is torch (52/56 rows; beats compile 24/36+7/10+7/10) -- hand only under a
+  declared fp32 reference (`r1_conv_gated.jsonl`), A2.
+- Population surface: (bytes/thread, waves) bandwidth-residual collapse, median 0.55% vs 35.8%
+  bytes/thread alone; matched-n 1D-on-common-set 31.7%; total-bytes lookup 0.84% (partial
+  size/geometry code) -- A3, `atlas_population.json` + `r39_text_support.json`.
 
 ## The counterexample half: acceptance criteria the guard kills established
 
@@ -45,6 +48,12 @@ can claim (full record GUARD.md; atlas entry A4):
 - **Consequence for the protocol:** any claim of the form "rule R with admission filter A" must
   declare, per family, which features are constant and where the operating point was fit;
   a threshold fit on one family is evidence about ordering, not about the operating point.
+- **Offset-repair sufficiency withdrawn (R2, #39 10-22):** a family-offset-only repair cannot
+  reach 0.90 on the repaired records (max precision 2/3 over retained thresholds; randn_p1000
+  96/96 fail); coverage 0.167 is reported separately from precision; the score is blind to input
+  distribution at matched gain/scale, so distribution-marginal covariates are required for any
+  operating-point claim; transfer estimates carry seed/gain/input-conditioned uncertainty
+  (GUARD.md repair addendum 2).
 
 ## Honest limits (carry these with any publication)
 Single arch (GB10 sm_120); single pool seed; warm-cache compile walls, cold v-structure

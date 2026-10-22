@@ -1305,3 +1305,35 @@ passing-only, single check population (672 arm-checks).
 Next (#39): R2/R3/R4 text+analysis pass (offset-withdrawal wording, distribution
 covariate class, bandwidth relabel, matched-n, R1 numbers above into manuscript;
 reference-TF32 paragraph); R5 repack + A2 probe run + resubmission #40. 24h-E1/CTA/bt parked.
+## 2026-10-22 ~05:15-05:55Z — session 39 (tick #39): R2/R3/R4 text pass landed; manuscript re-scoped
+
+Support computations (lab/r39_text_support.py -> lab/results/r39_text_support.json, CPU only):
+(1) R3 matched-n — exact replication of the log2-binning (204 bins/1136 pts/0.552% reproduced);
+on the common retained set 1D bytes/thread still 31.7% median (17 bins) vs 2D 0.55% — no
+common-subset artifact; degeneracy exact (bytes=bt*threads, threads=waves*98304) and total-bytes
+log2-binning alone reaches 0.84% => 2D pair = partial size-and-launch-geometry code, keeps ~1.5x
+edge; claim scoped to bandwidth lookup repeatability, no unseen-shape prediction.
+(2) Stability rider (deferred #38): day-1 hand-arm err median 7.0e-2 abs (68 arm-instances;
+per-src .047-.082) sits on rerun tf32-arm (.0770) not ieee (.0149) — no day-1/rerun inconsistency.
+(3) Verified from r1_conv_gated.jsonl: gate arm torch 52/56; 4 non-torch rows = the primary-
+passing ieee rows; ieee-admissible rows 14/3/2, best passing hand beats compile 12/14+3/3+1/2 and
+torch 11/14+2/3+1/2; m3_summary break-even denominators re-verified (red b2 14/60 b8 24/60,
+conv b2 3/36 b8 8/36).
+
+Manuscript (paper_heldout_protocol.md): claim block re-scoped (claim 3 correctness-qualified
+torch-delivery; claim 4 bandwidth + matched-n + degeneracy; claim 5 coverage/precision +
+distribution-blindness + no-offset-sufficiency); §4 new paragraphs (correctness gating changes
+the delivered arm; reference-TF32 instrument finding w/ stability rider); §4 probe-economics
+carries finite-crossover denominators + designed-lattice disclosure (RED_KS/RED_MS/CONV_POINTS
+in harness sources, verified); §5 limitations rewritten (LN gain/dist = declared extensions;
+deployment accounting = warmed candidates + zero-probe gate, cold compile unmeasured; conv
+correctness from the gated rerun); §6 reproducibility lists r1_conv_gated + r39_text_support.
+Abstract (submission_metadata.json) rewritten to match, 302 words. Internal records: ATLAS
+addenda A1-A4 (#39), GUARD repair addendum 2 (R2 a-d), CONTRIBUTION frontier/population bullets
++ offset-sufficiency bullet, wrapup_atlas #39 amendment.
+
+Debt note for #40 repack: supplement must add r1_conv_gated.jsonl/.-summary, r39_text_support.json
+(cited in paper §6 now); refresh atlas_population copy unchanged. Next (#40): R5 repack (root
+layout, de-absolutize paths, rev 423217d in main text, hash provenance) + A2 LOO probe run
+(prereg eb973d9, bar .30, distribution-marginal covariates) + resubmission via
+previous_submission_id=6yPhozmAt62JSqQs. 24h-E1/CTA-edge/bt parked.
