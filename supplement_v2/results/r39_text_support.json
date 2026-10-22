@@ -1,0 +1,87 @@
+{
+ "replication_2d": {
+  "bins": 204,
+  "points": 1136,
+  "median_resid_pct": 0.552486187845292,
+  "p90_resid_pct": 14.67576791808874,
+  "median_cv_pct": 1.4108846159556299
+ },
+ "replication_1d_full": {
+  "bins": 29,
+  "points": 1486,
+  "median_resid_pct": 35.84905660377359,
+  "p90_resid_pct": 91.7118265859101,
+  "median_cv_pct": 49.64912212990822
+ },
+ "stored_2d": {
+  "bins_n3": 204,
+  "points": 1136,
+  "median_cv_pct": 1.2359,
+  "median_resid": 0.55198
+ },
+ "stored_1d": {
+  "median_resid": 35.849
+ },
+ "matched_common": {
+  "n_retained": 1136,
+  "two_d": {
+   "bins": 204,
+   "points": 1136,
+   "median_resid_pct": 0.552486187845292,
+   "p90_resid_pct": 14.67576791808874
+  },
+  "one_d": {
+   "bins": 17,
+   "points": 1136,
+   "median_resid_pct": 31.676226896112176,
+   "p90_resid_pct": 91.77820267686424
+  },
+  "one_d_n1": {
+   "bins": 17,
+   "points": 1136,
+   "median_resid_pct": 31.676226896112176,
+   "p90_resid_pct": 91.77820267686424
+  },
+  "bytes_log2bin": {
+   "bins": 37,
+   "points": 1136,
+   "median_resid_pct": 0.8438818565400814,
+   "p90_resid_pct": 15.750915750915754
+  },
+  "bytes_log2bin_n1": {
+   "bins": 37,
+   "points": 1136,
+   "median_resid_pct": 0.8438818565400814,
+   "p90_resid_pct": 15.750915750915754
+  }
+ },
+ "degeneracy_algebra": {
+  "bytes_eq_bt_times_threads_dev_pct": 0.0,
+  "threads_eq_waves_sm_cap_dev_pct": 0.0,
+  "distinct_bytes_bins_log2": 37,
+  "distinct_1d_keys": 17,
+  "distinct_2d_keys": 204,
+  "n_retained": 1136,
+  "n_points_total": 1486
+ },
+ "stability_day1_vs_r1": {
+  "day1_median_abs_by_src": {
+   "a2": 0.070145,
+   "m2": 0.081932,
+   "m3": 0.064335,
+   "w4": 0.047382
+  },
+  "day1_median_abs_all": 0.070037841796875,
+  "day1_n": 68,
+  "r1_ieee_median_abs": 0.014853239059448242,
+  "r1_tf32_median_abs": 0.0770111083984375,
+  "r1_ieee_median_rel": 0.0002906167031858,
+  "r1_tf32_median_rel": 0.0008458949380041659,
+  "r1_ieee_median_rel_vs_fp32ref": 0.00047385692596435547,
+  "r1_tf32_median_rel_vs_fp32ref": 0.07320785522460938,
+  "r1_n_arms": {
+   "ieee": 280,
+   "tf32": 280
+  }
+ }
+}

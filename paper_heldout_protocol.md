@@ -175,10 +175,10 @@ specified and pending; none of the positive delivery claims extends beyond the t
 
 ## 6. Reproducibility
 
-Benchmark: KernelBench at a pinned revision (MIT). Harness and analysis scripts, frozen rule
+Benchmark: KernelBench at pinned revision 423217d (MIT). Harness and analysis scripts, frozen rule
 files, and every result JSON cited above are in the supplement, with the preregistration
 docstring (timestamped) at the head of each script; the guard freeze records its corpus sha256.
-The supplement also carries: all kernel sources including the held-out harnesses; guard and failure corpora with per-row records; evaluation records reordered validate-before-time with per-row pass/error dicts for timed arms (`b1_gatezero_v2`); the correctness-gated conv rerun with per-arm declared precision (`r1_conv_gated.jsonl` + summary) and its text-support computations (`r39_text_support.json`: matched-subset binning, degeneracy check, day-1/rerun stability); a conv error/magnitude backfill keyed to the published rows (seed-exact re-evaluation, bit-identical tie-out to recorded gate errors, timings untouched) supplying the reference magnitude of every delivered error; the spark environment manifest; and a failure-reporting convention (per-row status fields, nonzero runner exit on any unrecorded failure). Freeze artifacts carry git-commit dates. Every number in this paper appears in exactly one committed results file, named in place.
+The supplement also carries: all kernel sources including the held-out harnesses; guard and failure corpora with per-row records; evaluation records reordered validate-before-time with per-row pass/error dicts for timed arms (`b1_gatezero_v2`); the correctness-gated conv rerun with per-arm declared precision (`r1_conv_gated.jsonl` + summary) and its text-support computations (`r39_text_support.json`: matched-subset binning, degeneracy check, day-1/rerun stability); a conv error/magnitude backfill keyed to the published rows (seed-exact re-evaluation, bit-identical tie-out to recorded gate errors, timings untouched) supplying the reference magnitude of every delivered error; the A2 leave-one-out offset-recovery preregistration and result (`a2_loo.json`, prereg `a2_loo_prereg.md`, frozen at eb973d9); the spark environment manifest; and a failure-reporting convention (per-row status fields, nonzero runner exit on any unrecorded failure). Freeze artifacts carry git-commit dates. Every number in this paper appears in exactly one committed results file, named in place.
 
 ## 7. References
 

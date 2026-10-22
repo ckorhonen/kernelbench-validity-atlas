@@ -1,11 +1,18 @@
-# Supplement v2 (staging) -- repaired evidence package per rejection R5c3ENyOqeuCfg0t
+# Supplement v3 (staging) -- repaired + re-scoped evidence package (resubmission #40,
+
+previous_submission_id 6yPhozmAt62JSqQs). v2 carried the R5c3ENyOqeuCfg0t repairs; v3 adds
+the R1 correctness-gated conv rerun, the A2 LOO probe, the reference-realized-precision
+convention, and the re-scoped claims' support artifacts.
 
 Built 2026-10-21 tick #33 in response to review finding R2 (provenance/correctness of
 performance results) and R3 (prereg chronology). All paths below are RELATIVE to this
 directory; no absolute author paths. sha256 ledger: MANIFEST.sha256 (paths relative).
 
 ## Layout
-- kernels/   every harness/kernel source verbatim (47 .py), including the previously
+- kernels/   the load-bearing harness/kernel sources verbatim (47 files; day-1 debug/legacy
+             one-offs (e2_debug2, e2_err_regen, e2b_floor, b3_stage1,
+             m0_residual_structure) pruned for the 2 MiB cap, recorded here;
+             all survive in the repo at rev 423217d), including the previously
              absent e2_splitk_v3 / w3_conv_gemm lineage (e2_splitk*.py, w3_*.py) and the
              repaired b5_stage2r.py. b5_stage2.py is the PUBLISHED (rejected) variant,
              kept for the record; b5_stage2r.py is the R1-repaired rerun.
@@ -34,6 +41,38 @@ validate-then-time reorder in reduction/conv harnesses; per-row pass/fail at eva
 shape + retained error dicts for timed arms; M3 conv rows error-dict backfill; delivered-
 gate conv max errs (0.0566/0.0844) need reference magnitudes; explicit failure/regression
 reporting pass; resubmission metadata (previous_submission_id R5c3ENyOqeuCfg0t).
+
+## R1 correctness-gated conv rerun (results/r1_conv_gated.*, commit-labeled in-row)
+
+56 conv rows x 12 arm-instances = 672 validated checks (every row validated once before
+timing). Contract-letter verdict: the gate's honest delivery is torch on 52/56 rows; the 4
+non-torch deliveries are the primary-passing ieee rows. Against the DEFAULT reference
+(cudnn fp32 conv on sm_120 = TF32, a reference-side constant, 2.2e-4 rel from fp64,
+tile-invariant): ieee arm passes 20/280, tf32 0/280. Against the DECLARED true-fp32
+reference (2.7e-7): ieee 95/280. Hand kernels are admissible only under the declared
+fp32 reference, on rows 14 (m3m2) / 3 (w4) / 2 (a2); where admissible the best passing
+hand beats compile 12/14 + 3/3 + 1/2. Reduction side unchanged and clean
+(b1_gatezero_v2, 13/13, max 8e-8). Manuscript claims 3-5 re-scoped accordingly; the
+day-1 hand-arm error median (7.0e-2) sits on the rerun tf32 arm (.0770), not ieee
+(.0149) -- no day-1/rerun inconsistency (results/r39_text_support.json).
+
+## Reference realized-precision convention (per-row, this package)
+
+Every correctness row now carries the reference's own realized error beside the threshold:
+ref_absmax (default reference, abs) and ref32_absmax (declared fp32 reference) in
+r1_conv_gated.jsonl; evaluator rows carry the same via the b1/b5 comp_* /ref blocks.
+Pass/fail is reported jointly with (reference realized error, atol, rtol); the
+reference-as-exact-oracle reading is withdrawn (paper sec. 4, fp64 tie-out
+2.2e-4 vs 2.7e-7, tile-invariant).
+
+## A2 LOO offset-recovery probe (results/a2_loo.json; prereg kernels/a2_loo_prereg.md, eb973d9)
+
+Frozen bar: mean LOO offset-R2 >= 0.30, ablation (a), primary b4+b5 (1104 rows, 13 cells).
+RESULT: PASS = false (mean -3.45e+08... see json; the single LN-cell held-out fold sits
+~1e3 sd outside the b4 covariate hull and the frozen lambda=1 ridge extrapolates it
+linearly). Descriptive, no acceptance attached: the 12 b4-held-out folds mean +0.281;
+pooled AUC .903. c_cwr_only mean .126. Sensitivity b4+b5r matches. Recorded as the
+scoped-negative the prereg names; offset-sufficiency stays withdrawn (paper sec. 5).
 
 ## Failure and regression reporting (R2 convention)
 
