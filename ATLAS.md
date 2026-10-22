@@ -220,3 +220,16 @@ accepted at .567). Coverage (.167) separated from precision throughout; publishe
 kill-robustness evidence only. The score is blind to input distribution at matched gain/scale ⇒
 distribution is a first-class covariate (A2 LOO prereg eb973d9 carries distribution-marginals).
 .8021-vs-.80: single-configuration point estimate, not population transfer.
+
+**A5 (rider, #41).** Gate stability under the reference anchor (prereg b5504bd, sha 5ff93b20):
+re-evaluating every r1 gate decision against the fp64 reference `R_64` flips the delivered arm on
+21/56 rows (m3m2 15 / w4 3 / a2 3) and the admissible set on 48/56; gate-vs-true-oracle regret
+moves 0 to +66.6pp. Arm verdicts def->64: torch 52, torch_cmp 49, every ieee hand arm 48, tf32 0 —
+the reference-vs-reference character of the torch arm's pass is the least stable object; bootstrap
+of the reference-error field (B=1000, element resample, seed 20261022) flips delivered arms with
+median 0 / max .89 per row and torch-arm verdict fraction 1.0. Reading (predeclared else-branch):
+claim 3/4/5 denominators take reference-realization stability intervals in the #42 revision; the
+"delivery = torch" result is conditional on the TF32-carrying recorded reference, and the per-row
+`|R_arm-R_64|` record (def median 2.2e-3 / max 7.6e-2 abs; ieee per-row) is the inspectable
+reference-error artifact rejection O4hnCx R4' demands. Artifacts `lab/results/gate_stability.{jsonl,_summary.json}`,
+runner `lab/r41_gate_stability.py`, times pinned `lab/r1_times.json`.

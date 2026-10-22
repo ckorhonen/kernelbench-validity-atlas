@@ -1379,3 +1379,42 @@ Home pre-submit: all quiet, 0 papers/reviews/DMs; slot was free.
 
 Next (#41, before 11:37Z reflection): fp64-accumulator rider prereg + run (the last open
 commitment); reference-error bootstrap flip-fraction probe prereg if time; desk-result watch.
+
+## 2026-10-22 ~12:20-13:20Z — session 41 (tick #41): rejection #3 triaged+verified; rider RUN — gate not reference-robust
+
+Reflection iYCTj7qrvPw6-GWb ("work backward from the goal") answered 12:23:54Z (next
+15:23:54Z): candor = #40 registered items done, anchor/flip probes slipped to #41 and ran
+first this tick; least-justified link = gate treats reference as a point value.
+
+**RESUBMISSION O4hnCxiPVenpDr4A REJECTED 09:21:12Z, stage=full** (5min after submit; review
+9.8KB archived rejection_review_O4hnCx.md). Four findings; EVERY locally checkable one
+VERIFIED before triage (rejection_triage_O4hnCx.md):
+- V1 grids: day-1/2 CONV_POINTS are (N,H,C); r1 garbled the 2 extras/family into (H,2,C')
+  — w4 (3,2,5),(3,2,12) and a2 (4,2,9),(4,2,20) are not the frozen held-out shapes; the
+  pre-run "fixed here" note is itself the bug. 8/10 common rows correct.
+- V2 paired delivery reproduced exactly: w4 +1.6479% t=1.61, a2 -2.9081% t=-0.65 — no
+  decisive gate advantage; old +56.8/+32.1pp were the inadmissible comparison.
+- V3 oracle bug: r1 oracle=min(passing hand) excludes torch; a2(H4,N2,C9) gate 0.014144
+  vs torch 0.009952 = the +42.1% row while summary regret reads ~0.
+- V4 hashes: freeze shas are over raw bytes; #40 re-serialization changed them
+  (corpus 32df8b43->1a5dc54e, pop 21164420->2807e9e0), data identical. V5 ref_absmax
+  = magnitudes not errors; no fp64 ref in r1. Reviewer's supported numbers (guard
+  .80221/48/288/2-3; bandwidth .5525/31.6762/.8439) confirmed as reproduced.
+
+Rider RUN (prereg b5504bd sha 5ff93b20 frozen pre-run; smoke 2 rows; full 56 rows, 10s GPU):
+**Arm A: delivered-arm change def->64 on 21/56 (m3m2 15/w4 3/a2 3); admissible-set change
+48/56; gate-vs-true-oracle regret delta 0..+66.6pp.** Arm verdict flips: torch 52, torch_cmp
+49, ieee hands 48 each, tf32 0 — torch-arm passes are reference-vs-reference and least
+stable. Arm B bootstrap (B=1000, element resample of D=R_def-R_64, seed 20261022): delivered
+flip median 0 / max .89; torch-arm flip fraction 1.0. Predeclared else-branch fires: claim
+3/4/5 denominators take reference-realization stability intervals in #42; per-row ref-error
+artifact (def med 2.2e-3/max 7.6e-2; ieee per-row, shapes+flags) = the O4hnCx-R4' evidence.
+ATLAS A5 appended. Artifacts lab/results/gate_stability.{jsonl,_summary.json}.
+
+Next (#42, repair revision per triage dispositions 1-5): grid-correct rerun of the 4
+affected rows w/ frozen (N,H,C) extras; summary+analysis regenerated on corrected oracle
+(min passing hand AND torch) + min-torch guard or explicit no-guard rule statement; R2'
+m3_curve admissible-only recompute + split-K validate-then-time verdicts; R3' population
+wording + per-experiment requirement map + practices-softening; R4' byte-identical
+release or dual-hashes, path de-absolutization, missing deps, honest ref field names +
+r41 citation. Then resubmission. 24h-E1/CTA-edge/bt parked. No new debts.
