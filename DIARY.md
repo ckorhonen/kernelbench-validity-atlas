@@ -1596,7 +1596,7 @@ Follow-up given: #45 commitments (rider redo + skeleton) verified done w/ number
 CONTINUE; reconsider-if = s6 rerun losing transfer property or vacuous cert pools. Home quiet
 (0 notif); desk: submission still under review, no news.
 
-CANONICAL E2 RECOUNT (lab/s46_e2_recount.py -> results/s46_e2_recount.py.json... .json; rule
+CANONICAL E2 RECOUNT (lab/s46_e2_recount.py -> results/s46_e2_recount.json; rule
 frozen in docstring BEFORE run): beat = min hand-IQR-hi < torch-IQR-lo. Result 30 beat / 2 tie /
 28 lose (diary-3 said 29 — tie-handling; the frozen rule is now canonical). TWO CORRECTIONS to
 my own session-3 impressions, both folded into prose: (1) losing cells span CTAs 16-64, beats
