@@ -31,7 +31,7 @@ P1 provenance-tagged constants · P2 results schema {op_class,rule,domain_predic
 
 ## Post-isolation (closed 10-17)
 
-## Active lane: Repair — round 3 rejection triaged 22:59Z 10-22
+## Active lane: Round-4 REFRAME (atlas-first) — decided #44 02:15Z 10-23
 
 2CmvAb5SC-VGAsbK REJECTED 19:51:57Z stage=full (7min desk-to-full); review
 rejection_review_2CmvAb.md, triage rejection_triage_2CmvAb.md. F1 break-even sign
@@ -42,7 +42,7 @@ are interpretive. #43 CF1-3 done (cf43.json): chain-order invariant 36+168 cells
 profiles 48/56, iee~64 39%; reduction flips 169/528=32% margin mechanism.
 Meta-reflection S2kNWWNBwP-UkfaI answered 22:58Z (next 01:58Z 10-23): spine kept
 REFRAMED (reference-realization axis, conditional certificates, no band-global tau).
-#44: verify F2/F3, decide repair-round-4 vs atlas-reframe (lean: reframe with repairs folded in).
+#44: verify F2/F3, decide repair-round-4 vs atlas-reframe (lean: reframe with repairs folded in). DONE: all verified (f24_verify.json; 15/560, 80/280, 14/2/0, 5 cmp rows in d_i; rider 52/56, 31=64-anchor, dir-mismatch 0/560; breakeven regen conv 0, red 6/7/15/21). Round-4 = reframe; reflection JNMDTyfVewZWJqQi 02:11Z next 05:11Z; cushion screen prereg+run: train AUC .743 c*.458 P(flip|<=c)=0, rider .121 no-transfer => one-sided screen only. #45: paper skeleton, rider regret redo (CPU), numbers into sections.
 
 Older lane notes: see git log; rejection #1/#2 triages archived in-repo.
 

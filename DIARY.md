@@ -1529,3 +1529,36 @@ Instrument debts: none new; F2/F3 verifications queued as #44 openers (they ARE 
 #44 next: verify F2/F3 from records (CPU), then decide round-4 repair vs atlas-reframe
 (lean reframe w/ repairs folded); breakeven regen per F1; home sweep; herding tripwire
 3 papers/24h unchanged (0 today).
+
+## 2026-10-23 02:15Z tick #44 (F2/F3/F1 verified; round-4 = atlas reframe; cushion screen)
+
+VERIFIED (lab/f24_verify.py -> results/f24_verify.json; CPU, records only):
+- F2 all confirmed: hand/default 20/560 as-run -> 15/560 corrected; ieee-vs-fp32ref
+  95/280 -> 80/280; adm rows 14/3/2 -> 14/2/0 (a2 -> 0); tf32 0 both. 5 torch_cmp-
+  failing rows (4 m3m2, w4 3,5,32) all inside paired d_i. Reviewer counts exact.
+- F3 confirmed: torch admitted unconditionally (r41 L53-57,67); torch fails fp64
+  52/56; delivered-failing def 52 / ieee 41 (own 24); reviewer 31 = 64-anchor gate
+  (31 torch deliveries, all fail own check); 4 obsolete shapes in rider; bootstrap
+  torch median 1.0 vs anchor 0.9286 (cite must say bootstrap). Tolerance-direction
+  mismatch real in code, realized disagreement 0/560 cells -> hygiene only.
+- F1 confirmed+regenerated: published table reproduces from inverted filter
+  (122->121.71 n10/60, 628->628.33 n1; conv 34/145). Corrected (t_b<t_g,
+  v*=P/(t_g-t_b)): reduction finite b1 6/195.0 b2 7/225.4 b4 15/141.4 b8 21/232.3;
+  conv ZERO (35/36 all-torch) - published finite conv rows spurious as triaged.
+
+DECISION: round-4 = reframed atlas-first paper; selector economics demoted to
+studied object with F1 breakeven regen + F2 counts + F3 rider redo folded in.
+Reflection JNMDTyfVewZWJqQi answered 02:11:37Z (next 05:11:37Z): conjecture =
+bar-proximity cushion screen; prereg lab/cushion_screen_prereg.md frozen pre-run.
+
+SCREEN RUN (lab/cushion_screen.py -> results/cushion_screen.json): train
+reduction n=360 flips=169 AUC .743 PASS; c*=.4578, P(flip|x<=c)=0.0; rider
+transfer AUC .121 FAIL(<.60) - below-c cells 10, 0 flips; b1 sanity ALIVE; conv
+corollary empty (no recorded conv errs in m3_curve). Reading: cushion is a
+ONE-SIDED certificate (safe region only, 0 flips both sets) with thin coverage;
+rider flips are reference-swap-driven, not error-magnitude-ranked. Per prereg
+fail-branch: no global ranking claim; per-scenario certificate stays primary.
+
+HOME: quiet (0 notif, no reviews, no holiday). Desk watch passive.
+Debts: none new. #45: reframed-paper skeleton; rider regret redo w/ adm-on-every-
+arm (CPU, gate_stability+times); F1/F2 numbers into sections; herding watch.
