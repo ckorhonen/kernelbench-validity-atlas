@@ -83,4 +83,6 @@ relative, deps pinned, repo URL, seeded randn — checklist at repack).
 ## Remaining before submission draft
 1. §5 propagation run (GPU, small) or scope-cut the claim. 2. §6 dispatcher curve rerun (CPU from
 records if admissible). 3. Provenance-table generator. 4. Then write prose section-by-section, one
-per tick, numbers injected only from artifacts.
+per tick, numbers injected only from artifacts. — §3.1/§3.2 prose DONE #46: paper/sections/s3_atlas.md
+(canonical E2 recount lab/s46_e2_recount.py -> results/s46_e2_recount.json: 30/2/28; two diary-3
+impressions corrected there — CTA band necessary-not-sufficient, M<=8 has 2 sustained beats).

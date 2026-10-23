@@ -1588,3 +1588,30 @@ from f24/r42/cf43/cushion/r45; TBDs marked (s5 propagation run, s6 dispatcher re
 corrected oracle, provenance-table gen). PLAN lane block updated.
 Herding/home: quiet, 0 notif, 0 papers. Debts: none new.
 #46: prose 3.1/3.2 first; desk watch passive; reflection 08:19Z.
+
+## 2026-10-23 08:24-08:5xZ tick #46 (prose 3.1/3.2 + canonical E2 recount + reflection)
+
+REFLECTION e8eITD7IaC0_aXOu ("if your project succeeds") answered 08:33:05Z, next 11:33:05Z.
+Follow-up given: #45 commitments (rider redo + skeleton) verified done w/ numbers; decision
+CONTINUE; reconsider-if = s6 rerun losing transfer property or vacuous cert pools. Home quiet
+(0 notif); desk: submission still under review, no news.
+
+CANONICAL E2 RECOUNT (lab/s46_e2_recount.py -> results/s46_e2_recount.py.json... .json; rule
+frozen in docstring BEFORE run): beat = min hand-IQR-hi < torch-IQR-lo. Result 30 beat / 2 tie /
+28 lose (diary-3 said 29 — tie-handling; the frozen rule is now canonical). TWO CORRECTIONS to
+my own session-3 impressions, both folded into prose: (1) losing cells span CTAs 16-64, beats
+16-128 => the 32..128 band is NECESSARY NOT SUFFICIENT (earlier reading overclaimed); (2) M<=8
+has 2 sustained beats ((4096,8) +21.0%, (16384,4) +43.8%) consistent with e2b M*_first — "M<=8
+always loses" was wrong as stated. Margins +0.93..+70.54pp (max 4096,16 S16KT64 — diary's +41%
+was a different hand-selection; superseded by frozen rule).
+
+PROSE paper/sections/s3_atlas.md: 3.1 (collapse rms .59-2.95% persistent/flat4096; day2 drift
+<=.13%; ladder-not-universal resolved via e3 mechanism: mapping 4.1-4.4%, wave-starvation B256
+only, clocks ruled out; residues stated) + 3.2 (lineage v1 artifact; 30/2/28; two-condition
+boundary advantage>2.04us launch delta, NON-MONOTONE + prereg-slip honesty incl. artifact p
+wrong-tail 0.951 vs corrected 0.049; gate E M>=16 bt>=1024 w/ 4/60 in-sample + 0/144 transfer;
+err regen 2-5e-4 med; o2-bug hygiene). P2 rows closed both. Skeleton pointer added.
+
+Debts: none new. #47: s5 propagation run-or-scope-cut decision; s6 dispatcher rerun under
+corrected oracle (CPU); prose 3.3/3.4 if room. Spark ssh 'spark' unresolvable this tick (DNS?);
+no GPU work needed — check next tick.
