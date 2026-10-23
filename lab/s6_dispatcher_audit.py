@@ -99,7 +99,7 @@ def main():
         cerrs = [e if isinstance(e, (int, float)) else None for e in raw_cerrs]
         cpass = sum(1 for e in cerrs if e is not None and e <= TOL)
         # probe-gap vs admissibility scale (V3 input)
-        gt = [r["arms"]["gate"]["regret_total"] for r in rs]  # == regret, probes 0
+        gt = [r["arms"]["gate"]["regret"] for r in rs]  # probes=0 => regret==regret_total
         bmeans = {}
         for b in ("b1", "b2", "b4", "b8"):
             vals = [r["arms"][b]["regret_total"] for r in rs

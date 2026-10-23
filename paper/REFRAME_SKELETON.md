@@ -55,7 +55,12 @@ motivating the certificate-first reframe. Falsifier of the whole program stated 
 ## 5 Tolerance as a distribution axis
 CF3: reduction pass flips 169/528 = 32.0% at bars 1.1–1.8e-4; b1 1.2e-7 margins never flip ⇒
 margin-to-bar mechanism family-general; conv-section-shrink branch WRONG (cf43) — both stated.
-Network propagation: TBD (needs a composed-model run; not claimed until run).
+Network propagation: SCOPE-CUT per frozen rule (lab/s6_dispatcher_audit.py docstring, committed
+pre-run e8c2300; results/s6_dispatcher_audit.json): V2 certificate-health failed under the
+declared pessimistic abs-only reading (held-out gate-hand pass-frac 0.0 both families; rows carry
+no |ref| so rtol cannot be applied CPU-side) ⇒ no composed-model claim; §5 states propagation as
+declared extension on the committed per-element distributions (b2 corpus, e2_v3_err, r1 per-row)
+with the CF3 flip mechanism — exactly the sylve-inherited limitation, named.
 
 ## 6 Selector economics, demoted to studied object (F1 repair)
 - Published breakeven table reproduces digit-for-digit from the inverted filter (122→121.71 n=10/60;
@@ -63,8 +68,16 @@ Network propagation: TBD (needs a composed-model run; not claimed until run).
 - Corrected form t_b<t_g, v*=P/(t_g−t_b): reduction finite b1 6/195.0, b2 7/225.4, b4 15/141.4,
   b8 21/232.3 (n/v*); conv EXACTLY ZERO — 35/36 rows structurally all-torch; published finite conv
   rows spurious (f24_verify regen).
-- Dispatcher-vs-budgeted-autotune curve: TBD (W4 held-out exists but predates repairs; rerun under
-  corrected oracle before any number appears here).
+- Dispatcher-vs-budgeted-autotune, held-out, corrected bookkeeping (CPU audit leg #47,
+  results/s6_dispatcher_audit.json): transfer property HOLDS — gate delivery >1% worse than
+  pure-torch on 3/24 reduction (identical to pre-repair accounting; proxy now correct: b1-choice
+  ≠ torch rows handled) and 0/10 conv. Family verdict admissibility-robust by gap scale: gate
+  mean regret_total 0.0451 red / 0.0201 conv vs best budgeted b1 1.5277 / 2.1469 — probe charges
+  dominate any admissibility correction. F3-class caveat stated: b4/b8 chosen hands fail the
+  abs-contract on 16/24, 17/24 (reduction) — their regret_totals are lower bounds under the
+  pessimistic reading; exact per-arm corrected table needs the m3_r42-style GPU rerun, NOT
+  required for the family verdict (gap 1.48 / 2.13 >> err scale 0.018 / 0.125), queued only if a
+  referee asks for per-arm contract numbers.
 
 ## 7 Threats, falsifiers, scope
 Per-claim killer objections (P5): E2 floor model falsifier + outcome; no-collapse class written for
@@ -81,8 +94,9 @@ F1→§6 · F2→§4 · F3→§2/§4 · F4 scope→§1/§7 · F5 packaging→§8
 relative, deps pinned, repo URL, seeded randn — checklist at repack).
 
 ## Remaining before submission draft
-1. §5 propagation run (GPU, small) or scope-cut the claim. 2. §6 dispatcher curve rerun (CPU from
-records if admissible). 3. Provenance-table generator. 4. Then write prose section-by-section, one
-per tick, numbers injected only from artifacts. — §3.1/§3.2 prose DONE #46: paper/sections/s3_atlas.md
+1. §5 propagation: SCOPE-CUT decided #47 (frozen rule, audit above). 2. §6 held-out bookkeeping:
+CPU audit leg DONE #47; GPU per-arm contract table optional (referee-asked only). 3. Provenance-table
+generator. 4. Then write prose section-by section: 3.3/3.4 next; 5/6 now grounded. — §3.1/§3.2
+prose DONE #46: paper/sections/s3_atlas.md
 (canonical E2 recount lab/s46_e2_recount.py -> results/s46_e2_recount.json: 30/2/28; two diary-3
 impressions corrected there — CTA band necessary-not-sufficient, M<=8 has 2 sustained beats).

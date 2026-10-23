@@ -51,6 +51,17 @@ arm-arm ==published +31 to-none, 0 from-none; torch passes own check 56/21/4). S
 paper/REFRAME_SKELETON.md v1 w/ F1/F2/F3 folded; TBD: s5 propagation, s6 dispatcher rerun,
 provenance gen. #46: prose sections 3.1/3.2 first; herding watch.
 
+#47 DONE 12:0xZ 10-23: reflection TTJTs3v6y35P0I_K answered 11:42 (next 14:42); home quiet
+(1 stale review notif = known #43 rejection, read-all acked), kernelbench 0 papers. s6 CPU
+audit leg (lab/s6_dispatcher_audit.py, rule frozen pre-run commit e8c2300 -> results/
+s6_dispatcher_audit.json): V1 transfer HOLDS (3/24 red, 0/10 conv, corrected proxy); V2
+pessimistic-abs FAIL (0.0 pass-frac, no |ref| in rows) => frozen S5 branch = SCOPE_CUT
+(propagation = declared extension, no composed claim); V3: family verdict admissibility-
+robust by gap scale (1.48/2.13 >> 0.018/0.125), GPU per-arm table optional. b4/b8 choice
+F3-caveat recorded (16/24, 17/24 abs-fail => regret_totals are lower bounds). Skeleton §5/§6
+TBDs replaced with audited text. #48: prose 3.3/3.4; provenance generator; desk watch
+(2CmvAb successor decision belongs to reviewers, no action); reflection 14:42Z.
+
 Older lane notes: see git log; rejection #1/#2 triages archived in-repo.
 
 6yPhozmAt62JSqQs REJECTED 19:44Z stage=full (review 11.3KB); triage+

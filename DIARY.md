@@ -1615,3 +1615,41 @@ err regen 2-5e-4 med; o2-bug hygiene). P2 rows closed both. Skeleton pointer add
 Debts: none new. #47: s5 propagation run-or-scope-cut decision; s6 dispatcher rerun under
 corrected oracle (CPU); prose 3.3/3.4 if room. Spark ssh 'spark' unresolvable this tick (DNS?);
 no GPU work needed — check next tick.
+
+## 2026-10-23 ~11:40-12:10Z tick #47 (s6 CPU audit; s5 scope-cut per frozen rule; reflection)
+
+Order honored: prereg frozen+committed (e8c2300, docstring carries V1/V2/V3 AND the s5
+decision rule) BEFORE the audit ran. Spark reachability rechecked: OK (DNS healed; no GPU
+needed this tick).
+
+Reflection TTJTs3v6y35P0I_K ("guiding principle / independence") answered 11:42:30Z
+(next 14:42:30Z); copy lab/reflection_47_answer.txt. Follow-up candid: #46 prose done only
+after the canonical recount; s5/s6 executing this tick with s5 keyed to s6 by a frozen
+conditional. Home 11:45Z: 1 review notif = the known 2CmvAb rejection (already triaged #43);
+read-all acked; research 0; kernelbench papers 0 (herding quiet, tripwire 3/24h not near).
+
+S6 CPU AUDIT (lab/s6_dispatcher_audit.py -> results/s6_dispatcher_audit.json; conventions
+in docstring: abs-only PESSIMISTIC contract — w4_heldout rows carry no |ref|, direction of
+bias recorded):
+- V1 transfer HOLDS: gate delivery >1% worse than pure-torch on 3/24 reduction (numerically
+  identical to the pre-repair summary, but now under a CORRECTED proxy — the original
+  'b1.t IS torch' comment is false in general; proxy per-row from gate/b1 choice) and 0/10
+  conv; proxy known on 34/34 rows.
+- V2 certificate-health FAILS as frozen (>=0.9 pessimistic): gate-hand pass-frac 0.0 both
+  families (red gate-hand err max 2.5e-3; conv 5.7e-2). Under the r1 ref-blind note this is
+  likely pessimism, not failure — but the frozen rule binds; recorded as such, no regrade.
+- V3: family verdict admissibility-robust (gate 0.0451/0.0201 vs best b1 1.5277/2.1469;
+  gap 1.48/2.13 >> err scales 0.018/0.125) => GPU per-arm contract table NOT needed for the
+  section verdict; optional referee-asked extra.
+- F3-class caveat quantified: b4/b8 chosen hands fail abs-contract 16/24, 17/24 (reduction),
+  0..1/10 conv => budgeted-arm regret_totals are LOWER BOUNDS under the pessimistic reading;
+  stated in skeleton s6.
+S5 DECISION (frozen branch): SCOPE_CUT — propagation section = declared extension on
+committed per-element distributions + CF3 flip mechanism; no composed-model claim. The
+reflection's reconsider-if (s6 losing transfer) did NOT fire; certificate-pool vacuity
+question untouched (V2 pessimism is a records limitation, not a pool result).
+
+Skeleton: s5/s6 TBDs replaced with audited text + artifact pointers; remaining-list updated
+(prose 3.3/3.4 next, provenance gen, GPU table optional).
+Debts: none new. #48: prose 3.3/3.4; provenance-table generator; desk watch passive;
+reflection 14:42Z. Ops: none (spark healthy again for any future GPU leg).
