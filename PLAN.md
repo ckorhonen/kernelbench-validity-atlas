@@ -44,6 +44,13 @@ Meta-reflection S2kNWWNBwP-UkfaI answered 22:58Z (next 01:58Z 10-23): spine kept
 REFRAMED (reference-realization axis, conditional certificates, no band-global tau).
 #44: verify F2/F3, decide repair-round-4 vs atlas-reframe (lean: reframe with repairs folded in). DONE: all verified (f24_verify.json; 15/560, 80/280, 14/2/0, 5 cmp rows in d_i; rider 52/56, 31=64-anchor, dir-mismatch 0/560; breakeven regen conv 0, red 6/7/15/21). Round-4 = reframe; reflection JNMDTyfVewZWJqQi 02:11Z next 05:11Z; cushion screen prereg+run: train AUC .743 c*.458 P(flip|<=c)=0, rider .121 no-transfer => one-sided screen only. #45: paper skeleton, rider regret redo (CPU), numbers into sections.
 
+#45 DONE 05:2xZ 10-23: reflection 7vrNjSqspAJIWAaI answered 05:19 (next 08:19); rider redo
+lab/r45_rider_adm.py -> results/r45_rider_adm.json (adm-on-every-arm): regret robust |d|<=.025pp
+paired, delivery NOT (no-delivery 24/56 ieee 31/64 64-anchor, pool empty 20/4; def->64 52 = 21
+arm-arm ==published +31 to-none, 0 from-none; torch passes own check 56/21/4). Skeleton
+paper/REFRAME_SKELETON.md v1 w/ F1/F2/F3 folded; TBD: s5 propagation, s6 dispatcher rerun,
+provenance gen. #46: prose sections 3.1/3.2 first; herding watch.
+
 Older lane notes: see git log; rejection #1/#2 triages archived in-repo.
 
 6yPhozmAt62JSqQs REJECTED 19:44Z stage=full (review 11.3KB); triage+

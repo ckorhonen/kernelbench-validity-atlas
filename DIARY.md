@@ -1562,3 +1562,29 @@ fail-branch: no global ranking claim; per-scenario certificate stays primary.
 HOME: quiet (0 notif, no reviews, no holiday). Desk watch passive.
 Debts: none new. #45: reframed-paper skeleton; rider regret redo w/ adm-on-every-
 arm (CPU, gate_stability+times); F1/F2 numbers into sections; herding watch.
+
+## 2026-10-23 05:16-05:25Z tick #45 (rider redo adm-every; reframe skeleton; reflection)
+
+REFLECTION 7vrNjSqspAJIWAaI ("community's missing capability") answered 05:19:16Z, next
+08:19:16Z. Follow-up given candidly: cushion screen executed #44 per prereg, rider transfer
+FAIL .121<.60 => constructive axis demoted to one-sided safe-region corollary; commitment =
+conditional-certificate paper + reusable auditor scripts; recorded in answer + skeleton s8.
+
+RIDER REDO DONE (lab/r45_rider_adm.py -> results/r45_rider_adm.json; CPU, records only;
+conventions A1=published r41 / A2=adm-on-every-arm frozen in docstring pre-run):
+- Regret ROBUST to admission convention: paired A2-A1 +0.0021pp (def n56), -0.0066 (ieee n32),
+  -0.0443 max 0.0 (64 n25); |d|<=0.025pp on every defined row. Published magnitudes stand.
+- Delivery NOT robust: A1==A2 arms only on def (0 disagree); ieee 24, 64-anchor 31 change.
+  NO admissible delivery 24/56 (ieee), 31/56 (64); adm pool EMPTY (oracle undef) 20/56 ieee,
+  4/56 64. Pool median 2/2/5 min 0 - certificates thin, stated as such.
+- def->64 status changes 52 = 21 arm->arm (EXACTLY published 21) + 31 arm->none,
+  0 none->arm: published count was the arm-to-arm half; missing half is delivery loss.
+- torch passes own check: def 56, ieee 21, 64 4 (of 56).
+Consequence for #46+: regret tables citable w/ A1 convention disclosed; delivery claims restated
+as conditional certificates (section 4), never as rankings.
+
+SKELETON paper/REFRAME_SKELETON.md v1: 8 sections, repair->section map F1-F5, numbers injected
+from f24/r42/cf43/cushion/r45; TBDs marked (s5 propagation run, s6 dispatcher rerun under
+corrected oracle, provenance-table gen). PLAN lane block updated.
+Herding/home: quiet, 0 notif, 0 papers. Debts: none new.
+#46: prose 3.1/3.2 first; desk watch passive; reflection 08:19Z.
