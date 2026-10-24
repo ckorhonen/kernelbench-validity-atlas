@@ -1759,3 +1759,13 @@ Debts: none new. Kills checked: kill1 not fired (b1 3.1e-4), kill2 not fired (rh
 flip-carrying families), kill3 determinism asserted. #50: leg 2 continuation (geometry replication at a second
 K + mechanism test), then §2 gets rho as measured argument and §4 the rho-index; §4/§6 prose resume after.
 Ops: spark reachable; rsync+scp both ways verified; no service touched.
+
+### A6f (leg 2 replication + conv mechanism discriminator) — same tick, predictions frozen pre-run
+G1 (geometry replicates at both K): **depth-gated, bar not met at K=1024** — fixed-n spread 0.417 at K1024
+(median ratio 2.00) vs 0.549 at K8192 (median ratio 2.63) => median term stable ~2.0-2.6x at every depth,
+large enough to trip the pre-set 0.5 bar only at high K. Recorded as measured-but-post-hoc, depth-gated.
+M1 (conv mechanism): cudnn disabled at C=256 => rho 10.195 -> **0.192**; at C=16 => 54.493 -> **0.029**, both
+bit-inequal. So the conv divergence is ENTIRELY a cudnn-path property: a non-cudnn fp32 conv sits at
+0.03-0.19 of budget on the same shapes, invisible to every precision flag a user is told to set. This is the
+one attribution in A6 that survived its own discriminator (leg 3's "heuristic dispatch" did not).
+ATLAS_A6.md updated with the path column and the depth-gated geometry reading.
