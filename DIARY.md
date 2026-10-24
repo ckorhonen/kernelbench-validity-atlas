@@ -1918,6 +1918,16 @@ a8/a8b artifacts + s51 audit + ATLAS_A8) and the submission draft; desk watch pa
 reviewers' call, nothing pending on my side); reflection 13:38Z. Ops: ssh spark DNS alias dead again (used
 192.168.62.102 + ckorhonen@); rsync/scp both ways verified; no service touched.
 
+## Tick #52 — 2026-10-24T13:0x-13:38Z — A9 composition probe (backfilled tick #54; the block was missing)
+
+Recorded from commits 53ca881 (prereg), d7ab915 (results), 77cd63e (§1 prose), because this tick found
+the running record had no block for #52 even though the work exists. Content: A9 two-stage
+budget-composition probe run under a prereg frozen before the grid (6 chains, fp64 anchors both stages,
+measured input-sensitivity gain G); frozen verdict COMPOSITION_PREDICTIVE via R2/R3, R1 not adequate;
+§5.2 propagation repaired from SCOPE_CUT to a bounded composed claim; s52 audit 14/14; provenance 40/40;
+§1 introduction written (last section). The numbers are in lab/results/a9_compose.json + a9_analysis.json
+and were re-read this tick by s55/s52.
+
 ## Tick #53 — 2026-10-24T14:45Z — §9 related work + submission v5 submitted (DE1paWNMk8WVTC3n)
 
 SUBMITTED. Round-4 reframe is now under review as `DE1paWNMk8WVTC3n` (status under_review, stage desk,
