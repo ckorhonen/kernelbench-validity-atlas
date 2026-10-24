@@ -10,7 +10,7 @@ GB10/sm_120, torch 2.14.1+cu130.
 ## 2.1 The instrument, and what it can and cannot see
 
 The box calibration (`results/calibration.json`) fixes the coordinates every later claim is expressed in:
-48 SMs, 25.2 MB L2, copy bandwidth that is two-slope rather than one (171 GB/s at 8 MB, 259 GB/s at 16 MB,
+48 SMs, 24 MiB L2 (25,165,824 bytes), copy bandwidth that is two-slope rather than one (171 GB/s at 8 MiB, 259 GB/s at 16 MiB,
 213–221 GB/s from 32 MB to 256 MB, with the fp16 ladder running 129–220 GB/s over the same span), and a
 launch floor of 7.46 µs single-shot against 2.94 µs back-to-back. Clock locking was **not** available: the
 `nvidia-smi` lock request failed with a permissions error on `GPU 00000000:0F:01:00.0`, so every timing in
