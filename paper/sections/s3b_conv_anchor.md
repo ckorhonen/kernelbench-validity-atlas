@@ -32,9 +32,14 @@ property of the oracle's composition — the oracle is torch on 53 of these 56 r
 not evidence of selection skill. This is the F3 defect restated as arithmetic and it is why the selector is demoted to a
 studied object in §6.
 
-**Result 3 — the compile gap is a real per-row quantity even though delivery is not.** `d_i` (compile minus
-delivered, percent of compile) is +11.87 pp (sd 0.29, t 2.44, n=36), +12.08 pp (sd 0.23, t 1.64, n=10),
-+10.30 pp (sd 0.20, t 1.60, n=10) by tag (`r42_analysis.by_tag`). The paired denominator includes the 5
+**Result 3 — the compile gap is a real per-row quantity even though delivery is not.** `d_i` is
+compile minus delivered, normalized by the **oracle** time (the definition actually implemented in
+`r42_analysis.py:92`; an earlier draft said "percent of compile", which is the other reading and is
+reported below). Oracle-normalized: +11.87 pp (sd 29.25 pp, t 2.44, n=36), +12.08 pp (sd 23.24 pp,
+t 1.64, n=10), +10.30 pp (sd 20.32 pp, t 1.60, n=10) by tag. Compile-normalized, the same rows give
++6.58 pp (sd 16.28), +8.17 pp (sd 14.13), +7.19 pp (sd 13.02) — the gap is smaller under the
+denominator the earlier draft named, so both are stated and the denominator is named in every figure
+(`results/s55_review_repair.json`). The paired denominator includes the 5
 rows whose own `torch_cmp` instance fails the contract (4 m3m2, 1 w4; `f24_verify.f2`), and 10 of 56 rows
 have compile faster than torch — both stated because either alone would flatter the gap. The honest reading:
 torch.compile loses roughly a tenth of its runtime to this shape family on this device, the gate captures
@@ -45,7 +50,8 @@ none of that because it does not fire, and the w4/a2 tags are too small to carry
 precision, else torch), domain_predicate: delivered arm must pass 1e-4 vs its own recorded reference;
 H≤14 ∧ C≤64 for the hand branch, derived_coords: [bytes, total CTAs, waves], boundary_ref:
 results/r1_conv_gated.jsonl + r42_analysis.json + f24_verify.json + s48_prose_audit.json, variance:
-IQR of 12 reps per arm, d_i sd 0.20–0.29 pp, n_reps: 12, date: 2026-10-22/23}`
+IQR of 12 reps per arm, d_i sd 20.3-29.3 pp oracle-normalized / 13.0-16.3 pp compile-normalized,
+n_reps: 12, date: 2026-10-22/23}`
 
 ---
 
@@ -65,8 +71,12 @@ one whole class of explanation from §5.
 Enforcing admissibility on every arm including the baseline (`results/r45_rider_adm.json`) changes the
 delivered arm on 52/56 rows going from R_def to R_64: 21 rows move baseline→hand, exactly the 21 the earlier
 report published, and 31 rows move to no admissible delivery, which was not reported; 4 rows are unchanged and
-zero rows go none→arm. The regret magnitudes are robust — paired |A2−A1| ≤ 0.025 pp on the defined overlap
-(def +0.0021, n=56; ieee −0.0066, n=32; 64 −0.0443, n=25) — while delivery is not (arm disagreement 0/24/31
+zero rows go none→arm. The regret magnitudes are **not** bounded at a quarter of a percentage point — that
+figure was a unit error in `r45_rider_adm.py` (fractional deltas stored under `paired_delta_pp_*`, signed
+max), corrected in `results/s55_review_repair.json`: at the default realization the paired change is
++0.21 pp mean with a 2.44 pp worst row, and at ieee/fp64 it is −0.66/−4.43 pp mean with 25.5/41.2 pp worst
+rows (n 56/32/25). So regret magnitudes are stable only at the realization the claim was measured at, while
+delivery is not stable at any of them (arm disagreement 0/24/31
 for def/ieee/64). Read together: the ranking survives the stricter convention, the delivery claim does not,
 so the deliverable is a conditional certificate and never a ranking. The admissible pool is thin and sometimes
 empty (oracle undefined 20/56 ieee, 4/56 64; no admissible delivery 24/56 and 31/56), median pool size 2/2/5 —

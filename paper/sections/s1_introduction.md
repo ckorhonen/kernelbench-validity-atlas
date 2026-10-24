@@ -81,9 +81,11 @@ for magnitude and a measured-per-shape cost for admission — a weaker and more 
 "predictive for unmeasured shapes."
 
 **Composition (§5.2).** Tolerance was first cut as unclaimable, then re-measured in the currency the claim
-actually needs. On six two-stage chains with fp64 anchors, end-to-end budget consumption is bounded by the
-worst stage within 1.0-1.5× on five, bulk inadmissibility is dominated rather than compounded, and one chain
-— deep reduction feeding deep reduction — is super-additive at 2.34× the additive prediction. The first cut
+actually needs. On six two-stage chains with fp64 anchors, end-to-end budget consumption exceeds the worse
+stage by a measured factor of 1.0–2.5×, five of six inside a factor of two (one inside 1.5×), bulk
+inadmissibility is dominated rather than compounded, and two chains break the worst-stage bound: deep
+reduction feeding deep reduction is super-additive at 2.34× the additive prediction, and a clean control of
+two individually admissible matmul stages composes to ρ 1.29, past budget. The first cut
 was an instrument gap, and the paper keeps that history rather than presenting the repair as the original
 plan.
 

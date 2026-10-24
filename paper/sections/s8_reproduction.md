@@ -2,6 +2,14 @@
 
 The paper ships auditors rather than promises. Every script named here is CPU-only unless marked, reads
 committed artifacts rather than re-measuring, and exits nonzero when a cited number cannot be regenerated.
+**Scope of that guarantee, stated because a review caught me overclaiming it:** the prose auditors
+(`s48`, `s50`, `s51`, `s52`, `s53`) are *consistency* checks — they verify that a number in the manuscript
+matches a stored summary field, and in several cases that a required phrase occurs. They do not regenerate
+the summary field, so a unit error inside the field passes them silently. That is exactly what happened to
+the `paired_delta_pp_*` fields (§4.2) and to the "1.0-1.5×" composition figure (§5.2): both were stored
+wrong, both audits passed. The auditors that *do* recompute from row-level records are `f24_verify.py`,
+`cf43.py`, `r42_analysis.py`, `r45_rider_adm.py` and the new `s55_review_repair.py`; those are the ones a
+reader should run first. §8.4 lists the repairs that came from this distinction.
 
 ## 8.1 The auditor set
 
@@ -50,16 +58,36 @@ Every timing is unlocked-clock (§7.3). Every random draw is seeded and the seed
 
 ## 8.4 What a reader can do without us
 
-Take any published row from this problem. Look up its reference realization and flags, run
-`lab/a8_compress.py`'s profiler path on that shape (one pass), and check the engine class and frac_over. If
-frac_over is 0, the baseline passes its own check and the published ratio stands. If frac_over is between 0
-and 0.02, the ratio is claimable on the passing subset and the subset size is stated. If frac_over exceeds
-0.5, no ratio is certifiable — the two arms are both missing the contract, and the number is a comparison of
-two failures. That decision procedure needs no trust in us, which is the only kind worth shipping.
+Take any published row from this problem and evaluate it under three criteria that are kept separate, because
+conflating them is the defect a review found in the first version of this section:
+
+1. **Benchmark agreement** — the row's own verdict, whole-tensor allclose against its recorded reference at
+   1e-4. This is the contract, it is binary, and it is not affected by anything measured here.
+2. **Anchor accuracy** — the reference's own distance from an fp64 anchor, reported as (rho_max, frac_over).
+   Run `lab/a8_compress.py`'s profiler path on that shape (one pass) to get the engine class and frac_over.
+   This is diagnostic: it tells you how much of the tolerance budget the reference itself consumed, which is
+   information the published tables omit. It does **not** upgrade criterion 1. A row whose reference is
+   0.77 of budget from exact arithmetic still either passes its allclose or does not.
+3. **A relaxed application contract, if you want one** — declare it. If you accept a candidate that agrees
+   with the reference on all but a stated fraction of elements, that is a different question from the
+   benchmark's, and it must be named as such with its own threshold. The paper's 0.02 and 0.5 lines are
+   offered as *reporting* boundaries on frac_over, not as a statistical certificate: 0 means the reference is
+   indistinguishable from an exact anchor at the budget, 0 < frac_over < 0.02 is a tail failure confined to
+   rare elements, and frac_over > 0.5 means the bulk of the output misses the contract and no speedup ratio
+   between two such arms says much. Whether 0.02 is the right line for your application is your call, and the
+   paper says so rather than asserting it.
+
+That decision procedure needs no trust in us, which is the only kind worth shipping. What it will not give
+you is a guarantee about an unmeasured shape: the magnitude field ranks well (Spearman .833/.986) but is not
+calibrated (median 6.84× multiplicative error from geometry alone), and the admission field is a
+measured-per-shape cost because the engine class is not predictable from those coordinates at 0.604.
 
 **P2 row.**
-`{op_class: reproduction, rule: auditors regenerate every cited number from committed artifacts and exit
-nonzero on failure; provenance table hard-fails on a cited-but-absent artifact,
+`{op_class: reproduction, rule: auditors recompute cited numbers from row-level records where they claim to,
+and consistency-check stored fields where they do not; provenance table hard-fails on a cited-but-absent
+artifact; the reader's decision procedure keeps benchmark agreement, anchor accuracy and relaxed application
+contract separate,
 domain_predicate: all numbers cited in paper/*.md, derived_coords: n/a, boundary_ref: paper/PROVENANCE.md,
 results/s48_provenance.json, results/s50_prose_audit.json, results/s51_prose_audit.json,
+results/s55_review_repair.json,
 variance: n/a (deterministic records), n_reps: 1 per audit run, date: 2026-10-24}`

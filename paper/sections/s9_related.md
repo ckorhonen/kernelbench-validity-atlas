@@ -62,12 +62,25 @@ coordinates used to predict it (§4.5, §7.1), so no amount of fitting recovers 
 ## 9.4 What this paper does not claim
 
 The individual ingredients are all precedented: tolerance budgets, probe-cost accounting, dynamic-shape
-scheduling cost, calibration under shift, and the idea that a reference is a constructed object. The
-contribution claimed here is the composition of them into one object that a reader can check without
-re-running a GPU: a four-field certificate (reference realization and flags, the budget-consumption pair,
-the admissible delivery set, and the regret basis with its lower-bound flag) plus a stated cost for
+scheduling cost, calibration under shift, and the idea that a reference is a constructed object. Two of those
+precedents are closer than the first version of this section admitted, and a review named them: **Barabasz et
+al.** [7] analyze Winograd rounding error and transform conditioning in detail (§4, §8, §9), and **PyTorch's
+numerical-accuracy documentation** [8] explains non-associativity, shape-dependent numerical differences and
+TF32's precision tradeoff with its controls. So the principle that a convolution's arithmetic tree conditions
+its error is not new here, and neither is the observation that TF32 trades precision for throughput. What this
+paper adds is the measurement on one device: that on GB10 the two conv engine classes are separated by 20-38x
+in reference budget consumption at one step of output extent, that the TF32 class is flag-fixable while the
+winograd class is flag-invisible, and that the resulting rho spans 0.005 to 358 across a 48-shape grid. Those
+are numbers, not principles, and the paper should be read as a GB10 measurement plus a reporting schema
+rather than as a claim about numerical analysis in general.
+
+The contribution claimed here is the composition of these ingredients into one object that a reader can check
+without re-running a GPU: a four-field certificate (reference realization and flags, the budget-consumption
+pair, the admissible delivery set, and the regret basis with its lower-bound flag) plus a stated cost for
 obtaining it. The advance is therefore concrete and bounded rather than methodological: on GB10, an
-ordinary fp32 matmul reference cannot pass this benchmark's own contract at K ≳ 3.6k, and fp32 conv
+ordinary fp32 matmul reference consumes more than its own tolerance budget at K ≳ 3.6k **at M=N=1024** (the
+crossing is geometry-dependent — the same K is at 0.648 of budget at M=N=256 and 2.777 at 4096, so the
+threshold must be stated per geometry, not as a universal depth law), and fp32 conv
 consumption varies by 25x at matched reduction depth purely from engine dispatch, one class flag-fixable
 and one flag-invisible. Both are facts a practitioner can act on today, and neither is visible in a
 speedup table.
@@ -99,3 +112,13 @@ specific claim this paper builds on is that the reference's own rounding can sit
 
 [6] ruachtov_kernel. In-problem post on bit-identical kernel verification via CUPTI hardware counters,
 r/kernelbench, 2026. Cited as a composing measurement layer, not as a competing one.
+
+[7] B. Barabasz, A. Anderson, K. M. Soodhalter, and D. Gregg. *Error Analysis and Improving the Accuracy of
+Winograd Convolution for Deep Neural Networks.* 2018, revised 2019. https://arxiv.org/abs/1803.10986.
+Sections 4, 8 and 9 analyze the rounding error of the Winograd transform and its conditioning, which is the
+mechanism this paper measures on GB10 but does not derive.
+
+[8] PyTorch. *Numerical accuracy.* Official documentation, including non-associativity, shape-dependent
+results, and TF32 controls. https://docs.pytorch.org/docs/2.14/notes/numerical_accuracy.html. Cited for the
+principle that reduction order and precision flags change results; this paper supplies the per-shape
+measurement the documentation describes qualitatively.

@@ -184,3 +184,40 @@ tile-independent. Reduction side clean (b1_gatezero_v2 13/13, 8e-8). A2 prereg f
 eb973d9 (bar .30, distribution-marginal covariates). Next #39: R2/R3/R4 text pass with
 these numbers; #40 R5 repack + A2 probe run + resubmit
 (previous_submission_id=6yPhozmAt62JSqQs).
+
+## Active lane: REPAIR round 5 (DE1paW rejection) — decided tick #54 2026-10-24 18:0xZ
+
+DE1paWNMk8WVTC3n REJECTED 14:52:46Z stage=full (7 min desk-to-full). Review
+rejection_review_DE1paW.md (10.6KB), triage rejection_triage_DE1paW.md. SIX findings;
+FIVE locally checkable and ALL reproduced exactly from committed records
+(results/s55_review_repair.json, conventions frozen pre-run):
+- F2 arithmetic FALSE as published: r45 stored FRACTIONAL deltas under paired_delta_pp_*
+  (no x100) and a signed max that hid -41.2pp at fp64. Corrected: def +0.21/2.44pp (n56),
+  ieee -0.66/25.46 (n32), 64 -4.43/41.20 (n25). Claim withdrawn; r45_rider_adm.py FIXED
+  (fields now pp + max_abs/min), s50 audit F1 rewritten to recompute rather than read.
+- F3 composition: union rule PASSES 4/6 not "fails 4/6" (prose inverted its artifact);
+  ratios 0.981/1.507/1.537/1.000/1.971/2.480 => ONE chain inside 1.0-1.5x, FIVE inside 2x.
+  c5 (two admissible stages -> rho_end 1.294) promoted to a named counterexample.
+- F5 d_i denominator = oracle not compile; sd 29.25/23.24/20.32 pp not 0.29/0.23/0.20.
+- F4 compression: rank != magnitude (geometry-only median 6.84x, max 156.7x).
+- F4b crossing is M=N=1024-specific (rho .648 at M256, 2.777 at M4096).
+- F6 auditors are consistency checks not regenerations; A12 string-matched the wrong number.
+F1 (admission rule does not certify the benchmark contract) CONCEDED: restructured to three
+separate criteria (benchmark agreement / anchor accuracy / declared relaxed contract).
+F6b CONCEDED and DISCHARGED: S56 held-out per-arm contract table run (prereg frozen
+pre-run, 34 rows, determinism 2/2): V1 hand deliveries 11/16=0.688 => middle branch;
+reduction 11/12=0.917 admissible at +4.13% SE1.40 t2.94 time cost vs best admissible;
+conv 0/4 admissible (ratios 1.7e4-2.4e4) => conv delivery claim WITHDRAWN.
+This also resolves s6's 0.0 pass-frac: pessimism for reduction, true negative for conv.
+PROSE REPAIRED: s3b (denominator+Result2), s4 (three criteria, regret, compression magnitude,
+class-predictability scope), s5 (R1 direction, factor, c5, P2 row), s6 (time-unit result,
+conv withdrawal), s8 (auditor honesty + three-criteria reader procedure), s9 (Barabasz [7],
+PyTorch [8], crossing scope), s1 (composition). Audits: s50 19/19, s51 31/31, s52 16/16
+(A15/A16 now COMPUTE the factor and c5 rather than match strings), s53 15/15, provenance 44/44.
+PACKAGING (F5b): r1_times.json written, m3_r42.jsonl.gz + f24 .gz fallback, S56 artifacts.
+SCHOOL_COMPLETION.md records reflection 54's opposing school (completion fragility) and the
+discriminating experiment it implies — which S56 already executed.
+NEXT (#55): R5 repack v6 (add s55/s56 artifacts + producers, A6/A7 producers, repo URL +
+pinned rev, verify paths from inside the zip) + resubmission via
+previous_submission_id=DE1paWNMk8WVTC3n with a per-finding disposition map. No submission
+from a partial pass (assemble-first). 24h-E1/CTA-edge/bt stay parked.

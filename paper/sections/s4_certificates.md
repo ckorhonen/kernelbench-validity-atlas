@@ -14,9 +14,16 @@ judgment:
 
 1. **Reference realization** — which of {default, explicit-ieee, fp64-anchor} the row is scored against, plus
    the runtime flags in force (`cudnn.allow_tf32`, `matmul.allow_tf32`, `float32_precision`).
-2. **Budget consumption** — the pair (rho_max, frac_over) at the row's shape (§2.3). frac_over is the
-   admission key: 0 means the baseline passes its own check against an exact anchor; 0 < frac_over < 0.02 is
-   a tail failure claimable on the passing subset; frac_over > 0.5 is bulk failure and no ratio is certifiable.
+2. **Budget consumption** — the pair (rho_max, frac_over) at the row's shape (§2.3). These are
+   **diagnostic**, not a substitute for the benchmark's own verdict, and the distinction is the load-bearing
+   correction in this section. The benchmark's contract is a whole-tensor allclose against the recorded
+   reference; that verdict is binary and is criterion (i). rho and frac_over measure a *different* comparison
+   — the reference's distance from an fp64 anchor — and are criterion (ii). An explicitly relaxed application
+   contract, if a paper wants one, is criterion (iii) and must be declared as an application requirement with
+   its own threshold, not inferred from (ii). The three are reported separately because neither implies
+   another: a reference 0.75e-4 from an exact anchor can pass (i) against a candidate 1.5e-4 that fails
+   against the anchor, so frac_over = 0 does not license "no caveat needed." The earlier draft collapsed (i)
+   and (ii) into one admission predicate, which is the defect this revision repairs.
 3. **Admissible delivery set** — the arms that pass the contract at *this* realization, which for most rows is
    smaller than the set the rule selects.
 4. **Regret basis** — the regret number and whether it is a lower bound, because a chosen arm that fails the
@@ -33,10 +40,12 @@ Under an enforced admission rule, with the reference realization as the axis (`r
   and **4/56** against the fp64 anchor. A rule that admits the baseline unconditionally while demanding the
   candidate prove itself is therefore not symmetric, and on two of three realizations it is admitting an arm
   that fails.
-- **Regret magnitudes survive the admission convention.** Paired |A2 − A1| is ≤ 0.025 pp on the defined
-  overlap at every realization (def 0.0244 n=56, ieee 0.0244 n=32, 64 0.0 n=25). So the *ranking* conclusion
-  is robust: whatever admission rule is applied, the measured regret differences stay inside a quarter of a
-  percentage point.
+- **Regret magnitudes survive the admission convention only at the default realization.** Paired changes
+  recomputed in percentage points with max|·| (`results/s55_review_repair.json`; the published fields held
+  fractional deltas under `paired_delta_pp_*` and a signed max, so "≤ 0.025 pp" was a unit error): def
+  +0.21 pp mean / 2.44 pp worst row (n=56), ieee −0.66 / 25.46 (n=32), 64 −4.43 / 41.20 (n=25). The
+  *ranking* of arms is unchanged at every realization — that part of the claim stands — but the magnitude
+  bound does not: at ieee and fp64 a single row can move regret by tens of percentage points.
 - **Delivery claims do not survive it.** Arm disagreement A2-vs-A1 is 0/24/31 (def/ieee/64); there is **no
   admissible delivery** on 24/56 rows (ieee) and 31/56 (64); and the admissible pool is empty — oracle
   undefined — on 20/56 (ieee) and 4/56 (64). These are the rows where the question "which arm wins" has no
@@ -96,16 +105,22 @@ dispatch classes × H{7,13,21} and matmul M{256,1024,4096} × K{128..8192}; arti
 
 The answer splits by field, and the split is the finding:
 
-- **rho_max compresses.** Out-of-fold Spearman against measured log rho is 0.986 with the engine class
-  supplied as one categorical coordinate, and 0.833 from derived geometry alone (log k_eff, log n_elem,
-  log C, log H) with no class at all. So the *magnitude* field is a surface, not a table.
+- **rho_max compresses in rank, not in magnitude.** Out-of-fold Spearman against measured log rho is 0.986
+  with the engine class supplied as one categorical coordinate, and 0.833 from derived geometry alone
+  (log k_eff, log n_elem, log C, log H) with no class at all. But rank is not calibration: the geometry-only
+  model's median multiplicative prediction error is **6.84×** and its worst row is 156.7× off
+  (`results/s55_review_repair.json`; class+derived 2.09×/440×, class-median 2.71×/978×). So the field is a
+  surface for *ordering* and a lookup for *value*, and the earlier draft reported only the Spearman. Both
+  numbers belong in the row.
 - **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
   100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
   exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.
 - **The class itself is barely predictable.** LOO nearest-centroid on the same four coordinates reaches
   0.604 against a 0.5625 majority baseline. Deployment consequence, stated plainly: the certificate is
   not free. It costs one profiler pass per shape family to learn the class, and that cost belongs in the
-  row rather than in a footnote.
+  row rather than in a footnote. Scope of that inference, since it is easy to overread: a nearest-centroid
+  failure does not establish that engine class is unpredictable *in principle* — only that these four
+  coordinates do not predict it. A continuous description the classifier cannot see remains possible.
 
 We also checked the prereg's falsifier for "the class alone is sufficient" (within-class span < 1 decade
 with cross-class gap > 1 decade): it does not hold. The largest within-class span is 3.04 decades

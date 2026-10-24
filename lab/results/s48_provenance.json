@@ -1,7 +1,7 @@
 {
- "date": "2026-10-24T14:41:08Z",
- "n_cited": 41,
- "n_found": 41,
+ "date": "2026-10-24T18:36:46Z",
+ "n_cited": 44,
+ "n_found": 44,
  "missing": [],
  "entries": [
   {
@@ -729,9 +729,9 @@
     "paper/sections/s3b_conv_anchor.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "ba1afe330954bb9b4f9eec0d9ffb672122b2d34a86b2a26415ad71fb2449e403",
+   "sha256": "75b7ebf4967cb8b770a132f5fb9e07d24bcd509488d069c2fb433a0288d096eb",
    "bytes": 3240,
-   "mtime_utc": "2026-10-23T02:07:49Z",
+   "mtime_utc": "2026-10-24T18:26:49Z",
    "producers": [
     "lab/f24_verify.py"
    ],
@@ -982,9 +982,9 @@
     "paper/sections/s7_threats.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "876a3c144f66708e117de621c390d0eb9b649c6b0d79711ac19f49d00d14ca20",
-   "bytes": 43278,
-   "mtime_utc": "2026-10-23T05:21:18Z",
+   "sha256": "24c8c6d8bf4f4b6e6aca1e9dba0f9ef5eda293f509e4c1d18e0880f70387e5f2",
+   "bytes": 43497,
+   "mtime_utc": "2026-10-24T18:26:49Z",
    "producers": [
     "lab/r45_rider_adm.py"
    ],
@@ -1098,9 +1098,9 @@
     "paper/sections/s4_certificates.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "3fca05777bb26b1a417df528b01cd7222682ea3b217ca655d3e39f139003b518",
-   "bytes": 6733,
-   "mtime_utc": "2026-10-24T14:41:08Z",
+   "sha256": "bb50d71cdf61278471b094169fa1cecb2dc06576a5b050cf95d5e3ad429a29ef",
+   "bytes": 7782,
+   "mtime_utc": "2026-10-24T18:36:36Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1133,9 +1133,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "e20c54a905fb39605df250e89c1d1a3ce51d0e38c3b57ed742242fbf35b16fc7",
+   "sha256": "1a55b65190808c4ffa064c829dfed0a852918f4cd3daa1f19dcd2a328d6c826a",
    "bytes": 5268,
-   "mtime_utc": "2026-10-24T14:41:08Z",
+   "mtime_utc": "2026-10-24T18:36:36Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1159,9 +1159,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md"
    ],
-   "sha256": "56bc23faa422a332dc9384f5af5293ce5dfaa908de01f7134a245431db8e066a",
+   "sha256": "6907ce45b441d1907262e666cdf6d4dd1473e68cbfb3a0da19d1b9592a23ff0d",
    "bytes": 1763,
-   "mtime_utc": "2026-10-24T14:41:08Z",
+   "mtime_utc": "2026-10-24T18:36:39Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1174,6 +1174,75 @@
      "date",
      "n_checks",
      "n_pass"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s55_review_repair.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/sections/s3b_conv_anchor.md",
+    "paper/sections/s4_certificates.md",
+    "paper/sections/s5_tolerance.md",
+    "paper/sections/s8_reproduction.md"
+   ],
+   "sha256": "dc06798f11b475bb068781738b25de00e299d30283c27a117ae0c52baff2d93c",
+   "bytes": 9006,
+   "mtime_utc": "2026-10-24T18:12:31Z",
+   "producers": [
+    "lab/s55_review_repair.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "F2_regret_admission",
+     "F3_composition",
+     "F4_compression_magnitude",
+     "F4b_crossing_scope",
+     "F5_denominator",
+     "hard_fail_absent_artifacts",
+     "header"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s56_analysis.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/sections/s6_selector.md"
+   ],
+   "sha256": "4fe7b74117572387803f4a94024898114002c78b7e43d62d195e9e34ea88e4f3",
+   "bytes": 11734,
+   "mtime_utc": "2026-10-24T18:35:39Z",
+   "producers": [],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "rows"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s56_heldout_contract.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/sections/s6_selector.md"
+   ],
+   "sha256": "bf09d550b34e816b1d23805bf5dd6e00d0ac0aa563611a5e8edd452bed3c5730",
+   "bytes": 77256,
+   "mtime_utc": "2026-10-24T18:35:06Z",
+   "producers": [
+    "lab/s56_heldout_contract.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "determinism",
+     "header",
+     "rows"
     ]
    },
    "compressed": false

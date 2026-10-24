@@ -129,8 +129,14 @@ def main():
             a2_reg_mean_pct=round(st.mean(a2_reg), 4) if a2_reg else None,
             a1_reg_med_pct=round(st.median(a1_reg), 4) if a1_reg else None,
             a2_reg_med_pct=round(st.median(a2_reg), 4) if a2_reg else None,
-            paired_delta_pp_mean=round(st.mean(both), 4) if both else None,
-            paired_delta_pp_max=round(max(both), 4) if both else None,
+            # F2 FIX (DE1paW review): `both` holds FRACTIONAL differences; the original fields were named
+            # *_pp but never multiplied by 100, and `_max` was a signed max that hid large negative changes
+            # at the fp64 rung. Both are corrected here; the legacy names are kept so older citations
+            # resolve, and *_max_abs_pp is the field a reader should use.
+            paired_delta_pp_mean=round(100 * st.mean(both), 4) if both else None,
+            paired_delta_pp_max=round(100 * max(both), 4) if both else None,
+            paired_delta_pp_max_abs=round(100 * max(abs(x) for x in both), 4) if both else None,
+            paired_delta_pp_min=round(100 * min(both), 4) if both else None,
             paired_n=len(both),
             arm_disagree_a2_vs_a1=arm_disagree,
             a2_delivered_change_def64=(ch if ref == "def" else None),

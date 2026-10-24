@@ -148,8 +148,20 @@ else:
 # ---- F rider admission numbers (nested under per_ref; regenerated, not read from a summary field) ----
 if r45:
     pr = r45["per_ref"]
+    # F1 FIXED after DE1paW F2: the stored paired_delta_pp_* fields hold FRACTIONAL deltas under a
+    # percentage-point name and a signed max, so reading them reproduced the error. Recompute in pp with
+    # max(|.|) from the row-level records instead.
+    recomputed = {}
+    for ref in ("def", "ieee", "64"):
+        ds = [(r["a2_reg_pct"] - r["a1_reg_pct"]) for r in r45["per_row"]
+              if r["ref"] == ref and r.get("a1_reg_pct") is not None and r.get("a2_reg_pct") is not None
+              and not r.get("a2_oracle_undef")]
+        recomputed[ref] = {"n": len(ds), "mean_pp": sum(ds) / len(ds) if ds else None,
+                           "max_abs_pp": max(abs(x) for x in ds) if ds else None,
+                           "stored_max_pp": pr[ref]["paired_delta_pp_max"]}
     adm = {
-        "paired_abs_bounds": {r: pr[r]["paired_delta_pp_max"] for r in ("def", "ieee", "64")},
+        "paired_abs_bounds": {r: recomputed[r]["max_abs_pp"] for r in ("def", "ieee", "64")},
+        "paired_recomputed": recomputed,
         "arm_disagree": {r: pr[r]["arm_disagree_a2_vs_a1"] for r in ("def", "ieee", "64")},
         "no_delivery": {r: pr[r]["no_delivery"] for r in ("def", "ieee", "64")},
         "oracle_undef": {r: pr[r]["oracle_undef"] for r in ("def", "ieee", "64")},
@@ -162,7 +174,16 @@ if r45:
     }
     report["r45_fields"] = adm
     checks = [
-        ("F1_paired_bounds_lt_0.025pp", all(v <= 0.025 for v in adm["paired_abs_bounds"].values()), adm["paired_abs_bounds"]),
+        # F1 now asserts what the paper actually claims: a 2.44 pp worst row at the default realization and
+        # tens-of-pp worst rows at ieee/fp64, NOT a uniform quarter-percentage-point bound.
+        ("F1_paired_bounds_recomputed", recomputed["def"]["max_abs_pp"] < 3.0
+         and recomputed["ieee"]["max_abs_pp"] > 20.0 and recomputed["64"]["max_abs_pp"] > 40.0,
+         {r: {k: (round(v, 4) if isinstance(v, float) else v) for k, v in recomputed[r].items()}
+          for r in recomputed}),
+        ("F1b_stored_fields_now_pp", all(
+            abs(recomputed[r]["mean_pp"] - pr[r]["paired_delta_pp_mean"]) < 1e-3 for r in ("def", "ieee", "64")),
+         {r: {"recomputed_mean_pp": round(recomputed[r]["mean_pp"], 4),
+              "stored_mean": pr[r]["paired_delta_pp_mean"]} for r in ("def", "ieee", "64")}),
         ("F2_arm_disagree_0_24_31", adm["arm_disagree"] == {"def": 0, "ieee": 24, "64": 31}, adm["arm_disagree"]),
         ("F3_no_delivery_24_31", adm["no_delivery"]["ieee"] == 24 and adm["no_delivery"]["64"] == 31, adm["no_delivery"]),
         ("F4_oracle_undef_20_4", adm["oracle_undef"]["ieee"] == 20 and adm["oracle_undef"]["64"] == 4, adm["oracle_undef"]),

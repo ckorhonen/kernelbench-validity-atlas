@@ -136,7 +136,12 @@ def f3():
 
 
 def f1():
-    rows = load(os.path.join(RES, "m3_r42.jsonl"))
+    _p = os.path.join(RES, "m3_r42.jsonl")
+    if not os.path.exists(_p) and os.path.exists(_p + ".gz"):
+        import gzip as _gz
+        rows = [json.loads(l) for l in _gz.open(_p + ".gz", "rt") if l.strip()]
+    else:
+        rows = load(_p)
     BUDGETS = [1, 2, 4, 8]
     out = {}
     for fam in ("reduction", "conv"):

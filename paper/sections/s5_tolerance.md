@@ -56,19 +56,33 @@ error in units of the budget, which is the shape of a dimensionless law rather t
 with an fp64 anchor at each stage, each chain measured end to end, plus a measured input-sensitivity gain
 G (budget multiples out of stage B per budget multiple into it, checked at one and ten multiples for
 nonlinearity). Three rules were declared in advance — union of exceedance probability, worst-stage maximum,
-and additive amplification through G. Outcome: the union rule fails 4/6 and is the wrong form; the
-worst-stage bound and the additive rule both hold within a factor of 2 on 5/6 chains and on a clean-A
-control.
+and additive amplification through G. Outcome, read from the frozen rule file (`a9_analysis.rule_summary`):
+the union rule **passes 4/6 and fails 2** (c5, c6); the worst-stage and additive rules pass 5/6 and fail c6,
+and both clear the clean-A control. An earlier draft wrote "the union rule fails 4/6," which inverted its own
+artifact.
 
-The substance that survives, stated as a bounded claim rather than a model: **on 5/6 measured two-stage
-chains, end-to-end budget consumption is bounded by the worst stage within 1.0-1.5×**, and the amplification
-term is subdominant whenever the downstream stage is the dirtier one (c1: a winograd stage at rho 7.7 feeding
-a TF32 stage at rho 5353 contributes one part in ten thousand of the end-to-end number). Bulk inadmissibility
-is dominated rather than compounded: where the stage fractions are large the compound exceeds the worst stage
-by at most 1.07×, so a reader can carry the worse stage's frac_over forward and be right about the 0.5
-admission threshold. The declared exception is a deep-reduction-into-deep-reduction chain (matmul M1024 K8192
-→ matmul), where the measured end-to-end rho is **2.34× the additive prediction and 2.47× the worst-stage
-prediction** — super-additive, and the one place in six where the bound fails.
+The substance that survives is weaker than the first draft stated, and the ratio table is the reason:
+ρ_end/max(ρ_A,ρ_B) is 0.981, 1.507, 1.537, 1.000, 1.971, 2.480 across c1–c6 (`results/s55_review_repair.json`
+from `a9_compose.json`). **One** chain lies inside 1.0–1.5×; **five** lie within a factor of 2, which is the
+bar the prereg actually declared. So the supported claim is: end-to-end budget consumption lands between 0.98×
+and 2.48× the worse stage across six chains, and on five of six a factor-of-two bound holds. The
+amplification term is subdominant whenever the downstream stage is the dirtier one (c1: a winograd stage at
+rho 7.7 feeding a TF32 stage at rho 5353 contributes one part in ten thousand of the end-to-end number).
+Bulk inadmissibility is dominated rather than compounded: where the stage fractions are large the compound
+fraction is bounded by the worst stage to within 1.07×, so a reader can carry the worse stage's frac_over
+forward and be right about the 0.5 bulk threshold.
+
+The worst-stage bound has a counterexample in my own data and it belongs here rather than in a footnote.
+**c5 is two individually admissible stages — rho_A 0.0689, rho_B 0.6563 — that compose to rho_end 1.2939,
+past budget.** Carrying the worse stage forward predicts admissible; the measurement says otherwise. The bulk
+figure stays clean (frac_end 3.05e-5), so the failure is confined to the maximum statistic, which is exactly
+the statistic the admission rule keys on. That is the sharpest limitation of the bound: it can under-predict
+a tail failure when both stages are individually inside budget. The worst-stage bound is therefore a bound on
+the *bulk* behaviour, not a guarantee about the tail, and it is stated that way.
+The second declared exception is
+deep-reduction-into-deep-reduction (matmul M1024 K8192 → matmul), where the measured end-to-end rho is
+**2.34× the additive prediction and 2.47× the worst-stage prediction** — super-additive. Calling it
+super-additive names the failure of this predictor; it is not a mechanism, and the paper does not claim one.
 
 Two limits are stated rather than buried. The test does not separate "no amplification" from "additive
 amplification": their predictions differ only by `G·rho_A`, which is under a factor of 1.2 of the downstream
@@ -102,12 +116,14 @@ now evaluator-exact.
 **P2 row.**
 `{op_class: tolerance_axis, rule: verdicts flip at margin-to-bar ratios near 1 regardless of family;
 tolerance direction is candidate-scaled per eval.py; reference rounding is not a bound; two-stage budget
-consumption is bounded by the worst stage within 1.0-1.5x with one declared super-additive exception,
+consumption exceeds the worse stage by a measured factor of 1.0-2.5x, five of six chains inside a factor of
+two, with two declared exceptions (a clean two-admissible-stage control composing past budget, and a
+super-additive deep-reduction chain),
 domain_predicate: measured on 60 shapes / 528 arm-instances (CF3), 350+816 label regenerations, and 6
 two-stage chains with fp64 anchors (A9),
 derived_coords: budget_ratio, margin_to_bar, frac_over, amplification_share, boundary_ref: results/cf43.json,
 results/b2_direction_audit.json, results/b4_direction_audit.json, results/s6_dispatcher_audit.json,
-results/a9_compose.json, results/a9_analysis.json,
+results/a9_compose.json, results/a9_analysis.json, results/s55_review_repair.json,
 variance: flip counts reported as exact integers over fixed populations; no resampling; A9 chains
 determinism-verified 6/6 (bit-equal repeat runs), G linearity checked at 1x and 10x,
 n_reps: 3 seeds (e2_v3_err), 2 days (CF3), 1 run per chain with determinism assertion (A9), date: 2026-10-24}`

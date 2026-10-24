@@ -22,6 +22,12 @@ Checks:
  A10 a9_analysis: declared_limitation names the R2/R3 non-separation and the c6 failure
  A11 §5 prose cites the A9 artifacts by name (a9_compose.json, a9_analysis.json, ATLAS_A9.md, 53ca881)
  A12 §5 prose contains the three load-bearing claims: "bounded by the worst stage", "2.34", "1.07"
+ A15 (added after DE1paW F6) the composition factor the prose states is COMPUTED, not string-matched:
+     recompute rho_end/max(rho_A,rho_B) from a9_compose and assert (a) the count inside [1.0,1.5] and the
+     count inside [1.0,2.0] match the numbers §5 states, (b) the string "1.0-1.5" no longer appears as the
+     bound, (c) the union rule's pass/fail direction stated in §5 matches a9_analysis.rule_summary.
+ A16 (added after DE1paW F6) the c5 counterexample is present in §5: "c5" named with rho_A 0.0689 and
+     rho_B 0.6563 and rho_end 1.2939, all recomputed from a9_compose.
  A13 ATLAS_A9.md exists and states the frozen verdict COMPOSITION_PREDICTIVE and the SCOPE_CUT history
  A14 REFRAME_SKELETON §5 carries the repair (mentions A9 / 53ca881 / super-additive)
 """
@@ -129,8 +135,24 @@ ck("A10", ana is not None and "R2" in ana["declared_limitation"] and "c6" in ana
 s5 = open(os.path.join(PAPER, "sections", "s5_tolerance.md")).read()
 ck("A11", all(k in s5 for k in ("a9_compose.json", "a9_analysis.json", "ATLAS_A9.md", "53ca881")),
    {k: (k in s5) for k in ("a9_compose.json", "a9_analysis.json", "ATLAS_A9.md", "53ca881")})
-ck("A12", "bounded by the worst stage" in s5 and "2.34" in s5 and "1.07" in s5,
-   {"worst_stage": "bounded by the worst stage" in s5, "2.34": "2.34" in s5, "1.07": "1.07" in s5})
+ck("A12", "factor of 2" in s5 and "2.34" in s5 and "1.07" in s5,
+   {"factor_of_2": "factor of 2" in s5, "2.34": "2.34" in s5, "1.07": "1.07" in s5})
+
+# A15: the composition factor is COMPUTED from the artifact, not string-matched (DE1paW F6 lesson)
+ratios = {x["chain"]: x["rho_end_meas"] / max(x["rho_A"], x["rho_B_alone"]) for x in arows.values()}
+n15 = sum(1 for v in ratios.values() if 1.0 <= v <= 1.5)
+n20 = sum(1 for v in ratios.values() if v <= 2.0)
+r1_dir_ok = ("passes 4/6 and fails 2" in s5) == (ana["rule_summary"]["R1"]["n_pass"] == 4)
+ck("A15", n15 == 1 and n20 == 5 and "1.0-1.5×" not in s5 and "1.0-1.5x" not in s5 and r1_dir_ok,
+   {"n_in_1.0_1.5": n15, "n_in_1.0_2.0": n20, "ratios": {k: round(v, 3) for k, v in ratios.items()},
+    "r1_direction_matches_artifact": r1_dir_ok})
+
+# A16: the c5 counterexample is present with its computed numbers
+c5 = arows["c5_cleanA_mm_then_mm"]
+ck("A16", "c5" in s5 and "0.0689" in s5 and "0.6563" in s5 and "1.2939" in s5
+   and abs(c5["rho_A"] - 0.0689) < 1e-3 and abs(c5["rho_B_alone"] - 0.6563) < 1e-3
+   and abs(c5["rho_end_meas"] - 1.2939) < 1e-3,
+   {"c5_rho_A": c5["rho_A"], "c5_rho_B": c5["rho_B_alone"], "c5_rho_end": c5["rho_end_meas"]})
 
 atlas = os.path.join(ATLAS_DIR, "ATLAS_A9.md")
 atlas_txt = open(atlas).read() if os.path.exists(atlas) else ""

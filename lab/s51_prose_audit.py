@@ -26,7 +26,7 @@ Checks (fixed list, no post-hoc additions):
  C20 cushion: train AUC .7429, c* .4578, rider AUC .1211, rider below c n=10 flip 0
  C21 b5_stage1: pooled share_T2 0.1494
  C22 direction audits: 0/350 corpus, 0/816 held-out label flips
- C23 s50 prose audit: 18/18 pass, 0 unsupported
+ C23 s50 prose audit: every check passes (>=18), 0 unsupported
  C24 provenance: cited 25 found 25 missing 0
  C25 pop_confirm: P90_fresh 15.3584 <= 16.1783, cells 420
  C26 e2_v3_err: 1260 measurements, med 2-5e-4 range, max 4.2e-2
@@ -217,7 +217,9 @@ ck("C22", b2_flips == 0 and b2_n == 350 and b4_flips == 0 and b4_n == 816,
 
 s50 = load("s50_prose_audit.json")
 s50_ok = sum(1 for c in s50.get("checks", []) if c.get("ok"))
-ck("C23", s50_ok == 18 and len(s50.get("checks", [])) == 18,
+# C23 counts s50's own checks; after DE1paW the s50 set grew (F1 recompute + F1b provenance of the
+# stored-field bug), so the bar is "s50 reports zero failures", not a frozen 18.
+ck("C23", s50_ok == len(s50.get("checks", [])) and s50_ok >= 18,
    {"pass": s50_ok, "n": len(s50.get("checks", []))})
 
 prov = load("s48_provenance.json")

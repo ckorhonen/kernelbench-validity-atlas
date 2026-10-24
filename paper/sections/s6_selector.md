@@ -34,10 +34,32 @@ rows). Result: the gate delivers an arm more than 1% worse than pure torch on **
 **0/10** conv rows. That is the transfer property the paper needs, and it replicates the pre-repair
 accounting.
 
-Against budgeted autotune, the family verdict is admissibility-robust by gap scale: gate mean regret_total
-0.0451 (reduction) / 0.0201 (conv) against the best budgeted arm's 1.5277 / 2.1469. The gaps (1.48 and 2.13)
-are one to two orders of magnitude larger than the error scales that could perturb them (0.018 and 0.125), so
-a GPU per-arm contract rerun is **not required** for this verdict and is queued only if a referee asks.
+Against budgeted autotune, the family verdict is robust by **gap scale**, and the scope of that word matters:
+gate mean regret_total 0.0451 (reduction) / 0.0201 (conv) against the best budgeted arm's 1.5277 / 2.1469.
+The gaps (1.48 and 2.13) are one to two orders of magnitude larger than the recorded numerical error scales
+(0.018 and 0.125), so no plausible numerical perturbation of the arm set can reorder those two totals. That
+is an empirical argument from gap magnitude, **not** a bound in time units: numerical error and the time cost
+of selecting a different admissible arm are different currencies, and no mathematical link between them is
+established here.
+
+**That gap is now measured in time units** (`results/s56_heldout_contract.json`, `results/s56_analysis.json`,
+`ATLAS_S56.md`; prereg frozen pre-run, same-session med-of-12, 34 held-out rows, determinism asserted). The
+result splits by family and does not flatter the selector:
+
+- **reduction**: 11 of 12 gate hand deliveries pass the full contract (0.917). Against the fastest
+  *admissible* arm per row the gate costs **+4.13% (SE 1.40, t 2.94)**, worse by more than 1% on 13 of 24
+  rows and better on none. The frozen rule picks S64_KT64 where S16_KT64 or S4_KT64 is faster, so the
+  selector is admissible but leaves a consistent 4% on the table.
+- **conv**: 0 of 4 hand deliveries pass the full contract — budget ratios 17,431 to 23,783, not marginal
+  misses. torch is the best admissible arm on 10 of 10 rows and the gate delivers torch on 6 of 10. The
+  apparent −10.2% "gate advantage" is therefore the gate's *inadmissible* hands being faster than the only
+  admissible option, which §4 says not to count. **The conv delivery claim is withdrawn** in favour of the
+  narrower statement that the gate never selects a conv hand which passes.
+
+This also explains the earlier certificate-health FAIL without a mechanism change: the 0.0 pass-frac in
+`s6_dispatcher_audit.json` came from an absolute-only reading that was pessimism for reduction (where the
+rtol term rescues 11/12) and a true negative for conv (where the arms genuinely fail). One number, two
+different meanings — which is why it looked like a mechanism result.
 
 What *is* a lower bound: under the pessimistic absolute-only reading, the b4/b8-chosen hands fail the
 contract on 16/24 and 17/24 reduction rows (0-1/10 conv), so those arms' regret totals are lower bounds
