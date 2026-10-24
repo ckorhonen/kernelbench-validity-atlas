@@ -98,9 +98,24 @@ argument: making winograd ineligible does not mean "no algorithm," it means "a w
 one budget-consuming class installs a larger one. Eligibility toggles are not a clean ablation; they are a
 dispatch intervention.
 
+**A third retraction, from the wider grid in §4.5, and it changes the table's scope.** The two-class
+description above was measured at H=5. Re-measured over C∈{16,64,256} × {k3s1, k3s2, k3d2, k1s1} ×
+H∈{7,13,21} (`results/a8_compress_v2.json`, `results/a8b_analysis.json`), the class is **not** a function of
+the conv parameters: 3×3 stride-1 routes to winograd only at C≥64 with small output extent (H7 at both C64
+and C256, H13 at C64), and to the TF32 tensorop engine at C16 for every H and at C256 for H13 and H21. One
+step of H across that boundary moves rho by 20× at C64 (2.83 → 189.00) and 38× at C256 (9.35 → 358.37). The
+1×1 family splits too, and in the direction that matters for the flag: at C16/C64 it runs
+`implicit_convolve_sgemm`, true fp32 SIMT at rho 0.005-0.032, while at C256 it runs
+`cutlass_80_tensorop_s1688gemm` — tensor-core TF32 whose kernel name carries no literal "tf32" — at rho
+141-184. So the two-class decomposition stands, but the class is a *dispatch decision over (C, output
+extent)*, and any paper that predicts the class from (k, s, d) alone will be wrong on most of this grid. The
+winograd corner is the only place where the flag-invisible tail failure occurs, and it is narrower than A7
+implied.
+
 **What remains unexplained, stated as a gap in *why*, not in *what*.** The 4×4 winograd transform is named,
 but *which* property of its coefficient conditioning produces 10× amplification is not measured here —
-PyTorch exposes no algorithm handle for it. The measurement stands; the mechanism is a named candidate.
+PyTorch exposes no algorithm handle for it. The measurement stands; the mechanism is a named candidate, and
+it is the specific question this paper would put to a peer with cudnn internals access.
 
 ## 2.4 What the instrument says about the atlas's spine hypothesis
 
@@ -138,6 +153,7 @@ distribution, not the maximum, is what a tolerance convention can act on.
 `{op_class: conv2d_fp32_reference_budget, rule: report (rho_max, frac_over) per (family, engine class,
 reduction depth, geometry); admission is keyed on frac_over, not rho, domain_predicate: unconditional iff
 frac_over = 0; distribution-conditional iff 0 < frac_over < 0.02; inadmissible iff frac_over > 0.5;
-derived_coords: K_eff, engine_class (categorical), rho_max, frac_over; boundary_ref:
-results/a7_kernelclass.json + results/a7b_precision_policy.json; variance: rho is a deterministic max
-statistic, no timing variance, seeds fixed per row; n_reps: 1 per row (deterministic); date: 2026-10-24}`
+derived_coords: K_eff, engine_class (categorical), rho_max, frac_over, C, output extent; boundary_ref:
+results/a7_kernelclass.json + results/a7b_precision_policy.json + results/a8_compress_v2.json;
+variance: rho is a deterministic max statistic, no timing variance, seeds fixed per row, 2-run
+bit-equality asserted per profiled row; n_reps: 1 per row (deterministic); date: 2026-10-24}`

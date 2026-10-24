@@ -108,14 +108,27 @@ F1→§6 · F2→§4 · F3→§2/§4 · F4 scope→§1/§7 · F5 packaging→§8
 relative, deps pinned, repo URL, seeded randn — checklist at repack).
 
 ## Remaining before submission draft
-1. §5 propagation: SCOPE-CUT decided #47 (frozen rule, audit above). 2. §6 held-out bookkeeping:
-CPU audit leg DONE #47; GPU per-arm contract table optional (referee-asked only). 3. Provenance-table
-generator DONE #48 (lab/s48_provenance.py -> paper/PROVENANCE.md + results/s48_provenance.json;
-hard-fails on a cited-but-absent artifact). 4. Prose section-by-section: 3.1/3.2 DONE #46
-(paper/sections/s3_atlas.md); 3.3/3.4/3.5 DONE #48 (paper/sections/s3b_conv_anchor.md, numbers
-regenerated pre-prose by lab/s48_prose_audit.py -> results/s48_prose_audit.json); §2 DONE #50
-(paper/sections/s2_reference_axis.md) and §4 DONE #50 (paper/sections/s4_certificates.md), both audited
-by lab/s50_prose_audit.py -> results/s50_prose_audit.json; §5/§6/§7/§8 prose next. Provenance regenerated
-#50: cited 25 found 25 missing 0.
+1. §5 propagation: SCOPE-CUT decided #47 (frozen rule, audit above). §5 prose DONE #51
+(paper/sections/s5_tolerance.md). 2. §6 held-out bookkeeping: CPU audit leg DONE #47; §6 prose DONE #51
+(paper/sections/s6_selector.md). GPU per-arm contract table optional (referee-asked only).
+3. Provenance-table generator DONE #48 (lab/s48_provenance.py -> paper/PROVENANCE.md +
+results/s48_provenance.json; hard-fails on a cited-but-absent artifact). Regenerated #51: cited 38 found 38
+missing 0 (four cited-but-absent artifacts were found and fixed: b2/b4_direction_audit and b5_stage1 were
+living only in the top-level results/, and the gate-stability row-stream was cited under a stale
+name (a lab-script prefix that does not exist as a results artifact) — §8 corrected to the real filename).
+4. Prose section-by-section: 3.1/3.2 DONE #46 (paper/sections/s3_atlas.md); 3.3/3.4/3.5 DONE #48
+(paper/sections/s3b_conv_anchor.md, numbers regenerated pre-prose by lab/s48_prose_audit.py ->
+results/s48_prose_audit.json); §2 DONE #50 (paper/sections/s2_reference_axis.md) and §4 DONE #50 plus §4.5
+added #51 (paper/sections/s4_certificates.md); §7 DONE #51 (paper/sections/s7_threats.md); §8 DONE #51
+(paper/sections/s8_reproduction.md). All audited: s50 18/18, s51 31/31 (lab/s51_prose_audit.py ->
+results/s51_prose_audit.json, frozen conventions in docstring pre-run). PROSE COMPLETE for §2-§8; §1
+introduction still a skeleton.
+5. §4.5 compression test DONE #51 (lab/a8_compress_prereg.md @ c56c0a0 frozen pre-run;
+results/a8_compress_v2.json 48 rows + 4 controls, a8_analysis.json frozen reading, a8b_analysis.json
+corrected classification). Result: rho_max compresses (LOO Spearman .986 with engine class, .833 without);
+frac_over does not without the class (bulk acc 100% vs 79%); class predictability only .604 vs .5625
+majority. FOURTH RETRACTION: A7's "3x3 stride-1 = winograd" is true only at C>=64 with small output extent;
+the class is a dispatch decision over (C, output extent), rho jumps 20-38x across one H step. §2's
+two-class table needs this column and §7 records it.
 (canonical E2 recount lab/s46_e2_recount.py -> results/s46_e2_recount.json: 30/2/28; two diary-3
 impressions corrected there — CTA band necessary-not-sufficient, M<=8 has 2 sustained beats).
