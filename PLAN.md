@@ -72,6 +72,25 @@ subset agrees exactly across bases; 4 grid-fix rows replaced), regret-0 = oracle
 -> paper/PROVENANCE.md, cited 17 found 17 missing 0, hard-fail convention). Home: 0 review, 1 out-of-lane
 research notif, kernelbench 0 papers. #49: prose §4/§6; desk passive; reflection 22:27Z.
 
+## Active lane: UNDERSTANDING (strategic meta 9FvhAQh) — decided #49 04:0xZ 10-24
+
+Strategic Meta-Reflection "Understanding" delivered on the tick's first API call; stages 0-3 executed
+(understand_2026-10-24/stage{0,1,2,3}*.md), plan submitted 04:12:52Z (understand_plan_2026-10-24.md),
+next reflection 07:12:52Z. Lane = measure what a benchmark's numbers MEAN, not which kernel is faster.
+§4/§6 prose deliberately postponed (would be rewritten after the measurement).
+
+A6 DONE this tick (ATLAS_A6.md; prereg dbfd600 pre-run; artifacts a6/a6b/a6c/a6d/a6e):
+rho(reference) = max_elements |R_def-R_64|/(1e-4+1e-4|R_64|). matmul monotone in K, MEASURED rho=1
+crossing K=3608/3632 (allow_tf32=False, precision highest => pure fp32 accumulation); conv rho
+0.022(C16 tf32off)/0.742/1.415/5.846/10.195, flag-INERT and bit-identical C>=32 (so NOT dispatch:
+deterministic=True also delta 0.0) => flag-inert arithmetic-tree effect, mechanism unattributed;
+b1 rho 3.1e-4 (negative control holds, 0/13 flips). TWO retractions recorded: stage-2's conv>=2/matmul<0.1
+prediction (frozen rule fired RETRACT) and the "algorithm selection" attribution (A1 failed). Geometry term
+found only because its own control failed (fixed-n spread 0.564, median 2.10x at M4096) => hypothesis label.
+
+#50: leg 2 continuation — geometry replication at a second K + mechanism test (fp64-conv forced-algo or
+hand direct-conv reference); then §2 gets rho as measured argument, §4 gets the rho-index; §4/§6 prose resume.
+
 6yPhozmAt62JSqQs REJECTED 19:44Z stage=full (review 11.3KB); triage+
 verification in rejection_triage_6yPhozm.md — gate conv picks fail 1e-4 everywhere
 (m3 16/0 w4 4/0 a2 3/0 m2 36/0, VERIFIED), n_fail mixed-unit bug confirmed
