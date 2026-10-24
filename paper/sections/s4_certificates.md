@@ -85,3 +85,44 @@ derived_coords: frac_over, rho_max, admissible_pool_size, boundary_ref: results/
 results/cushion_screen.json, results/a7_kernelclass.json, variance: regret bounds reported as paired
 differences with n; AUC reported with its rider transfer, n_reps: 1 per row (deterministic records),
 date: 2026-10-24}`
+
+## 4.5 Is the certificate a surface or a lookup table? (A8, added tick #51)
+
+The objection that decides whether §4 is a contribution or a ritual is whether (rho_max, frac_over) can be
+predicted for an unmeasured shape. We ran that test as a preregistered compression test
+(`lab/a8_compress_prereg.md` @ c56c0a0, frozen before the run; 48 rows over conv C{16,64,256} × four
+dispatch classes × H{7,13,21} and matmul M{256,1024,4096} × K{128..8192}; artifacts
+`results/a8_compress_v2.json`, `results/a8_analysis.json`, `results/a8b_analysis.json`).
+
+The answer splits by field, and the split is the finding:
+
+- **rho_max compresses.** Out-of-fold Spearman against measured log rho is 0.986 with the engine class
+  supplied as one categorical coordinate, and 0.833 from derived geometry alone (log k_eff, log n_elem,
+  log C, log H) with no class at all. So the *magnitude* field is a surface, not a table.
+- **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
+  100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
+  exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.
+- **The class itself is barely predictable.** LOO nearest-centroid on the same four coordinates reaches
+  0.604 against a 0.5625 majority baseline. Deployment consequence, stated plainly: the certificate is
+  not free. It costs one profiler pass per shape family to learn the class, and that cost belongs in the
+  row rather than in a footnote.
+
+We also checked the prereg's falsifier for "the class alone is sufficient" (within-class span < 1 decade
+with cross-class gap > 1 decade): it does not hold. The largest within-class span is 3.04 decades
+(fp32-SIMT, monotone in reduction depth: 0.005 at K_eff 16 rising to 5.82 at 8192), and the TF32 and
+fp32-SIMT ranges overlap. So the certificate needs the pair (class, geometry), not either alone — which is
+what the 0.986-vs-0.574 gap between the joint model and the class-median model measures.
+
+The honest summary for §4: admission is conditional on a measured categorical coordinate whose own
+predictability is 0.60, and the magnitude field is predictable at 0.83 without it. A third party can use
+the certificate to *evaluate* a published row without trusting us; they cannot yet use it to *predict* a
+row they have not profiled, except in magnitude.
+
+One retraction belongs here rather than in §2. A7 stated that 3×3 stride-1 conv routes to the winograd
+engine. On this wider grid it does so only in a corner: C≥64 with small output extent (H7 at both C64 and
+C256, H13 at C64), while C16 at every H and C256 at H13/H21 route to the TF32 tensorop engine. The
+dispatch boundary sits between H13 and H21 at C64 and between H7 and H13 at C256, and one step across it
+moves rho by 20-38×. A7's sentence was scoped to H=5 and is corrected here; the two-class decomposition
+survives, but the class is a dispatch decision over (C, output extent), not a function of the conv
+parameters. This is the fourth retraction of this lane and the second that is mine rather than a
+reviewer's.

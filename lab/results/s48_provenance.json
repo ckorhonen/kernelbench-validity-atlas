@@ -1,7 +1,7 @@
 {
- "date": "2026-10-24T07:33:29Z",
- "n_cited": 25,
- "n_found": 25,
+ "date": "2026-10-24T10:53:44Z",
+ "n_cited": 38,
+ "n_found": 38,
  "missing": [],
  "entries": [
   {
@@ -99,7 +99,8 @@
   {
    "artifact": "results/a7b_precision_policy.json",
    "cited_in": [
-    "paper/sections/s2_reference_axis.md"
+    "paper/sections/s2_reference_axis.md",
+    "paper/sections/s7_threats.md"
    ],
    "sha256": "78700d7c6085756409d8f37bf851aad7e79ab39c448984ad6a9e3f02efc270a2",
    "bytes": 6693,
@@ -116,6 +117,240 @@
      "conv_rows",
      "header",
      "matmul_rows"
+    ]
+   }
+  },
+  {
+   "artifact": "results/a8_analysis.json",
+   "cited_in": [
+    "paper/sections/s4_certificates.md"
+   ],
+   "sha256": "6ea0c0a8660772942709b39ccd23efa04f0705bb153444478b1ffb6112b878f3",
+   "bytes": 36148,
+   "mtime_utc": "2026-10-24T10:43:10Z",
+   "producers": [
+    "lab/a8_analysis.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "controls",
+     "cross_class_gaps",
+     "dispatch_by_ksd",
+     "falsifier",
+     "header",
+     "models",
+     "preds",
+     "verdict",
+     "within_class_spans"
+    ]
+   }
+  },
+  {
+   "artifact": "results/a8_compress_v2.json",
+   "cited_in": [
+    "paper/sections/s4_certificates.md",
+    "paper/sections/s8_reproduction.md"
+   ],
+   "sha256": "203e3df880ffba3e023e786ffb213a09e90af7bc442affed98764470deecd9bc",
+   "bytes": 57583,
+   "mtime_utc": "2026-10-24T10:45:20Z",
+   "producers": [
+    "lab/a8_compress.py",
+    "lab/a8b_analysis.py",
+    "lab/s51_prose_audit.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "controls",
+     "header",
+     "rows"
+    ]
+   }
+  },
+  {
+   "artifact": "results/a8b_analysis.json",
+   "cited_in": [
+    "paper/sections/s4_certificates.md",
+    "paper/sections/s7_threats.md"
+   ],
+   "sha256": "d966eebf2e2934e50412a7c83258a8f356e72e955217ffc938cc00ab8234a0b9",
+   "bytes": 48991,
+   "mtime_utc": "2026-10-24T10:45:31Z",
+   "producers": [
+    "lab/a8b_analysis.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "class_predictability",
+     "class_preds",
+     "controls",
+     "dispatch_table",
+     "header",
+     "models_corrected",
+     "preds_corrected",
+     "verdict_corrected",
+     "within_class_spans_corrected"
+    ]
+   }
+  },
+  {
+   "artifact": "results/b2_direction_audit.json",
+   "cited_in": [
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "588f843df48abbbd915cae2f497f0fb0597a42e4d0161b15c14afc8a5edc7ca1",
+   "bytes": 61419,
+   "mtime_utc": "2026-10-20T07:17:47Z",
+   "producers": [
+    "lab/b4_direction_audit.py",
+    "lab/s51_prose_audit.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "partA",
+     "rows",
+     "when"
+    ]
+   }
+  },
+  {
+   "artifact": "results/b2_failure_corpus.jsonl",
+   "cited_in": [
+    "paper/sections/s5_tolerance.md",
+    "paper/sections/s8_reproduction.md"
+   ],
+   "sha256": "32df8b43c038924fea9f184e4b857798512b1a7a94f161dee0eac0abfda3a1c1",
+   "bytes": 110871,
+   "mtime_utc": "2026-10-19T14:46:34Z",
+   "producers": [
+    "lab/b2_failure_corpus.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 180,
+    "row_keys": [
+     "B",
+     "H",
+     "K",
+     "collapse_work_ratio",
+     "dtype",
+     "family",
+     "fan_in_sum",
+     "fold32_bad",
+     "fold32_max_abs",
+     "fold32_max_budget_ratio",
+     "fold32_pass",
+     "fold32_ratio_q50",
+     "fold32_ratio_q90",
+     "fold32_ratio_q99",
+     "fold64_bad",
+     "fold64_max_abs",
+     "fold64_max_budget_ratio",
+     "fold64_pass",
+     "fold64_ratio_q50",
+     "fold64_ratio_q90",
+     "fold64_ratio_q99",
+     "label",
+     "method",
+     "phi",
+     "ref_rounding_vs64",
+     "scale",
+     "seed",
+     "tf32",
+     "tol",
+     "w_max",
+     "w_mean_abs",
+     "w_rel_spread"
+    ]
+   }
+  },
+  {
+   "artifact": "results/b4_direction_audit.json",
+   "cited_in": [
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "72ed3b7ae0752588fbae1ed3cebd18545248f26314acae062c17b8c3aaadf8e6",
+   "bytes": 1095,
+   "mtime_utc": "2026-10-20T07:17:46Z",
+   "producers": [
+    "lab/b4_direction_audit.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "alive_exact",
+     "alive_legacy",
+     "exact_cand_scaled",
+     "frozen_t",
+     "kept",
+     "legacy",
+     "legacy_reproduction_mismatches",
+     "n_heldout",
+     "n_label_flips",
+     "note"
+    ]
+   }
+  },
+  {
+   "artifact": "results/b4_guard_v1.jsonl",
+   "cited_in": [
+    "paper/sections/s8_reproduction.md"
+   ],
+   "sha256": "9c39382d4afd7027d2a63f7532110083d4183c37e56f1d9ffe98e66084796151",
+   "bytes": 408003,
+   "mtime_utc": "2026-10-20T04:00:28Z",
+   "producers": [
+    "lab/b4_guard_v1.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 816,
+    "row_keys": [
+     "B",
+     "H",
+     "K",
+     "arm",
+     "cell",
+     "collapse_work_ratio",
+     "fan_in_sum",
+     "label",
+     "max_budget_ratio",
+     "pred_pass",
+     "scale",
+     "score",
+     "seed",
+     "w_max",
+     "w_mean_abs",
+     "w_rel_spread",
+     "z_raw"
+    ]
+   }
+  },
+  {
+   "artifact": "results/b5_stage1.json",
+   "cited_in": [
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "09225eb81504b0c185ba05e38f869d9563a769217f8e529cdd2cfd6f6080e046",
+   "bytes": 10229,
+   "mtime_utc": "2026-10-20T07:23:17Z",
+   "producers": [
+    "lab/b5_stage1.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "env",
+     "family",
+     "per_row",
+     "prereg",
+     "primary_share_T2_pooled",
+     "verdict",
+     "when"
     ]
    }
   },
@@ -158,7 +393,8 @@
    "artifact": "results/cf43.json",
    "cited_in": [
     "paper/REFRAME_SKELETON.md",
-    "paper/sections/s3b_conv_anchor.md"
+    "paper/sections/s3b_conv_anchor.md",
+    "paper/sections/s5_tolerance.md"
    ],
    "sha256": "79b9aaf7a3531b35b1a1d30be4d82b4885e1fe0249bbb77943beaaf041b27296",
    "bytes": 2747,
@@ -287,13 +523,15 @@
   {
    "artifact": "results/e2_v3_err.json",
    "cited_in": [
-    "paper/sections/s3_atlas.md"
+    "paper/sections/s3_atlas.md",
+    "paper/sections/s5_tolerance.md"
    ],
    "sha256": "fa0a663a46af778bd28821ca087ae1613d1335bd79b4560f9b1be7f40656718a",
    "bytes": 107522,
    "mtime_utc": "2026-10-17T21:39:16Z",
    "producers": [
     "lab/e2_err_regen.py",
+    "lab/s51_prose_audit.py",
     "lab/w4_dispatcher_v1.py"
    ],
    "content": {
@@ -349,7 +587,8 @@
    "cited_in": [
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s2_reference_axis.md",
-    "paper/sections/s3b_conv_anchor.md"
+    "paper/sections/s3b_conv_anchor.md",
+    "paper/sections/s6_selector.md"
    ],
    "sha256": "ba1afe330954bb9b4f9eec0d9ffb672122b2d34a86b2a26415ad71fb2449e403",
    "bytes": 3240,
@@ -368,9 +607,101 @@
    }
   },
   {
+   "artifact": "results/gate_stability.jsonl",
+   "cited_in": [
+    "paper/sections/s8_reproduction.md"
+   ],
+   "sha256": "89fa443a136c136bc1ebb8b90c6c5920ec94d6e16526be00b7e9914ed5cdeacc",
+   "bytes": 193018,
+   "mtime_utc": "2026-10-22T12:37:28Z",
+   "producers": [
+    "lab/cf43.py",
+    "lab/cushion_screen.py",
+    "lab/f24_verify.py",
+    "lab/r41_gate_stability.py",
+    "lab/r45_rider_adm.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 56,
+    "row_keys": [
+     "C",
+     "H",
+     "N",
+     "armA_admissible_change",
+     "armA_arm_verdict_flips",
+     "armA_delivered_change",
+     "armA_n_arm_flips",
+     "armA_regret_delta_pp",
+     "arms",
+     "bootstrap",
+     "date",
+     "gate_64",
+     "gate_def",
+     "gate_ieee",
+     "pass_64",
+     "pass_def",
+     "pass_ieee",
+     "prereg",
+     "ref64_absmax",
+     "ref_absmax_def",
+     "ref_absmax_ieee",
+     "ref_err",
+     "sm_count",
+     "tag"
+    ]
+   }
+  },
+  {
+   "artifact": "results/m3_curve.json",
+   "cited_in": [
+    "paper/sections/s8_reproduction.md"
+   ],
+   "sha256": "b880310d9bed47d36c1d1ee2fafd92730dc1bfe6cc9327642c717fda94380b67",
+   "bytes": 184297,
+   "mtime_utc": "2026-10-18T10:41:55Z",
+   "producers": [
+    "lab/a2_day2.py",
+    "lab/atlas_population.py",
+    "lab/cf43.py",
+    "lab/cushion_screen.py",
+    "lab/m3_autotune_curve.py",
+    "lab/w4_heldout.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "meta",
+     "rows"
+    ]
+   }
+  },
+  {
+   "artifact": "results/m3_r42_analysis.json",
+   "cited_in": [
+    "paper/sections/s6_selector.md"
+   ],
+   "sha256": "8901690399c26e29d630b0d2da01c24ad9e39f78cf0afb70f9b28ef3c994315d",
+   "bytes": 3650,
+   "mtime_utc": "2026-10-22T19:17:07Z",
+   "producers": [
+    "lab/m3_r42_analysis.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "basis",
+     "date",
+     "verdicts"
+    ]
+   }
+  },
+  {
    "artifact": "results/r1_conv_gated.jsonl",
    "cited_in": [
-    "paper/sections/s3b_conv_anchor.md"
+    "paper/sections/s3b_conv_anchor.md",
+    "paper/sections/s5_tolerance.md",
+    "paper/sections/s8_reproduction.md"
    ],
    "sha256": "e578e4a438659dda6b841dce50deb97877318a70ea745e12030cc245f3ef56bd",
    "bytes": 282516,
@@ -435,12 +766,57 @@
    }
   },
   {
+   "artifact": "results/r42_gridfix.jsonl",
+   "cited_in": [
+    "paper/sections/s8_reproduction.md"
+   ],
+   "sha256": "82d3f45cb00252baba93a85e9d5150f0c8c2670ff8c5f912cf299a569f42d266",
+   "bytes": 20199,
+   "mtime_utc": "2026-10-22T15:47:04Z",
+   "producers": [
+    "lab/r42_gridfix.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 4,
+    "row_keys": [
+     "C",
+     "CO",
+     "H",
+     "K",
+     "M",
+     "N",
+     "W",
+     "bytes",
+     "cmp_regret",
+     "contract",
+     "date",
+     "domain_predicate",
+     "gate",
+     "gate_published",
+     "gate_published_regret",
+     "hand_best",
+     "op_class",
+     "oracle",
+     "ref32_absmax",
+     "ref_absmax",
+     "rule",
+     "sm_count",
+     "tag",
+     "torch_regret",
+     "variants"
+    ]
+   }
+  },
+  {
    "artifact": "results/r45_rider_adm.json",
    "cited_in": [
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s3b_conv_anchor.md",
-    "paper/sections/s4_certificates.md"
+    "paper/sections/s4_certificates.md",
+    "paper/sections/s7_threats.md",
+    "paper/sections/s8_reproduction.md"
    ],
    "sha256": "876a3c144f66708e117de621c390d0eb9b649c6b0d79711ac19f49d00d14ca20",
    "bytes": 43278,
@@ -519,11 +895,12 @@
   {
    "artifact": "results/s48_provenance.json",
    "cited_in": [
-    "paper/REFRAME_SKELETON.md"
+    "paper/REFRAME_SKELETON.md",
+    "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "27223317dadc596f4aa0355ec2092824d8a1a2984b2bcc9b2271dacb044e100b",
-   "bytes": 12905,
-   "mtime_utc": "2026-10-24T07:32:12Z",
+   "sha256": "473cf7c0cb3d79c1033bef7c96d206c284ede48e631b5f4ef55fc743e96cf463",
+   "bytes": 21461,
+   "mtime_utc": "2026-10-24T10:53:31Z",
    "producers": [
     "lab/s48_provenance.py"
    ],
@@ -543,7 +920,8 @@
    "cited_in": [
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s2_reference_axis.md",
-    "paper/sections/s4_certificates.md"
+    "paper/sections/s4_certificates.md",
+    "paper/sections/s8_reproduction.md"
    ],
    "sha256": "cbe3071be43498d5144e0fda2293eae02550adf19220e8ec9d60cc742beae7c2",
    "bytes": 7493,
@@ -571,9 +949,35 @@
    }
   },
   {
+   "artifact": "results/s51_prose_audit.json",
+   "cited_in": [
+    "paper/sections/s5_tolerance.md",
+    "paper/sections/s8_reproduction.md"
+   ],
+   "sha256": "0215ed9a8d068d76d096507346b454a97b940b594450b069f938b9641179e74d",
+   "bytes": 5268,
+   "mtime_utc": "2026-10-24T10:53:41Z",
+   "producers": [
+    "lab/s51_prose_audit.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "checks",
+     "date",
+     "n_checks",
+     "n_fail",
+     "n_pass",
+     "prereg"
+    ]
+   }
+  },
+  {
    "artifact": "results/s6_dispatcher_audit.json",
    "cited_in": [
-    "paper/REFRAME_SKELETON.md"
+    "paper/REFRAME_SKELETON.md",
+    "paper/sections/s5_tolerance.md",
+    "paper/sections/s6_selector.md"
    ],
    "sha256": "df1f8be8f7efb6f1505c679347db9e98a465c98018fc2cd408cc477167fcb65b",
    "bytes": 2081,
