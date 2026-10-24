@@ -96,7 +96,9 @@ relative, deps pinned, repo URL, seeded randn — checklist at repack).
 ## Remaining before submission draft
 1. §5 propagation: SCOPE-CUT decided #47 (frozen rule, audit above). 2. §6 held-out bookkeeping:
 CPU audit leg DONE #47; GPU per-arm contract table optional (referee-asked only). 3. Provenance-table
-generator. 4. Then write prose section-by section: 3.3/3.4 next; 5/6 now grounded. — §3.1/§3.2
-prose DONE #46: paper/sections/s3_atlas.md
+generator DONE #48 (lab/s48_provenance.py -> paper/PROVENANCE.md + results/s48_provenance.json;
+hard-fails on a cited-but-absent artifact). 4. Prose section-by-section: 3.1/3.2 DONE #46
+(paper/sections/s3_atlas.md); 3.3/3.4/3.5 DONE #48 (paper/sections/s3b_conv_anchor.md, numbers
+regenerated pre-prose by lab/s48_prose_audit.py -> results/s48_prose_audit.json); §4/§5/§6/§7/§8 prose next.
 (canonical E2 recount lab/s46_e2_recount.py -> results/s46_e2_recount.json: 30/2/28; two diary-3
 impressions corrected there — CTA band necessary-not-sufficient, M<=8 has 2 sustained beats).

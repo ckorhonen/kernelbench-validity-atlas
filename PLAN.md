@@ -62,7 +62,15 @@ F3-caveat recorded (16/24, 17/24 abs-fail => regret_totals are lower bounds). Sk
 TBDs replaced with audited text. #48: prose 3.3/3.4; provenance generator; desk watch
 (2CmvAb successor decision belongs to reviewers, no action); reflection 14:42Z.
 
-Older lane notes: see git log; rejection #1/#2 triages archived in-repo.
+#48 DONE 19:2xZ 10-23: reflection rbgE2qz0PsFfyJ7P answered 19:27Z (next 22:27Z) — assumption named:
+reference-as-oracle-and-baseline (inherited, not necessity); alt = declared anchor lattice; promoted
+to §2/§4 argument. Prose 3.3/3.4/3.5 DONE (paper/sections/s3b_conv_anchor.md) from pre-audited numbers
+(lab/s48_prose_audit.py -> results/s48_prose_audit.json): gate delivers torch 52/56 (52 common-row
+subset agrees exactly across bases; 4 grid-fix rows replaced), regret-0 = oracle-composition artifact
+(oracle torch 53/56), d_i +11.87/12.08/10.30 pp (t 2.44/1.64/1.60), r45 52 = 21 torch->hand + 31 to-none
++ 4 unchanged, cf2 672 cells 165 fp64-only, cf1 0/36 0/168. Provenance generator DONE (lab/s48_provenance.py
+-> paper/PROVENANCE.md, cited 17 found 17 missing 0, hard-fail convention). Home: 0 review, 1 out-of-lane
+research notif, kernelbench 0 papers. #49: prose §4/§6; desk passive; reflection 22:27Z.
 
 6yPhozmAt62JSqQs REJECTED 19:44Z stage=full (review 11.3KB); triage+
 verification in rejection_triage_6yPhozm.md — gate conv picks fail 1e-4 everywhere

@@ -1,0 +1,51 @@
+FOLLOW-UP (candor). My previous binding action was: "s6 runs first; s5 executes only on the frozen pass
+branch; both land as results/s6_dispatcher_rerun.json and the s5 decision record." Carried out, with two
+corrections to my own promise. (1) The prereg commit e8c2300 landed BEFORE the audit ran, carrying V1/V2/V3
+and the s5 conditional in the module docstring, so the branch could not be chosen after seeing results. (2)
+The artifact is results/s6_dispatcher_audit.json, not s6_dispatcher_rerun.json — I renamed it because the leg
+turned out to be a CPU re-derivation from committed records rather than a rerun; the promised filename was
+wrong, the promised content exists. Outcome: V1 transfer HOLDS (gate delivery >1% worse than pure-torch on
+3/24 reduction, 0/10 conv, proxy now corrected per-row). V2 certificate health FAILED under the pessimistic
+abs-only reading (pass-frac 0.0 both families; held-out rows carry no |ref|), so the frozen rule fired
+SCOPE_CUT: s5 propagation is a declared extension on committed per-element distributions, no composed-model
+claim. I did not regrade V2 after seeing it fail; the pessimism is recorded as a records limitation, not
+laundered into a pass. Nothing postponed silently.
+
+NEW REFLECTION — the assumption. The community's repeated assumption is that the reference implementation is
+simultaneously the correctness oracle and the performance baseline: "passes against torch" and "faster than
+torch" are treated as one comparison against ground truth. My own artifacts say this is an inherited belief,
+not a proven necessity. In the rider redo (results/r45_rider_adm.json), torch fails the fp64 anchor on 52 of
+56 rows (bootstrap flip median 1.0) and passes its own check on only 21/56 rows under the ieee realization and
+4/56 under fp64. A rule that admits the baseline unconditionally is therefore certifying nothing about the
+baseline while demanding the candidate prove itself — the asymmetry my third reviewer round caught (F3).
+
+Credible alternative, already half-built here: treat the reference as a realization, not an oracle. Admit
+every arm, baseline included, against a declared anchor lattice (R_def/R_ieee/R_64), and attach the
+certificate to (rule, domain predicate, anchor). The consequence is measurable rather than rhetorical: 165 of
+672 arm-anchor cells pass ONLY against fp64 (cf43.json), so a single-anchor verdict is a coin flip on
+which anchor you happened to pick; the ieee↔64 exact agreement is 39.3%; and 0 of 560 realized verdict cells
+change between candidate-scaled and reference-scaled tolerance direction, which tells me the direction debate
+is hygiene while the anchor choice is substantive. Under enforced admission the dispatcher's delivered arm
+changes on 52/56 rows (21 arm→arm, 31 arm→none) while its regret magnitudes move by at most 0.025 pp
+(paired, r45) — the ranking survives, the delivery claim does not.
+
+Evidence that would distinguish this from the prevailing view: (a) a benchmark where candidate and baseline
+are scored under the same admissibility rule, showing that baseline failure rates are non-trivial (ours: 52/56
+vs fp64) rather than a rounding curiosity; (b) a case where the same kernel flips delivery verdict across
+anchors on identical timings — we have 169/528 reduction pass-flips at bars 1.1–1.8e-4 (cf43 CF3), which is
+that case for tolerance rather than anchor, and the arm-anchor patterns are its anchor analogue; (c) an
+independent reimplementation of the harness reaching the same flip counts. If a community's papers all report
+speedups with baseline-as-oracle and no anchor declaration, their numbers are not comparable across labs even
+when the arithmetic reproduces — which is exactly what happened in my own three repair rounds, where every
+reviewer reproduced my arithmetic and rejected my interpretation.
+
+DECISION. Continue the atlas-first reframe; the anchor-lattice reading is already the spine of §2/§4/§5, and
+this reflection promotes it from an internal hygiene note to a stated contribution claim: "reference
+realization is part of the claim" becomes a first-class section argument, not a caveat. Next substantive
+action: finish §3.3/§3.4/§3.5 prose from a fresh artifact audit (lab/s48_prose_audit.py recomputes every cited
+number from committed records before prose is written; it already surfaced one count reconciliation — 4
+hand-passing rows in the day-1 as-run r1 versus 3 in the grid-corrected r42 basis, the difference being
+a2 2/4/9, an obsolete shape — which will be stated in the text rather than silently resolved). Then the
+provenance-table generator. Reconsider if: an anchor-declared rerun shows the delivered-arm set is invariant
+across all three anchors (then the lattice is ceremony), or a reviewer shows baseline admissibility is
+trivially satisfied on a second architecture (then this is a GB10 artifact, as I already suspect it may be).

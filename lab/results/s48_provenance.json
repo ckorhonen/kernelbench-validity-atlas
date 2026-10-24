@@ -1,0 +1,417 @@
+{
+ "date": "2026-10-23T21:35:00Z",
+ "n_cited": 17,
+ "n_found": 17,
+ "missing": [],
+ "entries": [
+  {
+   "artifact": "results/cf43.json",
+   "cited_in": [
+    "paper/REFRAME_SKELETON.md",
+    "paper/sections/s3b_conv_anchor.md"
+   ],
+   "sha256": "79b9aaf7a3531b35b1a1d30be4d82b4885e1fe0249bbb77943beaaf041b27296",
+   "bytes": 2747,
+   "mtime_utc": "2026-10-22T22:56:26Z",
+   "producers": [
+    "lab/cf43.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "cf1_chain_order",
+     "cf2_anchor_profile",
+     "cf3_cross_family",
+     "date",
+     "decision",
+     "thresholds"
+    ]
+   }
+  },
+  {
+   "artifact": "results/cushion_screen.json",
+   "cited_in": [
+    "paper/REFRAME_SKELETON.md"
+   ],
+   "sha256": "f02b9e68ef133d0bb6d604f7893a6ecd1cb17440cb3d7917fa0f382e214e615b",
+   "bytes": 622,
+   "mtime_utc": "2026-10-23T02:14:00Z",
+   "producers": [
+    "lab/cushion_screen.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "b1_sanity",
+     "conv_x_below_c",
+     "conv_x_stats",
+     "date",
+     "prereg",
+     "rider",
+     "rider_below_c",
+     "train",
+     "verdict"
+    ]
+   }
+  },
+  {
+   "artifact": "results/e1_analysis_v3.json",
+   "cited_in": [
+    "paper/sections/s3_atlas.md"
+   ],
+   "sha256": "7ea044289982eadff2300c2a2e4d1c938f6a2a3c9c066d82f621368eb4247a47",
+   "bytes": 7458,
+   "mtime_utc": "2026-10-17T05:42:17Z",
+   "producers": [
+    "lab/e1_analyze_v3.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "c0_launch_ms",
+     "configs",
+     "meta"
+    ]
+   }
+  },
+  {
+   "artifact": "results/e1_triad_day2.json",
+   "cited_in": [
+    "paper/REFRAME_SKELETON.md",
+    "paper/sections/s3_atlas.md"
+   ],
+   "sha256": "c26761b5281edbdeea011c8c36702c01f92e1f651a3afe9fe831931c97862ffd",
+   "bytes": 320419,
+   "mtime_utc": "2026-10-17T12:06:42Z",
+   "producers": [
+    "lab/e1_triad_day2.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "meta",
+     "rows"
+    ]
+   }
+  },
+  {
+   "artifact": "results/e1b_order_v2.json",
+   "cited_in": [
+    "paper/sections/s3_atlas.md"
+   ],
+   "sha256": "5bacde18752142dae79dc6a639747ac3f1ff143f5a39320ff8da7c1eb48741ad",
+   "bytes": 114579,
+   "mtime_utc": "2026-10-17T05:44:39Z",
+   "producers": [
+    "lab/e1b_order.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "meta",
+     "runs"
+    ]
+   }
+  },
+  {
+   "artifact": "results/e2_splitk_v2.json",
+   "cited_in": [
+    "paper/sections/s3_atlas.md"
+   ],
+   "sha256": "57142c2acf46852756ca3ee674920bdd6c1600855baaa36e9e72e6dafcda26b7",
+   "bytes": 128215,
+   "mtime_utc": "2026-10-17T08:53:51Z",
+   "producers": [
+    "lab/e2_splitk_v2.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "meta",
+     "rows"
+    ]
+   }
+  },
+  {
+   "artifact": "results/e2_v3_err.json",
+   "cited_in": [
+    "paper/sections/s3_atlas.md"
+   ],
+   "sha256": "fa0a663a46af778bd28821ca087ae1613d1335bd79b4560f9b1be7f40656718a",
+   "bytes": 107522,
+   "mtime_utc": "2026-10-17T21:39:16Z",
+   "producers": [
+    "lab/e2_err_regen.py",
+    "lab/w4_dispatcher_v1.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "meta",
+     "rows"
+    ]
+   }
+  },
+  {
+   "artifact": "results/e2b_floor.json",
+   "cited_in": [
+    "paper/sections/s3_atlas.md"
+   ],
+   "sha256": "aaf4d64c98e8bc4577605157b165605eaeab255bc78be5d42023b182b9943b6e",
+   "bytes": 85537,
+   "mtime_utc": "2026-10-17T15:16:12Z",
+   "producers": [
+    "lab/e2b_floor.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "analysis",
+     "meta",
+     "rows"
+    ]
+   }
+  },
+  {
+   "artifact": "results/e3_gridgeom.json",
+   "cited_in": [
+    "paper/sections/s3_atlas.md"
+   ],
+   "sha256": "a55f640b9a699d771861ec3c38f6abbed21c094b45368218382fb5e58ca0f21f",
+   "bytes": 23010,
+   "mtime_utc": "2026-10-18T16:59:11Z",
+   "producers": [
+    "lab/e3_gridgeom.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "meta",
+     "rows",
+     "verdict"
+    ]
+   }
+  },
+  {
+   "artifact": "results/f24_verify.json",
+   "cited_in": [
+    "paper/REFRAME_SKELETON.md",
+    "paper/sections/s3b_conv_anchor.md"
+   ],
+   "sha256": "ba1afe330954bb9b4f9eec0d9ffb672122b2d34a86b2a26415ad71fb2449e403",
+   "bytes": 3240,
+   "mtime_utc": "2026-10-23T02:07:49Z",
+   "producers": [
+    "lab/f24_verify.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "date",
+     "f1",
+     "f2",
+     "f3"
+    ]
+   }
+  },
+  {
+   "artifact": "results/r1_conv_gated.jsonl",
+   "cited_in": [
+    "paper/sections/s3b_conv_anchor.md"
+   ],
+   "sha256": "e578e4a438659dda6b841dce50deb97877318a70ea745e12030cc245f3ef56bd",
+   "bytes": 282516,
+   "mtime_utc": "2026-10-22T02:08:33Z",
+   "producers": [
+    "lab/r1_conv_gated.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 56,
+    "row_keys": [
+     "C",
+     "CO",
+     "H",
+     "K",
+     "M",
+     "N",
+     "W",
+     "bytes",
+     "cmp_regret",
+     "contract",
+     "date",
+     "domain_predicate",
+     "gate",
+     "gate_published",
+     "gate_published_regret",
+     "hand_best",
+     "op_class",
+     "oracle",
+     "ref32_absmax",
+     "ref_absmax",
+     "rule",
+     "sm_count",
+     "tag",
+     "torch_regret",
+     "variants"
+    ]
+   }
+  },
+  {
+   "artifact": "results/r42_analysis.json",
+   "cited_in": [
+    "paper/sections/s3b_conv_anchor.md"
+   ],
+   "sha256": "928df0bb6ca6d0ee9f8f97d81d8194661474b8f4dbb491971b1c0474d4f6c014",
+   "bytes": 43316,
+   "mtime_utc": "2026-10-22T15:55:57Z",
+   "producers": [
+    "lab/r42_analysis.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "by_tag",
+     "date",
+     "dropped_wrong_rows",
+     "gate_rule",
+     "n_rows",
+     "per_row",
+     "scenario_note"
+    ]
+   }
+  },
+  {
+   "artifact": "results/r45_rider_adm.json",
+   "cited_in": [
+    "paper/REFRAME_SKELETON.md",
+    "paper/sections/s3b_conv_anchor.md"
+   ],
+   "sha256": "876a3c144f66708e117de621c390d0eb9b649c6b0d79711ac19f49d00d14ca20",
+   "bytes": 43278,
+   "mtime_utc": "2026-10-23T05:21:18Z",
+   "producers": [
+    "lab/r45_rider_adm.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "a1_delivered_change_def64_published",
+     "a1_reg_delta_pp_published",
+     "date",
+     "n_rows",
+     "note",
+     "per_ref",
+     "per_row",
+     "prereg",
+     "torch_pass_own_check"
+    ]
+   }
+  },
+  {
+   "artifact": "results/s46_e2_recount.json",
+   "cited_in": [
+    "paper/REFRAME_SKELETON.md",
+    "paper/sections/s3_atlas.md"
+   ],
+   "sha256": "2d38acc21d25c7c5cb71d7c1bbf695d97e24cc8adf25da37b4a051df1c19c195",
+   "bytes": 15940,
+   "mtime_utc": "2026-10-23T08:30:14Z",
+   "producers": [
+    "lab/s46_e2_recount.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "beat_ctas_range",
+     "beats_margin_pp_min",
+     "beats_max_margin_pp",
+     "counts",
+     "lose_ctas_range",
+     "m_le_8",
+     "meta",
+     "rows"
+    ]
+   }
+  },
+  {
+   "artifact": "results/s48_prose_audit.json",
+   "cited_in": [
+    "paper/sections/s3b_conv_anchor.md"
+   ],
+   "sha256": "40dcfb88b47518f3199b28a128499d47536707b0fc531ca07f661b9d5ba5d339",
+   "bytes": 3289,
+   "mtime_utc": "2026-10-23T18:57:52Z",
+   "producers": [
+    "lab/s48_prose_audit.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "cf43",
+     "date",
+     "f24",
+     "m3_r42",
+     "prereg",
+     "r1_gate_delivery",
+     "r1_summary",
+     "r42",
+     "r45"
+    ]
+   }
+  },
+  {
+   "artifact": "results/s6_dispatcher_audit.json",
+   "cited_in": [
+    "paper/REFRAME_SKELETON.md"
+   ],
+   "sha256": "df1f8be8f7efb6f1505c679347db9e98a465c98018fc2cd408cc477167fcb65b",
+   "bytes": 2081,
+   "mtime_utc": "2026-10-23T11:46:14Z",
+   "producers": [
+    "lab/s6_dispatcher_audit.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "S5_DECISION",
+     "V1_conv",
+     "V1_reduction",
+     "V1_transfer_holds",
+     "V2_certificates_clean",
+     "V3_cpu_leg_sufficient",
+     "conventions",
+     "date",
+     "families",
+     "prereg",
+     "tol_abs"
+    ]
+   }
+  },
+  {
+   "artifact": "results/w4_v1.json",
+   "cited_in": [
+    "paper/sections/s3_atlas.md"
+   ],
+   "sha256": "6ce8cfe25e69d635e892cf57aa26a08f0939ac1b7e0b5bf4e03d799c5a12342e",
+   "bytes": 13590,
+   "mtime_utc": "2026-10-17T21:41:44Z",
+   "producers": [
+    "lab/w4_dispatcher_v1.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "P2",
+     "ablation_ladder",
+     "folds",
+     "label_agreement",
+     "meta",
+     "pooled_loo",
+     "tolerance_latitude",
+     "transfer_e2b"
+    ]
+   }
+  }
+ ]
+}

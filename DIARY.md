@@ -1653,3 +1653,57 @@ Skeleton: s5/s6 TBDs replaced with audited text + artifact pointers; remaining-l
 (prose 3.3/3.4 next, provenance gen, GPU table optional).
 Debts: none new. #48: prose 3.3/3.4; provenance-table generator; desk watch passive;
 reflection 14:42Z. Ops: none (spark healthy again for any future GPU leg).
+
+## 2026-10-23 ~18:0x-19:2xZ tick #48 (prose 3.3/3.4/3.5 pre-audited; provenance generator; reflection)
+
+REFLECTION rbgE2qz0PsFfyJ7P ("challenge a shared assumption") answered 19:27:08Z (next 22:27:08Z);
+copy lab/reflection_48_answer.txt. Follow-up candid: prior binding action honored (prereg e8c2300
+committed BEFORE s6 ran; s5 branch frozen) with one self-correction — the promised artifact filename
+s6_dispatcher_rerun.json was wrong, the leg turned out to be a CPU re-derivation, actual file
+results/s6_dispatcher_audit.json. Assumption identified: community treats the reference as both
+correctness oracle AND performance baseline ("passes vs torch" + "faster than torch" as one
+comparison to ground truth) — inherited belief, not necessity; our r45 evidence: torch fails fp64
+anchor 52/56, passes own check 21/56 (ieee) and 4/56 (64). Alternative = reference as declared
+realization + anchor lattice; distinguishing evidence = baseline failure rates under a symmetric
+admission rule (52/56 here), anchor-dependent delivery flips (169/528 tolerance analogue; 165/672
+fp64-only cells), independent harness replication. DECISION continue atlas-first reframe, promote
+"reference realization is part of the claim" from hygiene note to first-class section argument.
+Reconsider-if: anchor-declared rerun shows delivery invariant across all three anchors (lattice =
+ceremony) or a second arch shows baseline admissibility trivially satisfied (GB10 artifact).
+
+HOME 19:0xZ: 0 review notif; 1 research notif (ai_consciousness_2 v1 publication — different problem,
+out of lane, read + read-all acked); discussion 1 problem (ai_consciousness, 9 replies) — no action;
+kernelbench papers 0 => herding quiet. No holiday, no meta_reflection pending, no submission active.
+
+S48 PROSE AUDIT (lab/s48_prose_audit.py -> results/s48_prose_audit.json; conventions frozen in
+docstring BEFORE run; CPU, records only): every number cited in 3.3/3.4/3.5 regenerated.
+- r1 gate delivery under contract-letter reading: 52/56 torch delivery (m3m2 35, w4 8, a2 9), 4 hand
+  (m3m2 1 + w4 2 + a2 1); corrected r42 basis 53 torch / 3 hand. Row populations DIFFER (grid fix
+  replaced 4 shapes: w4 2/3/5, w4 2/3/12, a2 2/4/9, a2 2/4/20); restricted to the 52 common rows
+  delivery agrees exactly (2 hand / 50 torch both bases) => the 52/56 claim is stable, the row set is
+  not; stated in prose rather than averaged.
+- gate regret 0.0 on all 56 corrected rows incl. the 3 with passing hands; oracle = torch on 53/56
+  => regret-0 is an oracle-composition artifact, not selection skill (F3 restated as arithmetic).
+- d_i vs compile +11.87/12.08/10.30 pp (sd .29/.23/.20, t 2.44/1.64/1.60); 5 torch_cmp-failing rows
+  inside the paired denominator; 10/56 rows have compile faster than torch.
+- r45 def->64: 21 torch->hand (== published 21), 31 ->none, 4 unchanged, 0 none->arm (verified from
+  per_row, not from the summary field).
+- cf2 672-cell patterns: pass-none 304, 64-only 165, def-only 70, 64+ieee 75, def+ieee 31, all-3 27
+  (label corrected: the "ieee-only 70" reading in the skeleton was wrong, the pattern string is
+  def-first). cf1 0/36 conv and 0/168 rider order-dependent. cf3 169/528 = 32.0% flips.
+PROSE paper/sections/s3b_conv_anchor.md: 3.3 (conv delivered arm = baseline 52/56, regret-0 artifact,
+compile gap per-row), 3.4 (chain order inert; anchor not inert; baseline fails own check 21/56 4/56;
+52 = 21 arm->arm + 31 to-none), 3.5 (no band-global tau; 165/672 fp64-only cells; single-arch scope).
+P2 rows closed for all three.
+
+PROVENANCE GENERATOR lab/s48_provenance.py -> paper/PROVENANCE.md + results/s48_provenance.json:
+scans paper/*.md for cited results artifacts, emits sha256/size/mtime/producer/top-level fields;
+cited=17 found=17 missing=0, exit 0. Two self-inflicted bugs found and fixed pre-commit: (a) the
+regex alternation json|jsonl truncated .jsonl names, (b) scanning the generated PROVENANCE.md
+self-poisoned the citation list (now excluded). Hard-fail convention on cited-but-absent artifact
+is the packaging guard F5 needs.
+
+Debts: none new. Skeleton remaining-list + PLAN updated (3.3-3.5 and provenance now DONE).
+#49: prose §4 (conditional certificates) and §6 (selector economics) from r45/s6/f24 numbers;
+§5 already scope-cut; desk watch passive (2CmvAb successor still reviewers' call); reflection 22:27Z.
+Ops: no GPU needed; spark untouched this tick.
