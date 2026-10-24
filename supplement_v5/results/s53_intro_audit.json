@@ -1,0 +1,88 @@
+{
+ "date": "2026-10-24",
+ "conventions": "docstring",
+ "n_checks": 15,
+ "n_pass": 15,
+ "all_pass": true,
+ "checks": [
+  {
+   "id": "B01",
+   "ok": true,
+   "detail": "sm=48 L2=25165824 launch=0.007455999962985516/0.002939840078353882"
+  },
+  {
+   "id": "B02",
+   "ok": true,
+   "detail": "ok=False msg=The current user does not have permission to change clocks f"
+  },
+  {
+   "id": "B03",
+   "ok": true,
+   "detail": "W=10.194867622731039/0.00515625 TF32=251.69235626820176/0.7816840277777777"
+  },
+  {
+   "id": "B04",
+   "ok": true,
+   "detail": "lo K=3608 rho=0.9900639422821952 hi K=3632 rho=1.2320467583898809"
+  },
+  {
+   "id": "B05",
+   "ok": true,
+   "detail": "M3=0.9862136343899262 M4=0.8327181936604429 bulk=1.0/0.7916666666666666 cls=0.6041666666666666 maj=0.5625"
+  },
+  {
+   "id": "B06",
+   "ok": true,
+   "detail": "ratio_C64=66.83 ratio_C256=38.35"
+  },
+  {
+   "id": "B07",
+   "ok": true,
+   "detail": "d_i=[11.8719, 12.0834, 10.2964] t=[2.4356, 1.6439, 1.6025]"
+  },
+  {
+   "id": "B08",
+   "ok": true,
+   "detail": "default={'r1_asrun': 20, 'corrected': 15} ieee={'r1_asrun': 95, 'corrected': 80}"
+  },
+  {
+   "id": "B09",
+   "ok": true,
+   "detail": "cf1=0/36 0/168 cf2_001=165/672"
+  },
+  {
+   "id": "B10",
+   "ok": true,
+   "detail": "n_rows=56 torch=52 hand=4"
+  },
+  {
+   "id": "B11",
+   "ok": true,
+   "detail": "within=5 c6_over_R3=2.342774437489753"
+  },
+  {
+   "id": "B12",
+   "ok": true,
+   "detail": {
+    "torch_add": 0.029,
+    "triton_flat": 0.0327,
+    "triton_persistent": 0.0568
+   }
+  },
+  {
+   "id": "B13",
+   "ok": true,
+   "detail": "reviews=3 filter_named=True"
+  },
+  {
+   "id": "B14",
+   "ok": true,
+   "detail": "cited=10 missing=[]"
+  },
+  {
+   "id": "B15",
+   "ok": true,
+   "detail": "present=10/10 missing=[]"
+  }
+ ]
+}

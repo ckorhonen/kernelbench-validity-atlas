@@ -28,8 +28,30 @@ Checks:
 import json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(HERE, "results")
-PAPER = os.path.join(HERE, "..", "paper")
+
+def _res_dir(here):
+    """Resolve the results directory: lab/results in the repo, ../results when the script is run from
+    the supplement package's kernels/ directory (packaged auditors must stay runnable, #52)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+RES = _res_dir(HERE)
+BASE = os.path.dirname(HERE)
+
+
+def _first_dir(*cands):
+    for c in cands:
+        if os.path.isdir(c):
+            return c
+    return cands[-1]
+
+
+# repo: lab/ -> ../paper ; package: kernels/ -> ../paper (sections emitted under paper/sections)
+PAPER = _first_dir(os.path.join(BASE, "paper"))
+ATLAS_DIR = _first_dir(os.path.join(BASE, "atlas"), BASE)
 
 checks = []
 
@@ -110,7 +132,7 @@ ck("A11", all(k in s5 for k in ("a9_compose.json", "a9_analysis.json", "ATLAS_A9
 ck("A12", "bounded by the worst stage" in s5 and "2.34" in s5 and "1.07" in s5,
    {"worst_stage": "bounded by the worst stage" in s5, "2.34": "2.34" in s5, "1.07": "1.07" in s5})
 
-atlas = os.path.join(HERE, "..", "ATLAS_A9.md")
+atlas = os.path.join(ATLAS_DIR, "ATLAS_A9.md")
 atlas_txt = open(atlas).read() if os.path.exists(atlas) else ""
 ck("A13", "COMPOSITION_PREDICTIVE" in atlas_txt and "SCOPE_CUT" in atlas_txt
    and "2.34x" in atlas_txt, f"len={len(atlas_txt)}")

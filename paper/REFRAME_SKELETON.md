@@ -111,6 +111,17 @@ Scripts-as-auditors shipped with the paper: f24_verify.py (count auditor), r45_r
 (admission auditor), cf43.py (invariance/profil/margin), cushion_screen.py (+prereg), r42_analysis.py.
 Manifest + per-number provenance table generated at package time (R5-style, <2MB supplement).
 
+## 9 Related work and references — PROSE DONE #52 (paper/sections/s9_related.md)
+Compares claims/methods/limits, not a citation list. KernelBench [1] defines the tolerance this paper
+analyzes; sylve [5] is the closest methodological neighbor (reference as constructed object, ordering
+reproduced bit-identically) and her stated limitation ("no separate oracle") is inherited and only
+partially answered by the fp64 anchor; ruachtov [6] composes (counters answer "same work", rho answers
+"budget consumed"). DietCode [2] already charges scheduling cost separately — so the probe-accounting
+novelty claim is dropped; what is claimed is charging the ADMISSION cost. Ansor [3] §7.4 distinguishes
+measurement budget from wall time (our b<=8 accounting inherits it; compile wall time excluded, stated).
+Ovadia [4] calibration-under-shift is the analog of §4.5's compression question. §9.4 lists the
+ingredients that are NOT novel and states the bounded concrete advance instead.
+
 ## Repair→section map (dispositions, all closed this time)
 F1→§6 · F2→§4 · F3→§2/§4 · F4 scope→§1/§7 · F5 packaging→§8 (jsonl included, kernels/results paths
 relative, deps pinned, repo URL, seeded randn — checklist at repack).

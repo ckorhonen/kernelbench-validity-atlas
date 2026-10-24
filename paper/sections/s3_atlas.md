@@ -15,7 +15,12 @@ single-slope fit was rejected in analysis v2 after the two-slope copy ladder (25
 shown to pollute it (lab/e1_analyze_v3.py; decision recorded DIARY session 2).
 
 **Result 1 — the boundary collapses where grid geometry is held.** On the persistent arms and the
-flat BLOCK=4096 arms, latency→bandwidth behavior collapses to `t(n) = c0_asym + n·bytes/BW_eff`
+flat BLOCK=4096 arms, latency→bandwidth behavior collapses to
+
+$$
+t(n) = c_{0,\mathrm{asym}} + \frac{n \cdot \mathrm{bytes}}{\mathrm{BW}_{\mathrm{eff}}}
+$$
+
 with residual RMS 0.59–2.95% (persistent: 0.59/1.06/1.12/2.95% at cap192/48, BLOCK 4096/1024;
 flat-4096: 2.46–5.33% across warps) and saturated BW_eff 216.7–225.9 GB/s — copy parity on this
 device (results/e1_analysis_v3.json, 37 n-points per arm). The collapse is day-replicable: at

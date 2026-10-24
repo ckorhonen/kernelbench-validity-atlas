@@ -8,12 +8,18 @@ studied object with its bookkeeping repaired, and the repair is the content.
 
 The decisive public object was a break-even curve: how many repeated visits to one shape make a budgeted
 autotune cheaper than a zero-probe rule. The published numbers (reduction 122 at budget 2, 628 at budget
-8; conv 34/145) regenerate **exactly** from an inverted filter — `t_b > t_g` where the model requires
-`t_b < t_g`, located in `lab/m3_r42_analysis.py` L59 (`results/f24_verify.json`, `f1`). The defect was a
+8; conv 34/145) regenerate **exactly** from an inverted filter — $t_b > t_g$ where the model requires
+$t_b < t_g$, located in `lab/m3_r42_analysis.py` L59 (`results/f24_verify.json`, `f1`). The defect was a
 comparison direction, not the data, which is why a reviewer reproducing our arithmetic found it and a
 reviewer reproducing our arithmetic could not have found anything else.
 
-Corrected, with `t_b < t_g` and `v* = P/(t_g − t_b)`: reduction finite crossovers at budget 1: 6 shapes /
+Corrected, with $t_b < t_g$ and
+
+$$
+v^{*} = \frac{P}{t_g - t_b},
+$$
+
+reduction finite crossovers at budget 1: 6 shapes /
 median 195.0 visits; budget 2: 7 / 225.4; budget 4: 15 / 141.4; budget 8: 21 / 232.3. Conv is **exactly
 zero**: 35 of 36 rows are structurally all-torch, so there is no gate-versus-autotune gap to amortize at
 all, and the published finite conv crossovers were spurious. The honest reading is that autotune amortizes

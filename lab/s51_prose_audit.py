@@ -35,21 +35,47 @@ Checks (fixed list, no post-hoc additions):
  C29 r1 conv: gate torch 52/56
  C30 paper sections present: s2,s3,s3b,s4,s5,s6,s7,s8 and each cites at least one results/ artifact
 """
-import json, os, re, sys
+import gzip, json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(HERE, "results")
-PAPER = os.path.join(HERE, "..", "paper")
+
+def _res_dir(here):
+    """Resolve the results directory: lab/results in the repo, ../results when the script is run from
+    the supplement package's kernels/ directory (packaged auditors must stay runnable, #52)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+RES = _res_dir(HERE)
+BASE = os.path.dirname(HERE)
+PAPER = os.path.join(BASE, "paper") if os.path.isdir(os.path.join(BASE, "paper")) else BASE
 
 checks = []
 def ck(cid, ok, detail):
     checks.append({"id": cid, "ok": bool(ok), "detail": detail})
 
 def load(name):
-    p = os.path.join(RES, name)
-    if not os.path.exists(p):
-        return None
-    return json.load(open(p))
+    for cand in (os.path.join(RES, name), os.path.join(RES, name + ".gz")):
+        if os.path.exists(cand):
+            if cand.endswith(".gz"):
+                with gzip.open(cand, "rt") as f:
+                    return json.load(f)
+            return json.load(open(cand))
+    return None
+
+
+def _load_any(name):
+    """Load a plain or gzipped artifact; raises when neither exists (row-streams may ship gzipped)."""
+    for cand in (os.path.join(RES, name), os.path.join(RES, name + ".gz")):
+        if os.path.exists(cand):
+            if cand.endswith(".gz"):
+                with gzip.open(cand, "rt") as f:
+                    return json.load(f)
+            with open(cand) as f:
+                return json.load(f)
+    raise FileNotFoundError(name)
 
 # C01/C02
 a8 = load("a8_compress_v2.json")
@@ -176,11 +202,11 @@ ck("C20", abs(cu["train"]["auc_x1"] - 0.7429) < 0.0005 and abs(cu["train"]["c_st
    and cu["rider_below_c"]["flip_frac"] == 0.0,
    {"train_auc": cu["train"]["auc_x1"], "c": cu["train"]["c_star"], "rider": cu["rider"]["auc"]})
 
-b5 = json.load(open(os.path.join(HERE, "..", "results", "b5_stage1.json")))
+b5 = _load_any("b5_stage1.json")
 ck("C21", abs(b5.get("primary_share_T2_pooled", -1) - 0.1494) < 0.001, b5.get("primary_share_T2_pooled"))
 
-b2d = json.load(open(os.path.join(HERE, "..", "results", "b2_direction_audit.json")))
-b4d = json.load(open(os.path.join(HERE, "..", "results", "b4_direction_audit.json")))
+b2d = _load_any("b2_direction_audit.json")
+b4d = _load_any("b4_direction_audit.json")
 b2_flips = b2d.get("partA", {}).get("n_label_flips")
 b2_n = b2d.get("partA", {}).get("n_summaries")
 b4_flips = b4d.get("n_label_flips")

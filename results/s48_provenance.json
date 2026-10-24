@@ -1,0 +1,120 @@
+{
+ "date": "2026-10-24T14:29:40Z",
+ "n_cited": 41,
+ "n_found": 3,
+ "missing": [
+  "a6_refdistance.json",
+  "a6b_ksweep.json",
+  "a6d_crossing.json",
+  "a7_kernelclass.json",
+  "a7b_precision_policy.json",
+  "a8_analysis.json",
+  "a8_compress_v2.json",
+  "a8b_analysis.json",
+  "a9_analysis.json",
+  "a9_compose.json",
+  "b2_failure_corpus.jsonl",
+  "b4_guard_v1.jsonl",
+  "calibration.json",
+  "cf43.json",
+  "cushion_screen.json",
+  "e1_analysis_v3.json",
+  "e1_triad_day2.json",
+  "e1b_order_v2.json",
+  "e2_splitk_v2.json",
+  "e2_v3_err.json",
+  "e2b_floor.json",
+  "e3_gridgeom.json",
+  "f24_verify.json",
+  "gate_stability.jsonl",
+  "m3_curve.json",
+  "m3_r42_analysis.json",
+  "r1_conv_gated.jsonl",
+  "r42_analysis.json",
+  "r42_gridfix.jsonl",
+  "r45_rider_adm.json",
+  "s46_e2_recount.json",
+  "s48_prose_audit.json",
+  "s48_provenance.json",
+  "s50_prose_audit.json",
+  "s51_prose_audit.json",
+  "s53_intro_audit.json",
+  "s6_dispatcher_audit.json",
+  "w4_v1.json"
+ ],
+ "entries": [
+  {
+   "artifact": "results/b2_direction_audit.json",
+   "cited_in": [
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "588f843df48abbbd915cae2f497f0fb0597a42e4d0161b15c14afc8a5edc7ca1",
+   "bytes": 61419,
+   "mtime_utc": "2026-10-20T07:17:47Z",
+   "producers": [
+    "lab/b4_direction_audit.py",
+    "lab/s51_prose_audit.py",
+    "lab/s52_supplement_build.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "partA",
+     "rows",
+     "when"
+    ]
+   }
+  },
+  {
+   "artifact": "results/b4_direction_audit.json",
+   "cited_in": [
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "72ed3b7ae0752588fbae1ed3cebd18545248f26314acae062c17b8c3aaadf8e6",
+   "bytes": 1095,
+   "mtime_utc": "2026-10-20T07:17:46Z",
+   "producers": [
+    "lab/b4_direction_audit.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "alive_exact",
+     "alive_legacy",
+     "exact_cand_scaled",
+     "frozen_t",
+     "kept",
+     "legacy",
+     "legacy_reproduction_mismatches",
+     "n_heldout",
+     "n_label_flips",
+     "note"
+    ]
+   }
+  },
+  {
+   "artifact": "results/b5_stage1.json",
+   "cited_in": [
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "09225eb81504b0c185ba05e38f869d9563a769217f8e529cdd2cfd6f6080e046",
+   "bytes": 10229,
+   "mtime_utc": "2026-10-20T07:23:17Z",
+   "producers": [
+    "lab/b5_stage1.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "env",
+     "family",
+     "per_row",
+     "prereg",
+     "primary_share_T2_pooled",
+     "verdict",
+     "when"
+    ]
+   }
+  }
+ ]
+}

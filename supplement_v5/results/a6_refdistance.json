@@ -1,0 +1,82 @@
+{
+ "header": {
+  "date": "2026-10-24T04:07Z",
+  "torch": "2.14.1+cu130",
+  "device": "NVIDIA GB10",
+  "cap": [
+   12,
+   1
+  ],
+  "allow_tf32_cudnn_at_start": true,
+  "allow_tf32_matmul_at_start": false,
+  "float32_matmul_precision": "highest",
+  "prereg": "lab/a6_refdistance_prereg.md @ dbfd600"
+ },
+ "rows": [
+  {
+   "family": "conv2d",
+   "shape": {
+    "N": 2,
+    "H": 5,
+    "C": 32,
+    "k": 3,
+    "s": 1,
+    "p": 1
+   },
+   "det_repeat_equal": true,
+   "tf32_state": "default",
+   "rho": 0.7416713128207372,
+   "med": 0.005535274582489513,
+   "p99": 0.16540861129760742,
+   "abs_max": 0.00015590132756049258,
+   "ref64_absmax": 52.99353584691995,
+   "n_elems": 1600,
+   "frac_over_budget": 0.0,
+   "rho_ieee": 0.7416713128207372,
+   "ieee_abs_max": 0.00015590132756049258,
+   "ieee_med": 0.005535274582489513
+  },
+  {
+   "family": "matmul",
+   "shape": {
+    "M": 1024,
+    "K": 8192,
+    "N": 1024
+   },
+   "det_repeat_equal": true,
+   "tf32_state": "default(matmul allow_tf32=False, f32_prec=highest)",
+   "rho": 2.949789878303694,
+   "med": 0.006180797521386171,
+   "p99": 0.21884317696094513,
+   "abs_max": 0.00038487450922986,
+   "ref64_absmax": 467.1089470212279,
+   "n_elems": 1048576,
+   "frac_over_budget": 0.0001926422119140625
+  },
+  {
+   "family": "b1_factored_pair",
+   "shape": {
+    "H": 8192,
+    "B": 2048,
+    "K": 8192
+   },
+   "det_repeat_equal": true,
+   "note": "prereg parenthetical said (H=2048,B=8192,K=1024); script ANCHOR (H,B,K)=(8192,2048,8192) is authoritative",
+   "rho": 0.0003138355421371707,
+   "med": 5.471670324158486e-05,
+   "p99": 0.0001910535793285817,
+   "abs_max": 6.277159236844909e-08,
+   "ref64_absmax": 1.000836823428534,
+   "n_elems": 16777216,
+   "frac_over_budget": 0.0
+  }
+ ],
+ "verdict": "RETRACT_stage2_conclusion",
+ "kill1_b1_over_0p1": false,
+ "predicted": {
+  "conv_rho": ">=2",
+  "matmul_rho": "<0.1",
+  "b1_rho": "<0.01"
+ },
+ "determinism_all": true
+}

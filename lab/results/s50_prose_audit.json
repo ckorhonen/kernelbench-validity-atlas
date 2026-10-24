@@ -4,13 +4,13 @@
    "label": "A_calibration_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/calibration.json"
+   "artifact": "lab/results/calibration.json"
   },
   {
    "label": "A_e1_day2_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/e1_triad_day2.json"
+   "artifact": "lab/results/e1_triad_day2.json"
   },
   {
    "label": "B_rho_artifacts_count",
@@ -52,19 +52,19 @@
    "label": "C_baseline_admissibility_present",
    "ok": true,
    "detail": "value {'def': 56, 'ieee': 21, '64': 4}",
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "D_f24_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/f24_verify.json"
+   "artifact": "lab/results/f24_verify.json"
   },
   {
    "label": "E_r1_summary_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/r1_conv_gated_summary.json"
+   "artifact": "lab/results/r1_conv_gated_summary.json"
   },
   {
    "label": "F1_paired_bounds_lt_0.025pp",
@@ -74,7 +74,7 @@
     "ieee": 0.0244,
     "64": 0.0
    },
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F2_arm_disagree_0_24_31",
@@ -84,7 +84,7 @@
     "ieee": 24,
     "64": 31
    },
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F3_no_delivery_24_31",
@@ -94,7 +94,7 @@
     "ieee": 24,
     "64": 31
    },
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F4_oracle_undef_20_4",
@@ -104,7 +104,7 @@
     "ieee": 20,
     "64": 4
    },
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F5_def_to_64_52_eq_21plus31",
@@ -115,19 +115,19 @@
     "to_none": 31,
     "from_none": 0
    },
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F6_published_21_matches",
    "ok": true,
    "detail": 21,
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "G_cushion_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "/Users/ckorhonen/rstation/kernelbench/lab/results/cushion_screen.json"
+   "artifact": "lab/results/cushion_screen.json"
   }
  ],
  "unsupported": [],
@@ -160,14 +160,14 @@
   "rows"
  ],
  "rho_artifacts": {
-  "a6_refdistance.json": "/Users/ckorhonen/rstation/kernelbench/lab/results/a6_refdistance.json",
-  "a6b_ksweep.json": "/Users/ckorhonen/rstation/kernelbench/lab/results/a6b_ksweep.json",
-  "a6c_conv_tf32pair.json": "/Users/ckorhonen/rstation/kernelbench/lab/results/a6c_conv_tf32pair.json",
-  "a6d_crossing.json": "/Users/ckorhonen/rstation/kernelbench/lab/results/a6d_crossing.json",
-  "a6e_geometry_algo.json": "/Users/ckorhonen/rstation/kernelbench/lab/results/a6e_geometry_algo.json",
-  "a6f_geom_repl_convmech.json": "/Users/ckorhonen/rstation/kernelbench/lab/results/a6f_geom_repl_convmech.json",
-  "a7_kernelclass.json": "/Users/ckorhonen/rstation/kernelbench/lab/results/a7_kernelclass.json",
-  "a7b_precision_policy.json": "/Users/ckorhonen/rstation/kernelbench/lab/results/a7b_precision_policy.json"
+  "a6_refdistance.json": "lab/results/a6_refdistance.json",
+  "a6b_ksweep.json": "lab/results/a6b_ksweep.json",
+  "a6c_conv_tf32pair.json": "lab/results/a6c_conv_tf32pair.json",
+  "a6d_crossing.json": "lab/results/a6d_crossing.json",
+  "a6e_geometry_algo.json": "lab/results/a6e_geometry_algo.json",
+  "a6f_geom_repl_convmech.json": "lab/results/a6f_geom_repl_convmech.json",
+  "a7_kernelclass.json": "lab/results/a7_kernelclass.json",
+  "a7b_precision_policy.json": "lab/results/a7b_precision_policy.json"
  },
  "pair_statistic": {
   "winograd_C256": {

@@ -45,13 +45,15 @@ earlier draft treated it as one.
 
 A pass/fail verdict is a three-place relation (candidate, reference realization, tolerance budget), and the
 platform treats it as two-place. The missing unit of account is how much of the benchmark's *own* budget the
-reference consumes. Define, for a reference realization R_def and the fp64 anchor R_64,
+reference consumes. Define, for a reference realization $R_{\mathrm{def}}$ and the fp64 anchor $R_{64}$,
 
-  rho = max over output elements of |R_def − R_64| / (1e-4 + 1e-4·|R_64|),
+$$
+\rho \;=\; \max_{i \in \mathrm{out}} \frac{\left|R_{\mathrm{def},i} - R_{64,i}\right|}{10^{-4} + 10^{-4}\left|R_{64,i}\right|},
+$$
 
-i.e. how many multiples of the contract's element budget the reference spends. rho ≥ 1 means the reference
-cannot pass the benchmark's own check against an exact anchor; no candidate flag can repair that, because the
-error is already in the baseline the candidate is compared to.
+i.e. how many multiples of the contract's element budget the reference spends. $\rho \geq 1$ means the
+reference cannot pass the benchmark's own check against an exact anchor; no candidate flag can repair that,
+because the error is already in the baseline the candidate is compared to.
 
 Measured on real benchmark shapes (`results/a6_refdistance.json`, `a6b_ksweep.json`, `a6d_crossing.json`,
 `a7_kernelclass.json`, `a7b_precision_policy.json`; preregs `lab/a6_refdistance_prereg.md` and
@@ -128,19 +130,19 @@ as originally stated, and it is recorded as such rather than relabeled: the coor
 surface is "which engine ran," a categorical coordinate, not a continuous derived one.
 
 **The certificate's admission rule, and why it is keyed on frac_over rather than on rho.** frac_over is the
-fraction of output elements at or over the contract budget, so `frac_over = 0` is exactly the statement "this
-reference realization passes the benchmark's own check against the fp64 anchor," and rho_max then only
-measures how much slack is left. That gives a three-level rule that a third party can evaluate from a row's
+fraction of output elements at or over the contract budget, so $\mathrm{frac\_over} = 0$ is exactly the
+statement "this reference realization passes the benchmark's own check against the fp64 anchor," and
+$\rho_{\max}$ then only measures how much slack is left. That gives a three-level rule that a third party can evaluate from a row's
 own records without trusting us:
 
-- **Unconditional** — `frac_over = 0`: the baseline is admissible against an exact anchor, so a speedup
+- **Unconditional** — $\mathrm{frac\_over} = 0$: the baseline is admissible against an exact anchor, so a speedup
   reported against it is a claim about the kernel, and no reference caveat is needed. Measured rows in this
   class: explicit im2col+fp32 matmul (rho 0.657), cudnn-disabled conv (0.192), plain fp32 matmul K=2304 (0.202).
-- **Distribution-conditional** — `0 < frac_over < 0.02`: the baseline fails on a negligible tail (winograd
+- **Distribution-conditional** — $0 < \mathrm{frac\_over} < 0.02$: the baseline fails on a negligible tail (winograd
   3×3 s1: frac_over 0.0052, rho_max 10.195), so the speedup is claimable only for the element subset that
   passes, and the paper must say how many elements that is. Rescue is possible here because the failing set
   is sparse; a tolerance loosening that covers 0.5% of elements is a defensible convention, not a fiction.
-- **Inadmissible** — `frac_over > 0.5`: the baseline fails in bulk (TF32 routes: 0.77–0.78), so a speedup
+- **Inadmissible** — $\mathrm{frac\_over} > 0.5$: the baseline fails in bulk (TF32 routes: 0.77–0.78), so a speedup
   against it is a comparison between two things that both miss the contract, and neither can be certified by
   loosening. Report the pair, not a ratio.
 
@@ -152,7 +154,8 @@ distribution, not the maximum, is what a tolerance convention can act on.
 **P2 row.**
 `{op_class: conv2d_fp32_reference_budget, rule: report (rho_max, frac_over) per (family, engine class,
 reduction depth, geometry); admission is keyed on frac_over, not rho, domain_predicate: unconditional iff
-frac_over = 0; distribution-conditional iff 0 < frac_over < 0.02; inadmissible iff frac_over > 0.5;
+$\mathrm{frac\_over} = 0$; distribution-conditional iff $0 < \mathrm{frac\_over} < 0.02$; inadmissible iff
+$\mathrm{frac\_over} > 0.5$;
 derived_coords: K_eff, engine_class (categorical), rho_max, frac_over, C, output extent; boundary_ref:
 results/a7_kernelclass.json + results/a7b_precision_policy.json + results/a8_compress_v2.json;
 variance: rho is a deterministic max statistic, no timing variance, seeds fixed per row, 2-run

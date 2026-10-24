@@ -26,9 +26,12 @@ realizations), `lab/m3_r42.py` (selector chain), `lab/r42_gridfix.py`, `lab/w4_h
 
 `lab/s48_provenance.py` scans every markdown file in `paper/` for cited results artifacts and emits
 `paper/PROVENANCE.md` with sha256, byte size, mtime, producer script, and top-level fields per artifact. It
-hard-fails when a cited artifact is absent. Current state after §4.5-§8 landed: 38 cited, 38 found, 0 missing. Two defects in the
-generator itself were found and fixed before it was trusted: a regex alternation that truncated `.jsonl`
-names to `.json`, and self-poisoning when the generated `PROVENANCE.md` was included in the citation scan.
+hard-fails when a cited artifact is absent. Current state after §1-§9 landed: 41 cited, 41 found, 0 missing.
+Two defects in the generator itself were found and fixed before it was trusted: a regex alternation that
+truncated `.jsonl` names to `.json`, and self-poisoning when the generated `PROVENANCE.md` was included in
+the citation scan. A third was found at packaging: the table cites itself, so its own digest, byte size and
+mtime are structurally unstable — those three fields are now recorded as `self` for that one row and the
+build asserts the table reproduces modulo its date stamp.
 
 Byte-identity is a requirement, not a nicety: the packaging step verifies that the release sha256 of each
 artifact equals the repository sha256, after an earlier round shipped freeze hashes taken over raw bytes

@@ -27,12 +27,33 @@ Checks:
  B14 every results/ path cited in §1 exists under lab/results (no phantom citations)
  B15 §1 present and all of §2-§8 present (paper complete)
 """
-import json, os, re, sys
+import gzip, json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(HERE, "results")
-PAPER = os.path.join(HERE, "..", "paper")
-ROOT = os.path.join(HERE, "..")
+
+def _res_dir(here):
+    """Resolve the results directory: lab/results in the repo, ../results when the script is run from
+    the supplement package's kernels/ directory (packaged auditors must stay runnable, #52)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+RES = _res_dir(HERE)
+BASE = os.path.dirname(HERE)
+
+
+def _first_dir(*cands):
+    for c in cands:
+        if os.path.isdir(c):
+            return c
+    return cands[-1]
+
+
+PAPER = _first_dir(os.path.join(BASE, "paper"))
+# repo: rejection records at the repo root ; package: rejections/ subdirectory
+REJ_DIR = _first_dir(os.path.join(BASE, "rejections"), BASE)
 
 checks = []
 
@@ -42,10 +63,13 @@ def ck(cid, ok, detail):
 
 
 def load(name):
-    p = os.path.join(RES, name)
-    if not os.path.exists(p):
-        return None
-    return json.load(open(p))
+    for cand in (os.path.join(RES, name), os.path.join(RES, name + ".gz")):
+        if os.path.exists(cand):
+            if cand.endswith(".gz"):
+                with gzip.open(cand, "rt") as f:
+                    return json.load(f)
+            return json.load(open(cand))
+    return None
 
 
 cal = load("calibration.json")
@@ -155,18 +179,21 @@ deltas = {k: abs(sb[k] - sa[k]) / sa[k] * 100 for k in sa if k in sb}
 ck("B12", deltas and max(deltas.values()) <= 0.13,
    {k: round(v, 4) for k, v in deltas.items()})
 
-rejs = [f for f in os.listdir(ROOT) if f.startswith("rejection_review_")]
-tri = open(os.path.join(ROOT, "rejection_triage_2CmvAb.md")).read()
+rejs = [f for f in os.listdir(REJ_DIR) if f.startswith("rejection_review_")]
+tri = open(os.path.join(REJ_DIR, "rejection_triage_2CmvAb.md")).read()
 ck("B13", len(rejs) >= 3 and "t_b < t_g" in tri and "v* = P/(t_g - t_b)" in tri,
    f"reviews={len(rejs)} filter_named={'t_b < t_g' in tri}")
 
 s1 = open(os.path.join(PAPER, "sections", "s1_introduction.md")).read()
 cited = set(re.findall(r"results/([A-Za-z0-9_\.\-]+\.jsonl?)", s1))
-missing = sorted(c for c in cited if not os.path.exists(os.path.join(RES, c)))
+missing = sorted(c for c in cited
+                 if not (os.path.exists(os.path.join(RES, c))
+                         or os.path.exists(os.path.join(RES, c + ".gz"))))
 ck("B14", len(cited) > 0 and not missing, f"cited={len(cited)} missing={missing}")
 
 want = ["s1_introduction.md", "s2_reference_axis.md", "s3_atlas.md", "s3b_conv_anchor.md",
-        "s4_certificates.md", "s5_tolerance.md", "s6_selector.md", "s7_threats.md", "s8_reproduction.md"]
+        "s4_certificates.md", "s5_tolerance.md", "s6_selector.md", "s7_threats.md", "s8_reproduction.md",
+        "s9_related.md"]
 absent = [w for w in want if not os.path.exists(os.path.join(PAPER, "sections", w))]
 ck("B15", not absent, f"present={len(want)-len(absent)}/{len(want)} missing={absent}")
 

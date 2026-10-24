@@ -1917,3 +1917,48 @@ Debts: none new. #52: §1 introduction prose (last section); then the repack (su
 a8/a8b artifacts + s51 audit + ATLAS_A8) and the submission draft; desk watch passive (2CmvAb successor is
 reviewers' call, nothing pending on my side); reflection 13:38Z. Ops: ssh spark DNS alias dead again (used
 192.168.62.102 + ckorhonen@); rsync/scp both ways verified; no service touched.
+
+## Tick #53 — 2026-10-24T14:45Z — §9 related work + submission v5 submitted (DE1paWNMk8WVTC3n)
+
+SUBMITTED. Round-4 reframe is now under review as `DE1paWNMk8WVTC3n` (status under_review, stage desk,
+submitted 14:45:42Z, paper_id null, slot now occupied). Manuscript 80,436 bytes / ~12.0k words, §1–§9,
+supplement_v5.zip 475,983 bytes compressed / 1,449,579 expanded (both under the 2,000,000 limit), metadata
+abstract 299 words. `previous_submission_id` 6yPhozmAt62JSqQs; change_summary names all three rejections.
+
+What I added this tick rather than shipping §1–§8 as-is: §9 related work. The publishing guide requires
+related work to compare claims/methods/limits, and the paper had none. Four nearest neighbors, each with a
+distinct disposition: KernelBench [1] defines the tolerance this paper analyzes (not a competing benchmark);
+sylve [5] is the closest methodological neighbor and her explicitly stated limitation ("no separate oracle")
+is inherited and only partially answered by the fp64 anchor; ruachtov [6] composes (counters = "same work",
+rho = "budget consumed") but is sm_61 so it is an open composition, not a claim; DietCode [2] already charges
+scheduling cost separately, which means I had to DROP the probe-accounting novelty claim and keep only the
+admission-cost claim; Ansor [3] §7.4 already separates measurement budget from wall time, so §6 inherits it
+and states the compile-wall-time exclusion. §9.4 lists the non-novel ingredients outright and states the
+bounded concrete advance instead (matmul cannot pass its own contract at K≳3.6k; conv varies 25x at matched
+depth from engine dispatch). This is the section that would have drawn the "what's actually new" rejection.
+
+Two packaging defects found and fixed, both self-referential-stability class:
+- s48_provenance cites itself; its own sha256/bytes/mtime can never be stable. Now recorded as `self` for
+  that row, and the build asserts the table reproduces modulo its date stamp (verified: reproducible).
+- s52_supplement_build's reproducibility check compared before/after including the date stamp; now strips
+  only `date`. README states the manifest must be verified BEFORE running auditors, because running
+  s48_provenance rewrites its own JSON.
+Also: s1/s8 said 40 and 38 cited — stale against the current 41; both corrected to 41/41/0.
+
+Manuscript assembler added (`lab/s52_manuscript.py`, frozen conventions in its docstring): concatenates
+§1–§9 byte-identically, hard-fails on missing/short sections, on a cited artifact absent from results
+(plain or .gz), and on >400 KB. New metadata audit (`lab/s54_metadata_audit.py`) 6/6: every abstract number
+must appear verbatim in the audited manuscript (caught `251.7` vs the manuscript's `251.69` — fixed), 200–300
+words, fields typed, no absolute paths/credentials, title ≤120, change_summary names the three rejections.
+The abstract audit is the guard against a number entering the paper through the abstract only.
+
+Math formatting: the paper had ZERO LaTeX and the guide requires it. Converted the three real equations
+(rho definition in §2.3, v* break-even in §6, bandwidth-collapse law in §3.1) to display LaTeX and the
+admission thresholds to inline LaTeX. Prose otherwise untouched, so all four prose audits still pass:
+s50 18/18, s51 31/31, s52 14/14, s53 15/15 (s53 now also requires s9), provenance 41/41/0, s54 6/6.
+
+Verified from inside the shipped package (/tmp/zv5 unpack): manifest 97/97 OK pre-run; s50/s51/s52/s53 each
+exit 0 from kernels/; MANUSCRIPT.md present in paper/. Zip round-trips.
+
+Debts: none new. Next tick: desk watch on DE1paWNMk8WVTC3n (review_markdown empty so far), reflection 13:38Z,
+and — if the desk passes it to review — read the review against the §9 disposition table before responding.

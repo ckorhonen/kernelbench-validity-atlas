@@ -1,12 +1,14 @@
 {
- "date": "2026-10-24T14:16:31Z",
+ "date": "2026-10-24T14:41:08Z",
  "n_cited": 41,
  "n_found": 41,
  "missing": [],
  "entries": [
   {
    "artifact": "results/a6_refdistance.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s2_reference_axis.md"
    ],
    "sha256": "5c0092b57ea2852218a99db5c0fdd24f7bb8d378d7b8f6e25fa5aa4e705b1500",
@@ -25,11 +27,14 @@
      "rows",
      "verdict"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/a6b_ksweep.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s2_reference_axis.md"
    ],
    "sha256": "19ac88e7f90d432b5fd57b0400beea570cbb440891cfd4fa2926027aed0aa1e4",
@@ -48,11 +53,14 @@
      "rows",
      "spread_frac"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/a6d_crossing.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md"
    ],
@@ -73,11 +81,14 @@
      "p1_crossing",
      "p2_geometry"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/a7_kernelclass.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s4_certificates.md"
@@ -96,11 +107,14 @@
      "rows",
      "verdicts"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/a7b_precision_policy.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s7_threats.md"
@@ -121,11 +135,14 @@
      "header",
      "matmul_rows"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/a8_analysis.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s4_certificates.md"
    ],
@@ -148,11 +165,14 @@
      "verdict",
      "within_class_spans"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/a8_compress_v2.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s4_certificates.md",
@@ -164,7 +184,8 @@
    "producers": [
     "lab/a8_compress.py",
     "lab/a8b_analysis.py",
-    "lab/s51_prose_audit.py"
+    "lab/s51_prose_audit.py",
+    "lab/s52_supplement_build.py"
    ],
    "content": {
     "kind": "json",
@@ -173,11 +194,14 @@
      "header",
      "rows"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/a8b_analysis.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md",
@@ -203,11 +227,14 @@
      "verdict_corrected",
      "within_class_spans_corrected"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/a9_analysis.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s5_tolerance.md"
    ],
@@ -228,11 +255,14 @@
      "rules_discriminating",
      "verdict"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/a9_compose.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s5_tolerance.md"
    ],
@@ -248,11 +278,14 @@
      "header",
      "rows"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/b2_direction_audit.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
    "sha256": "588f843df48abbbd915cae2f497f0fb0597a42e4d0161b15c14afc8a5edc7ca1",
@@ -260,7 +293,8 @@
    "mtime_utc": "2026-10-20T07:17:47Z",
    "producers": [
     "lab/b4_direction_audit.py",
-    "lab/s51_prose_audit.py"
+    "lab/s51_prose_audit.py",
+    "lab/s52_supplement_build.py"
    ],
    "content": {
     "kind": "json",
@@ -269,11 +303,14 @@
      "rows",
      "when"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/b2_failure_corpus.jsonl",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
@@ -320,11 +357,14 @@
      "w_mean_abs",
      "w_rel_spread"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/b4_direction_audit.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
    "sha256": "72ed3b7ae0752588fbae1ed3cebd18545248f26314acae062c17b8c3aaadf8e6",
@@ -347,11 +387,14 @@
      "n_label_flips",
      "note"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/b4_guard_v1.jsonl",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s8_reproduction.md"
    ],
    "sha256": "9c39382d4afd7027d2a63f7532110083d4183c37e56f1d9ffe98e66084796151",
@@ -382,11 +425,14 @@
      "w_rel_spread",
      "z_raw"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/b5_stage1.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
    "sha256": "09225eb81504b0c185ba05e38f869d9563a769217f8e529cdd2cfd6f6080e046",
@@ -406,11 +452,14 @@
      "verdict",
      "when"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/calibration.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md"
    ],
@@ -442,11 +491,14 @@
      "total_memory_GiB",
      "triad_fp32_1GiB"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/cf43.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s3b_conv_anchor.md",
     "paper/sections/s5_tolerance.md"
@@ -467,11 +519,14 @@
      "decision",
      "thresholds"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/cushion_screen.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s4_certificates.md"
    ],
@@ -494,18 +549,22 @@
      "train",
      "verdict"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/e1_analysis_v3.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
    "sha256": "7ea044289982eadff2300c2a2e4d1c938f6a2a3c9c066d82f621368eb4247a47",
    "bytes": 7458,
    "mtime_utc": "2026-10-17T05:42:17Z",
    "producers": [
-    "lab/e1_analyze_v3.py"
+    "lab/e1_analyze_v3.py",
+    "lab/s52_supplement_build.py"
    ],
    "content": {
     "kind": "json",
@@ -514,11 +573,14 @@
      "configs",
      "meta"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/e1_triad_day2.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md",
@@ -536,18 +598,22 @@
      "meta",
      "rows"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/e1b_order_v2.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
    "sha256": "5bacde18752142dae79dc6a639747ac3f1ff143f5a39320ff8da7c1eb48741ad",
    "bytes": 114579,
    "mtime_utc": "2026-10-17T05:44:39Z",
    "producers": [
-    "lab/e1b_order.py"
+    "lab/e1b_order.py",
+    "lab/s52_supplement_build.py"
    ],
    "content": {
     "kind": "json",
@@ -555,11 +621,14 @@
      "meta",
      "runs"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/e2_splitk_v2.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
    "sha256": "57142c2acf46852756ca3ee674920bdd6c1600855baaa36e9e72e6dafcda26b7",
@@ -574,11 +643,14 @@
      "meta",
      "rows"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/e2_v3_err.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md",
     "paper/sections/s5_tolerance.md"
    ],
@@ -588,6 +660,7 @@
    "producers": [
     "lab/e2_err_regen.py",
     "lab/s51_prose_audit.py",
+    "lab/s52_supplement_build.py",
     "lab/w4_dispatcher_v1.py"
    ],
    "content": {
@@ -596,11 +669,14 @@
      "meta",
      "rows"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/e2b_floor.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
    "sha256": "aaf4d64c98e8bc4577605157b165605eaeab255bc78be5d42023b182b9943b6e",
@@ -616,11 +692,14 @@
      "meta",
      "rows"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/e3_gridgeom.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
    "sha256": "a55f640b9a699d771861ec3c38f6abbed21c094b45368218382fb5e58ca0f21f",
@@ -636,11 +715,14 @@
      "rows",
      "verdict"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/f24_verify.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md",
@@ -661,11 +743,14 @@
      "f2",
      "f3"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/gate_stability.jsonl",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s8_reproduction.md"
    ],
    "sha256": "89fa443a136c136bc1ebb8b90c6c5920ec94d6e16526be00b7e9914ed5cdeacc",
@@ -676,7 +761,8 @@
     "lab/cushion_screen.py",
     "lab/f24_verify.py",
     "lab/r41_gate_stability.py",
-    "lab/r45_rider_adm.py"
+    "lab/r45_rider_adm.py",
+    "lab/s52_supplement_build.py"
    ],
    "content": {
     "kind": "jsonl",
@@ -707,11 +793,14 @@
      "sm_count",
      "tag"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/m3_curve.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s8_reproduction.md"
    ],
    "sha256": "b880310d9bed47d36c1d1ee2fafd92730dc1bfe6cc9327642c717fda94380b67",
@@ -723,6 +812,7 @@
     "lab/cf43.py",
     "lab/cushion_screen.py",
     "lab/m3_autotune_curve.py",
+    "lab/s52_supplement_build.py",
     "lab/w4_heldout.py"
    ],
    "content": {
@@ -731,11 +821,14 @@
      "meta",
      "rows"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/m3_r42_analysis.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s6_selector.md"
    ],
    "sha256": "8901690399c26e29d630b0d2da01c24ad9e39f78cf0afb70f9b28ef3c994315d",
@@ -751,11 +844,14 @@
      "date",
      "verdicts"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/r1_conv_gated.jsonl",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s3b_conv_anchor.md",
     "paper/sections/s5_tolerance.md",
@@ -797,11 +893,14 @@
      "torch_regret",
      "variants"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/r42_analysis.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s3b_conv_anchor.md"
    ],
@@ -822,11 +921,14 @@
      "per_row",
      "scenario_note"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/r42_gridfix.jsonl",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s8_reproduction.md"
    ],
    "sha256": "82d3f45cb00252baba93a85e9d5150f0c8c2670ff8c5f912cf299a569f42d266",
@@ -865,11 +967,14 @@
      "torch_regret",
      "variants"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/r45_rider_adm.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s3b_conv_anchor.md",
@@ -896,11 +1001,14 @@
      "prereg",
      "torch_pass_own_check"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/s46_e2_recount.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s3_atlas.md"
    ],
@@ -922,11 +1030,14 @@
      "meta",
      "rows"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/s48_prose_audit.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s3b_conv_anchor.md"
    ],
@@ -949,17 +1060,20 @@
      "r42",
      "r45"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/s48_provenance.json",
+   "sha256_note": "self-referential; digest, byte size and mtime omitted",
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "b1327417a6fec95d10048feeca92e84158e286b6490b6a19fd51d88d7eb6bad4",
-   "bytes": 22605,
-   "mtime_utc": "2026-10-24T14:11:51Z",
+   "sha256": null,
+   "bytes": null,
+   "mtime_utc": null,
    "producers": [
     "lab/s48_provenance.py"
    ],
@@ -972,18 +1086,21 @@
      "n_cited",
      "n_found"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/s50_prose_audit.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s4_certificates.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "cbe3071be43498d5144e0fda2293eae02550adf19220e8ec9d60cc742beae7c2",
-   "bytes": 7493,
-   "mtime_utc": "2026-10-24T07:30:26Z",
+   "sha256": "3fca05777bb26b1a417df528b01cd7222682ea3b217ca655d3e39f139003b518",
+   "bytes": 6733,
+   "mtime_utc": "2026-10-24T14:41:08Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1004,18 +1121,21 @@
      "torch_pass_own_check",
      "unsupported"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/s51_prose_audit.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "0215ed9a8d068d76d096507346b454a97b940b594450b069f938b9641179e74d",
+   "sha256": "e20c54a905fb39605df250e89c1d1a3ce51d0e38c3b57ed742242fbf35b16fc7",
    "bytes": 5268,
-   "mtime_utc": "2026-10-24T14:11:47Z",
+   "mtime_utc": "2026-10-24T14:41:08Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1029,16 +1149,19 @@
      "n_pass",
      "prereg"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/s53_intro_audit.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md"
    ],
-   "sha256": "866ea7745b489b42517ed15ff421def67a5d3ffa23fba0a69df35cd5a2e0a29d",
-   "bytes": 1761,
-   "mtime_utc": "2026-10-24T14:16:19Z",
+   "sha256": "56bc23faa422a332dc9384f5af5293ce5dfaa908de01f7134a245431db8e066a",
+   "bytes": 1763,
+   "mtime_utc": "2026-10-24T14:41:08Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1052,11 +1175,14 @@
      "n_checks",
      "n_pass"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/s6_dispatcher_audit.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s5_tolerance.md",
     "paper/sections/s6_selector.md"
@@ -1082,17 +1208,21 @@
      "prereg",
      "tol_abs"
     ]
-   }
+   },
+   "compressed": false
   },
   {
    "artifact": "results/w4_v1.json",
+   "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
    "sha256": "6ce8cfe25e69d635e892cf57aa26a08f0939ac1b7e0b5bf4e03d799c5a12342e",
    "bytes": 13590,
    "mtime_utc": "2026-10-17T21:41:44Z",
    "producers": [
+    "lab/s52_supplement_build.py",
     "lab/w4_dispatcher_v1.py"
    ],
    "content": {
@@ -1107,7 +1237,8 @@
      "tolerance_latitude",
      "transfer_e2b"
     ]
-   }
+   },
+   "compressed": false
   }
  ]
 }

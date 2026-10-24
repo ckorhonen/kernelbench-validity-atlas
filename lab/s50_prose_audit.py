@@ -19,24 +19,34 @@ UNSUPPORTED and the prose may not use it. CPU only, reads results/ and lab/resul
  H. NEW this tick: the certificate pair (rho_max, frac_over) per engine class from a7/a7b, which is what §4
     must carry instead of a bare max.
 """
-import json, os, hashlib, sys
+import gzip, json, os, hashlib, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "results")
 TOP = os.path.join(os.path.dirname(HERE), "results")
-OUT = os.path.join(RES, "s50_prose_audit.json")
+_OUTDIR = RES if os.path.isdir(RES) else TOP
+OUT = os.path.join(_OUTDIR, "s50_prose_audit.json")
 
 def load(name, prefer_top=False):
+    """Load an artifact, accepting a gzipped copy when the plain file is absent (row-streams cited but
+    never loaded may ship gzipped inside the packaging budget)."""
     for base in ((TOP, RES) if prefer_top else (RES, TOP)):
-        p = os.path.join(base, name)
-        if os.path.exists(p):
-            with open(p) as f:
-                return json.load(f), p
+        for cand in (os.path.join(base, name), os.path.join(base, name + ".gz")):
+            if os.path.exists(cand):
+                if cand.endswith(".gz"):
+                    with gzip.open(cand, "rt") as f:
+                        return json.load(f), cand
+                with open(cand) as f:
+                    return json.load(f), cand
     return None, None
 
 report = {"checks": [], "unsupported": [], "header": {"prose_audit": "s50", "note": "pre-prose regeneration; UNSUPPORTED = cited but not regenerable"}}
 
 def check(label, ok, detail, artifact=None):
+    # paths are recorded RELATIVE to the root so the audit output is byte-identical whether it runs in the
+    # repo or inside the supplement package (#42b R4' convention: no absolute author paths in shipped data).
+    if artifact:
+        artifact = os.path.relpath(artifact, os.path.dirname(HERE))
     report["checks"].append({"label": label, "ok": bool(ok), "detail": detail, "artifact": artifact})
     if not ok:
         report["unsupported"].append(label)
@@ -68,7 +78,7 @@ for nm in ("a6_refdistance.json", "a6b_ksweep.json", "a6c_conv_tf32pair.json", "
            "a7b_precision_policy.json"):
     d, p = load(nm)
     if d:
-        rho[nm] = p
+        rho[nm] = os.path.relpath(p, os.path.dirname(HERE))
     else:
         check("B_missing_artifact_" + nm, False, "not found")
 report["rho_artifacts"] = rho

@@ -1,0 +1,79 @@
+{
+ "when": "2026-10-21T09:39:17Z",
+ "prereg": "R1 repair per rejection_triage_R5; repairs R1a/R1b/R1c declared in docstring BEFORE run; guard machinery verbatim b4 v1 / b5_stage2",
+ "repairs": {
+  "reference": "same scaled (g,b) both sides (R1a)",
+  "var": "population correction=0 == LayerNorm; ddof maxrel recorded (R1b)",
+  "tolerance": "evaluator-exact allclose(ref,cand) => rtol*|cand| (R1b/R1c; KernelBench eval.py:804)",
+  "model_check_maxabs": 0.0,
+  "ddof_maxrel": 2.3879255195424776e-07
+ },
+ "guard": {
+  "path": "results/guard_v1.json",
+  "t": -0.6134445630270532,
+  "kept": [
+   "w_mean_abs",
+   "w_max",
+   "collapse_work_ratio"
+  ],
+  "corpus_sha256": "32df8b43c038924fea9f184e4b857798512b1a7a94f161dee0eac0abfda3a1c1"
+ },
+ "family": {
+  "task": "L1/40",
+  "shape": [
+   16,
+   64,
+   256,
+   256
+  ],
+  "C": 4194304,
+  "B": 16,
+  "cwr": 15.999996185303644,
+  "task_gamma_w_max": 1.0,
+  "task_gamma_w_mean": 1.0,
+  "task_gamma_rel_spread": 0.0
+ },
+ "metrics": {
+  "n": 288,
+  "n_fail": 193,
+  "n_pass": 95,
+  "pooled_auc": 0.8022088901008999,
+  "auc_by_arm": {
+   "randu": 0.9978991596638656,
+   "randn": 0.9626865671641791,
+   "randn_p1000": NaN
+  },
+  "single_class_arms": [
+   "randn_p1000"
+  ],
+  "collapse_flags": {},
+  "accepted_n": 48,
+  "accepted_precision": 0.6666666666666666,
+  "accepted_frac": 0.16666666666666666,
+  "accepted_frac_by_arm": {
+   "randu": 0.16666666666666666,
+   "randn": 0.16666666666666666,
+   "randn_p1000": 0.16666666666666666
+  }
+ },
+ "kills": {
+  "K1_primary": false,
+  "K2_collapse": false,
+  "K3_silent": true
+ },
+ "verdict": {
+  "alive": false,
+  "K1_primary": false,
+  "K2_collapse": false,
+  "K3_silent": true
+ },
+ "check_cost_s": 0.0002623670734465122,
+ "env": {
+  "gpu": "NVIDIA GB10",
+  "torch": "2.14.1+cu130",
+  "tf32": false,
+  "atol": 0.0001,
+  "rtol": 0.0001,
+  "direction": "evaluator-exact candidate-magnitude; refscaled ratio recorded per row"
+ }
+}

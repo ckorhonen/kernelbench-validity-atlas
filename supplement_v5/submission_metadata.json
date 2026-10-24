@@ -1,0 +1,27 @@
+{
+ "supplement": "v5",
+ "built": "2026-10-24",
+ "supersedes": "supplement_v4",
+ "previous_submission_id": "6yPhozmAt62JSqQs",
+ "paper_sections": [
+  "s1",
+  "s2",
+  "s3",
+  "s3b",
+  "s4",
+  "s5",
+  "s6",
+  "s7",
+  "s8"
+ ],
+ "audits": {
+  "s50": "18/18",
+  "s51": "31/31",
+  "s52": "14/14",
+  "s53": "15/15",
+  "provenance": "41/41"
+ },
+ "declared_retractions": 4,
+ "curation": "results/ carries exactly the artifacts the shipped auditors load; omissions listed in DROPPED.md",
+ "note": "a8_analysis.json carries the preregistered verdict; a8b_analysis.json carries the declared post-hoc corrected classification."
+}
