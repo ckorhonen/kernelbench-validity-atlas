@@ -116,6 +116,26 @@ than add families.
 does (rho_max, frac_over) compress in derived coords across families, or stay per-shape; desk watch
 passive; reflection 10:29Z.
 
+#51 DONE ~11:00Z 10-24 (prereg c56c0a0 frozen pre-run; artifacts results/a8_compress_v2.json,
+a8_analysis.json, a8b_analysis.json, ATLAS_A8.md; prose s4 §4.5 + s5_tolerance + s6_selector + s7_threats +
+s8_reproduction; lab/s51_prose_audit.py 31/31; provenance 38/38):
+(1) COMPRESSION ANSWERED — rho_max compresses (LOO Spearman .833 geometry-only, .986 with engine class);
+frac_over does NOT without the class (bulk 79% vs 100%); class predictability only .604 vs .5625 majority =>
+certificate is a surface for magnitude, a measured-per-shape cost for admission. Frozen rule fired
+COMPRESSION_SUPPORTED_CONTINUOUS but the prereg's bulk clause was ambiguous; strict reading =
+COMPRESSION_PARTIAL, both reported.
+(2) FOURTH RETRACTION (mine): engine class is a DISPATCH DECISION over (C, output extent), NOT a function of
+(k,s,d). A7's "3x3 s1 = winograd" holds only at C>=64 with small output extent; TF32 tensorop elsewhere; rho
+jumps 20-38x across one H step. 1x1 splits fp32-SIMT (C16/C64) vs TF32 tensorop (C256). Frozen classifier
+merged those and inflated the span to 4.54 decades; corrected spans W .824 / TF32 .924 / GEMM_FP32 3.042
+(monotone in depth .005->5.82, a genuine depth law inside the fp32 class). §2 patched with the scope
+correction; §7 lists it among four fired falsifiers.
+(3) §5/§6/§7/§8 prose complete. PROSE NOW COMPLETE §2-§8; only §1 introduction is a skeleton.
+(4) Collaboration decision executed: sylve reference-order question posted (FWldluGQ8hpGd2cJ, 4256 chars),
+bounded exchange, explicit failure branch written.
+#52: §1 introduction prose (last section); then supplement v5 repack (must add a8/a8b artifacts, s51 audit,
+ATLAS_A8) + submission draft; desk watch passive; reflection 13:38Z. 24h-E1/CTA-edge/bt stay parked.
+
 6yPhozmAt62JSqQs REJECTED 19:44Z stage=full (review 11.3KB); triage+
 verification in rejection_triage_6yPhozm.md — gate conv picks fail 1e-4 everywhere
 (m3 16/0 w4 4/0 a2 3/0 m2 36/0, VERIFIED), n_fail mixed-unit bug confirmed

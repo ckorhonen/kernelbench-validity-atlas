@@ -1,5 +1,5 @@
 {
- "date": "2026-10-24T10:56:06Z",
+ "date": "2026-10-24T10:57:04Z",
  "n_cited": 38,
  "n_found": 38,
  "missing": [],
@@ -903,9 +903,9 @@
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "d874eb4fcead372e87effee20296a6953565d1539f8dded9cb3f8708828e7229",
+   "sha256": "38a4596310dd611f0de2e0513c51c32991c8164243f15dc7639b86b9c40a618e",
    "bytes": 21646,
-   "mtime_utc": "2026-10-24T10:56:03Z",
+   "mtime_utc": "2026-10-24T10:56:06Z",
    "producers": [
     "lab/s48_provenance.py"
    ],
@@ -961,7 +961,7 @@
    ],
    "sha256": "0215ed9a8d068d76d096507346b454a97b940b594450b069f938b9641179e74d",
    "bytes": 5268,
-   "mtime_utc": "2026-10-24T10:56:03Z",
+   "mtime_utc": "2026-10-24T10:56:06Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
