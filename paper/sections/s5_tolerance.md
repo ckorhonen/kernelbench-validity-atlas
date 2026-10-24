@@ -30,18 +30,54 @@ the b1 factored pair, whose errors are ≤1.2e-7, never flips (0/13, margin ≥8
 family-general: what decides a flip is the distance from the bar in units of the bar, not the family, the
 day, or the arm. This is why §4's certificate carries a regret basis rather than a regret number.
 
-## 5.2 What we could not claim, and why (scope cut, recorded rather than softened)
+## 5.2 Propagation: cut, then repaired by measurement (scope history kept)
 
 The program's original intent was to propagate tolerance through composed graphs: take a per-element error
 distribution measured at a kernel, compose it across a small network, and state a bound on the end-to-end
-verdict. That intent was cut, by a rule frozen before the audit that would decide it
+verdict. A first attempt at that was cut, by a rule frozen before the audit that would decide it
 (`lab/s6_dispatcher_audit.py` docstring, committed e8c2300 pre-run).
 
 The audit failed its own certificate-health check: under the declared pessimistic absolute-only reading,
 the held-out gate-hand pass fraction is **0.0 on both families** (`results/s6_dispatcher_audit.json`;
 reduction gate-hand error max 2.5e-3, conv 5.7e-2), because the held-out rows carry no `|ref|` and the
-relative term cannot be applied CPU-side. The frozen rule binds, so §5 states propagation as a **declared
-extension** on the committed per-element distributions rather than a composed-model claim:
+relative term cannot be applied CPU-side. The frozen rule bound and the claim was recorded as a declared
+extension.
+
+**That cut was an instrument gap, not a mechanism result**, and it is worth stating precisely what it ruled
+out: it ruled out *validating a composed model from the committed CPU artifacts as they stood*. It did not
+rule out composition. Two things it left unexplained pointed at the repair. First, rho is already
+dimensionless — its denominator is the harness budget `atol + rtol·|R_64|` — so composition never needed
+the `|ref|` column whose absence killed the audit; the claim was being tested in the wrong currency.
+Second, CF3's flip mechanism (169/528 flips, all at budget ratios 1.1-1.8e-4) says the decisive quantity is
+error in units of the budget, which is the shape of a dimensionless law rather than an absolute-error one.
+
+**A9 measures that law directly** (`lab/a9_compose_prereg.md` @ 53ca881, frozen before the run; artifacts
+`results/a9_compose.json`, `results/a9_analysis.json`, `ATLAS_A9.md`): six two-stage fp32 chains on GB10
+with an fp64 anchor at each stage, each chain measured end to end, plus a measured input-sensitivity gain
+G (budget multiples out of stage B per budget multiple into it, checked at one and ten multiples for
+nonlinearity). Three rules were declared in advance — union of exceedance probability, worst-stage maximum,
+and additive amplification through G. Outcome: the union rule fails 4/6 and is the wrong form; the
+worst-stage bound and the additive rule both hold within a factor of 2 on 5/6 chains and on a clean-A
+control.
+
+The substance that survives, stated as a bounded claim rather than a model: **on 5/6 measured two-stage
+chains, end-to-end budget consumption is bounded by the worst stage within 1.0-1.5×**, and the amplification
+term is subdominant whenever the downstream stage is the dirtier one (c1: a winograd stage at rho 7.7 feeding
+a TF32 stage at rho 5353 contributes one part in ten thousand of the end-to-end number). Bulk inadmissibility
+is dominated rather than compounded: where the stage fractions are large the compound exceeds the worst stage
+by at most 1.07×, so a reader can carry the worse stage's frac_over forward and be right about the 0.5
+admission threshold. The declared exception is a deep-reduction-into-deep-reduction chain (matmul M1024 K8192
+→ matmul), where the measured end-to-end rho is **2.34× the additive prediction and 2.47× the worst-stage
+prediction** — super-additive, and the one place in six where the bound fails.
+
+Two limits are stated rather than buried. The test does not separate "no amplification" from "additive
+amplification": their predictions differ only by `G·rho_A`, which is under a factor of 1.2 of the downstream
+stage on five of six chains, so both pass together. And G is a local sensitivity measured at one element of
+one shape, not a Lipschitz constant; six chains are scored per-chain with no confidence interval; nothing is
+claimed about three-or-more-stage graphs.
+
+The per-element distributions remain the record of where failure mass sits and how it moves when the
+reference realization changes:
 
 - `results/b2_failure_corpus.jsonl`: 180 rows, 53 fail / 122 pass, with the failure onset in input scale
   located at ~1.78e4 (seed 45) and ~3.16e4 (seed 44) for ordinary inputs — the guard domain includes
@@ -50,11 +86,9 @@ extension** on the committed per-element distributions rather than a composed-mo
   with the tightest arm (S64_KT64) at max 4.5e-3.
 - `results/r1_conv_gated.jsonl`: per-row per-arm errors at three reference realizations.
 
-What those distributions support is a statement about *where* the failure mass sits and how it moves when
-the reference realization changes (CF3's margin-to-bar mechanism). What they do not support is a bound on
-a composed graph's verdict. That is the same limitation sylve's posts name from the other direction — she
-reports that she cannot tell which answer is closer to real arithmetic without a separate oracle — and we
-inherit it rather than resolving it.
+That is the same limitation sylve's posts name from the other direction — she reports that she cannot tell
+which answer is closer to real arithmetic without a separate oracle — and A9 is a partial answer rather than
+a resolution: it bounds composition on six chains, it does not make any single kernel's answer canonical.
 
 ## 5.3 The tolerance direction is hygiene, not a result
 
@@ -67,9 +101,13 @@ now evaluator-exact.
 
 **P2 row.**
 `{op_class: tolerance_axis, rule: verdicts flip at margin-to-bar ratios near 1 regardless of family;
-tolerance direction is candidate-scaled per eval.py; reference rounding is not a bound,
-domain_predicate: measured on 60 shapes / 528 arm-instances (CF3) and 350+816 label regenerations,
-derived_coords: budget_ratio, margin_to_bar, frac_over, boundary_ref: results/cf43.json,
+tolerance direction is candidate-scaled per eval.py; reference rounding is not a bound; two-stage budget
+consumption is bounded by the worst stage within 1.0-1.5x with one declared super-additive exception,
+domain_predicate: measured on 60 shapes / 528 arm-instances (CF3), 350+816 label regenerations, and 6
+two-stage chains with fp64 anchors (A9),
+derived_coords: budget_ratio, margin_to_bar, frac_over, amplification_share, boundary_ref: results/cf43.json,
 results/b2_direction_audit.json, results/b4_direction_audit.json, results/s6_dispatcher_audit.json,
-variance: flip counts reported as exact integers over fixed populations; no resampling,
-n_reps: 3 seeds (e2_v3_err), 2 days (CF3), date: 2026-10-24}`
+results/a9_compose.json, results/a9_analysis.json,
+variance: flip counts reported as exact integers over fixed populations; no resampling; A9 chains
+determinism-verified 6/6 (bit-equal repeat runs), G linearity checked at 1x and 10x,
+n_reps: 3 seeds (e2_v3_err), 2 days (CF3), 1 run per chain with determinism assertion (A9), date: 2026-10-24}`

@@ -1,0 +1,262 @@
+{
+ "header": {
+  "prereg": "lab/a9_compose_prereg.md @ 53ca881",
+  "src": "results/a9_compose.json",
+  "bar_log10": 0.301,
+  "conventions": "see docstring"
+ },
+ "rows": [
+  {
+   "chain": "c1_W_then_TF32",
+   "is_control": false,
+   "rho_A": 7.725787269413646,
+   "frac_A": 0.005381058673469387,
+   "rho_B_alone": 5352.9430044216315,
+   "frac_B_alone": 0.798095703125,
+   "G": 0.05707251526778959,
+   "G_nonlinear": false,
+   "rho_end_meas": 5251.14487961339,
+   "frac_end_meas": 0.7982177734375,
+   "R1": {
+    "pred_frac": 0.7991821619929099,
+    "verdict": "PASS",
+    "log10_ratio": 0.0005243880003007203
+   },
+   "R2": {
+    "pred_rho": 5352.9430044216315,
+    "verdict": "PASS",
+    "log10_ratio": 0.008338618567374556
+   },
+   "R3": {
+    "pred_rho": 5353.383934533521,
+    "verdict": "PASS",
+    "log10_ratio": 0.00837439059557781
+   },
+   "measured_over_R3": 0.980901975989316,
+   "measured_over_R2": 0.98098277438707,
+   "amplification_term": 0.44093011188930475,
+   "amplification_share_of_B": 8.237153123526407e-05,
+   "frac_end_minus_fracB": 0.0001220703125,
+   "frac_end_over_fracB": 1.0001529519730805
+  },
+  {
+   "chain": "c2_W_then_W",
+   "is_control": false,
+   "rho_A": 2.9349845125649656,
+   "frac_A": 0.0006934171597633136,
+   "rho_B_alone": 22.133705828042867,
+   "frac_B_alone": 0.007303994082840237,
+   "G": 0.5330525923013879,
+   "G_nonlinear": false,
+   "rho_end_meas": 33.36537577102994,
+   "frac_end_meas": 0.01164940828402367,
+   "R1": {
+    "pred_frac": 0.007992346527771699,
+    "verdict": "PASS",
+    "log10_ratio": -0.16362956099220569
+   },
+   "R2": {
+    "pred_rho": 22.133705828042867,
+    "verdict": "PASS",
+    "log10_ratio": -0.17824188679045097
+   },
+   "R3": {
+    "pred_rho": 23.698206930830047,
+    "verdict": "PASS",
+    "log10_ratio": -0.14858053298995647
+   },
+   "measured_over_R3": 1.4079282820179717,
+   "measured_over_R2": 1.5074464271932637,
+   "amplification_term": 1.5645011027871802,
+   "amplification_share_of_B": 0.0706841012048238,
+   "frac_end_minus_fracB": 0.0043454142011834325,
+   "frac_end_over_fracB": 1.5949367088607596
+  },
+  {
+   "chain": "c3_TF32_then_TF32",
+   "is_control": false,
+   "rho_A": 80.96161260043552,
+   "frac_A": 0.7602749433106576,
+   "rho_B_alone": 793.0944396126716,
+   "frac_B_alone": 0.7876984126984127,
+   "G": 0.5651735357491886,
+   "G_nonlinear": false,
+   "rho_end_meas": 1218.618183980647,
+   "frac_end_meas": 0.844812925170068,
+   "R1": {
+    "pred_frac": 0.9491059899488896,
+    "verdict": "PASS",
+    "log10_ratio": 0.05055416459684936
+   },
+   "R2": {
+    "pred_rho": 793.0944396126716,
+    "verdict": "PASS",
+    "log10_ratio": -0.18654274924506203
+   },
+   "R3": {
+    "pred_rho": 838.8518004660158,
+    "verdict": "PASS",
+    "log10_ratio": -0.16218241328002367
+   },
+   "measured_over_R3": 1.4527216646655057,
+   "measured_over_R2": 1.5365360329291817,
+   "amplification_term": 45.7573608533442,
+   "amplification_share_of_B": 0.057694719024497264,
+   "frac_end_minus_fracB": 0.05711451247165533,
+   "frac_end_over_fracB": 1.0725080964375675
+  },
+  {
+   "chain": "c4_cleanA_GEMM_then_TF32",
+   "is_control": true,
+   "rho_A": 0.005695995949145438,
+   "frac_A": 0.0,
+   "rho_B_alone": 237.2789681199647,
+   "frac_B_alone": 0.7812499999999999,
+   "G": 1.437588081534276,
+   "G_nonlinear": false,
+   "rho_end_meas": 237.2789681199647,
+   "frac_end_meas": 0.7806122448979591,
+   "R1": {
+    "pred_frac": 0.7812499999999999,
+    "verdict": "PASS",
+    "log10_ratio": 0.00035467089100888095
+   },
+   "R2": {
+    "pred_rho": 237.2789681199647,
+    "verdict": "PASS",
+    "log10_ratio": 0.0
+   },
+   "R3": {
+    "pred_rho": 237.28715661585366,
+    "verdict": "PASS",
+    "log10_ratio": 1.4987241586178002e-05
+   },
+   "measured_over_R3": 0.999965491196381,
+   "measured_over_R2": 1.0,
+   "amplification_term": 0.008188495888958999,
+   "amplification_share_of_B": 3.4509994517588336e-05,
+   "frac_end_minus_fracB": -0.0006377551020407823,
+   "frac_end_over_fracB": 0.9991836734693877
+  },
+  {
+   "chain": "c5_cleanA_mm_then_mm",
+   "is_control": true,
+   "rho_A": 0.06890212231676196,
+   "frac_A": 0.0,
+   "rho_B_alone": 0.6563302817628642,
+   "frac_B_alone": 0.0,
+   "G": 0.5033123157052534,
+   "G_nonlinear": false,
+   "rho_end_meas": 1.2939231250394327,
+   "frac_end_meas": 3.0517578125e-05,
+   "R1": {
+    "pred_frac": 0.0,
+    "verdict": "FAIL",
+    "log10_ratio": -Infinity
+   },
+   "R2": {
+    "pred_rho": 0.6563302817628642,
+    "verdict": "PASS",
+    "log10_ratio": -0.2947860324656174
+   },
+   "R3": {
+    "pred_rho": 0.6910095685031203,
+    "verdict": "PASS",
+    "log10_ratio": -0.2724244135108041
+   },
+   "measured_over_R3": 1.8725111547186772,
+   "measured_over_R2": 1.97145120527432,
+   "amplification_term": 0.03467928674025608,
+   "amplification_share_of_B": 0.05283816350376151,
+   "frac_end_minus_fracB": 3.0517578125e-05,
+   "frac_end_over_fracB": null
+  },
+  {
+   "chain": "c6_mm_deep_then_mm",
+   "is_control": false,
+   "rho_A": 2.274994659150048,
+   "frac_A": 0.0002040863037109375,
+   "rho_B_alone": 22.67180250227524,
+   "frac_B_alone": 0.0014829635620117188,
+   "G": 0.5842529230904058,
+   "G_nonlinear": false,
+   "rho_end_meas": 56.22887019386852,
+   "frac_end_meas": 0.004367828369140625,
+   "R1": {
+    "pred_frac": 0.0016867472131707473,
+    "verdict": "FAIL",
+    "log10_ratio": -0.41321556343393173
+   },
+   "R2": {
+    "pred_rho": 22.67180250227524,
+    "verdict": "FAIL",
+    "log10_ratio": -0.3944733076116975
+   },
+   "R3": {
+    "pred_rho": 24.00097478189872,
+    "verdict": "FAIL",
+    "log10_ratio": -0.3697304767022986
+   },
+   "measured_over_R3": 2.342774437489753,
+   "measured_over_R2": 2.4801235009093623,
+   "amplification_term": 1.3291722796234768,
+   "amplification_share_of_B": 0.05862666982433739,
+   "frac_end_minus_fracB": 0.0028848648071289062,
+   "frac_end_over_fracB": 2.945337620578778
+  }
+ ],
+ "rule_summary": {
+  "R1": {
+   "n_pass": 4,
+   "n_fail": 2,
+   "pass_chains": [
+    "c1_W_then_TF32",
+    "c2_W_then_W",
+    "c3_TF32_then_TF32",
+    "c4_cleanA_GEMM_then_TF32"
+   ],
+   "fail_chains": [
+    "c5_cleanA_mm_then_mm",
+    "c6_mm_deep_then_mm"
+   ],
+   "control_pass": true,
+   "adequate": false
+  },
+  "R2": {
+   "n_pass": 5,
+   "n_fail": 1,
+   "pass_chains": [
+    "c1_W_then_TF32",
+    "c2_W_then_W",
+    "c3_TF32_then_TF32",
+    "c4_cleanA_GEMM_then_TF32",
+    "c5_cleanA_mm_then_mm"
+   ],
+   "fail_chains": [
+    "c6_mm_deep_then_mm"
+   ],
+   "control_pass": true,
+   "adequate": true
+  },
+  "R3": {
+   "n_pass": 5,
+   "n_fail": 1,
+   "pass_chains": [
+    "c1_W_then_TF32",
+    "c2_W_then_W",
+    "c3_TF32_then_TF32",
+    "c4_cleanA_GEMM_then_TF32",
+    "c5_cleanA_mm_then_mm"
+   ],
+   "fail_chains": [
+    "c6_mm_deep_then_mm"
+   ],
+   "control_pass": true,
+   "adequate": true
+  }
+ },
+ "verdict": "COMPOSITION_PREDICTIVE",
+ "n_rules_adequate": 2,
+ "rules_discriminating": true,
+ "declared_limitation": "Two of the three frozen rules clear the factor-2 bar on 5/6 chains, so the test does not separate no-amplification (R2) from additive amplification (R3) on rho: their predictions differ by only the G*rho_A term, which is small on 5 of 6 chains (max share of B 0.53). Independence (R1) IS separated \u2014 it fails 4/6. The single chain failing R2/R3 is c6 (matmul M1024 K8192 -> matmul), where the measured end-to-end rho is 2.34x the R3 prediction and 2.47x the R2 prediction. Reported as a test-design limitation plus one declared failing chain, not as a rule change."
+}

@@ -69,12 +69,20 @@ motivating the certificate-first reframe. Falsifier of the whole program stated 
 ## 5 Tolerance as a distribution axis
 CF3: reduction pass flips 169/528 = 32.0% at bars 1.1–1.8e-4; b1 1.2e-7 margins never flip ⇒
 margin-to-bar mechanism family-general; conv-section-shrink branch WRONG (cf43) — both stated.
-Network propagation: SCOPE-CUT per frozen rule (lab/s6_dispatcher_audit.py docstring, committed
-pre-run e8c2300; results/s6_dispatcher_audit.json): V2 certificate-health failed under the
+Network propagation: first attempt SCOPE-CUT per frozen rule (lab/s6_dispatcher_audit.py docstring,
+committed pre-run e8c2300; results/s6_dispatcher_audit.json): V2 certificate-health failed under the
 declared pessimistic abs-only reading (held-out gate-hand pass-frac 0.0 both families; rows carry
-no |ref| so rtol cannot be applied CPU-side) ⇒ no composed-model claim; §5 states propagation as
-declared extension on the committed per-element distributions (b2 corpus, e2_v3_err, r1 per-row)
-with the CF3 flip mechanism — exactly the sylve-inherited limitation, named.
+no |ref| so rtol cannot be applied CPU-side) ⇒ no composed-model claim. REPAIRED #52 by A9
+(lab/a9_compose_prereg.md @ 53ca881; results/a9_compose.json, a9_analysis.json, ATLAS_A9.md):
+the cut was an instrument gap in the wrong currency (rho's denominator IS the budget), so composition
+was re-measured end to end in budget multiples on 6 two-stage chains with fp64 anchors and a measured
+gain G. Frozen rules: R1 union FAILS 4/6 (independence ruled out); R2 worst-stage max and R3 additive
+both adequate (5/6, incl. clean-A control). Substance: end-to-end rho bounded by the worst stage within
+1.0-1.5x on 5/6; bulk frac_end exceeds max stage frac by <=1.07x where fractions are large (dominated,
+not compounded); declared exception c6 deep-reduction-into-deep-reduction = 2.34x R3 / 2.47x R2
+(super-additive). Limits stated: R2 vs R3 not separated (G*rhoA < 1.2x rhoB on 5/6), G local not
+Lipschitz, two-stage only. §5 prose rewritten accordingly (5.2 = cut-then-repaired with the scope
+history kept).
 
 ## 6 Selector economics, demoted to studied object (F1 repair)
 - Published breakeven table reproduces digit-for-digit from the inverted filter (122→121.71 n=10/60;
