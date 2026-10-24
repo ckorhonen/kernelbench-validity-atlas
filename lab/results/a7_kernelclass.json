@@ -1,0 +1,515 @@
+{
+ "header": {
+  "date": "2026-10-24T07:25Z",
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA GB10",
+  "prereg": "lab/a7_kernelclass_prereg.md e1526ee",
+  "runtime_pre": {
+   "cudnn_enabled": true,
+   "cudnn_allow_tf32": true,
+   "matmul_allow_tf32": false,
+   "float32_precision": "highest",
+   "deterministic": false
+  }
+ },
+ "rows": [
+  {
+   "rho_max": 10.194867622731039,
+   "med": 0.014738207845815834,
+   "frac_over": 0.00515625,
+   "n_elem": 12800,
+   "rho_fixed_4608": 10.194867622731039,
+   "abs_max": 0.0026415096770051605,
+   "row": "R1_cudnn_3x3_s1",
+   "C": 256,
+   "H": 5,
+   "k": 3,
+   "s": 1,
+   "d": 1,
+   "pad": 1,
+   "k_eff": 2304,
+   "out_shape": [
+    2,
+    256,
+    5,
+    5
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 9,
+    "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
+    "cudaGetErrorString": 6,
+    "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+    "cudaDeviceGetAttribute": 3,
+    "cuLaunchKernel": 3,
+    "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
+    "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 251.69235626820176,
+   "med": 2.8133319859155392,
+   "frac_over": 0.7816840277777777,
+   "n_elem": 4608,
+   "rho_fixed_4608": 251.69235626820176,
+   "abs_max": 0.05431835329325452,
+   "row": "R2_cudnn_3x3_s2",
+   "C": 256,
+   "H": 5,
+   "k": 3,
+   "s": 2,
+   "d": 1,
+   "pad": 1,
+   "k_eff": 2304,
+   "out_shape": [
+    2,
+    256,
+    3,
+    3
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 12,
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+    "cudaGetErrorString": 9,
+    "cudaPeekAtLastError": 6,
+    "cudaFuncSetAttribute": 3,
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+    "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 231.8553112958306,
+   "med": 2.8177780132874917,
+   "frac_over": 0.7778125,
+   "n_elem": 12800,
+   "rho_fixed_4608": 178.50640854274536,
+   "abs_max": 0.05014728560671955,
+   "row": "R3_cudnn_3x3_d2",
+   "C": 256,
+   "H": 5,
+   "k": 3,
+   "s": 1,
+   "d": 2,
+   "pad": 2,
+   "k_eff": 2304,
+   "out_shape": [
+    2,
+    256,
+    5,
+    5
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 12,
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+    "cudaGetErrorString": 9,
+    "cudaPeekAtLastError": 6,
+    "cudaFuncSetAttribute": 3,
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+    "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 110.85274171888956,
+   "med": 2.6195795013257075,
+   "frac_over": 0.77,
+   "n_elem": 12800,
+   "rho_fixed_4608": 104.34524208564193,
+   "abs_max": 0.02078362415458912,
+   "row": "R4_cudnn_1x1",
+   "C": 256,
+   "H": 5,
+   "k": 1,
+   "s": 1,
+   "d": 1,
+   "pad": 0,
+   "k_eff": 256,
+   "out_shape": [
+    2,
+    256,
+    5,
+    5
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaDeviceGetAttribute": 3,
+    "cuLaunchKernel": 3,
+    "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x64_16x6_nn_align1>(cutlass_80_tensorop_s1688gemm_64x64_16x6_nn_align1::Params)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 0.6569072921958912,
+   "med": 0.005752973363600006,
+   "frac_over": 0.0,
+   "n_elem": 12800,
+   "rho_fixed_4608": 0.6569072921958912,
+   "abs_max": 0.00028071049971600814,
+   "row": "R5_im2col_matmul",
+   "C": 256,
+   "H": 5,
+   "k": 3,
+   "k_eff": 2304,
+   "out_shape": [
+    2,
+    256,
+    25
+   ],
+   "note": "explicit im2col + fp32 matmul, no cudnn conv"
+  },
+  {
+   "rho_max": 0.19156793859619664,
+   "med": 0.002104353408987831,
+   "frac_over": 0.0,
+   "n_elem": 12800,
+   "rho_fixed_4608": 0.166427599082064,
+   "abs_max": 6.285022956831199e-05,
+   "row": "R6_cudnn_disabled",
+   "C": 256,
+   "H": 5,
+   "k": 3,
+   "s": 1,
+   "d": 1,
+   "pad": 1,
+   "k_eff": 2304,
+   "out_shape": [
+    2,
+    256,
+    5,
+    5
+   ],
+   "cudnn_enabled": false,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 9,
+    "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<float>, std::array<char*, 1ul>, false>(int, at::native::FillFunctor<float>, std::array<char*, 1ul>)": 3,
+    "void at::native::im2col_kernel<float>(long, float const*, long, long, long, long, long, long, long, long, long, long, long, long, float*)": 6,
+    "cudaDeviceGetAttribute": 6,
+    "cuLaunchKernel": 6,
+    "cudaLaunchKernelExC": 6,
+    "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 6,
+    "void cublasLt::splitKreduce_kernel<32, 16, int, float, float, float, float, false, float, float, float, true, false, false, false>(cublasLt::cublasSplitKParams<float>, float const*, float const*, float*, float*, float const*, float const*, float const*, float const*, float*, void*, long, float*, int*, float*, float*, float const*, float const*, float const*, float const*, float const*)": 6,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 0.2018846781972287,
+   "med": 0.0019174316889074572,
+   "frac_over": 0.0,
+   "n_elem": 12800,
+   "rho_fixed_4608": 0.2018846781972287,
+   "abs_max": 4.136433193480116e-05,
+   "row": "R7_matmul_K2304",
+   "K": 2304,
+   "M": 128,
+   "N": 100,
+   "k_eff": 2304
+  },
+  {
+   "rho_max": 10.194867622731039,
+   "med": 0.014738207845815834,
+   "frac_over": 0.00515625,
+   "n_elem": 12800,
+   "rho_fixed_4608": 10.194867622731039,
+   "abs_max": 0.0026415096770051605,
+   "row": "R8_cudnn_benchmark_true",
+   "C": 256,
+   "H": 5,
+   "k": 3,
+   "s": 1,
+   "d": 1,
+   "pad": 1,
+   "k_eff": 2304,
+   "out_shape": [
+    2,
+    256,
+    5,
+    5
+   ],
+   "cudnn_enabled": true,
+   "benchmark": true,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 9,
+    "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
+    "cudaGetErrorString": 6,
+    "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+    "cudaDeviceGetAttribute": 3,
+    "cuLaunchKernel": 3,
+    "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
+    "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 246.08958206882087,
+   "med": 2.7581917948488406,
+   "frac_over": 0.784453125,
+   "n_elem": 12800,
+   "rho_fixed_4608": 246.08958206882087,
+   "abs_max": 0.051232893220996445,
+   "row": "R2g_s2_geom_matched",
+   "C": 256,
+   "H": 9,
+   "k": 3,
+   "s": 2,
+   "d": 1,
+   "pad": 1,
+   "k_eff": 2304,
+   "out_shape": [
+    2,
+    256,
+    5,
+    5
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 12,
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+    "cudaGetErrorString": 9,
+    "cudaPeekAtLastError": 6,
+    "cudaFuncSetAttribute": 3,
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+    "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 370.55400178332934,
+   "med": 2.8162286520351447,
+   "frac_over": 0.7809847608024691,
+   "n_elem": 41472,
+   "rho_fixed_4608": 366.24768292662895,
+   "abs_max": 0.05519280581839592,
+   "row": "R3g_d2_geom_matched",
+   "C": 256,
+   "H": 9,
+   "k": 3,
+   "s": 1,
+   "d": 2,
+   "pad": 2,
+   "k_eff": 2304,
+   "out_shape": [
+    2,
+    256,
+    9,
+    9
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 12,
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+    "cudaGetErrorString": 9,
+    "cudaPeekAtLastError": 6,
+    "cudaFuncSetAttribute": 3,
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+    "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 1.4151408294184094,
+   "med": 0.007244667811689241,
+   "frac_over": 0.0003125,
+   "n_elem": 3200,
+   "rho_fixed_4608": 1.4151408294184094,
+   "abs_max": 0.00044921136457354294,
+   "row": "R1_c64",
+   "C": 64,
+   "H": 5,
+   "k": 3,
+   "s": 1,
+   "d": 1,
+   "pad": 1,
+   "k_eff": 576,
+   "out_shape": [
+    2,
+    64,
+    5,
+    5
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 12,
+    "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
+    "cudaGetErrorString": 6,
+    "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+    "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)": 3,
+    "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 103.14724187273394,
+   "med": 2.7021795096993655,
+   "frac_over": 0.7994791666666666,
+   "n_elem": 1152,
+   "rho_fixed_4608": 103.14724187273394,
+   "abs_max": 0.01841034691317489,
+   "row": "R2_c64",
+   "C": 64,
+   "H": 5,
+   "k": 3,
+   "s": 2,
+   "d": 1,
+   "pad": 1,
+   "k_eff": 576,
+   "out_shape": [
+    2,
+    64,
+    3,
+    3
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 12,
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+    "cudaGetErrorString": 9,
+    "cudaPeekAtLastError": 6,
+    "cudaFuncSetAttribute": 3,
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+    "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 96.53535197598463,
+   "med": 2.665699104896543,
+   "frac_over": 0.7825,
+   "n_elem": 3200,
+   "rho_fixed_4608": 96.53535197598463,
+   "abs_max": 0.020498035295858585,
+   "row": "R3_c64",
+   "C": 64,
+   "H": 5,
+   "k": 3,
+   "s": 1,
+   "d": 2,
+   "pad": 2,
+   "k_eff": 576,
+   "out_shape": [
+    2,
+    64,
+    5,
+    5
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 12,
+    "cudaGetErrorString": 9,
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+    "cudaPeekAtLastError": 6,
+    "cudaFuncSetAttribute": 3,
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+    "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 51.42568619367783,
+   "med": 2.429602111078179,
+   "frac_over": 0.7625000000000001,
+   "n_elem": 3200,
+   "rho_fixed_4608": 51.42568619367783,
+   "abs_max": 0.007968798477705263,
+   "row": "R4_c64",
+   "C": 64,
+   "H": 5,
+   "k": 1,
+   "s": 1,
+   "d": 1,
+   "pad": 0,
+   "k_eff": 64,
+   "out_shape": [
+    2,
+    64,
+    5,
+    5
+   ],
+   "cudnn_enabled": true,
+   "benchmark": false,
+   "kernels": {
+    "Activity Buffer Request": 1,
+    "cudaDeviceGetAttribute": 3,
+    "cuLaunchKernel": 3,
+    "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x64_16x6_nn_align1>(cutlass_80_tensorop_s1688gemm_64x64_16x6_nn_align1::Params)": 3,
+    "cudaDeviceSynchronize": 2
+   }
+  },
+  {
+   "rho_max": 0.0989997088592866,
+   "med": 0.002678207445788627,
+   "frac_over": 0.0,
+   "n_elem": 3200,
+   "rho_fixed_4608": 0.0989997088592866,
+   "abs_max": 7.024637847052873e-05,
+   "row": "R5_c64",
+   "C": 64,
+   "H": 5,
+   "k": 3,
+   "k_eff": 576,
+   "out_shape": [
+    2,
+    64,
+    25
+   ],
+   "note": "explicit im2col + fp32 matmul, no cudnn conv"
+  }
+ ],
+ "verdicts": {
+  "P1_depth_im2col_lt2_C256": {
+   "value": 0.6569072921958912,
+   "pass": true
+  },
+  "P2_transform_s2_ratio": {
+   "value": 24.68814364072905,
+   "pass": false
+  },
+  "P2_transform_d2_ratio": {
+   "value": 22.742356240003865,
+   "pass": false
+  },
+  "P3_1x1_lt1_C256": {
+   "value": 110.85274171888956,
+   "pass": false
+  },
+  "P4_dispatch_delta": {
+   "value": 0.0,
+   "pass": true
+  },
+  "P5_c64_ordering": {
+   "s2_ratio": 72.88832300536838,
+   "d2_ratio": 68.21607430806618,
+   "im2col": 0.0989997088592866,
+   "pass": false
+  }
+ },
+ "posthoc": {
+  "s2_geom_matched_ratio": 24.138575524033875,
+  "d2_geom_matched_ratio": 36.34711263509903,
+  "label": "post-hoc; geometry-matched so rho maxima are compared at equal output size"
+ }
+}

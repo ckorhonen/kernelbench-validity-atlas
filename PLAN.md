@@ -97,6 +97,25 @@ the cudnn path (cudnn disabled: C256 10.195->0.192, C16 54.493->0.029, bit-inequ
 A6 that survived its own discriminator. #50: (1) which cudnn kernel/why 15x worse than fallback at matched
 depth; (2) §2 rho argument + §4 rho-index; (3) §4/§6 prose resume; (4) desk watch passive, reflection 07:12Z.
 
+A7 DONE this tick (prereg e1526ee + a7b prereg 8a8d5d1, both pre-run; results/a7_kernelclass.json,
+a7b_precision_policy.json): (1) ANSWERED — profiler names the engines. 3x3 s1 = cudnn::winograd_nonfused
+4x4 (rho 10.195, frac_over .0052, flag bit-identical, benchmark=True delta 0); s2/d2/1x1 = cutlass
+tensorop_s1688*TF32* engines (rho 251.7/231.9/110.9, frac_over .77-.78) that allow_tf32=False cuts by
+99.9% (ratios .0016/.0022/.0007, bit-inequal); im2col fp32 control .657, cudnn-off .192, matmul .202.
+=> conv is a TWO-CLASS dispatch surface, not a depth law. RETRACTED: A6f "invisible to every precision
+flag" (mis-scoped, winograd-only) and A7 P2/P3 (predicted collapse, measured 22-25x rise — ineligibility
+installs a worse engine). P1/P4 passed; P5 replicated ordering, failed only via inherited P2 bars.
+(2)+(3) DONE — §2 (s2_reference_axis.md) with rho as measured argument + the spine NEGATIVE (surface
+collapses on a categorical engine-class coordinate, not a continuous derived one) and §4
+(s4_certificates.md) with the frac_over-keyed admission rule; both audited pre-prose by s50 (18/18, 0
+unsupported); provenance regenerated cited 25 found 25 missing 0. Meta-reflection X5A0oNwG0mQpp6eQ
+("Plan for depth") answered 07:29Z (next 10:29Z): objective = reference-admissibility certificate with a
+paper-absorption cadence, stall response = ship the two-class result scoped and finish the paper rather
+than add families.
+#51: §5/§6/§7/§8 prose (the remaining 40% of the paper); then the compression test the reflection named —
+does (rho_max, frac_over) compress in derived coords across families, or stay per-shape; desk watch
+passive; reflection 10:29Z.
+
 6yPhozmAt62JSqQs REJECTED 19:44Z stage=full (review 11.3KB); triage+
 verification in rejection_triage_6yPhozm.md — gate conv picks fail 1e-4 everywhere
 (m3 16/0 w4 4/0 a2 3/0 m2 36/0, VERIFIED), n_fail mixed-unit bug confirmed

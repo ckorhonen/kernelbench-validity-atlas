@@ -1,9 +1,159 @@
 {
- "date": "2026-10-23T21:35:00Z",
- "n_cited": 17,
- "n_found": 17,
+ "date": "2026-10-24T07:32:12Z",
+ "n_cited": 25,
+ "n_found": 25,
  "missing": [],
  "entries": [
+  {
+   "artifact": "results/a6_refdistance.json",
+   "cited_in": [
+    "paper/sections/s2_reference_axis.md"
+   ],
+   "sha256": "5c0092b57ea2852218a99db5c0fdd24f7bb8d378d7b8f6e25fa5aa4e705b1500",
+   "bytes": 1918,
+   "mtime_utc": "2026-10-24T04:09:52Z",
+   "producers": [
+    "lab/a6_refdistance.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "determinism_all",
+     "header",
+     "kill1_b1_over_0p1",
+     "predicted",
+     "rows",
+     "verdict"
+    ]
+   }
+  },
+  {
+   "artifact": "results/a6b_ksweep.json",
+   "cited_in": [
+    "paper/sections/s2_reference_axis.md"
+   ],
+   "sha256": "19ac88e7f90d432b5fd57b0400beea570cbb440891cfd4fa2926027aed0aa1e4",
+   "bytes": 2099,
+   "mtime_utc": "2026-10-24T04:09:51Z",
+   "producers": [
+    "lab/a6b_ksweep.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "header",
+     "k_where_over_budget",
+     "killed",
+     "matmul_monotone_in_K",
+     "rows",
+     "spread_frac"
+    ]
+   }
+  },
+  {
+   "artifact": "results/a6d_crossing.json",
+   "cited_in": [
+    "paper/sections/s2_reference_axis.md"
+   ],
+   "sha256": "87016d2de387478ea522170bcc3e531b8c84d277f5d2c696c446bc8bd6b7b425",
+   "bytes": 2435,
+   "mtime_utc": "2026-10-24T04:13:18Z",
+   "producers": [
+    "lab/a6d_crossing.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "bisection",
+     "geometry_at_crossing",
+     "header",
+     "hi_row",
+     "lo_row",
+     "p1_crossing",
+     "p2_geometry"
+    ]
+   }
+  },
+  {
+   "artifact": "results/a7_kernelclass.json",
+   "cited_in": [
+    "paper/sections/s2_reference_axis.md",
+    "paper/sections/s4_certificates.md"
+   ],
+   "sha256": "25f31f86da179716dcaf3acfd480ba598e792d835d2c0842193de07bf30a19f3",
+   "bytes": 15764,
+   "mtime_utc": "2026-10-24T07:30:01Z",
+   "producers": [
+    "lab/a7_kernelclass.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "header",
+     "posthoc",
+     "rows",
+     "verdicts"
+    ]
+   }
+  },
+  {
+   "artifact": "results/a7b_precision_policy.json",
+   "cited_in": [
+    "paper/sections/s2_reference_axis.md"
+   ],
+   "sha256": "78700d7c6085756409d8f37bf851aad7e79ab39c448984ad6a9e3f02efc270a2",
+   "bytes": 6693,
+   "mtime_utc": "2026-10-24T07:30:01Z",
+   "producers": [
+    "lab/a7b_precision_policy.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "Q1",
+     "Q2",
+     "Q3",
+     "conv_rows",
+     "header",
+     "matmul_rows"
+    ]
+   }
+  },
+  {
+   "artifact": "results/calibration.json",
+   "cited_in": [
+    "paper/sections/s2_reference_axis.md"
+   ],
+   "sha256": "abf69295ddb8d301df008b6a7d0852970079a00770057d98a0deed70afbb01a8",
+   "bytes": 6029,
+   "mtime_utc": "2026-10-17T02:24:05Z",
+   "producers": [
+    "lab/calibration.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "L2_cache_size",
+     "cc",
+     "clock_lock",
+     "clocks_after_lock",
+     "clocks_at_end",
+     "clocks_at_start",
+     "copy_bandwidth_ladder",
+     "cuda",
+     "date",
+     "device",
+     "drift_probe_64MiB_copy",
+     "host",
+     "launch_overhead",
+     "sm_count",
+     "torch",
+     "total_memory",
+     "total_memory_GiB",
+     "triad_fp32_1GiB"
+    ]
+   }
+  },
   {
    "artifact": "results/cf43.json",
    "cited_in": [
@@ -31,7 +181,8 @@
   {
    "artifact": "results/cushion_screen.json",
    "cited_in": [
-    "paper/REFRAME_SKELETON.md"
+    "paper/REFRAME_SKELETON.md",
+    "paper/sections/s4_certificates.md"
    ],
    "sha256": "f02b9e68ef133d0bb6d604f7893a6ecd1cb17440cb3d7917fa0f382e214e615b",
    "bytes": 622,
@@ -78,6 +229,7 @@
    "artifact": "results/e1_triad_day2.json",
    "cited_in": [
     "paper/REFRAME_SKELETON.md",
+    "paper/sections/s2_reference_axis.md",
     "paper/sections/s3_atlas.md"
    ],
    "sha256": "c26761b5281edbdeea011c8c36702c01f92e1f651a3afe9fe831931c97862ffd",
@@ -196,6 +348,7 @@
    "artifact": "results/f24_verify.json",
    "cited_in": [
     "paper/REFRAME_SKELETON.md",
+    "paper/sections/s2_reference_axis.md",
     "paper/sections/s3b_conv_anchor.md"
    ],
    "sha256": "ba1afe330954bb9b4f9eec0d9ffb672122b2d34a86b2a26415ad71fb2449e403",
@@ -285,7 +438,9 @@
    "artifact": "results/r45_rider_adm.json",
    "cited_in": [
     "paper/REFRAME_SKELETON.md",
-    "paper/sections/s3b_conv_anchor.md"
+    "paper/sections/s2_reference_axis.md",
+    "paper/sections/s3b_conv_anchor.md",
+    "paper/sections/s4_certificates.md"
    ],
    "sha256": "876a3c144f66708e117de621c390d0eb9b649c6b0d79711ac19f49d00d14ca20",
    "bytes": 43278,
@@ -337,6 +492,7 @@
   {
    "artifact": "results/s48_prose_audit.json",
    "cited_in": [
+    "paper/REFRAME_SKELETON.md",
     "paper/sections/s3b_conv_anchor.md"
    ],
    "sha256": "40dcfb88b47518f3199b28a128499d47536707b0fc531ca07f661b9d5ba5d339",
@@ -357,6 +513,59 @@
      "r1_summary",
      "r42",
      "r45"
+    ]
+   }
+  },
+  {
+   "artifact": "results/s48_provenance.json",
+   "cited_in": [
+    "paper/REFRAME_SKELETON.md"
+   ],
+   "sha256": "f11441d5d2fc30cd50bfd62d6b220f35f5f26c84747e73d056c1cf74b6aa7a3c",
+   "bytes": 12904,
+   "mtime_utc": "2026-10-24T07:32:09Z",
+   "producers": [
+    "lab/s48_provenance.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "date",
+     "entries",
+     "missing",
+     "n_cited",
+     "n_found"
+    ]
+   }
+  },
+  {
+   "artifact": "results/s50_prose_audit.json",
+   "cited_in": [
+    "paper/sections/s2_reference_axis.md",
+    "paper/sections/s4_certificates.md"
+   ],
+   "sha256": "cbe3071be43498d5144e0fda2293eae02550adf19220e8ec9d60cc742beae7c2",
+   "bytes": 7493,
+   "mtime_utc": "2026-10-24T07:30:26Z",
+   "producers": [
+    "lab/s50_prose_audit.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "calibration_keys",
+     "checks",
+     "cushion",
+     "e1_day2_keys",
+     "f24_keys",
+     "header",
+     "pair_statistic",
+     "r1_summary",
+     "r45_fields",
+     "rho_artifacts",
+     "summary",
+     "torch_pass_own_check",
+     "unsupported"
     ]
    }
   },
