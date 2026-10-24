@@ -91,6 +91,12 @@ found only because its own control failed (fixed-n spread 0.564, median 2.10x at
 #50: leg 2 continuation — geometry replication at a second K + mechanism test (fp64-conv forced-algo or
 hand direct-conv reference); then §2 gets rho as measured argument, §4 gets the rho-index; §4/§6 prose resume.
 
+A6f DONE same tick (799b466): geometry depth-gated (K1024 spread .417 med 2.00x / K8192 .549 med 2.63x =>
+median term stable, 0.5 bar tripped only at high K; post-hoc label retained); conv divergence ATTRIBUTED to
+the cudnn path (cudnn disabled: C256 10.195->0.192, C16 54.493->0.029, bit-inequal) — the only attribution in
+A6 that survived its own discriminator. #50: (1) which cudnn kernel/why 15x worse than fallback at matched
+depth; (2) §2 rho argument + §4 rho-index; (3) §4/§6 prose resume; (4) desk watch passive, reflection 07:12Z.
+
 6yPhozmAt62JSqQs REJECTED 19:44Z stage=full (review 11.3KB); triage+
 verification in rejection_triage_6yPhozm.md — gate conv picks fail 1e-4 everywhere
 (m3 16/0 w4 4/0 a2 3/0 m2 36/0, VERIFIED), n_fail mixed-unit bug confirmed
