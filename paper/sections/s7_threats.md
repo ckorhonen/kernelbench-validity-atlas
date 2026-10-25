@@ -37,7 +37,8 @@ decomposition survives; the claim that the class follows from the conv parameter
   onto continuous derived coordinates. On the reference-realization surface they do not: derived-only
   prediction reaches Spearman 0.833 for rho_max but only 79% bulk accuracy for frac_over, while supplying a
   *categorical* engine coordinate lifts both to 0.986 / 100%. The collapse is categorical, and the
-  categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline. A
+  categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline on a
+  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. A
   reader who believes the spine requires a continuous surface should read this paper as a negative result on
   that form and a positive one on a bounded categorical surface.
 - **The floor model (E2b).** The claim that a hand kernel's advantage must exceed the two-launch floor

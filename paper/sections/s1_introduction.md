@@ -4,7 +4,7 @@ Every number in this section is regenerated from committed artifacts by `lab/s53
 (`results/s53_intro_audit.json`), which runs before the file is committed and hard-fails on any cited
 value it cannot reproduce. The section cites only numbers that are also covered by the per-section audits
 already shipped (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16) and by
-the provenance table (`paper/PROVENANCE.md`, 41 cited / 41 found / 0 missing).
+the provenance table (`paper/PROVENANCE.md`, 43 cited / 43 found / 0 missing).
 
 ---
 
@@ -52,7 +52,9 @@ replicated to ≤0.13% across a 9.6 h interval (`results/e1_triad_day2.json`).
 The reference-realization axis (§2) produced the paper's central measurement. A pass verdict is a
 three-place relation (candidate, reference realization, budget) and the platform treats it as two-place.
 Defining rho as the reference's own consumption in multiples of the contract budget, an ordinary fp32
-matmul reference crosses rho = 1 between K = 3608 and K = 3632 (`results/a6d_crossing.json`), and fp32
+matmul reference's rho crosses 1 between K = 3608 and K = 3632 on the single draws that were bisected
+(`results/a6d_crossing.json`), but a 6-seed neighborhood study shows the verdict there is a coin flip
+(4/6 pass at 3608, 2/6 at 3632) rather than a threshold (`results/a10_crossing_neighborhood.json`), and fp32
 conv2d splits into two dispatch classes that differ by three orders of magnitude at matched reduction
 depth: a winograd engine at rho 10.195 with 0.52% of elements over budget, and TF32 tensor-op engines at
 rho 251.69 with 78.2% over budget (`results/a7_kernelclass.json`). The first is flag-invisible and
@@ -68,10 +70,13 @@ output extent moves rho 20-38× (`ATLAS_A8.md`, `results/a8b_analysis.json`).
 
 ## 1.4 What survives
 
-**The certificate (§4).** Admission keys on frac_over, not rho_max: 0 is unconditional, below 0.02 is
-distribution-conditional with the passing subset stated, above 0.5 is bulk-inadmissible. The rationale is
-measured, not stipulated — a rho_max 10.2 winograd row is a tail problem and conditionally claimable while a
-rho_max 111 TF32 row is a bulk failure no tolerance loosening rescues.
+**The certificate (§4).** Benchmark agreement is a binary whole-tensor check against the recorded reference,
+and no anchor statistic can upgrade or downgrade it. Separately, the reference's own consumption
+(rho_max, frac_over) is a *diagnostic* that constrains what a reported ratio means: frac_over 0 means the
+reference is indistinguishable from an exact anchor at the budget, below 0.02 a tail problem confined to a
+sparse set, above 0.5 a bulk failure in which both arms miss the contract. The rationale is measured, not
+stipulated — a rho_max 10.2 winograd row is a tail problem and conditionally reportable while a rho_max 111
+TF32 row is a bulk failure no tolerance loosening rescues.
 
 **The compression result (§4.5).** The certificate's magnitude field compresses onto derived coordinates
 out of fold (Spearman 0.833 from geometry alone, 0.986 with the engine class supplied), and the admission

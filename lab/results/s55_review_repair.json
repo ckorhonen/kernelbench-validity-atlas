@@ -1,6 +1,6 @@
 {
  "header": {
-  "date": "2026-10-25T04:48Z",
+  "date": "2026-10-25T16:57Z",
   "conventions": "frozen in module docstring before run",
   "purpose": "recompute DE1paW review findings F2/F3/F4/F4b/F5 from records only",
   "no_gpu": true
@@ -227,6 +227,30 @@
     "bulk_acc": 0.7916666666666666
    }
   },
+  "per_model_corrected_class": {
+   "class_median": {
+    "n": 48,
+    "median_mult_err": 2.227395654871926,
+    "max_mult_err": 49.710852204695136,
+    "spearman": 0.5734910985670864,
+    "bulk_acc": 1.0
+   },
+   "class_derived": {
+    "n": 48,
+    "median_mult_err": 1.250675710057784,
+    "max_mult_err": 2.409260289804047,
+    "spearman": 0.9862136343899262,
+    "bulk_acc": 1.0
+   },
+   "derived_only": {
+    "n": 48,
+    "median_mult_err": 6.843819510844706,
+    "max_mult_err": 156.7380173090608,
+    "spearman": 0.8327181936604429,
+    "bulk_acc": 0.7916666666666666
+   }
+  },
+  "model_match_note": "the .986 Spearman belongs to the corrected-class model; its magnitude errors are 1.251x median / 2.409x worst (a8b), NOT the 2.09x/440x older-model figures.",
   "published_claim": "rho_max compresses out-of-fold (.833 geometry-only / .986 with class)",
   "reading": "rank compression holds; magnitude calibration does NOT -- geometry-only median multiplicative error ~6.8x, max ~157x. Both must be reported together.",
   "bulk_clause": "bulk_acc tests only frac_over > 0.5, not the full admission rule"

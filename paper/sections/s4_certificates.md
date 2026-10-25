@@ -75,12 +75,13 @@ it produced a two-class decomposition instead of a failed AUC.
 
 ## 4.4 What the certificate changes, and what it does not
 
-**Changes.** A speedup at a row whose frac_over is 0.77 (any TF32 conv route) is not a speedup; it is a
-comparison of two arms that both miss the contract, and the paper says so before the ratio. A speedup at a
-winograd row with frac_over 0.005 is claimable on 99.5% of elements and the paper states the subset. On the
-reduction family, where the certificate is clean at default precision (baseline 56/56), the published
-rankings stand unchanged — the certificate costs nothing where it is not needed, which is the test of whether
-it is a ritual.
+**Changes.** A speedup ratio computed at a row whose frac_over is 0.77 (any TF32 conv route) is a ratio
+between two arms that both miss the contract, and the paper says so before quoting it — what that row's
+*verdict* is, is decided by the benchmark's own candidate-versus-reference check and not by frac_over. At a
+winograd row with frac_over 0.005 the ratio stands as measured and the paper states that 0.5% of reference
+elements are the ones the reference itself misses. On the reduction family, where the certificate is clean at
+default precision (baseline 56/56), the published rankings stand unchanged — the certificate costs nothing
+where it is not needed, which is the test of whether it is a ritual.
 
 **Does not change.** The certificate does not tell you which kernel is faster. It tells you whether the
 comparison was admissible, which is prior to the question. That is the deliberate demotion: §6 treats the
@@ -88,12 +89,16 @@ selector as a studied object precisely because a selector over inadmissible arms
 
 **P2 row.**
 `{op_class: all_benchmark_rows, rule: every results row carries {reference_realization, rho_max, frac_over,
-admissible_delivery_set, regret_basis}; delivery claims are conditional on frac_over as in §4.1,
-domain_predicate: certificate defined for every row; delivery claim defined iff frac_over < 0.5,
+admissible_delivery_set, regret_basis}; a delivery claim requires the candidate to pass the benchmark's own
+whole-tensor check against the recorded reference — the (rho_max, frac_over) pair is a diagnostic on the
+reference and cannot substitute for that check, as in §4.1,
+domain_predicate: certificate defined for every row; delivery claim defined iff candidate-vs-reference allclose
+passes at 1e-4 (binary, whole-tensor); a relaxed contract, if declared, states its own candidate-level
+threshold and justification rather than inheriting frac_over,
 derived_coords: frac_over, rho_max, admissible_pool_size, boundary_ref: results/r45_rider_adm.json,
 results/cushion_screen.json, results/a7_kernelclass.json, variance: regret bounds reported as paired
 differences with n; AUC reported with its rider transfer, n_reps: 1 per row (deterministic records),
-date: 2026-10-24}`
+date: 2026-10-25}`
 
 ## 4.5 Is the certificate a surface or a lookup table? (A8, added tick #51)
 
@@ -109,9 +114,15 @@ The answer splits by field, and the split is the finding:
   with the engine class supplied as one categorical coordinate, and 0.833 from derived geometry alone
   (log k_eff, log n_elem, log C, log H) with no class at all. But rank is not calibration: the geometry-only
   model's median multiplicative prediction error is **6.84×** and its worst row is 156.7× off
-  (`results/s55_review_repair.json`; class+derived 2.09×/440×, class-median 2.71×/978×). So the field is a
-  surface for *ordering* and a lookup for *value*, and the earlier draft reported only the Spearman. Both
-  numbers belong in the row.
+  (`results/s55_review_repair.json`). The model the headline Spearman 0.986 belongs to is the
+  corrected-class model, and its own magnitude errors must be read from the same artifact that produced the
+  correlation: refitted on `results/a8_compress_v2.json` it gives median 1.251× and worst 2.409×
+  (`results/a8b_analysis.json`; recomputed in `results/s55_review_repair.json`). An earlier draft paired the
+  0.986 with 2.09×/440×, which are the *older* classification's numbers from `results/a8_analysis.json` — a
+  model mismatch, since a rank statistic from one model cannot be calibrated by another's residuals. Both
+  models' numbers are reported here rather than merged: geometry-only 6.84×/156.7×, corrected class+derived
+  1.251×/2.409×, older class+derived 2.09×/440×. So the field is a surface for *ordering* and a lookup for
+  *value*, and the magnitude of the lookup depends on which model is being looked up.
 - **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
   100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
   exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.

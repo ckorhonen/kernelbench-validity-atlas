@@ -1,524 +1,685 @@
 {
+ "header": {
+  "date": "2026-10-25T07:50Z",
+  "source": "s56_heldout_contract.json",
+  "convention": "frozen in write_analysis docstring before the run",
+  "baseline": "eager torch only (torch.sum / F.conv2d); NO torch.compile arm in this pool, so nothing here supports a compile claim",
+  "bars": "V1 bars unchanged from v1: >=0.90 stands / 0.50-0.90 per-row / <0.50 withdrawn"
+ },
  "rows": [
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.016127999871969223,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 0.016095999628305435,
-   "gate_regret_time_frac": 0.0019880867546439415,
-   "committed_gate_t": 0.016383999958634377,
    "shape": {
     "K": 24576,
     "M": 3
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.016095999628305435,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.016095999628305435,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.016287999227643013,
-   "gate_arm_passes": true,
-   "best_arm": "torch",
-   "best_t": 0.016287999227643013,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.023264000192284584,
    "shape": {
     "K": 24576,
     "M": 12
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.018112000077962875,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.018112000077962875,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.026335999369621277,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 0.024288000538945198,
-   "gate_regret_time_frac": 0.08432142561064934,
-   "committed_gate_t": 0.03558399900794029,
    "shape": {
     "K": 24576,
     "M": 20
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.025312000885605812,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.024224000051617622,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.044914169074877275
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.04560000076889992,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S16_KT64",
-   "best_t": 0.04479999840259552,
-   "gate_regret_time_frac": 0.01785719631315989,
-   "committed_gate_t": 0.0570559985935688,
    "shape": {
     "K": 24576,
     "M": 48
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.042688000947237015,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.042688000947237015,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "reduction",
-   "empty": false,
+   "shape": {
+    "K": 24576,
+    "M": 192
+   },
    "gate_choice": "torch",
-   "gate_t": 0.18095999956130981,
    "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.1799360066652298,
+   "empty": false,
    "best_arm": "tsplit_S16_KT64",
    "best_t": 0.14921599626541138,
-   "gate_regret_time_frac": 0.2127386077256435,
-   "committed_gate_t": 0.17603200674057007,
-   "shape": {
-    "K": 24576,
-    "M": 192
-   }
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.20587612031337818
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.238304004073143,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S16_KT64",
-   "best_t": 0.23507200181484222,
-   "gate_regret_time_frac": 0.013748988536910122,
-   "committed_gate_t": 0.2401600033044815,
    "shape": {
     "K": 24576,
     "M": 384
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.2372799962759018,
+   "empty": false,
+   "best_arm": "tsplit_S4_KT64",
+   "best_t": 0.23427200317382812,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.012839746368846987
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.021215999498963356,
-   "gate_arm_passes": true,
-   "best_arm": "torch",
-   "best_t": 0.021215999498963356,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.02131200022995472,
    "shape": {
     "K": 98304,
     "M": 3
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.02022399939596653,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.02022399939596653,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.06521599739789963,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 0.058079998940229416,
-   "gate_regret_time_frac": 0.12286498946072509,
-   "committed_gate_t": 0.06425599753856659,
    "shape": {
     "K": 98304,
     "M": 12
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.06428799778223038,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.05804799869656563,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.10749723032284203
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 0.07753600180149078,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 0.07753600180149078,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.07958400249481201,
    "shape": {
     "K": 98304,
     "M": 20
-   }
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.013478904115327161,
+   "gate_t": 0.07836800068616867,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.07836800068616867,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "reduction",
-   "empty": false,
+   "shape": {
+    "K": 98304,
+    "M": 48
+   },
    "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 0.15535999834537506,
    "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
+   "gate_budget_ratio": 0.09706884446011926,
+   "gate_t": 0.1574079990386963,
+   "empty": false,
+   "best_arm": "tsplit_S16_KT64",
    "best_t": 0.15535999834537506,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.15535999834537506,
-   "shape": {
-    "K": 98304,
-    "M": 48
-   }
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.013182290905850769
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 0.4041920006275177,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S16_KT64",
-   "best_t": 0.39292800426483154,
-   "gate_regret_time_frac": 0.02866681997828355,
-   "committed_gate_t": 0.4052160084247589,
    "shape": {
     "K": 98304,
     "M": 192
-   }
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.34115976012308374,
+   "gate_t": 0.40828800201416016,
+   "empty": false,
+   "best_arm": "tsplit_S16_KT64",
+   "best_t": 0.3970560133457184,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.028288171670786486
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 0.7308480143547058,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S4_KT64",
-   "best_t": 0.7165120244026184,
-   "gate_regret_time_frac": 0.02000802423942547,
-   "committed_gate_t": 0.7298240065574646,
    "shape": {
     "K": 98304,
     "M": 384
-   }
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.6646989502869654,
+   "gate_t": 0.7308480143547058,
+   "empty": false,
+   "best_arm": "tsplit_S16_KT64",
+   "best_t": 0.7206400036811829,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.014165201239701173
   },
   {
    "family": "reduction",
-   "empty": false,
+   "shape": {
+    "K": 393216,
+    "M": 3
+   },
    "gate_choice": "torch",
-   "gate_t": 0.058079998940229416,
    "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.058079998940229416,
+   "empty": false,
    "best_arm": "torch",
    "best_t": 0.058079998940229416,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.0560000017285347,
-   "shape": {
-    "K": 393216,
-    "M": 3
-   }
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.1828799992799759,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 0.15744000673294067,
-   "gate_regret_time_frac": 0.1615853116049981,
-   "committed_gate_t": 0.18198400735855103,
    "shape": {
     "K": 393216,
     "M": 12
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.18198400735855103,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.15945599973201752,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.14128040126677066
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 0.21167999505996704,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 0.21167999505996704,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.21270400285720825,
    "shape": {
     "K": 393216,
     "M": 20
-   }
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.29185150595377074,
+   "gate_t": 0.21065600216388702,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.21065600216388702,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 0.40009599924087524,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 0.40009599924087524,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.4020799994468689,
    "shape": {
     "K": 393216,
     "M": 48
-   }
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.12854168035397523,
+   "gate_t": 0.40412798523902893,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.40412798523902893,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 1.384160041809082,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S16_KT64",
-   "best_t": 1.3575359582901,
-   "gate_regret_time_frac": 0.01961206504799814,
-   "committed_gate_t": 1.3862080574035645,
    "shape": {
     "K": 393216,
     "M": 192
-   }
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.27968486126868103,
+   "gate_t": 1.3851840496063232,
+   "empty": false,
+   "best_arm": "tsplit_S16_KT64",
+   "best_t": 1.3555200099945068,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.021883881752462378
   },
   {
    "family": "reduction",
-   "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 2.7225279808044434,
-   "gate_arm_passes": false,
-   "best_arm": "tsplit_S16_KT64",
-   "best_t": 2.6702721118927,
-   "gate_regret_time_frac": 0.01956949206749719,
-   "committed_gate_t": 2.7020480632781982,
    "shape": {
     "K": 393216,
     "M": 384
-   }
-  },
-  {
-   "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.15638400614261627,
-   "gate_arm_passes": true,
-   "best_arm": "torch",
-   "best_t": 0.15638400614261627,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.15452800691127777,
-   "shape": {
-    "K": 1572864,
-    "M": 3
-   }
-  },
-  {
-   "family": "reduction",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.5372800230979919,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 0.4381119906902313,
-   "gate_regret_time_frac": 0.22635315744616938,
-   "committed_gate_t": 0.5373119711875916,
-   "shape": {
-    "K": 1572864,
-    "M": 12
-   }
-  },
-  {
-   "family": "reduction",
-   "empty": false,
+   },
    "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 0.6192319989204407,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 0.6192319989204407,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.6110399961471558,
-   "shape": {
-    "K": 1572864,
-    "M": 20
-   }
-  },
-  {
-   "family": "reduction",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 1.6056959125248196,
+   "gate_t": 2.716480016708374,
    "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 1.3821120262145996,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S64_KT64",
-   "best_t": 1.3821120262145996,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 1.381119966506958,
-   "shape": {
-    "K": 1572864,
-    "M": 48
-   }
-  },
-  {
-   "family": "reduction",
-   "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 5.319424152374268,
-   "gate_arm_passes": true,
-   "best_arm": "tsplit_S16_KT64",
-   "best_t": 5.200607776641846,
-   "gate_regret_time_frac": 0.022846632708214805,
-   "committed_gate_t": 5.307104110717773,
-   "shape": {
-    "K": 1572864,
-    "M": 192
-   }
-  },
-  {
-   "family": "reduction",
-   "empty": false,
-   "gate_choice": "tsplit_S64_KT64",
-   "gate_t": 10.668767929077148,
-   "gate_arm_passes": true,
    "best_arm": "tsplit_S4_KT64",
-   "best_t": 10.274527549743652,
-   "gate_regret_time_frac": 0.03837065767012638,
-   "committed_gate_t": 10.663680076599121,
+   "best_t": 2.651968002319336,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": 0.024326090787150412
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 3
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.1544959992170334,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.1544959992170334,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 12
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.5383359789848328,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.43593600392341614,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.2348968062738996
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 20
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.07887901649134865,
+   "gate_t": 0.6151040196418762,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.6151040196418762,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 48
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.19320162134800636,
+   "gate_t": 1.3780159950256348,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 1.3780159950256348,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 192
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 2.573303169424067,
+   "gate_t": 5.318367958068848,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 5.424863815307617,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": -0.01963106556486537
+  },
+  {
+   "family": "reduction",
    "shape": {
     "K": 1572864,
     "M": 384
-   }
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 7.112991182149027,
+   "gate_t": 10.673888206481934,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 10.48755168914795,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": 0.017767399184959162
   },
   {
    "family": "conv",
-   "empty": false,
-   "gate_choice": "imp_B32x32",
-   "gate_t": 0.018144000321626663,
-   "gate_arm_passes": false,
-   "best_arm": "torch",
-   "best_t": 0.026335999369621277,
-   "gate_regret_time_frac": -0.31105707943797,
-   "committed_gate_t": 0.018144000321626663,
    "shape": {
     "N": 2,
     "H": 5,
     "C": 32
-   }
+   },
+   "gate_choice": "imp_B32x32",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 94.12632321141595,
+   "gate_t": 0.018144000321626663,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.02223999984562397,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": -0.18417264174591494
   },
   {
    "family": "conv",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.05395200103521347,
-   "gate_arm_passes": true,
-   "best_arm": "torch",
-   "best_t": 0.05395200103521347,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.0488319993019104,
    "shape": {
     "N": 2,
     "H": 5,
     "C": 96
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.05087999999523163,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.05087999999523163,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "conv",
-   "empty": false,
-   "gate_choice": "imp_B32x32",
-   "gate_t": 0.020191999152302742,
-   "gate_arm_passes": false,
-   "best_arm": "torch",
-   "best_t": 0.02630399912595749,
-   "gate_regret_time_frac": -0.2323601040430108,
-   "committed_gate_t": 0.020191999152302742,
    "shape": {
     "N": 2,
     "H": 8,
     "C": 32
-   }
+   },
+   "gate_choice": "imp_B32x32",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 125.81971667908634,
+   "gate_t": 0.020191999152302742,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.027648000046610832,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": -0.2696759578175011
   },
   {
    "family": "conv",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.03558399900794029,
-   "gate_arm_passes": true,
-   "best_arm": "torch",
-   "best_t": 0.03558399900794029,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.03244800120592117,
    "shape": {
     "N": 2,
     "H": 8,
     "C": 96
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.03340800106525421,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.03340800106525421,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "conv",
-   "empty": false,
+   "shape": {
+    "N": 2,
+    "H": 12,
+    "C": 32
+   },
    "gate_choice": "imp_B32x32",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 197.34660962731184,
    "gate_t": 0.020191999152302742,
-   "gate_arm_passes": false,
+   "empty": false,
    "best_arm": "torch",
-   "best_t": 0.024288000538945198,
-   "gate_regret_time_frac": -0.16864300460116594,
-   "committed_gate_t": 0.020160000771284103,
-   "shape": {
-    "N": 2,
-    "H": 12,
-    "C": 32
-   }
+   "best_t": 0.020160000771284103,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": 0.0015872212199623073
   },
   {
    "family": "conv",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.035551998764276505,
-   "gate_arm_passes": true,
-   "best_arm": "torch",
-   "best_t": 0.035551998764276505,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.03145600110292435,
    "shape": {
     "N": 2,
     "H": 12,
     "C": 96
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.033440001308918,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.033440001308918,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "conv",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.02425600029528141,
-   "gate_arm_passes": true,
-   "best_arm": "torch",
-   "best_t": 0.02425600029528141,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.020160000771284103,
    "shape": {
     "N": 2,
     "H": 24,
     "C": 32
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.020160000771284103,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.020160000771284103,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "conv",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.04476799815893173,
-   "gate_arm_passes": true,
-   "best_arm": "torch",
-   "best_t": 0.04476799815893173,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.03654399886727333,
    "shape": {
     "N": 2,
     "H": 24,
     "C": 96
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.03862399980425835,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.03862399980425835,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   },
   {
    "family": "conv",
-   "empty": false,
-   "gate_choice": "imp_B32x32",
-   "gate_t": 0.018144000321626663,
-   "gate_arm_passes": false,
-   "best_arm": "torch",
-   "best_t": 0.02630399912595749,
-   "gate_regret_time_frac": -0.3102189429545077,
-   "committed_gate_t": 0.018144000321626663,
    "shape": {
     "N": 3,
     "H": 5,
     "C": 32
-   }
+   },
+   "gate_choice": "imp_B32x32",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 95.44812030332967,
+   "gate_t": 0.018144000321626663,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.022207999601960182,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": -0.18299708902979317
   },
   {
    "family": "conv",
-   "empty": false,
-   "gate_choice": "torch",
-   "gate_t": 0.03641600161790848,
-   "gate_arm_passes": true,
-   "best_arm": "torch",
-   "best_t": 0.03641600161790848,
-   "gate_regret_time_frac": 0.0,
-   "committed_gate_t": 0.033440001308918,
    "shape": {
     "N": 3,
     "H": 12,
     "C": 96
-   }
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.03455999866127968,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.03455999866127968,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
   }
- ]
+ ],
+ "summary": {
+  "reduction": {
+   "n_rows": 24,
+   "n_hand_fired": 12,
+   "n_hand_admissible": 9,
+   "v1_pass_fraction": 0.75,
+   "failing_rows": [
+    {
+     "shape": {
+      "K": 393216,
+      "M": 384
+     },
+     "gate": "tsplit_S64_KT64",
+     "budget_ratio": 1.6056959125248196,
+     "regret_frac": 0.024326090787150412,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "K": 1572864,
+      "M": 192
+     },
+     "gate": "tsplit_S64_KT64",
+     "budget_ratio": 2.573303169424067,
+     "regret_frac": -0.01963106556486537,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "K": 1572864,
+      "M": 384
+     },
+     "gate": "tsplit_S64_KT64",
+     "budget_ratio": 7.112991182149027,
+     "regret_frac": 0.017767399184959162,
+     "fallback": "torch"
+    }
+   ],
+   "failing_budget_ratio_range": [
+    1.6056959125248196,
+    7.112991182149027
+   ],
+   "regret_all_rows": {
+    "n": 24,
+    "mean": 0.03530360181652749,
+    "se": 0.013745456418084554
+   },
+   "regret_passing_rows_only": {
+    "n": 9,
+    "mean": 0.008613282840977867
+   },
+   "baseline_note": "eager torch; the pool has no torch.compile arm"
+  },
+  "conv": {
+   "n_rows": 10,
+   "n_hand_fired": 4,
+   "n_hand_admissible": 0,
+   "v1_pass_fraction": 0.0,
+   "failing_rows": [
+    {
+     "shape": {
+      "N": 2,
+      "H": 5,
+      "C": 32
+     },
+     "gate": "imp_B32x32",
+     "budget_ratio": 94.12632321141595,
+     "regret_frac": -0.18417264174591494,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "N": 2,
+      "H": 8,
+      "C": 32
+     },
+     "gate": "imp_B32x32",
+     "budget_ratio": 125.81971667908634,
+     "regret_frac": -0.2696759578175011,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "N": 2,
+      "H": 12,
+      "C": 32
+     },
+     "gate": "imp_B32x32",
+     "budget_ratio": 197.34660962731184,
+     "regret_frac": 0.0015872212199623073,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "N": 3,
+      "H": 5,
+      "C": 32
+     },
+     "gate": "imp_B32x32",
+     "budget_ratio": 95.44812030332967,
+     "regret_frac": -0.18299708902979317,
+     "fallback": "torch"
+    }
+   ],
+   "failing_budget_ratio_range": [
+    94.12632321141595,
+    197.34660962731184
+   ],
+   "regret_all_rows": {
+    "n": 10,
+    "mean": -0.06352584673732468,
+    "se": 0.03329661411216432
+   },
+   "regret_passing_rows_only": {
+    "n": 0,
+    "mean": null
+   },
+   "baseline_note": "eager torch; the pool has no torch.compile arm"
+  }
+ }
 }

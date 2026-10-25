@@ -59,12 +59,18 @@ Measured on real benchmark shapes (`results/a6_refdistance.json`, `a6b_ksweep.js
 `a7_kernelclass.json`, `a7b_precision_policy.json`; preregs `lab/a6_refdistance_prereg.md` and
 `lab/a7_kernelclass_prereg.md`, both committed before their runs):
 
-**fp32 matmul is monotone in reduction depth and crosses the budget.** rho 0.081 at K=128, 0.271 at K=512,
-0.672 at K=2048, 3.414 at K=8192 under pure fp32 accumulation (`allow_tf32=False`, precision highest). The
-crossing was **measured**, not interpolated: bisection put it between K=3608 (rho 0.990) and K=3632
-(rho 1.232). An ordinary fp32 matmul reference cannot pass this benchmark's own 1e-4 contract at K ≳ 3.6k.
-The pre-registered 2× band around the interpolated 2875 was satisfied (P1 held); the log-log model was not
-retracted, but the measured point is what the paper reports.
+**fp32 matmul reference error grows with reduction depth, and the pass verdict is a draw, not a threshold.**
+rho 0.081 at K=128, 0.271 at K=512, 0.672 at K=2048, 3.414 at K=8192 under pure fp32 accumulation
+(`allow_tf32=False`, precision highest), and the 6-seed medians rise 1.046 -> 1.398 across K 3.6k-4.1k. But
+the rho=1 crossing is **not** a threshold: a neighborhood-and-seed study at M=N=1024
+(`results/a10_crossing_neighborhood.json`, prereg frozen pre-run; 66 rows, 11 K values x 6 seeds) finds the
+pass fraction at K=3608 to be 4/6 and at K=3632 to be 2/6, per-draw rho scatter of +-0.2, **no seed monotone
+in K** (0/6, violations to -0.36), and a re-entry at K=3840 (1/6 pass) after two all-fail K values. The
+earlier bisected bracket (K=3608 rho 0.990 / K=3632 rho 1.232, `results/a6d_crossing.json`) was one draw's
+answer and is now reported as such. What the paper claims is the measured pass-probability curve: an ordinary
+fp32 matmul reference at 1e-4 fails on most draws from K~3.6k and on all sampled draws from 3.68k, while a
+minority of draws still pass at 3.6k-3.84k. The pre-registered 2x band around the interpolated 2875 was
+satisfied (A6d's P1 held); the log-log model was not retracted.
 
 **fp32 conv2d is not a depth function at all — it is a dispatch surface with two classes, and the classes
 have different fixes.** The profiler names the engines directly, and the routing is what produces the
@@ -132,19 +138,30 @@ surface is "which engine ran," a categorical coordinate, not a continuous derive
 **The certificate's admission rule, and why it is keyed on frac_over rather than on rho.** frac_over is the
 fraction of output elements at or over the contract budget, so $\mathrm{frac\_over} = 0$ is exactly the
 statement "this reference realization passes the benchmark's own check against the fp64 anchor," and
-$\rho_{\max}$ then only measures how much slack is left. That gives a three-level rule that a third party can evaluate from a row's
-own records without trusting us:
+$\rho_{\max}$ then only measures how much slack is left. That gives a three-level *diagnostic* that a third
+party can evaluate from a row's own records without trusting us. The word diagnostic is load-bearing and was
+wrong in an earlier draft, which called frac_over = 0 "unconditional": the three levels say what the
+reference's own accuracy permits you to *report*, not whether a candidate passes. Benchmark agreement is a
+binary whole-tensor check against the recorded reference (§4.1, §8.4), and no anchor statistic can upgrade
+or downgrade it:
 
-- **Unconditional** — $\mathrm{frac\_over} = 0$: the baseline is admissible against an exact anchor, so a speedup
-  reported against it is a claim about the kernel, and no reference caveat is needed. Measured rows in this
-  class: explicit im2col+fp32 matmul (rho 0.657), cudnn-disabled conv (0.192), plain fp32 matmul K=2304 (0.202).
-- **Distribution-conditional** — $0 < \mathrm{frac\_over} < 0.02$: the baseline fails on a negligible tail (winograd
-  3×3 s1: frac_over 0.0052, rho_max 10.195), so the speedup is claimable only for the element subset that
-  passes, and the paper must say how many elements that is. Rescue is possible here because the failing set
-  is sparse; a tolerance loosening that covers 0.5% of elements is a defensible convention, not a fiction.
-- **Inadmissible** — $\mathrm{frac\_over} > 0.5$: the baseline fails in bulk (TF32 routes: 0.77–0.78), so a speedup
-  against it is a comparison between two things that both miss the contract, and neither can be certified by
-  loosening. Report the pair, not a ratio.
+- **No anchor caveat** — $\mathrm{frac\_over} = 0$: this reference realization is indistinguishable from an exact
+  anchor at the budget, so the diagnostic pair (rho_max, frac_over) adds nothing beyond saying the anchor and
+  the reference agree on every element. It does **not** make the row's verdict unconditional: benchmark
+  agreement is candidate-versus-reference, and a candidate identical to the recorded reference passes
+  whatever the reference's own distance from fp64. What frac_over = 0 buys is that a *separately declared*
+  relaxed application contract has no sparse-failure problem to argue about. Measured rows in this class:
+  explicit im2col+fp32 matmul (rho 0.657), cudnn-disabled conv (0.192), plain fp32 matmul K=2304 (0.202).
+- **Tail-conditional diagnostic** — $0 < \mathrm{frac\_over} < 0.02$: the reference fails on a negligible tail
+  (winograd 3×3 s1: frac_over 0.0052, rho_max 10.195). Two things follow and they are separate. For the
+  benchmark contract, nothing follows — the row is scored whole-tensor candidate-versus-reference and the
+  verdict is whatever that check returns. For a relaxed contract, the reference's failing set is sparse, so
+  a loosening that covers 0.5% of elements is a defensible convention *provided it is declared and its own
+  candidate-level evidence is supplied*. It is not a licence to call the benchmark row correct.
+- **Bulk-inadmissible diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
+  0.77–0.78), so a speedup ratio computed against it compares two things that both miss the contract, and
+  no loosening rescues that. Report the pair, not a ratio. This one *is* a claim about the ratio's meaning
+  rather than about the row's pass/fail.
 
 The rho_max column stays in every row because it is the severity index that decides *how much* slack a
 conditional row has, but it does not decide admissibility on its own: a row can have rho_max 10.2 and be
@@ -153,8 +170,10 @@ distribution, not the maximum, is what a tolerance convention can act on.
 
 **P2 row.**
 `{op_class: conv2d_fp32_reference_budget, rule: report (rho_max, frac_over) per (family, engine class,
-reduction depth, geometry); admission is keyed on frac_over, not rho, domain_predicate: unconditional iff
-$\mathrm{frac\_over} = 0$; distribution-conditional iff $0 < \mathrm{frac\_over} < 0.02$; inadmissible iff
+reduction depth, geometry); the diagnostic is keyed on frac_over, not rho, and it constrains what a reported ratio MEANS rather than
+whether a candidate passes, domain_predicate: benchmark agreement is a separate binary whole-tensor check
+against the recorded reference and is never inferred from frac_over; the diagnostic is anchor-clean iff
+$\mathrm{frac\_over} = 0$, tail-conditional iff $0 < \mathrm{frac\_over} < 0.02$, bulk-inadmissible iff
 $\mathrm{frac\_over} > 0.5$;
 derived_coords: K_eff, engine_class (categorical), rho_max, frac_over, C, output extent; boundary_ref:
 results/a7_kernelclass.json + results/a7b_precision_policy.json + results/a8_compress_v2.json;

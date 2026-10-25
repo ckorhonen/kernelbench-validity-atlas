@@ -37,8 +37,39 @@ FROZEN VERDICTS (written before the run):
   V3 comparison to the s6 pessimistic proxy (abs-only pass-frac 0.0 both families):
      V1 >= 0.90 => that 0.0 was instrument pessimism, and s6 V2's FAIL is explained
      without a mechanism change. V1 < 0.50 => the 0.0 was directionally right.
-Determinism: the reference and the gate arm are computed twice on one row per family and
-asserted bit-equal. No timing claim is made from this script.
+Determinism: the reference AND the delivered hand computation are each computed twice on one row
+per family from a FIXED seed and asserted bit-equal. (v1 only repeated the reference, on freshly
+drawn tensors, which checked nothing about the hand arm — DE1paW round-5 finding 2.)
+
+ROUND-5 REPAIRS TO THIS SCRIPT (frozen here before the rerun, DE1paW review findings 2 and 3):
+  R1 OPERATION MISMATCH. v1 built conv references WITH a bias (F.conv2d(x,w,b)) while the hand arm
+     conv_impgemm stores the accumulator only and never adds a bias, and the original
+     lab/w4_heldout.py reference is bias-free. So v1 compared bias-free hands against biased
+     references: the 0/4 conv pass result and the 1.7e4-2.9e4 budget ratios were dominated by a
+     missing bias term, not by arithmetic. Fixed: bias removed, matching w4_heldout exactly.
+  R2 SEED. v1 set no seed and recorded none. Fixed: a per-row torch.manual_seed derived from the
+     shape, recorded per row.
+  R3 BUDGET-RATIO REPORTING. v1's prose quoted 17,431-23,783 for the conv hand ratios; the
+     artifact's actual range is 17,346.98-28,839.35. Fixed: ranges are COMPUTED from the artifact
+     at report time, never transcribed.
+  R4 CORRECTNESS-CONDITIONED COST. V2's reduction mean included one row where the delivered arm
+     FAILS the contract (K=393216, M=384, tsplit_S64_KT64, budget ratio 1.2285). A cost for
+     admissible delivery must not be averaged over an inadmissible delivery. Fixed: per-row
+     pass/fail is reported explicitly, the all-row mean and the passing-only mean are BOTH
+     reported, and the failing row's regret is reported separately with the fallback that would
+     have been used (torch, which passes).
+  R5 BASELINE LABEL. The arm pool is eager torch (torch.sum / F.conv2d); there is no
+     torch.compile arm here, so nothing in this table supports a compile claim. Recorded in the
+     header and reported as such.
+
+FROZEN VERDICTS (unchanged from v1; the bars are NOT moved after seeing v1's numbers):
+  V1 certificate health: among rows where the frozen gate delivers a HAND arm, the fraction whose
+     delivered arm passes the full contract. >=0.90 stands / 0.50-0.90 restated per row / <0.50
+     withdrawn.
+  V2 admissible delivery cost in TIME, correctness-conditioned: the fastest arm that passes; gate
+     regret against that arm. Rows where the delivered arm fails are reported as failures with a
+     named fallback, and excluded from the passing-only mean.
+  V3 comparison to the s6 abs-only 0.0 pass-frac.
 
 Run on spark: python3 s56_heldout_contract.py -> results/s56_heldout_contract.json
 """
@@ -137,13 +168,16 @@ def red_row(K, M):
 
 
 def conv_row(N, H, C):
+    # R2: fixed seed per shape, recorded. R1: NO bias — conv_impgemm stores the accumulator only, and
+    # lab/w4_heldout.py's reference is bias-free, so a biased reference compares different operations.
+    seed = (N * 1000003 + H * 7919 + C * 104729) % (2 ** 31 - 1)
+    torch.manual_seed(seed)
     x = torch.randn(N, C, H, H, dtype=torch.float32, device=dev)
     w = torch.randn(C, C, 3, 3, dtype=torch.float32, device=dev)
-    b = torch.randn(C, dtype=torch.float32, device=dev)
-    ref = F.conv2d(x, w, b, stride=1, padding=1)
-    ref64 = F.conv2d(x.double(), w.double(), b.double(), stride=1, padding=1)
+    ref = F.conv2d(x, w, stride=1, padding=1)
+    ref64 = F.conv2d(x.double(), w.double(), stride=1, padding=1)
     arms = {"torch": budget_ratio(ref, ref)}
-    arms["torch"]["t_ms"] = evt(lambda: F.conv2d(x, w, b, stride=1, padding=1))
+    arms["torch"]["t_ms"] = evt(lambda: F.conv2d(x, w, stride=1, padding=1))
     M = N * H * H
     for name, BMx, BN, BK, nw in VARIANTS:
         out = torch.empty_like(ref)
@@ -162,7 +196,8 @@ def conv_row(N, H, C):
         arms[name] = a
     r = budget_ratio(ref, ref64)
     return arms, {"rho_ref_fp64": r["budget_ratio"], "ref_err_fp64": r["err_abs"],
-                  "ref_pass_full_vs_fp64": r["pass_full"], "ref_absmax": r["ref_absmax"]}
+                  "ref_pass_full_vs_fp64": r["pass_full"], "ref_absmax": r["ref_absmax"],
+                  "seed": seed, "bias": False}
 
 
 def main():
@@ -191,11 +226,17 @@ def main():
         else:
             arms, refs = conv_row(r["N"], r["H"], r["C"])
             if not det_checked["conv"]:
+                # R3/det: re-derive the same inputs from the recorded seed and compare the DELIVERED
+                # hand computation twice — v1 repeated only the reference on fresh tensors.
+                torch.manual_seed(refs["seed"])
                 x2 = torch.randn(r["N"], r["C"], r["H"], r["H"], dtype=torch.float32, device=dev)
                 w2 = torch.randn(r["C"], r["C"], 3, 3, dtype=torch.float32, device=dev)
-                b2 = torch.randn(r["C"], dtype=torch.float32, device=dev)
-                c1 = F.conv2d(x2, w2, b2, stride=1, padding=1); c2 = F.conv2d(x2, w2, b2, stride=1, padding=1)
-                det_checked["conv"] = bool(torch.equal(c1, c2))
+                o1 = torch.empty(r["N"], r["C"], r["H"], r["H"], dtype=torch.float32, device=dev)
+                o2 = torch.empty_like(o1)
+                g = (triton.cdiv(r["N"] * r["H"] * r["H"], BM) * triton.cdiv(r["C"], BM),)
+                conv_impgemm[g](x2, w2, o1, r["N"], r["H"], r["H"], r["C"], r["C"], BM=BM, BN=BM, BK=BM, num_warps=4)
+                conv_impgemm[g](x2, w2, o2, r["N"], r["H"], r["H"], r["C"], r["C"], BM=BM, BN=BM, BK=BM, num_warps=4)
+                det_checked["conv"] = bool(torch.equal(o1, o2))
             key = {"family": "conv", "N": r["N"], "H": r["H"], "C": r["C"]}
         key.update({
             "gate_fires": r["gate_fires"], "gate_choice": r["arms"]["gate"]["choice"],
@@ -211,6 +252,70 @@ def main():
     out["determinism"] = det_checked
     json.dump(out, open(OUT, "w"), indent=1)
     print("wrote", OUT, "rows", len(out["rows"]), "det", det_checked)
+    write_analysis(out)
+
+
+def write_analysis(out):
+    """Correctness-conditioned cost table (R4). A cost for ADMISSIBLE delivery must not average over a
+    delivery that fails the contract, so failing rows are reported as failures with the fallback that
+    would have passed, and both the all-row and passing-only means are reported."""
+    import statistics as st
+    rows = out["rows"]
+    analysis = {"header": {"date": DATE, "source": "s56_heldout_contract.json",
+                           "convention": "frozen in write_analysis docstring before the run",
+                           "baseline": "eager torch only (torch.sum / F.conv2d); NO torch.compile arm "
+                                       "in this pool, so nothing here supports a compile claim",
+                           "bars": "V1 bars unchanged from v1: >=0.90 stands / 0.50-0.90 per-row / <0.50 withdrawn"},
+                "rows": []}
+    for r in rows:
+        fam, gate = r["family"], r["gate_choice"]
+        arms = r["arms"]
+        ga = arms.get(gate, {})
+        gate_passes = bool(ga.get("pass_full"))
+        admissible = [k for k, v in arms.items() if v.get("pass_full") and v.get("t_ms") is not None]
+        best = min(admissible, key=lambda k: arms[k]["t_ms"]) if admissible else None
+        rec = {"family": fam, "shape": {k: r.get(k) for k in ("K", "M", "N", "H", "C") if r.get(k) is not None},
+               "gate_choice": gate, "gate_arm_passes": gate_passes,
+               "gate_budget_ratio": ga.get("budget_ratio"),
+               "gate_t": ga.get("t_ms"), "empty": not admissible,
+               "best_arm": best, "best_t": arms[best]["t_ms"] if best else None,
+               "fallback_for_failing_row": ("torch" if not gate_passes and arms.get("torch", {}).get("pass_full")
+                                            else None)}
+        if best and ga.get("t_ms") is not None:
+            rec["gate_regret_time_frac"] = (ga["t_ms"] - arms[best]["t_ms"]) / arms[best]["t_ms"]
+        analysis["rows"].append(rec)
+
+    summ = {}
+    for fam in ("reduction", "conv"):
+        fr = [x for x in analysis["rows"] if x["family"] == fam]
+        fired = [x for x in fr if str(x["gate_choice"]).startswith(("tsplit", "imp_"))]
+        passing = [x for x in fired if x["gate_arm_passes"]]
+        failing = [x for x in fired if not x["gate_arm_passes"]]
+        allreg = [x["gate_regret_time_frac"] for x in fr if x.get("gate_regret_time_frac") is not None]
+        passreg = [x["gate_regret_time_frac"] for x in passing if x.get("gate_regret_time_frac") is not None]
+        br = sorted(x["gate_budget_ratio"] for x in failing if x.get("gate_budget_ratio") is not None)
+        summ[fam] = {
+            "n_rows": len(fr), "n_hand_fired": len(fired), "n_hand_admissible": len(passing),
+            "v1_pass_fraction": (len(passing) / len(fired)) if fired else None,
+            "failing_rows": [{"shape": x["shape"], "gate": x["gate_choice"],
+                              "budget_ratio": x["gate_budget_ratio"],
+                              "regret_frac": x.get("gate_regret_time_frac"),
+                              "fallback": x["fallback_for_failing_row"]} for x in failing],
+            "failing_budget_ratio_range": [br[0], br[-1]] if br else None,
+            "regret_all_rows": {"n": len(allreg), "mean": st.mean(allreg) if allreg else None,
+                                "se": (st.stdev(allreg) / len(allreg) ** .5) if len(allreg) > 1 else None},
+            "regret_passing_rows_only": {"n": len(passreg), "mean": st.mean(passreg) if passreg else None},
+            "baseline_note": "eager torch; the pool has no torch.compile arm",
+        }
+    analysis["summary"] = summ
+    json.dump(analysis, open(os.path.join(RES, "s56_analysis.json"), "w"), indent=1)
+    print("wrote s56_analysis.json")
+    for fam, v in summ.items():
+        print(f"  {fam}: fired={v['n_hand_fired']} admissible={v['n_hand_admissible']} "
+              f"v1_frac={v['v1_pass_fraction']} "
+              f"all_rows_mean={v['regret_all_rows']['mean']} "
+              f"passing_only_mean={v['regret_passing_rows_only']['mean']} "
+              f"failing_budget_range={v['failing_budget_ratio_range']}")
 
 
 if __name__ == "__main__":

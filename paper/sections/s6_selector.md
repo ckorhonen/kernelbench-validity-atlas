@@ -42,23 +42,41 @@ is an empirical argument from gap magnitude, **not** a bound in time units: nume
 of selecting a different admissible arm are different currencies, and no mathematical link between them is
 established here.
 
-**That gap is now measured in time units** (`results/s56_heldout_contract.json`, `results/s56_analysis.json`,
-`ATLAS_S56.md`; prereg frozen pre-run, same-session med-of-12, 34 held-out rows, determinism asserted). The
-result splits by family and does not flatter the selector:
+**That gap is now measured in time units, correctness-conditioned** (`results/s56_heldout_contract.json`,
+`results/s56_analysis.json`, `ATLAS_S56.md`; prereg frozen pre-run, seeded per row, same-session med-of-12,
+34 held-out rows, determinism asserted on the *delivered hand computation* rather than only the reference).
+A review of the first run found the conv half of this table invalid, so the table below is the rerun.
 
-- **reduction**: 11 of 12 gate hand deliveries pass the full contract (0.917). Against the fastest
-  *admissible* arm per row the gate costs **+4.13% (SE 1.40, t 2.94)**, worse by more than 1% on 13 of 24
-  rows and better on none. The frozen rule picks S64_KT64 where S16_KT64 or S4_KT64 is faster, so the
-  selector is admissible but leaves a consistent 4% on the table.
-- **conv**: 0 of 4 hand deliveries pass the full contract — budget ratios 17,431 to 23,783, not marginal
-  misses. torch is the best admissible arm on 10 of 10 rows and the gate delivers torch on 6 of 10. The
-  apparent −10.2% "gate advantage" is therefore the gate's *inadmissible* hands being faster than the only
-  admissible option, which §4 says not to count. **The conv delivery claim is withdrawn** in favour of the
-  narrower statement that the gate never selects a conv hand which passes.
+The first run's conv numbers were not about arithmetic. Its reference was built with a bias
+(`F.conv2d(x, w, b)`) while the hand arm `conv_impgemm` stores the accumulator and never adds one, and the
+original `w4_heldout` reference is bias-free — so it compared bias-free hands against biased references and
+produced budget ratios of 17,347-28,839. With the bias removed the same four hand deliveries fail at ratios
+**94-197**, still not marginal, so the qualitative conclusion survives while the magnitude does not: those
+four rows were about 100× worse than they should have been. Reduction also moved, because the rerun seeds
+each row instead of drawing fresh tensors: admissibility is **9/12 (0.75)**, not 11/12, with the three
+failures at budget ratios 1.61, 2.57 and 7.11.
+
+- **reduction**: 9 of 12 gate hand deliveries pass the full contract, which is the prereg's middle branch
+  and means the claim is per-row rather than a family rule. Correctness-conditioned cost: over the 9
+  passing rows the gate costs **+0.86%** against the fastest admissible arm; over all 24 rows including the
+  three failures it costs +3.53% (SE 1.37). Both are reported because averaging a failed delivery into a
+  cost for admissible delivery is the mistake the first version made — its +4.13% included a row at budget
+  ratio 1.23 whose arm fails.
+- **conv**: 0 of 4 hand deliveries pass, at budget ratios 94-197. torch is the best admissible arm on
+  10 of 10 rows and the gate delivers torch on 6 of 10. The apparent −6.35% "gate advantage" is the gate's
+  *inadmissible* hands being faster than the only admissible option, which §4 says not to count. **The conv
+  delivery claim is withdrawn.**
+
+Two scoping facts about this table, stated because they are easy to overread. Its arm pool is eager
+torch (`torch.sum`, `F.conv2d`) and contains no `torch.compile` arm, so nothing here supports a compile
+claim — the compile comparison lives in §3.3 and is a different measurement. And the failing rows need a
+specified fallback before any all-row cost can be quoted: torch passes on every one of them, so a
+contract-preserving selector would fall back to torch there, and the cost of that fallback is the torch
+timing, not a regret.
 
 This also explains the earlier certificate-health FAIL without a mechanism change: the 0.0 pass-frac in
 `s6_dispatcher_audit.json` came from an absolute-only reading that was pessimism for reduction (where the
-rtol term rescues 11/12) and a true negative for conv (where the arms genuinely fail). One number, two
+rtol term rescues most rows) and a true negative for conv (where the arms genuinely fail). One number, two
 different meanings — which is why it looked like a mechanism result.
 
 What *is* a lower bound: under the pessimistic absolute-only reading, the b4/b8-chosen hands fail the

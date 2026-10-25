@@ -56,8 +56,11 @@ compression test (§4.5) is a calibration question in a different space: whether
 be predicted for unmeasured shapes from derived coordinates, or must be measured per shape. The result
 mirrors the shift literature's direction — the magnitude field calibrates out of fold (Spearman 0.986 with
 the engine class) while the admission field does not (79% vs 100% bulk accuracy) — and the reason is
-structural rather than statistical: the engine class is a dispatch decision that is not a function of the
-coordinates used to predict it (§4.5, §7.1), so no amount of fitting recovers it.
+structural rather than statistical: the engine class is a dispatch decision that these four coordinates do
+not recover (§4.5, §7.1). A nearest-centroid failure over a fixed projection is not an impossibility result;
+the class may still be a deterministic function of a larger tuple (the heuristic's own inputs), which is why
+the paper states 0.604 as a finite-grid result and leaves the tuple test open rather than claiming that no
+amount of fitting recovers it.
 
 ## 9.4 What this paper does not claim
 

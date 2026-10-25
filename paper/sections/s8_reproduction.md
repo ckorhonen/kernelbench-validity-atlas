@@ -39,7 +39,7 @@ the class that let a unit error through — see the note above):
 
 | script | what it audits | status from inside the package |
 |---|---|---|
-| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 42 cited / 42 found / 0 missing |
+| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 43 cited / 43 found / 0 missing |
 | `s50_prose_audit.py` | every number cited in §2 and §4 | exit 0, 19/19 |
 | `s51_prose_audit.py` | every number cited in §4.5-§8 | exit 0, 31/31 |
 | `s52_prose_audit.py` | §4.5 and §5.2 composition numbers, computed from the artifacts rather than string-matched | exit 0, 16/16 |
@@ -58,7 +58,7 @@ pinned public commit, which the package names explicitly.
 
 `lab/s48_provenance.py` scans every markdown file in `paper/` for cited results artifacts and emits
 `paper/PROVENANCE.md` with sha256, byte size, mtime, producer script, and top-level fields per artifact. It
-hard-fails when a cited artifact is absent. Current state after the round-5 repairs: 42 cited, 42 found, 0 missing.
+hard-fails when a cited artifact is absent. Current state after the round-5 repairs and the A10 crossing study: 43 cited, 43 found, 0 missing.
 Two defects in the generator itself were found and fixed before it was trusted: a regex alternation that
 truncated `.jsonl` names to `.json`, and self-poisoning when the generated `PROVENANCE.md` was included in
 the citation scan. A third was found at packaging: the table cites itself, so its own digest, byte size and

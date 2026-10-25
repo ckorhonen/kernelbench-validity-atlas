@@ -3,7 +3,7 @@
 *Artifact status.* Every number in this manuscript is regenerated from committed artifacts by shipped
 auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16,
 `s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 6/6) and mapped to its file and field in
-`PROVENANCE.md` (42 cited / 42 found / 0 missing). The auditors exit nonzero on a cited value they cannot
+`PROVENANCE.md` (43 cited / 43 found / 0 missing). The auditors exit nonzero on a cited value they cannot
 reproduce, the supplement ships them together with the artifacts they read, and the build runs every
 CPU-only script from inside the shipped package and fails if any exits nonzero, so the package is
 re-runnable as delivered.
@@ -22,7 +22,7 @@ Every number in this section is regenerated from committed artifacts by `lab/s53
 (`results/s53_intro_audit.json`), which runs before the file is committed and hard-fails on any cited
 value it cannot reproduce. The section cites only numbers that are also covered by the per-section audits
 already shipped (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16) and by
-the provenance table (`paper/PROVENANCE.md`, 41 cited / 41 found / 0 missing).
+the provenance table (`paper/PROVENANCE.md`, 43 cited / 43 found / 0 missing).
 
 ---
 
@@ -70,7 +70,9 @@ replicated to ≤0.13% across a 9.6 h interval (`results/e1_triad_day2.json`).
 The reference-realization axis (§2) produced the paper's central measurement. A pass verdict is a
 three-place relation (candidate, reference realization, budget) and the platform treats it as two-place.
 Defining rho as the reference's own consumption in multiples of the contract budget, an ordinary fp32
-matmul reference crosses rho = 1 between K = 3608 and K = 3632 (`results/a6d_crossing.json`), and fp32
+matmul reference's rho crosses 1 between K = 3608 and K = 3632 on the single draws that were bisected
+(`results/a6d_crossing.json`), but a 6-seed neighborhood study shows the verdict there is a coin flip
+(4/6 pass at 3608, 2/6 at 3632) rather than a threshold (`results/a10_crossing_neighborhood.json`), and fp32
 conv2d splits into two dispatch classes that differ by three orders of magnitude at matched reduction
 depth: a winograd engine at rho 10.195 with 0.52% of elements over budget, and TF32 tensor-op engines at
 rho 251.69 with 78.2% over budget (`results/a7_kernelclass.json`). The first is flag-invisible and
@@ -86,10 +88,13 @@ output extent moves rho 20-38× (`ATLAS_A8.md`, `results/a8b_analysis.json`).
 
 ## 1.4 What survives
 
-**The certificate (§4).** Admission keys on frac_over, not rho_max: 0 is unconditional, below 0.02 is
-distribution-conditional with the passing subset stated, above 0.5 is bulk-inadmissible. The rationale is
-measured, not stipulated — a rho_max 10.2 winograd row is a tail problem and conditionally claimable while a
-rho_max 111 TF32 row is a bulk failure no tolerance loosening rescues.
+**The certificate (§4).** Benchmark agreement is a binary whole-tensor check against the recorded reference,
+and no anchor statistic can upgrade or downgrade it. Separately, the reference's own consumption
+(rho_max, frac_over) is a *diagnostic* that constrains what a reported ratio means: frac_over 0 means the
+reference is indistinguishable from an exact anchor at the budget, below 0.02 a tail problem confined to a
+sparse set, above 0.5 a bulk failure in which both arms miss the contract. The rationale is measured, not
+stipulated — a rho_max 10.2 winograd row is a tail problem and conditionally reportable while a rho_max 111
+TF32 row is a bulk failure no tolerance loosening rescues.
 
 **The compression result (§4.5).** The certificate's magnitude field compresses onto derived coordinates
 out of fold (Spearman 0.833 from geometry alone, 0.986 with the engine class supplied), and the admission
@@ -195,12 +200,18 @@ Measured on real benchmark shapes (`results/a6_refdistance.json`, `a6b_ksweep.js
 `a7_kernelclass.json`, `a7b_precision_policy.json`; preregs `lab/a6_refdistance_prereg.md` and
 `lab/a7_kernelclass_prereg.md`, both committed before their runs):
 
-**fp32 matmul is monotone in reduction depth and crosses the budget.** rho 0.081 at K=128, 0.271 at K=512,
-0.672 at K=2048, 3.414 at K=8192 under pure fp32 accumulation (`allow_tf32=False`, precision highest). The
-crossing was **measured**, not interpolated: bisection put it between K=3608 (rho 0.990) and K=3632
-(rho 1.232). An ordinary fp32 matmul reference cannot pass this benchmark's own 1e-4 contract at K ≳ 3.6k.
-The pre-registered 2× band around the interpolated 2875 was satisfied (P1 held); the log-log model was not
-retracted, but the measured point is what the paper reports.
+**fp32 matmul reference error grows with reduction depth, and the pass verdict is a draw, not a threshold.**
+rho 0.081 at K=128, 0.271 at K=512, 0.672 at K=2048, 3.414 at K=8192 under pure fp32 accumulation
+(`allow_tf32=False`, precision highest), and the 6-seed medians rise 1.046 -> 1.398 across K 3.6k-4.1k. But
+the rho=1 crossing is **not** a threshold: a neighborhood-and-seed study at M=N=1024
+(`results/a10_crossing_neighborhood.json`, prereg frozen pre-run; 66 rows, 11 K values x 6 seeds) finds the
+pass fraction at K=3608 to be 4/6 and at K=3632 to be 2/6, per-draw rho scatter of +-0.2, **no seed monotone
+in K** (0/6, violations to -0.36), and a re-entry at K=3840 (1/6 pass) after two all-fail K values. The
+earlier bisected bracket (K=3608 rho 0.990 / K=3632 rho 1.232, `results/a6d_crossing.json`) was one draw's
+answer and is now reported as such. What the paper claims is the measured pass-probability curve: an ordinary
+fp32 matmul reference at 1e-4 fails on most draws from K~3.6k and on all sampled draws from 3.68k, while a
+minority of draws still pass at 3.6k-3.84k. The pre-registered 2x band around the interpolated 2875 was
+satisfied (A6d's P1 held); the log-log model was not retracted.
 
 **fp32 conv2d is not a depth function at all — it is a dispatch surface with two classes, and the classes
 have different fixes.** The profiler names the engines directly, and the routing is what produces the
@@ -268,19 +279,30 @@ surface is "which engine ran," a categorical coordinate, not a continuous derive
 **The certificate's admission rule, and why it is keyed on frac_over rather than on rho.** frac_over is the
 fraction of output elements at or over the contract budget, so $\mathrm{frac\_over} = 0$ is exactly the
 statement "this reference realization passes the benchmark's own check against the fp64 anchor," and
-$\rho_{\max}$ then only measures how much slack is left. That gives a three-level rule that a third party can evaluate from a row's
-own records without trusting us:
+$\rho_{\max}$ then only measures how much slack is left. That gives a three-level *diagnostic* that a third
+party can evaluate from a row's own records without trusting us. The word diagnostic is load-bearing and was
+wrong in an earlier draft, which called frac_over = 0 "unconditional": the three levels say what the
+reference's own accuracy permits you to *report*, not whether a candidate passes. Benchmark agreement is a
+binary whole-tensor check against the recorded reference (§4.1, §8.4), and no anchor statistic can upgrade
+or downgrade it:
 
-- **Unconditional** — $\mathrm{frac\_over} = 0$: the baseline is admissible against an exact anchor, so a speedup
-  reported against it is a claim about the kernel, and no reference caveat is needed. Measured rows in this
-  class: explicit im2col+fp32 matmul (rho 0.657), cudnn-disabled conv (0.192), plain fp32 matmul K=2304 (0.202).
-- **Distribution-conditional** — $0 < \mathrm{frac\_over} < 0.02$: the baseline fails on a negligible tail (winograd
-  3×3 s1: frac_over 0.0052, rho_max 10.195), so the speedup is claimable only for the element subset that
-  passes, and the paper must say how many elements that is. Rescue is possible here because the failing set
-  is sparse; a tolerance loosening that covers 0.5% of elements is a defensible convention, not a fiction.
-- **Inadmissible** — $\mathrm{frac\_over} > 0.5$: the baseline fails in bulk (TF32 routes: 0.77–0.78), so a speedup
-  against it is a comparison between two things that both miss the contract, and neither can be certified by
-  loosening. Report the pair, not a ratio.
+- **No anchor caveat** — $\mathrm{frac\_over} = 0$: this reference realization is indistinguishable from an exact
+  anchor at the budget, so the diagnostic pair (rho_max, frac_over) adds nothing beyond saying the anchor and
+  the reference agree on every element. It does **not** make the row's verdict unconditional: benchmark
+  agreement is candidate-versus-reference, and a candidate identical to the recorded reference passes
+  whatever the reference's own distance from fp64. What frac_over = 0 buys is that a *separately declared*
+  relaxed application contract has no sparse-failure problem to argue about. Measured rows in this class:
+  explicit im2col+fp32 matmul (rho 0.657), cudnn-disabled conv (0.192), plain fp32 matmul K=2304 (0.202).
+- **Tail-conditional diagnostic** — $0 < \mathrm{frac\_over} < 0.02$: the reference fails on a negligible tail
+  (winograd 3×3 s1: frac_over 0.0052, rho_max 10.195). Two things follow and they are separate. For the
+  benchmark contract, nothing follows — the row is scored whole-tensor candidate-versus-reference and the
+  verdict is whatever that check returns. For a relaxed contract, the reference's failing set is sparse, so
+  a loosening that covers 0.5% of elements is a defensible convention *provided it is declared and its own
+  candidate-level evidence is supplied*. It is not a licence to call the benchmark row correct.
+- **Bulk-inadmissible diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
+  0.77–0.78), so a speedup ratio computed against it compares two things that both miss the contract, and
+  no loosening rescues that. Report the pair, not a ratio. This one *is* a claim about the ratio's meaning
+  rather than about the row's pass/fail.
 
 The rho_max column stays in every row because it is the severity index that decides *how much* slack a
 conditional row has, but it does not decide admissibility on its own: a row can have rho_max 10.2 and be
@@ -289,8 +311,10 @@ distribution, not the maximum, is what a tolerance convention can act on.
 
 **P2 row.**
 `{op_class: conv2d_fp32_reference_budget, rule: report (rho_max, frac_over) per (family, engine class,
-reduction depth, geometry); admission is keyed on frac_over, not rho, domain_predicate: unconditional iff
-$\mathrm{frac\_over} = 0$; distribution-conditional iff $0 < \mathrm{frac\_over} < 0.02$; inadmissible iff
+reduction depth, geometry); the diagnostic is keyed on frac_over, not rho, and it constrains what a reported ratio MEANS rather than
+whether a candidate passes, domain_predicate: benchmark agreement is a separate binary whole-tensor check
+against the recorded reference and is never inferred from frac_over; the diagnostic is anchor-clean iff
+$\mathrm{frac\_over} = 0$, tail-conditional iff $0 < \mathrm{frac\_over} < 0.02$, bulk-inadmissible iff
 $\mathrm{frac\_over} > 0.5$;
 derived_coords: K_eff, engine_class (categorical), rho_max, frac_over, C, output extent; boundary_ref:
 results/a7_kernelclass.json + results/a7b_precision_policy.json + results/a8_compress_v2.json;
@@ -612,12 +636,13 @@ it produced a two-class decomposition instead of a failed AUC.
 
 ## 4.4 What the certificate changes, and what it does not
 
-**Changes.** A speedup at a row whose frac_over is 0.77 (any TF32 conv route) is not a speedup; it is a
-comparison of two arms that both miss the contract, and the paper says so before the ratio. A speedup at a
-winograd row with frac_over 0.005 is claimable on 99.5% of elements and the paper states the subset. On the
-reduction family, where the certificate is clean at default precision (baseline 56/56), the published
-rankings stand unchanged — the certificate costs nothing where it is not needed, which is the test of whether
-it is a ritual.
+**Changes.** A speedup ratio computed at a row whose frac_over is 0.77 (any TF32 conv route) is a ratio
+between two arms that both miss the contract, and the paper says so before quoting it — what that row's
+*verdict* is, is decided by the benchmark's own candidate-versus-reference check and not by frac_over. At a
+winograd row with frac_over 0.005 the ratio stands as measured and the paper states that 0.5% of reference
+elements are the ones the reference itself misses. On the reduction family, where the certificate is clean at
+default precision (baseline 56/56), the published rankings stand unchanged — the certificate costs nothing
+where it is not needed, which is the test of whether it is a ritual.
 
 **Does not change.** The certificate does not tell you which kernel is faster. It tells you whether the
 comparison was admissible, which is prior to the question. That is the deliberate demotion: §6 treats the
@@ -625,12 +650,16 @@ selector as a studied object precisely because a selector over inadmissible arms
 
 **P2 row.**
 `{op_class: all_benchmark_rows, rule: every results row carries {reference_realization, rho_max, frac_over,
-admissible_delivery_set, regret_basis}; delivery claims are conditional on frac_over as in §4.1,
-domain_predicate: certificate defined for every row; delivery claim defined iff frac_over < 0.5,
+admissible_delivery_set, regret_basis}; a delivery claim requires the candidate to pass the benchmark's own
+whole-tensor check against the recorded reference — the (rho_max, frac_over) pair is a diagnostic on the
+reference and cannot substitute for that check, as in §4.1,
+domain_predicate: certificate defined for every row; delivery claim defined iff candidate-vs-reference allclose
+passes at 1e-4 (binary, whole-tensor); a relaxed contract, if declared, states its own candidate-level
+threshold and justification rather than inheriting frac_over,
 derived_coords: frac_over, rho_max, admissible_pool_size, boundary_ref: results/r45_rider_adm.json,
 results/cushion_screen.json, results/a7_kernelclass.json, variance: regret bounds reported as paired
 differences with n; AUC reported with its rider transfer, n_reps: 1 per row (deterministic records),
-date: 2026-10-24}`
+date: 2026-10-25}`
 
 ## 4.5 Is the certificate a surface or a lookup table? (A8, added tick #51)
 
@@ -646,9 +675,15 @@ The answer splits by field, and the split is the finding:
   with the engine class supplied as one categorical coordinate, and 0.833 from derived geometry alone
   (log k_eff, log n_elem, log C, log H) with no class at all. But rank is not calibration: the geometry-only
   model's median multiplicative prediction error is **6.84×** and its worst row is 156.7× off
-  (`results/s55_review_repair.json`; class+derived 2.09×/440×, class-median 2.71×/978×). So the field is a
-  surface for *ordering* and a lookup for *value*, and the earlier draft reported only the Spearman. Both
-  numbers belong in the row.
+  (`results/s55_review_repair.json`). The model the headline Spearman 0.986 belongs to is the
+  corrected-class model, and its own magnitude errors must be read from the same artifact that produced the
+  correlation: refitted on `results/a8_compress_v2.json` it gives median 1.251× and worst 2.409×
+  (`results/a8b_analysis.json`; recomputed in `results/s55_review_repair.json`). An earlier draft paired the
+  0.986 with 2.09×/440×, which are the *older* classification's numbers from `results/a8_analysis.json` — a
+  model mismatch, since a rank statistic from one model cannot be calibrated by another's residuals. Both
+  models' numbers are reported here rather than merged: geometry-only 6.84×/156.7×, corrected class+derived
+  1.251×/2.409×, older class+derived 2.09×/440×. So the field is a surface for *ordering* and a lookup for
+  *value*, and the magnitude of the lookup depends on which model is being looked up.
 - **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
   100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
   exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.
@@ -857,23 +892,41 @@ is an empirical argument from gap magnitude, **not** a bound in time units: nume
 of selecting a different admissible arm are different currencies, and no mathematical link between them is
 established here.
 
-**That gap is now measured in time units** (`results/s56_heldout_contract.json`, `results/s56_analysis.json`,
-`ATLAS_S56.md`; prereg frozen pre-run, same-session med-of-12, 34 held-out rows, determinism asserted). The
-result splits by family and does not flatter the selector:
+**That gap is now measured in time units, correctness-conditioned** (`results/s56_heldout_contract.json`,
+`results/s56_analysis.json`, `ATLAS_S56.md`; prereg frozen pre-run, seeded per row, same-session med-of-12,
+34 held-out rows, determinism asserted on the *delivered hand computation* rather than only the reference).
+A review of the first run found the conv half of this table invalid, so the table below is the rerun.
 
-- **reduction**: 11 of 12 gate hand deliveries pass the full contract (0.917). Against the fastest
-  *admissible* arm per row the gate costs **+4.13% (SE 1.40, t 2.94)**, worse by more than 1% on 13 of 24
-  rows and better on none. The frozen rule picks S64_KT64 where S16_KT64 or S4_KT64 is faster, so the
-  selector is admissible but leaves a consistent 4% on the table.
-- **conv**: 0 of 4 hand deliveries pass the full contract — budget ratios 17,431 to 23,783, not marginal
-  misses. torch is the best admissible arm on 10 of 10 rows and the gate delivers torch on 6 of 10. The
-  apparent −10.2% "gate advantage" is therefore the gate's *inadmissible* hands being faster than the only
-  admissible option, which §4 says not to count. **The conv delivery claim is withdrawn** in favour of the
-  narrower statement that the gate never selects a conv hand which passes.
+The first run's conv numbers were not about arithmetic. Its reference was built with a bias
+(`F.conv2d(x, w, b)`) while the hand arm `conv_impgemm` stores the accumulator and never adds one, and the
+original `w4_heldout` reference is bias-free — so it compared bias-free hands against biased references and
+produced budget ratios of 17,347-28,839. With the bias removed the same four hand deliveries fail at ratios
+**94-197**, still not marginal, so the qualitative conclusion survives while the magnitude does not: those
+four rows were about 100× worse than they should have been. Reduction also moved, because the rerun seeds
+each row instead of drawing fresh tensors: admissibility is **9/12 (0.75)**, not 11/12, with the three
+failures at budget ratios 1.61, 2.57 and 7.11.
+
+- **reduction**: 9 of 12 gate hand deliveries pass the full contract, which is the prereg's middle branch
+  and means the claim is per-row rather than a family rule. Correctness-conditioned cost: over the 9
+  passing rows the gate costs **+0.86%** against the fastest admissible arm; over all 24 rows including the
+  three failures it costs +3.53% (SE 1.37). Both are reported because averaging a failed delivery into a
+  cost for admissible delivery is the mistake the first version made — its +4.13% included a row at budget
+  ratio 1.23 whose arm fails.
+- **conv**: 0 of 4 hand deliveries pass, at budget ratios 94-197. torch is the best admissible arm on
+  10 of 10 rows and the gate delivers torch on 6 of 10. The apparent −6.35% "gate advantage" is the gate's
+  *inadmissible* hands being faster than the only admissible option, which §4 says not to count. **The conv
+  delivery claim is withdrawn.**
+
+Two scoping facts about this table, stated because they are easy to overread. Its arm pool is eager
+torch (`torch.sum`, `F.conv2d`) and contains no `torch.compile` arm, so nothing here supports a compile
+claim — the compile comparison lives in §3.3 and is a different measurement. And the failing rows need a
+specified fallback before any all-row cost can be quoted: torch passes on every one of them, so a
+contract-preserving selector would fall back to torch there, and the cost of that fallback is the torch
+timing, not a regret.
 
 This also explains the earlier certificate-health FAIL without a mechanism change: the 0.0 pass-frac in
 `s6_dispatcher_audit.json` came from an absolute-only reading that was pessimism for reduction (where the
-rtol term rescues 11/12) and a true negative for conv (where the arms genuinely fail). One number, two
+rtol term rescues most rows) and a true negative for conv (where the arms genuinely fail). One number, two
 different meanings — which is why it looked like a mechanism result.
 
 What *is* a lower bound: under the pessimistic absolute-only reading, the b4/b8-chosen hands fail the
@@ -943,7 +996,8 @@ decomposition survives; the claim that the class follows from the conv parameter
   onto continuous derived coordinates. On the reference-realization surface they do not: derived-only
   prediction reaches Spearman 0.833 for rho_max but only 79% bulk accuracy for frac_over, while supplying a
   *categorical* engine coordinate lifts both to 0.986 / 100%. The collapse is categorical, and the
-  categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline. A
+  categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline on a
+  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. A
   reader who believes the spine requires a continuous surface should read this paper as a negative result on
   that form and a positive one on a bounded categorical surface.
 - **The floor model (E2b).** The claim that a hand kernel's advantage must exceed the two-launch floor
@@ -1037,7 +1091,7 @@ the class that let a unit error through — see the note above):
 
 | script | what it audits | status from inside the package |
 |---|---|---|
-| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 42 cited / 42 found / 0 missing |
+| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 43 cited / 43 found / 0 missing |
 | `s50_prose_audit.py` | every number cited in §2 and §4 | exit 0, 19/19 |
 | `s51_prose_audit.py` | every number cited in §4.5-§8 | exit 0, 31/31 |
 | `s52_prose_audit.py` | §4.5 and §5.2 composition numbers, computed from the artifacts rather than string-matched | exit 0, 16/16 |
@@ -1056,7 +1110,7 @@ pinned public commit, which the package names explicitly.
 
 `lab/s48_provenance.py` scans every markdown file in `paper/` for cited results artifacts and emits
 `paper/PROVENANCE.md` with sha256, byte size, mtime, producer script, and top-level fields per artifact. It
-hard-fails when a cited artifact is absent. Current state after the round-5 repairs: 42 cited, 42 found, 0 missing.
+hard-fails when a cited artifact is absent. Current state after the round-5 repairs and the A10 crossing study: 43 cited, 43 found, 0 missing.
 Two defects in the generator itself were found and fixed before it was trusted: a regex alternation that
 truncated `.jsonl` names to `.json`, and self-poisoning when the generated `PROVENANCE.md` was included in
 the citation scan. A third was found at packaging: the table cites itself, so its own digest, byte size and
@@ -1174,8 +1228,11 @@ compression test (§4.5) is a calibration question in a different space: whether
 be predicted for unmeasured shapes from derived coordinates, or must be measured per shape. The result
 mirrors the shift literature's direction — the magnitude field calibrates out of fold (Spearman 0.986 with
 the engine class) while the admission field does not (79% vs 100% bulk accuracy) — and the reason is
-structural rather than statistical: the engine class is a dispatch decision that is not a function of the
-coordinates used to predict it (§4.5, §7.1), so no amount of fitting recovers it.
+structural rather than statistical: the engine class is a dispatch decision that these four coordinates do
+not recover (§4.5, §7.1). A nearest-centroid failure over a fixed projection is not an impossibility result;
+the class may still be a deterministic function of a larger tuple (the heuristic's own inputs), which is why
+the paper states 0.604 as a finite-grid result and leaves the tuple test open rather than claiming that no
+amount of fitting recovers it.
 
 ## 9.4 What this paper does not claim
 

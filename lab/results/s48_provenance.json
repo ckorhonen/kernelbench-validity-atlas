@@ -1,9 +1,35 @@
 {
- "date": "2026-10-25T06:00:13Z",
- "n_cited": 42,
- "n_found": 42,
+ "date": "2026-10-25T16:57:04Z",
+ "n_cited": 43,
+ "n_found": 43,
  "missing": [],
  "entries": [
+  {
+   "artifact": "results/a10_crossing_neighborhood.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/sections/s1_introduction.md",
+    "paper/sections/s2_reference_axis.md"
+   ],
+   "sha256": "246aa82efdb16f309c5088d58605df19aae51c420b864b04ef413f7be6195309",
+   "bytes": 21123,
+   "mtime_utc": "2026-10-25T12:36:27Z",
+   "producers": [
+    "lab/a10_crossing_neighborhood.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "bracket",
+     "by_K",
+     "header",
+     "monotonicity",
+     "rows",
+     "verdict"
+    ]
+   },
+   "compressed": false
+  },
   {
    "artifact": "results/a6_refdistance.json",
    "sha256_note": null,
@@ -1048,7 +1074,7 @@
    ],
    "sha256": "a826d05eef0adb39a5452a236f21dea54e697b88d39d00e4e3fb2f04e1fd5b16",
    "bytes": 7782,
-   "mtime_utc": "2026-10-25T06:00:12Z",
+   "mtime_utc": "2026-10-25T16:57:04Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1083,7 +1109,7 @@
    ],
    "sha256": "ff6688db19b7b4f899f9532de70b5c145e1ead5d665b2646a94ee68f9594d16e",
    "bytes": 5268,
-   "mtime_utc": "2026-10-25T06:00:12Z",
+   "mtime_utc": "2026-10-25T16:56:41Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1107,9 +1133,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md"
    ],
-   "sha256": "6907ce45b441d1907262e666cdf6d4dd1473e68cbfb3a0da19d1b9592a23ff0d",
+   "sha256": "88abf57844ff42d3ed0ad3ef489f5467524f680c91766a849fd0a1d90cb9d92f",
    "bytes": 1763,
-   "mtime_utc": "2026-10-25T06:00:12Z",
+   "mtime_utc": "2026-10-25T16:56:42Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1136,9 +1162,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "b14a1922422ca98904a24fe1198ca32670f36880db90db3ccc270932faf0f816",
-   "bytes": 9581,
-   "mtime_utc": "2026-10-25T04:48:46Z",
+   "sha256": "58504c93042052c133a9cff04a1976b21c396fe038bf55bcf07bd64cea56ea6e",
+   "bytes": 10348,
+   "mtime_utc": "2026-10-25T07:43:31Z",
    "producers": [
     "lab/s55_review_repair.py"
    ],
@@ -1163,16 +1189,19 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "4fe7b74117572387803f4a94024898114002c78b7e43d62d195e9e34ea88e4f3",
-   "bytes": 11734,
-   "mtime_utc": "2026-10-24T18:35:39Z",
+   "sha256": "091ad8cdb5555a677dd7fd1646d4556c9f83f6ee7d89362af338d286a6a4531d",
+   "bytes": 15562,
+   "mtime_utc": "2026-10-25T07:50:47Z",
    "producers": [
-    "lab/s52_supplement_build.py"
+    "lab/s52_supplement_build.py",
+    "lab/s56_heldout_contract.py"
    ],
    "content": {
     "kind": "json",
     "keys": [
-     "rows"
+     "header",
+     "rows",
+     "summary"
     ]
    },
    "compressed": false
@@ -1184,9 +1213,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "bf09d550b34e816b1d23805bf5dd6e00d0ac0aa563611a5e8edd452bed3c5730",
-   "bytes": 77256,
-   "mtime_utc": "2026-10-24T18:35:06Z",
+   "sha256": "c8733a403a072b81913e20af1ddeebac0a8f773d1c585729a2af68f3e5c15816",
+   "bytes": 77711,
+   "mtime_utc": "2026-10-25T07:50:47Z",
    "producers": [
     "lab/s56_heldout_contract.py"
    ],
