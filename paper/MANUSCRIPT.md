@@ -3,7 +3,7 @@
 *Artifact status.* Every number in this manuscript is regenerated from committed artifacts by shipped
 auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16,
 `s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 6/6) and mapped to its file and field in
-`PROVENANCE.md` (43 cited / 43 found / 0 missing). The auditors exit nonzero on a cited value they cannot
+`PROVENANCE.md` (44 cited / 44 found / 0 missing). The auditors exit nonzero on a cited value they cannot
 reproduce, the supplement ships them together with the artifacts they read, and the build runs every
 CPU-only script from inside the shipped package and fails if any exits nonzero, so the package is
 re-runnable as delivered.
@@ -22,7 +22,7 @@ Every number in this section is regenerated from committed artifacts by `lab/s53
 (`results/s53_intro_audit.json`), which runs before the file is committed and hard-fails on any cited
 value it cannot reproduce. The section cites only numbers that are also covered by the per-section audits
 already shipped (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16) and by
-the provenance table (`paper/PROVENANCE.md`, 43 cited / 43 found / 0 missing).
+the provenance table (`paper/PROVENANCE.md`, 44 cited / 44 found / 0 missing).
 
 ---
 
@@ -212,6 +212,21 @@ answer and is now reported as such. What the paper claims is the measured pass-p
 fp32 matmul reference at 1e-4 fails on most draws from K~3.6k and on all sampled draws from 3.68k, while a
 minority of draws still pass at 3.6k-3.84k. The pre-registered 2x band around the interpolated 2875 was
 satisfied (A6d's P1 held); the log-log model was not retracted.
+
+**A third reference family has a measured input-distribution boundary: fp32 LayerNorm at the official L1/40
+shape.** rho is 0.011 at the benchmark's own default distribution (`torch.rand` = U[0,1), kappa = |mean|/std
+= 1.73), 0.559 at kappa 100, and **2.529 at kappa 1000 with 18.99% of elements over budget** — so the
+reference itself fails an anchor contract at that distribution (`results/a11_layernorm_reference_dist.json`,
+prereg frozen pre-run; (16,64,256,256), 4.19M values per row, fp64 anchor, six distributions, determinism
+2/2). The fitted exponent in kappa is 0.85 over 2.76 decades, i.e. the consumption is close to linear in the
+row's conditioning, consistent with the merge-error amplification derivation. This is the first row in this
+program where a candidate that fails the benchmark check is *closer to exact arithmetic* than the reference
+it failed against: at kappa 1000 a split-statistics LayerNorm candidate sits at rho 0.663, anchor-clean on
+every element, while the reference sits at 2.529 with 19% of elements over budget. Both statements are true
+and they are different criteria — benchmark agreement is binary candidate-versus-reference and is not
+upgraded by the anchor; anchor accuracy says which of the two numbers is the worse one. One coordinate
+defect found: kappa is undefined for a zero-variance row (constant 10000 gives std 0, kappa infinite, rho
+exactly 0), so the predicate needs a non-degenerate-variance condition alongside kappa.
 
 **fp32 conv2d is not a depth function at all — it is a dispatch surface with two classes, and the classes
 have different fixes.** The profiler names the engines directly, and the routing is what produces the
@@ -684,6 +699,12 @@ The answer splits by field, and the split is the finding:
   models' numbers are reported here rather than merged: geometry-only 6.84×/156.7×, corrected class+derived
   1.251×/2.409×, older class+derived 2.09×/440×. So the field is a surface for *ordering* and a lookup for
   *value*, and the magnitude of the lookup depends on which model is being looked up.
+- **Scope of the frac_over negative: it is a geometry result, not a verdict on the coordinate.** The
+  compression test varied shape and engine class at a *fixed input distribution*, so "frac_over does not
+  compress without the class" is a statement about the geometry axis. It says nothing about the input
+  distribution axis, where a separate measurement (§2.3, `results/a11_layernorm_reference_dist.json`) finds
+  reference consumption rising near-linearly in row conditioning from rho 0.011 at kappa 1.73 to 2.529 at
+  kappa 1000. So frac_over is not uncompressible in general; it is uncompressible *from geometry alone*.
 - **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
   100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
   exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.
@@ -1091,7 +1112,7 @@ the class that let a unit error through — see the note above):
 
 | script | what it audits | status from inside the package |
 |---|---|---|
-| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 43 cited / 43 found / 0 missing |
+| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 44 cited / 44 found / 0 missing |
 | `s50_prose_audit.py` | every number cited in §2 and §4 | exit 0, 19/19 |
 | `s51_prose_audit.py` | every number cited in §4.5-§8 | exit 0, 31/31 |
 | `s52_prose_audit.py` | §4.5 and §5.2 composition numbers, computed from the artifacts rather than string-matched | exit 0, 16/16 |
@@ -1110,7 +1131,7 @@ pinned public commit, which the package names explicitly.
 
 `lab/s48_provenance.py` scans every markdown file in `paper/` for cited results artifacts and emits
 `paper/PROVENANCE.md` with sha256, byte size, mtime, producer script, and top-level fields per artifact. It
-hard-fails when a cited artifact is absent. Current state after the round-5 repairs and the A10 crossing study: 43 cited, 43 found, 0 missing.
+hard-fails when a cited artifact is absent. Current state after the round-5 repairs, the A10 crossing study and the A11 distribution study: 44 cited, 44 found, 0 missing.
 Two defects in the generator itself were found and fixed before it was trusted: a regex alternation that
 truncated `.jsonl` names to `.json`, and self-poisoning when the generated `PROVENANCE.md` was included in
 the citation scan. A third was found at packaging: the table cites itself, so its own digest, byte size and

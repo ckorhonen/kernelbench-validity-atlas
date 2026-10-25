@@ -82,12 +82,19 @@ def ratio_stats(a, b):
 
 
 def kappa_of(x):
-    xf = x.float()
-    m = xf.mean(dim=(1, 2, 3), dtype=torch.float64)
-    v = xf.var(dim=(1, 2, 3), unbiased=False, dtype=torch.float64)
+    # measured in fp64 so the coordinate itself is not limited by the fp32 input's own reduction
+    xf = x.double()
+    m = xf.mean(dim=(1, 2, 3))
+    v = xf.var(dim=(1, 2, 3), unbiased=False)
     sd = v.sqrt()
-    k = (m.abs() / sd).tolist()
-    return {"min": float(min(k)), "med": float(sorted(k)[len(k) // 2]), "max": float(max(k)),
+    k = []
+    for a, s in zip(m.tolist(), sd.tolist()):
+        k.append(float("inf") if s == 0.0 else abs(a) / s)
+    finite = [v for v in k if v != float("inf")]
+    return {"min": (min(finite) if finite else None),
+            "med": (sorted(finite)[len(finite) // 2] if finite else None),
+            "max": (max(finite) if finite else None),
+            "n_inf": int(sum(1 for v in k if v == float("inf"))),
             "mean_abs": float(m.abs().mean()), "std_med": float(sd.median())}
 
 
@@ -170,7 +177,9 @@ for di, dist in enumerate(DISTS):
     row["arms"]["R_def_randaffine"] = ratio_stats(r_def_rand, r_64_rand)
     row["arms"]["C_fast_randaffine"] = ratio_stats(c_fast_rand, r_64_rand)
     rows.append(row)
-    print(f"{dist:26s} kappa_med={kap['med']:.4g}  rho(R_def)={row['arms']['R_def']['max_ratio']:.4g} "
+    km = kap["med"]
+    kms = "inf" if km is None else f"{km:.4g}"
+    print(f"{dist:26s} kappa_med={kms}  rho(R_def)={row['arms']['R_def']['max_ratio']:.4g} "
           f"frac_over={row['arms']['R_def']['frac_over']:.4g}  rho(C_fast)={row['arms']['C_fast']['max_ratio']:.4g} "
           f"fast_pass_vs_ref={row['arms']['C_fast']['pass_vs_ref']}", flush=True)
     del x, r_def, r_def2, r_64, c_fast, c_fast_rand, r_def_rand, r_64_rand, x_cpu
@@ -182,8 +191,14 @@ p1 = by["uniform_benchmark_default"]["arms"]["R_def"]["max_ratio"] < 0.1
 p2 = by["normal_plus1000"]["arms"]["R_def"]["max_ratio"] > 0.5
 p3 = (by["uniform_benchmark_default"]["arms"]["C_fast"]["pass_vs_ref"] is True and
       by["normal_plus1000"]["arms"]["C_fast"]["pass_vs_ref"] is False)
-rhos = [by[d]["arms"]["R_def"]["max_ratio"] for d in DISTS]
-p4 = all(rhos[i] <= rhos[i + 1] for i in range(len(rhos) - 1))
+# P4 is about monotonicity IN KAPPA, so order by kappa (the six distributions are not listed in kappa
+# order: 'normal' and 'normal_x100' both sit near kappa 0, and constant_10000 has std 0 => kappa inf).
+def _k(d):
+    k = by[d]["kappa"]["med"]
+    return float("inf") if k is None else k
+order = sorted(DISTS, key=_k)
+rhos_ordered = [by[d]["arms"]["R_def"]["max_ratio"] for d in order]
+p4 = all(rhos_ordered[i] <= rhos_ordered[i + 1] for i in range(len(rhos_ordered) - 1))
 p5 = all(r["det_repeat_equal"] for r in rows)
 
 verdicts = {"P1_ref_anchor_clean_at_benchmark_default": bool(p1),
@@ -191,7 +206,8 @@ verdicts = {"P1_ref_anchor_clean_at_benchmark_default": bool(p1),
             "P3_fast_admissible_on_benchmark_inadmissible_at_1000": bool(p3),
             "P4_ref_rho_monotone_in_kappa": bool(p4),
             "P5_determinism": bool(p5),
-            "rho_by_distribution": dict(zip(DISTS, rhos)),
+            "rho_by_distribution": dict(zip(order, rhos_ordered)),
+            "kappa_order": order,
             "kappa_med_by_distribution": {d: by[d]["kappa"]["med"] for d in DISTS}}
 
 if p1 and p2 and p3:

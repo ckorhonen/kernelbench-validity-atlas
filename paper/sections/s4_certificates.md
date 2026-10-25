@@ -123,6 +123,12 @@ The answer splits by field, and the split is the finding:
   models' numbers are reported here rather than merged: geometry-only 6.84×/156.7×, corrected class+derived
   1.251×/2.409×, older class+derived 2.09×/440×. So the field is a surface for *ordering* and a lookup for
   *value*, and the magnitude of the lookup depends on which model is being looked up.
+- **Scope of the frac_over negative: it is a geometry result, not a verdict on the coordinate.** The
+  compression test varied shape and engine class at a *fixed input distribution*, so "frac_over does not
+  compress without the class" is a statement about the geometry axis. It says nothing about the input
+  distribution axis, where a separate measurement (§2.3, `results/a11_layernorm_reference_dist.json`) finds
+  reference consumption rising near-linearly in row conditioning from rho 0.011 at kappa 1.73 to 2.529 at
+  kappa 1000. So frac_over is not uncompressible in general; it is uncompressible *from geometry alone*.
 - **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
   100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
   exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.

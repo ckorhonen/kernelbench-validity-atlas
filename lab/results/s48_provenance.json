@@ -1,13 +1,14 @@
 {
- "date": "2026-10-25T16:57:04Z",
- "n_cited": 43,
- "n_found": 43,
+ "date": "2026-10-25T17:37:59Z",
+ "n_cited": 44,
+ "n_found": 44,
  "missing": [],
  "entries": [
   {
    "artifact": "results/a10_crossing_neighborhood.json",
    "sha256_note": null,
    "cited_in": [
+    "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md"
    ],
@@ -26,6 +27,29 @@
      "monotonicity",
      "rows",
      "verdict"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/a11_layernorm_reference_dist.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/sections/s2_reference_axis.md",
+    "paper/sections/s4_certificates.md"
+   ],
+   "sha256": "5895ad05dd8ac078644dc118c9627f5b9dfd60183ce891426a2a7db06907cce2",
+   "bytes": 10188,
+   "mtime_utc": "2026-10-25T17:33:20Z",
+   "producers": [
+    "lab/a11_layernorm_reference_dist.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "header",
+     "rows",
+     "verdicts"
     ]
    },
    "compressed": false
@@ -1074,7 +1098,7 @@
    ],
    "sha256": "a826d05eef0adb39a5452a236f21dea54e697b88d39d00e4e3fb2f04e1fd5b16",
    "bytes": 7782,
-   "mtime_utc": "2026-10-25T16:57:04Z",
+   "mtime_utc": "2026-10-25T17:37:59Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1107,9 +1131,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "ff6688db19b7b4f899f9532de70b5c145e1ead5d665b2646a94ee68f9594d16e",
+   "sha256": "2353799120542723fa164342fb26bda6281e2d1efafacfc62dc646b071e4f02d",
    "bytes": 5268,
-   "mtime_utc": "2026-10-25T16:56:41Z",
+   "mtime_utc": "2026-10-25T17:37:59Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1135,7 +1159,7 @@
    ],
    "sha256": "88abf57844ff42d3ed0ad3ef489f5467524f680c91766a849fd0a1d90cb9d92f",
    "bytes": 1763,
-   "mtime_utc": "2026-10-25T16:56:42Z",
+   "mtime_utc": "2026-10-25T16:58:57Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1162,9 +1186,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "58504c93042052c133a9cff04a1976b21c396fe038bf55bcf07bd64cea56ea6e",
+   "sha256": "99bca34ae6d2ab34d4501368a74482ee25c101ac1db9ef85d66e2b1df3465397",
    "bytes": 10348,
-   "mtime_utc": "2026-10-25T07:43:31Z",
+   "mtime_utc": "2026-10-25T16:57:04Z",
    "producers": [
     "lab/s55_review_repair.py"
    ],

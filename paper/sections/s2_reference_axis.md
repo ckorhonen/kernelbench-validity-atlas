@@ -72,6 +72,21 @@ fp32 matmul reference at 1e-4 fails on most draws from K~3.6k and on all sampled
 minority of draws still pass at 3.6k-3.84k. The pre-registered 2x band around the interpolated 2875 was
 satisfied (A6d's P1 held); the log-log model was not retracted.
 
+**A third reference family has a measured input-distribution boundary: fp32 LayerNorm at the official L1/40
+shape.** rho is 0.011 at the benchmark's own default distribution (`torch.rand` = U[0,1), kappa = |mean|/std
+= 1.73), 0.559 at kappa 100, and **2.529 at kappa 1000 with 18.99% of elements over budget** — so the
+reference itself fails an anchor contract at that distribution (`results/a11_layernorm_reference_dist.json`,
+prereg frozen pre-run; (16,64,256,256), 4.19M values per row, fp64 anchor, six distributions, determinism
+2/2). The fitted exponent in kappa is 0.85 over 2.76 decades, i.e. the consumption is close to linear in the
+row's conditioning, consistent with the merge-error amplification derivation. This is the first row in this
+program where a candidate that fails the benchmark check is *closer to exact arithmetic* than the reference
+it failed against: at kappa 1000 a split-statistics LayerNorm candidate sits at rho 0.663, anchor-clean on
+every element, while the reference sits at 2.529 with 19% of elements over budget. Both statements are true
+and they are different criteria — benchmark agreement is binary candidate-versus-reference and is not
+upgraded by the anchor; anchor accuracy says which of the two numbers is the worse one. One coordinate
+defect found: kappa is undefined for a zero-variance row (constant 10000 gives std 0, kappa infinite, rho
+exactly 0), so the predicate needs a non-degenerate-variance condition alongside kappa.
+
 **fp32 conv2d is not a depth function at all — it is a dispatch surface with two classes, and the classes
 have different fixes.** The profiler names the engines directly, and the routing is what produces the
 numbers:
