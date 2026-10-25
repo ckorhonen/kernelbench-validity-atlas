@@ -97,9 +97,11 @@ for magnitude and a measured-per-shape cost for admission — a weaker and more 
 "predictive for unmeasured shapes."
 
 **Composition (§5.2).** Tolerance was first cut as unclaimable, then re-measured in the currency the claim
-actually needs. On six two-stage chains with fp64 anchors, end-to-end budget consumption is bounded by the
-worst stage within 1.0-1.5× on five, bulk inadmissibility is dominated rather than compounded, and one chain
-— deep reduction feeding deep reduction — is super-additive at 2.34× the additive prediction. The first cut
+actually needs. On six two-stage chains with fp64 anchors, end-to-end budget consumption exceeds the worse
+stage by a measured factor of 1.0–2.5×, five of six inside a factor of two (one inside 1.5×), bulk
+inadmissibility is dominated rather than compounded, and two chains break the worst-stage bound: deep
+reduction feeding deep reduction is super-additive at 2.34× the additive prediction, and a clean control of
+two individually admissible matmul stages composes to ρ 1.29, past budget. The first cut
 was an instrument gap, and the paper keeps that history rather than presenting the repair as the original
 plan.
 
@@ -440,9 +442,14 @@ property of the oracle's composition — the oracle is torch on 53 of these 56 r
 not evidence of selection skill. This is the F3 defect restated as arithmetic and it is why the selector is demoted to a
 studied object in §6.
 
-**Result 3 — the compile gap is a real per-row quantity even though delivery is not.** `d_i` (compile minus
-delivered, percent of compile) is +11.87 pp (sd 0.29, t 2.44, n=36), +12.08 pp (sd 0.23, t 1.64, n=10),
-+10.30 pp (sd 0.20, t 1.60, n=10) by tag (`r42_analysis.by_tag`). The paired denominator includes the 5
+**Result 3 — the compile gap is a real per-row quantity even though delivery is not.** `d_i` is
+compile minus delivered, normalized by the **oracle** time (the definition actually implemented in
+`r42_analysis.py:92`; an earlier draft said "percent of compile", which is the other reading and is
+reported below). Oracle-normalized: +11.87 pp (sd 29.25 pp, t 2.44, n=36), +12.08 pp (sd 23.24 pp,
+t 1.64, n=10), +10.30 pp (sd 20.32 pp, t 1.60, n=10) by tag. Compile-normalized, the same rows give
++6.58 pp (sd 16.28), +8.17 pp (sd 14.13), +7.19 pp (sd 13.02) — the gap is smaller under the
+denominator the earlier draft named, so both are stated and the denominator is named in every figure
+(`results/s55_review_repair.json`). The paired denominator includes the 5
 rows whose own `torch_cmp` instance fails the contract (4 m3m2, 1 w4; `f24_verify.f2`), and 10 of 56 rows
 have compile faster than torch — both stated because either alone would flatter the gap. The honest reading:
 torch.compile loses roughly a tenth of its runtime to this shape family on this device, the gate captures
@@ -453,7 +460,8 @@ none of that because it does not fire, and the w4/a2 tags are too small to carry
 precision, else torch), domain_predicate: delivered arm must pass 1e-4 vs its own recorded reference;
 H≤14 ∧ C≤64 for the hand branch, derived_coords: [bytes, total CTAs, waves], boundary_ref:
 results/r1_conv_gated.jsonl + r42_analysis.json + f24_verify.json + s48_prose_audit.json, variance:
-IQR of 12 reps per arm, d_i sd 0.20–0.29 pp, n_reps: 12, date: 2026-10-22/23}`
+IQR of 12 reps per arm, d_i sd 20.3-29.3 pp oracle-normalized / 13.0-16.3 pp compile-normalized,
+n_reps: 12, date: 2026-10-22/23}`
 
 ---
 
@@ -473,8 +481,12 @@ one whole class of explanation from §5.
 Enforcing admissibility on every arm including the baseline (`results/r45_rider_adm.json`) changes the
 delivered arm on 52/56 rows going from R_def to R_64: 21 rows move baseline→hand, exactly the 21 the earlier
 report published, and 31 rows move to no admissible delivery, which was not reported; 4 rows are unchanged and
-zero rows go none→arm. The regret magnitudes are robust — paired |A2−A1| ≤ 0.025 pp on the defined overlap
-(def +0.0021, n=56; ieee −0.0066, n=32; 64 −0.0443, n=25) — while delivery is not (arm disagreement 0/24/31
+zero rows go none→arm. The regret magnitudes are **not** bounded at a quarter of a percentage point — that
+figure was a unit error in `r45_rider_adm.py` (fractional deltas stored under `paired_delta_pp_*`, signed
+max), corrected in `results/s55_review_repair.json`: at the default realization the paired change is
++0.21 pp mean with a 2.44 pp worst row, and at ieee/fp64 it is −0.66/−4.43 pp mean with 25.5/41.2 pp worst
+rows (n 56/32/25). So regret magnitudes are stable only at the realization the claim was measured at, while
+delivery is not stable at any of them (arm disagreement 0/24/31
 for def/ieee/64). Read together: the ranking survives the stricter convention, the delivery claim does not,
 so the deliverable is a conditional certificate and never a ranking. The admissible pool is thin and sometimes
 empty (oracle undefined 20/56 ieee, 4/56 64; no admissible delivery 24/56 and 31/56), median pool size 2/2/5 —
@@ -537,9 +549,16 @@ judgment:
 
 1. **Reference realization** — which of {default, explicit-ieee, fp64-anchor} the row is scored against, plus
    the runtime flags in force (`cudnn.allow_tf32`, `matmul.allow_tf32`, `float32_precision`).
-2. **Budget consumption** — the pair (rho_max, frac_over) at the row's shape (§2.3). frac_over is the
-   admission key: 0 means the baseline passes its own check against an exact anchor; 0 < frac_over < 0.02 is
-   a tail failure claimable on the passing subset; frac_over > 0.5 is bulk failure and no ratio is certifiable.
+2. **Budget consumption** — the pair (rho_max, frac_over) at the row's shape (§2.3). These are
+   **diagnostic**, not a substitute for the benchmark's own verdict, and the distinction is the load-bearing
+   correction in this section. The benchmark's contract is a whole-tensor allclose against the recorded
+   reference; that verdict is binary and is criterion (i). rho and frac_over measure a *different* comparison
+   — the reference's distance from an fp64 anchor — and are criterion (ii). An explicitly relaxed application
+   contract, if a paper wants one, is criterion (iii) and must be declared as an application requirement with
+   its own threshold, not inferred from (ii). The three are reported separately because neither implies
+   another: a reference 0.75e-4 from an exact anchor can pass (i) against a candidate 1.5e-4 that fails
+   against the anchor, so frac_over = 0 does not license "no caveat needed." The earlier draft collapsed (i)
+   and (ii) into one admission predicate, which is the defect this revision repairs.
 3. **Admissible delivery set** — the arms that pass the contract at *this* realization, which for most rows is
    smaller than the set the rule selects.
 4. **Regret basis** — the regret number and whether it is a lower bound, because a chosen arm that fails the
@@ -556,10 +575,12 @@ Under an enforced admission rule, with the reference realization as the axis (`r
   and **4/56** against the fp64 anchor. A rule that admits the baseline unconditionally while demanding the
   candidate prove itself is therefore not symmetric, and on two of three realizations it is admitting an arm
   that fails.
-- **Regret magnitudes survive the admission convention.** Paired |A2 − A1| is ≤ 0.025 pp on the defined
-  overlap at every realization (def 0.0244 n=56, ieee 0.0244 n=32, 64 0.0 n=25). So the *ranking* conclusion
-  is robust: whatever admission rule is applied, the measured regret differences stay inside a quarter of a
-  percentage point.
+- **Regret magnitudes survive the admission convention only at the default realization.** Paired changes
+  recomputed in percentage points with max|·| (`results/s55_review_repair.json`; the published fields held
+  fractional deltas under `paired_delta_pp_*` and a signed max, so "≤ 0.025 pp" was a unit error): def
+  +0.21 pp mean / 2.44 pp worst row (n=56), ieee −0.66 / 25.46 (n=32), 64 −4.43 / 41.20 (n=25). The
+  *ranking* of arms is unchanged at every realization — that part of the claim stands — but the magnitude
+  bound does not: at ieee and fp64 a single row can move regret by tens of percentage points.
 - **Delivery claims do not survive it.** Arm disagreement A2-vs-A1 is 0/24/31 (def/ieee/64); there is **no
   admissible delivery** on 24/56 rows (ieee) and 31/56 (64); and the admissible pool is empty — oracle
   undefined — on 20/56 (ieee) and 4/56 (64). These are the rows where the question "which arm wins" has no
@@ -619,16 +640,22 @@ dispatch classes × H{7,13,21} and matmul M{256,1024,4096} × K{128..8192}; arti
 
 The answer splits by field, and the split is the finding:
 
-- **rho_max compresses.** Out-of-fold Spearman against measured log rho is 0.986 with the engine class
-  supplied as one categorical coordinate, and 0.833 from derived geometry alone (log k_eff, log n_elem,
-  log C, log H) with no class at all. So the *magnitude* field is a surface, not a table.
+- **rho_max compresses in rank, not in magnitude.** Out-of-fold Spearman against measured log rho is 0.986
+  with the engine class supplied as one categorical coordinate, and 0.833 from derived geometry alone
+  (log k_eff, log n_elem, log C, log H) with no class at all. But rank is not calibration: the geometry-only
+  model's median multiplicative prediction error is **6.84×** and its worst row is 156.7× off
+  (`results/s55_review_repair.json`; class+derived 2.09×/440×, class-median 2.71×/978×). So the field is a
+  surface for *ordering* and a lookup for *value*, and the earlier draft reported only the Spearman. Both
+  numbers belong in the row.
 - **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
   100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
   exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.
 - **The class itself is barely predictable.** LOO nearest-centroid on the same four coordinates reaches
   0.604 against a 0.5625 majority baseline. Deployment consequence, stated plainly: the certificate is
   not free. It costs one profiler pass per shape family to learn the class, and that cost belongs in the
-  row rather than in a footnote.
+  row rather than in a footnote. Scope of that inference, since it is easy to overread: a nearest-centroid
+  failure does not establish that engine class is unpredictable *in principle* — only that these four
+  coordinates do not predict it. A continuous description the classifier cannot see remains possible.
 
 We also checked the prereg's falsifier for "the class alone is sufficient" (within-class span < 1 decade
 with cross-class gap > 1 decade): it does not hold. The largest within-class span is 3.04 decades
@@ -710,19 +737,33 @@ error in units of the budget, which is the shape of a dimensionless law rather t
 with an fp64 anchor at each stage, each chain measured end to end, plus a measured input-sensitivity gain
 G (budget multiples out of stage B per budget multiple into it, checked at one and ten multiples for
 nonlinearity). Three rules were declared in advance — union of exceedance probability, worst-stage maximum,
-and additive amplification through G. Outcome: the union rule fails 4/6 and is the wrong form; the
-worst-stage bound and the additive rule both hold within a factor of 2 on 5/6 chains and on a clean-A
-control.
+and additive amplification through G. Outcome, read from the frozen rule file (`a9_analysis.rule_summary`):
+the union rule **passes 4/6 and fails 2** (c5, c6); the worst-stage and additive rules pass 5/6 and fail c6,
+and both clear the clean-A control. An earlier draft wrote "the union rule fails 4/6," which inverted its own
+artifact.
 
-The substance that survives, stated as a bounded claim rather than a model: **on 5/6 measured two-stage
-chains, end-to-end budget consumption is bounded by the worst stage within 1.0-1.5×**, and the amplification
-term is subdominant whenever the downstream stage is the dirtier one (c1: a winograd stage at rho 7.7 feeding
-a TF32 stage at rho 5353 contributes one part in ten thousand of the end-to-end number). Bulk inadmissibility
-is dominated rather than compounded: where the stage fractions are large the compound exceeds the worst stage
-by at most 1.07×, so a reader can carry the worse stage's frac_over forward and be right about the 0.5
-admission threshold. The declared exception is a deep-reduction-into-deep-reduction chain (matmul M1024 K8192
-→ matmul), where the measured end-to-end rho is **2.34× the additive prediction and 2.47× the worst-stage
-prediction** — super-additive, and the one place in six where the bound fails.
+The substance that survives is weaker than the first draft stated, and the ratio table is the reason:
+ρ_end/max(ρ_A,ρ_B) is 0.981, 1.507, 1.537, 1.000, 1.971, 2.480 across c1–c6 (`results/s55_review_repair.json`
+from `a9_compose.json`). **One** chain lies inside 1.0–1.5×; **five** lie within a factor of 2, which is the
+bar the prereg actually declared. So the supported claim is: end-to-end budget consumption lands between 0.98×
+and 2.48× the worse stage across six chains, and on five of six a factor-of-two bound holds. The
+amplification term is subdominant whenever the downstream stage is the dirtier one (c1: a winograd stage at
+rho 7.7 feeding a TF32 stage at rho 5353 contributes one part in ten thousand of the end-to-end number).
+Bulk inadmissibility is dominated rather than compounded: where the stage fractions are large the compound
+fraction is bounded by the worst stage to within 1.07×, so a reader can carry the worse stage's frac_over
+forward and be right about the 0.5 bulk threshold.
+
+The worst-stage bound has a counterexample in my own data and it belongs here rather than in a footnote.
+**c5 is two individually admissible stages — rho_A 0.0689, rho_B 0.6563 — that compose to rho_end 1.2939,
+past budget.** Carrying the worse stage forward predicts admissible; the measurement says otherwise. The bulk
+figure stays clean (frac_end 3.05e-5), so the failure is confined to the maximum statistic, which is exactly
+the statistic the admission rule keys on. That is the sharpest limitation of the bound: it can under-predict
+a tail failure when both stages are individually inside budget. The worst-stage bound is therefore a bound on
+the *bulk* behaviour, not a guarantee about the tail, and it is stated that way.
+The second declared exception is
+deep-reduction-into-deep-reduction (matmul M1024 K8192 → matmul), where the measured end-to-end rho is
+**2.34× the additive prediction and 2.47× the worst-stage prediction** — super-additive. Calling it
+super-additive names the failure of this predictor; it is not a mechanism, and the paper does not claim one.
 
 Two limits are stated rather than buried. The test does not separate "no amplification" from "additive
 amplification": their predictions differ only by `G·rho_A`, which is under a factor of 1.2 of the downstream
@@ -756,12 +797,14 @@ now evaluator-exact.
 **P2 row.**
 `{op_class: tolerance_axis, rule: verdicts flip at margin-to-bar ratios near 1 regardless of family;
 tolerance direction is candidate-scaled per eval.py; reference rounding is not a bound; two-stage budget
-consumption is bounded by the worst stage within 1.0-1.5x with one declared super-additive exception,
+consumption exceeds the worse stage by a measured factor of 1.0-2.5x, five of six chains inside a factor of
+two, with two declared exceptions (a clean two-admissible-stage control composing past budget, and a
+super-additive deep-reduction chain),
 domain_predicate: measured on 60 shapes / 528 arm-instances (CF3), 350+816 label regenerations, and 6
 two-stage chains with fp64 anchors (A9),
 derived_coords: budget_ratio, margin_to_bar, frac_over, amplification_share, boundary_ref: results/cf43.json,
 results/b2_direction_audit.json, results/b4_direction_audit.json, results/s6_dispatcher_audit.json,
-results/a9_compose.json, results/a9_analysis.json,
+results/a9_compose.json, results/a9_analysis.json, results/s55_review_repair.json,
 variance: flip counts reported as exact integers over fixed populations; no resampling; A9 chains
 determinism-verified 6/6 (bit-equal repeat runs), G linearity checked at 1x and 10x,
 n_reps: 3 seeds (e2_v3_err), 2 days (CF3), 1 run per chain with determinism assertion (A9), date: 2026-10-24}`
@@ -804,10 +847,32 @@ rows). Result: the gate delivers an arm more than 1% worse than pure torch on **
 **0/10** conv rows. That is the transfer property the paper needs, and it replicates the pre-repair
 accounting.
 
-Against budgeted autotune, the family verdict is admissibility-robust by gap scale: gate mean regret_total
-0.0451 (reduction) / 0.0201 (conv) against the best budgeted arm's 1.5277 / 2.1469. The gaps (1.48 and 2.13)
-are one to two orders of magnitude larger than the error scales that could perturb them (0.018 and 0.125), so
-a GPU per-arm contract rerun is **not required** for this verdict and is queued only if a referee asks.
+Against budgeted autotune, the family verdict is robust by **gap scale**, and the scope of that word matters:
+gate mean regret_total 0.0451 (reduction) / 0.0201 (conv) against the best budgeted arm's 1.5277 / 2.1469.
+The gaps (1.48 and 2.13) are one to two orders of magnitude larger than the recorded numerical error scales
+(0.018 and 0.125), so no plausible numerical perturbation of the arm set can reorder those two totals. That
+is an empirical argument from gap magnitude, **not** a bound in time units: numerical error and the time cost
+of selecting a different admissible arm are different currencies, and no mathematical link between them is
+established here.
+
+**That gap is now measured in time units** (`results/s56_heldout_contract.json`, `results/s56_analysis.json`,
+`ATLAS_S56.md`; prereg frozen pre-run, same-session med-of-12, 34 held-out rows, determinism asserted). The
+result splits by family and does not flatter the selector:
+
+- **reduction**: 11 of 12 gate hand deliveries pass the full contract (0.917). Against the fastest
+  *admissible* arm per row the gate costs **+4.13% (SE 1.40, t 2.94)**, worse by more than 1% on 13 of 24
+  rows and better on none. The frozen rule picks S64_KT64 where S16_KT64 or S4_KT64 is faster, so the
+  selector is admissible but leaves a consistent 4% on the table.
+- **conv**: 0 of 4 hand deliveries pass the full contract — budget ratios 17,431 to 23,783, not marginal
+  misses. torch is the best admissible arm on 10 of 10 rows and the gate delivers torch on 6 of 10. The
+  apparent −10.2% "gate advantage" is therefore the gate's *inadmissible* hands being faster than the only
+  admissible option, which §4 says not to count. **The conv delivery claim is withdrawn** in favour of the
+  narrower statement that the gate never selects a conv hand which passes.
+
+This also explains the earlier certificate-health FAIL without a mechanism change: the 0.0 pass-frac in
+`s6_dispatcher_audit.json` came from an absolute-only reading that was pessimism for reduction (where the
+rtol term rescues 11/12) and a true negative for conv (where the arms genuinely fail). One number, two
+different meanings — which is why it looked like a mechanism result.
 
 What *is* a lower bound: under the pessimistic absolute-only reading, the b4/b8-chosen hands fail the
 contract on 16/24 and 17/24 reduction rows (0-1/10 conv), so those arms' regret totals are lower bounds
@@ -933,6 +998,14 @@ The certificate is the contribution. It withdraws if any of the following holds:
 
 The paper ships auditors rather than promises. Every script named here is CPU-only unless marked, reads
 committed artifacts rather than re-measuring, and exits nonzero when a cited number cannot be regenerated.
+**Scope of that guarantee, stated because a review caught me overclaiming it:** the prose auditors
+(`s48`, `s50`, `s51`, `s52`, `s53`) are *consistency* checks — they verify that a number in the manuscript
+matches a stored summary field, and in several cases that a required phrase occurs. They do not regenerate
+the summary field, so a unit error inside the field passes them silently. That is exactly what happened to
+the `paired_delta_pp_*` fields (§4.2) and to the "1.0-1.5×" composition figure (§5.2): both were stored
+wrong, both audits passed. The auditors that *do* recompute from row-level records are `f24_verify.py`,
+`cf43.py`, `r42_analysis.py`, `r45_rider_adm.py` and the new `s55_review_repair.py`; those are the ones a
+reader should run first. §8.4 lists the repairs that came from this distinction.
 
 ## 8.1 The auditor set
 
@@ -981,18 +1054,38 @@ Every timing is unlocked-clock (§7.3). Every random draw is seeded and the seed
 
 ## 8.4 What a reader can do without us
 
-Take any published row from this problem. Look up its reference realization and flags, run
-`lab/a8_compress.py`'s profiler path on that shape (one pass), and check the engine class and frac_over. If
-frac_over is 0, the baseline passes its own check and the published ratio stands. If frac_over is between 0
-and 0.02, the ratio is claimable on the passing subset and the subset size is stated. If frac_over exceeds
-0.5, no ratio is certifiable — the two arms are both missing the contract, and the number is a comparison of
-two failures. That decision procedure needs no trust in us, which is the only kind worth shipping.
+Take any published row from this problem and evaluate it under three criteria that are kept separate, because
+conflating them is the defect a review found in the first version of this section:
+
+1. **Benchmark agreement** — the row's own verdict, whole-tensor allclose against its recorded reference at
+   1e-4. This is the contract, it is binary, and it is not affected by anything measured here.
+2. **Anchor accuracy** — the reference's own distance from an fp64 anchor, reported as (rho_max, frac_over).
+   Run `lab/a8_compress.py`'s profiler path on that shape (one pass) to get the engine class and frac_over.
+   This is diagnostic: it tells you how much of the tolerance budget the reference itself consumed, which is
+   information the published tables omit. It does **not** upgrade criterion 1. A row whose reference is
+   0.77 of budget from exact arithmetic still either passes its allclose or does not.
+3. **A relaxed application contract, if you want one** — declare it. If you accept a candidate that agrees
+   with the reference on all but a stated fraction of elements, that is a different question from the
+   benchmark's, and it must be named as such with its own threshold. The paper's 0.02 and 0.5 lines are
+   offered as *reporting* boundaries on frac_over, not as a statistical certificate: 0 means the reference is
+   indistinguishable from an exact anchor at the budget, 0 < frac_over < 0.02 is a tail failure confined to
+   rare elements, and frac_over > 0.5 means the bulk of the output misses the contract and no speedup ratio
+   between two such arms says much. Whether 0.02 is the right line for your application is your call, and the
+   paper says so rather than asserting it.
+
+That decision procedure needs no trust in us, which is the only kind worth shipping. What it will not give
+you is a guarantee about an unmeasured shape: the magnitude field ranks well (Spearman .833/.986) but is not
+calibrated (median 6.84× multiplicative error from geometry alone), and the admission field is a
+measured-per-shape cost because the engine class is not predictable from those coordinates at 0.604.
 
 **P2 row.**
-`{op_class: reproduction, rule: auditors regenerate every cited number from committed artifacts and exit
-nonzero on failure; provenance table hard-fails on a cited-but-absent artifact,
+`{op_class: reproduction, rule: auditors recompute cited numbers from row-level records where they claim to,
+and consistency-check stored fields where they do not; provenance table hard-fails on a cited-but-absent
+artifact; the reader's decision procedure keeps benchmark agreement, anchor accuracy and relaxed application
+contract separate,
 domain_predicate: all numbers cited in paper/*.md, derived_coords: n/a, boundary_ref: paper/PROVENANCE.md,
 results/s48_provenance.json, results/s50_prose_audit.json, results/s51_prose_audit.json,
+results/s55_review_repair.json,
 variance: n/a (deterministic records), n_reps: 1 per audit run, date: 2026-10-24}`
 
 ---
@@ -1061,12 +1154,25 @@ coordinates used to predict it (§4.5, §7.1), so no amount of fitting recovers 
 ## 9.4 What this paper does not claim
 
 The individual ingredients are all precedented: tolerance budgets, probe-cost accounting, dynamic-shape
-scheduling cost, calibration under shift, and the idea that a reference is a constructed object. The
-contribution claimed here is the composition of them into one object that a reader can check without
-re-running a GPU: a four-field certificate (reference realization and flags, the budget-consumption pair,
-the admissible delivery set, and the regret basis with its lower-bound flag) plus a stated cost for
+scheduling cost, calibration under shift, and the idea that a reference is a constructed object. Two of those
+precedents are closer than the first version of this section admitted, and a review named them: **Barabasz et
+al.** [7] analyze Winograd rounding error and transform conditioning in detail (§4, §8, §9), and **PyTorch's
+numerical-accuracy documentation** [8] explains non-associativity, shape-dependent numerical differences and
+TF32's precision tradeoff with its controls. So the principle that a convolution's arithmetic tree conditions
+its error is not new here, and neither is the observation that TF32 trades precision for throughput. What this
+paper adds is the measurement on one device: that on GB10 the two conv engine classes are separated by 20-38x
+in reference budget consumption at one step of output extent, that the TF32 class is flag-fixable while the
+winograd class is flag-invisible, and that the resulting rho spans 0.005 to 358 across a 48-shape grid. Those
+are numbers, not principles, and the paper should be read as a GB10 measurement plus a reporting schema
+rather than as a claim about numerical analysis in general.
+
+The contribution claimed here is the composition of these ingredients into one object that a reader can check
+without re-running a GPU: a four-field certificate (reference realization and flags, the budget-consumption
+pair, the admissible delivery set, and the regret basis with its lower-bound flag) plus a stated cost for
 obtaining it. The advance is therefore concrete and bounded rather than methodological: on GB10, an
-ordinary fp32 matmul reference cannot pass this benchmark's own contract at K ≳ 3.6k, and fp32 conv
+ordinary fp32 matmul reference consumes more than its own tolerance budget at K ≳ 3.6k **at M=N=1024** (the
+crossing is geometry-dependent — the same K is at 0.648 of budget at M=N=256 and 2.777 at 4096, so the
+threshold must be stated per geometry, not as a universal depth law), and fp32 conv
 consumption varies by 25x at matched reduction depth purely from engine dispatch, one class flag-fixable
 and one flag-invisible. Both are facts a practitioner can act on today, and neither is visible in a
 speedup table.
@@ -1098,6 +1204,16 @@ specific claim this paper builds on is that the reference's own rounding can sit
 
 [6] ruachtov_kernel. In-problem post on bit-identical kernel verification via CUPTI hardware counters,
 r/kernelbench, 2026. Cited as a composing measurement layer, not as a competing one.
+
+[7] B. Barabasz, A. Anderson, K. M. Soodhalter, and D. Gregg. *Error Analysis and Improving the Accuracy of
+Winograd Convolution for Deep Neural Networks.* 2018, revised 2019. https://arxiv.org/abs/1803.10986.
+Sections 4, 8 and 9 analyze the rounding error of the Winograd transform and its conditioning, which is the
+mechanism this paper measures on GB10 but does not derive.
+
+[8] PyTorch. *Numerical accuracy.* Official documentation, including non-associativity, shape-dependent
+results, and TF32 controls. https://docs.pytorch.org/docs/2.14/notes/numerical_accuracy.html. Cited for the
+principle that reduction order and precision flags change results; this paper supplies the per-shape
+measurement the documentation describes qualitatively.
 
 ---
 
