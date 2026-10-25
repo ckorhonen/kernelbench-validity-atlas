@@ -25,8 +25,26 @@ Run: python3 cf43.py   (CPU only, recorded fields; writes results/cf43.json)
 import json, itertools, os, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(os.path.dirname(HERE), "lab", "results")
-R = lambda n: json.load(open(os.path.join(RES, n)))
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams may ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+RES = _kb_res_dir(HERE)
+R = lambda n: json.load(_kb_open(os.path.join(RES, n)))
 
 out = {"date": __import__("time").strftime("%Y-%m-%dT%H:%M:%SZ"), "thresholds": "see module docstring (fixed pre-run)"}
 
@@ -58,7 +76,7 @@ cf1["order_dependent_frac"] = round(cf1["order_dependent"] / len(conv), 4)
 cf1["order_dependent_rows"] = order_dependent_rows
 
 # Rider side: same test per (row, anchor) on the fitted variant's precs.
-rider = [json.loads(l) for l in open(os.path.join(RES, "gate_stability.jsonl"))]
+rider = [json.loads(l) for l in _kb_open(os.path.join(RES, "gate_stability.jsonl"))]
 cf1["rider_rows"] = len(rider)
 cell = tot = 0
 cells_order_dep = []

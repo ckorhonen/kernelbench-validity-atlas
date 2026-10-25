@@ -7,8 +7,26 @@ import json, os, itertools
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, "results", "a8_compress.json")
-OUT = os.path.join(HERE, "results", "a8_analysis.json")
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams may ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+SRC = os.path.join(_kb_res_dir(HERE), "a8_compress.json")
+OUT = os.path.join(_kb_res_dir(HERE), "a8_analysis.json")
 
 CLASSES = ["W", "TF32", "GEMM", "OTHER"]
 
@@ -106,7 +124,7 @@ def dispatch_condition(rows):
 
 
 def main():
-    d = json.load(open(SRC))
+    d = json.load(_kb_open(SRC))
     rows = d["rows"]
     results = {}
     for mode in ("class_median", "class_derived", "derived_only"):

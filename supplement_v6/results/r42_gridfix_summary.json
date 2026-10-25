@@ -1,0 +1,46 @@
+{
+ "date": "2026-10-22T15:47:01Z",
+ "n_rows": 4,
+ "checks": 48,
+ "passes": 12,
+ "check_pass_rate": 0.25,
+ "imp_by_precision": {
+  "[ieee": {
+   "n": 20,
+   "n_pass": 5
+  },
+  "[tf32": {
+   "n": 20,
+   "n_pass": 0
+  }
+ },
+ "by_tag": {
+  "w4": {
+   "n": 2,
+   "g": 0.0,
+   "gt": -0.1,
+   "tr": 0.10159,
+   "cr": 1.04759,
+   "gate_beats_torch": 1,
+   "gate_beats_cmp": 2,
+   "cmp_n": 2,
+   "hand_beats": 1
+  },
+  "a2": {
+   "n": 2,
+   "g": 0.0,
+   "gt": 0.00365,
+   "tr": 0.0,
+   "cr": 0.90082,
+   "gate_beats_torch": 0,
+   "gate_beats_cmp": 2,
+   "cmp_n": 2,
+   "hand_beats": 0
+  }
+ },
+ "contract": {
+  "rtol": 0.0001,
+  "atol": 0.0001
+ },
+ "population": "every (row, arm-instance) validated once"
+}

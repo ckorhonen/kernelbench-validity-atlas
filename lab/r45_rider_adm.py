@@ -32,14 +32,32 @@ Output: results/r45_rider_adm.json (+ printed digest).
 import json, os, statistics as st
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RIDER = os.path.join(HERE, "results", "gate_stability.jsonl")
-TIMES = os.path.join(HERE, "r1_times.json")
-OUT = os.path.join(HERE, "results", "r45_rider_adm.json")
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams may ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+RIDER = os.path.join(_kb_res_dir(HERE), "gate_stability.jsonl")
+TIMES = os.path.join(HERE, "r1_times.json") if os.path.exists(os.path.join(HERE, "r1_times.json")) else os.path.join(os.path.dirname(HERE), "lab", "r1_times.json")
+OUT = os.path.join(_kb_res_dir(HERE), "r45_rider_adm.json")
 REFS = ("def", "ieee", "64")
 
 
 def load():
-    rows = [json.loads(l) for l in open(RIDER) if l.strip()]
+    rows = [json.loads(l) for l in _kb_open(RIDER) if l.strip()]
     times = json.load(open(TIMES))
     assert len(rows) == 56, f"rider rows {len(rows)} != 56"
     return rows, times

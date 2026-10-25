@@ -1,0 +1,128 @@
+{
+ "date": "2026-10-24",
+ "prereg": "lab/a9_compose_prereg.md @ 53ca881",
+ "conventions": "docstring",
+ "n_checks": 16,
+ "n_pass": 16,
+ "all_pass": true,
+ "checks": [
+  {
+   "id": "A01",
+   "ok": true,
+   "detail": "rows=6 prereg=lab/a9_compose_prereg.md @ 53ca881"
+  },
+  {
+   "id": "A02",
+   "ok": true,
+   "detail": "True/False/highest"
+  },
+  {
+   "id": "A03",
+   "ok": true,
+   "detail": "det=6/6 nonlin=0"
+  },
+  {
+   "id": "A04",
+   "ok": true,
+   "detail": {
+    "R1": [
+     4,
+     false
+    ],
+    "R2": [
+     5,
+     true
+    ],
+    "R3": [
+     5,
+     true
+    ]
+   }
+  },
+  {
+   "id": "A05",
+   "ok": true,
+   "detail": "verdict=COMPOSITION_PREDICTIVE r2fails=['c6_mm_deep_then_mm']"
+  },
+  {
+   "id": "A06",
+   "ok": true,
+   "detail": "rho_end=237.2789681199647 rho_B=237.2789681199647 share=3.4509994517588336e-05"
+  },
+  {
+   "id": "A07",
+   "ok": true,
+   "detail": "share=8.237153123526407e-05"
+  },
+  {
+   "id": "A08",
+   "ok": true,
+   "detail": "over_R3=2.342774437489753 over_R2=2.4801235009093623"
+  },
+  {
+   "id": "A09",
+   "ok": true,
+   "detail": "max_delta=0.0571 bulk_deltas=[0.0001, 0.0571, -0.0006]"
+  },
+  {
+   "id": "A10",
+   "ok": true,
+   "detail": "Two of the three frozen rules clear the factor-2 bar on 5/6 chains, so the test does not s"
+  },
+  {
+   "id": "A11",
+   "ok": true,
+   "detail": {
+    "a9_compose.json": true,
+    "a9_analysis.json": true,
+    "ATLAS_A9.md": true,
+    "53ca881": true
+   }
+  },
+  {
+   "id": "A12",
+   "ok": true,
+   "detail": {
+    "factor_of_2": true,
+    "2.34": true,
+    "1.07": true
+   }
+  },
+  {
+   "id": "A15",
+   "ok": true,
+   "detail": {
+    "n_in_1.0_1.5": 1,
+    "n_in_1.0_2.0": 5,
+    "ratios": {
+     "c1_W_then_TF32": 0.981,
+     "c2_W_then_W": 1.507,
+     "c3_TF32_then_TF32": 1.537,
+     "c4_cleanA_GEMM_then_TF32": 1.0,
+     "c5_cleanA_mm_then_mm": 1.971,
+     "c6_mm_deep_then_mm": 2.48
+    },
+    "r1_direction_matches_artifact": true
+   }
+  },
+  {
+   "id": "A16",
+   "ok": true,
+   "detail": {
+    "c5_rho_A": 0.06890212231676196,
+    "c5_rho_B": 0.6563302817628642,
+    "c5_rho_end": 1.2939231250394327
+   }
+  },
+  {
+   "id": "A13",
+   "ok": true,
+   "detail": "len=5123"
+  },
+  {
+   "id": "A14",
+   "ok": true,
+   "detail": "skeleton repair present"
+  }
+ ]
+}

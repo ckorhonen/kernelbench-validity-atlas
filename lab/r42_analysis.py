@@ -21,22 +21,40 @@ Output: results/r42_analysis.json (+ printed digest). CPU only; no GPU.
 import json, os, math
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-R1 = os.path.join(HERE, "results", "r1_conv_gated.jsonl")
-R42 = os.path.join(HERE, "results", "r42_gridfix.jsonl")
-OUT = os.path.join(HERE, "results", "r42_analysis.json")
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams may ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+R1 = os.path.join(_kb_res_dir(HERE), "r1_conv_gated.jsonl")
+R42 = os.path.join(_kb_res_dir(HERE), "r42_gridfix.jsonl")
+OUT = os.path.join(_kb_res_dir(HERE), "r42_analysis.json")
 
 # wrong rows: (tag, N, H, C) as stored in r1 jsonl (N,H,C keys)
 WRONG = {("w4", 2, 3, 5), ("w4", 2, 3, 12), ("a2", 2, 4, 9), ("a2", 2, 4, 20)}
 
 def load_union():
     rows, dropped = [], []
-    for line in open(R1):
+    for line in _kb_open(R1):
         if not line.strip():
             continue
         r = json.loads(line)
         key = (r["tag"], r["N"], r["H"], r["C"])
         (dropped if key in WRONG else rows).append((key, r, "r1"))
-    for line in open(R42):
+    for line in _kb_open(R42):
         if not line.strip():
             continue
         r = json.loads(line)

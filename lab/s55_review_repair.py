@@ -38,7 +38,25 @@ absent.
 import json, math, os, statistics, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(HERE, "results")
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams may ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+RES = _kb_res_dir(HERE)
 OUT = os.path.join(RES, "s55_review_repair.json")
 DATE = time.strftime("%Y-%m-%dT%H:%MZ", time.gmtime())
 FAILS = []
@@ -46,10 +64,12 @@ FAILS = []
 
 def load(name, sub=""):
     p = os.path.join(RES, sub, name) if sub else os.path.join(RES, name)
-    if not os.path.exists(p):
+    if not os.path.exists(p) and not os.path.exists(p + ".gz"):
         FAILS.append(p)
         return None
-    return json.load(open(p)) if p.endswith(".json") else [json.loads(l) for l in open(p) if l.strip()]
+    if p.endswith(".json"):
+        return json.load(_kb_open(p))
+    return [json.loads(l) for l in _kb_open(p) if l.strip()]
 
 
 def stats(xs):
@@ -66,6 +86,14 @@ def stats(xs):
 out = {"header": {"date": DATE, "conventions": "frozen in module docstring before run",
                   "purpose": "recompute DE1paW review findings F2/F3/F4/F4b/F5 from records only",
                   "no_gpu": True}}
+
+# Pre-repair r45_rider_adm.json values (commit 751a096, before the F2 fix). Declared constants: the fix
+# rewrote the artifact, so the defect has to be pinned here or the check would certify its own repair.
+PRE_REPAIR_R45 = {
+    "def": {"paired_delta_pp_mean": 0.0021, "paired_delta_pp_max": 0.0244, "paired_n": 56},
+    "ieee": {"paired_delta_pp_mean": -0.0066, "paired_delta_pp_max": 0.0244, "paired_n": 32},
+    "64": {"paired_delta_pp_mean": -0.0443, "paired_delta_pp_max": 0.0, "paired_n": 25},
+}
 
 # ---------------- R-F2 ----------------
 r45 = load("r45_rider_adm.json")
@@ -86,6 +114,12 @@ for ref in ("def", "ieee", "64"):
                           "paired_n": stored["paired_n"]},
         "stored_over_recomputed_mean_ratio": (stored["paired_delta_pp_mean"] / stats(both)["mean"])
         if stats(both)["mean"] else None,
+        # the pre-repair stored values, declared constants rather than re-read, because the fix to
+        # r45_rider_adm.py rewrote the artifact this check was auditing. Without these the F2 evidence
+        # would erase itself on the first rerun (ratio 0.0100 -> 1.0) and the finding would be uncheckable.
+        "pre_repair_stored": PRE_REPAIR_R45[ref],
+        "pre_repair_over_recomputed_mean_ratio": (PRE_REPAIR_R45[ref]["paired_delta_pp_mean"]
+                                                 / stats(both)["mean"]) if stats(both)["mean"] else None,
     }
 claim_holds = all(f2[r]["recomputed_pp"]["max_abs"] <= 0.025 for r in f2 if f2[r]["recomputed_pp"]["n"])
 out["F2_regret_admission"] = {

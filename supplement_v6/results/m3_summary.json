@@ -1,0 +1,87 @@
+{
+ "meta": {
+  "date": "2026-10-18T10:41:03Z",
+  "sm": 48,
+  "pre_reg": "see m3_autotune_curve.py docstring 10:30Z 2026-10-18",
+  "budgets": [
+   0,
+   1,
+   2,
+   4,
+   8
+  ],
+  "seed": 4321,
+  "conv_gate_fit": {
+   "h0": 14,
+   "c0": 64,
+   "variant": "imp_B32x32",
+   "mean_regret": 0.054957797
+  },
+  "op_class": "reduction+conv",
+  "rule": "family-local zero-probe gate",
+  "derived_coords": [
+   "M",
+   "bt_deployed",
+   "H",
+   "C"
+  ]
+ },
+ "verdict": {
+  "reduction": {
+   "n": 60,
+   "gate_delivery": 0.03859353368579298,
+   "gate_vs_b0_tot_diff": 0.0059,
+   "gate_vs_b0_se": 0.0026,
+   "delivery_adv_of_autotune": {
+    "2": -0.001325799442627243,
+    "8": -0.033224894178885675
+   },
+   "breakeven_visits": {
+    "b2": {
+     "median": 71.22088045830647,
+     "n_finite": 14,
+     "n": 60
+    },
+    "b8": {
+     "median": 261.58488242701753,
+     "n_finite": 24,
+     "n": 60
+    }
+   },
+   "probe_med_ms": {
+    "1": 0.11806399747729301,
+    "2": 0.7100479956716299,
+    "4": 0.9717600010335445,
+    "8": 3.722752050496638
+   }
+  },
+  "conv": {
+   "n": 36,
+   "gate_delivery": 0.06398119483594955,
+   "gate_vs_b0_tot_diff": 0.1246,
+   "gate_vs_b0_se": 0.0364,
+   "delivery_adv_of_autotune": {
+    "2": 0.10048103539148792,
+    "8": -0.06398119483594955
+   },
+   "breakeven_visits": {
+    "b2": {
+     "median": 14.43125038426152,
+     "n_finite": 3,
+     "n": 36
+    },
+    "b8": {
+     "median": 65.90275490987176,
+     "n_finite": 8,
+     "n": 36
+    }
+   },
+   "probe_med_ms": {
+    "1": 0.06063999980688095,
+    "2": 0.1165120005607605,
+    "4": 0.3164159990847111,
+    "8": 0.4574719984084368
+   }
+  }
+ }
+}

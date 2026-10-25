@@ -1,7 +1,7 @@
 {
- "date": "2026-10-25T01:24:20Z",
- "n_cited": 44,
- "n_found": 44,
+ "date": "2026-10-25T06:00:13Z",
+ "n_cited": 42,
+ "n_found": 42,
  "missing": [],
  "entries": [
   {
@@ -148,7 +148,7 @@
    ],
    "sha256": "6ea0c0a8660772942709b39ccd23efa04f0705bb153444478b1ffb6112b878f3",
    "bytes": 36148,
-   "mtime_utc": "2026-10-24T10:43:10Z",
+   "mtime_utc": "2026-10-25T03:37:24Z",
    "producers": [
     "lab/a8_analysis.py"
    ],
@@ -175,8 +175,7 @@
     "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s2_reference_axis.md",
-    "paper/sections/s4_certificates.md",
-    "paper/sections/s8_reproduction.md"
+    "paper/sections/s4_certificates.md"
    ],
    "sha256": "203e3df880ffba3e023e786ffb213a09e90af7bc442affed98764470deecd9bc",
    "bytes": 57583,
@@ -210,7 +209,7 @@
    ],
    "sha256": "d966eebf2e2934e50412a7c83258a8f356e72e955217ffc938cc00ab8234a0b9",
    "bytes": 48991,
-   "mtime_utc": "2026-10-24T10:45:31Z",
+   "mtime_utc": "2026-10-25T03:37:25Z",
    "producers": [
     "lab/a8b_analysis.py"
    ],
@@ -240,7 +239,7 @@
    ],
    "sha256": "6cbdf646ded21a068869130a8e0c2adfb78acbf4c941e5c819f854b3906e3e96",
    "bytes": 7436,
-   "mtime_utc": "2026-10-24T14:09:13Z",
+   "mtime_utc": "2026-10-25T03:37:25Z",
    "producers": [
     "lab/a9_analysis.py"
    ],
@@ -311,8 +310,7 @@
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
-    "paper/sections/s5_tolerance.md",
-    "paper/sections/s8_reproduction.md"
+    "paper/sections/s5_tolerance.md"
    ],
    "sha256": "32df8b43c038924fea9f184e4b857798512b1a7a94f161dee0eac0abfda3a1c1",
    "bytes": 110871,
@@ -386,44 +384,6 @@
      "n_heldout",
      "n_label_flips",
      "note"
-    ]
-   },
-   "compressed": false
-  },
-  {
-   "artifact": "results/b4_guard_v1.jsonl",
-   "sha256_note": null,
-   "cited_in": [
-    "paper/MANUSCRIPT.md",
-    "paper/sections/s8_reproduction.md"
-   ],
-   "sha256": "9c39382d4afd7027d2a63f7532110083d4183c37e56f1d9ffe98e66084796151",
-   "bytes": 408003,
-   "mtime_utc": "2026-10-20T04:00:28Z",
-   "producers": [
-    "lab/b4_guard_v1.py"
-   ],
-   "content": {
-    "kind": "jsonl",
-    "rows": 816,
-    "row_keys": [
-     "B",
-     "H",
-     "K",
-     "arm",
-     "cell",
-     "collapse_work_ratio",
-     "fan_in_sum",
-     "label",
-     "max_budget_ratio",
-     "pred_pass",
-     "scale",
-     "score",
-     "seed",
-     "w_max",
-     "w_mean_abs",
-     "w_rel_spread",
-     "z_raw"
     ]
    },
    "compressed": false
@@ -503,9 +463,9 @@
     "paper/sections/s3b_conv_anchor.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "79b9aaf7a3531b35b1a1d30be4d82b4885e1fe0249bbb77943beaaf041b27296",
+   "sha256": "c5d01b6938053ab4344eb93a6d463d2cc242560420ba24096a7888284f4f1ba1",
    "bytes": 2747,
-   "mtime_utc": "2026-10-22T22:56:26Z",
+   "mtime_utc": "2026-10-25T03:37:24Z",
    "producers": [
     "lab/cf43.py"
    ],
@@ -530,9 +490,9 @@
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s4_certificates.md"
    ],
-   "sha256": "f02b9e68ef133d0bb6d604f7893a6ecd1cb17440cb3d7917fa0f382e214e615b",
+   "sha256": "4bd437f2d83f3ead4e61c5d5887e5925714e73933765117d734c84793f3a6581",
    "bytes": 622,
-   "mtime_utc": "2026-10-23T02:14:00Z",
+   "mtime_utc": "2026-10-25T03:37:24Z",
    "producers": [
     "lab/cushion_screen.py"
    ],
@@ -729,9 +689,9 @@
     "paper/sections/s3b_conv_anchor.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "75b7ebf4967cb8b770a132f5fb9e07d24bcd509488d069c2fb433a0288d096eb",
+   "sha256": "71d266cba7a27cb404df07932fd723041ab3ded3c045cf55317fb0597c2e96bf",
    "bytes": 3240,
-   "mtime_utc": "2026-10-24T18:26:49Z",
+   "mtime_utc": "2026-10-25T03:37:24Z",
    "producers": [
     "lab/f24_verify.py"
    ],
@@ -747,79 +707,36 @@
    "compressed": false
   },
   {
-   "artifact": "results/gate_stability.jsonl",
+   "artifact": "results/m3_r42.jsonl",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "89fa443a136c136bc1ebb8b90c6c5920ec94d6e16526be00b7e9914ed5cdeacc",
-   "bytes": 193018,
-   "mtime_utc": "2026-10-22T12:37:28Z",
+   "sha256": "c55fc502cb246f79f2475a7a07812fb84ba2fdb9dbe0600e2de798fbfa84d7dd",
+   "bytes": 245922,
+   "mtime_utc": "2026-10-22T19:16:04Z",
    "producers": [
-    "lab/cf43.py",
-    "lab/cushion_screen.py",
-    "lab/f24_verify.py",
-    "lab/r41_gate_stability.py",
-    "lab/r45_rider_adm.py",
-    "lab/s52_supplement_build.py"
+    "lab/m3_r42.py"
    ],
    "content": {
     "kind": "jsonl",
-    "rows": 56,
+    "rows": 96,
     "row_keys": [
-     "C",
-     "H",
-     "N",
-     "armA_admissible_change",
-     "armA_arm_verdict_flips",
-     "armA_delivered_change",
-     "armA_n_arm_flips",
-     "armA_regret_delta_pp",
+     "K",
+     "M",
+     "adm",
      "arms",
-     "bootstrap",
+     "bt_deployed",
+     "bytes",
+     "cert",
      "date",
-     "gate_64",
-     "gate_def",
-     "gate_ieee",
-     "pass_64",
-     "pass_def",
-     "pass_ieee",
-     "prereg",
-     "ref64_absmax",
-     "ref_absmax_def",
-     "ref_absmax_ieee",
-     "ref_err",
-     "sm_count",
-     "tag"
-    ]
-   },
-   "compressed": false
-  },
-  {
-   "artifact": "results/m3_curve.json",
-   "sha256_note": null,
-   "cited_in": [
-    "paper/MANUSCRIPT.md",
-    "paper/sections/s8_reproduction.md"
-   ],
-   "sha256": "b880310d9bed47d36c1d1ee2fafd92730dc1bfe6cc9327642c717fda94380b67",
-   "bytes": 184297,
-   "mtime_utc": "2026-10-18T10:41:55Z",
-   "producers": [
-    "lab/a2_day2.py",
-    "lab/atlas_population.py",
-    "lab/cf43.py",
-    "lab/cushion_screen.py",
-    "lab/m3_autotune_curve.py",
-    "lab/s52_supplement_build.py",
-    "lab/w4_heldout.py"
-   ],
-   "content": {
-    "kind": "json",
-    "keys": [
-     "meta",
-     "rows"
+     "domain_pred",
+     "family",
+     "gate_fires",
+     "n_reps",
+     "oracle_arg",
+     "t_oracle_ms"
     ]
    },
    "compressed": false
@@ -854,8 +771,7 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s3b_conv_anchor.md",
-    "paper/sections/s5_tolerance.md",
-    "paper/sections/s8_reproduction.md"
+    "paper/sections/s5_tolerance.md"
    ],
    "sha256": "e578e4a438659dda6b841dce50deb97877318a70ea745e12030cc245f3ef56bd",
    "bytes": 282516,
@@ -897,6 +813,85 @@
    "compressed": false
   },
   {
+   "artifact": "results/r1_times.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md",
+    "paper/sections/s8_reproduction.md"
+   ],
+   "sha256": "fa85a5c7a4b0a2cb779b82bcae4fba5a3df31dce45d7623045e3678f94b9a522",
+   "bytes": 29488,
+   "mtime_utc": "2026-10-24T18:22:28Z",
+   "producers": [
+    "lab/r41_gate_stability.py",
+    "lab/r45_rider_adm.py",
+    "lab/s48_provenance.py",
+    "lab/s52_supplement_build.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "a2|10|2|128",
+     "a2|10|2|48",
+     "a2|18|2|128",
+     "a2|18|2|48",
+     "a2|26|2|128",
+     "a2|26|2|48",
+     "a2|4|2|20",
+     "a2|4|2|9",
+     "a2|6|2|128",
+     "a2|6|2|48",
+     "m3m2|10|1|16",
+     "m3m2|10|1|256",
+     "m3m2|10|1|64",
+     "m3m2|10|4|16",
+     "m3m2|10|4|256",
+     "m3m2|10|4|64",
+     "m3m2|14|1|16",
+     "m3m2|14|1|256",
+     "m3m2|14|1|64",
+     "m3m2|14|4|16",
+     "m3m2|14|4|256",
+     "m3m2|14|4|64",
+     "m3m2|20|1|16",
+     "m3m2|20|1|256",
+     "m3m2|20|1|64",
+     "m3m2|20|4|16",
+     "m3m2|20|4|256",
+     "m3m2|20|4|64",
+     "m3m2|28|1|16",
+     "m3m2|28|1|256",
+     "m3m2|28|1|64",
+     "m3m2|28|4|16",
+     "m3m2|28|4|256",
+     "m3m2|28|4|64",
+     "m3m2|4|1|16",
+     "m3m2|4|1|256",
+     "m3m2|4|1|64",
+     "m3m2|4|4|16",
+     "m3m2|4|4|256",
+     "m3m2|4|4|64",
+     "m3m2|7|1|16",
+     "m3m2|7|1|256",
+     "m3m2|7|1|64",
+     "m3m2|7|4|16",
+     "m3m2|7|4|256",
+     "m3m2|7|4|64",
+     "w4|12|2|32",
+     "w4|12|2|96",
+     "w4|24|2|32",
+     "w4|24|2|96",
+     "w4|3|2|12",
+     "w4|3|2|5",
+     "w4|5|2|32",
+     "w4|5|2|96",
+     "w4|8|2|32",
+     "w4|8|2|96"
+    ]
+   },
+   "compressed": false
+  },
+  {
    "artifact": "results/r42_analysis.json",
    "sha256_note": null,
    "cited_in": [
@@ -904,9 +899,9 @@
     "paper/sections/s1_introduction.md",
     "paper/sections/s3b_conv_anchor.md"
    ],
-   "sha256": "928df0bb6ca6d0ee9f8f97d81d8194661474b8f4dbb491971b1c0474d4f6c014",
+   "sha256": "8866b7be2e14b91f6d2d7a91d01352b1fc77e355380bb59ee574b07ceef8e1a4",
    "bytes": 43316,
-   "mtime_utc": "2026-10-22T15:55:57Z",
+   "mtime_utc": "2026-10-25T03:37:24Z",
    "producers": [
     "lab/r42_analysis.py"
    ],
@@ -925,52 +920,6 @@
    "compressed": false
   },
   {
-   "artifact": "results/r42_gridfix.jsonl",
-   "sha256_note": null,
-   "cited_in": [
-    "paper/MANUSCRIPT.md",
-    "paper/sections/s8_reproduction.md"
-   ],
-   "sha256": "82d3f45cb00252baba93a85e9d5150f0c8c2670ff8c5f912cf299a569f42d266",
-   "bytes": 20199,
-   "mtime_utc": "2026-10-22T15:47:04Z",
-   "producers": [
-    "lab/r42_gridfix.py"
-   ],
-   "content": {
-    "kind": "jsonl",
-    "rows": 4,
-    "row_keys": [
-     "C",
-     "CO",
-     "H",
-     "K",
-     "M",
-     "N",
-     "W",
-     "bytes",
-     "cmp_regret",
-     "contract",
-     "date",
-     "domain_predicate",
-     "gate",
-     "gate_published",
-     "gate_published_regret",
-     "hand_best",
-     "op_class",
-     "oracle",
-     "ref32_absmax",
-     "ref_absmax",
-     "rule",
-     "sm_count",
-     "tag",
-     "torch_regret",
-     "variants"
-    ]
-   },
-   "compressed": false
-  },
-  {
    "artifact": "results/r45_rider_adm.json",
    "sha256_note": null,
    "cited_in": [
@@ -979,12 +928,11 @@
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s3b_conv_anchor.md",
     "paper/sections/s4_certificates.md",
-    "paper/sections/s7_threats.md",
-    "paper/sections/s8_reproduction.md"
+    "paper/sections/s7_threats.md"
    ],
-   "sha256": "24c8c6d8bf4f4b6e6aca1e9dba0f9ef5eda293f509e4c1d18e0880f70387e5f2",
+   "sha256": "4be568aaded47a3de53cb5174313bebd3e3d1407db39b021aaafccdc85a6b2d1",
    "bytes": 43497,
-   "mtime_utc": "2026-10-24T18:26:49Z",
+   "mtime_utc": "2026-10-25T03:37:24Z",
    "producers": [
     "lab/r45_rider_adm.py"
    ],
@@ -1041,9 +989,9 @@
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s3b_conv_anchor.md"
    ],
-   "sha256": "40dcfb88b47518f3199b28a128499d47536707b0fc531ca07f661b9d5ba5d339",
+   "sha256": "adae9e7fc93496ff7961138964a7ab358064d227963ce795d4f6d93f5f8fd270",
    "bytes": 3289,
-   "mtime_utc": "2026-10-23T18:57:52Z",
+   "mtime_utc": "2026-10-25T05:05:59Z",
    "producers": [
     "lab/s48_prose_audit.py"
    ],
@@ -1098,9 +1046,9 @@
     "paper/sections/s4_certificates.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "bb50d71cdf61278471b094169fa1cecb2dc06576a5b050cf95d5e3ad429a29ef",
+   "sha256": "a826d05eef0adb39a5452a236f21dea54e697b88d39d00e4e3fb2f04e1fd5b16",
    "bytes": 7782,
-   "mtime_utc": "2026-10-25T01:24:20Z",
+   "mtime_utc": "2026-10-25T06:00:12Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1133,9 +1081,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "378301b4ad5bb97847026a6160a98fafdb9a688567e79ad18abd1467c5d05c7d",
+   "sha256": "ff6688db19b7b4f899f9532de70b5c145e1ead5d665b2646a94ee68f9594d16e",
    "bytes": 5268,
-   "mtime_utc": "2026-10-25T01:24:20Z",
+   "mtime_utc": "2026-10-25T06:00:12Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1161,7 +1109,7 @@
    ],
    "sha256": "6907ce45b441d1907262e666cdf6d4dd1473e68cbfb3a0da19d1b9592a23ff0d",
    "bytes": 1763,
-   "mtime_utc": "2026-10-25T01:24:20Z",
+   "mtime_utc": "2026-10-25T06:00:12Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1188,9 +1136,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "dc06798f11b475bb068781738b25de00e299d30283c27a117ae0c52baff2d93c",
-   "bytes": 9006,
-   "mtime_utc": "2026-10-24T18:12:31Z",
+   "sha256": "b14a1922422ca98904a24fe1198ca32670f36880db90db3ccc270932faf0f816",
+   "bytes": 9581,
+   "mtime_utc": "2026-10-25T04:48:46Z",
    "producers": [
     "lab/s55_review_repair.py"
    ],
@@ -1218,7 +1166,9 @@
    "sha256": "4fe7b74117572387803f4a94024898114002c78b7e43d62d195e9e34ea88e4f3",
    "bytes": 11734,
    "mtime_utc": "2026-10-24T18:35:39Z",
-   "producers": [],
+   "producers": [
+    "lab/s52_supplement_build.py"
+   ],
    "content": {
     "kind": "json",
     "keys": [
@@ -1261,7 +1211,7 @@
    ],
    "sha256": "df1f8be8f7efb6f1505c679347db9e98a465c98018fc2cd408cc477167fcb65b",
    "bytes": 2081,
-   "mtime_utc": "2026-10-23T11:46:14Z",
+   "mtime_utc": "2026-10-25T03:37:24Z",
    "producers": [
     "lab/s6_dispatcher_audit.py"
    ],

@@ -16,10 +16,28 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams may ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
 ROOT = os.path.dirname(HERE)
 SECTIONS = os.path.join(ROOT, "paper", "sections")
 OUT = os.path.join(ROOT, "paper", "MANUSCRIPT.md")
-RES = os.path.join(HERE, "results")
+RES = _kb_res_dir(HERE)
 
 ORDER = ["s1_introduction.md", "s2_reference_axis.md", "s3_atlas.md", "s3b_conv_anchor.md",
          "s4_certificates.md", "s5_tolerance.md", "s6_selector.md", "s7_threats.md",
@@ -33,10 +51,12 @@ parts = []
 header = f"""# {TITLE}
 
 *Artifact status.* Every number in this manuscript is regenerated from committed artifacts by shipped
-auditors (`s50_prose_audit.py` 18/18, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 14/14,
-`s53_intro_audit.py` 15/15) and mapped to its file and field in `PROVENANCE.md` (41 cited / 41 found /
-0 missing). The auditors exit nonzero on a cited value they cannot reproduce, and the supplement ships
-them together with the artifacts they read, so the package is re-runnable as delivered.
+auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16,
+`s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 6/6) and mapped to its file and field in
+`PROVENANCE.md` (42 cited / 42 found / 0 missing). The auditors exit nonzero on a cited value they cannot
+reproduce, the supplement ships them together with the artifacts they read, and the build runs every
+CPU-only script from inside the shipped package and fails if any exits nonzero, so the package is
+re-runnable as delivered.
 
 *Scope.* One architecture (GB10/sm_120), one fp64 build, one torch version (2.14.1+cu130), designed
 lattices rather than samples from the benchmark's distribution, unlocked clocks (clock lock denied by

@@ -1,7 +1,7 @@
 # Section 2 prose — Instrument and the reference-realization axis (draft, tick #50 2026-10-24)
 
 Every number in this file was regenerated from committed artifacts by `lab/s50_prose_audit.py`
-(`results/s50_prose_audit.json`, 18/18 checks pass, zero unsupported citations) before the prose was
+(`results/s50_prose_audit.json`, 19/19 checks pass, zero unsupported citations) before the prose was
 written. Comparator throughout is torch.compile / recorded `torch_cmp`, never eager. Single arch:
 GB10/sm_120, torch 2.14.1+cu130.
 

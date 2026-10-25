@@ -1,6 +1,6 @@
 {
  "header": {
-  "date": "2026-10-24T18:12Z",
+  "date": "2026-10-25T04:48Z",
   "conventions": "frozen in module docstring before run",
   "purpose": "recompute DE1paW review findings F2/F3/F4/F4b/F5 from records only",
   "no_gpu": true
@@ -22,11 +22,17 @@
     "n_rows_total": 56,
     "n_a2_undefined_or_no_delivery": 0,
     "stored_fields": {
+     "paired_delta_pp_mean": 0.2063,
+     "paired_delta_pp_max": 2.4411,
+     "paired_n": 56
+    },
+    "stored_over_recomputed_mean_ratio": 1.0000173121202154,
+    "pre_repair_stored": {
      "paired_delta_pp_mean": 0.0021,
      "paired_delta_pp_max": 0.0244,
      "paired_n": 56
     },
-    "stored_over_recomputed_mean_ratio": 0.01017952668663331
+    "pre_repair_over_recomputed_mean_ratio": 0.01017952668663331
    },
    "ieee": {
     "recomputed_pp": {
@@ -41,11 +47,17 @@
     "n_rows_total": 56,
     "n_a2_undefined_or_no_delivery": 24,
     "stored_fields": {
+     "paired_delta_pp_mean": -0.6582,
+     "paired_delta_pp_max": 2.4411,
+     "paired_n": 32
+    },
+    "stored_over_recomputed_mean_ratio": 1.0000094956842116,
+    "pre_repair_stored": {
      "paired_delta_pp_mean": -0.0066,
      "paired_delta_pp_max": 0.0244,
      "paired_n": 32
     },
-    "stored_over_recomputed_mean_ratio": 0.010027442527371309
+    "pre_repair_over_recomputed_mean_ratio": 0.010027442527371309
    },
    "64": {
     "recomputed_pp": {
@@ -60,11 +72,17 @@
     "n_rows_total": 56,
     "n_a2_undefined_or_no_delivery": 31,
     "stored_fields": {
+     "paired_delta_pp_mean": -4.4268,
+     "paired_delta_pp_max": 0.0,
+     "paired_n": 25
+    },
+    "stored_over_recomputed_mean_ratio": 0.9999945785059448,
+    "pre_repair_stored": {
      "paired_delta_pp_mean": -0.0443,
      "paired_delta_pp_max": 0.0,
      "paired_n": 25
     },
-    "stored_over_recomputed_mean_ratio": 0.01000717444379989
+    "pre_repair_over_recomputed_mean_ratio": 0.01000717444379989
    }
   },
   "diagnosis": "stored paired_delta_pp_* hold fractional differences (no x100) and _max is a signed max, so a large negative change reads as 0.0 at the fp64 rung"

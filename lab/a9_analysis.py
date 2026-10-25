@@ -14,8 +14,26 @@ changed post-hoc):
 import json, math, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, "results", "a9_compose.json")
-OUT = os.path.join(HERE, "results", "a9_analysis.json")
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams may ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+SRC = os.path.join(_kb_res_dir(HERE), "a9_compose.json")
+OUT = os.path.join(_kb_res_dir(HERE), "a9_analysis.json")
 CONTROLS = {"c4_cleanA_GEMM_then_TF32", "c5_cleanA_mm_then_mm"}
 BAR = 0.301  # factor 2
 
@@ -30,7 +48,7 @@ def score(pred, meas):
 
 
 def main():
-    d = json.load(open(SRC))
+    d = json.load(_kb_open(SRC))
     rows = d["rows"]
     out_rows = []
     for r in rows:

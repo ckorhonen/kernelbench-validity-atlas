@@ -7,13 +7,31 @@ CPU only. Output results/cushion_screen.json.
 import json, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(HERE, "results")
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams may ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+RES = _kb_res_dir(HERE)
 BAR = 1e-4
 OUT = os.path.join(RES, "cushion_screen.json")
 
 
 def R(name):
-    return json.load(open(os.path.join(RES, name)))
+    return json.load(_kb_open(os.path.join(RES, name)))
 
 
 def auc(xs, ys):
@@ -32,7 +50,7 @@ def auc(xs, ys):
 
 def train():
     day1 = R("m3_curve.json")["rows"]
-    r42 = [json.loads(l) for l in open(os.path.join(RES, "m3_r42.jsonl")) if l.strip()]
+    r42 = [json.loads(l) for l in _kb_open(os.path.join(RES, "m3_r42.jsonl")) if l.strip()]
     day1_red = {(r["K"], r["M"]): r for r in day1 if r["family"] == "reduction"}
     r42_red = {(r["K"], r["M"]): r for r in r42 if r["family"] == "reduction"}
     xs, ys, x2s = [], [], []
@@ -51,8 +69,8 @@ def train():
 
 def rider():
     r1 = {(r["tag"], r["N"], r["H"], r["C"]): r
-          for r in map(json.loads, open(os.path.join(RES, "r1_conv_gated.jsonl"))) if True}
-    rows = [json.loads(l) for l in open(os.path.join(RES, "gate_stability.jsonl")) if l.strip()]
+          for r in map(json.loads, _kb_open(os.path.join(RES, "r1_conv_gated.jsonl"))) if True}
+    rows = [json.loads(l) for l in _kb_open(os.path.join(RES, "gate_stability.jsonl")) if l.strip()]
     xs, ys, arms = [], [], []
     for r in rows:
         key = (r["tag"], r["N"], r["H"], r["C"])

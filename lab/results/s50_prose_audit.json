@@ -356,7 +356,7 @@
   }
  },
  "cushion": {
-  "date": "2026-10-23T02:14:00Z",
+  "date": "2026-10-25T03:37:24Z",
   "prereg": "lab/cushion_screen_prereg.md (thresholds frozen pre-run)",
   "train": {
    "n": 360,

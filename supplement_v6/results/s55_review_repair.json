@@ -1,0 +1,340 @@
+{
+ "header": {
+  "date": "2026-10-25T04:48Z",
+  "conventions": "frozen in module docstring before run",
+  "purpose": "recompute DE1paW review findings F2/F3/F4/F4b/F5 from records only",
+  "no_gpu": true
+ },
+ "F2_regret_admission": {
+  "published_claim": "paired |A2-A1| <= 0.025 pp on the defined overlap (s3b L68, s4 L36-39)",
+  "claim_supported": false,
+  "per_ref": {
+   "def": {
+    "recomputed_pp": {
+     "n": 56,
+     "mean": 0.20629642857142858,
+     "sd": 0.601759536983544,
+     "max_abs": 2.4411,
+     "min": 0.0,
+     "max": 2.4411,
+     "t": 2.5654451932698725
+    },
+    "n_rows_total": 56,
+    "n_a2_undefined_or_no_delivery": 0,
+    "stored_fields": {
+     "paired_delta_pp_mean": 0.2063,
+     "paired_delta_pp_max": 2.4411,
+     "paired_n": 56
+    },
+    "stored_over_recomputed_mean_ratio": 1.0000173121202154,
+    "pre_repair_stored": {
+     "paired_delta_pp_mean": 0.0021,
+     "paired_delta_pp_max": 0.0244,
+     "paired_n": 56
+    },
+    "pre_repair_over_recomputed_mean_ratio": 0.01017952668663331
+   },
+   "ieee": {
+    "recomputed_pp": {
+     "n": 32,
+     "mean": -0.65819375,
+     "sd": 4.557696670181007,
+     "max_abs": 25.4617,
+     "min": -25.4617,
+     "max": 2.4411,
+     "t": -0.8169271412985358
+    },
+    "n_rows_total": 56,
+    "n_a2_undefined_or_no_delivery": 24,
+    "stored_fields": {
+     "paired_delta_pp_mean": -0.6582,
+     "paired_delta_pp_max": 2.4411,
+     "paired_n": 32
+    },
+    "stored_over_recomputed_mean_ratio": 1.0000094956842116,
+    "pre_repair_stored": {
+     "paired_delta_pp_mean": -0.0066,
+     "paired_delta_pp_max": 0.0244,
+     "paired_n": 32
+    },
+    "pre_repair_over_recomputed_mean_ratio": 0.010027442527371309
+   },
+   "64": {
+    "recomputed_pp": {
+     "n": 25,
+     "mean": -4.426824,
+     "sd": 10.298607440016667,
+     "max_abs": 41.2044,
+     "min": -41.2044,
+     "max": 0.0,
+     "t": -2.1492342657896453
+    },
+    "n_rows_total": 56,
+    "n_a2_undefined_or_no_delivery": 31,
+    "stored_fields": {
+     "paired_delta_pp_mean": -4.4268,
+     "paired_delta_pp_max": 0.0,
+     "paired_n": 25
+    },
+    "stored_over_recomputed_mean_ratio": 0.9999945785059448,
+    "pre_repair_stored": {
+     "paired_delta_pp_mean": -0.0443,
+     "paired_delta_pp_max": 0.0,
+     "paired_n": 25
+    },
+    "pre_repair_over_recomputed_mean_ratio": 0.01000717444379989
+   }
+  },
+  "diagnosis": "stored paired_delta_pp_* hold fractional differences (no x100) and _max is a signed max, so a large negative change reads as 0.0 at the fp64 rung"
+ },
+ "F3_composition": {
+  "chains": [
+   {
+    "chain": "c1_W_then_TF32",
+    "ratio_worst": 0.98098277438707,
+    "ratio_additive": 0.9795689835851423,
+    "frac_A": 0.005381058673469387,
+    "frac_B_alone": 0.798095703125,
+    "frac_end": 0.7982177734375,
+    "both_stages_admissible": false,
+    "end_inadmissible": true
+   },
+   {
+    "chain": "c2_W_then_W",
+    "ratio_worst": 1.5074464271932637,
+    "ratio_additive": 1.3309580723083334,
+    "frac_A": 0.0006934171597633136,
+    "frac_B_alone": 0.007303994082840237,
+    "frac_end": 0.01164940828402367,
+    "both_stages_admissible": false,
+    "end_inadmissible": true
+   },
+   {
+    "chain": "c3_TF32_then_TF32",
+    "ratio_worst": 1.5365360329291817,
+    "ratio_additive": 1.3942105668110296,
+    "frac_A": 0.7602749433106576,
+    "frac_B_alone": 0.7876984126984127,
+    "frac_end": 0.844812925170068,
+    "both_stages_admissible": false,
+    "end_inadmissible": true
+   },
+   {
+    "chain": "c4_cleanA_GEMM_then_TF32",
+    "ratio_worst": 1.0,
+    "ratio_additive": 0.999975995094456,
+    "frac_A": 0.0,
+    "frac_B_alone": 0.7812499999999999,
+    "frac_end": 0.7806122448979591,
+    "both_stages_admissible": false,
+    "end_inadmissible": true
+   },
+   {
+    "chain": "c5_cleanA_mm_then_mm",
+    "ratio_worst": 1.97145120527432,
+    "ratio_additive": 1.784149629499136,
+    "frac_A": 0.0,
+    "frac_B_alone": 0.0,
+    "frac_end": 3.0517578125e-05,
+    "both_stages_admissible": true,
+    "end_inadmissible": true
+   },
+   {
+    "chain": "c6_mm_deep_then_mm",
+    "ratio_worst": 2.4801235009093623,
+    "ratio_additive": 2.2539514724084118,
+    "frac_A": 0.0002040863037109375,
+    "frac_B_alone": 0.0014829635620117188,
+    "frac_end": 0.004367828369140625,
+    "both_stages_admissible": false,
+    "end_inadmissible": true
+   }
+  ],
+  "n_within_1.0_1.5x": 1,
+  "n_within_factor2": 5,
+  "published_claim_1p5": "bounded by the worst stage within 1.0-1.5x on 5/6 chains (s1 L85, s5 L64,105)",
+  "claim_1p5_supported": false,
+  "claim_factor2_supported": true,
+  "frozen_rule_counts_from_a9_analysis": {
+   "R1": {
+    "n_pass": 4,
+    "n_fail": 2,
+    "pass_chains": [
+     "c1_W_then_TF32",
+     "c2_W_then_W",
+     "c3_TF32_then_TF32",
+     "c4_cleanA_GEMM_then_TF32"
+    ]
+   },
+   "R2": {
+    "n_pass": 5,
+    "n_fail": 1,
+    "pass_chains": [
+     "c1_W_then_TF32",
+     "c2_W_then_W",
+     "c3_TF32_then_TF32",
+     "c4_cleanA_GEMM_then_TF32",
+     "c5_cleanA_mm_then_mm"
+    ]
+   },
+   "R3": {
+    "n_pass": 5,
+    "n_fail": 1,
+    "pass_chains": [
+     "c1_W_then_TF32",
+     "c2_W_then_W",
+     "c3_TF32_then_TF32",
+     "c4_cleanA_GEMM_then_TF32",
+     "c5_cleanA_mm_then_mm"
+    ]
+   }
+  },
+  "published_claim_R1": "the union rule fails 4/6 (s5 L59)",
+  "R1_actual": "passes 4/6, fails 2 (c5, c6) -- the prose inverted its own artifact",
+  "c5_control": {
+   "chain": "c5_cleanA_mm_then_mm",
+   "ratio_worst": 1.97145120527432,
+   "ratio_additive": 1.784149629499136,
+   "frac_A": 0.0,
+   "frac_B_alone": 0.0,
+   "frac_end": 3.0517578125e-05,
+   "both_stages_admissible": true,
+   "end_inadmissible": true
+  },
+  "c5_note": "two individually admissible stages (rho .069, .656) compose to rho_end 1.294 > 1 => composition can fail even when both stages pass; frac stays 3.05e-5 (tail only)"
+ },
+ "F4_compression_magnitude": {
+  "per_model": {
+   "class_median": {
+    "n": 48,
+    "median_mult_err": 2.7074960185756307,
+    "max_mult_err": 977.523361341457,
+    "spearman": 0.4290056448111159,
+    "bulk_acc": 0.9375
+   },
+   "class_derived": {
+    "n": 48,
+    "median_mult_err": 2.0943741592842127,
+    "max_mult_err": 439.91650564365705,
+    "spearman": 0.8944854537559704,
+    "bulk_acc": 0.9375
+   },
+   "derived_only": {
+    "n": 48,
+    "median_mult_err": 6.843819510844706,
+    "max_mult_err": 156.7380173090608,
+    "spearman": 0.8327181936604429,
+    "bulk_acc": 0.7916666666666666
+   }
+  },
+  "published_claim": "rho_max compresses out-of-fold (.833 geometry-only / .986 with class)",
+  "reading": "rank compression holds; magnitude calibration does NOT -- geometry-only median multiplicative error ~6.8x, max ~157x. Both must be reported together.",
+  "bulk_clause": "bulk_acc tests only frac_over > 0.5, not the full admission rule"
+ },
+ "F4b_crossing_scope": {
+  "geometry_at_crossing": [
+   {
+    "M": 256,
+    "K": 3632,
+    "N": 256,
+    "rho": 0.6475293126688193,
+    "med": 0.0041262681917379924,
+    "frac_over": 0.0
+   },
+   {
+    "M": 1024,
+    "K": 3632,
+    "N": 1024,
+    "rho": 1.2320467583898809,
+    "med": 0.004088421591182464,
+    "frac_over": 2.86102294921875e-06
+   },
+   {
+    "M": 4096,
+    "K": 3632,
+    "N": 4096,
+    "rho": 2.7772071583220175,
+    "med": 0.008588202080523567,
+    "frac_over": 6.967782974243164e-05
+   }
+  ],
+  "rho_by_M": {
+   "256": 0.6475293126688193,
+   "1024": 1.2320467583898809,
+   "4096": 2.7772071583220175
+  },
+  "published_claim": "matmul fp32 cannot pass its own contract at K >~ 3.6k (s9 L38 area)",
+  "reading": "crossing measured at M=N=1024 only; rho at K=3632 is .648 at M=256 and 2.777 at M=4096, so the threshold is geometry-dependent and must be stated per (M,N)"
+ },
+ "F5_denominator": {
+  "per_tag": {
+   "m3m2": {
+    "oracle_denom": {
+     "n": 36,
+     "mean": 0.11871940743372411,
+     "sd": 0.2924550775847918,
+     "max_abs": 1.0239045654055856,
+     "min": -0.1692307562052786,
+     "max": 1.0239045654055856,
+     "t": 2.4356439644848433
+    },
+    "compile_denom": {
+     "n": 36,
+     "mean": 0.0657909756758443,
+     "sd": 0.1627815629312956,
+     "max_abs": 0.5059055564709385,
+     "min": -0.20370368483103668,
+     "max": 0.5059055564709385,
+     "t": 2.425003464438256
+    },
+    "n_compile_failed_rows": 4
+   },
+   "w4": {
+    "oracle_denom": {
+     "n": 10,
+     "mean": 0.12083383141674231,
+     "sd": 0.23244205770082493,
+     "max_abs": 0.7126982686824872,
+     "min": 0.0,
+     "max": 0.7126982686824872,
+     "t": 1.6438940932691641
+    },
+    "compile_denom": {
+     "n": 10,
+     "mean": 0.08166050182091278,
+     "sd": 0.14127111631002856,
+     "max_abs": 0.4161259935357665,
+     "min": 0.0,
+     "max": 0.4161259935357665,
+     "t": 1.8279262411978285
+    },
+    "n_compile_failed_rows": 1
+   },
+   "a2": {
+    "oracle_denom": {
+     "n": 10,
+     "mean": 0.10296366016034238,
+     "sd": 0.20318697225408947,
+     "max_abs": 0.6240876904813901,
+     "min": -0.02285706825630131,
+     "max": 0.6240876904813901,
+     "t": 1.6024633800195154
+    },
+    "compile_denom": {
+     "n": 10,
+     "mean": 0.07192694881117001,
+     "sd": 0.1302212002251202,
+     "max_abs": 0.3842697005457916,
+     "min": -0.02339173473374379,
+     "max": 0.3842697005457916,
+     "t": 1.746666310834393
+    },
+    "n_compile_failed_rows": 0
+   }
+  },
+  "published_claim": "d_i defined as percent of compile time; sd 0.29/0.23/0.20",
+  "reading": "r42_analysis divides by ORACLE time, not compile. Under the stated compile denominator the means are smaller and sd in pp is ~10-30, not 0.29-0.20. The 0.29/0.23/0.20 figures are oracle-denominator sd in FRACTION units.",
+  "n_union_rows": 56
+ },
+ "hard_fail_absent_artifacts": []
+}

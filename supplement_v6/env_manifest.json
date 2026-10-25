@@ -1,0 +1,14 @@
+{
+ "python": "3.12.3",
+ "torch": "2.14.1+cu130",
+ "cuda": "13.0",
+ "cudnn": 92400,
+ "device": "NVIDIA GB10",
+ "cc": "12.1",
+ "triton": "3.8.0",
+ "tf32_matmul": false,
+ "precision": "fp32 highest (matmul); cudnn.allow_tf32=True in the measured rows, recorded per row",
+ "driver": "580.159.03",
+ "packaged": "2026-10-24 tick #55",
+ "note": "the CPU-only scripts are dependency-free and run on any Python 3.9+; the GPU legs reproduce on any GB10 with this stack"
+}

@@ -3,7 +3,7 @@
 Every number in this section is regenerated from committed artifacts by `lab/s53_intro_audit.py`
 (`results/s53_intro_audit.json`), which runs before the file is committed and hard-fails on any cited
 value it cannot reproduce. The section cites only numbers that are also covered by the per-section audits
-already shipped (`s50_prose_audit.py` 18/18, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 14/14) and by
+already shipped (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16) and by
 the provenance table (`paper/PROVENANCE.md`, 41 cited / 41 found / 0 missing).
 
 ---

@@ -14,13 +14,31 @@ Output: results/f24_verify.json + printed digest.
 import json, os, statistics, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(HERE, "results")
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams may ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+RES = _kb_res_dir(HERE)
 WRONG3 = {("w4", 2, 3, 5), ("w4", 2, 3, 12), ("a2", 2, 4, 9), ("a2", 2, 4, 20)}
 OUT = os.path.join(RES, "f24_verify.json")
 
 
 def load(path):
-    return [json.loads(l) for l in open(path) if l.strip()]
+    return [json.loads(l) for l in _kb_open(path) if l.strip()]
 
 
 def key4(r):
@@ -84,7 +102,7 @@ def f2(r1, corr):
     by_tag = {}
     for t, N, H, C in fail:
         by_tag.setdefault(t, []).append((N, H, C))
-    ra = json.load(open(os.path.join(RES, "r42_analysis.json")))
+    ra = json.load(_kb_open(os.path.join(RES, "r42_analysis.json")))
     d_rows = {(p["tag"], p["N"], p["H"], p["C"]) for p in ra["per_row"]
               if p["d_i_pct"] is not None}
     res["torch_cmp_failing"] = {
@@ -95,7 +113,7 @@ def f2(r1, corr):
 
 def f3():
     rows = load(os.path.join(RES, "gate_stability.jsonl"))
-    summ = json.load(open(os.path.join(RES, "gate_stability_summary.json")))
+    summ = json.load(_kb_open(os.path.join(RES, "gate_stability_summary.json")))
     n = len(rows)
     torch_fail64 = sum(1 for r in rows if not r["pass_64"].get("torch", True))
     deliv64, delivown = {"def": 0, "ieee": 0}, {"def": 0, "ieee": 0}
