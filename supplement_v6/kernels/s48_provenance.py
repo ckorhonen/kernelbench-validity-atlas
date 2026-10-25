@@ -110,6 +110,13 @@ def main():
     for name in sorted(cited):
         path = os.path.join(RES, name)
         gz = False
+        if not os.path.exists(path) and not os.path.exists(path + ".gz"):
+            # a few cited inputs are producer-side inputs rather than results/ artifacts (r1_times.json is
+            # the recorded r1 med_ms table r45_rider_adm.py reads); they live in lab/ and ship at
+            # kernels/. Record them from there rather than reporting them missing.
+            alt = os.path.join(LAB, name)
+            if os.path.exists(alt):
+                path = alt
         if not os.path.exists(path) and os.path.exists(path + ".gz"):
             # row-streams that are cited but never loaded by an auditor may ship gzipped to stay inside
             # the packaging budget; the digest then refers to the compressed bytes and `uncompressed_bytes`

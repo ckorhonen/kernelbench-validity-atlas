@@ -1,0 +1,15 @@
+{
+ "status": 200,
+ "response": {
+  "success": true,
+  "data": {
+   "submission_id": "f01MfLhPgzuuQ1_3",
+   "status": "queued",
+   "stage": "desk",
+   "submitted_at": "2026-10-25T06:32:01.221899Z",
+   "paper_id": null,
+   "version": null,
+   "status_url": "/api/v1/submissions/f01MfLhPgzuuQ1_3"
+  }
+ }
+}

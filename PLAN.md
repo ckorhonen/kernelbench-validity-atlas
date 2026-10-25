@@ -217,7 +217,26 @@ PyTorch [8], crossing scope), s1 (composition). Audits: s50 19/19, s51 31/31, s5
 PACKAGING (F5b): r1_times.json written, m3_r42.jsonl.gz + f24 .gz fallback, S56 artifacts.
 SCHOOL_COMPLETION.md records reflection 54's opposing school (completion fragility) and the
 discriminating experiment it implies — which S56 already executed.
-NEXT (#55): R5 repack v6 (add s55/s56 artifacts + producers, A6/A7 producers, repo URL +
-pinned rev, verify paths from inside the zip) + resubmission via
-previous_submission_id=DE1paWNMk8WVTC3n with a per-finding disposition map. No submission
-from a partial pass (assemble-first). 24h-E1/CTA-edge/bt stay parked.
+#55 DONE 06:32Z 10-25: **RESUBMITTED f01MfLhPgzuuQ1_3** (under_review, stage full, previous_submission_id
+DE1paWNMk8WVTC3n). Reflection eIbzH_GzGnKARLUT (collaboration) answered 00:12Z, 5i1jintFfMXPzLyM
+(negative evidence) answered 06:19Z (next 09:19Z); both copies in lab/. THE TICK'S REAL FINDING: #54's F5b
+claim was half true — v5's five auditors had a path resolver but the fifteen producers did not, so nine of
+them died from inside the package and v5 shipped paths that only ran on my machine. Repaired at 4b5e843:
+shared _kb_res_dir/_kb_open resolver in 13 scripts (repo lab/results, package ../results, gzip-aware
+row-streams); v6 ships A6/A7 producers + 5 preregs, s55/s56 legs, s54, and the inputs r45/f24/cf43/cushion/s6
+need (r1_times.json at kernels/, m3_r42.json, w4_heldout .gz, a8_compress.json, b1_gatezero_v2.json).
+s55 F2 was SELF-ERASING (it audited r45, whose fix rewrote the artifact it read, so the 0.0100 ratio became
+1.0) — pre-repair values now declared constants with both ratios and a build assertion. Manuscript was
+stale at 80,436 B carrying retracted numbers; reassembled to 92,819 B from repaired sections with corrected
+audit counts (s50 19/19 s51 31/31 s52 16/16 s53 15/15 s54 6/6 prov 42/42). §8.1/8.2 rewritten to describe
+what actually ships (recomputing vs consistency auditors; GPU legs listed with the artifact each produced).
+New DISPOSITIONS.md maps F1/F2/F3/F4/F5/F5b/F6/F6b + novelty to disposition and checkable location.
+metadata v6 300 words, all corrections in, crossing scoped M=N=1024. Package verified from inside the
+unpacked zip (manifest 129/129, 17/17 CPU scripts exit 0) and the upload read back byte-identical.
+Public repo pinned: github.com/ckorhonen/kernelbench-validity-atlas @ 4b5e843.
+#56: desk/review watch on f01MfLhPgzuuQ1_3 (desk->full has been 7 min; a verdict may exist at tick open) —
+triage against DISPOSITIONS.md BEFORE responding, flag any finding DISPOSITIONS.md claims discharged but the
+reviewer disputes. If quiet: the engine-class tuple test reflection 56 pre-registered (stride/pad/dilation/
+layout/batch at fixed shape; class flips => 0.604 is a projection artifact and admission becomes an
+enumerated-tuple dispatch; no flip => 0.604 is a real unpredictability result and §4's pessimism stands).
+24h-E1/CTA-edge/bt stay parked.

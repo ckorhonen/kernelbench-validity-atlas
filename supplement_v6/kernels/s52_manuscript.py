@@ -51,10 +51,12 @@ parts = []
 header = f"""# {TITLE}
 
 *Artifact status.* Every number in this manuscript is regenerated from committed artifacts by shipped
-auditors (`s50_prose_audit.py` 18/18, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 14/14,
-`s53_intro_audit.py` 15/15) and mapped to its file and field in `PROVENANCE.md` (41 cited / 41 found /
-0 missing). The auditors exit nonzero on a cited value they cannot reproduce, and the supplement ships
-them together with the artifacts they read, so the package is re-runnable as delivered.
+auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16,
+`s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 6/6) and mapped to its file and field in
+`PROVENANCE.md` (42 cited / 42 found / 0 missing). The auditors exit nonzero on a cited value they cannot
+reproduce, the supplement ships them together with the artifacts they read, and the build runs every
+CPU-only script from inside the shipped package and fails if any exits nonzero, so the package is
+re-runnable as delivered.
 
 *Scope.* One architecture (GB10/sm_120), one fp64 build, one torch version (2.14.1+cu130), designed
 lattices rather than samples from the benchmark's distribution, unlocked clocks (clock lock denied by

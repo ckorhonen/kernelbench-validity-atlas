@@ -11,30 +11,54 @@ wrong, both audits passed. The auditors that *do* recompute from row-level recor
 `cf43.py`, `r42_analysis.py`, `r45_rider_adm.py` and the new `s55_review_repair.py`; those are the ones a
 reader should run first. §8.4 lists the repairs that came from this distinction.
 
-## 8.1 The auditor set
+## 8.1 The auditor set, and which of it runs from the shipped package
 
-| script | what it audits | input | exit condition |
+A review of the previous version found that the scripts named here did not all run from the shipped
+package: `r45_rider_adm.py` needed an absent `r1_times.json`, `f24_verify.py` an absent `m3_r42.jsonl`,
+several scripts assumed uncompressed inputs under a directory the package does not have, and the A6/A7
+measurement producers were absent entirely. The package now carries a shared path resolver so every script
+finds `results/` beside `kernels/`, reads row-streams through gzip, and the build **runs all seventeen
+CPU-only scripts from inside the package** and fails if any exits nonzero. The count is the deliverable
+here, not the promise.
+
+Recomputing auditors (these regenerate numbers from row-level records rather than reading a stored field):
+
+| script | what it audits | exit condition | status from inside the package |
 |---|---|---|---|
-| `lab/f24_verify.py` | count auditor: the F2/F3 numbers this paper cites (15/560, 80/280, 14/2/0, rider 52 = 21+31) | `results/r1_conv_gated.jsonl`, `results/r45_rider_adm.json` | hard-fail on any count mismatch |
-| `lab/r45_rider_adm.py` | admission auditor: regret and delivery under every-arm admission, at three realizations | `results/gate_stability.jsonl`, `results/r1_conv_gated.jsonl` | emits per-realization disagreement counts |
-| `lab/cf43.py` | invariance/profil/margin: chain order, anchor profile patterns, cross-family flip fraction | `results/m3_curve.json`, `results/gate_stability.jsonl` | hard-fail if an order-dependent cell is found |
-| `lab/cushion_screen.py` | the one-sided screen with its pre-registered thresholds | `results/b4_guard_v1.jsonl`, `results/b2_failure_corpus.jsonl` | applies the fail branch, no retry |
-| `lab/r42_analysis.py` | corrected-oracle recompute and paired compile deltas | `results/r42_gridfix.jsonl` | asserts the dropped rows are the four grid-fix shapes |
-| `lab/s48_prose_audit.py` | every number cited in §3.3-3.5 | committed artifacts | 18/18, exit 0 |
-| `lab/s50_prose_audit.py` | every number cited in §2 and §4 | committed artifacts | 18/18, 0 unsupported |
-| `lab/s51_prose_audit.py` | every number cited in §4.5-§8 | committed artifacts | hard-fail on a cited-but-unregenerable number |
-| `lab/a8_analysis.py`, `lab/a8b_analysis.py` | the compression test, frozen and corrected readings | `results/a8_compress_v2.json` | applies the prereg verdict rule verbatim |
+| `f24_verify.py` | count auditor: 15/560, 80/280, 14/2/0, rider 52 = 21+31 | hard-fail on any count mismatch | exit 0 |
+| `r45_rider_adm.py` | admission auditor: regret and delivery under every-arm admission at three realizations | emits per-realization disagreement counts | exit 0 |
+| `cf43.py` | invariance/profile/margin: chain order, anchor profiles, cross-family flip fraction | hard-fail on an order-dependent cell | exit 0 |
+| `cushion_screen.py` | the one-sided screen with its pre-registered thresholds | applies the fail branch, no retry | exit 0 |
+| `r42_analysis.py` | corrected-oracle recompute and paired deltas under both denominators | asserts the dropped rows are the grid-fix shapes | exit 0 |
+| `s55_review_repair.py` | the five arithmetic findings of the DE1paW review, recomputed from records | hard-fails on an absent artifact; pins the pre-repair r45 values as declared constants | exit 0 |
+| `s56_heldout_contract.py` | the held-out per-arm contract table, in time units (GPU leg; artifact shipped) | applies the prereg's three verdict branches | measured on GB10 |
+| `a8_analysis.py`, `a8b_analysis.py`, `a9_analysis.py` | the compression and composition tests, frozen and corrected readings | applies the prereg verdict rule verbatim | exit 0 |
 
-The GPU harnesses are shipped too, with their pre-registrations in their docstrings and their seeds
-recorded: `lab/a8_compress.py` (compression grid), `lab/r1_conv_gated.py` (conv contract under three
-realizations), `lab/m3_r42.py` (selector chain), `lab/r42_gridfix.py`, `lab/w4_heldout.py`,
-`lab/e2_splitk_v3.py`, `lab/pop_confirm.py`.
+Consistency auditors (these check that a number in the manuscript matches a stored field, and are exactly
+the class that let a unit error through — see the note above):
+
+| script | what it audits | status from inside the package |
+|---|---|---|
+| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 42 cited / 42 found / 0 missing |
+| `s50_prose_audit.py` | every number cited in §2 and §4 | exit 0, 19/19 |
+| `s51_prose_audit.py` | every number cited in §4.5-§8 | exit 0, 31/31 |
+| `s52_prose_audit.py` | §4.5 and §5.2 composition numbers, computed from the artifacts rather than string-matched | exit 0, 16/16 |
+| `s53_intro_audit.py` | §1 claims, field paths, and the four archived reviews | exit 0, 15/15 |
+| `s54_metadata_audit.py` | the metadata abstract against the audited manuscript | exit 0, 6/6 |
+| `s52_manuscript.py` | assembles the manuscript, hard-failing on a section citing an absent artifact | exit 0, 90,896 bytes |
+
+The GPU harnesses are shipped too, with their pre-registrations in their docstrings: `a6_refdistance.py`,
+`a6b_ksweep.py`, `a6c_conv_tf32pair.py`, `a6d_crossing.py`, `a6e_geometry_algo.py`,
+`a6f_geom_repl_convmech.py`, `a7_kernelclass.py`, `a7b_precision_policy.py`, `a8_compress.py`,
+`a9_compose.py`, `s56_heldout_contract.py`. Each produced an artifact under `results/`, so a reader without
+a GB10 audits the result rather than re-running the measurement; the remaining chain runners stay at the
+pinned public commit, which the package names explicitly.
 
 ## 8.2 Provenance
 
 `lab/s48_provenance.py` scans every markdown file in `paper/` for cited results artifacts and emits
 `paper/PROVENANCE.md` with sha256, byte size, mtime, producer script, and top-level fields per artifact. It
-hard-fails when a cited artifact is absent. Current state after §1-§9 landed: 41 cited, 41 found, 0 missing.
+hard-fails when a cited artifact is absent. Current state after the round-5 repairs: 42 cited, 42 found, 0 missing.
 Two defects in the generator itself were found and fixed before it was trusted: a regex alternation that
 truncated `.jsonl` names to `.json`, and self-poisoning when the generated `PROVENANCE.md` was included in
 the citation scan. A third was found at packaging: the table cites itself, so its own digest, byte size and
