@@ -87,6 +87,18 @@ where it is not needed, which is the test of whether it is a ritual.
 comparison was admissible, which is prior to the question. That is the deliberate demotion: §6 treats the
 selector as a studied object precisely because a selector over inadmissible arms is a selector over noise.
 
+"Targets and conventions." Three comparisons are kept separate and no threshold is implied by any single
+statistic: (i) benchmark agreement — the row's own whole-tensor verdict against its recorded reference
+(binary, at the recorded realization, and never inferred from frac_over); (ii) anchor accuracy — the
+reference's distance from an fp64 anchor, reported as (rho_max, frac_over), diagnostic only; (iii) a
+declared relaxed application contract, whose candidate-level threshold is stated by the applicant. The 0.02/0.5
+frac_over lines are optional reporting conventions (tail-conditional / bulk-inadmissible), not admission
+criteria: frac_over = 0 means the reference is indistinguishable from an exact anchor at the budget, 0 <
+frac_over < 0.02 is a tail failure confined to rare elements, and frac_over > 0.5 is a bulk failure in which
+both arms miss the contract. Admissions claims carry the per-row candidate-versus-reference verdict
+(results/r1_conv_gated.jsonl, results/w4_heldout.json.jsonl) together with the reference's (rho_max,
+frac_over), and no speedup ratio is quoted against a row whose reference consumes bulk budget.
+
 **P2 row.**
 `{op_class: all_benchmark_rows, rule: every results row carries {reference_realization, rho_max, frac_over,
 admissible_delivery_set, regret_basis}; a delivery claim requires the candidate to pass the benchmark's own

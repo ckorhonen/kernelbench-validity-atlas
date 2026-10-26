@@ -136,6 +136,8 @@ def evt(fn, warmup=2, reps=12):
 
 
 def red_row(K, M):
+    seed = (K * 1000003 + M * 7919) % (2 ** 31 - 1)
+    torch.manual_seed(seed)
     x = torch.randn(K * M, dtype=torch.float32, device=dev).view(K, M).contiguous()
     o = torch.empty(M, dtype=torch.float32, device=dev)
     P = torch.empty(64 * M * 2, dtype=torch.float32, device=dev)
@@ -201,7 +203,7 @@ def conv_row(N, H, C):
 
 
 def main():
-    rows = [json.loads(l) for l in open(SRC) if l.strip()]
+    rows = [json.loads(l) for l in _kb_open(SRC) if l.strip()]
     print("held-out rows:", len(rows))
     out = {"header": {"date": DATE, "prereg": "docstring frozen before run",
                       "torch": torch.__version__,
@@ -216,13 +218,26 @@ def main():
         if r["family"] == "reduction":
             arms, refs = red_row(r["K"], r["M"])
             if not det_checked["reduction"]:
-                # determinism on the SAME tensors: recompute the reference and one arm twice.
-                # (An earlier version called red_row again, which draws fresh randn and would
-                #  mismatch for reasons unrelated to determinism.)
+                # determinism of the DELIVERED hand computation: split_tiled + split_reduce
+                # run twice on the same tensors and are asserted bit-equal (the committed
+                # v1 checked only torch.sum, which measured the reference, not the hand arm).
+                seed = (r["K"] * 1000003 + r["M"] * 7919) % (2 ** 31 - 1)
+                torch.manual_seed(seed)
                 x2 = torch.randn(r["K"] * r["M"], dtype=torch.float32, device=dev).view(r["K"], r["M"]).contiguous()
-                r1 = torch.sum(x2, dim=0); r2 = torch.sum(x2, dim=0)
-                det_checked["reduction"] = bool(torch.equal(r1, r2))
-            key = {"family": "reduction", "K": r["K"], "M": r["M"]}
+                o1 = torch.empty(r["M"], dtype=torch.float32, device=dev)
+                o2 = torch.empty_like(o1)
+                P = torch.empty(64 * r["M"] * 2, dtype=torch.float32, device=dev)
+                for (name, S, KT) in RED_SKT:
+                    if r["K"] // S < KT:
+                        continue
+                    gm = triton.cdiv(r["M"], BM)
+                    split_tiled[(gm, S)](x2, P, r["K"], r["M"], S, BM=BM, KT=KT, num_warps=4)
+                    split_reduce[(triton.cdiv(r["M"], 256),)](P, o1, r["M"], S, BM=256, num_warps=4)
+                    split_reduce[(triton.cdiv(r["M"], 256),)](P, o2, r["M"], S, BM=256, num_warps=4)
+                    det_checked["reduction"] = bool(torch.equal(o1, o2))
+                    break
+            seed = (r["K"] * 1000003 + r["M"] * 7919) % (2 ** 31 - 1)
+            key = {"family": "reduction", "K": r["K"], "M": r["M"], "seed": seed}
         else:
             arms, refs = conv_row(r["N"], r["H"], r["C"])
             if not det_checked["conv"]:

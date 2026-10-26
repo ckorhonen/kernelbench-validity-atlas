@@ -5,6 +5,7 @@
     "dilation": 1,
     "layout": "NCHW",
     "batch": 2,
+    "expected_h": 7,
     "class": "W",
     "kernels": {
       "Activity Buffer Request": 1,
@@ -25,11 +26,24 @@
       "n_elem": 25088,
       "abs_max": 0.0018513738375673938
     },
+    "rho_flagoff": {
+      "rho_max": 6.73622783594513,
+      "med": 0.015338428555867964,
+      "frac_over": 0.004743303571428571,
+      "n_elem": 25088,
+      "abs_max": 0.0018513738375673938
+    },
+    "flagoff_bit_equal": true,
+    "flagoff_rho_ratio": 1.0,
     "out_shape": [
-      2,
-      256,
       7,
       7
+    ],
+    "strides": [
+      12544,
+      49,
+      7,
+      1
     ]
   },
   {
@@ -38,6 +52,7 @@
     "dilation": 1,
     "layout": "NCHW",
     "batch": 2,
+    "expected_h": 4,
     "class": "T",
     "kernels": {
       "Activity Buffer Request": 1,
@@ -57,11 +72,24 @@
       "n_elem": 8192,
       "abs_max": 0.052632893193589325
     },
+    "rho_flagoff": {
+      "rho_max": 0.5315314992142645,
+      "med": 0.0054978448325706175,
+      "frac_over": 0.0,
+      "n_elem": 8192,
+      "abs_max": 0.00020951838861549277
+    },
+    "flagoff_bit_equal": false,
+    "flagoff_rho_ratio": 0.0014388869072809248,
     "out_shape": [
-      2,
-      256,
       4,
       4
+    ],
+    "strides": [
+      4096,
+      16,
+      4,
+      1
     ]
   },
   {
@@ -70,31 +98,45 @@
     "dilation": 1,
     "layout": "NCHW",
     "batch": 2,
+    "expected_h": 9,
     "class": "W",
     "kernels": {
       "Activity Buffer Request": 1,
       "cudaLaunchKernel": 9,
       "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
       "cudaGetErrorString": 6,
-      "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
       "cudaDeviceGetAttribute": 3,
       "cuLaunchKernel": 3,
-      "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
-      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
-      "cudaDeviceSynchronize": 2
+      "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+      "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x32_8x5_nn_align1>(cutlass_80_simt_sgemm_128x32_8x5_nn_align1::Params)": 3,
+      "cudaDeviceSynchronize": 2,
+      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3
     },
     "rho": {
-      "rho_max": 6.73622783594513,
-      "med": 0.015338428555867964,
-      "frac_over": 0.004743303571428571,
-      "n_elem": 25088,
-      "abs_max": 0.0018513738375673938
+      "rho_max": 12.80235680627481,
+      "med": 0.015026294964518058,
+      "frac_over": 0.007185570987654321,
+      "n_elem": 41472,
+      "abs_max": 0.002710110886781081
     },
+    "rho_flagoff": {
+      "rho_max": 12.80235680627481,
+      "med": 0.015026294964518058,
+      "frac_over": 0.007185570987654321,
+      "n_elem": 41472,
+      "abs_max": 0.002710110886781081
+    },
+    "flagoff_bit_equal": true,
+    "flagoff_rho_ratio": 1.0,
     "out_shape": [
-      2,
-      256,
-      7,
-      7
+      9,
+      9
+    ],
+    "strides": [
+      20736,
+      81,
+      9,
+      1
     ]
   },
   {
@@ -103,6 +145,7 @@
     "dilation": 2,
     "layout": "NCHW",
     "batch": 2,
+    "expected_h": 5,
     "class": "T",
     "kernels": {
       "Activity Buffer Request": 1,
@@ -117,16 +160,29 @@
     },
     "rho": {
       "rho_max": 315.1445896456404,
-      "med": 2.823288135657002,
-      "frac_over": 0.7846779336734693,
-      "n_elem": 25088,
+      "med": 2.8260750801916728,
+      "frac_over": 0.784140625,
+      "n_elem": 12800,
       "abs_max": 0.05669679302937425
     },
+    "rho_flagoff": {
+      "rho_max": 0.3896435317016353,
+      "med": 0.005765444214393419,
+      "frac_over": 0.0,
+      "n_elem": 12800,
+      "abs_max": 0.000280122320305054
+    },
+    "flagoff_bit_equal": false,
+    "flagoff_rho_ratio": 0.0012363960686736337,
     "out_shape": [
-      2,
-      256,
-      7,
-      7
+      5,
+      5
+    ],
+    "strides": [
+      6400,
+      25,
+      5,
+      1
     ]
   },
   {
@@ -135,6 +191,7 @@
     "dilation": 1,
     "layout": "NHWC",
     "batch": 2,
+    "expected_h": 7,
     "class": "W",
     "kernels": {
       "Activity Buffer Request": 1,
@@ -155,11 +212,24 @@
       "n_elem": 25088,
       "abs_max": 0.0018513738375673938
     },
+    "rho_flagoff": {
+      "rho_max": 6.73622783594513,
+      "med": 0.015338428555867964,
+      "frac_over": 0.004743303571428571,
+      "n_elem": 25088,
+      "abs_max": 0.0018513738375673938
+    },
+    "flagoff_bit_equal": true,
+    "flagoff_rho_ratio": 1.0,
     "out_shape": [
-      2,
-      256,
       7,
       7
+    ],
+    "strides": [
+      12544,
+      49,
+      7,
+      1
     ]
   },
   {
@@ -168,6 +238,7 @@
     "dilation": 1,
     "layout": "NCHW",
     "batch": 1,
+    "expected_h": 7,
     "class": "W",
     "kernels": {
       "Activity Buffer Request": 1,
@@ -188,11 +259,24 @@
       "n_elem": 12544,
       "abs_max": 0.0018513738375673938
     },
+    "rho_flagoff": {
+      "rho_max": 6.43500496880489,
+      "med": 0.015587290616234616,
+      "frac_over": 0.004225127551020408,
+      "n_elem": 12544,
+      "abs_max": 0.0018513738375673938
+    },
+    "flagoff_bit_equal": true,
+    "flagoff_rho_ratio": 1.0,
     "out_shape": [
-      1,
-      256,
       7,
       7
+    ],
+    "strides": [
+      12544,
+      49,
+      7,
+      1
     ]
   },
   {
@@ -201,6 +285,7 @@
     "dilation": 1,
     "layout": "NCHW",
     "batch": 4,
+    "expected_h": 7,
     "class": "W",
     "kernels": {
       "Activity Buffer Request": 1,
@@ -221,11 +306,24 @@
       "n_elem": 50176,
       "abs_max": 0.001897425748012438
     },
+    "rho_flagoff": {
+      "rho_max": 6.816156502283985,
+      "med": 0.015636494044195814,
+      "frac_over": 0.004902742346938775,
+      "n_elem": 50176,
+      "abs_max": 0.001897425748012438
+    },
+    "flagoff_bit_equal": true,
+    "flagoff_rho_ratio": 1.0,
     "out_shape": [
-      4,
-      256,
       7,
       7
+    ],
+    "strides": [
+      12544,
+      49,
+      7,
+      1
     ]
   },
   {
@@ -234,6 +332,7 @@
     "dilation": 1,
     "layout": "NCHW",
     "batch": 2,
+    "expected_h": 5,
     "class": "T",
     "kernels": {
       "Activity Buffer Request": 1,
@@ -247,17 +346,30 @@
       "cudaDeviceSynchronize": 2
     },
     "rho": {
-      "rho_max": 369.4046394644757,
-      "med": 2.7975381138828066,
-      "frac_over": 0.781005859375,
-      "n_elem": 8192,
-      "abs_max": 0.052632893193589325
+      "rho_max": 221.2460622190541,
+      "med": 2.7551834505684973,
+      "frac_over": 0.7817968750000001,
+      "n_elem": 12800,
+      "abs_max": 0.05172568522539933
     },
+    "rho_flagoff": {
+      "rho_max": 0.4097911813676693,
+      "med": 0.004181170113531639,
+      "frac_over": 0.0,
+      "n_elem": 12800,
+      "abs_max": 0.00026867164248756126
+    },
+    "flagoff_bit_equal": false,
+    "flagoff_rho_ratio": 0.0018521964967762366,
     "out_shape": [
-      2,
-      256,
-      4,
-      4
+      5,
+      5
+    ],
+    "strides": [
+      6400,
+      25,
+      5,
+      1
     ]
   },
   {
@@ -266,6 +378,7 @@
     "dilation": 1,
     "layout": "NCHW",
     "batch": 2,
+    "expected_h": 7,
     "class": "W",
     "kernels": {
       "Activity Buffer Request": 1,
@@ -286,11 +399,24 @@
       "n_elem": 25088,
       "abs_max": 0.0018513738375673938
     },
+    "rho_flagoff": {
+      "rho_max": 6.73622783594513,
+      "med": 0.015338428555867964,
+      "frac_over": 0.004743303571428571,
+      "n_elem": 25088,
+      "abs_max": 0.0018513738375673938
+    },
+    "flagoff_bit_equal": true,
+    "flagoff_rho_ratio": 1.0,
     "out_shape": [
-      2,
-      256,
       7,
       7
+    ],
+    "strides": [
+      12544,
+      49,
+      7,
+      1
     ]
   }
 ]

@@ -85,11 +85,18 @@ rather than measurements. The family verdict survives that; a per-arm table woul
 
 ## 6.3 What the selector is and is not
 
-**It is** a zero-probe rule over derived coordinates with a measured transfer record and an economics
-statement: on this benchmark, probes cost more than the rule's entire residual, so the rule wins on total
-time even where a budgeted search would win on delivery. That conclusion is robust to the flush protocol
-(flush-free probes at 10µs-4ms kernels still leave break-even visits far above 1), which is why we present
-it as probe economics rather than as a harness artifact.
+**It is** a zero-probe rule over derived coordinates with a measured transfer record. Its economics
+section is descriptive accounting, not a general law: on 9 admissible reduction rows the delivered arm costs
++0.86% (SE 1.37) against the fastest admissible arm, and over all 24 rows the cost is +3.53% (SE 1.37). Every
+failing row has an explicit correctness-preserving fallback (torch, which passes), both policies are compared
+under one flush-and-probe cost model with probe arms pre-registered at b ∈ {1, 2, 4, 8} and their measured
+costs reported, and no intrinsic probe budget is assumed — the recorded break-even is conditional on probe
+cost, not intrinsic. On the conv family the gate delivers the baseline on all 4 admissible rows (0/4 hand
+deliveries admissible), so the conv branch of the economics statement does not exist: the classifier hears
+nothing about conv autotune there. The honest statement is: on this benchmark and this arm pool (eager torch,
+no compile arm), the zero-probe rule is the cheaper way to deliver admissible arms, and the probe arms cost
+more than the rule's entire residual. That is what the numbers show; they show it without a probe-cost
+assumption and with every row's fallback named.
 
 **It is not** a claim that the rule's arm is the fastest arm. §4's certificate established that delivery is
 conditional: under enforced admission there is no admissible delivery on 24/56 rows (ieee) and 31/56 (fp64),
