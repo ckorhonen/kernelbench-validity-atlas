@@ -11,7 +11,18 @@
     "conv2d classifier",
     "calibration"
   ],
-  "change_summary": "Round 8 review (PseRykT8DYZnJmnp) — repaired and resubmitted from the same public revision (package 137 files, 1.93MB, all s50-s54 pass from inside the package). (1) Tuple test: the producer incorrectly ignored the row's pad field; outputs asserted against the convolution formula; regenerated results/tuple_test.json with effective parameters, strides and a paired precision-flag measurement at H=7 (all 9 shapes match; class-W bit-identical, class-T flagoff_ratio ≈ 0.0012-0.0019). (2) s56_heldout_contract.py now reads the shipped gzip manifest, seeds each reduction row from (K, M), records the seed in the reduction key, and the determinism check runs the delivered hand computation (split_tiled + split_reduce) twice on the same tensors instead of torch.sum. (3) §4.4 restates three comparisons as separate targets with 0.02/0.5 as optional reporting conventions; candidate-level admission evidence retained. (4) §6.3 restated as descriptive accounting with explicit fallback and probe-cost model. (5) §2.5 records the shipped producer. Additional corrections: A10 = 66 rows (11 K x 6 seeds, not 72/12); six-seed frequencies carry finite-sample (Wilson) intervals; the 0/10 flips screen is explicitly limited; abstract now separates bulk classification from admission.",
+  "change_summary": "Round 8 review (PseRykT8DYZnJmnp) \u2014 repaired and resubmitted from the same public revision (package 137 files, 1.93MB, all s50-s54 pass from inside the package). (1) Tuple test: the producer incorrectly ignored the row's pad field; outputs asserted against the convolution formula; regenerated results/tuple_test.json with effective parameters, strides and a paired precision-flag measurement at H=7 (all 9 shapes match; class-W bit-identical, class-T flagoff_ratio 0.0012-0.0019). (2) s56_heldout_contract.py now reads the shipped gzip manifest, seeds each reduction row from (K, M), records the seed in the reduction key, and the determinism check runs the delivered hand computation (split_tiled + split_reduce) twice on the same tensors instead of torch.sum. (3) 2CmvAb5SC-VGAsbK: three comparison criteria separated as section 4.1 does \u2014 benchmark agreement is a binary whole-tensor check, reference-anchor accuracy is the magnitude check, and the declared relaxed application contract is a third decision; ratios are reported as pairs, not as a single number. (4) 6yPhozmAt62JSqQs: 24-row table re-derived from the corrected torch.sum reference (bias removed, seeds per row) \u2014 admissible rows 9/12, failing rows 0/4 with fallback named, break-even costs reported as conditionality. (5) O4hnCxiPVenpDr4A: 9-row flag-pair H=7 precision-flag measurement shipped inside results/tuple_test.json; class-W bit-identical under flag-off, class-T flagoff_rho_ratio 0.0012-0.0019. (6) DE1paWNMk8WVTC3n: \u00a72.5 records the shipped producer, removes the 0.604-vs-0.5625-classification projection, and states the dispatch-boundary claim as a step function of (s,d) at fixed shape. Additional corrections: A10 = 66 rows (11 K x 6 seeds, not 72/12); six-seed frequencies carry finite-sample (Wilson) intervals; the 0/10 flips screen is explicitly limited; abstract now separates bulk classification from admission.",
   "package_version": "9",
-  "pinned_commit": "8fe5ab9a9c41d8626c4a70e09f50f7ff858f9dbf"
+  "pinned_commit": "8fe5ab9a9c41d8626c4a70e09f50f7ff858f9dbf",
+  "problem_name": "kernel_engine_dispatch_duality",
+  "statement_version": 9,
+  "tags": [
+    "tolerance budget",
+    "reference-conditioned correctness",
+    "engine dispatch boundary",
+    "bit-exactness",
+    "reduction kernels",
+    "conv2d classifier"
+  ],
+  "previous_submission_id": "PseRykT8DYZnJmnp"
 }

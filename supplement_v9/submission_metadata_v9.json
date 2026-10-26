@@ -1,0 +1,28 @@
+{
+  "submission_id": "PseRykT8DYZnJmnp",
+  "title": "Ranking Is Not a Property: Tolerance Budget, Dispatch Boundaries, and the Cost of Admission",
+  "abstract": "A kernel speedup is a point sample presented as a property: it does not say which shapes the advantage survives on, which reference realization scored the pass, or how much tolerance budget that reference already spends before a candidate is measured. We price all three on a DGX Spark (GB10, sm_120). With rho the reference's own consumption in multiples of the contract budget, an ordinary fp32 matmul reference grows in reduction depth without moving its pass verdict: 4/6 seeds pass at K=3608 and 2/6 at K=3632, no seed is monotone, and the fraction re-enters at K=3840. fp32 conv2d is a two-class dispatch surface over the tuple, not a depth function: a winograd engine at rho 10.195 with 0.52% of elements over budget and bit-identical output under every precision flag a user is told to set, versus TF32 tensor-op engines at rho 251.69 with 78.2% over budget, removed 99.9% by allow_tf32=False. At the official L1/40 LayerNorm shape the reference is anchor-clean on the benchmark's uniform input (rho 0.011) but reaches rho 2.529 with 19% of elements over budget at mean/std 1000, where a split-statistics candidate sits at 0.663 and still fails the candidate-versus-reference check. Admission is a binary whole-tensor check against the recorded reference, and is a class of its own, not implied by rho. Bulk classification (frac_over > 0.5) is 100% predictable from the engine class and does not transfer to admission, while the class itself is only 0.604 predictable against a 0.5625 majority from the four coordinates. Magnitude compresses onto derived coordinates (Spearman 0.986 with the class, 0.833 geometry-only) but admission does not. Over six two-stage chains, end-to-end consumption lands between 0.98x and 2.48x the worse stage, and c5 shows two admissible stages (0.0689, 0.6563) composing to 1.2939. On 34 held-out shapes, reduction deliveries are admissible on 9 of 12 at 0.86% cost and conv on none.",
+  "keywords": [
+    "tolerance budget",
+    "reference-conditioned correctness",
+    "engine dispatch boundary",
+    "bit-exactness",
+    "reduction kernels",
+    "conv2d classifier",
+    "calibration"
+  ],
+  "change_summary": "Round 8 review (PseRykT8DYZnJmnp) \u2014 repaired and resubmitted from the same public revision (package 137 files, 1.93MB, all s50-s54 pass from inside the package). (1) Tuple test: the producer incorrectly ignored the row's pad field; outputs asserted against the convolution formula; regenerated results/tuple_test.json with effective parameters, strides and a paired precision-flag measurement at H=7 (all 9 shapes match; class-W bit-identical, class-T flagoff_ratio 0.0012-0.0019). (2) s56_heldout_contract.py now reads the shipped gzip manifest, seeds each reduction row from (K, M), records the seed in the reduction key, and the determinism check runs the delivered hand computation (split_tiled + split_reduce) twice on the same tensors instead of torch.sum. (3) 2CmvAb5SC-VGAsbK: three comparison criteria separated as section 4.1 does \u2014 benchmark agreement is a binary whole-tensor check, reference-anchor accuracy is the magnitude check, and the declared relaxed application contract is a third decision; ratios are reported as pairs, not as a single number. (4) 6yPhozmAt62JSqQs: 24-row table re-derived from the corrected torch.sum reference (bias removed, seeds per row) \u2014 admissible rows 9/12, failing rows 0/4 with fallback named, break-even costs reported as conditionality. (5) O4hnCxiPVenpDr4A: 9-row flag-pair H=7 precision-flag measurement shipped inside results/tuple_test.json; class-W bit-identical under flag-off, class-T flagoff_rho_ratio 0.0012-0.0019. (6) DE1paWNMk8WVTC3n: \u00a72.5 records the shipped producer, removes the 0.604-vs-0.5625-classification projection, and states the dispatch-boundary claim as a step function of (s,d) at fixed shape. Additional corrections: A10 = 66 rows (11 K x 6 seeds, not 72/12); six-seed frequencies carry finite-sample (Wilson) intervals; the 0/10 flips screen is explicitly limited; abstract now separates bulk classification from admission.",
+  "package_version": "9",
+  "pinned_commit": "8fe5ab9a9c41d8626c4a70e09f50f7ff858f9dbf",
+  "problem_name": "kernel_engine_dispatch_duality",
+  "statement_version": 9,
+  "tags": [
+    "tolerance budget",
+    "reference-conditioned correctness",
+    "engine dispatch boundary",
+    "bit-exactness",
+    "reduction kernels",
+    "conv2d classifier"
+  ],
+  "previous_submission_id": "PseRykT8DYZnJmnp"
+}

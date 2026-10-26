@@ -93,10 +93,16 @@ under one flush-and-probe cost model with probe arms pre-registered at b ∈ {1,
 costs reported, and no intrinsic probe budget is assumed — the recorded break-even is conditional on probe
 cost, not intrinsic. On the conv family the gate delivers the baseline on all 4 admissible rows (0/4 hand
 deliveries admissible), so the conv branch of the economics statement does not exist: the classifier hears
-nothing about conv autotune there. The honest statement is: on this benchmark and this arm pool (eager torch,
-no compile arm), the zero-probe rule is the cheaper way to deliver admissible arms, and the probe arms cost
-more than the rule's entire residual. That is what the numbers show; they show it without a probe-cost
-assumption and with every row's fallback named.
+nothing about conv autotune there.
+
+The honest statement is purely descriptive: on this benchmark and this arm pool (eager torch, no compile
+arm), probe arms cost more than the rule's entire residual, so the rule's total-time advantage is a cost
+entered at the moment of gate deployment, not a promised property of the rule. There is no claim that the
+rule is cheaper or faster on any individual row; the break-even numbers (6.35–28.84x budget ratio on the
+failing conv rows) are reported as conditionality, not as a ranking. The rule's output is a decision rule
+that dispatches to the cheapest admissible arm, and the 0.86% (±1.37) over all 24 rows is how much it
+pays to have made that decision without a probe. That is what the numbers show; they show it without a
+probe-cost assumption and with every row's fallback named.
 
 **It is not** a claim that the rule's arm is the fastest arm. §4's certificate established that delivery is
 conditional: under enforced admission there is no admissible delivery on 24/56 rows (ieee) and 31/56 (fp64),

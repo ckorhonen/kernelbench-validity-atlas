@@ -1,0 +1,226 @@
+{
+ "header": {
+  "prereg": "lab/a9_compose_prereg.md @ 53ca881",
+  "atol": 0.0001,
+  "rtol": 0.0001,
+  "n_chains": 6
+ },
+ "rows": [
+  {
+   "chain": "c1_W_then_TF32",
+   "family_A": "conv2d",
+   "family_B": "conv2d",
+   "A": {
+    "family": "conv2d",
+    "C": 256,
+    "H": 7,
+    "k": 3,
+    "s": 1,
+    "d": 1
+   },
+   "B_params": {
+    "family": "conv2d",
+    "k": 3,
+    "s": 2,
+    "d": 1
+   },
+   "rho_A": 7.725787269413646,
+   "frac_A": 0.005381058673469387,
+   "rho_B_alone": 5352.9430044216315,
+   "frac_B_alone": 0.798095703125,
+   "rho_end": 5251.14487961339,
+   "frac_end": 0.7982177734375,
+   "G1": 0.05707251526778959,
+   "G10": 0.5136526374101064,
+   "G10_div10": 0.051365263741010636,
+   "G_nonlinear": false,
+   "deterministic_2run": true,
+   "runtime_facts": {
+    "cudnn_allow_tf32": true,
+    "matmul_allow_tf32": false,
+    "float32_precision": "highest",
+    "cudnn_benchmark": false,
+    "torch": "2.14.1+cu130",
+    "device": "NVIDIA GB10"
+   }
+  },
+  {
+   "chain": "c2_W_then_W",
+   "family_A": "conv2d",
+   "family_B": "conv2d",
+   "A": {
+    "family": "conv2d",
+    "C": 64,
+    "H": 13,
+    "k": 3,
+    "s": 1,
+    "d": 1
+   },
+   "B_params": {
+    "family": "conv2d",
+    "k": 3,
+    "s": 1,
+    "d": 1
+   },
+   "rho_A": 2.9349845125649656,
+   "frac_A": 0.0006934171597633136,
+   "rho_B_alone": 22.133705828042867,
+   "frac_B_alone": 0.007303994082840237,
+   "rho_end": 33.36537577102994,
+   "frac_end": 0.01164940828402367,
+   "G1": 0.5330525923013879,
+   "G10": 2.6269221998019705,
+   "G10_div10": 0.26269221998019704,
+   "G_nonlinear": false,
+   "deterministic_2run": true,
+   "runtime_facts": {
+    "cudnn_allow_tf32": true,
+    "matmul_allow_tf32": false,
+    "float32_precision": "highest",
+    "cudnn_benchmark": false,
+    "torch": "2.14.1+cu130",
+    "device": "NVIDIA GB10"
+   }
+  },
+  {
+   "chain": "c3_TF32_then_TF32",
+   "family_A": "conv2d",
+   "family_B": "conv2d",
+   "A": {
+    "family": "conv2d",
+    "C": 16,
+    "H": 21,
+    "k": 3,
+    "s": 1,
+    "d": 1
+   },
+   "B_params": {
+    "family": "conv2d",
+    "k": 3,
+    "s": 1,
+    "d": 1
+   },
+   "rho_A": 80.96161260043552,
+   "frac_A": 0.7602749433106576,
+   "rho_B_alone": 793.0944396126716,
+   "frac_B_alone": 0.7876984126984127,
+   "rho_end": 1218.618183980647,
+   "frac_end": 0.844812925170068,
+   "G1": 0.5651735357491886,
+   "G10": 5.055163291978853,
+   "G10_div10": 0.5055163291978853,
+   "G_nonlinear": false,
+   "deterministic_2run": true,
+   "runtime_facts": {
+    "cudnn_allow_tf32": true,
+    "matmul_allow_tf32": false,
+    "float32_precision": "highest",
+    "cudnn_benchmark": false,
+    "torch": "2.14.1+cu130",
+    "device": "NVIDIA GB10"
+   }
+  },
+  {
+   "chain": "c4_cleanA_GEMM_then_TF32",
+   "family_A": "conv2d",
+   "family_B": "conv2d",
+   "A": {
+    "family": "conv2d",
+    "C": 16,
+    "H": 7,
+    "k": 1,
+    "s": 1,
+    "d": 1
+   },
+   "B_params": {
+    "family": "conv2d",
+    "k": 3,
+    "s": 1,
+    "d": 1
+   },
+   "rho_A": 0.005695995949145438,
+   "frac_A": 0.0,
+   "rho_B_alone": 237.2789681199647,
+   "frac_B_alone": 0.7812499999999999,
+   "rho_end": 237.2789681199647,
+   "frac_end": 0.7806122448979591,
+   "G1": 1.437588081534276,
+   "G10": 7.167692688213151,
+   "G10_div10": 0.7167692688213151,
+   "G_nonlinear": false,
+   "deterministic_2run": true,
+   "runtime_facts": {
+    "cudnn_allow_tf32": true,
+    "matmul_allow_tf32": false,
+    "float32_precision": "highest",
+    "cudnn_benchmark": false,
+    "torch": "2.14.1+cu130",
+    "device": "NVIDIA GB10"
+   }
+  },
+  {
+   "chain": "c5_cleanA_mm_then_mm",
+   "family_A": "matmul",
+   "family_B": "matmul",
+   "A": {
+    "family": "matmul",
+    "M": 256,
+    "K": 128
+   },
+   "B_params": {
+    "family": "matmul"
+   },
+   "rho_A": 0.06890212231676196,
+   "frac_A": 0.0,
+   "rho_B_alone": 0.6563302817628642,
+   "frac_B_alone": 0.0,
+   "rho_end": 1.2939231250394327,
+   "frac_end": 3.0517578125e-05,
+   "G1": 0.5033123157052534,
+   "G10": 5.050478754145818,
+   "G10_div10": 0.5050478754145817,
+   "G_nonlinear": false,
+   "deterministic_2run": true,
+   "runtime_facts": {
+    "cudnn_allow_tf32": true,
+    "matmul_allow_tf32": false,
+    "float32_precision": "highest",
+    "cudnn_benchmark": false,
+    "torch": "2.14.1+cu130",
+    "device": "NVIDIA GB10"
+   }
+  },
+  {
+   "chain": "c6_mm_deep_then_mm",
+   "family_A": "matmul",
+   "family_B": "matmul",
+   "A": {
+    "family": "matmul",
+    "M": 1024,
+    "K": 8192
+   },
+   "B_params": {
+    "family": "matmul"
+   },
+   "rho_A": 2.274994659150048,
+   "frac_A": 0.0002040863037109375,
+   "rho_B_alone": 22.67180250227524,
+   "frac_B_alone": 0.0014829635620117188,
+   "rho_end": 56.22887019386852,
+   "frac_end": 0.004367828369140625,
+   "G1": 0.5842529230904058,
+   "G10": 5.258276307813652,
+   "G10_div10": 0.5258276307813652,
+   "G_nonlinear": false,
+   "deterministic_2run": true,
+   "runtime_facts": {
+    "cudnn_allow_tf32": true,
+    "matmul_allow_tf32": false,
+    "float32_precision": "highest",
+    "cudnn_benchmark": false,
+    "torch": "2.14.1+cu130",
+    "device": "NVIDIA GB10"
+   }
+  }
+ ]
+}

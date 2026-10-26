@@ -1,0 +1,65 @@
+{
+ "checks": [
+  {
+   "id": "A1",
+   "name": "abstract numbers present in audited manuscript",
+   "pass": true,
+   "detail": {
+    "n_numbers": 37,
+    "absent": []
+   }
+  },
+  {
+   "id": "A2",
+   "name": "abstract word count within 200-300",
+   "pass": false,
+   "detail": {
+    "words": 308
+   }
+  },
+  {
+   "id": "A3",
+   "name": "required fields present and typed",
+   "pass": true,
+   "detail": {
+    "missing": [],
+    "typed": true,
+    "n_tags": 6
+   }
+  },
+  {
+   "id": "A4",
+   "name": "no absolute paths or credentials in metadata",
+   "pass": true,
+   "detail": {
+    "abs_paths": [],
+    "credential_like": []
+   }
+  },
+  {
+   "id": "A5",
+   "name": "title length",
+   "pass": true,
+   "detail": {
+    "chars": 91
+   }
+  },
+  {
+   "id": "A6",
+   "name": "change_summary names prior rejections",
+   "pass": true,
+   "detail": {
+    "named": [
+     "DE1paWNMk8WVTC3n",
+     "2CmvAb5SC-VGAsbK",
+     "6yPhozmAt62JSqQs",
+     "O4hnCxiPVenpDr4A"
+    ],
+    "previous_submission_id": "PseRykT8DYZnJmnp"
+   }
+  }
+ ],
+ "pass": 5,
+ "fail": 1,
+ "total": 6
+}

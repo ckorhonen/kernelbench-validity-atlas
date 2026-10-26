@@ -1,0 +1,110 @@
+{
+ "header": {
+  "date": "2026-10-24T04:10Z",
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA GB10",
+  "note": "post-hoc diagnostic, not preregistered; labels in docstring",
+  "shape": {
+   "N": 2,
+   "H": 5,
+   "W": 5,
+   "k": 3,
+   "s": 1,
+   "p": 1
+  }
+ },
+ "rows": [
+  {
+   "C": 16,
+   "K_eff": 144,
+   "tf32_default": {
+    "rho": 54.49328840251392,
+    "med": 2.412050455445983,
+    "abs_max": 0.00983226211196353,
+    "frac_over": 0.74
+   },
+   "tf32_off": {
+    "rho": 0.022241392050918407,
+    "med": 0.001240061672899932,
+    "abs_max": 1.463196198514538e-05,
+    "frac_over": 0.0
+   },
+   "bit_equal": false,
+   "rho_ratio_off_over_def": 0.0004081491997075433
+  },
+  {
+   "C": 32,
+   "K_eff": 288,
+   "tf32_default": {
+    "rho": 0.7416713128207372,
+    "med": 0.005535274582489513,
+    "abs_max": 0.00015590132756049258,
+    "frac_over": 0.0
+   },
+   "tf32_off": {
+    "rho": 0.7416713128207372,
+    "med": 0.005535274582489513,
+    "abs_max": 0.00015590132756049258,
+    "frac_over": 0.0
+   },
+   "bit_equal": true,
+   "rho_ratio_off_over_def": 1.0
+  },
+  {
+   "C": 64,
+   "K_eff": 576,
+   "tf32_default": {
+    "rho": 1.4151408294184094,
+    "med": 0.007244667811689241,
+    "abs_max": 0.00044921136457354294,
+    "frac_over": 0.0003125
+   },
+   "tf32_off": {
+    "rho": 1.4151408294184094,
+    "med": 0.007244667811689241,
+    "abs_max": 0.00044921136457354294,
+    "frac_over": 0.0003125
+   },
+   "bit_equal": true,
+   "rho_ratio_off_over_def": 1.0
+  },
+  {
+   "C": 128,
+   "K_eff": 1152,
+   "tf32_default": {
+    "rho": 5.845777180746153,
+    "med": 0.01088395109485558,
+    "abs_max": 0.0008124027396387845,
+    "frac_over": 0.00328125
+   },
+   "tf32_off": {
+    "rho": 5.845777180746153,
+    "med": 0.01088395109485558,
+    "abs_max": 0.0008124027396387845,
+    "frac_over": 0.00328125
+   },
+   "bit_equal": true,
+   "rho_ratio_off_over_def": 1.0
+  },
+  {
+   "C": 256,
+   "K_eff": 2304,
+   "tf32_default": {
+    "rho": 10.194867622731039,
+    "med": 0.014738207845815834,
+    "abs_max": 0.0026415096770051605,
+    "frac_over": 0.00515625
+   },
+   "tf32_off": {
+    "rho": 10.194867622731039,
+    "med": 0.014738207845815834,
+    "abs_max": 0.0026415096770051605,
+    "frac_over": 0.00515625
+   },
+   "bit_equal": true,
+   "rho_ratio_off_over_def": 1.0
+  }
+ ],
+ "any_bit_equal": true,
+ "all_bit_equal": false
+}

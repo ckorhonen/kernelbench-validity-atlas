@@ -27,7 +27,7 @@ review, and each one is asserted rather than promised:
 import gzip, hashlib, json, os, shutil, subprocess, sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-OUT = os.path.join(ROOT, "supplement_v7")
+OUT = os.path.join(ROOT, "supplement_v9")
 BUDGET = 2_000_000
 
 # CPU-only scripts: run from inside the package at build, must exit 0. This is the whole F5b repair.
@@ -42,7 +42,7 @@ GPU_PRODUCERS = """
 a6_refdistance.py a6b_ksweep.py a6c_conv_tf32pair.py a6d_crossing.py a6e_geometry_algo.py
 a6f_geom_repl_convmech.py a7_kernelclass.py a7b_precision_policy.py a8_compress.py a9_compose.py
 a10_crossing_neighborhood.py a11_layernorm_reference_dist.py s56_heldout_contract.py
-s57_supplement_build_v7.py
+tuple_test.py s57_supplement_build_v9.py
 """.split()
 
 PREREGS = """
@@ -80,7 +80,7 @@ w4_heldout.json.jsonl tuple_test.json a8_compress.json
 EXTRA_KERNEL_INPUTS = ["r1_times.json"]
 # the paper's submission metadata: s54 audits the abstract against the manuscript, so it must be inside
 # the package or s54 cannot run there (v5 shipped only the supplement's own metadata and s54 died on it).
-ROOT_FILES = {"submission_metadata_v7.json": "submission_metadata_v7.json"}
+ROOT_FILES = {"submission_metadata_v9.json": "submission_metadata_v9.json"}
 
 PAPER = ["REFRAME_SKELETON.md", "PROVENANCE.md", "MANUSCRIPT.md"]
 # Four archived full-stage reviews and two triages: §1, §7 and §8 cite them as evidence and s53 audits
@@ -214,7 +214,7 @@ def main():
             f.write(text)
 
     for rel in shipped:
-        if not rel.endswith(".py") or rel == "kernels/s57_supplement_build_v7.py":
+        if not rel.endswith(".py") or rel.startswith("kernels/s57_supplement_build_"):
             continue  # the builder's own assertion lines contain the literal paths it is checking for
         for line in open(os.path.join(OUT, rel)).read().splitlines():
             if "/Users/" in line or "/home/" in line:

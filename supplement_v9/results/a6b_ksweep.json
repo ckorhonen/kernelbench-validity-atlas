@@ -1,0 +1,99 @@
+{
+ "header": {
+  "date": "2026-10-24T04:09Z",
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA GB10",
+  "allow_tf32_matmul": false,
+  "f32_prec": "highest",
+  "allow_tf32_cudnn": true,
+  "prereg": "extension of lab/a6_refdistance_prereg.md @ dbfd600 (predictions frozen in this docstring)"
+ },
+ "rows": [
+  {
+   "rho": 0.08094672652808121,
+   "med": 0.0014220437179699509,
+   "abs_max": 3.262405692794346e-05,
+   "ref64_absmax": 61.90876827976601,
+   "frac_over": 0.0,
+   "family": "matmul",
+   "K": 128,
+   "M": 1024,
+   "N": 1024
+  },
+  {
+   "rho": 0.27064903295110765,
+   "med": 0.002014765688131424,
+   "abs_max": 5.256083230165132e-05,
+   "ref64_absmax": 119.82232083341505,
+   "frac_over": 0.0,
+   "family": "matmul",
+   "K": 512,
+   "M": 1024,
+   "N": 1024
+  },
+  {
+   "rho": 0.6721443551875669,
+   "med": 0.003064527846260043,
+   "abs_max": 0.00011275151861411814,
+   "ref64_absmax": 235.24944935264904,
+   "frac_over": 0.0,
+   "family": "matmul",
+   "K": 2048,
+   "M": 1024,
+   "N": 1024
+  },
+  {
+   "rho": 3.414432266287618,
+   "med": 0.006163962276880787,
+   "abs_max": 0.00046219382869594483,
+   "ref64_absmax": 457.12414810965794,
+   "frac_over": 0.00018310546875,
+   "family": "matmul",
+   "K": 8192,
+   "M": 1024,
+   "N": 1024
+  },
+  {
+   "rho": 54.49328840251392,
+   "med": 2.412050455445983,
+   "abs_max": 0.00983226211196353,
+   "ref64_absmax": 40.610540456063575,
+   "frac_over": 0.74,
+   "family": "conv2d",
+   "C": 16,
+   "K_eff": 144,
+   "N": 2,
+   "H": 5
+  },
+  {
+   "rho": 1.4151408294184094,
+   "med": 0.007244667811689241,
+   "abs_max": 0.00044921136457354294,
+   "ref64_absmax": 77.4920798568679,
+   "frac_over": 0.0003125,
+   "family": "conv2d",
+   "C": 64,
+   "K_eff": 576,
+   "N": 2,
+   "H": 5
+  },
+  {
+   "rho": 10.194867622731039,
+   "med": 0.014738207845815834,
+   "abs_max": 0.0026415096770051605,
+   "ref64_absmax": 177.40194736574205,
+   "frac_over": 0.00515625,
+   "family": "conv2d",
+   "C": 256,
+   "K_eff": 2304,
+   "N": 2,
+   "H": 5
+  }
+ ],
+ "matmul_monotone_in_K": true,
+ "killed": false,
+ "k_where_over_budget": [
+  8192
+ ],
+ "spread_frac": 0.9985145560324756
+}
