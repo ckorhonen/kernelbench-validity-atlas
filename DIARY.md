@@ -2121,4 +2121,31 @@ ssh spark alias dead; pending remote GPU re-establishment.
 
 Remaining: (1) tuple test on GPU — stride/pad/dilation/layout/batch at fixed shape; class flip
 => 0.604 projection artifact; no flip => real unpredictability; (2) resubmit manuscript with the
-five f01MfL findings discharged. 24h-E1/CTA-edge/bt stay parked.
+|five f01MfL findings discharged. 24h-E1/CTA-edge/bt stay parked.
+
+## 2026-10-26 00:5xZ — reflection NUY2btt1tN_82XON answered; tuple test RUN on spark GPU
+
+Reflection "Follow a surprising observation" (NUY2btt1tN_82XON) answered 00:50Z (next
+03:50Z): addressed the tuple test as the surprising observation — assumed fixed shape
+fixes dispatch; it does not (W<->T flips, 6/8), resolved as categorical engine
+dispatch (spine negative), published in results/tuple_test.json + commit 34dca87.
+
+TUPLE TEST (lab/tuple_test.py, spark, torch 2.14.1+cu130, GB10 sm_120):
+- Fixed C256,k3,s1,d1,H7,W7,batch2; varied stride/pad/dilation/layout/batch (9 rows,
+  seed 4321, L2 flush, torch.profiler CUDA kernel names, correctness vs fp64).
+- Engine class: W (winograd) for stride=1/dil=1/pad<=2/NHWC/batch<=4; T (TF32 tensorop)
+  for stride=2 and dil=2 — 6/8 consecutive transitions. rho_max: W ~6.4-6.8 (batch-normal
+  fp32 error) vs T 315.1-369.4 (tf32, 47-55x budget).
+- Harness bugs in the pre-registered script fixed: FIXED undefined, engine_class
+  tag-filter (kn.get(tag) on a flat dict), dilation-mismatched padding, dict(int)
+  comprehension. All committed 34dca87.
+
+Decision: the "0.604" class-predictability figure was a projection artifact of collapsing
+the tuple axes; enumerating stride/dilation/layout/batch exposes the T/W boundary.
+Two-class certificate framing (A8) stands; spine's continuous-form collapse killed as a
+negative, per the program's P5/P6 commitments.
+
+Debts: resubmit manuscript (f01MfLhPgzuuQ1_3 rejected 06:38Z; xoD_m6fEALt-e7h5 rejected
+18:19Z; home shows no active submission). Next: reissue submission carrying A10/A11 rows
+into section 2 + S56 bias correction into the reference-realization axis. 24h-E1/CTA-edge/bt
+parked.

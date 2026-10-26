@@ -35,14 +35,14 @@ CPU_RUNNABLE = """
 s48_provenance.py s50_prose_audit.py s51_prose_audit.py s52_prose_audit.py s53_intro_audit.py
 s54_metadata_audit.py s52_manuscript.py f24_verify.py r45_rider_adm.py r42_analysis.py cf43.py
 cushion_screen.py s6_dispatcher_audit.py s55_review_repair.py a8_analysis.py a8b_analysis.py a9_analysis.py
-s56_heldout_contract.py
 """.split()
 
 # GPU producers: shipped so the measurement is inspectable, not re-derivable on a CPU-only reader.
 GPU_PRODUCERS = """
 a6_refdistance.py a6b_ksweep.py a6c_conv_tf32pair.py a6d_crossing.py a6e_geometry_algo.py
 a6f_geom_repl_convmech.py a7_kernelclass.py a7b_precision_policy.py a8_compress.py a9_compose.py
-a10_crossing_neighborhood.py a11_layernorm_reference_dist.py s57_supplement_build_v7.py
+a10_crossing_neighborhood.py a11_layernorm_reference_dist.py s56_heldout_contract.py
+s57_supplement_build_v7.py
 """.split()
 
 PREREGS = """
@@ -100,8 +100,7 @@ REGENERATED = {"paper/PROVENANCE.md", "paper/MANUSCRIPT.md",
                "results/s48_provenance.json", "results/s50_prose_audit.json",
                "results/s51_prose_audit.json", "results/s52_prose_audit.json",
                "results/s53_intro_audit.json", "results/s54_metadata_audit.json",
-               "results/s55_review_repair.json", "results/s56_heldout_contract.json",
-               "results/s56_analysis.json", "results/f24_verify.json", "results/r42_analysis.json",
+               "results/s55_review_repair.json", "results/f24_verify.json", "results/r42_analysis.json",
                "results/cf43.json", "results/cushion_screen.json", "results/r45_rider_adm.json",
                "results/s6_dispatcher_audit.json", "results/a8_analysis.json",
                "results/a8b_analysis.json", "results/a9_analysis.json"}
@@ -215,7 +214,7 @@ def main():
             f.write(text)
 
     for rel in shipped:
-        if not rel.endswith(".py") or rel == "kernels/s52_supplement_build.py":
+        if not rel.endswith(".py") or rel == "kernels/s57_supplement_build_v7.py":
             continue  # the builder's own assertion lines contain the literal paths it is checking for
         for line in open(os.path.join(OUT, rel)).read().splitlines():
             if "/Users/" in line or "/home/" in line:
@@ -340,11 +339,12 @@ that revision, so no essential evidence depends on private access.
   `s48_provenance.py`, `s50_prose_audit.py` (19 checks), `s51_prose_audit.py` (31), `s52_prose_audit.py`
   (16), `s53_intro_audit.py` (15), `s54_metadata_audit.py` (6), `s52_manuscript.py`, `f24_verify.py`,
   `r45_rider_adm.py`, `r42_analysis.py`, `cf43.py`, `cushion_screen.py`, `s6_dispatcher_audit.py`,
-  `s55_review_repair.py`, `a8_analysis.py`, `a8b_analysis.py`, `a9_analysis.py`, `s56_heldout_contract.py`.
+  `s55_review_repair.py`, `a8_analysis.py`, `a8b_analysis.py`, `a9_analysis.py`.
   GPU legs (shipped for inspection; they reproduce only on a GB10 with this stack): `a6_refdistance.py`,
   `a6b_ksweep.py`, `a6c_conv_tf32pair.py`, `a6d_crossing.py`, `a6e_geometry_algo.py`,
   `a6f_geom_repl_convmech.py`, `a7_kernelclass.py`, `a7b_precision_policy.py`, `a8_compress.py`,
-  `a9_compose.py`, `a10_crossing_neighborhood.py`, `a11_layernorm_reference_dist.py`. Each produced an artifact shipped under `results/`, so a
+  `a9_compose.py`, `a10_crossing_neighborhood.py`, `a11_layernorm_reference_dist.py`,
+  `s56_heldout_contract.py`. Each produced an artifact shipped under `results/`, so a
   reader without a GPU can audit the result without re-running the measurement.
 - `results/` — the artifacts the auditors load, plus every artifact the paper cites. Row-level corpora ship
   where a claim is per-row. Fifteen heavy row-streams ship gzipped (`*.gz`) to stay inside the budget; the

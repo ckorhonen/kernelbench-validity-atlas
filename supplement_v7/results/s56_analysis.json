@@ -1,0 +1,685 @@
+{
+ "header": {
+  "date": "2026-10-25T07:50Z",
+  "source": "s56_heldout_contract.json",
+  "convention": "frozen in write_analysis docstring before the run",
+  "baseline": "eager torch only (torch.sum / F.conv2d); NO torch.compile arm in this pool, so nothing here supports a compile claim",
+  "bars": "V1 bars unchanged from v1: >=0.90 stands / 0.50-0.90 per-row / <0.50 withdrawn"
+ },
+ "rows": [
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 24576,
+    "M": 3
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.016095999628305435,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.016095999628305435,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 24576,
+    "M": 12
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.018112000077962875,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.018112000077962875,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 24576,
+    "M": 20
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.025312000885605812,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.024224000051617622,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.044914169074877275
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 24576,
+    "M": 48
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.042688000947237015,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.042688000947237015,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 24576,
+    "M": 192
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.1799360066652298,
+   "empty": false,
+   "best_arm": "tsplit_S16_KT64",
+   "best_t": 0.14921599626541138,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.20587612031337818
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 24576,
+    "M": 384
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.2372799962759018,
+   "empty": false,
+   "best_arm": "tsplit_S4_KT64",
+   "best_t": 0.23427200317382812,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.012839746368846987
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 98304,
+    "M": 3
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.02022399939596653,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.02022399939596653,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 98304,
+    "M": 12
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.06428799778223038,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.05804799869656563,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.10749723032284203
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 98304,
+    "M": 20
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.013478904115327161,
+   "gate_t": 0.07836800068616867,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.07836800068616867,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 98304,
+    "M": 48
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.09706884446011926,
+   "gate_t": 0.1574079990386963,
+   "empty": false,
+   "best_arm": "tsplit_S16_KT64",
+   "best_t": 0.15535999834537506,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.013182290905850769
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 98304,
+    "M": 192
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.34115976012308374,
+   "gate_t": 0.40828800201416016,
+   "empty": false,
+   "best_arm": "tsplit_S16_KT64",
+   "best_t": 0.3970560133457184,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.028288171670786486
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 98304,
+    "M": 384
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.6646989502869654,
+   "gate_t": 0.7308480143547058,
+   "empty": false,
+   "best_arm": "tsplit_S16_KT64",
+   "best_t": 0.7206400036811829,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.014165201239701173
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 393216,
+    "M": 3
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.058079998940229416,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.058079998940229416,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 393216,
+    "M": 12
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.18198400735855103,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.15945599973201752,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.14128040126677066
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 393216,
+    "M": 20
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.29185150595377074,
+   "gate_t": 0.21065600216388702,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.21065600216388702,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 393216,
+    "M": 48
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.12854168035397523,
+   "gate_t": 0.40412798523902893,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.40412798523902893,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 393216,
+    "M": 192
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.27968486126868103,
+   "gate_t": 1.3851840496063232,
+   "empty": false,
+   "best_arm": "tsplit_S16_KT64",
+   "best_t": 1.3555200099945068,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.021883881752462378
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 393216,
+    "M": 384
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 1.6056959125248196,
+   "gate_t": 2.716480016708374,
+   "empty": false,
+   "best_arm": "tsplit_S4_KT64",
+   "best_t": 2.651968002319336,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": 0.024326090787150412
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 3
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.1544959992170334,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.1544959992170334,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 12
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.5383359789848328,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.43593600392341614,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.2348968062738996
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 20
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.07887901649134865,
+   "gate_t": 0.6151040196418762,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 0.6151040196418762,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 48
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.19320162134800636,
+   "gate_t": 1.3780159950256348,
+   "empty": false,
+   "best_arm": "tsplit_S64_KT64",
+   "best_t": 1.3780159950256348,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 192
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 2.573303169424067,
+   "gate_t": 5.318367958068848,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 5.424863815307617,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": -0.01963106556486537
+  },
+  {
+   "family": "reduction",
+   "shape": {
+    "K": 1572864,
+    "M": 384
+   },
+   "gate_choice": "tsplit_S64_KT64",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 7.112991182149027,
+   "gate_t": 10.673888206481934,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 10.48755168914795,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": 0.017767399184959162
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 2,
+    "H": 5,
+    "C": 32
+   },
+   "gate_choice": "imp_B32x32",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 94.12632321141595,
+   "gate_t": 0.018144000321626663,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.02223999984562397,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": -0.18417264174591494
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 2,
+    "H": 5,
+    "C": 96
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.05087999999523163,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.05087999999523163,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 2,
+    "H": 8,
+    "C": 32
+   },
+   "gate_choice": "imp_B32x32",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 125.81971667908634,
+   "gate_t": 0.020191999152302742,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.027648000046610832,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": -0.2696759578175011
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 2,
+    "H": 8,
+    "C": 96
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.03340800106525421,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.03340800106525421,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 2,
+    "H": 12,
+    "C": 32
+   },
+   "gate_choice": "imp_B32x32",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 197.34660962731184,
+   "gate_t": 0.020191999152302742,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.020160000771284103,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": 0.0015872212199623073
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 2,
+    "H": 12,
+    "C": 96
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.033440001308918,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.033440001308918,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 2,
+    "H": 24,
+    "C": 32
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.020160000771284103,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.020160000771284103,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 2,
+    "H": 24,
+    "C": 96
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.03862399980425835,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.03862399980425835,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 3,
+    "H": 5,
+    "C": 32
+   },
+   "gate_choice": "imp_B32x32",
+   "gate_arm_passes": false,
+   "gate_budget_ratio": 95.44812030332967,
+   "gate_t": 0.018144000321626663,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.022207999601960182,
+   "fallback_for_failing_row": "torch",
+   "gate_regret_time_frac": -0.18299708902979317
+  },
+  {
+   "family": "conv",
+   "shape": {
+    "N": 3,
+    "H": 12,
+    "C": 96
+   },
+   "gate_choice": "torch",
+   "gate_arm_passes": true,
+   "gate_budget_ratio": 0.0,
+   "gate_t": 0.03455999866127968,
+   "empty": false,
+   "best_arm": "torch",
+   "best_t": 0.03455999866127968,
+   "fallback_for_failing_row": null,
+   "gate_regret_time_frac": 0.0
+  }
+ ],
+ "summary": {
+  "reduction": {
+   "n_rows": 24,
+   "n_hand_fired": 12,
+   "n_hand_admissible": 9,
+   "v1_pass_fraction": 0.75,
+   "failing_rows": [
+    {
+     "shape": {
+      "K": 393216,
+      "M": 384
+     },
+     "gate": "tsplit_S64_KT64",
+     "budget_ratio": 1.6056959125248196,
+     "regret_frac": 0.024326090787150412,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "K": 1572864,
+      "M": 192
+     },
+     "gate": "tsplit_S64_KT64",
+     "budget_ratio": 2.573303169424067,
+     "regret_frac": -0.01963106556486537,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "K": 1572864,
+      "M": 384
+     },
+     "gate": "tsplit_S64_KT64",
+     "budget_ratio": 7.112991182149027,
+     "regret_frac": 0.017767399184959162,
+     "fallback": "torch"
+    }
+   ],
+   "failing_budget_ratio_range": [
+    1.6056959125248196,
+    7.112991182149027
+   ],
+   "regret_all_rows": {
+    "n": 24,
+    "mean": 0.03530360181652749,
+    "se": 0.013745456418084554
+   },
+   "regret_passing_rows_only": {
+    "n": 9,
+    "mean": 0.008613282840977867
+   },
+   "baseline_note": "eager torch; the pool has no torch.compile arm"
+  },
+  "conv": {
+   "n_rows": 10,
+   "n_hand_fired": 4,
+   "n_hand_admissible": 0,
+   "v1_pass_fraction": 0.0,
+   "failing_rows": [
+    {
+     "shape": {
+      "N": 2,
+      "H": 5,
+      "C": 32
+     },
+     "gate": "imp_B32x32",
+     "budget_ratio": 94.12632321141595,
+     "regret_frac": -0.18417264174591494,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "N": 2,
+      "H": 8,
+      "C": 32
+     },
+     "gate": "imp_B32x32",
+     "budget_ratio": 125.81971667908634,
+     "regret_frac": -0.2696759578175011,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "N": 2,
+      "H": 12,
+      "C": 32
+     },
+     "gate": "imp_B32x32",
+     "budget_ratio": 197.34660962731184,
+     "regret_frac": 0.0015872212199623073,
+     "fallback": "torch"
+    },
+    {
+     "shape": {
+      "N": 3,
+      "H": 5,
+      "C": 32
+     },
+     "gate": "imp_B32x32",
+     "budget_ratio": 95.44812030332967,
+     "regret_frac": -0.18299708902979317,
+     "fallback": "torch"
+    }
+   ],
+   "failing_budget_ratio_range": [
+    94.12632321141595,
+    197.34660962731184
+   ],
+   "regret_all_rows": {
+    "n": 10,
+    "mean": -0.06352584673732468,
+    "se": 0.03329661411216432
+   },
+   "regret_passing_rows_only": {
+    "n": 0,
+    "mean": null
+   },
+   "baseline_note": "eager torch; the pool has no torch.compile arm"
+  }
+ }
+}

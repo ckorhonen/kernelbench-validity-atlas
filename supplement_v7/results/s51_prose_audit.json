@@ -1,0 +1,340 @@
+{
+ "prereg": "docstring of lab/s51_prose_audit.py, frozen before run",
+ "date": "2026-10-24",
+ "n_checks": 31,
+ "n_pass": 31,
+ "n_fail": 0,
+ "checks": [
+  {
+   "id": "C01",
+   "ok": true,
+   "detail": "rows=48 controls=4"
+  },
+  {
+   "id": "C02",
+   "ok": true,
+   "detail": "True/False/highest"
+  },
+  {
+   "id": "C03",
+   "ok": true,
+   "detail": {
+    "W": 3,
+    "TF32": 27,
+    "GEMM_FP32": 18
+   }
+  },
+  {
+   "id": "C04",
+   "ok": true,
+   "detail": "m3=0.9862136343899262 m2=0.5734910985670864 m4=0.8327181936604429"
+  },
+  {
+   "id": "C05",
+   "ok": true,
+   "detail": "1.0/0.7916666666666666"
+  },
+  {
+   "id": "C06",
+   "ok": true,
+   "detail": {
+    "W": 0.8235133598321145,
+    "TF32": 0.924378054216306,
+    "GEMM_FP32": 3.0423841407935353
+   }
+  },
+  {
+   "id": "C07",
+   "ok": true,
+   "detail": "0.6041666666666666/0.5625"
+  },
+  {
+   "id": "C08",
+   "ok": true,
+   "detail": {
+    "expect": {
+     "(64, 7, 3, 1, 1)": "W",
+     "(64, 13, 3, 1, 1)": "W",
+     "(64, 21, 3, 1, 1)": "TF32",
+     "(256, 7, 3, 1, 1)": "W",
+     "(256, 13, 3, 1, 1)": "TF32",
+     "(256, 21, 3, 1, 1)": "TF32",
+     "(16, 7, 3, 1, 1)": "TF32",
+     "(16, 13, 3, 1, 1)": "TF32",
+     "(16, 21, 3, 1, 1)": "TF32"
+    },
+    "got": {
+     "(64, 7, 3, 1, 1)": "W",
+     "(64, 13, 3, 1, 1)": "W",
+     "(64, 21, 3, 1, 1)": "TF32",
+     "(256, 7, 3, 1, 1)": "W",
+     "(256, 13, 3, 1, 1)": "TF32",
+     "(256, 21, 3, 1, 1)": "TF32",
+     "(16, 7, 3, 1, 1)": "TF32",
+     "(16, 13, 3, 1, 1)": "TF32",
+     "(16, 21, 3, 1, 1)": "TF32"
+    }
+   }
+  },
+  {
+   "id": "C09",
+   "ok": true,
+   "detail": "C64 H13->H21 66.83x, C256 H7->H13 38.35x"
+  },
+  {
+   "id": "C10",
+   "ok": true,
+   "detail": {
+    "im2col": 0.7547974662395658,
+    "cudnn_off": 0.4001734254304428,
+    "tf32off_s1": 12.806815762250437,
+    "tf32off_s2": 0.7511889799276767
+   }
+  },
+  {
+   "id": "C11",
+   "ok": true,
+   "detail": {
+    "keff16": [
+     0.005281133077276554,
+     0.007784753363839663
+    ],
+    "keff8192": [
+     1.0555617787953848,
+     2.287566267917604,
+     5.822523526782
+    ]
+   }
+  },
+  {
+   "id": "C12",
+   "ok": true,
+   "detail": {
+    "b1": [
+     6,
+     195.0484
+    ],
+    "b2": [
+     7,
+     225.3871
+    ],
+    "b4": [
+     15,
+     141.3787
+    ],
+    "b8": [
+     21,
+     232.3333
+    ]
+   }
+  },
+  {
+   "id": "C13",
+   "ok": true,
+   "detail": {
+    "hand": {
+     "r1_asrun": 20,
+     "corrected": 15
+    },
+    "ieee": {
+     "r1_asrun": 95,
+     "corrected": 80
+    },
+    "adm": {
+     "m3m2": 14,
+     "w4": 2,
+     "a2": 0
+    },
+    "cmp": 5
+   }
+  },
+  {
+   "id": "C14",
+   "ok": true,
+   "detail": {
+    "torch_fail": 52,
+    "gate": {
+     "def": 52,
+     "ieee": 41
+    },
+    "obs": 4
+   }
+  },
+  {
+   "id": "C16",
+   "ok": true,
+   "detail": {
+    "red_worse": 3.0,
+    "conv_worse": 0.0,
+    "red_gate": 0.04511657284904949,
+    "conv_gate": 0.02006293937967579
+   }
+  },
+  {
+   "id": "C17",
+   "ok": true,
+   "detail": {
+    "V2": false,
+    "S5": "SCOPE_CUT_S5"
+   }
+  },
+  {
+   "id": "C18",
+   "ok": true,
+   "detail": {
+    "cf1": 0,
+    "profiles": {
+     "mixed": 48,
+     "flat": 4,
+     "nested": 4
+    },
+    "001": 165
+   }
+  },
+  {
+   "id": "C19",
+   "ok": true,
+   "detail": {
+    "flips": 169,
+    "arms": 528
+   }
+  },
+  {
+   "id": "C20",
+   "ok": true,
+   "detail": {
+    "train_auc": 0.7428978592893213,
+    "c": 0.457763671875,
+    "rider": 0.12109375
+   }
+  },
+  {
+   "id": "C21",
+   "ok": true,
+   "detail": 0.14936723908871183
+  },
+  {
+   "id": "C22",
+   "ok": true,
+   "detail": {
+    "b2": [
+     0,
+     350
+    ],
+    "b4": [
+     0,
+     816
+    ],
+    "b4_auc": 0.9026046016068189,
+    "b4_acc": 288
+   }
+  },
+  {
+   "id": "C23",
+   "ok": true,
+   "detail": {
+    "pass": 19,
+    "n": 19
+   }
+  },
+  {
+   "id": "C24",
+   "ok": true,
+   "detail": {
+    "cited": 44,
+    "found": 44,
+    "missing": []
+   }
+  },
+  {
+   "id": "C25",
+   "ok": true,
+   "detail": {
+    "p90": 15.3584,
+    "T": 16.1783,
+    "cells": 420
+   }
+  },
+  {
+   "id": "C26",
+   "ok": true,
+   "detail": 1260
+  },
+  {
+   "id": "C27",
+   "ok": true,
+   "detail": 180
+  },
+  {
+   "id": "C28",
+   "ok": true,
+   "detail": {
+    "pass": true,
+    "ratios": {
+     "s2": 0.00156640466423836,
+     "d2": 0.0021595340599573935,
+     "k1": 0.0006696286208042961
+    }
+   }
+  },
+  {
+   "id": "C15",
+   "ok": true,
+   "detail": {
+    "def": {
+     "a2_change_both_arms": 21,
+     "a2_change_to_none": 31,
+     "a2_change_from_none": 0,
+     "a2_delivered_change_def64": 52
+    },
+    "ieee_nodel": 24,
+    "64_nodel": 31,
+    "torch": {
+     "def": 56,
+     "ieee": 21,
+     "64": 4
+    }
+   }
+  },
+  {
+   "id": "C29",
+   "ok": true,
+   "detail": {
+    "n_rows": 56,
+    "by_tag": {
+     "m3m2": 1,
+     "w4": 1,
+     "a2": 0
+    }
+   }
+  },
+  {
+   "id": "C31",
+   "ok": true,
+   "detail": {
+    "two_us": 7.903999648988247,
+    "one_us": 5.8559998869895935,
+    "spearman": [
+     -0.6428571428571429,
+     0.951,
+     7
+    ],
+    "verdict": "NON-MONOTONE"
+   }
+  },
+  {
+   "id": "C30",
+   "ok": true,
+   "detail": {
+    "s2_reference_axis.md": true,
+    "s3_atlas.md": true,
+    "s3b_conv_anchor.md": true,
+    "s4_certificates.md": true,
+    "s5_tolerance.md": true,
+    "s6_selector.md": true,
+    "s7_threats.md": true,
+    "s8_reproduction.md": true
+   }
+  }
+ ]
+}

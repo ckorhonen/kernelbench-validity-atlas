@@ -1,0 +1,296 @@
+[
+  {
+    "stride": 1,
+    "pad": 1,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 2,
+    "class": "W",
+    "kernels": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 9,
+      "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
+      "cudaGetErrorString": 6,
+      "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+      "cudaDeviceGetAttribute": 3,
+      "cuLaunchKernel": 3,
+      "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
+      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 6.73622783594513,
+      "med": 0.015338428555867964,
+      "frac_over": 0.004743303571428571,
+      "n_elem": 25088,
+      "abs_max": 0.0018513738375673938
+    },
+    "out_shape": [
+      2,
+      256,
+      7,
+      7
+    ]
+  },
+  {
+    "stride": 2,
+    "pad": 1,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 2,
+    "class": "T",
+    "kernels": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 369.4046394644757,
+      "med": 2.7975381138828066,
+      "frac_over": 0.781005859375,
+      "n_elem": 8192,
+      "abs_max": 0.052632893193589325
+    },
+    "out_shape": [
+      2,
+      256,
+      4,
+      4
+    ]
+  },
+  {
+    "stride": 1,
+    "pad": 2,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 2,
+    "class": "W",
+    "kernels": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 9,
+      "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
+      "cudaGetErrorString": 6,
+      "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+      "cudaDeviceGetAttribute": 3,
+      "cuLaunchKernel": 3,
+      "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
+      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 6.73622783594513,
+      "med": 0.015338428555867964,
+      "frac_over": 0.004743303571428571,
+      "n_elem": 25088,
+      "abs_max": 0.0018513738375673938
+    },
+    "out_shape": [
+      2,
+      256,
+      7,
+      7
+    ]
+  },
+  {
+    "stride": 1,
+    "pad": 1,
+    "dilation": 2,
+    "layout": "NCHW",
+    "batch": 2,
+    "class": "T",
+    "kernels": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 315.1445896456404,
+      "med": 2.823288135657002,
+      "frac_over": 0.7846779336734693,
+      "n_elem": 25088,
+      "abs_max": 0.05669679302937425
+    },
+    "out_shape": [
+      2,
+      256,
+      7,
+      7
+    ]
+  },
+  {
+    "stride": 1,
+    "pad": 1,
+    "dilation": 1,
+    "layout": "NHWC",
+    "batch": 2,
+    "class": "W",
+    "kernels": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 9,
+      "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
+      "cudaGetErrorString": 6,
+      "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+      "cudaDeviceGetAttribute": 3,
+      "cuLaunchKernel": 3,
+      "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
+      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 6.73622783594513,
+      "med": 0.015338428555867964,
+      "frac_over": 0.004743303571428571,
+      "n_elem": 25088,
+      "abs_max": 0.0018513738375673938
+    },
+    "out_shape": [
+      2,
+      256,
+      7,
+      7
+    ]
+  },
+  {
+    "stride": 1,
+    "pad": 1,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 1,
+    "class": "W",
+    "kernels": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 9,
+      "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
+      "cudaGetErrorString": 6,
+      "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+      "cudaDeviceGetAttribute": 3,
+      "cuLaunchKernel": 3,
+      "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
+      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 6.43500496880489,
+      "med": 0.015587290616234616,
+      "frac_over": 0.004225127551020408,
+      "n_elem": 12544,
+      "abs_max": 0.0018513738375673938
+    },
+    "out_shape": [
+      1,
+      256,
+      7,
+      7
+    ]
+  },
+  {
+    "stride": 1,
+    "pad": 1,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 4,
+    "class": "W",
+    "kernels": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 9,
+      "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
+      "cudaGetErrorString": 6,
+      "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+      "cudaDeviceGetAttribute": 3,
+      "cuLaunchKernel": 3,
+      "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
+      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 6.816156502283985,
+      "med": 0.015636494044195814,
+      "frac_over": 0.004902742346938775,
+      "n_elem": 50176,
+      "abs_max": 0.001897425748012438
+    },
+    "out_shape": [
+      4,
+      256,
+      7,
+      7
+    ]
+  },
+  {
+    "stride": 2,
+    "pad": 2,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 2,
+    "class": "T",
+    "kernels": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 369.4046394644757,
+      "med": 2.7975381138828066,
+      "frac_over": 0.781005859375,
+      "n_elem": 8192,
+      "abs_max": 0.052632893193589325
+    },
+    "out_shape": [
+      2,
+      256,
+      4,
+      4
+    ]
+  },
+  {
+    "stride": 1,
+    "pad": 1,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 2,
+    "class": "W",
+    "kernels": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 9,
+      "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)": 3,
+      "cudaGetErrorString": 6,
+      "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)": 3,
+      "cudaDeviceGetAttribute": 3,
+      "cuLaunchKernel": 3,
+      "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
+      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 6.73622783594513,
+      "med": 0.015338428555867964,
+      "frac_over": 0.004743303571428571,
+      "n_elem": 25088,
+      "abs_max": 0.0018513738375673938
+    },
+    "out_shape": [
+      2,
+      256,
+      7,
+      7
+    ]
+  }
+]
