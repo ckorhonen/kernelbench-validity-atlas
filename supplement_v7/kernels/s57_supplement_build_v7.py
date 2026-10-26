@@ -72,7 +72,7 @@ a6f_geom_repl_convmech.json e1_analysis_v3.json e3_gridgeom.json m3_curve.json r
 s46_e2_recount.json w4_v1.json s48_prose_audit.json b1_gatezero_v2.json
 r1_conv_gated.jsonl gate_stability.jsonl
 b4_guard_v1.jsonl e1b_order_v2.json e2_splitk_v2.json m3_r42.jsonl m3_r42.json
-w4_heldout.json.jsonl a8_compress.json
+w4_heldout.json.jsonl tuple_test.json a8_compress.json
 """.split()
 
 # r1_times.json lives at lab/ (not lab/results/) and r45_rider_adm.py requires it; the reviewer flagged

@@ -166,7 +166,7 @@
    "detail": {
     "red_worse": 3.0,
     "conv_worse": 0.0,
-    "red_gate": 0.04511657284904949,
+    "red_gate": 0.0451165728490495,
     "conv_gate": 0.02006293937967579
    }
   },
@@ -241,8 +241,8 @@
    "id": "C24",
    "ok": true,
    "detail": {
-    "cited": 44,
-    "found": 44,
+    "cited": 45,
+    "found": 45,
     "missing": []
    }
   },

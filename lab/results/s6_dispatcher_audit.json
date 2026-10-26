@@ -46,7 +46,7 @@
    },
    "compile_pass": 8,
    "compile_err_max": 0.00244140625,
-   "gate_mean_regret_total": 0.04511657284904949,
+   "gate_mean_regret_total": 0.0451165728490495,
    "best_b": "b1",
    "best_b_mean_regret_total": 1.5277373759961599,
    "all_recorded_err_max": 0.017822265625

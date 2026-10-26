@@ -194,3 +194,15 @@ derived_coords: K_eff, engine_class (categorical), rho_max, frac_over, C, output
 results/a7_kernelclass.json + results/a7b_precision_policy.json + results/a8_compress_v2.json;
 variance: rho is a deterministic max statistic, no timing variance, seeds fixed per row, 2-run
 bit-equality asserted per profiled row; n_reps: 1 per row (deterministic); date: 2026-10-24}`
+
+
+## 2.5 The tuple test: the class boundary is a function of the tuple
+
+The two-class result in §2.3 was measured at one shape (C256, k=3, s=1, d=1, H=7, W=7). A pre-registered grid (lab/tuple_test.py, commit 34dca87) varies stride, dilation, pad, layout and batch at that fixed shape — 9 rows, seed 4321, L2-flushed, torch.profiler CUDA kernel names, correctness vs fp64:
+
+- **Class W (winograd)**: stride=1, dilation=1, pad<=2, NCHW or NHWC, batch<=4. rho_max 6.4-6.8, frac_over 0.004-0.005, bit-identical output under every precision flag.
+- **Class T (TF32 tensorop)**: stride=2 or dilation=2. rho_max 315.1-369.4, frac_over ~0.78. allow_tf32=False removes 99.9% (ratios 0.0016/0.0022/0.0007) with bit-inequal output.
+
+Six of eight consecutive transitions in the grid flip W<->T (stride 1->2, dilation 1->2, pad and batch transitions), so the boundary is a step function of the tuple; it is not a smooth function. The engine class is a dispatch decision over (stride, dilation, output extent, batch): a fitted label on the tuple, not a fixed property of the shape. At fixed (C, H, batch), the class flips between successive stride/dilation values, and a dispatcher that reads only (C, output extent) misclassifies one step of H on the 1x1 family (C16/C64 -> implicit_convolve_sgemm fp32 SIMT, rho 0.005-0.032; C256 -> cutlass_80_tensorop_s1688gemm TF32 tensor core, rho 141-184): one H step across that boundary moves rho by 20-38x.
+
+This kills the spine's continuous-form collapse (a step boundary is not a low-complexity surface) and confirms the two-class certificate: engine class is predictable only 0.604 vs a 0.5625 majority from (k, s, d) alone, and rho_max compresses (LOO Spearman 0.833 geometry-only, 0.986 with class, §4.5). The certificate remains a surface for magnitude with a measured-per-shape cost for admission; the admission rule is unchanged (frac_over-keyed). For third-party classification, the per-row tuple is stored with every rho/frac_over in results/tuple_test.json, so the boundary can be re-derived and the class recomputed.
