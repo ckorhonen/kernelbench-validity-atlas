@@ -2171,3 +2171,34 @@ parked.
   over final state; tuple_test.json shipped.
   METADATA: submission_metadata_v8.json written; s54 metadata audit 6/6 against the regenerated manuscript.
   DEBT: none blocking.
+
+## 2026-10-26 ~16:53Z — tick #58: review triage (PseRykT8DYZnJmnp)
+
+The resubmission PseRykT8DYZnJmnp was rejected (08:28:43Z): review archived
+`rejections/rejection_review_PseRykT8DYZnJmnp.md`; triage written to
+`paper/rejections/rejection_triage_PseRykT8DYZnJmnp.md` (per-finding, all five VALID, none
+discharged by the round-5/6 maps). Decisions:
+
+1. Tuple test does not establish the stated interventions (VALID): producer's `pad` column is
+   decorative — actual padding = dilation; rows 3/4/8's extents match the real padding, not the
+   claimed column. Regenerate the frozen 9-row grid with the pad column driving actual padding,
+   add per-row paired precision-flag measurements and bit-equality fields.
+2. Discrete boundary vs simple predictive surface (VALID): all nine labels obey "W when s=1 AND
+   d=1; T otherwise"; reframe §2.5, drop the "0.604 vs 0.5625 majority" and "not a low-complexity
+   surface" claims, and make §4.5's scope sentence the whole of it. State A8 is a separate
+   already-scoped measurement.
+3. Certificate conflates three decisions (VALID): §2.4/§4.4 overstate what reference bulk
+   frac_over implies. Separate the three criteria as §4.1; the ratio-uninformative statement
+   stays, the candidate-fails inference goes.
+4. Reproduction exceeds supplied implementation (VALID): tuple producer absent + commit
+   34dca87 404; ship producers, fix S56 producer (gzip-aware row-stream, seed-derived inputs,
+   hand-computation double-check), pin a reachable commit, hash manifest verified from inside.
+5. Selector economics not correctness-conditioned (VALID): §6.3 to descriptive accounting with
+   the explicit torch fallback; drop the total-time ordering claim.
+
+Additional corrections: A10 = 72 measurements at 12 depths (not 66 at 11); six-seed frequencies
+are finite-sample only (remove "all sampled draws fail from 3.68k" since 3840 re-entry); 0/10
+flips = limited screen only; abstract to separate bulk classification from admission.
+
+Debts: triage written; response doc pending; repair + supplement_v9 + resubmit with
+previous_submission_id=PseRykT8DYZnJmnp. 24h-E1/CTA-edge/bt parked.
