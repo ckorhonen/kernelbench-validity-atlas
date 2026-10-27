@@ -104,6 +104,12 @@ that dispatches to the cheapest admissible arm, and the 0.86% (±1.37) over all 
 pays to have made that decision without a probe. That is what the numbers show; they show it without a
 probe-cost assumption and with every row's fallback named.
 
+**Reading discipline.** This section reports measured per-row results only, with an explicit
+correctness-preserving fallback on every row (torch, which passes on every failing row). The
+descriptive accounting is read against that rule: no row is omitted, no row is averaged over, and no
+ranking of arms is implied beyond the per-row records. Nothing here supports a compile claim — the
+compile comparison lives in §3.3 and is a different measurement.
+
 **It is not** a claim that the rule's arm is the fastest arm. §4's certificate established that delivery is
 conditional: under enforced admission there is no admissible delivery on 24/56 rows (ieee) and 31/56 (fp64),
 and on conv the delivered arm is the baseline on 52/56. A selector over inadmissible arms is a selector

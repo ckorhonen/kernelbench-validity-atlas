@@ -41,7 +41,7 @@ cushion_screen.py s6_dispatcher_audit.py s55_review_repair.py a8_analysis.py a8b
 GPU_PRODUCERS = """
 a6_refdistance.py a6b_ksweep.py a6c_conv_tf32pair.py a6d_crossing.py a6e_geometry_algo.py
 a6f_geom_repl_convmech.py a7_kernelclass.py a7b_precision_policy.py a8_compress.py a9_compose.py
-a10_crossing_neighborhood.py a11_layernorm_reference_dist.py s56_heldout_contract.py
+a10_crossing_neighborhood.py a11_layernorm_reference_dist.py s56_heldout_contract.py e2_splitk_v3.py w3_conv_gemm.py m3_autotune_curve.py
 tuple_test.py s57_supplement_build_v9.py
 """.split()
 
@@ -56,7 +56,8 @@ a9_compose_prereg.md
 GZIP = {"b4_guard_v1.jsonl", "r1_conv_gated.jsonl", "gate_stability.jsonl", "m3_curve.json",
         "e2_splitk_v2.json", "e1b_order_v2.json", "e2_v3_err.json", "e2b_floor.json",
         "b2_direction_audit.json", "e1_triad_day2.json", "e1_triad.json", "m3_r42.jsonl",
-        "w4_heldout.json.jsonl", "a8_compress.json", "r42_gridfix.jsonl", "m3_r42.json"}
+        "w4_heldout.json.jsonl", "a8_compress.json", "r42_gridfix.jsonl", "m3_r42.json",
+        "pop_confirm.json"}
 
 RESULTS = """
 calibration.json e1_triad.json e1_triad_day2.json e2_v3_err.json e2b_floor.json a6d_crossing.json
@@ -72,7 +73,7 @@ a6f_geom_repl_convmech.json e1_analysis_v3.json e3_gridgeom.json m3_curve.json r
 s46_e2_recount.json w4_v1.json s48_prose_audit.json b1_gatezero_v2.json
 r1_conv_gated.jsonl gate_stability.jsonl
 b4_guard_v1.jsonl e1b_order_v2.json e2_splitk_v2.json m3_r42.jsonl m3_r42.json
-w4_heldout.json.jsonl tuple_test.json a8_compress.json
+w4_heldout.json w4_heldout.json.jsonl tuple_test.json a8_compress.json
 """.split()
 
 # r1_times.json lives at lab/ (not lab/results/) and r45_rider_adm.py requires it; the reviewer flagged
@@ -214,7 +215,8 @@ def main():
             f.write(text)
 
     for rel in shipped:
-        if not rel.endswith(".py") or rel == "kernels/s57_supplement_build_v7.py":
+        if not rel.endswith(".py") or rel in ("kernels/s57_supplement_build_v7.py",
+                                               "kernels/s57_supplement_build_v9.py"):
             continue  # the builder's own assertion lines contain the literal paths it is checking for
         for line in open(os.path.join(OUT, rel)).read().splitlines():
             if "/Users/" in line or "/home/" in line:

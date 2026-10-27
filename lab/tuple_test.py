@@ -121,13 +121,26 @@ def run_tuple():
         # grid; do NOT recompute a dilation-matched padding, and do NOT use
         # (k-1)*d//2, which is not the row pad.
         p_val = p
-        o = F.conv2d(x, w, padding=p_val, stride=s, dilation=d)
+        # Real layout conversion: the NHWC row runs the convolution on the
+        # channels_last (NHWC) tensor, so the profiler records the nchwToNhwc /
+        # nhwcToNchw conversions and the NHWC strides; the output is converted back
+        # to NCHW before the fp64 comparison below.
+        if layout == "NHWC":
+            x_run = x.permute(0, 2, 3, 1).contiguous()
+        else:
+            x_run = x
+        o = F.conv2d(x_run, w, padding=p_val, stride=s, dilation=d)
         assert list(o.shape[-2:]) == [expected_h(s, p, d), expected_h(s, p, d)], (
             f"output shape {list(o.shape[-2:])} != expected {expected_h(s,p,d)} "
             f"for (s={s},p={p},d={d})")
-        kn = kernel_names(lambda: F.conv2d(x, w, padding=p_val, stride=s, dilation=d))
+        if layout == "NHWC":
+            nhwc_strides = [int(v) for v in o.stride()]
+            o = o.permute(0, 3, 1, 2).contiguous()
+        else:
+            nhwc_strides = None
+        kn = kernel_names(lambda: F.conv2d(x_run, w, padding=p_val, stride=s, dilation=d))
         cls = engine_class(kn)
-        # default reference
+        # default reference (fp64) on the original NCHW input
         x64 = x.double(); w64 = w.double()
         o64 = F.conv2d(x64, w64, padding=p_val, stride=s, dilation=d)
         st = stats(o, o64)
@@ -150,8 +163,9 @@ def run_tuple():
                     "rho": st, "rho_flagoff": st_off,
                     "flagoff_bit_equal": bit_equal,
                     "flagoff_rho_ratio": st_off["rho_max"] / max(st["rho_max"], 1e-30),
-                    "out_shape": [int(v) for v in o.shape[-2:]],
-                    "strides": [int(v) for v in o.stride()]})
+                    "out_shape": [int(v) for v in o.shape[-2:]]})
+        if layout == "NHWC":
+            row["strides"] = nhwc_strides
         results.append(row)
         del x, w, o, x64, w64, o64, x2, w2, o_off, x64o, w64o, o64_off
         torch.cuda.empty_cache()

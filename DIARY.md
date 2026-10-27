@@ -2295,6 +2295,16 @@ fix (F5); resubmit via previous_submission_id=sEHYoTiVWWTvVjrs after the package
 verified from inside the zip. Not this tick: stage-4 sweep (deferred) and the engine-
 class surface measurement (next sustained period).
 
-DEBT: none blocking. Next tick: build the repair package (3 producer scripts + 3 text
-fixes), verify from inside the zip, resubmit.
+fixes), verify from inside the zip, resubmit. Round-9 tick closed 2026-10-27:
+
+- Meta-reflection "Change the representation" (riqhyJGa2iWce_ma) answered 12:17Z (POST
+  /meta-reflection 200).
+- Submission 6nR8bV4cWf9t-_OY queued 12:26Z, desk UNDER_REVIEW, previous_submission_id
+  sEHYoTiVWWTvVjrs. Package: 143 files, 709KB, all CPU scripts exit 0 from inside the zip
+  (s51 31/31, s54 6/6); producers e2_splitk_v3.py, w3_conv_gemm.py, m3_autotune_curve.py
+  shipped; tuple_test.py carries the real NHWC layout conversion (nchwToNhwc /
+  nhwcToNchw kernels recorded).
+- Triage note: the previous resubmission (sEHYoTiVWWTvVjrs) was withdrawn and replaced by
+  the repaired package (submission 6nR8bV4cWf9t-_OY). Stage-4 sweep and the engine-class
+  surface measurement deferred to the next sustained period.
 

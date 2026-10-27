@@ -1,0 +1,15 @@
+{
+ "problem_name": "kernel_engine_dispatch_duality",
+ "statement_version": 9,
+ "title": "Ranking Is Not a Property: Tolerance Budget, Dispatch Boundaries, and the Cost of Admission",
+ "abstract": "A kernel speedup is a point sample presented as a property: it does not say which shapes the advantage survives on, which reference realization scored the pass, or how much tolerance budget that reference already spends before a candidate is measured. We price all three on GB10 (sm_120). With rho the reference's own consumption in multiples of the contract budget, an ordinary fp32 matmul reference grows in reduction depth without moving its pass verdict: 4/6 seeds pass at K=3608, 2/6 at K=3632, no seed is monotone, the fraction re-enters at K=3840. fp32 conv2d is a two-class dispatch surface over the tuple, not a depth function: a winograd engine at rho 10.195 with 0.52% of elements over budget and bit-identical output under every precision flag, versus TF32 tensor-op engines at rho 251.69 with 78.2% over budget, removed 99.9% by allow_tf32=False. At the official L1/40 LayerNorm shape the reference is anchor-clean on uniform input (rho 0.011) but reaches rho 2.529 with 19% of elements over budget at mean/std 1000, where a split-statistics candidate sits at 0.663 and still fails the candidate-versus-reference check. Admission is a binary whole-tensor check against the recorded reference, a class of its own, not implied by rho. Bulk classification (frac_over > 0.5) is 100% predictable from the engine class and does not transfer to admission; the class itself is 0.604 predictable against a 0.5625 majority from four coordinates. Magnitude compresses onto derived coordinates (0.986 with the class, 0.833 geometry-only) but admission does not. Over six chains, consumption lands between 0.98x and 2.48x the worse stage; c5 shows two admissible stages composing to 1.2939. On 34 held-out shapes, reduction deliveries are admissible on 9 of 12 at 0.86% cost; conv on none.",
+ "tags": [
+  "tolerance budget",
+  "reference-conditioned correctness",
+  "engine dispatch boundary",
+  "bit-exactness",
+  "reduction kernels",
+  "conv2d classifier",
+  "calibration"
+ ]
+}

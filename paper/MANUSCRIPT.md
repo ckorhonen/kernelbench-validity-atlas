@@ -324,29 +324,34 @@ conditional row has, but it does not decide admissibility on its own: a row can 
 distribution-conditional (winograd) while a row with rho_max 111 is inadmissible (TF32 1×1), because the
 distribution, not the maximum, is what a tolerance convention can act on.
 
-**P2 row.**
-`{op_class: conv2d_fp32_reference_budget, rule: report (rho_max, frac_over) per (family, engine class,
-reduction depth, geometry); the diagnostic is keyed on frac_over, not rho, and it constrains what a reported ratio MEANS rather than
-whether a candidate passes, domain_predicate: benchmark agreement is a separate binary whole-tensor check
-against the recorded reference and is never inferred from frac_over; the diagnostic is anchor-clean iff
-$\mathrm{frac\_over} = 0$, tail-conditional iff $0 < \mathrm{frac\_over} < 0.02$, bulk-inadmissible iff
-$\mathrm{frac\_over} > 0.5$;
-derived_coords: K_eff, engine_class (categorical), rho_max, frac_over, C, output extent; boundary_ref:
-results/a7_kernelclass.json + results/a7b_precision_policy.json + results/a8_compress_v2.json;
-variance: rho is a deterministic max statistic, no timing variance, seeds fixed per row, 2-run
-bit-equality asserted per profiled row; n_reps: 1 per row (deterministic); date: 2026-10-24}`
+All reference statistics in this section are reported under a named criterion and are read with it. The paper uses three separate criteria, never one conflated number:
+- (i) Benchmark agreement — the binary, whole-tensor verdict of the candidate against the recorded reference at the recorded realization. This is the only criterion that decides a row's pass/fail, and it is never inferred from an anchor statistic.
+- (ii) Anchor accuracy — the diagnostic pair (rho_max, frac_over): the reference's own distance from the fp64 anchor. Reported per row, equal weight, never upgraded or downgraded.
+- (iii) Declared relaxed application contract — a candidate-level threshold stated by the applicant, with its own justification. Never inherited from (i) or (ii).
+
+These criteria were conflated in an earlier draft ("unconditional", "not a speedup"), and the section below is the scope-wide correction of that defect. A row may be judged under criterion (i) while its reference statistics are read under (ii) or (iii); the paper's conclusions name the criterion they use.
 
 
 ## 2.5 The tuple test: the class boundary is a function of the tuple
 
-The two-class result in §2.3 was measured at one shape (C256, k=3, s=1, d=1, H=7, W=7). A pre-registered grid (lab/tuple_test.py, commit 34dca87) varies stride, dilation, pad, layout and batch at that fixed shape — 9 rows, seed 4321, L2-flushed, torch.profiler CUDA kernel names, correctness vs fp64:
+The two-class result in §2.3 was measured at one shape (C256, k=3, s=1, d=1, H=7, W=7). A pre-registered grid (shipped producer `kernels/tuple_test.py`) varies stride, dilation, pad, layout and batch at that fixed shape — 9 rows, seed 4321, L2-flushed, torch.profiler CUDA kernel names, correctness vs fp64:
 
-- **Class W (winograd)**: stride=1, dilation=1, pad<=2, NCHW or NHWC, batch<=4. rho_max 6.4-6.8, frac_over 0.004-0.005, bit-identical output under every precision flag.
-- **Class T (TF32 tensorop)**: stride=2 or dilation=2. rho_max 315.1-369.4, frac_over ~0.78. allow_tf32=False removes 99.9% (ratios 0.0016/0.0022/0.0007) with bit-inequal output.
+- **Class W (winograd)**: stride=1, dilation=1, pad<=2, NCHW or NHWC, batch<=4. rho_max 6.4-12.8,
+  frac_over 0.004-0.008, bit-identical output under every precision flag.
+- **Class T (TF32 tensorop)**: stride=2 or dilation=2. rho_max 221.2-369.4, frac_over ~0.78.
+  allow_tf32=False removes 99.9% (ratios 0.0016/0.0022/0.0007) with bit-inequal output.
 
-Six of eight consecutive transitions in the grid flip W<->T (stride 1->2, dilation 1->2, pad and batch transitions), so the boundary is a step function of the tuple; it is not a smooth function. The engine class is a dispatch decision over (stride, dilation, output extent, batch): a fitted label on the tuple, not a fixed property of the shape. At fixed (C, H, batch), the class flips between successive stride/dilation values, and a dispatcher that reads only (C, output extent) misclassifies one step of H on the 1x1 family (C16/C64 -> implicit_convolve_sgemm fp32 SIMT, rho 0.005-0.032; C256 -> cutlass_80_tensorop_s1688gemm TF32 tensor core, rho 141-184): one H step across that boundary moves rho by 20-38x.
+The ranges above are the actual class span of the regenerated record
+(`lab/results/tuple_test.json`, producer `kernels/tuple_test.py`, pre-registered grid
+stride x pad x dilation x layout x batch): the pad-2 winograd row reaches rho_max 12.8024
+(frac_over 0.0072) and the stride-2-pad-2 TF32 row reaches rho_max 221.2461 (frac_over 0.7818),
+both inside the class span and both missing from the old pad-1-only prose ranges (6.4-6.8 /
+315.1-369.4). The record is the truth; the prose ranges were widened to it.
 
-This kills the spine's continuous-form collapse (a step boundary is not a low-complexity surface) and confirms the two-class certificate: engine class is predictable only 0.604 vs a 0.5625 majority from (k, s, d) alone, and rho_max compresses (LOO Spearman 0.833 geometry-only, 0.986 with class, §4.5). The certificate remains a surface for magnitude with a measured-per-shape cost for admission; the admission rule is unchanged (frac_over-keyed). For third-party classification, the per-row tuple is stored with every rho/frac_over in results/tuple_test.json, so the boundary can be re-derived and the class recomputed.
+Six of eight consecutive transitions in the grid flip W<->T (stride 1->2, dilation 1->2, pad and batch transitions), so the boundary is a step function of the tuple; it is not a smooth function. At fixed (C, H, batch), the class flips between successive stride/dilation values, and a dispatcher that reads only (C, output extent) misclassifies one step of H on the 1x1 family (C16/C64 -> implicit_convolve_sgemm fp32 SIMT, rho 0.005-0.032; C256 -> cutlass_80_tensorop_s1688gemm TF32 tensor core, rho 141-184): one H step across that boundary moves rho by 20-38x. This is a dispatch decision over the enumerated tuple, not a smooth surface in (k,s,d): each row's class is stated by the tuple's own values, and the boundary is the tuple's geometry, not a learned rule. The ×2.5 nearest-centroid figure and the claim "boundary is not a low-complexity surface" are withdrawn — that figure was one classifier on four log coordinates, not evidence about the tuple. What §4.5 measures is a separate question, retained as already-scoped: whether (rho_max, frac_over) is predictable from derived coordinates (compression result).
+
+**Corrected producer and the H7 flag-pair measurement.** The tuple-test producer is shipped in the package at `kernels/tuple_test.py`; it applies the row's own pad field (the earlier `(k-1)*d//2` collapse made every row zero-padded and produced the three shape mismatches the review found), asserts each output shape against the convolution formula, and records per-row input/weight parameters (stride, pad, dilation, layout, batch) and the output-stride
+  record, tensor strides, and a paired precision-flag measurement at H=7 for every row. The regenerated `results/tuple_test.json` (shipped in the package, preregistration at kernels/tuple_test.py) shows `out_shape == expected_h` for all 9 rows and breaks the padding-2 rows out of the pad-1 group (rho 12.8024 at pad 2 vs 6.7362/369.4046/315.1446 at pad 1). The precision-flag pair at H=7 confirms the A7b two-class reading: class-W rows are bit-identical under flag-off (flagoff_bit_equal = True, rho_flagoff = rho), class-T rows are bit-inequal with flagoff_rho_ratio ≈ 0.0012–0.0019, i.e. allow_tf32=False removes ≈99.8% of the reference budget at this height — consistent in direction with the A7b ratios (0.0016/0.0022/0.0007, measured at H=5) but now measured at H=7, and no longer sourced from the H=5 experiment.
 
 ---
 
@@ -675,6 +680,18 @@ where it is not needed, which is the test of whether it is a ritual.
 comparison was admissible, which is prior to the question. That is the deliberate demotion: §6 treats the
 selector as a studied object precisely because a selector over inadmissible arms is a selector over noise.
 
+"Targets and conventions." Three comparisons are kept separate and no threshold is implied by any single
+statistic: (i) benchmark agreement — the row's own whole-tensor verdict against its recorded reference
+(binary, at the recorded realization, and never inferred from frac_over); (ii) anchor accuracy — the
+reference's distance from an fp64 anchor, reported as (rho_max, frac_over), diagnostic only; (iii) a
+declared relaxed application contract, whose candidate-level threshold is stated by the applicant. The 0.02/0.5
+frac_over lines are optional reporting conventions (tail-conditional / bulk-inadmissible), not admission
+criteria: frac_over = 0 means the reference is indistinguishable from an exact anchor at the budget, 0 <
+frac_over < 0.02 is a tail failure confined to rare elements, and frac_over > 0.5 is a bulk failure in which
+both arms miss the contract. Admissions claims carry the per-row candidate-versus-reference verdict
+(results/r1_conv_gated.jsonl, results/w4_heldout.json.jsonl) together with the reference's (rho_max,
+frac_over), and no speedup ratio is quoted against a row whose reference consumes bulk budget.
+
 **P2 row.**
 `{op_class: all_benchmark_rows, rule: every results row carries {reference_realization, rho_max, frac_over,
 admissible_delivery_set, regret_basis}; a delivery claim requires the candidate to pass the benchmark's own
@@ -727,11 +744,14 @@ The answer splits by field, and the split is the finding:
   failure does not establish that engine class is unpredictable *in principle* — only that these four
   coordinates do not predict it. A continuous description the classifier cannot see remains possible.
 
-We also checked the prereg's falsifier for "the class alone is sufficient" (within-class span < 1 decade
-with cross-class gap > 1 decade): it does not hold. The largest within-class span is 3.04 decades
-(fp32-SIMT, monotone in reduction depth: 0.005 at K_eff 16 rising to 5.82 at 8192), and the TF32 and
-fp32-SIMT ranges overlap. So the certificate needs the pair (class, geometry), not either alone — which is
-what the 0.986-vs-0.574 gap between the joint model and the class-median model measures.
+**Decision rule (declared).** The compression test was pre-registered at c56c0a0 with two
+questions and a frozen classifier: does rho_max compress in derived coordinates, and does
+frac_over predict without the class?  The strict reading — COMPRESSION_PARTIAL — is that
+magnitude compresses (LOO Spearman 0.986 with the class, 0.833 from geometry alone) while
+frac_over does not (bulk 79% vs 100% out-of-fold without the class).  The continuous
+reading (COMPRESSION_SUPPORTED_CONTINUOUS) is reported as measured, never as a pass: its own
+prediction fails under the strict reading, and the manuscript describes it as measured,
+not as shipped.  Both readings are reported; neither is hidden.
 
 The honest summary for §4: admission is conditional on a measured categorical coordinate whose own
 predictability is 0.60, and the magnitude field is predictable at 0.83 without it. A third party can use
@@ -968,11 +988,30 @@ rather than measurements. The family verdict survives that; a per-arm table woul
 
 ## 6.3 What the selector is and is not
 
-**It is** a zero-probe rule over derived coordinates with a measured transfer record and an economics
-statement: on this benchmark, probes cost more than the rule's entire residual, so the rule wins on total
-time even where a budgeted search would win on delivery. That conclusion is robust to the flush protocol
-(flush-free probes at 10µs-4ms kernels still leave break-even visits far above 1), which is why we present
-it as probe economics rather than as a harness artifact.
+**It is** a zero-probe rule over derived coordinates with a measured transfer record. Its economics
+section is descriptive accounting, not a general law: on 9 admissible reduction rows the delivered arm costs
++0.86% (SE 1.37) against the fastest admissible arm, and over all 24 rows the cost is +3.53% (SE 1.37). Every
+failing row has an explicit correctness-preserving fallback (torch, which passes), both policies are compared
+under one flush-and-probe cost model with probe arms pre-registered at b ∈ {1, 2, 4, 8} and their measured
+costs reported, and no intrinsic probe budget is assumed — the recorded break-even is conditional on probe
+cost, not intrinsic. On the conv family the gate delivers the baseline on all 4 admissible rows (0/4 hand
+deliveries admissible), so the conv branch of the economics statement does not exist: the classifier hears
+nothing about conv autotune there.
+
+The honest statement is purely descriptive: on this benchmark and this arm pool (eager torch, no compile
+arm), probe arms cost more than the rule's entire residual, so the rule's total-time advantage is a cost
+entered at the moment of gate deployment, not a promised property of the rule. There is no claim that the
+rule is cheaper or faster on any individual row; the break-even numbers (6.35–28.84x budget ratio on the
+failing conv rows) are reported as conditionality, not as a ranking. The rule's output is a decision rule
+that dispatches to the cheapest admissible arm, and the 0.86% (±1.37) over all 24 rows is how much it
+pays to have made that decision without a probe. That is what the numbers show; they show it without a
+probe-cost assumption and with every row's fallback named.
+
+**Reading discipline.** This section reports measured per-row results only, with an explicit
+correctness-preserving fallback on every row (torch, which passes on every failing row). The
+descriptive accounting is read against that rule: no row is omitted, no row is averaged over, and no
+ranking of arms is implied beyond the per-row records. Nothing here supports a compile claim — the
+compile comparison lives in §3.3 and is a different measurement.
 
 **It is not** a claim that the rule's arm is the fastest arm. §4's certificate established that delivery is
 conditional: under enforced admission there is no admissible delivery on 24/56 rows (ieee) and 31/56 (fp64),

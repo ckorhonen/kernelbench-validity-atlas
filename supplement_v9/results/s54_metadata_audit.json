@@ -5,16 +5,16 @@
    "name": "abstract numbers present in audited manuscript",
    "pass": true,
    "detail": {
-    "n_numbers": 37,
+    "n_numbers": 35,
     "absent": []
    }
   },
   {
    "id": "A2",
    "name": "abstract word count within 200-300",
-   "pass": false,
+   "pass": true,
    "detail": {
-    "words": 308
+    "words": 283
    }
   },
   {
@@ -47,15 +47,10 @@
   {
    "id": "A6",
    "name": "change_summary names prior rejections",
-   "pass": true,
+   "pass": false,
    "detail": {
-    "named": [
-     "DE1paWNMk8WVTC3n",
-     "2CmvAb5SC-VGAsbK",
-     "6yPhozmAt62JSqQs",
-     "O4hnCxiPVenpDr4A"
-    ],
-    "previous_submission_id": "PseRykT8DYZnJmnp"
+    "named": [],
+    "previous_submission_id": "sEHYoTiVWWTvVjrs"
    }
   }
  ],

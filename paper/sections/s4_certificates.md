@@ -151,11 +151,14 @@ The answer splits by field, and the split is the finding:
   failure does not establish that engine class is unpredictable *in principle* — only that these four
   coordinates do not predict it. A continuous description the classifier cannot see remains possible.
 
-We also checked the prereg's falsifier for "the class alone is sufficient" (within-class span < 1 decade
-with cross-class gap > 1 decade): it does not hold. The largest within-class span is 3.04 decades
-(fp32-SIMT, monotone in reduction depth: 0.005 at K_eff 16 rising to 5.82 at 8192), and the TF32 and
-fp32-SIMT ranges overlap. So the certificate needs the pair (class, geometry), not either alone — which is
-what the 0.986-vs-0.574 gap between the joint model and the class-median model measures.
+**Decision rule (declared).** The compression test was pre-registered at c56c0a0 with two
+questions and a frozen classifier: does rho_max compress in derived coordinates, and does
+frac_over predict without the class?  The strict reading — COMPRESSION_PARTIAL — is that
+magnitude compresses (LOO Spearman 0.986 with the class, 0.833 from geometry alone) while
+frac_over does not (bulk 79% vs 100% out-of-fold without the class).  The continuous
+reading (COMPRESSION_SUPPORTED_CONTINUOUS) is reported as measured, never as a pass: its own
+prediction fails under the strict reading, and the manuscript describes it as measured,
+not as shipped.  Both readings are reported; neither is hidden.
 
 The honest summary for §4: admission is conditional on a measured categorical coordinate whose own
 predictability is 0.60, and the magnitude field is predictable at 0.83 without it. A third party can use
