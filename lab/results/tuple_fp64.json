@@ -1,0 +1,326 @@
+[
+  {
+    "stride": 1,
+    "pad": 1,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 2,
+    "expected_h": 7,
+    "class_32": "T",
+    "class_64": "O",
+    "flip": true,
+    "kernels_32": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "cudaGetErrorString": 9,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "kernels_64": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 3,
+      "void implicit_convolve_dgemm<int, 128, 5, 5, 3, 3, 3, 1, false, true, true>(int, int, int, double const*, int, double*, double const*, kernel_conv_params, unsigned long long, int, double, double, int, double const*, double const*, bool, bool, int, int)": 3,
+      "cudaGetErrorString": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 380.4333305715672,
+      "med": 2.8190070811817547,
+      "frac_over": 0.7891953656462585,
+      "n_elem": 37632,
+      "abs_max": 0.07101840951621341
+    }
+  },
+  {
+    "stride": 1,
+    "pad": 2,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 2,
+    "expected_h": 9,
+    "class_32": "T",
+    "class_64": "O",
+    "flip": true,
+    "kernels_32": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "cudaGetErrorString": 9,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "kernels_64": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 3,
+      "cudaGetErrorString": 3,
+      "void implicit_convolve_dgemm<int, 128, 5, 5, 3, 3, 3, 1, false, true, true>(int, int, int, double const*, int, double*, double const*, kernel_conv_params, unsigned long long, int, double, double, int, double const*, double const*, bool, bool, int, int)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 380.4333305715672,
+      "med": 2.7754253983035606,
+      "frac_over": 0.7840149176954733,
+      "n_elem": 62208,
+      "abs_max": 0.07101840951621341
+    }
+  },
+  {
+    "stride": 1,
+    "pad": 3,
+    "dilation": 1,
+    "layout": "NCHW",
+    "batch": 2,
+    "expected_h": 11,
+    "class_32": "T",
+    "class_64": "O",
+    "flip": true,
+    "kernels_32": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "kernels_64": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 3,
+      "void implicit_convolve_dgemm<int, 128, 5, 5, 3, 3, 3, 1, false, true, true>(int, int, int, double const*, int, double*, double const*, kernel_conv_params, unsigned long long, int, double, double, int, double const*, double const*, bool, bool, int, int)": 3,
+      "cudaGetErrorString": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 380.4333305715672,
+      "med": 1.1893259365280582,
+      "frac_over": 0.524836432506887,
+      "n_elem": 92928,
+      "abs_max": 0.07101840951621341
+    }
+  },
+  {
+    "stride": 1,
+    "pad": 1,
+    "dilation": 2,
+    "layout": "NCHW",
+    "batch": 2,
+    "expected_h": 5,
+    "class_32": "T",
+    "class_64": "O",
+    "flip": true,
+    "kernels_32": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "kernels_64": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 3,
+      "cudaGetErrorString": 3,
+      "void implicit_convolve_dgemm<int, 128, 5, 5, 3, 3, 3, 1, false, true, false>(int, int, int, double const*, int, double*, double const*, kernel_conv_params, unsigned long long, int, double, double, int, double const*, double const*, bool, bool, int, int)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 367.9924626987667,
+      "med": 2.8109509493219647,
+      "frac_over": 0.7820833333333334,
+      "n_elem": 19200,
+      "abs_max": 0.07513139842559724
+    }
+  },
+  {
+    "stride": 1,
+    "pad": 2,
+    "dilation": 2,
+    "layout": "NCHW",
+    "batch": 2,
+    "expected_h": 7,
+    "class_32": "T",
+    "class_64": "O",
+    "flip": true,
+    "kernels_32": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "kernels_64": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 3,
+      "void implicit_convolve_dgemm<int, 128, 5, 5, 3, 3, 3, 1, false, true, false>(int, int, int, double const*, int, double*, double const*, kernel_conv_params, unsigned long long, int, double, double, int, double const*, double const*, bool, bool, int, int)": 3,
+      "cudaGetErrorString": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 367.9924626987667,
+      "med": 2.805220955224483,
+      "frac_over": 0.7837744472789115,
+      "n_elem": 37632,
+      "abs_max": 0.07513139842559724
+    }
+  },
+  {
+    "stride": 1,
+    "pad": 3,
+    "dilation": 2,
+    "layout": "NCHW",
+    "batch": 2,
+    "expected_h": 9,
+    "class_32": "T",
+    "class_64": "O",
+    "flip": true,
+    "kernels_32": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "kernels_64": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 3,
+      "void implicit_convolve_dgemm<int, 128, 5, 5, 3, 3, 3, 1, false, true, false>(int, int, int, double const*, int, double*, double const*, kernel_conv_params, unsigned long long, int, double, double, int, double const*, double const*, bool, bool, int, int)": 3,
+      "cudaGetErrorString": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 367.9924626987667,
+      "med": 2.792167991372916,
+      "frac_over": 0.7833719135802469,
+      "n_elem": 62208,
+      "abs_max": 0.07513139842559724
+    }
+  },
+  {
+    "stride": 1,
+    "pad": 1,
+    "dilation": 3,
+    "layout": "NCHW",
+    "batch": 2,
+    "expected_h": 3,
+    "class_32": "T",
+    "class_64": "O",
+    "flip": true,
+    "kernels_32": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "kernels_64": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 3,
+      "void implicit_convolve_dgemm<int, 128, 5, 5, 3, 3, 3, 1, false, true, false>(int, int, int, double const*, int, double*, double const*, kernel_conv_params, unsigned long long, int, double, double, int, double const*, double const*, bool, bool, int, int)": 3,
+      "cudaGetErrorString": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 296.5288289966796,
+      "med": 2.704256593865604,
+      "frac_over": 0.7776331018518519,
+      "n_elem": 6912,
+      "abs_max": 0.05935226922886727
+    }
+  },
+  {
+    "stride": 1,
+    "pad": 2,
+    "dilation": 3,
+    "layout": "NCHW",
+    "batch": 2,
+    "expected_h": 5,
+    "class_32": "T",
+    "class_64": "O",
+    "flip": true,
+    "kernels_32": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "kernels_64": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 3,
+      "cudaGetErrorString": 3,
+      "void implicit_convolve_dgemm<int, 128, 5, 5, 3, 3, 3, 1, false, true, false>(int, int, int, double const*, int, double*, double const*, kernel_conv_params, unsigned long long, int, double, double, int, double const*, double const*, bool, bool, int, int)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 313.97781403550175,
+      "med": 2.770250606052603,
+      "frac_over": 0.7803645833333334,
+      "n_elem": 19200,
+      "abs_max": 0.05935226922886727
+    }
+  },
+  {
+    "stride": 1,
+    "pad": 3,
+    "dilation": 3,
+    "layout": "NCHW",
+    "batch": 2,
+    "expected_h": 7,
+    "class_32": "T",
+    "class_64": "O",
+    "flip": true,
+    "kernels_32": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 12,
+      "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)": 6,
+      "cudaGetErrorString": 9,
+      "cudaPeekAtLastError": 6,
+      "cudaFuncSetAttribute": 3,
+      "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)": 3,
+      "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "kernels_64": {
+      "Activity Buffer Request": 1,
+      "cudaLaunchKernel": 3,
+      "void implicit_convolve_dgemm<int, 128, 5, 5, 3, 3, 3, 1, false, true, false>(int, int, int, double const*, int, double*, double const*, kernel_conv_params, unsigned long long, int, double, double, int, double const*, double const*, bool, bool, int, int)": 3,
+      "cudaGetErrorString": 3,
+      "cudaDeviceSynchronize": 2
+    },
+    "rho": {
+      "rho_max": 338.202995694504,
+      "med": 2.759485928552707,
+      "frac_over": 0.7795758928571428,
+      "n_elem": 37632,
+      "abs_max": 0.05935226922886727
+    }
+  }
+]

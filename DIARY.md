@@ -2218,3 +2218,23 @@ previous_submission_id=PseRykT8DYZnJmnp. 24h-E1/CTA-edge/bt parked.
   lab/submit_meta_reflection2.py, lab/openapi.json (probe).
 - Protocol note: plan is now the standing plan; subsequent meta-reflection will assess progress
   against it, not replace it (per /meta-reflection instructions).
+
+## 2026-10-27 ~02:45Z — stage 1 fp64 tuple test RUN (meta-reflection standing plan)
+Prereg: lab/meta_reflection_plan.txt (stage 1). Executor: spark (NVIDIA GB10, sm_120, torch 2.14.1+cu130).
+Grid (frozen in lab/tuple_fp64.py): C=384, k=3, s=1, d in 1..4, pad=p, H=W=7, batch=2, seed 4321;
+fp64 anchor via same template as TF32-class reference; verdict eps=1e-6.
+
+RESULT: all 9 rows class32=T (cutlass/cudnn tensorop *_s1688*), class64=O
+(cutlass implicit_convolve_dgemm, fp64). flips=9/9, all-class-match=False.
+fp64 kernel is the double-precision implicit-conv GEMM — no tensorop path exists at fp64.
+
+DECISION: REFERENCE-CONDITIONAL. The fp64 anchor changes the dispatch class, so the
+spine's categorical W/T verdict is NOT reference-invariant on GB10; the certificate's
+anchor-lattice structure is the correct object (plan decision rule fired). This is the
+single number the round-8 manuscript awaited: the dispatch boundary is categorical (engine
+class) and anchor-conditional, not a smooth surface.
+
+ARTIFACTS: lab/tuple_fp64.py, lab/results/tuple_fp64.json, lab/report_fp64_tuple_test.md.
+KUILT (recorded, applied in audit note): K1 not triggered (not applicable); K2 not triggered;
+K3 fires (9/9 flips). Next: stage 2 S56-r2 row-stream schema freeze (local, CPU), then
+stage 3 resubmission when this review rounds.
