@@ -2274,10 +2274,13 @@ TRIAGE (against DISPOSITIONS_round6.md + manuscript state):
   every conclusion using a reference statistic names its criterion. Metadata alone is not
   enough.
 - F3 tuple experiment unperformed intervention + stored ranges disagree: layout recorded
-  but never executed (NHWC row repeats NCHW); rho 12.8024 (stated 6.4-6.8) and rho
-  221.246 (stated 315.1-369.4) disagree with stored results; output-shape formulas now
-  agree (acknowledged by reviewer). DECISION: actual layout conversion + stride recording
-  + regenerate tuple conclusions; prose ranges corrected to stored numbers.
+  but never executed (NHWC row repeats NCHW); the stored rows DO contain the reviewer's
+  numbers — pad-2 Winograd row rho 12.8024 (frac_over 0.00719) and stride-2-pad-2 TF32
+  row rho 221.246, both outside the §2.5 prose ranges 6.4-6.8 / 315.1-369.4. DECISION:
+  regenerate the tuple conclusions from per-row data, correct the prose ranges to the
+  actual class span, record input/weight strides, and implement the real layout
+  conversion for the NHWC row (its kernels repeat NCHW exactly). F5b lesson applies: the
+  prose must match the record.
 - F4 selector economics overclaim: §6.3 total-time ranking rests on tables containing
   inadmissible selections. DECISION: restrict §6.2/6.3 to measured per-row results with
   one explicit correctness+fallback policy; timing dispersion stays descriptive.
