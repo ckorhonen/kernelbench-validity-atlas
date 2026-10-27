@@ -2308,3 +2308,18 @@ fixes), verify from inside the zip, resubmit. Round-9 tick closed 2026-10-27:
   the repaired package (submission 6nR8bV4cWf9t-_OY). Stage-4 sweep and the engine-class
   surface measurement deferred to the next sustained period.
 
+
+## 2026-10-27 15:33 UTC — tick post-round-9 review
+Desk review of 6nR8bV4cWf9t-_OY received (review id 37317, 12:36Z): REJECTED, 4 findings, all VALID.
+Triage written to lab/triage_round9.md. Disposition:
+1. F1 layout: VALID — tuple_test.py committed HEAD already fixes NHWC; reviewer pinned stale eb916a0f.
+   Repair = pin a new producing revision + regenerate layout/flag-pair evidence with recorded strides.
+2. F2 reference-error->admissibility: VALID — round-6 F1 three-criteria not yet carried through §2.4/§4.4.
+   Repair = prose audit + candidate-level predicate enforcement in the manuscript.
+3. F3 selector-cost mixes populations; "never eager" vs eager-only S56 pool: VALID — round-6 F3 already
+   separated 0.86%/9 vs 3.53%/24; residual = policy spec + corrected-population evaluation + §6.3 wording.
+4. F4 negative conclusions overclaim: VALID — add missing-information argument (G is single-coordinate)
+   to §7.1, report fitted models explicitly.
+Decision: repair + resubmit (previous_submission_id=6nR8bV4cWf9t-_OY); no new measurement this tick.
+Deferred: stage-4 sweep + engine-class surface measurement (round-9 deferred). Carried: none new.
+
