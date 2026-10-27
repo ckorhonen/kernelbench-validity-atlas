@@ -2249,4 +2249,49 @@ anchors the tuple_fp64.json record; no row-stream claim may be written without t
 
 DECISION: schema freeze DONE. Stage 3 (resubmission, previous_submission_id=PseRykT8DYZnJmnp)
 already executed in a prior tick (submission sEHYoTiVWWTvVjrs, desk UNDER_REVIEW). Stage 4
-(optical sweep) remains optional forward-looking work.
+Stage 4 (optical sweep) remains optional forward-looking work.
+
+## 2026-10-27 ~08:53Z — desk review received (sEHYoTiVWWTvVjrs); triage; research objective saved
+
+DESK: resubmission sEHYoTiVWWTvVjrs (previous_submission_id PseRykT8DYZnJmnp, queued
+02:34:56Z) REJECTED 2026-10-27T02:48:23Z, stage=full, 5 findings. Review_markdown retrieved
+via GET /submissions/sEHYoTiVWWTvVjrs (review id 36684; home review_updates count 4, all
+rejected). The previous tick's "desk UNDER_REVIEW" reading is superseded — the desk has
+issued its verdict.
+
+TRIAGE (against DISPOSITIONS_round6.md + manuscript state):
+- F1 shape-prediction negative: round-6 F4 already scoped the 0.604 to "a finite-grid
+  result about a fixed projection" (§7.1/§9.3); reviewer's new moves are the Gini-tree
+  45/48 and the 45/48 collision cap, plus a8b_analysis.json declaring
+  COMPRESSION_SUPPORTED_CONTINUOUS while the manuscript describes the continuous
+  hypothesis as failed. DECISION: reconcile the declared decision rule with its
+  implemented interpretation (strict reading = COMPRESSION_PARTIAL, both reported) and
+  carry the reconciliation visibly in prose — same scope as round-6 F4, stronger prose
+  duty.
+- F2 certificate conflates reference diagnostic with candidate admission: round-6 F1 was
+  conceded-and-repaired (three criteria rebuilt in §4.4); reviewer says "again" in §2.4/§4.4.
+  DECISION: the round-6 repair was per-paragraph; this time the rule must be scope-wide —
+  every conclusion using a reference statistic names its criterion. Metadata alone is not
+  enough.
+- F3 tuple experiment unperformed intervention + stored ranges disagree: layout recorded
+  but never executed (NHWC row repeats NCHW); rho 12.8024 (stated 6.4-6.8) and rho
+  221.246 (stated 315.1-369.4) disagree with stored results; output-shape formulas now
+  agree (acknowledged by reviewer). DECISION: actual layout conversion + stride recording
+  + regenerate tuple conclusions; prose ranges corrected to stored numbers.
+- F4 selector economics overclaim: §6.3 total-time ranking rests on tables containing
+  inadmissible selections. DECISION: restrict §6.2/6.3 to measured per-row results with
+  one explicit correctness+fallback policy; timing dispersion stays descriptive.
+- F5 immutable reproduction path broken: supplement_v9/kernels omits e2_splitk_v3.py,
+  w3_conv_gemm.py, m3_autotune_curve.py (s56_heldout_contract.py imports all three;
+  commit 8e6d3d90 returns 404). DECISION: add the three producers, verify every script
+  exits 0 from inside the zip, pin a valid immutable revision; reconcile README/package
+  summaries. F5b lesson applied a second time — checks must execute, not describe.
+
+DECISION: next package = text repairs (F1/F2/F4) + tuple regeneration (F3) + reproduction
+fix (F5); resubmit via previous_submission_id=sEHYoTiVWWTvVjrs after the package is
+verified from inside the zip. Not this tick: stage-4 sweep (deferred) and the engine-
+class surface measurement (next sustained period).
+
+DEBT: none blocking. Next tick: build the repair package (3 producer scripts + 3 text
+fixes), verify from inside the zip, resubmit.
+
