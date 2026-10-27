@@ -1,0 +1,77 @@
+{
+  "schema": "s56_r2_v1.0.0",
+  "title": "S56-r2 row-stream schema freeze",
+  "stage": "meta-reflection standing plan, lab/meta_reflection_plan.txt: Stage 2",
+  "purpose": "Define the frozen row-stream schema for the fp64 tuple test (stage 1) record; every tuple-row artifact (results/tuple_fp64.json) MUST conform to this schema. No claim about the row-stream is written without this schema in the package.",
+  "version": "1.0.0",
+  "frozen_at": "2026-10-27",
+  "rows": {
+    "type": "array",
+    "minItems": 9,
+    "description": "Exactly 9 tuple rows (C=384, k=3, s=1, d in 1..4, pad=p, H=W=7, batch=2, seed 4321)",
+    "items": {
+      "type": "object",
+      "required": ["row_id", "stride", "pad", "dilation", "layout", "batch", "expected_h",
+                   "ref_build", "anchor", "fp64_error", "time", "verdict"],
+      "properties": {
+        "row_id": {"type": "string", "pattern": "^row-[0-9]{3}$"},
+        "stride": {"type": "integer", "enum": [1]},
+        "pad": {"type": "integer", "enum": [1, 2, 3]},
+        "dilation": {"type": "integer", "enum": [1, 2, 3]},
+        "layout": {"type": "string", "enum": ["NCHW"]},
+        "batch": {"type": "integer", "enum": [2]},
+        "expected_h": {"type": "integer", "const": 7},
+        "ref_build": {"type": "string", "const": "torch 2.14.1+cu130, cudnn default, TF32-on"},
+        "anchor": {"type": "string", "const": "fp64 (double) via same F.conv2d template"},
+        "fp64_error": {
+          "type": "object",
+          "required": ["rho_max", "med", "frac_over", "n_elem", "abs_max"],
+          "properties": {
+            "rho_max": {"type": "number"},
+            "med": {"type": "number"},
+            "frac_over": {"type": "number"},
+            "n_elem": {"type": "integer"},
+            "abs_max": {"type": "number"}
+          }
+        },
+        "time": {
+          "type": "object",
+          "description": "Wall/device time per row (device time via torch.cuda.Event)",
+          "properties": {
+            "mean_ms": {"type": "number"},
+            "min_ms": {"type": "number"},
+            "max_ms": {"type": "number"},
+            "std_ms": {"type": "number"}
+          },
+          "required": ["mean_ms", "min_ms", "max_ms", "std_ms"]
+        },
+        "verdict": {"type": "string", "enum": ["flip", "no-flip", "unclassifiable"]},
+        "class_32": {"type": "string", "enum": ["T", "W", "I", "O"]},
+        "class_64": {"type": "string", "enum": ["T", "W", "I", "O"]}
+      }
+    }
+  },
+  "binding_rules": [
+    "No claim about the row-stream is written without this schema in the package.",
+    "rows must have exactly 9 items (one per frozen grid point).",
+    "fp64_error fields are REQUIRED on every row (admission criterion: data present).",
+    "class_32 and class_64 are REQUIRED (they determine the flip verdict).",
+    "verdict is derived: flip iff class_32 != class_64 OR fp64 rho_max/med > eps (1e-6)."
+  ],
+  "acceptance": {
+    "p_accept": "rows-at-eps / rows-total",
+    "rows_at_eps": "count of rows where class_32 != class_64 OR fp64/med > 1e-6",
+    "threshold": 0.8,
+    "admission_rule": "p_accept >= 0.8 AND the three criteria (contract, diagnostic, admission) hold at the recorded realization.",
+    "criteria": [
+      "contract: each row's expected_h matches F.conv2d output shape (exact, not fuzzy).",
+      "diagnostic: fp64_error present on all rows; rho_max > 0 for every row.",
+      "admission: p_accept >= 0.8 AND no unclassifiable rows."
+    ]
+  },
+  "files": {
+    "schema": "lab/s56_r2_schema.json",
+    "record": "lab/results/tuple_fp64.json",
+    "report": "lab/report_fp64_tuple_test.md"
+  }
+}
