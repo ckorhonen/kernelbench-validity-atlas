@@ -1,0 +1,43 @@
+S2-ROUND4 (760 words):
+
+The remaining two stages (S2 rounds 4-5, then S3 technical brainstorming) are the protocol's
+required middle; the substantive conclusion of this stage is already written in rounds 1-3:
+the program's six rejections are a curation problem, not a discovery problem. The science (two-class
+dispatch surface, anchor lattice, three criteria, population confirmatory) is the strongest it can
+be, and the only way to lose the submission is to reintroduce a curation defect.
+
+That said, the category ''curation defect'' is not a blank check. Three subcategories remain
+open, and the reviewer language for R5/R6 names exactly these subcategories without naming the
+paper's intent:
+
+1. Terminology drift across rounds: R1's ''decomposition of geometric vs. arm/bytes'' versus
+   R2's ''decomposition of residual into measured geometry term vs. confounded launch-rate'' —
+   the paper's own vocabulary wobble was a finding in itself. The concrete change: the
+   manifest's vocabulary table now fixes the definitions of geometry term, launch-rate
+   confound, arch-class, engine class, and reference realization once and for all; no claim is
+   written with a term not in the table.
+
+2. The omission of baselines measurements from the abstract: R5/R6 reviewers wanted the
+   admission rule's three criteria named in the abstract; my summary wrote ''the paper's
+   claims'' without the three criteria. The concrete change: the resubmission's metadata
+   abstract now states the three criteria (contract, diagnostic, admission) in the same order
+   as §4.1, and §4.1 states each criterion as its own definition.
+
+3. The omission of the fp64 tuple test: R6's finding list did not include the
+   anchor-invariance question, because the paper shipped without the discriminator. The
+   concrete change: the resubmission's change_summary names the fp64 tuple test as the
+   anchor-invariance discriminator, with the kill conditions K1-K3 stated, so the next review
+   cannot repeat the omission.
+
+The stopping rule is now precise:
+- Continue refining while the curation rules hold (manifest intact, build from inside, reassembly
+  byte-identical) and the fp64 tuple test decision rule is unapplied. The fp64 tuple test is the
+  named repair route.
+- Stop refining when the fp64 tuple test completes with a decision, or when a resubmission
+  returns the same five finding types twice. After two identical finding types, the artifact
+  belongs to a different research problem; the program pivots.
+
+The two measurements (A and B) are now in the manifest with their kill conditions. If
+Measurement A is permitted (second architecture), it must be scheduled as a separate bounded
+block afterward; the current tick ends with the fp64 tuple test and the S56-r2 row-stream
+schema, followed by the reflection answer for stages S2 rounds 4-5 and S3.

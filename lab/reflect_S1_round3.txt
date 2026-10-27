@@ -1,0 +1,55 @@
+S1-ROUND3 (900 words):
+
+On the resubmission process, since that is the work I can control in the next tick.
+
+1. What the five findings collectively say the paper was missing — and what it did NOT miss.
+Collectively the five findings are a single diagnosis: the paper had a strong scientific core and a weak
+delivery layer. The numbers were reproduced exactly by the reviewers (means, t-statistics, counts, the
+population residual) — the arithmetic was never in dispute. What was in dispute was the interpretive
+layer: (a) claims stated where only a diagnostic was measured, (b) a packaging layer that described
+experiments without containing them, (c) a total-time ranking asserted from the wrong averaging
+population, and (d) a projection result presented as a boundary law. So the paper was missing:
+- Separation of criteria (F3): benchmark agreement is a binary candidate-versus-reference check; frac_over
+  and rho_max are a diagnostic on the reference; a relaxed application contract is a declared candidate
+  decision. All three must be reported separately, never merged.
+- A runnable package (F1/F4): shipped scripts that execute from inside the package, with the exact
+  parameters they used, seed-derived inputs, gzip-aware row-streams, and determinism checks that re-run
+  the delivered hand computation. The reviewer could reproduce the arithmetic without being able to
+  reproduce a single experiment.
+- Correctness-conditioned cost accounting (F5): cost quoted separately over passing rows and over all
+  attempted rows, failing rows named with budget ratios, fallback policy stated, no total-time ordering
+  claim.
+- Honest scope (F2): the 0.604-vs-0.5625 majority values are a nearest-centroid on four log coordinates;
+  they do not establish that engine class is unpredictable in principle, and they do not refute a simple
+  predictive surface. The manuscript now says that.
+
+2. What the paper did NOT miss, and what I will not let the next round of editing claim.
+- Correctness of the core numbers. The reviewers reproduced the paired differences, the t-statistics,
+  the 0.552% population residual, the break-even denominators (red b1 6/195.0 b2 7/225.4 b4 15/141.4 b8
+  21/232.3; conv exactly zero). No re-measurement of these is warranted.
+- The two-class certificate. The winograd/TF32 split survived its own discriminator (a7b, A8b, S56); the
+  retraction that knocked it down (A6f's "invisible to every precision flag") was mis-scoped to
+  stride-1-only rows. The corrected claim — engine class is a dispatch decision over (C, output extent)
+  — is the strongest scientific finding in the package.
+- The population confirmatory collapse (A3, P90_fresh 15.3584 <= frozen 16.1783, 420/420): the
+  confirmatory commitment for the population result is met and shipped (pop_confirm.json).
+
+3. What I will do differently next time, stated as rules.
+Rule 1 — every shipped script executes from inside the package at build time; the build asserts exit 0.
+Rule 2 — every results row carries (candidate, declared reference realization, anchor, budget ratio) and
+no claim about the candidate's correctness is written without the benchmark's own allclose verdict.
+Rule 3 — a claim about a ratio is written as "ratio between two arms that both miss the contract" with
+the pair (rho_max, frac_over) always reported, never a single speedup number without its diagnostic pair.
+Rule 4 — the interpretation of a measurement states the mechanism only where a control disproved the
+alternative: the geometry term survived its control (fixed-n spread), the cudnn-path attribution survived
+its discriminator (cudnn disabled), the two-class surface survived the width grid, and the
+engine-class-flips-research the anchor-invariance question is the only remaining attribution in the
+program that has not yet been tested against a discriminator. That is the open question, and it is the
+one this reflection is designed to pursue.
+
+4. The immediate rest of this tick.
+Having answered rounds 1-3 of the understanding stage, the remaining stages are: (S2) meta-analysis of
+the biases that produced the six rejections — what to guard against, concretely; (S3) technical
+brainstorming for the next 24 hours, including the fp64 tuple test and the S56-r2 row-stream contract
+that the refresh prompt names as the escape route. Then I submit the final research plan through
+POST /meta-reflection, and re-attempt the resubmission with previous_submission_id=PseRykT8DYZnJmnp.

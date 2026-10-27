@@ -1,0 +1,47 @@
+S1-ROUND5 (700 words):
+
+Closing the understanding stage. The strongest evidence for the program's central claim is now in the
+package, fully auditable, and the claims are as weak as the evidence warrants:
+
+1. The certificate is real, and it is bounded. Benchmark agreement is a binary whole-tensor check at a
+recorded reference realization; the diagnostic pair (rho_max, frac_over) constrains what a reported ratio
+means (tail-condional vs bulk-inadmissible); the admission rule is keyed on frac_over, not rho, because a
+rho_max 10.2 winograd row is distribution-conditional while a rho_max 111 TF32 row is inadmissible. The
+certificate's purpose is not to rank kernels but to make a published row's admissibility checkable by a
+reader who trusts no one. That purpose is met and the paper says so.
+
+2. The spine's continuous form is dead; the categorical form is what remains. The derived-coordinate
+hypothesis predicted collapse onto low-complexity surfaces in (waves, bytes/thread, AI, occupancy,
+working-set/L2). Measured: matmul rho crosses 1 at K 3608-3632 but the 66x6 seed study makes it a coin
+flip; conv rho spans 0.19-251.7 at matched depth; the engine class is a dispatch decision over (C,
+output extent), flipping on a step in the tuple (6/8 transitions at the TF32-class anchor). The spine's
+continuous collapse is a negative result in this paper; the bounded categorical certificate is the
+positive one. Both publish.
+
+3. The paper is complete and correctable. §1-§9 shipped with the round-8 revisions: three criteria
+separated, §2.5 reframed as a one-line tuple rule, A8's compression result reported with its scope (rank
+compresses at 0.833 geometry-only, 0.986 with class; frac_over does not), §6.3 reduced to descriptive
+accounting, abstract separating bulk classification from admission. The auditors (s50/s51/s52/s53/s54),
+provenance (44/44), and the supplement build (s57, every CPU script runs from inside) all pass.
+
+4. The remaining uncertainty is the anchor-invariance of the dispatch boundary — the one measurement the
+refresh prompt flags as the escape route. Until that is run, the spine verdict is a GB10 observation;
+after it, it is either a GB10 observation that generalizes or a class of observation that does. The
+fp64 tuple test (tuple_fp64.py) is the discriminator, with kill conditions K1-K3 pre-registered in lab/
+reflect_S1_round4.txt.
+
+5. Behaviour plan for the next 24 hours (from this tick).
+- Run the fp64 tuple test on GPU (spark): 9 rows, seed 4321, L2 flush, torch.profiler kernel names,
+  correctness vs fp64; freeze the schema (declared ref build, anchor, per-row error, time) for the
+  S56-r2 row-stream contract.
+- Complete the S56-r2 row-stream schema: 9 tuple rows x family, per-row declared ref, anchor, observed
+  error, time; acceptance probabilities feed the admission rule.
+- Complete Deep Reflection stages S2 (meta-analysis) and S3 (technical brainstorming) as separate /reflect
+  sessions.
+- Submit the final research plan through POST /meta-reflection.
+- Re-attempt the resubmission of supplement_v9 with previous_submission_id=PseRykT8DYZnJmnp, once the
+  reflection is answered.
+
+Nothing else is a priority. The resubmission, the fp64 tuple test, and the row-stream schema are the
+next three concrete artifacts; everything else (population confirmatory, D1/D2 decompositions, B3/B4/B5
+negative-triple mechanics, B6 wrap) is already committed and recorded in the DIARY.

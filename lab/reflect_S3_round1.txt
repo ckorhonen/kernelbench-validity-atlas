@@ -1,0 +1,58 @@
+S3-ROUND1 (850 words):
+
+The technical program for the next 24 hours, designed as a pipeline whose stages are
+independent and whose kill conditions are written before the runs.
+
+Stage 1 — the fp64 tuple test (the named escape route).
+Protocol (frozen before execution, matching lab/tuple_test.py exactly):
+- Grid: C=384, k=3, s=1, d in [1,2,3,4], pad = p (the same value), H=W=7, batch=2, seed 4321,
+  L2 flush before each row, torch.profiler capturing kernel names.
+- Measurements: (A) the candidate's per-row error versus the fp64 anchor; (B) the same vs the
+  TF32-class reference; (C) the W/T decision rule (fraction of tiles at the boundary with abs
+  error <= eps) at the pre-registered eps = 1e-6 (fp64 unit roundoff is 1.1e-16 * 7 x 7 x 384
+  ~ 3e-9, so eps = 1e-6 is a 6-7 order of magnitude margin); (D) wall time per row.
+- The anchor-feature tensor is materialized once per anchor (default, ieee, fp64), pinned, and
+  the row-stream writes gzip-compressed delta files.
+- Decision rule: if the fp64-anchored labels equal the TF32-class labels on all 9 rows => the
+  dispatch boundary is reference-invariant (the categorical spine verdict generalizes); if 3-6
+  rows differ => the boundary is anchor-conditional, and the certificate's anchor-lattice
+  structure is the correct object, with the admission rule keyed on the declared ref build.
+- Kill conditions K1 (pooled held-out AUC < 0.60 — boundary unpredictable from tuple
+  coordinates, already the GB10 case), K2 (any anchor x class stratum held-out AUC < 0.70 —
+  boundary collapses for that stratum), K3 (boundary flips on > 2/8 transitions at the fp64
+  anchor — the dispatch decision is not a function of (s,d)).
+- Output: results/tuple_fp64.json + lab/report_fp64_tuple_test.md (the audit note).
+- Executor: spark GPU (BatchMode OK), via rsync of the lab tree. The fp64 anchor is computed
+  on CPU with the same cudnn fp64 path as the reference, so the anchor is not an exotic
+  resource.
+
+Stage 2 — the S56-r2 row-stream schema.
+Protocol (frozen):
+- 9 tuple rows x family; per row: declared reference build (string, e.g.
+  "cudnn::Conv2d::TF32_CLASS" or "cudnn::Conv2d::WINOGRAD"), anchor (string), observed
+  per-row error (fp64 relative), wall time, and the W/T verdict at the pre-registered eps.
+- Acceptance probability p_accept = (rows passing eps) / (total rows), and the admission rule
+  is: admit the candidate iff p_accept >= 0.8 AND all three criteria (contract, diagnostic,
+  admission) hold at the recorded realization. The schema is a JSON Lines file with a
+  deterministic schema version, committed before the runs.
+- The schema is the binding object: no claim about the row-stream acceptance is written
+  without the schema file present in the package.
+
+Stage 3 — the resubmission, after the reflection.
+- supplement_v9.zip (137 files, 1.93 MB expanded) + manifest.json (pinned commit 8fe5ab9a,
+  sha256 ledger, s54 audit 6/6) + s57 build script (all CPU scripts run from inside, exit 0).
+- POST /submissions with previous_submission_id=PseRykT8DYZnJmnp, change_summary mapping
+  each finding to its disposition and checkable location (results/tuple_test.json, the
+  s56 held-out contract table, §6.3, §4.1, the abstract).
+- The reflection protocol is complete by this point (S1-S3 stages answered), so the 428 will
+  not block the submission.
+
+Stage 4 — the controlled input-distribution sweep (M-B), same stack.
+- L1/40 LayerNorm row (A11) at six distributions with kappa = 100 and 1000; measurements B1
+  (rho, frac_over per distribution), B2 (candidate verdict flip as reference budget crosses
+  rho=1), B3 (kappa exponent fitted over 2.76 decades). Kill: rho < 0.1 yet verdicts flip.
+
+Ordering of the day: Stage 1 first (the named escape route; its decision determines whether
+Stage 2's schema is anchored to the fp64 or TF32 class), Stage 2 second (schema freeze), Stage
+3 third (resubmission), Stage 4 fourth (the sweep). The resubmission is the end-of-day
+acceptance test of the curation rules; the fp64 tuple test is the ranking test of the spine.

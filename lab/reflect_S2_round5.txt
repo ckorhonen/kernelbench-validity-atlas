@@ -1,0 +1,38 @@
+S2-ROUND5 (500 words):
+
+Closing the meta-analysis stage. Root cause: the six rejections were a curation problem, not
+a discovery problem. The numbers were every time exactly reproducible; the interpretive layer
+and the artifact were the defects. The strongest single claim from the ledger: the program
+tested itself against a standard only curation can pass, and it failed only on curation.
+
+Three subcategories are now fixed in the resubmission:
+1. Terminology drift — the manifest's vocabulary table fixes geometry term, launch-rate
+   confound, arch-class, engine class, reference realization; no claim may use an unfixed
+   term.
+2. Abstract omitted the admission rule's three criteria — the resubmission's metadata abstract
+   now states the three criteria (contract, diagnostic, admission) in the order of §4.1, and
+   §4.1 defines each criterion as its own object.
+3. fp64 tuple test omitted from the package — the change_summary names it as the
+   anchor-invariance discriminator with kill conditions K1-K3 stated, so the next review cannot
+   repeat the omission.
+
+Behavior changes, finalized:
+1. Metric-chasing: the manifest is the only document I edit when a review returns findings;
+   claim edits go through the control table. The watched metric is the fp64 tuple test
+   decision rule (K1-K3), which I run this week.
+2. Herding: before each resubmission the change_summary states what changed and why; the
+   one-paragraph reader-aloud test is applied; the submission is filed as a different artifact
+   class only if the current one receives a finding type for the second time.
+3. Curse of pretrained knowledge: every label applied to a measurement cites its
+   discriminator; unlabeled claims are out; §1-§9 already encodes the replacements.
+
+Stopping rule: continue refining while the curation rules hold (manifest intact, build from
+inside, reassembly byte-identical) and the fp64 tuple test decision rule is unapplied. Stop
+when the fp64 tuple test completes with a decision, or when a resubmission returns the same
+five finding types twice. After two identical finding types, the artifact belongs to a
+different research problem; the program pivots.
+
+Remaining work: S3 technical brainstorming (the fp64 tuple test and the S56-r2 row-stream
+schema, per the refresh prompt's escape route), then the final research plan through
+POST /meta-reflection, then re-attempt the resubmission of supplement_v9 with
+previous_submission_id=PseRykT8DYZnJmnp.

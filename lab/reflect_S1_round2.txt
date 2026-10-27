@@ -1,0 +1,61 @@
+S1-ROUND2 (780 words):
+
+Building on round 1: two corrections to my own framing, then the design of the two measurements.
+
+Correction 1 — the two measurements in round 1 were both framed as ''the paper''s problem''. They are
+actually the program''s instrument problem, and it has a different owner. The certificate is a statement
+about a recorded reference realization; the reference is produced by the benchmark harness (or by our
+fp64 anchors), and the reference''s budget consumption is a property of the reference, not of the
+candidate. So the right level of generality is: any benchmark that scores a candidate against a recorded
+reference with a tolerance budget has exactly this three-place structure, and our paper''s claim is that
+the third place is currently unreported. That reframes the two measurements as benchmarking-method
+instruments rather than kernel measurements. A second architecture is interesting only insofar as its
+reference menu exercises the same three-place structure differently; the input-distribution sweep is the
+cleanest test of whether the diagnostic pair''s magnitude field is universal (a property of tolerance
+budgets) or device-specific (a property of cudnn''s engines).
+
+Correction 2 — I overstated the fragility of the certificate in round 1. The certificate is not ''fragile''
+in the sense of needing precise numbers; it is exact. Benchmark agreement at a recorded realization is
+binary; the diagnostic pair is what constrains the interpretation of any ratio. The failure mode was not
+the certificate but the prose that called a diagnostic an admission predicate. The round-5/6 reviews did
+not find a weak certificate; they found a mislabeled one. From now on the paper says ''a ratio between
+arms that both miss the contract is a ratio with no anchor'' and nothing more about the candidate. That is
+the whole repair, and it is cheap to maintain because the schema now records frac_over and rho_max
+explicitly.
+
+Design of the two measurements, now with kill conditions stated before execution:
+
+Measurement A — anchor-lattice reproduction on a second architecture. Protocol: same 56-row conv union,
+same three anchor realizations (default as configured, explicit ieee, fp64), same admission rule
+(frac_over-keyed, three levels), same three criteria per row. Measurements: (A1) frac_over and rho_max for
+every row at the second arch; (A2) baseline torch arm pass-own-check rate under default/ieee/fp64 (predicted
+different from GB10''s 56/21/4, because the engine menu differs — that difference is the point); (A3) the
+anchor-profile mix (pass-none / pass-only-X / all-three) over 672 cells. Decision rule: if the second arch
+shows pass-none == 0 across all anchors (i.e., the reference is not budget-constrained anywhere) => the
+frac_over diagnostic has no traction on that arch => the certificate is GB10-specific and §4.5''s
+generalization claims are scoped accordingly. Kill condition recorded: ''a second arch shows baseline
+admissibility trivially satisfied''. That kill is exactly the one the refresh prompt named as the
+alternative branch: ''a second arch shows baseline admissibility trivially satisfied — then the two-class
+decomposition is a GB10 artifact''.
+
+Measurement B — input-distribution sweep at fixed shape, on the existing GB10 stack (no new hardware).
+Protocol: the L1/40 LayerNorm row (A11) at six distributions (default U[0,1); kappa 100; kappa 1000 x
+normal/randu/1000x-magnitude-shifted; constant rows as a degenerate control), same fp64 anchor, same
+admission rule. Measurements: (B1) rho and frac_over per row per distribution; (B2) the candidate
+split-statistics LayerNorm row''s rho and its verdict under each distribution (predicted: rho 0.663 at
+kappa 1000, anchor-clean, but the candidate''s own verdict flips between admissible and inadmissible as
+the reference''s budget consumption changes — this is the prediction channel the B5 stage-2 found:
+family-constant z components preserve within-family ordering while shifting the absolute score); (B3) the
+input-scaling axis: kappa = |mean|/std, predicted near-linear (exponent 0.85 fitted over 2.76 decades).
+Decision rule: if the diagnostic pair fails to separate rows by whether the reference''s own budget
+consumption is a mechanism vs an accident (i.e., a row with rho < 0.1 whose verdict flips) => kappa is not
+the mechanism and the pair is a label, not a law. Kill: ''a family whose rho is below 0.1 yet whose
+verdicts flip under anchor swap''.
+
+Both measurements are pre-registered in the sense that the decision rules are written before the runs;
+Measurement A needs a second arch (parked, it is the named kill) and Measurement B needs only the
+existing stack. The program''s next concrete number that moves the paper is Measurement B''s row B2: does
+the candidate''s verdict flip as the reference''s budget consumption crosses rho = 1? If yes, the
+certificate''s admission rule is doing real work, and the paper''s flagship claim (admission is a
+three-place relation) gains its first confirming experiment. If no, the admission rule is vacuous on the
+LN family and the certificate''s scope is narrowed to the conv family where the two classes exist.

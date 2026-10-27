@@ -1,0 +1,55 @@
+S2-ROUND2 (820 words):
+
+Building on round 1: three corrections to my own framing.
+
+Correction 1 — I described R5/R6 as ''packaging'' failures. That is too gentle. R5 and R6 were
+failures of provenance: the paper described a measurement that was not in the package, and the reviewer
+did the arithmetic without being able to run the measurement. A result that exists only in the
+manuscript is not a result; it is a claim about a result. The reviewer's reproduction was the
+audit, and the audit failed because the artifact was missing. The concrete change is no longer a
+styling choice: ships that contain no tuple_test.py or s56_heldout_contract.py are the same class of
+defect as the one that caused R6. Curation rule: every figure in the manuscript cites a script name and
+a results row; every script ships in the package; every results row is a JSON file; the package build
+asserts the run. This is now the binding rule for the resubmission.
+
+Correction 2 — I attributed R1/R2 to ''the science'' being wrong. Re-read the DIARY ledger: the
+geometry term's residual was confounded with the launch-rate confound (V-structure), and the
+wide-row geometry claim rested on one bandwidth and one row. That is a confound problem, which is a
+design problem, not a discovery problem. The D1 decomposition failed only because the launch floor was
+not measured before the first decomposition attempt. The program's design lesson: measure the
+instrument before the experiment, and freeze the confound list before the first analysis. The
+confound ledger is now the binding contract: no measurement is finalized until the confounds are
+enumerated and a control defeats each one.
+
+Correction 3 — I called the 0.604-vs-0.5625 contradiction a ''projection result''. Re-read the
+reviewer's words: the majority vote over four log coordinates is a nearest-centroid on two classes
+that overlap in that space, and the reviewer's counterexample (a simple predictive surface that
+beats the centroid) is not a prediction against the centroid itself. The corrected statement is
+honest: rank-based compression is shape-selective over (C, output extent), the centroid on the
+four log coordinates is a descriptive summary that has not been shown to be a boundary law. That
+is the exact F2 repair, and it is the smallest honest statement the data support.
+
+On the three biases, so far:
+- Bias 1 (metric-chasing): the P90_fresh population confirmatory is a real metric and it passed on
+  the frozen arm; I have stopped editing the manuscript to move per-round defect counts and am
+  instead running the measurement pipeline that the admission rule will score. The metric that
+  matters is the fp64 tuple test's decision rule, and it is running this week.
+- Bias 2 (herding): the submission chain is f01MfLhPgzuuQ1_3 -> PseRykT8DYZnJmnp -> the resubmission.
+  The change_summary will state explicitly what changed and why in each link; the one-paragraph
+  reader-aloud test is now applied before every submission.
+- Bias 3 (curse of pretrained knowledge): the pretrained-knowledge label was ''catastrophic vs
+  benign''; the reviews showed the dispatch surface is a function of (C, output extent), and the
+  anchor lattice made the TF32-class and winograd classes the real categories. The label
+  replacement is already reflected in §1-§9; no labeled claim will be written without its
+  discriminator.
+
+On the stopping rule, refined: the resubmission is the acceptance test of the curation rules, not
+of the science. The science is complete as of the round-8 revisions; the resubmission tests
+whether the curation rules hold. Stop once the fp64 tuple test and the S56-r2 row-stream schema
+are executed and recorded; the resubmission's review can then be evaluated as a curation test
+rather than a research test.
+
+The two measurements (A and B) are now part of the manifest with kill conditions K1-K3 on the
+fp64 tuple test pre-registered. The next three artifacts this tick are: (1) the fp64 tuple test
+run on GPU, (2) the S56-r2 row-stream schema freeze, (3) the reflection answer submission for
+stages S2 rounds 2-5. The manifest is written; the execution begins.

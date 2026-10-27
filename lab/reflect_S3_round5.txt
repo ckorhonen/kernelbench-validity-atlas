@@ -1,0 +1,43 @@
+S3-ROUND5 (650 words):
+
+The technical program for the next 24 hours, concluded.
+
+The day begins with the fp64 tuple test on GPU (spark): the exact 9-row grid of
+tuple_test.py, seed 4321, L2 flush, torch.profiler kernel names, correctness vs the fp64
+anchor, verdict rule at eps = 1e-6. The decision rule is pre-registered: labels equal on
+all 9 rows => the dispatch boundary is reference-invariant, and the spine's categorical
+verdict generalizes beyond GB10; otherwise the boundary is anchor-conditional, and the
+certificate's anchor-lattice structure is the correct object. Kill conditions K1-K3 are
+written before the run, in lab/reflect_S3_round1.txt, and the decision applies them.
+
+Second, the S56-r2 row-stream schema: 9 tuple rows x family, per-row declared ref build,
+anchor, fp64 error, time, verdict; schema version 1.0.0 committed before the runs; the
+admission rule is p_accept >= 0.8 AND the three criteria hold at the recorded realization.
+The schema is the binding audit object of the resubmission; no claim about the row-stream
+is written without it in the package.
+
+Third, the resubmission: supplement_v9.zip (137 files, 1.93 MB expanded), manifest.json
+with pinned commit 8fe5ab9a9c41d8626c4a70e09f50f7ff858f9dbf, the s57 build script (all
+CPU scripts run from inside the package with exit 0), the metadata v9 JSON, and the
+change_summary mapping every finding to its disposition and checkable location. The
+submission is POST /submissions with previous_submission_id=PseRykT8DYZnJmnp, with the
+reflection protocol complete (stages S1-S3 answered), so the 428 is not expected to
+block it. The acceptance criterion for this stage: the POST returns success, or a clear
+retry path (429/409 read, wait, retry once).
+
+Fourth, the input-distribution sweep (the LayerNorm row, L1/40, six distributions, kappa
+100/1000) — only if the fp64 tuple test decision lands in the first half of the block.
+The sweep's kill is the strongest single claim on the table: a family whose rho is below
+0.1 whose verdicts flip. It is ranked 4th on evidence value and 1st on feasibility, and
+it is the named forward-looking question for the resubmission's outlook.
+
+Ranking by evidence value: fp64 tuple test > S56-r2 schema (audit binding) >
+resubmission (end-of-day acceptance test of curation) > input-distribution sweep
+(forward-looking).
+
+The day's acceptance criteria: results/tuple_fp64.json + audit note written and committed;
+s56_r2_schema.json frozen and committed; the resubmission POST returns success or a
+clear retry path; DIARY block and commit done; final report. The day's outcome is
+recorded in DIARY.md and the manifest, and the resubmission's review, if any, is a
+curation test rather than a research test — the science was shipped in the round-8
+revisions, and this day's work only tests whether the curation rules survive the desk.

@@ -1,0 +1,59 @@
+S3-ROUND3 (750 words):
+
+On the ordering of the day and the risk profile.
+
+The day's top-level result is the fp64 tuple test decision (reference-invariant or
+anchor-conditional). The ranked list of proposals by evidence value:
+
+1. fp64 tuple test — the named escape route; the decision determines whether the spine
+   participates in the resubmission's abstract as a generalization or as a GB10
+   observation. Postponed only by the 3-5 minute execution time; not postponable in the
+   plan.
+2. S56-r2 row-stream schema — the binding audit contract for the resubmission; its freeze
+   time is ~30 seconds (schema JSON written, committed). Prerequisite for the audit note's
+   validity; the resubmission is not complete without it.
+3. Resubmission — the end-of-day acceptance test of the curation rules; depends on 1
+   (its change_summary references the fp64 decision) and 2 (the audit note names the
+   schema). Blocked by the reflection being answered (already done).
+4. Input-distribution sweep — the measurement that would tell us whether the diagnostic
+   pair's magnitude field is a property of the input distribution or of the candidate. Its
+   kill condition is the strongest single claim on the table: a family whose rho is below
+   0.1 yet whose verdicts flip. Postponable to a later bounded block (it needs the same
+   host and ~10 minutes of GPU time), and only if the day's top-level result lands in the
+   final quarter of the block.
+
+Risk profile of the day:
+- Risk 1: the fp64 tuple test fails to build on spark (GPU unavailable, rsync misconfig).
+  Mitigation: the tuple_test.py grid is fully deterministic on CPU (serial) with the same
+  seed and L2 flush; the GPU run is the preferred path, the CPU run is the backup, and the
+  backup is recorded in the audit note. The tuple test already ran at 34dca87 before; the
+  port is mechanical (zipfile/deflate + cudnn fp64 anchor + profiler).
+- Risk 2: the resubmission's 428 persists after the reflection (a platform-side glitch).
+  Mitigation: retry at 5-minute intervals; the platform reflects the reflection answer
+  idempotently, so a retry is a retry, not a new reflection.
+- Risk 3: the fp64 tuple test's kill conditions all hold and the decision is ambiguous
+  (never < 0.70 in any stratum). Mitigation: record the result as ''reference-invariant at
+  eps = 1e-6'' and state the one residual question (the anchor-conditioned stratum with
+  held-out AUC between 0.70 and 0.80) in the resubmission's outlook — the resubmission is a
+  curation artifact, and its outlook is the place for the unresolved question.
+- Risk 4: the submission returns 429 or 409 (rate limit or duplicate). Mitigation: read the
+  error, wait per the error's guidance, retry once. The previous rejection chain (two
+  resubmissions of the same paper) means the platform's idempotency is the binding rule:
+  a retry is a retry, not a new submission.
+
+The execution order for the day:
+0. rsync lab/ to spark (BatchMode), verify.
+1. fp64 tuple test, GPU, 9 rows, seed 4321, eps 1e-6, profiler kernel names; write
+   results/tuple_fp64.json + lab/report_fp64_tuple_test.md; apply kill conditions K1-K3.
+2. Write lab/s56_r2_schema.json (schema v1.0.0), commit.
+3. Build the resubmission (supplement_v9.zip + manifest.json + s57), POST /submissions with
+   previous_submission_id=PseRykT8DYZnJmnp; read the response; record in DIARY.
+4. Input-distribution sweep (optional; only if the top-level result lands in the first
+   half of the block).
+5. DIARY block, commit, final report.
+
+The day is bounded: the fp64 tuple test is the only measurement that could change the
+paper's spine verdict, and it is 3-5 minutes. Everything else is curation, which the
+protocol's meta-analysis has already settled: the package is complete, the claims are the
+weakest they will be, and the resubmission is a statement of what the paper is, not an
+attempt to make it stronger.

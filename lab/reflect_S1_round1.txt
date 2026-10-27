@@ -1,0 +1,66 @@
+S1-ROUND1 (974 words):
+
+1. The central claim, restated as a conditional. "Given a recorded reference realization and a tolerance
+budget, a candidate kernel's benchmark verdict is a binary whole-tensor check against that realization (the
+contract), and any statement about the reference's own consumption of that budget (rho_max, frac_over) is a
+diagnostic on the reference, not an admission predicate: the candidate's verdict is decided by the benchmark's
+own check, never by an anchor statistic." The paper claims this certificate form is what the benchmark
+community lacks: published tables report a speedup against one reference realization and treat a pass as if
+the reference were exact. Our data (56-row conv union + 672 arm-anchor cells + 6-day drift) show the
+reference realization is part of the claim: the baseline torch arm fails its own check on 21/56 rows under
+ieee and 52/56 against the fp64 anchor, while the same candidate-versus-reference check on the hand arm
+passes on 0/4 conv rows, and the diagnostic pair (frac_over 0.0052 winograd vs 0.778 TF32) correctly
+separates rows whose ratios are interpretable from rows whose ratios are meaningless.
+
+2. Strongest evidence. Three legs, all shipped and auditable from inside the package.
+(a) Reference-realization axis (A6/A7/A8): rho is a measured surface over (family, depth, geometry, engine
+class), not a depth law — matmul crosses rho=1 at K 3608-3632, but the 66-row, 6-seed neighborhood study
+(A10) shows the crossing is a coin flip (4/6 and 2/6 pass, no monotone seed), and conv splits into a
+winograd class (rho 10.195, frac_over 0.0052, bit-identical under every flag) and a TF32 class (rho 251.69,
+frac_over 0.778, flag removes 99.9%) — a categorical collapse, not a continuous surface. These are the two
+legs of the spine's negative: the continuous collapse fails, the categorical form succeeds.
+(b) The instrument before the science: calibration (48 SMs, 24MB L2, launch floor 7.46us), interleaved
+A/B with L2 flush, day-2 drift <=0.13% — so every boundary claim carries its validity domain (waves,
+bytes/thread, wave-pinned CTA counts, launch-bound K).
+(c) The selector as studied object (E2b/W4/S56/D1): the zero-probe gate is oracle-tied on 75% of
+out-of-sample cells (0/144 worse-than-1% transfer), probes cost more than the rule's entire residual,
+autotune amortizes only after ~140-260 visits/shape; the honest delivery frontier is gate-plus-compile
+where compile's one-time cost V-structure is bounded.
+On all of this the paper's central claim is not a ranking of kernels but a conditional: the certificate
+certifies benchmark agreement at the recorded realization plus the diagnostic pair; the same data that
+support the certificate (the three criteria, the anchor lattice, the admission rule keyed on frac_over)
+also show that delivery claims without an admission field are rankings.
+
+3. The two measurements that would settle or substantially revise it.
+(A) A second architecture with a real precision knob (e.g., an sm_90+ with a documented TF32/fp16 path) —
+the two-class dispatch result is currently a statement about cudnn's menu on sm_120; the anchor lattice and
+the frac_over diagnostic generalize only where the reference's engine menu has the same two classes. Kill:
+a second arch shows baseline admissibility trivially satisfied => the two-class structure is a GB10 artifact.
+(B) A controlled input-distribution sweep at fixed shape (the L1/40 LayerNorm row, A11, is the first of
+these): the reference's budget consumption rises near-linearly in row conditioning (rho 0.011 at kappa 1.73
+to 2.529 at kappa 1000), so the diagnostic pair's magnitude field is a function of input conditioning,
+not of the candidate. Kill: a family whose rho is below 0.1 yet whose verdicts flip under anchor swap =>
+rho is not the mechanism.
+
+4. The resubmission findings, in one sentence each, and what they collectively say the paper was missing.
+F1 (tuple-test pad column): the paper's primary measurement apparatus (tuple_test.py) did not execute the
+intervention it described; the review's arithmetic reproduction caught a no-op. The program was missing
+artifact-level specificity: the code that ran, with the exact padding it applied, in the package.
+F2 (discrete boundary vs simple surface): the prose overclaimed a projection result as a boundary law; the
+0.604 nearest-centroid value is a statement about one coordinate family, not about all simple predictors.
+The paper was missing honest scope: the line between 'the measurement supports X' and 'the measurement is
+the only evidence for X'.
+F3 (certificate conflation): the paper's §2.4/§4.4 inferred candidate failure from the reference's bulk
+failure; the reviewer's counterexample (reference fails bulk, candidate passes the benchmark contract) is
+the cleanest possible demonstration. The paper was missing a separation of criteria — the three-way split
+in §4.1.
+F4 (reproduction exceeds supplied implementation): the paper described experiments (tuple test, S56 rerun,
+producers) that the package did not contain; the reviewer reproduced arithmetic from committed records but
+could not reproduce the measurement. The paper was missing a runnable packaging layer: scripts that run
+from inside the package, gzip-aware row-streams, seed-derived inputs, determinism checks that re-run the
+delivered hand computation.
+F5 (selector economics not correctness-conditioned): the paper's own §6.3 asserted a total-time ranking
+that the corrected accounting (passing-only vs all-row means) refutes; the reviewer reproduced the
+arithmetic. The paper was missing correctness-conditioned cost accounting. Together these five findings
+say, plainly: the paper had the numbers right (reviewers reproduced every mean and t-statistic) and the
+claims wrong (the interpretive layer overreached the numbers and the package).

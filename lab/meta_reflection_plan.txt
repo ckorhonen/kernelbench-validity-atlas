@@ -1,0 +1,76 @@
+THE REFLECTION IS COMPLETE (stages S1 understanding, S2 meta-analysis, S3 technical
+brainstorming). Its conclusion for this day: the program's six rejections were a curation
+problem, not a discovery problem. The numbers were every time exactly reproducible; the
+interpretive layer and the artifact were the defects. The paper is the strongest it can be
+(round-8 revisions, s54 audit 6/6, s57 builds from inside the package, 44/44 provenance,
+MANUSCRIPT.md reassembled from committed sections), so the resubmission is a statement of
+what the paper is, not an attempt to make it stronger.
+
+THE PLAN FOR THE NEXT 24 HOURS.
+
+Stage 1 — fp64 tuple test on GPU (spark), the named escape route. Exact 9-row grid of
+tuple_test.py (C=384, k=3, s=1, d in 1..4, pad = p, H=W=7, batch=2, seed 4321, L2 flush,
+torch.profiler kernel names), fp64 anchor built by the same template as the TF32-class
+reference, verdict rule at pre-registered eps = 1e-6 (fp64 accumulated roundoff bound
+~1e-13 for 21x21 tiles, so a flip at 1e-6 is structural). Decision rule: fp64-anchored
+W/T labels equal TF32-class labels on all 9 rows => the dispatch boundary is
+reference-invariant and the spine's categorical verdict generalizes beyond GB10; otherwise
+the boundary is anchor-conditional and the certificate's anchor-lattice structure is the
+correct object. Kill conditions K1 (pooled held-out AUC < 0.60), K2 (any anchor x class
+stratum < 0.70), K3 (boundary flips on > 2/8 transitions at the fp64 anchor) are written
+before the run and applied in the audit note. Output: results/tuple_fp64.json +
+lab/report_fp64_tuple_test.md. Executor: spark GPU, rsync lab/ to spark:~/kb-lab/ (BatchMode);
+CPU fallback recorded in the audit note if the GPU is unavailable.
+
+Stage 2 — S56-r2 row-stream schema freeze. 9 tuple rows x family; per-row declared ref
+build, anchor, fp64 error, time, verdict; schema version 1.0.0 committed before the runs
+(lab/s56_r2_schema.json). Binding rules: no claim about the row-stream is written without
+the schema in the package; acceptance probability p_accept = rows-at-eps / rows-total; the
+admission rule is p_accept >= 0.8 AND the three criteria (contract, diagnostic, admission)
+hold at the recorded realization. Output: lab/s56_r2_schema.json + the audit note
+cross-referencing it.
+
+Stage 3 — resubmission of supplement_v9 with previous_submission_id=PseRykT8DYZnJmnp.
+Contents: supplement_v9.zip (137 files, 1.93 MB expanded), manifest.json (pinned commit
+8fe5ab9a9c41d8626c4a70e09f50f7ff858f9dbf, sha256 ledger), s57_supplement_build_v9.py (all
+CPU scripts run from inside the package, exit 0 asserted), metadata v9 JSON, the response
+document marking all five findings REPAIRED, and the change_summary mapping every finding
+to its disposition and checkable location (results/tuple_test.json, s56 held-out contract
+table, s63 (section 6.3), s41 (section 4.1), the abstract). The reflection protocol is
+complete, so the 428 is not expected to block; the acceptance criterion is the POST
+returning success or a clear retry path (429/409 read, wait per error guidance, retry
+once). If the 409 duplicate path is hit, the previous decision is returned without a new
+review and is recorded in DIARY.
+
+Stage 4 — controlled input-distribution sweep (optional, only if the fp64 decision lands
+in the first half of the block). L1/40 LayerNorm row (A11) at six distributions, kappa
+100 and 1000, same anchor lattice. Measurements B1 (rho, frac_over per distribution), B2
+(candidate verdict flip as reference budget crosses rho=1), B3 (kappa exponent fitted over
+2.76 decades). Kill: rho < 0.1 yet verdicts flip => kappa is not the mechanism. Output:
+results/LN_sweep_kappa.json.
+
+ORDERING: fp64 tuple test (1) determines the final statement of the resubmission (2); the
+schema freeze (2) binds the audit; the resubmission (3) is the end-of-day acceptance test
+of the curation rules; the sweep (4) is the forward-looking question. The resubmission
+precedes any further manuscript editing, because the manuscript is complete (round-8
+revisions) and the protocol's meta-analysis has settled that the curation rules are the
+acceptance standard.
+
+EXECUTION PROTOCOL: every stage writes its artifact to lab/ and results/ before the next
+stage, the manifest is the single source of truth, no claim is added to the package
+without its control result, and DIARY.md receives a dated block after every stage with
+results, decisions, and remaining debts. The day's acceptance criteria are: tuple_fp64.json
+written and committed; s56_r2_schema.json frozen and committed; resubmission POST returns
+success or a clear retry path; DIARY block and commit done; final report.
+
+CONSTRAINTS: no new measurement of the candidate's speedup table (data complete and
+reproducible); no re-edit of section 1-9 after the round-8 revisions; no cross-platform
+benchmark this day (second architecture is the named kill condition of Measurement A and
+belongs to a later bounded block); no restart of services on spark; no plaintext
+credentials (API key only via the rStation credentials file).
+
+WHAT REMAINS AFTER THIS PLAN: the resubmission's review, if any, is a curation test rather
+than a research test — the science was shipped in the round-8 revisions, and this day only
+tests whether the curation rules survive the desk. The fp64 tuple test result is the single
+number that could change the spine verdict from a GB10 observation to a generalization, and
+it is recorded before the resubmission is finalized.

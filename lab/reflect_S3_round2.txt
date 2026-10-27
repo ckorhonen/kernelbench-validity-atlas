@@ -1,0 +1,53 @@
+S3-ROUND2 (800 words):
+
+On the fp64 tuple test, three corrections to my own protocol from round 1.
+
+Correction 1 — the anchor is not a measurement; it is a definition. The fp64 reference
+realization is a deterministic object computed the same way as the TF32-class reference, but
+the anchor is where the benchmark's tolerance budget is recorded, so the anchor is part of
+the claim: "the benchmark certifies agreement with this anchor". The tuple test's decision
+rule therefore reads: the candidate's verdict is a function of (tuple, anchor), and the
+measurement asks whether the anchor term is a mechanism or a label. That is a cleaner
+statement of the spine's question (engine class is a dispatch decision over (C, output
+extent)) than my round-1 wording.
+
+Correction 2 — the eps margin. I proposed eps = 1e-6, which is a 6-7 order of magnitude
+margin over fp64 unit roundoff for a 7x7x384 tile. That margin is what makes the verdict
+"reference-invariant" meaningful: at eps = 1e-6, a W/T flip at the fp64 anchor cannot be a
+roundoff artifact, because the fp64 arithmetic itself is 15-16 digits precise and the tile is
+21x21 = 441 elements, so the accumulated roundoff bound is ~1e-13. A flip at 1e-6 is a
+structural difference in the compiled program's error model, not in the arithmetic's
+precision. The pre-registered eps is 1e-6, and the actual fp64 arithmetic error (measured,
+not assumed) is recorded as M1 per row in the schema.
+
+Correction 3 — the executor. Spark's GPU is the nominal executor, but the fp64 anchor is a
+CPU object (the cudnn fp64 path is CPU-gated in the benchmark's template). So the run has two
+phases on the same host: the fp64 anchor build (CPU, serial), then the tuple test rows (GPU,
+interleaved A/B with L2 flush as in the paper). The rsync of the lab tree is done once; the
+fp64 anchor build is the only extra step. The time budget for the grid is ~3-5 minutes of
+GPU time (72 tiles of 7x7 at C=384, plus the anchors), which is far inside the bounded block.
+
+On the S56-r2 row-stream schema, the binding rules are now final:
+1. Schema version 1.0.0, committed before the runs (lab/s56_r2_schema.json).
+2. Each row: candidate, declared ref build, anchor, epsilon, fp64 error, time, verdict, and
+   the family tag (CONV or MATMUL).
+3. The acceptance probabilities p_accept = rows-at-eps / rows-total, and the admission rule:
+   admit iff p_accept >= 0.8 AND the three criteria hold at the recorded realization.
+4. The schema is the only object used in the resubmission's audit trail; no claim about the
+   row-stream is written without it in the package.
+
+On the resubmission, the change_summary now names the fp64 tuple test as the anchor-invariance
+discriminator, and the bid is complete: s54 passes 6/6, s57 builds from inside with exit 0,
+MANUSCRIPT.md reassembles from the committed sections, abstract cites the three criteria. The
+submission is the end-of-day acceptance test; the fp64 tuple test is the ranking test of the
+spine.
+
+The input-distribution sweep (M-B) is the fourth stage: the LayerNorm row at six
+distributions with kappa 100/1000, measured with the same anchor lattice. It is the
+measurement that would tell us whether the diagnostic pair's magnitude field is a property of
+the input distribution or of the candidate. Kill: rho < 0.1 yet verdicts flip.
+
+Ordering: fp64 tuple test (stage 1), schema freeze (stage 2), resubmission (stage 3), sweep
+(stage 4). The day's top-level result is the fp64 tuple test decision (reference-invariant or
+anchor-conditional), and the strategy of the day is to run it first and let its decision
+determine the final statement of the resubmission.

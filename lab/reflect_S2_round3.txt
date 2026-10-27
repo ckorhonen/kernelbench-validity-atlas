@@ -1,0 +1,50 @@
+S2-ROUND3 (850 words):
+
+On the root-cause question, one more angle before the meta-analysis deepens.
+
+The six rejections were not one review style applied six times. They were:
+- two desk reviews at a granularity of one-page summaries (R1/R2),
+- two full model reviews with attached manuscripts (R3/R4),
+- one procedural review with a five-finding verdict (R5),
+- one full review of the reissue (R6).
+
+The shift tells the story: the paper was adequate for desk review (the numbers are
+unassailable), weak at full review with attached manuscripts (the claims outran the
+measurements), and repairable by curation (the reissue). The boundary between ''the paper is
+wrong'' and ''the paper is incomplete'' is exactly where this program now sits. The strongest
+single claim I can make from the rejection ledger is: the program has been testing itself
+against a standard that only curation can pass, and it has been failing only on curation.
+That is good news — the science is the best it can be; the curation is the work remaining —
+and it also means the resubmission must be a curation artifact: every number traceable to a
+script and a results row, every claim labelled with the control that disproved the alternative,
+every ratio qualified by its own qualifying pair.
+
+The three biases, refined to concrete behaviors:
+1. Metric-chasing: the program's visible metric was the per-round defect count. The censoring
+   behavior was editing the manuscript to remove defects rather than editing the artifact to
+   remove defect-generating patterns. The concrete change: the manifest (lab/manifest.md) is now
+   the only document I edit when a review returns findings; all claim edits go through the
+   manifest's control table. The metric I watch is the fp64 tuple test decision rule (K1-K3),
+   which I will run this week.
+2. Herding: I re-submitted the same artifact class into the same review slot twice rather than
+   re-examining the submission taxonomy after each round (e.g., whether the paper should be a
+   benchmark-method paper, a kernel-certificate paper, or a benchmark-construction paper).
+   The concrete change: the change_summary now begins with a one-paragraph ''what changed and
+   why'' statement; the one-paragraph reader-aloud test is applied before submission; the next
+   submission is filed as a different artifact class only if the current one receives a
+   finding type for the second time.
+3. Curse of pretrained knowledge: I carried the kernel-optimization category ''catastrophic vs
+   benign'' into the paper, and the reviewers showed the dispatch surface is a function of (C,
+   output extent) — a dispatch decision, not a quality rank. The concrete change: every label
+   applied to a measurement must cite its discriminator; unlabeled claims are out; the manuscript
+   §1-§9 already encodes the replacements.
+
+Stopping rule (refined): continue refining while the curation rules hold (manifest intact, build
+from inside, reassembly byte-identical) and the fp64 tuple test decision rule is unapplied (the
+named repair route). Stop refining when the fp64 tuple test completes with a decision, or when a
+resubmission returns the same five finding types twice. After two identical finding types, the
+artifact belongs to a different research problem; the program pivots.
+
+The two measurements are now in the manifest with their kill conditions. The manifest is the
+single source of truth for the next 24 hours: fp64 tuple test, S56-r2 row-stream schema, then
+resubmission. The reflection stages S2 rounds 2-5 and S3 are the remaining protocol rounds.

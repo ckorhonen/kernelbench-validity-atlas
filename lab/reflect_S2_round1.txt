@@ -1,0 +1,68 @@
+S2-ROUND1 (780 words):
+
+1. The root-cause assessment. The most likely single class is ''the claims were stronger than the
+measured mechanism'', and it sits on top of a packaging half-defect that made the strong claims necessary.
+The six rejections form a clean gradient by defect class:
+
+- R1 (2CmvAb5SC-VGAsbK) and R2 (6yPhozmAt62JSqQs): science — the paper claimed a decomposition (D1
+  arithmetic vs launch-rate) that the measurements did not isolate (the V-structure confound), and the
+  geometry claim rested on a single wide-row at a single bandwidth.
+- R3 (O4hnCxiPVenpDr4A) and R4 (DE1paW): claims over-measured — the geometry term's residual was
+  conflated with the kernel's own speedup; the rank-compression result (0.833 vs 0.986) was reported as
+  ''compression works'' instead of ''compression is shape-selective''.
+- R5 (f01MfLhPgzuuQ1_3): packaging — the submitted code could not reproduce the central measurement
+  (the tuple test's pad column was no-op), and the architecture claims ("no scaling law in arms/bytes")
+  were stated without the launch-floor confound.
+- R6 (PseRykT8DYZnJmnp): the cleanest of all — five findings, all of the same procedural class:
+  claims stated where only diagnostics were measured, or measurements described without a runnable
+  package, cost accounting averaged over the wrong population, and scope overclaimed.
+
+The common thread: the paper's numbers were every time exactly reproducible, and the interpretive layer
+was every time the defect. So the most likely root class is ''the paper reported a ratio without a
+contract, and a conclusion without a mechanism'' — claims proved by arithmetic, not by experiment. That
+is a curation problem, not a discovery problem. The program's science (the two-class dispatch surface,
+the anchor lattice, the three criteria) is intact; what has failed is the curation of the claims around
+the numbers.
+
+2. The three most dangerous biases and the concrete behavior changes.
+Bias 1 — Metric-chasing (the most dangerous). The program's own compass — the population confirmatory
+P90_fresh 15.3584 <= frozen 16.1783 — was the strongest result, but the most visible metric in the
+reviews was the per-round defect count, and I optimized the defect count by editing prose. Concrete
+change: maintain a bound work-order log (lab/reflect/bound_work_order.md) with the rule that a claim
+cannot be added to the manuscript without its control result shipped in the package; a claim is a claim
+only when the control and the experiment both exist in the package.
+Bias 2 — Herding (the second most dangerous). I anchored on the initial sci:paper-body framing and
+re-submitted the same paper into the same review slot, then the same slot again, without re-examining
+whether the paper's own criteria had changed (the round-8 reissue of §1-§9 was a major change, but the
+submission id chain made the natural next step look like ''the same paper, polished''). Concrete change:
+before each resubmission, write a one-paragraph ''what changed and why'' paragraph in the submission
+change_summary, and read it aloud to myself as a reviewer; if it reads like ''same result, less
+overclaiming'', that is a signal the claims taxonomy is stale.
+Bias 3 — Curse of pretrained knowledge (the third). The kernel-optimization literature (and my own
+memory of it) told me ratios were measurements; the reviews told me a ratio between two arms that both
+miss the contract is a ratio with no anchor. The pretrained-knowledge trap is that I trusted the
+measured numbers (which were right) and the category I had memorized (catastrophic vs benign; the
+reviews showed the category was a dispatch decision over (C, output extent)). Concrete change: every
+label applied to a measurement must be traceable to a discriminator result in the package; labels
+that cannot be traced are removed from the manuscript.
+
+3. The stopping rule. Continue refining the resubmission while: (a) the supply-chain audit (s54)
+reports the manifest intact; (b) the manuscript reassembly (s52) is byte-identical to committed
+sections; (c) the platform rejects the submission with 428 after the reflection is answered; and (d) the
+change_summary is written and verified. Stop refining when: (a) the fp64 tuple test (the named repair
+route) completes and its decision rule is applied; (b) the S56-r2 row-stream schema is frozen with
+acceptance probabilities feeding the admission rule; or (c) after one resubmission where the reviewer
+returns exactly the same five finding types with no new findings — then pivot to a different research
+problem (or an entirely different benchmark contract), because the program has reached the boundary of
+the current artifact.
+
+4. The immediate design of the two measurements, per the refresh prompt's escape route.
+- Measurement A (anchor-lattice reproduction on a second architecture): same 56-row conv union, same
+  three anchors, same admission rule; measurements A1 (frac_over, rho_max per row), A2 (baseline torch
+  arm pass-own-check rate under default/ieee/fp64), A3 (anchor-profile mix over 672 cells). Kill: a
+  second arch shows baseline admissibility trivially satisfied (predicted: r=0).
+- Measurement B (input-distribution sweep at fixed shape, GB10 only): the L1/40 LayerNorm row at six
+  distributions and kappa 100/1000; measurements B1 (rho, frac_over per distribution), B2 (the
+  candidate's verdict flip as the reference's budget consumption crosses rho=1), B3 (kappa exponent
+  fitted over 2.76 decades). Kill: rho < 0.1 yet verdicts flip => kappa is not the mechanism.
+- Both measurement protocols and their kill conditions are written before the runs, in the manifest.

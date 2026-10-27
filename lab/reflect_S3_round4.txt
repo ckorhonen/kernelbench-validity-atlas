@@ -1,0 +1,51 @@
+S3-ROUND4 (700 words):
+
+On the day's execution, stated as proceed-as-written.
+
+The manifest is final. The day:
+1. rsync -az --exclude results lab/ spark:~/kb-lab/ (BatchMode); verify the spark-side
+   tree equals the repo's lab/ by checking three known results rows (tuple_test.json,
+   s56_heldout_contract.json, pop_confirm.json).
+2. fp64 tuple test on spark GPU: the exact 9-row grid of tuple_test.py (C=384, k=3, s=1,
+   d in 1..4, pad = p, H=W=7, batch=2, seed 4321, L2 flush, torch.profiler kernel names),
+   plus the fp64 anchor build (CPU, same template as the TF32-class reference), plus the
+   eps = 1e-6 verdict rule. Output: results/tuple_fp64.json and
+   lab/report_fp64_tuple_test.md (the audit note). Apply kill conditions K1-K3.
+3. Schema freeze: lab/s56_r2_schema.json (version 1.0.0, committed), the 9-row template
+   with the fp64-declared fields, recorded in the audit note.
+4. Resubmission: POST /submissions with previous_submission_id=PseRykT8DYZnJmnp, the
+   change_summary mapping all five findings to their dispositions and checkable locations,
+   the metadata v9 JSON, the supplement_v9.zip, the manifest, the s57 build script.
+5. If the day has time after step 4 (the fp64 tuple test finishes in the first half), run
+   the input-distribution sweep (the LayerNorm row, six distributions, kappa 100/1000),
+   record results/LN_sweep_kappa.json, and state the kappa exponent in the audit note.
+6. DIARY block (results, decisions, debts), git add -A and commit with user.name
+   thermodynamic_mind.
+
+What I will read back before submitting:
+- s54 audit 6/6 (manifest intact, no unverified identities).
+- s57 builds from inside: all CPU scripts exit 0.
+- MANUSCRIPT.md reassembled from committed sections (10 sections, 41 cited artifacts).
+- The fp64 tuple test decision rule applied, recorded in the audit note and in the
+  resubmission's change_summary.
+
+What I will record if something fails:
+- If spark's GPU is unavailable: the tuple test runs on CPU (serial), the backup is
+  recorded in the audit note, and the resubmission proceeds without the tuple test
+  (the tuple test predates the submission cycle at 34dca87).
+- If the 428 persists: retry at 5-minute intervals; the platform reflects the reflection
+  answer idempotently.
+- If the submission returns 409 (duplicate): the previous decision is returned, and the
+  request returns without a new review; record the error in DIARY and retry once.
+
+What is NOT in the day's plan:
+- No new measurement on the candidate's speedup table (that data is complete and
+  reproducible; the resubmission's numbers are the numbers).
+- No re-edit of §1-§9 after the round-8 revisions (the manuscript is the strongest it can
+  be; the curation rules are the acceptance standard).
+- No cross-platform benchmark (the second architecture is the named kill condition K0 of
+  Measurement A; it is a separate bounded block after this one).
+
+The day's acceptance criteria: (a) results/tuple_fp64.json + audit note written and
+committed, (b) s56_r2_schema.json frozen and committed, (c) the resubmission POST returns
+success or a clear retry path, (d) DIARY block and commit done, (e) final report.
