@@ -95,7 +95,8 @@ reference is indistinguishable from an exact anchor at the budget, below 0.02 a 
 sparse set, above 0.5 a bulk failure of the reference itself, which leaves any ratio quoted against it with a
 denominator outside the budget. The rationale is measured, not
 stipulated — a rho_max 10.2 winograd row is a tail problem and conditionally reportable while a rho_max 111
-TF32 row is a bulk failure no tolerance loosening rescues.
+TF32 row is a bulk reference failure: no loosening of the reference-versus-anchor comparison rescues it,
+although a declared application tolerance that admits its failing set is a separate, named decision.
 
 **The compression result (§4.5).** The certificate's magnitude field compresses onto derived coordinates
 out of fold (Spearman 0.833 from geometry alone, 0.986 with the engine class supplied), and the admission
@@ -316,8 +317,9 @@ or downgrade it:
   verdict is whatever that check returns. For a relaxed contract, the reference's failing set is sparse, so
   a loosening that covers 0.5% of elements is a defensible convention *provided it is declared and its own
   candidate-level evidence is supplied*. It is not a licence to call the benchmark row correct.
-- **Bulk-inadmissible diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
-  0.77–0.78), so a speedup ratio computed against it has a denominator that is itself outside the budget.
+- **Bulk reference-error diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
+  0.77–0.78), so a speedup ratio computed against it has a denominator whose own error is outside the budget.
+  This is a property of the reference and not an admission verdict on the row.
   Whether the *candidate* misses the contract is a separate, candidate-level check (criterion (i)), and the
   statement "no loosening rescues that" is about the reference, not a verdict on the candidate. Report the
   pair, not a ratio. This one *is* a claim about the ratio's meaning
@@ -667,9 +669,10 @@ it produced a two-class decomposition instead of a failed AUC.
 
 ## 4.4 What the certificate changes, and what it does not
 
-**Changes.** A speedup ratio computed at a row whose frac_over is 0.77 (any TF32 conv route) is a ratio
-between two arms that both miss the contract, and the paper says so before quoting it — what that row's
-*verdict* is, is decided by the benchmark's own candidate-versus-reference check and not by frac_over. At a
+**Changes.** At a row whose frac_over is 0.77 (any TF32 conv route), the *denominator* of a speedup ratio is
+a reference that itself sits ~0.78 budget-units from an exact anchor. That is a statement about the reference's
+accuracy, not a verdict on either arm: the row's own *verdict* is the benchmark's candidate-versus-reference
+check, which frac_over does not enter, and a candidate identical to that reference passes it. At a
 winograd row with frac_over 0.005 the ratio stands as measured and the paper states that 0.5% of reference
 elements are the ones the reference itself misses. On the reduction family, where the certificate is clean at
 default precision (baseline 56/56), the published rankings stand unchanged — the certificate costs nothing

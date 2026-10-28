@@ -1,5 +1,5 @@
 {
- "date": "2026-10-28T15:40:06Z",
+ "date": "2026-10-28T15:41:31Z",
  "n_cited": 48,
  "n_found": 48,
  "missing": [],
@@ -1146,7 +1146,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-10-28T15:39:58Z",
+   "mtime_utc": "2026-10-28T15:41:25Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1179,9 +1179,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "ef9f1ec203f8647dd67d6dd0aaf13c7de2af724a030ab26befc76c7f9a5c736e",
+   "sha256": "74bc3bec80dc0fbf2f023c8b6181c289113023a2c4ef8ef947dc631d826ceefb",
    "bytes": 5255,
-   "mtime_utc": "2026-10-28T15:39:54Z",
+   "mtime_utc": "2026-10-28T15:41:25Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1207,7 +1207,7 @@
    ],
    "sha256": "d63fdafc437e9f0b017b940284eba0b1efbae23653d18ad73d02d9f4b964f82d",
    "bytes": 1763,
-   "mtime_utc": "2026-10-28T15:39:54Z",
+   "mtime_utc": "2026-10-28T15:41:25Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1340,6 +1340,7 @@
    "artifact": "results/tuple_surface.json",
    "sha256_note": null,
    "cited_in": [
+    "paper/ATLAS_TUPLE_SURFACE.md",
     "paper/MANUSCRIPT.md",
     "paper/sections/s2_reference_axis.md"
    ],

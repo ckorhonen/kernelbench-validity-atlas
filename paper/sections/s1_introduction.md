@@ -77,7 +77,8 @@ reference is indistinguishable from an exact anchor at the budget, below 0.02 a 
 sparse set, above 0.5 a bulk failure of the reference itself, which leaves any ratio quoted against it with a
 denominator outside the budget. The rationale is measured, not
 stipulated — a rho_max 10.2 winograd row is a tail problem and conditionally reportable while a rho_max 111
-TF32 row is a bulk failure no tolerance loosening rescues.
+TF32 row is a bulk reference failure: no loosening of the reference-versus-anchor comparison rescues it,
+although a declared application tolerance that admits its failing set is a separate, named decision.
 
 **The compression result (§4.5).** The certificate's magnitude field compresses onto derived coordinates
 out of fold (Spearman 0.833 from geometry alone, 0.986 with the engine class supplied), and the admission

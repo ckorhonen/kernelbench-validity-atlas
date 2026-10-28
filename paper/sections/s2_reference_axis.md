@@ -174,8 +174,9 @@ or downgrade it:
   verdict is whatever that check returns. For a relaxed contract, the reference's failing set is sparse, so
   a loosening that covers 0.5% of elements is a defensible convention *provided it is declared and its own
   candidate-level evidence is supplied*. It is not a licence to call the benchmark row correct.
-- **Bulk-inadmissible diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
-  0.77–0.78), so a speedup ratio computed against it has a denominator that is itself outside the budget.
+- **Bulk reference-error diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
+  0.77–0.78), so a speedup ratio computed against it has a denominator whose own error is outside the budget.
+  This is a property of the reference and not an admission verdict on the row.
   Whether the *candidate* misses the contract is a separate, candidate-level check (criterion (i)), and the
   statement "no loosening rescues that" is about the reference, not a verdict on the candidate. Report the
   pair, not a ratio. This one *is* a claim about the ratio's meaning
