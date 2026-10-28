@@ -71,6 +71,7 @@ s53_intro_audit.json s54_metadata_audit.json s55_review_repair.json s56_heldout_
 s56_analysis.json a10_crossing_neighborhood.json a11_layernorm_reference_dist.json a6_refdistance.json a6b_ksweep.json a6c_conv_tf32pair.json a6e_geometry_algo.json
 a6f_geom_repl_convmech.json e1_analysis_v3.json e3_gridgeom.json m3_curve.json r42_gridfix.jsonl
 s46_e2_recount.json w4_v1.json s48_prose_audit.json b1_gatezero_v2.json
+a2_loo.json
 r1_conv_gated.jsonl gate_stability.jsonl
 b4_guard_v1.jsonl e1b_order_v2.json e2_splitk_v2.json m3_r42.jsonl m3_r42.json
 w4_heldout.json w4_heldout.json.jsonl tuple_test.json a8_compress.json

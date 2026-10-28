@@ -5,7 +5,7 @@
    "name": "abstract numbers present in audited manuscript",
    "pass": true,
    "detail": {
-    "n_numbers": 37,
+    "n_numbers": 35,
     "absent": []
    }
   },
@@ -14,7 +14,7 @@
    "name": "abstract word count within 200-300",
    "pass": true,
    "detail": {
-    "words": 299
+    "words": 283
    }
   },
   {
@@ -41,7 +41,7 @@
    "name": "title length",
    "pass": true,
    "detail": {
-    "chars": 88
+    "chars": 91
    }
   },
   {
@@ -55,7 +55,7 @@
      "6yPhozmAt62JSqQs",
      "O4hnCxiPVenpDr4A"
     ],
-    "previous_submission_id": "f01MfLhPgzuuQ1_3"
+    "previous_submission_id": "6nR8bV4cWf9t-_OY"
    }
   }
  ],

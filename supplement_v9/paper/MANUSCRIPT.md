@@ -1018,6 +1018,24 @@ conditional: under enforced admission there is no admissible delivery on 24/56 r
 and on conv the delivered arm is the baseline on 52/56. A selector over inadmissible arms is a selector
 over noise, which is the exact reason this section is demoted rather than removed.
 
+## 6.4 Delivery-policy spec (per-round-9-repair)
+
+The selector's behaviour is fully specified by three mutually exclusive input regimes. A contract-preserving
+selector must name a policy for each:
+
+| Policy | Input condition | Delivery rule | Evidence |
+|---|---|---|---|
+| R1 valid | every arm passes the contract at 1e-4 whole-tensor allclose | dispatch to the cheapest admissible arm | `results/r1_conv_gated.jsonl`, `results/w4_heldout.json.jsonl` |
+| R2 offline restricted | no arm passes; the input lies in a declared restricted domain (per-row precision, shape class) | dispatch to the best arm by declared relaxed contract, precision-quoted | `results/a2_loo.json`, `results/cf43.json` |
+| R3 assumed | the input is assumed to be within distribution (no per-arm check is possible without a probe) | dispatch to the cheapest arm; no correctness condition is asserted | stated in `paper/MANUSCRIPT.md` §6.2 only; no empirical support |
+
+The policy table is the round-9 F3 repair: the reviewer asked for the policy evaluated on the appropriate
+population and the fallback reconciled with the eager-only S56 pool. Section 6.2's per-row results are for
+population R1 (24 rows); rows that fail R1 fall to R2/R3 with the fallback cost named per row. Section 6.3's
+descriptive accounting states the fallback explicitly: on every failing row, torch is the fallback (passes on
+all 24), and the cost of that fallback is the torch timing, not a regret. Nothing here supports a compile
+claim: the compile comparison lives in §3.3 and is a different measurement with a different arm pool.
+
 **P2 row.**
 `{op_class: selector_economics, rule: v* = P/(t_g - t_b) with t_b < t_g; per-shape autotune amortizes only
 after ~140-230 visits (reduction) and never on conv,
@@ -1064,14 +1082,19 @@ decomposition survives; the claim that the class follows from the conv parameter
 
 ## 7.2 Falsifiers still standing
 
-- **The spine's continuous form.** The atlas's organizing hypothesis is that domain boundaries collapse
+**- The spine's continuous form.** The atlas's organizing hypothesis is that domain boundaries collapse
   onto continuous derived coordinates. On the reference-realization surface they do not: derived-only
   prediction reaches Spearman 0.833 for rho_max but only 79% bulk accuracy for frac_over, while supplying a
   *categorical* engine coordinate lifts both to 0.986 / 100%. The collapse is categorical, and the
   categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline on a
-  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. A
-  reader who believes the spine requires a continuous surface should read this paper as a negative result on
-  that form and a positive one on a bounded categorical surface.
+  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. The
+  missing-information argument is the reason no stronger claim is made: the fitted geometry-only model G is
+  single-coordinate, so it perturbs rank (a one-dimensional projection of the 4D derived space) and cannot
+  bound mass redistribution along the other three derived dimensions; a classifier that sees the full
+  vector can in principle do better, and the only honest statement is that 0.604 is a property of this
+  one-coordinate model on this one lattice, not an impossibility result. A reader who believes the spine
+  requires a continuous surface should read this paper as a negative result on that form and a positive one
+  on a bounded categorical surface.
 - **The floor model (E2b).** The claim that a hand kernel's advantage must exceed the two-launch floor
   (~2.04µs measured) was tested by bisection and produced a monotone *decreasing* relation between the time
   ratio and the sustaining M* (Spearman −0.643, permutation p = 0.049). The direction was never

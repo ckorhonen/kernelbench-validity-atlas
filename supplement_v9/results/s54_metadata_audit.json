@@ -47,14 +47,19 @@
   {
    "id": "A6",
    "name": "change_summary names prior rejections",
-   "pass": false,
+   "pass": true,
    "detail": {
-    "named": [],
-    "previous_submission_id": "sEHYoTiVWWTvVjrs"
+    "named": [
+     "DE1paWNMk8WVTC3n",
+     "2CmvAb5SC-VGAsbK",
+     "6yPhozmAt62JSqQs",
+     "O4hnCxiPVenpDr4A"
+    ],
+    "previous_submission_id": "6nR8bV4cWf9t-_OY"
    }
   }
  ],
- "pass": 5,
- "fail": 1,
+ "pass": 6,
+ "fail": 0,
  "total": 6
 }

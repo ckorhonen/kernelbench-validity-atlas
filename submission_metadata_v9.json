@@ -11,9 +11,9 @@
   "conv2d classifier",
   "calibration"
  ],
- "change_summary": "(1) F1/F2: scope-wide criterion reconciliation: \u00a72.3 names the three criteria (benchmark agreement, anchor accuracy, relaxed contract) and \u00a74.5 states the declared compression rule (COMPRESSION_PARTIAL; both readings reported, neither hidden). (2) F3: tuple-test conclusions regenerated from per-row data; \u00a72.5 ranges widened to the record\u2019s class span (W rho 6.4-12.8, T rho 221.2-369.4). (3) F4: \u00a76.2/\u00a76.3 restricted to measured per-row results with an explicit correctness-preserving fallback on every row. (4) F5: e2_splitk_v3.py, w3_conv_gemm.py, m3_autotune_curve.py added to the package; 142 files, 1.79MB; every CPU script exits 0 from inside the zip; repository revision pinned. (5) S56-r2 schema freeze (p_accept >= 0.8) and stage-2 fp64 tuple test (C=384, 9 rows) executed: flips 9/9, REFERENCE-CONDITIONAL (K3 fired).",
+ "change_summary": "(1) F1/F2: scope-wide criterion reconciliation: \u00a72.3 names the three criteria (benchmark agreement, anchor accuracy, relaxed contract) and \u00a74.5 states the declared compression rule (COMPRESSION_PARTIAL; both readings reported, neither hidden). (2) F3: tuple-test conclusions regenerated from per-row data; \u00a72.5 ranges widened to the record's class span (W rho 6.4-12.8, T rho 221.2-369.4). (3) F4: \u00a76.2/\u00a76.3 restricted to measured per-row results with an explicit correctness-preserving fallback on every row. (4) F5: e2_splitk_v3.py, w3_conv_gemm.py, m3_autotune_curve.py added to the package; every CPU script exits 0 from inside the zip; repository revision pinned. (5) S56-r2 schema freeze (p_accept >= 0.8) and stage-2 fp64 tuple test (C=384, 9 rows) executed: flips 9/9, REFERENCE-CONDITIONAL (K3 fired). (6) Round-9 desk review: resubmitted 6nR8bV4cWf9t-_OY rejected with 4 findings; this round repairs F1 layout/flag-pair evidence (new producing revision pinned, recorded strides), F2 three-criteria carried through \u00a74.4/\u00a74.5, F3 policy spec \u00a76.4 + corrected population evaluation, F4 missing-information argument \u00a77.2 + fitted models reported. Prior submissions DE1paWNMk8WVTC3n, 2CmvAb5SC-VGAsbK, 6yPhozmAt62JSqQs, O4hnCxiPVenpDr4A were all rejected at desk review; f01MfLhPgzuuQ1_3 was rejected.",
  "package_version": "9",
- "pinned_commit": "eb916a0f194b806f94d6bf31f3ba33bc19337857",
+ "pinned_commit": "141d1142ab59ad1d3b90a39a42c3b924b8261f68",
  "problem_name": "kernel_engine_dispatch_duality",
  "statement_version": 9,
  "tags": [
@@ -24,5 +24,5 @@
   "reduction kernels",
   "conv2d classifier"
  ],
- "previous_submission_id": "sEHYoTiVWWTvVjrs"
+ "previous_submission_id": "6nR8bV4cWf9t-_OY"
 }
