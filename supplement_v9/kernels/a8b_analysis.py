@@ -138,7 +138,12 @@ def class_predict(rows):
 
 
 def main():
-    d = json.load(open(SRC))
+    if os.path.exists(SRC + ".gz"):
+        import gzip
+        with gzip.open(SRC + ".gz", "rt") as f:
+            d = json.load(f)
+    else:
+        d = json.load(open(SRC))
     rows = []
     for r in d["rows"]:
         r = dict(r)

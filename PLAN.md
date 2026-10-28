@@ -241,7 +241,24 @@ layout/batch at fixed shape; class flips => 0.604 is a projection artifact and a
 enumerated-tuple dispatch; no flip => 0.604 is a real unpredictability result and §4's pessimism stands).
 24h-E1/CTA-edge/bt stay parked.
 
-## Active lane: ROUND-11 REPAIR — opened 2026-10-28 15:3xZ (AuBSkki84PdtDkPw rejected 12:35:49Z)
+## Active lane: ROUND-12 REPAIR — opened 2026-10-28 22:1xZ (Lo23jsKHjyGuukZr rejected 19:20:57Z, 10 min after submission)
+
+Review lab/rejection_review_Lo23jsKHjyGuukZr.md; four findings, all conceded. R1 (decisive): the compression test predicted
+frac_over, not candidate admission. ANSWERED BY MEASUREMENT, not prose: r57 (prereg 4595e00, runner lab/r57_candidate_admission.py
+-> results/r57_candidate_admission.json) predicts the actual pass_1e4 verdicts on 672 arm-checks / 56 conv shapes out of fold
+from declared features — P1 AUC 0.986 / acc 96.4% vs 80.95% baseline PASS; P2 hand-fp32 stratum AUC 0.899 vs 0.80 bar PASS with
+the 0.5 threshold uncalibrated; P3 56/56 shapes mixed. Admission is a compressible CLASS DECISION plus a measured within-class
+threshold, not an enumerated lookup. R2 universal verdict language withdrawn (§1.1/§2.3: engine sets the budget, candidate
+arithmetic decides the verdict). R3 determinism wording scoped to two-repeat consistency in one process (§2.5), fresh-process
+replication named as the open condition. R4 +3.53%/+0.86% relabelled post-validation execution regret, checks charged separately
+(§6.3/§6.5/abstract). §4.6 added; manuscript 126,827 B; audits s50/s51/s52/s53/s54 all exit 0; provenance 49/49/0; package
+1,948,757 B verified from inside the zip. RESUBMITTED **5WxkQjcUg_JD3wtv** 22:24:33Z (desk).
+Next: desk/review watch; then the fresh-process class-invariance probe (17 cells, cold cache, benchmark-mode/deterministic on-off,
+constrained workspace budget; kill if any cell flips class at fixed tuple+budget) — this is R3's stronger fix and the extension
+the 22:13Z reflection named; then the refresh plan's flip table (kill at <10% flips), out-of-family class prediction (kill at
+majority baseline), bias-vs-tail, benchmark-wide audit scoping doc. One repair session per submission hard cap holds.
+
+## Superseded lane: ROUND-11 REPAIR — opened 2026-10-28 15:3xZ (AuBSkki84PdtDkPw rejected 12:35:49Z)
 
 Six findings; triage lab/triage_round11.md. F2/F3 DISCHARGED by the tuple-surface measurement
 (lab/tuple_surface.py -> lab/results/tuple_surface.json, prereg c16fb5e; determinism 34/34, simple (s,d)
