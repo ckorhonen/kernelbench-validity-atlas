@@ -42,7 +42,7 @@ GPU_PRODUCERS = """
 a6_refdistance.py a6b_ksweep.py a6c_conv_tf32pair.py a6d_crossing.py a6e_geometry_algo.py
 a6f_geom_repl_convmech.py a7_kernelclass.py a7b_precision_policy.py a8_compress.py a9_compose.py
 a10_crossing_neighborhood.py a11_layernorm_reference_dist.py s56_heldout_contract.py e2_splitk_v3.py w3_conv_gemm.py m3_autotune_curve.py
-tuple_test.py s57_supplement_build_v9.py
+tuple_test.py tuple_surface.py s57_supplement_build_v9.py
 """.split()
 
 PREREGS = """
@@ -74,7 +74,7 @@ s46_e2_recount.json w4_v1.json s48_prose_audit.json b1_gatezero_v2.json
 a2_loo.json
 r1_conv_gated.jsonl gate_stability.jsonl
 b4_guard_v1.jsonl e1b_order_v2.json e2_splitk_v2.json m3_r42.jsonl m3_r42.json
-w4_heldout.json w4_heldout.json.jsonl tuple_test.json a8_compress.json
+w4_heldout.json w4_heldout.json.jsonl tuple_test.json tuple_surface.json a8_compress.json
 """.split()
 
 # r1_times.json lives at lab/ (not lab/results/) and r45_rider_adm.py requires it; the reviewer flagged
@@ -393,9 +393,11 @@ pin the check would certify its own repair.
 - Composition (a9, s55): rho_end/max(rho_A,rho_B) = 0.981/1.507/1.537/1.000/1.971/2.480. One chain inside
   1.0-1.5x, five inside a factor of 2. The union rule PASSES 4/6 and fails 2 (c5, c6). c5 is two
   individually admissible stages (0.0689, 0.6563) composing to 1.2939, past budget.
-- Delivery (s56): reduction gate hand deliveries 11/12 admissible at +4.13% (SE 1.40) time cost against
-  the best admissible arm; conv 0/4 admissible at budget ratios 17,431-23,783, so the conv delivery claim
-  is withdrawn.
+- Delivery (s56): reduction gate hand deliveries 9/12 admissible (0.75, the prereg middle branch) at
+  +0.86% (SD 1.11, SE 0.37, n=9) against the fastest admissible arm on the admissible rows, and +3.53%
+  (SD 6.73, SE 1.37, n=24) for the deployed policy over all 24 rows with the torch fallback executed; the
+  three failures sit at budget ratios 1.61/2.57/7.11. conv 0/4 admissible at budget ratios 94-197, so the
+  conv delivery claim is withdrawn. (The older 11/12 at +4.13% was the pre-rerun first run.)
 - Regret under admission (s55): the published "|A2-A1| <= 0.025 pp" is withdrawn. Corrected pp means and
   max|.| are +0.21/2.44 (def), -0.66/25.46 (ieee), -4.43/41.20 (fp64).
 - d_i denominator (s55): oracle-normalized +11.87/+12.08/+10.30 pp with sd 29.25/23.24/20.32 pp;

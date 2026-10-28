@@ -16,127 +16,131 @@ permission). H100 folklore is re-derived here, not cited.
 
 ---
 
-# Section 1 prose — Introduction (complete)
+# Section 1 prose — Introduction (rewritten 2026-10-28, round-11 F5 restructure)
 
 Every number in this section is regenerated from committed artifacts by `lab/s53_intro_audit.py`
 (`results/s53_intro_audit.json`), which runs before the file is committed and hard-fails on any cited
 value it cannot reproduce. The section cites only numbers that are also covered by the per-section audits
 already shipped (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16) and by
-the provenance table (`paper/PROVENANCE.md`, 44 cited / 44 found / 0 missing).
+the provenance table (`paper/PROVENANCE.md`). The review history, the retraction ledger and the audit counts
+are in Appendix A rather than in this section; the argument here runs claim → definitions → method →
+findings → limitations.
 
 ---
 
-## 1.1 The claim a kernel-speedup number does not make
+## 1.1 The question
 
-A benchmark report of the form "our kernel is 1.4× faster than PyTorch on shape S" is a point sample
-presented as a property. It says nothing about which shapes the advantage survives on, which reference the
-comparison is scored against, or how much of the benchmark's own tolerance budget the baseline already
-spends before a candidate is measured at all. Each of those omissions has a measurable cost, and this paper
-prices them.
+Does a benchmark's pass/fail verdict measure the candidate, or does it measure the reference the candidate is
+compared against? On one GB10 device the answer is the second, and the mechanism is specific: the vendor
+convolution library dispatches a *different numerical engine* depending on the declared tuple, and at the
+benchmark's shipped fp32 tolerance the reference's own deviation from exact arithmetic is the same order of
+magnitude as the gate's budget. A candidate's verdict is therefore decided by which engine the reference
+happened to select, on shapes that a kernel author would reasonably treat as interchangeable.
 
-The organizing claim is that a kernel optimization is a conditional statement — rule R with validity domain
-D_R over shape, dtype, layout, alignment, tolerance and architecture — and that the publishable object is
-the triple (rule, domain predicate, certificate), not the speedup. The program's hypothesis was stronger
-than that: that domain boundaries, irregular in raw-shape space, collapse onto low-complexity surfaces in
-derived coordinates (waves resident, bytes per thread, arithmetic intensity, achievable occupancy,
-working-set over L2). If true, shape generalization is learnable and a dispatcher can be trained on a small
-grid. If false, the atlas is a lookup table and rules of thumb remain folklore. Both branches publish here,
-and the paper reports which one this surface delivered.
+The paper answers that question with three measured objects: a dispatch map over declared coordinates, a
+magnitude surface that predicts how much of the budget the reference consumes, and an admission result that is
+an enumerated per-tuple lookup rather than a continuous law. It also reports where the continuous form of the
+original hypothesis failed, because that failure is the reason the deliverable changed shape.
 
-## 1.2 Why the framing changed, and what it cost
+## 1.2 Definitions
 
-This paper replaces a selector-first framing that was rejected three times at full review
-(`2CmvAb5SC-VGAsbK` 10-22 19:51Z, `6yPhozmAt62JSqQs` 10-21 19:44Z, `O4hnCxiPVenpDr4A`). In each round the
-reviewer reproduced our arithmetic — paired differences, t-statistics, the population residual — and
-rejected the interpretive layer on top of it. The defects were ours and they clustered: an inverted
-break-even filter (`t_b < t_g`, `v* = P/(t_g − t_b)`; the published finite crossovers were computed on
-`t > t_g`, which is the complement of the population the model describes), a mixed-unit count
-(`n_fail = 223` was check-level deliveries minus row-level passes), and an admission rule that let the
-baseline pass a check the baseline itself fails.
+A pass verdict is a three-place relation — candidate, reference realization, tolerance budget — and the
+platform treats it as two-place. The missing unit of account is how much of the benchmark's own budget the
+reference consumes. For a reference realization $R_{\mathrm{def}}$ and an fp64 anchor $R_{64}$:
 
-That convergence is the reason the contribution is a certificate rather than a ranking. A certificate is
-checkable by a reader who does not trust us: it names the reference realization and flags, the
-budget-consumption pair, the admissible delivery set, and whether the regret basis is an upper or lower
-bound. Three review rounds were enough to establish that our numbers were right and our claims were not,
-which is precisely the failure a certificate prevents.
+$$\rho = \max_i \frac{|R_{\mathrm{def},i} - R_{64,i}|}{10^{-4} + 10^{-4}|R_{64,i}|}, \qquad \text{frac\_over} = \frac{|\{i : \rho_i > 1\}|}{|\mathrm{out}|}.$$
 
-## 1.3 What was measured, and the four claims that died
+$\rho$ is measured in multiples of the contract's element budget, so $\rho \geq 1$ means the reference cannot
+pass the benchmark's own check against an exact anchor. The normalisation uses the benchmark's shipped fp32
+gate: `src/kernelbench/eval.py:get_tolerance_for_precision` returns $10^{-4}$ for `torch.float32` (citing
+torchbench) and $10^{-2}$ only for fp16/bf16, verified in source rather than inferred from a comment. That makes
+$\rho$ a statement about the benchmark as shipped.
 
-The instrument comes first. On GB10/sm_120 (48 SMs, 25,165,824-byte L2, launch floor 7.46 µs single-shot
-against 2.94 µs back-to-back; `results/calibration.json`) clock locking was unavailable, so every timing in
-this paper is unlocked-clock and the drift protocol carries the burden: saturated bandwidth boundaries
-replicated to ≤0.13% across a 9.6 h interval (`results/e1_triad_day2.json`).
+Three further terms are used technically throughout. *Engine class* is the profiler-observed kernel family
+(winograd, TF32 tensorop, fp32 SIMT, fp64 dgemm) that the library dispatched; it is a label on the declared
+tuple, not a property of the candidate. *Certificate* is the pair (magnitude diagnostic, admission predicate)
+evaluated for a declared tuple before a candidate is run. *Validity domain* is the set of conditions under which
+a claim was measured — device, library build, clock state, repeat protocol — and every claim in this paper
+carries one.
 
-The reference-realization axis (§2) produced the paper's central measurement. A pass verdict is a
-three-place relation (candidate, reference realization, budget) and the platform treats it as two-place.
-Defining rho as the reference's own consumption in multiples of the contract budget, an ordinary fp32
-matmul reference's rho crosses 1 between K = 3608 and K = 3632 on the single draws that were bisected
-(`results/a6d_crossing.json`), but a 6-seed neighborhood study shows the verdict there is a coin flip
-(4/6 pass at 3608, 2/6 at 3632) rather than a threshold (`results/a10_crossing_neighborhood.json`), and fp32
-conv2d splits into two dispatch classes that differ by three orders of magnitude at matched reduction
-depth: a winograd engine at rho 10.195 with 0.52% of elements over budget, and TF32 tensor-op engines at
-rho 251.69 with 78.2% over budget (`results/a7_kernelclass.json`). The first is flag-invisible and
-bit-identical under every precision flag a user is told to set; the second is removed 99.9% by
-`allow_tf32=False` (`results/a7b_precision_policy.json`).
+## 1.3 Method
 
-Four claims in this program were retracted by their own pre-registered rules, and they are reported with
-mechanisms rather than as apologies (§7.1): the conv depth law, the "flag-invisible everywhere" attribution,
-the ineligibility prediction that expected rho to fall when winograd was excluded (it rose 22-25× because
-ineligibility installs a worse engine), and — most consequentially — the claim that the engine class is a
-function of the conv parameters (k, s, d). It is a dispatch decision over (C, output extent): one step of
-output extent moves rho 20-38× (`ATLAS_A8.md`, `results/a8b_analysis.json`).
+The instrument precedes the science. Box calibration (`results/calibration.json`) fixes the coordinates every
+later claim is expressed in: 48 SMs, 25,165,824-byte L2, launch floor 7.46 µs single-shot against 2.94 µs
+back-to-back. Clock locking was unavailable, so every timing here is unlocked-clock and the drift protocol
+carries the burden: saturated bandwidth boundaries replicated to ≤0.13% across a 9.6 h interval
+(`results/e1_triad_day2.json`).
 
-## 1.4 What survives
+The reference axis is measured three ways, each with a preregistration committed before its run: profiler
+kernel-name capture at matched shapes (`a7_kernelclass_prereg.md`), an fp64 anchor built with `allow_tf32=False`
+and fp64 tensors, and precision-flag pairs that hold the tuple fixed while flipping one flag
+(`a7b_precision_policy.json`). The tuple surface (`tuple_surface.py`, prereg `c16fb5e`) sweeps one declared
+coordinate at a time from a fixed base and repeats every cell twice, so class can be tested for determinism
+rather than assumed. Held-out delivery evidence comes from a per-arm contract table whose policy is specified
+executably in §6.5.
 
-**The certificate (§4).** Benchmark agreement is a binary whole-tensor check against the recorded reference,
-and no anchor statistic can upgrade or downgrade it. Separately, the reference's own consumption
-(rho_max, frac_over) is a *diagnostic* that constrains what a reported ratio means: frac_over 0 means the
-reference is indistinguishable from an exact anchor at the budget, below 0.02 a tail problem confined to a
-sparse set, above 0.5 a bulk failure of the reference itself, which leaves any ratio quoted against it with a
-denominator outside the budget. The rationale is measured, not
-stipulated — a rho_max 10.2 winograd row is a tail problem and conditionally reportable while a rho_max 111
-TF32 row is a bulk failure no tolerance loosening rescues.
+## 1.4 Supported findings
 
-**The compression result (§4.5).** The certificate's magnitude field compresses onto derived coordinates
-out of fold (Spearman 0.833 from geometry alone, 0.986 with the engine class supplied), and the admission
-field does not (79% bulk accuracy without the class, 100% with it). The class itself is only 0.604
-predictable from those same coordinates against a 0.5625 majority baseline, so the certificate is a surface
-for magnitude and a measured-per-shape cost for admission — a weaker and more useful statement than
-"predictive for unmeasured shapes."
+**The dispatch map is measured, deterministic and categorical.** Across 17 cells and two repeats each, the
+engine class agreed 34/34 times (`results/tuple_surface.json`). It is a step function of declared coordinates,
+and the steps are one unit wide: stride 2, dilation 2, real channels-last layout and C=16 each leave the
+winograd corner, while pad, batch and C=64 stay inside it. The fp64 anchor is class O in every cell. Table 1
+(§2.5) is the map itself.
 
-**Composition (§5.2).** Tolerance was first cut as unclaimable, then re-measured in the currency the claim
-actually needs. On six two-stage chains with fp64 anchors, end-to-end budget consumption exceeds the worse
-stage by a measured factor of 1.0–2.5×, five of six inside a factor of two (one inside 1.5×), bulk
-inadmissibility is dominated rather than compounded, and two chains break the worst-stage bound: deep
-reduction feeding deep reduction is super-additive at 2.34× the additive prediction, and a clean control of
-two individually admissible matmul stages composes to ρ 1.29, past budget. The first cut
-was an instrument gap, and the paper keeps that history rather than presenting the repair as the original
-plan.
+**Layout is a dispatch coordinate, not an invariance.** A real channels_last input at the base tuple dispatches
+to TF32 tensorop at $\rho$ 429.4 with frac_over 0.784, strides `[12544, 1, 1792, 256]` recorded as passed; the
+same tensor with `allow_tf32=False` runs fp32 SIMT at $\rho$ 0.239 and is bit-inequal. The earlier invariance
+claim had compared NCHW with itself and is withdrawn.
 
-**The delivery evidence (§3.3-§3.5).** On the conv gate chain, the delivered selection equals torch on 52 of
-56 rows (`results/r1_conv_gated.jsonl`), regret is zero on the four rows where a hand arm passes, and the
-paired difference against torch.compile is +11.9/+12.1/+10.3 pp at t = 2.44/1.64/1.60 (`results/r42_analysis.json`).
-Under a corrected pass predicate the counts move and are published as corrected: 15/560 default-reference
-hand passes and 80/280 ieee-vs-fp32 (`results/f24_verify.json`). Chain order is invariant (0/36 conv, 0/168
-rider cells), and 165 of 672 arm-anchor cells pass only against the fp64 anchor, which is why the paper uses
-a three-anchor lattice and no band-global tolerance.
+**The gate's budget and the reference's error are the same order.** For winograd-class rows the reference spends
+$\rho$ 1.4–12.8 of the budget with frac_over 0.0005–0.0077 — a tail problem; for TF32-class rows $\rho$ 60–429
+with frac_over 0.76–0.79 — a bulk failure of the reference itself. The profiler-matched class capture puts the
+same separation in one pair of rows: winograd at $\rho$ 10.195 with 0.52% of elements over budget against TF32
+tensorop at $\rho$ 251.69 with 78.2% (`results/a7_kernelclass.json`). On the conv gate chain, hand kernels pass
+20/560 checks against the default reference and 95/280 against a true-fp32 reference
+(`results/r1_conv_gated.jsonl`, `results/f24_verify.json`). Delivery under a strict admission predicate is
+therefore torch on 52/56 rows, and the conv delivery claim for hand kernels is withdrawn rather than
+reinterpreted.
 
-**The spine's verdict (§7.2).** On this surface the continuous form of the derived-coordinate hypothesis
-fails and a bounded categorical form succeeds. A reader who requires a continuous collapse should read this
-as a negative result; a reader who wants a usable admission rule gets one that is bounded, costed, and
-falsifiable.
+**Magnitude compresses; admission does not.** The magnitude field is predictable out of fold from geometry
+alone (Spearman 0.833) and more so with the engine class supplied (0.986). The admission field is not: 79% bulk
+accuracy without the class, 100% with it, and the class itself is only 0.604 predictable from those coordinates
+against a 0.5625 majority baseline. That asymmetry is the paper's honest bottom line — a surface for magnitude,
+an enumerated lookup for admission — and it is why the certificate's two halves are reported separately rather
+than as one predictive claim.
 
-## 1.5 What a reader should do with this
+**Composition and delivery are bounded, not general.** On six two-stage chains with fp64 anchors, end-to-end
+budget consumption exceeds the worse stage by 1.0–2.5×, five of six inside a factor of two, with two named
+counterexamples breaking the worst-stage bound (deep reduction feeding deep reduction at 2.34× the additive
+prediction; two individually admissible matmul stages composing to $\rho$ 1.29). On the conv gate chain the
+delivered selection equals torch on 52/56 rows with zero regret where a hand arm passes, and the paired
+difference against `torch.compile` is +11.9/+12.1/+10.3 pp at t = 2.44/1.64/1.60
+(`results/r42_analysis.json`).
 
-The paper is built so that its claims can be checked without re-running a GPU. §8 ships auditors that read
-committed artifacts and exit nonzero when a cited number cannot be regenerated; the provenance table maps
-every number in the text to its file and field. The decision procedure is: take the certificate for your
-shape family (§4.1), check whether your downstream stage is the dirtier one (§5.2 gives the bound and its
-exception), and treat any delivery claim without an admission field as a ranking rather than a result.
+## 1.5 Limitations
 
-The scope is stated with the results rather than after them: one architecture, one fp64 build, one torch
-version (2.14.1+cu130), designed lattices rather than samples from a benchmark distribution, unlocked
-clocks. H100 folklore is re-derived here, not cited.
+One architecture (GB10/sm_120), one library build (cudnn 92400), one torch version (2.14.1+cu130), unlocked
+clocks, designed lattices rather than samples from a benchmark distribution. Class determinism was measured
+across two repeats in one process on an idle device; a contended device or a library upgrade could move a step
+position without any declared coordinate changing, so the admission half is best read as a lookup keyed by
+(tuple, build). The surface was measured at $k=3$, spatial extent 7–14, batch ≤ 8. No second architecture was
+available, so architecture-level statements remain reanalysis of published numbers rather than measurements
+here. The selector's economics in §6 are eager-only by construction and support no compile claim.
+
+The two open questions the paper does not answer are named rather than buried: whether the frozen class
+predictor beats a majority baseline out of family (untested), and whether $\rho_{\max}$ is a bias statistic
+rather than a tail statistic under a within-class geometry sweep (untested). Both are registered as the next
+measurements.
+
+## 1.6 What a reader should do with this
+
+Take the tuple, look up its class in Table 1, read $\rho$ and frac_over for that class, and only then interpret
+any speed ratio quoted against that reference. If frac_over is near zero the reference is a usable baseline and
+the ratio means what it says; if it is above 0.5 the ratio has a denominator outside the budget and should be
+quoted with its class. Treat any delivery claim without an admission field as a ranking rather than a result.
+The package ships auditors that read committed artifacts and exit nonzero when a cited number cannot be
+regenerated, and the provenance table maps every number in the text to its file and field, so the checks do not
+require a GPU.
 
 ---
 
@@ -282,6 +286,15 @@ but *which* property of its coefficient conditioning produces 10× amplification
 PyTorch exposes no algorithm handle for it. The measurement stands; the mechanism is a named candidate, and
 it is the specific question this paper would put to a peer with cudnn internals access.
 
+**$\rho$ is normalised by the benchmark's own fp32 tolerance, verified in source.** `src/kernelbench/eval.py`
+`get_tolerance_for_precision` returns $10^{-4}$ for `torch.float32` (citing torchbench) and $10^{-2}$ only for
+fp16/bf16, so the gate used throughout this paper is the benchmark's shipped contract, not a stricter private
+one. That makes $\rho$ an exact statement about the shipped benchmark rather than a remark about people who
+tighten tolerances: at fp32 the reference's own deviation and the gate's budget are the same order of magnitude,
+so on the shapes measured here a candidate's verdict is decided by which engine the reference dispatched to.
+$\rho \geq 1$ is a per-element statement, not a whole-tensor one — the fraction of elements over budget
+(`frac_over`, reported alongside every $\rho$) is what decides whether a candidate could pass at all.
+
 ## 2.4 What the instrument says about the atlas's spine hypothesis
 
 The spine predicted that domain boundaries, irregular in raw-shape space, collapse to low-complexity surfaces
@@ -316,8 +329,9 @@ or downgrade it:
   verdict is whatever that check returns. For a relaxed contract, the reference's failing set is sparse, so
   a loosening that covers 0.5% of elements is a defensible convention *provided it is declared and its own
   candidate-level evidence is supplied*. It is not a licence to call the benchmark row correct.
-- **Bulk-inadmissible diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
-  0.77–0.78), so a speedup ratio computed against it has a denominator that is itself outside the budget.
+- **Bulk reference-error diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
+  0.77–0.78), so a speedup ratio computed against it has a denominator whose own error is outside the budget.
+  This is a property of the reference and not an admission verdict on the row.
   Whether the *candidate* misses the contract is a separate, candidate-level check (criterion (i)), and the
   statement "no loosening rescues that" is about the reference, not a verdict on the candidate. Report the
   pair, not a ratio. This one *is* a claim about the ratio's meaning
@@ -336,26 +350,54 @@ All reference statistics in this section are reported under a named criterion an
 These criteria were conflated in an earlier draft ("unconditional", "not a speedup"), and the section below is the scope-wide correction of that defect. A row may be judged under criterion (i) while its reference statistics are read under (ii) or (iii); the paper's conclusions name the criterion they use.
 
 
-## 2.5 The tuple test: the class boundary is a function of the tuple
+## 2.5 The tuple surface: class is a deterministic partition of the declared tuple, and the simple (s,d) rule is scoped
 
-The two-class result in §2.3 was measured at one shape (C256, k=3, s=1, d=1, H=7, W=7). A pre-registered grid (shipped producer `kernels/tuple_test.py`) varies stride, dilation, pad, layout and batch at that fixed shape — 9 rows, seed 4321, L2-flushed, torch.profiler CUDA kernel names, correctness vs fp64:
+Round-8's tuple test varied stride, pad, dilation, layout and batch at one fixed shape and reported six class changes over a manually ordered list. The round-11 review is right on two counts: such an ordering cannot by itself rule out a simple threshold, and the NHWC row never ran channels-last convolution — its branch permuted the tensor back to contiguous NCHW before `F.conv2d`, so the recorded strides described an intermediate tensor rather than the convolution input. Both objections are answered by measurement. A pre-registered 17-cell surface (`kernels/tuple_surface.py`, frozen before the run; record `results/tuple_surface.json`) sweeps each coordinate independently at the base shape (C256, k3, H=W=7, batch 2, seed 4321), includes the two cells the round-9 review found outside the published ranges, runs the declared layout for real (channels_last input handed directly to `F.conv2d`, with the strides of the tensors actually passed recorded for both flag settings), repeats every cell twice, and records the fp64 anchor's class per cell.
 
-- **Class W (winograd)**: stride=1, dilation=1, pad<=2, NCHW or NHWC, batch<=4. rho_max 6.4-12.8,
-  frac_over 0.004-0.008, bit-identical output under every precision flag.
-- **Class T (TF32 tensorop)**: stride=2 or dilation=2. rho_max 221.2-369.4, frac_over ~0.78.
-  allow_tf32=False removes 99.9% (ratios 0.0016/0.0022/0.0007) with bit-inequal output.
+What the surface measures:
 
-The ranges above are the actual class span of the regenerated record
-(`lab/results/tuple_test.json`, producer `kernels/tuple_test.py`, pre-registered grid
-stride x pad x dilation x layout x batch): the pad-2 winograd row reaches rho_max 12.8024
-(frac_over 0.0072) and the stride-2-pad-2 TF32 row reaches rho_max 221.2461 (frac_over 0.7818),
-both inside the class span and both missing from the old pad-1-only prose ranges (6.4-6.8 /
-315.1-369.4). The record is the truth; the prose ranges were widened to it.
+- **Determinism, the dispatchability condition.** All 17 cells return the same class in both repeats (34/34 runs). Class is a function of the declared tuple on this device, not of runtime state, so admission can be dispatched from coordinates without profiling the candidate. This is the premise §4.5's rule and the compression result both rest on, and it had not been measured before.
+- **The simple rule holds where round-8 looked and fails one step away.** Every cell with s=1, d=1 and (C, extent) = (64,7) or (256,7) is W; every cell with s≠1 or d≠1 is T; the pad axis 0→2 stays W. But C=16 at s=1, d=1 is T (rho_max 60.2, frac_over 0.760) and H=W=14 at s=1, d=1 is T (rho_max 371.2, frac_over 0.786). So "W iff s=d=1" is a partial rule: correct on the axes the round-8 grid varied, false in depth and extent. The §4.5 sentence that the tuple test "rules out a threshold in the coordinates it varied" is withdrawn; the accurate statement is that the boundary is a single step in each coordinate varied, with step positions that depend on C and extent.
+- **Layout is a dispatch coordinate.** A genuine channels_last input at the base shape runs T (rho_max 429.4, frac_over 0.784, input strides [12544, 1, 1792, 256]) while the same shape in NCHW runs W (rho_max 6.7). The round-8 "NCHW or NHWC" wording is withdrawn: that test compared NCHW against itself. Layout invariance is false on GB10 at this shape. Under `allow_tf32=False` the channels_last cell becomes fp32 SIMT (rho_max 0.239, ratio 5.6e-4, bit-inequal).
+- **Class spans, measured.** W: rho_max 1.4–12.8 (C=64 gives 1.4; pad-2 gives 12.8024, reproducing the round-9 reviewer's stored value), frac_over 0.0005–0.0077, bit-identical output under every precision flag in all seven W cells. T: rho_max 60.2–429.4, frac_over 0.760–0.786, and `allow_tf32=False` removes 96.4–99.9% of the budget (ratios 3.6e-2 down to 5.6e-4) with bit-inequal output. The published 6.4–6.8 / 315–369 ranges were pad-1-only readings; the measured class span replaces them.
+- **Reference realization.** Every cell's fp64 anchor dispatches to cutlass `implicit_convolve_dgemm` (class O) — no tensorop path exists at fp64 — so the anchor lattice, not a single anchor, is the object any certificate must be written over.
 
-Six of eight consecutive transitions in the grid flip W<->T (stride 1->2, dilation 1->2, pad and batch transitions), so the boundary is a step function of the tuple; it is not a smooth function. At fixed (C, H, batch), the class flips between successive stride/dilation values, and a dispatcher that reads only (C, output extent) misclassifies one step of H on the 1x1 family (C16/C64 -> implicit_convolve_sgemm fp32 SIMT, rho 0.005-0.032; C256 -> cutlass_80_tensorop_s1688gemm TF32 tensor core, rho 141-184): one H step across that boundary moves rho by 20-38x. This is a dispatch decision over the enumerated tuple, not a smooth surface in (k,s,d): each row's class is stated by the tuple's own values, and the boundary is the tuple's geometry, not a learned rule. The ×2.5 nearest-centroid figure and the claim "boundary is not a low-complexity surface" are withdrawn — that figure was one classifier on four log coordinates, not evidence about the tuple. What §4.5 measures is a separate question, retained as already-scoped: whether (rho_max, frac_over) is predictable from derived coordinates (compression result).
+Consequence for the claim: the boundary is categorical and deterministic in the declared tuple. That is the positive low-complexity result in tuple coordinates — admission becomes a lookup over an enumerated tuple partition rather than a continuous model — and it is also why the continuous derived-coordinate story (§4.5) cannot carry admission on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
 
-**Corrected producer and the H7 flag-pair measurement.** The tuple-test producer is shipped in the package at `kernels/tuple_test.py`; it applies the row's own pad field (the earlier `(k-1)*d//2` collapse made every row zero-padded and produced the three shape mismatches the review found), asserts each output shape against the convolution formula, and records per-row input/weight parameters (stride, pad, dilation, layout, batch) and the output-stride
-  record, tensor strides, and a paired precision-flag measurement at H=7 for every row. The regenerated `results/tuple_test.json` (shipped in the package, preregistration at kernels/tuple_test.py) shows `out_shape == expected_h` for all 9 rows and breaks the padding-2 rows out of the pad-1 group (rho 12.8024 at pad 2 vs 6.7362/369.4046/315.1446 at pad 1). The precision-flag pair at H=7 confirms the A7b two-class reading: class-W rows are bit-identical under flag-off (flagoff_bit_equal = True, rho_flagoff = rho), class-T rows are bit-inequal with flagoff_rho_ratio ≈ 0.0012–0.0019, i.e. allow_tf32=False removes ≈99.8% of the reference budget at this height — consistent in direction with the A7b ratios (0.0016/0.0022/0.0007, measured at H=5) but now measured at H=7, and no longer sourced from the H=5 experiment.
+
+### Table 1 — the measured dispatch map (17 cells, two repeats each)
+
+`results/tuple_surface.json`, prereg frozen at `c16fb5e` before the run; base tuple C=256, k=3, H=W=7, batch=2,
+stride=1, pad=1, dilation=1, NCHW; seed 4321; GB10/sm_120, cudnn 92400. Classes: W = winograd non-fused,
+T = TF32 tensorop (cutlass), I = fp32 SIMT (implicit_convolve_sgemm), O = fp64 dgemm anchor. `flag-off` is the
+class measured with `allow_tf32=False` on the identical tuple; "I" there means the flag removes the tensorop path
+entirely. The fp64 anchor is class O in all 17 cells.
+
+| cell | varied coordinate | class | rho_max | frac_over | flag-off class |
+|---|---|---|---|---|---|
+| A00 | base | W | 6.736 | 0.004743 | W |
+| A01 | stride=2 | T | 369.4 | 0.781 | I |
+| A02 | stride=3 | T | 167.1 | 0.7717 | I |
+| A03 | dilation=2 | T | 315.1 | 0.7841 | I |
+| A04 | dilation=3 | T | 208.7 | 0.7856 | I |
+| A05 | pad=0 | W | 3.559 | 0.007734 | W |
+| A06 | pad=2 | W | 12.8 | 0.007186 | W |
+| A07 | layout=NHWC | T | 429.4 | 0.7837 | I |
+| A08 | batch=1 | W | 6.435 | 0.004225 | W |
+| A09 | batch=4 | W | 6.816 | 0.004903 | W |
+| A10 | batch=8 | W | 8.77 | 0.005122 | W |
+| B01 | C=16 | T | 60.25 | 0.7602 | I |
+| B02 | C=64 | W | 1.405 | 0.0004783 | W |
+| B03 | H=14, W=14 | T | 371.2 | 0.7855 | W |
+| C01 | stride=2, dilation=2 | T | 315.1 | 0.7869 | I |
+| C02 | pad=2, dilation=2 | T | 315.1 | 0.7847 | I |
+| C03 | stride=2, pad=2 | T | 221.2 | 0.7818 | I |
+
+Read as a dispatch surface, not a smooth field: the W→T step is one unit wide in stride, dilation and layout and
+does not appear at all in batch or pad; C=16 and a 14×14 extent both leave the winograd corner while C=64 stays
+inside it. The two magnitudes are separated by two to three orders of magnitude (rho 1.4–12.8 versus 60–429,
+frac_over 0.0005–0.0077 versus 0.760–0.787), which is why the admission question is a class question before it is
+a magnitude question.
 
 ---
 
@@ -674,9 +716,10 @@ it produced a two-class decomposition instead of a failed AUC.
 
 ## 4.4 What the certificate changes, and what it does not
 
-**Changes.** A speedup ratio computed at a row whose frac_over is 0.77 (any TF32 conv route) is a ratio
-between two arms that both miss the contract, and the paper says so before quoting it — what that row's
-*verdict* is, is decided by the benchmark's own candidate-versus-reference check and not by frac_over. At a
+**Changes.** At a row whose frac_over is 0.77 (any TF32 conv route), the *denominator* of a speedup ratio is
+a reference that itself sits ~0.78 budget-units from an exact anchor. That is a statement about the reference's
+accuracy, not a verdict on either arm: the row's own *verdict* is the benchmark's candidate-versus-reference
+check, which frac_over does not enter, and a candidate identical to that reference passes it. At a
 winograd row with frac_over 0.005 the ratio stands as measured and the paper states that 0.5% of reference
 elements are the ones the reference itself misses. On the reduction family, where the certificate is clean at
 default precision (baseline 56/56), the published rankings stand unchanged — the certificate costs nothing
@@ -1001,8 +1044,11 @@ rather than measurements. The family verdict survives that; a per-arm table woul
 ## 6.3 What the selector is and is not
 
 **It is** a zero-probe rule over derived coordinates with a measured transfer record. Its economics
-section is descriptive accounting, not a general law: on 9 admissible reduction rows the delivered arm costs
-+0.86% (SE 1.37) against the fastest admissible arm, and over all 24 rows the cost is +3.53% (SE 1.37). Every
+section is descriptive accounting, not a general law: on the 9 admissible reduction rows the delivered arm costs
++0.86% (SD 1.11, SE 0.37, n=9) against the fastest admissible arm, and over all 24 rows the cost is +3.53%
+(SD 6.73, SE 1.37, n=24). The two standard errors belong to different populations and are not interchangeable;
+the 1.37 figure describes the deployed policy over all rows, the 0.37 figure describes admissible delivery only.
+Every
 failing row has an explicit correctness-preserving fallback (torch, which passes), both policies are compared
 under one flush-and-probe cost model with probe arms pre-registered at b ∈ {1, 2, 4, 8} and their measured
 costs reported, and no intrinsic probe budget is assumed — the recorded break-even is conditional on probe
@@ -1068,6 +1114,38 @@ derived_coords: visits_per_shape, probe_cost_over_kernel_time, regret_total, bou
 results/f24_verify.json (f1), results/s6_dispatcher_audit.json, results/m3_r42_analysis.json,
 variance: paired regret differences with n and SE; regret totals flagged as lower bounds where the chosen
 arm fails the contract, n_reps: 12 per cell (m3 chain), date: 2026-10-24}`
+
+
+## 6.5 The evaluated policy, stated as executed (round-11 F4)
+
+The reviewer's F4 objection was that §6.2's numbers did not name the policy they evaluated, so the fallback was
+described rather than measured. Here is the policy, as executed in `results/s56_heldout_contract.json`, and
+nothing beyond it was evaluated.
+
+1. **Gate choice is read, not re-derived.** Each row's delivered arm is taken from the recorded zero-probe
+   decision; no re-tuning and no re-timing of arms beyond the recorded med-of-12 is used.
+2. **Validate-then-time.** Every candidate arm is checked against the benchmark contract first (evaluator-exact
+   `allclose` against the reference at the shipped fp32 gate, $\mathrm{atol}=\mathrm{rtol}=10^{-4}$ per
+   `eval.py:get_tolerance_for_precision`), and timed only if it passes. No failing arm's timing enters a
+   comparison.
+3. **Fallback substitution is the all-rows population.** On the three reduction rows where the gate's hand arm
+   fails the contract, the deployed policy substitutes the torch timing measured on that same row. That
+   substitution *is* the 24-row population (3.5304%, SD 6.73, SE 1.37); there is no third policy in the record
+   and no row is dropped.
+4. **Check cost is charged separately.** The contract check costs one reference build (cached per row) plus one
+   execution per checked arm plus the comparison. The 0.86% (n=9) and 3.53% (n=24) figures are kernel-time
+   ratios and exclude that check; a reader who wants probe-inclusive cost adds the per-arm single-execution
+   times already recorded in the artifact (`arms[*].t_ms` are med-of-12, so one check execution is of that
+   order). The check is not free and is not claimed to be.
+5. **Fresh inputs.** The zero-probe rule cannot run the check at dispatch time (policy D3), so its correctness
+   claim is conditional: the measured 9/12 admissibility is the rate at which its chosen arm *would* have
+   passed had a check been run. A deployed D1 policy pays the check and delivers correctness on 24/24 rows by
+   construction — torch on the three failures — at the +3.53% cost.
+
+Population accounting, restated once: 24 reduction rows, 12 gate hand firings, 9 admissible (0.75 pass
+fraction, the prereg's middle branch), 3 failures at budget ratios 1.61/2.57/7.11; 10 conv rows, 4 gate hand
+firings, 0 admissible (ratios 94-197). The two regret figures are two populations under one policy, and the
+standard errors are not interchangeable (0.37 for the 9-row admissible set, 1.37 for all 24 rows).
 
 ---
 

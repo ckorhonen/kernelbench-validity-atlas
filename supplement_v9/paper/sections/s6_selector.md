@@ -86,8 +86,11 @@ rather than measurements. The family verdict survives that; a per-arm table woul
 ## 6.3 What the selector is and is not
 
 **It is** a zero-probe rule over derived coordinates with a measured transfer record. Its economics
-section is descriptive accounting, not a general law: on 9 admissible reduction rows the delivered arm costs
-+0.86% (SE 1.37) against the fastest admissible arm, and over all 24 rows the cost is +3.53% (SE 1.37). Every
+section is descriptive accounting, not a general law: on the 9 admissible reduction rows the delivered arm costs
++0.86% (SD 1.11, SE 0.37, n=9) against the fastest admissible arm, and over all 24 rows the cost is +3.53%
+(SD 6.73, SE 1.37, n=24). The two standard errors belong to different populations and are not interchangeable;
+the 1.37 figure describes the deployed policy over all rows, the 0.37 figure describes admissible delivery only.
+Every
 failing row has an explicit correctness-preserving fallback (torch, which passes), both policies are compared
 under one flush-and-probe cost model with probe arms pre-registered at b ∈ {1, 2, 4, 8} and their measured
 costs reported, and no intrinsic probe budget is assumed — the recorded break-even is conditional on probe
@@ -153,3 +156,35 @@ derived_coords: visits_per_shape, probe_cost_over_kernel_time, regret_total, bou
 results/f24_verify.json (f1), results/s6_dispatcher_audit.json, results/m3_r42_analysis.json,
 variance: paired regret differences with n and SE; regret totals flagged as lower bounds where the chosen
 arm fails the contract, n_reps: 12 per cell (m3 chain), date: 2026-10-24}`
+
+
+## 6.5 The evaluated policy, stated as executed (round-11 F4)
+
+The reviewer's F4 objection was that §6.2's numbers did not name the policy they evaluated, so the fallback was
+described rather than measured. Here is the policy, as executed in `results/s56_heldout_contract.json`, and
+nothing beyond it was evaluated.
+
+1. **Gate choice is read, not re-derived.** Each row's delivered arm is taken from the recorded zero-probe
+   decision; no re-tuning and no re-timing of arms beyond the recorded med-of-12 is used.
+2. **Validate-then-time.** Every candidate arm is checked against the benchmark contract first (evaluator-exact
+   `allclose` against the reference at the shipped fp32 gate, $\mathrm{atol}=\mathrm{rtol}=10^{-4}$ per
+   `eval.py:get_tolerance_for_precision`), and timed only if it passes. No failing arm's timing enters a
+   comparison.
+3. **Fallback substitution is the all-rows population.** On the three reduction rows where the gate's hand arm
+   fails the contract, the deployed policy substitutes the torch timing measured on that same row. That
+   substitution *is* the 24-row population (3.5304%, SD 6.73, SE 1.37); there is no third policy in the record
+   and no row is dropped.
+4. **Check cost is charged separately.** The contract check costs one reference build (cached per row) plus one
+   execution per checked arm plus the comparison. The 0.86% (n=9) and 3.53% (n=24) figures are kernel-time
+   ratios and exclude that check; a reader who wants probe-inclusive cost adds the per-arm single-execution
+   times already recorded in the artifact (`arms[*].t_ms` are med-of-12, so one check execution is of that
+   order). The check is not free and is not claimed to be.
+5. **Fresh inputs.** The zero-probe rule cannot run the check at dispatch time (policy D3), so its correctness
+   claim is conditional: the measured 9/12 admissibility is the rate at which its chosen arm *would* have
+   passed had a check been run. A deployed D1 policy pays the check and delivers correctness on 24/24 rows by
+   construction — torch on the three failures — at the +3.53% cost.
+
+Population accounting, restated once: 24 reduction rows, 12 gate hand firings, 9 admissible (0.75 pass
+fraction, the prereg's middle branch), 3 failures at budget ratios 1.61/2.57/7.11; 10 conv rows, 4 gate hand
+firings, 0 admissible (ratios 94-197). The two regret figures are two populations under one policy, and the
+standard errors are not interchangeable (0.37 for the 9-row admissible set, 1.37 for all 24 rows).

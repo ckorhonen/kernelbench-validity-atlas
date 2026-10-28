@@ -140,6 +140,15 @@ but *which* property of its coefficient conditioning produces 10× amplification
 PyTorch exposes no algorithm handle for it. The measurement stands; the mechanism is a named candidate, and
 it is the specific question this paper would put to a peer with cudnn internals access.
 
+**$\rho$ is normalised by the benchmark's own fp32 tolerance, verified in source.** `src/kernelbench/eval.py`
+`get_tolerance_for_precision` returns $10^{-4}$ for `torch.float32` (citing torchbench) and $10^{-2}$ only for
+fp16/bf16, so the gate used throughout this paper is the benchmark's shipped contract, not a stricter private
+one. That makes $\rho$ an exact statement about the shipped benchmark rather than a remark about people who
+tighten tolerances: at fp32 the reference's own deviation and the gate's budget are the same order of magnitude,
+so on the shapes measured here a candidate's verdict is decided by which engine the reference dispatched to.
+$\rho \geq 1$ is a per-element statement, not a whole-tensor one — the fraction of elements over budget
+(`frac_over`, reported alongside every $\rho$) is what decides whether a candidate could pass at all.
+
 ## 2.4 What the instrument says about the atlas's spine hypothesis
 
 The spine predicted that domain boundaries, irregular in raw-shape space, collapse to low-complexity surfaces
@@ -174,8 +183,9 @@ or downgrade it:
   verdict is whatever that check returns. For a relaxed contract, the reference's failing set is sparse, so
   a loosening that covers 0.5% of elements is a defensible convention *provided it is declared and its own
   candidate-level evidence is supplied*. It is not a licence to call the benchmark row correct.
-- **Bulk-inadmissible diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
-  0.77–0.78), so a speedup ratio computed against it has a denominator that is itself outside the budget.
+- **Bulk reference-error diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
+  0.77–0.78), so a speedup ratio computed against it has a denominator whose own error is outside the budget.
+  This is a property of the reference and not an admission verdict on the row.
   Whether the *candidate* misses the contract is a separate, candidate-level check (criterion (i)), and the
   statement "no loosening rescues that" is about the reference, not a verdict on the candidate. Report the
   pair, not a ratio. This one *is* a claim about the ratio's meaning
@@ -194,23 +204,51 @@ All reference statistics in this section are reported under a named criterion an
 These criteria were conflated in an earlier draft ("unconditional", "not a speedup"), and the section below is the scope-wide correction of that defect. A row may be judged under criterion (i) while its reference statistics are read under (ii) or (iii); the paper's conclusions name the criterion they use.
 
 
-## 2.5 The tuple test: the class boundary is a function of the tuple
+## 2.5 The tuple surface: class is a deterministic partition of the declared tuple, and the simple (s,d) rule is scoped
 
-The two-class result in §2.3 was measured at one shape (C256, k=3, s=1, d=1, H=7, W=7). A pre-registered grid (shipped producer `kernels/tuple_test.py`) varies stride, dilation, pad, layout and batch at that fixed shape — 9 rows, seed 4321, L2-flushed, torch.profiler CUDA kernel names, correctness vs fp64:
+Round-8's tuple test varied stride, pad, dilation, layout and batch at one fixed shape and reported six class changes over a manually ordered list. The round-11 review is right on two counts: such an ordering cannot by itself rule out a simple threshold, and the NHWC row never ran channels-last convolution — its branch permuted the tensor back to contiguous NCHW before `F.conv2d`, so the recorded strides described an intermediate tensor rather than the convolution input. Both objections are answered by measurement. A pre-registered 17-cell surface (`kernels/tuple_surface.py`, frozen before the run; record `results/tuple_surface.json`) sweeps each coordinate independently at the base shape (C256, k3, H=W=7, batch 2, seed 4321), includes the two cells the round-9 review found outside the published ranges, runs the declared layout for real (channels_last input handed directly to `F.conv2d`, with the strides of the tensors actually passed recorded for both flag settings), repeats every cell twice, and records the fp64 anchor's class per cell.
 
-- **Class W (winograd)**: stride=1, dilation=1, pad<=2, NCHW or NHWC, batch<=4. rho_max 6.4-12.8,
-  frac_over 0.004-0.008, bit-identical output under every precision flag.
-- **Class T (TF32 tensorop)**: stride=2 or dilation=2. rho_max 221.2-369.4, frac_over ~0.78.
-  allow_tf32=False removes 99.9% (ratios 0.0016/0.0022/0.0007) with bit-inequal output.
+What the surface measures:
 
-The ranges above are the actual class span of the regenerated record
-(`lab/results/tuple_test.json`, producer `kernels/tuple_test.py`, pre-registered grid
-stride x pad x dilation x layout x batch): the pad-2 winograd row reaches rho_max 12.8024
-(frac_over 0.0072) and the stride-2-pad-2 TF32 row reaches rho_max 221.2461 (frac_over 0.7818),
-both inside the class span and both missing from the old pad-1-only prose ranges (6.4-6.8 /
-315.1-369.4). The record is the truth; the prose ranges were widened to it.
+- **Determinism, the dispatchability condition.** All 17 cells return the same class in both repeats (34/34 runs). Class is a function of the declared tuple on this device, not of runtime state, so admission can be dispatched from coordinates without profiling the candidate. This is the premise §4.5's rule and the compression result both rest on, and it had not been measured before.
+- **The simple rule holds where round-8 looked and fails one step away.** Every cell with s=1, d=1 and (C, extent) = (64,7) or (256,7) is W; every cell with s≠1 or d≠1 is T; the pad axis 0→2 stays W. But C=16 at s=1, d=1 is T (rho_max 60.2, frac_over 0.760) and H=W=14 at s=1, d=1 is T (rho_max 371.2, frac_over 0.786). So "W iff s=d=1" is a partial rule: correct on the axes the round-8 grid varied, false in depth and extent. The §4.5 sentence that the tuple test "rules out a threshold in the coordinates it varied" is withdrawn; the accurate statement is that the boundary is a single step in each coordinate varied, with step positions that depend on C and extent.
+- **Layout is a dispatch coordinate.** A genuine channels_last input at the base shape runs T (rho_max 429.4, frac_over 0.784, input strides [12544, 1, 1792, 256]) while the same shape in NCHW runs W (rho_max 6.7). The round-8 "NCHW or NHWC" wording is withdrawn: that test compared NCHW against itself. Layout invariance is false on GB10 at this shape. Under `allow_tf32=False` the channels_last cell becomes fp32 SIMT (rho_max 0.239, ratio 5.6e-4, bit-inequal).
+- **Class spans, measured.** W: rho_max 1.4–12.8 (C=64 gives 1.4; pad-2 gives 12.8024, reproducing the round-9 reviewer's stored value), frac_over 0.0005–0.0077, bit-identical output under every precision flag in all seven W cells. T: rho_max 60.2–429.4, frac_over 0.760–0.786, and `allow_tf32=False` removes 96.4–99.9% of the budget (ratios 3.6e-2 down to 5.6e-4) with bit-inequal output. The published 6.4–6.8 / 315–369 ranges were pad-1-only readings; the measured class span replaces them.
+- **Reference realization.** Every cell's fp64 anchor dispatches to cutlass `implicit_convolve_dgemm` (class O) — no tensorop path exists at fp64 — so the anchor lattice, not a single anchor, is the object any certificate must be written over.
 
-Six of eight consecutive transitions in the grid flip W<->T (stride 1->2, dilation 1->2, pad and batch transitions), so the boundary is a step function of the tuple; it is not a smooth function. At fixed (C, H, batch), the class flips between successive stride/dilation values, and a dispatcher that reads only (C, output extent) misclassifies one step of H on the 1x1 family (C16/C64 -> implicit_convolve_sgemm fp32 SIMT, rho 0.005-0.032; C256 -> cutlass_80_tensorop_s1688gemm TF32 tensor core, rho 141-184): one H step across that boundary moves rho by 20-38x. This is a dispatch decision over the enumerated tuple, not a smooth surface in (k,s,d): each row's class is stated by the tuple's own values, and the boundary is the tuple's geometry, not a learned rule. The ×2.5 nearest-centroid figure and the claim "boundary is not a low-complexity surface" are withdrawn — that figure was one classifier on four log coordinates, not evidence about the tuple. What §4.5 measures is a separate question, retained as already-scoped: whether (rho_max, frac_over) is predictable from derived coordinates (compression result).
+Consequence for the claim: the boundary is categorical and deterministic in the declared tuple. That is the positive low-complexity result in tuple coordinates — admission becomes a lookup over an enumerated tuple partition rather than a continuous model — and it is also why the continuous derived-coordinate story (§4.5) cannot carry admission on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
 
-**Corrected producer and the H7 flag-pair measurement.** The tuple-test producer is shipped in the package at `kernels/tuple_test.py`; it applies the row's own pad field (the earlier `(k-1)*d//2` collapse made every row zero-padded and produced the three shape mismatches the review found), asserts each output shape against the convolution formula, and records per-row input/weight parameters (stride, pad, dilation, layout, batch) and the output-stride
-  record, tensor strides, and a paired precision-flag measurement at H=7 for every row. The regenerated `results/tuple_test.json` (shipped in the package, preregistration at kernels/tuple_test.py) shows `out_shape == expected_h` for all 9 rows and breaks the padding-2 rows out of the pad-1 group (rho 12.8024 at pad 2 vs 6.7362/369.4046/315.1446 at pad 1). The precision-flag pair at H=7 confirms the A7b two-class reading: class-W rows are bit-identical under flag-off (flagoff_bit_equal = True, rho_flagoff = rho), class-T rows are bit-inequal with flagoff_rho_ratio ≈ 0.0012–0.0019, i.e. allow_tf32=False removes ≈99.8% of the reference budget at this height — consistent in direction with the A7b ratios (0.0016/0.0022/0.0007, measured at H=5) but now measured at H=7, and no longer sourced from the H=5 experiment.
+
+### Table 1 — the measured dispatch map (17 cells, two repeats each)
+
+`results/tuple_surface.json`, prereg frozen at `c16fb5e` before the run; base tuple C=256, k=3, H=W=7, batch=2,
+stride=1, pad=1, dilation=1, NCHW; seed 4321; GB10/sm_120, cudnn 92400. Classes: W = winograd non-fused,
+T = TF32 tensorop (cutlass), I = fp32 SIMT (implicit_convolve_sgemm), O = fp64 dgemm anchor. `flag-off` is the
+class measured with `allow_tf32=False` on the identical tuple; "I" there means the flag removes the tensorop path
+entirely. The fp64 anchor is class O in all 17 cells.
+
+| cell | varied coordinate | class | rho_max | frac_over | flag-off class |
+|---|---|---|---|---|---|
+| A00 | base | W | 6.736 | 0.004743 | W |
+| A01 | stride=2 | T | 369.4 | 0.781 | I |
+| A02 | stride=3 | T | 167.1 | 0.7717 | I |
+| A03 | dilation=2 | T | 315.1 | 0.7841 | I |
+| A04 | dilation=3 | T | 208.7 | 0.7856 | I |
+| A05 | pad=0 | W | 3.559 | 0.007734 | W |
+| A06 | pad=2 | W | 12.8 | 0.007186 | W |
+| A07 | layout=NHWC | T | 429.4 | 0.7837 | I |
+| A08 | batch=1 | W | 6.435 | 0.004225 | W |
+| A09 | batch=4 | W | 6.816 | 0.004903 | W |
+| A10 | batch=8 | W | 8.77 | 0.005122 | W |
+| B01 | C=16 | T | 60.25 | 0.7602 | I |
+| B02 | C=64 | W | 1.405 | 0.0004783 | W |
+| B03 | H=14, W=14 | T | 371.2 | 0.7855 | W |
+| C01 | stride=2, dilation=2 | T | 315.1 | 0.7869 | I |
+| C02 | pad=2, dilation=2 | T | 315.1 | 0.7847 | I |
+| C03 | stride=2, pad=2 | T | 221.2 | 0.7818 | I |
+
+Read as a dispatch surface, not a smooth field: the W→T step is one unit wide in stride, dilation and layout and
+does not appear at all in batch or pad; C=16 and a 14×14 extent both leave the winograd corner while C=64 stays
+inside it. The two magnitudes are separated by two to three orders of magnitude (rho 1.4–12.8 versus 60–429,
+frac_over 0.0005–0.0077 versus 0.760–0.787), which is why the admission question is a class question before it is
+a magnitude question.

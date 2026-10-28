@@ -15,7 +15,7 @@ The fifth was the prose inconsistency the review describes, now repaired in §2.
 otherwise), ships the A10/A11 producers and the S56 rerun, and pins the public source:
 
     https://github.com/ckorhonen/kernelbench-validity-atlas
-    commit 42b7bb06ceff6c6f558c19695a3a6f557735a84a
+    commit 80c7d52739267d48692c09c3ffe777a1907ed1b8
 
 That commit is the exact tree this package was built from. Anything omitted here is retrievable there at
 that revision, so no essential evidence depends on private access.
@@ -80,9 +80,11 @@ pin the check would certify its own repair.
 - Composition (a9, s55): rho_end/max(rho_A,rho_B) = 0.981/1.507/1.537/1.000/1.971/2.480. One chain inside
   1.0-1.5x, five inside a factor of 2. The union rule PASSES 4/6 and fails 2 (c5, c6). c5 is two
   individually admissible stages (0.0689, 0.6563) composing to 1.2939, past budget.
-- Delivery (s56): reduction gate hand deliveries 11/12 admissible at +4.13% (SE 1.40) time cost against
-  the best admissible arm; conv 0/4 admissible at budget ratios 17,431-23,783, so the conv delivery claim
-  is withdrawn.
+- Delivery (s56): reduction gate hand deliveries 9/12 admissible (0.75, the prereg middle branch) at
+  +0.86% (SD 1.11, SE 0.37, n=9) against the fastest admissible arm on the admissible rows, and +3.53%
+  (SD 6.73, SE 1.37, n=24) for the deployed policy over all 24 rows with the torch fallback executed; the
+  three failures sit at budget ratios 1.61/2.57/7.11. conv 0/4 admissible at budget ratios 94-197, so the
+  conv delivery claim is withdrawn. (The older 11/12 at +4.13% was the pre-rerun first run.)
 - Regret under admission (s55): the published "|A2-A1| <= 0.025 pp" is withdrawn. Corrected pp means and
   max|.| are +0.21/2.44 (def), -0.66/25.46 (ieee), -4.43/41.20 (fp64).
 - d_i denominator (s55): oracle-normalized +11.87/+12.08/+10.30 pp with sd 29.25/23.24/20.32 pp;

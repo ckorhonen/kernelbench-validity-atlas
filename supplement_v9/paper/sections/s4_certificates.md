@@ -75,9 +75,10 @@ it produced a two-class decomposition instead of a failed AUC.
 
 ## 4.4 What the certificate changes, and what it does not
 
-**Changes.** A speedup ratio computed at a row whose frac_over is 0.77 (any TF32 conv route) is a ratio
-between two arms that both miss the contract, and the paper says so before quoting it — what that row's
-*verdict* is, is decided by the benchmark's own candidate-versus-reference check and not by frac_over. At a
+**Changes.** At a row whose frac_over is 0.77 (any TF32 conv route), the *denominator* of a speedup ratio is
+a reference that itself sits ~0.78 budget-units from an exact anchor. That is a statement about the reference's
+accuracy, not a verdict on either arm: the row's own *verdict* is the benchmark's candidate-versus-reference
+check, which frac_over does not enter, and a candidate identical to that reference passes it. At a
 winograd row with frac_over 0.005 the ratio stands as measured and the paper states that 0.5% of reference
 elements are the ones the reference itself misses. On the reduction family, where the certificate is clean at
 default precision (baseline 56/56), the published rankings stand unchanged — the certificate costs nothing
