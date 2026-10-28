@@ -69,8 +69,9 @@ and 2.48× the worse stage across six chains, and on five of six a factor-of-two
 amplification term is subdominant whenever the downstream stage is the dirtier one (c1: a winograd stage at
 rho 7.7 feeding a TF32 stage at rho 5353 contributes one part in ten thousand of the end-to-end number).
 Bulk inadmissibility is dominated rather than compounded: where the stage fractions are large the compound
-fraction is bounded by the worst stage to within 1.07×, so a reader can carry the worse stage's frac_over
-forward and be right about the 0.5 bulk threshold.
+fraction is bounded by the worst stage to within 1.07×, so in these six chains a reader can carry the worse stage's frac_over
+forward and be right about the 0.5 bulk threshold. That is a bounded empirical finding over six chains, not an
+instruction that the worst stage always dominates; c5 below is its counterexample for the maximum statistic.
 
 The worst-stage bound has a counterexample in my own data and it belongs here rather than in a footnote.
 **c5 is two individually admissible stages — rho_A 0.0689, rho_B 0.6563 — that compose to rho_end 1.2939,

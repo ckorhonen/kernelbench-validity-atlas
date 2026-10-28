@@ -100,8 +100,10 @@ arm), probe arms cost more than the rule's entire residual, so the rule's total-
 entered at the moment of gate deployment, not a promised property of the rule. There is no claim that the
 rule is cheaper or faster on any individual row; the break-even numbers (6.35–28.84x budget ratio on the
 failing conv rows) are reported as conditionality, not as a ranking. The rule's output is a decision rule
-that dispatches to the cheapest admissible arm, and the 0.86% (±1.37) over all 24 rows is how much it
-pays to have made that decision without a probe. That is what the numbers show; they show it without a
+that dispatches to the cheapest admissible arm. The 0.86% figure is the accounting restricted to the nine
+rows where a hand delivery is admissible; the 3.53% (±1.37) over all 24 rows, with torch executed on every
+failing row, is the cost of the deployed rule including its fallback. The two are different populations and
+different policies and are quoted as such. That is what the numbers show; they show it without a
 probe-cost assumption and with every row's fallback named.
 
 **Reading discipline.** This section reports measured per-row results only, with an explicit
@@ -117,21 +119,31 @@ over noise, which is the exact reason this section is demoted rather than remove
 
 ## 6.4 Delivery-policy spec (per-round-9-repair)
 
-The selector's behaviour is fully specified by three mutually exclusive input regimes. A contract-preserving
-selector must name a policy for each:
+The selector's behaviour is specified by an executable decision rule over three mutually exclusive *check
+states*, defined by what the selector knows at dispatch time. The earlier draft's R1/R2/R3 were not disjoint
+and omitted the common case in which torch passes and a hand arm fails; this table replaces them.
 
-| Policy | Input condition | Delivery rule | Evidence |
+| Policy | Check state | Delivery rule | Evidence |
 |---|---|---|---|
-| R1 valid | every arm passes the contract at 1e-4 whole-tensor allclose | dispatch to the cheapest admissible arm | `results/r1_conv_gated.jsonl`, `results/w4_heldout.json.jsonl` |
-| R2 offline restricted | no arm passes; the input lies in a declared restricted domain (per-row precision, shape class) | dispatch to the best arm by declared relaxed contract, precision-quoted | `results/a2_loo.json`, `results/cf43.json` |
-| R3 assumed | the input is assumed to be within distribution (no per-arm check is possible without a probe) | dispatch to the cheapest arm; no correctness condition is asserted | stated in `paper/MANUSCRIPT.md` §6.2 only; no empirical support |
+| D1 checked, torch-passing | a per-arm contract check has been run (probe paid) and at least one arm passes | dispatch to the cheapest passing arm; when only torch passes, deliver torch | `results/r1_conv_gated.jsonl`, `results/w4_heldout.json.jsonl`, `results/s56_heldout_contract.json` |
+| D2 checked, none-passing | the check ran and no arm passes | dispatch to the best arm under a declared relaxed contract, with its precision quoted | `results/a2_loo.json`, `results/cf43.json` |
+| D3 unchecked, assumed | no per-arm check is possible without a probe | dispatch to the cheapest arm; no correctness condition is asserted | `paper/MANUSCRIPT.md` §6.2; no empirical support |
 
-The policy table is the round-9 F3 repair: the reviewer asked for the policy evaluated on the appropriate
-population and the fallback reconciled with the eager-only S56 pool. Section 6.2's per-row results are for
-population R1 (24 rows); rows that fail R1 fall to R2/R3 with the fallback cost named per row. Section 6.3's
-descriptive accounting states the fallback explicitly: on every failing row, torch is the fallback (passes on
-all 24), and the cost of that fallback is the torch timing, not a regret. Nothing here supports a compile
-claim: the compile comparison lives in §3.3 and is a different measurement with a different arm pool.
+D1 and D2 are disjoint by whether any arm passes; D3 is disjoint from both by whether a check was run. D1
+covers the torch-passes/hand-fails case explicitly: on the 24 reduction rows torch passes all 24 and the
+gate's hand delivery fails 3, so those three rows are D1-with-fallback, not violations of D1. Cost accounting
+follows the same split — over the nine admissible hand-delivery rows the gate costs +0.86% against the
+fastest admissible arm; over all 24 rows, with torch executed on every failing row, the deployed cost is
++3.53% (SE 1.37). §6.2 and §6.3 quote these as two populations and two policies.
+
+A zero-probe dispatcher cannot recognise those failures on fresh inputs, which is why D3 exists and why its
+cost is stated without a correctness claim. Where a probe is affordable, D1 is the only policy that carries a
+correctness guarantee, and its cost is the probe plus the fallback timing.
+
+"Never eager PyTorch" applies to pools that contain a compiled arm (§3.3, where the comparator is
+`torch.compile`); §6's pool is eager-only by construction, so its comparator is eager torch and the phrase
+does not apply here. Nothing here supports a compile claim: the compile comparison lives in §3.3 and is a
+different measurement with a different arm pool.
 
 **P2 row.**
 `{op_class: selector_economics, rule: v* = P/(t_g - t_b) with t_b < t_g; per-shape autotune amortizes only

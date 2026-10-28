@@ -103,7 +103,9 @@ date: 2026-10-22/23}`
 question CF2 asks is whether one tolerance band plus one anchor certifies the selector — the "band-global
 tau" hypothesis inherited from the pre-reframe framing.
 
-**Result — no nontrivial tau exists, and the pass structure is anchor-specific.** Anchor profiles are mixed
+**What is tested.** The property at stake is a single per-arm threshold tau that would predict pass or fail at every anchor in the lattice. The anchors are {default, explicit-ieee, fp64}; the tolerance range is the benchmark contract at 1e-4 together with the §5 sweep of bars 1.1-1.8e-4.
+
+**Result — within that range no nontrivial tau exists, and the pass structure is anchor-specific.** Anchor profiles are mixed
 on 48/56 rows (0.857), flat on 4, nested on 4; exact ieee~64 agreement is 39.3% (`cf43.cf2_anchor_profile`,
 `iee64_exact_agreement 0.3929`). Cell-level patterns over 672 cells (def, ieee, 64): pass-none 304, pass-64-only 165, pass-def-only 70,
 pass-64+ieee 75, pass-def+ieee 31, pass-all-three 27. The 165 fp64-only cells are the

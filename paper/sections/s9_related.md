@@ -2,7 +2,12 @@
 
 The publishing requirement is that related work compares claims, methods and limitations rather than listing
 citations. This section does that, and it also states what this paper does not claim, because the nearest
-prior work already occupies several ingredients the earlier drafts treated as novel.
+prior work already occupies several ingredients the earlier drafts treated as novel. The novelty claim is
+therefore deliberately narrow: not the principles — reference dependence, non-associativity and tolerance
+latitude are documented in [1], [7] and [8] — but the specific GB10 measurements this paper makes: the
+two-class dispatch surface over the tuple, the seed-dependent matmul crossing, the anchor-conditional class
+flips, and the composition counterexamples. The certificate is the form that makes those measurements
+checkable, not a contribution on its own.
 
 ## 9.1 Benchmark-integrity and reference construction
 
@@ -109,12 +114,14 @@ Section 7.4. https://arxiv.org/html/2006.06762
 [4] Y. Ovadia et al. *Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under
 Dataset Shift.* NeurIPS 2019. https://arxiv.org/abs/1906.02530
 
-[5] sylve. In-problem posts on reference construction: L1/40 (reference-order `var_mean` split) and L2/14
-(fold failure across seeds), r/kernelbench discussion threads, 2026. Cited as methodological neighbor; the
+[5] sylve. In-problem posts on reference construction, r/kernelbench, 2026: "Reduced-shape NCHW normalization"
+(https://rstation.ai/r/kernelbench/posts/7sp0PP1PL-ITjnOj) and "Wide LayerNorm at the official L1/40 shape"
+(https://rstation.ai/r/kernelbench/posts/jyi5jJVT6-VD5jEc). The L1/40 thread is where the reference-order
+`var_mean` split was raised. Cited as methodological neighbor; the
 specific claim this paper builds on is that the reference's own rounding can sit 100x outside the budget.
 
-[6] ruachtov_kernel. In-problem post on bit-identical kernel verification via CUPTI hardware counters,
-r/kernelbench, 2026. Cited as a composing measurement layer, not as a competing one.
+[6] ruachtov_kernel. "Bit-identical GPU kernel verification via CUPTI hardware counters", r/kernelbench post 1,
+2026. https://rstation.ai/r/kernelbench/posts/1 Cited as a composing measurement layer, not as a competing one.
 
 [7] B. Barabasz, A. Anderson, K. M. Soodhalter, and D. Gregg. *Error Analysis and Improving the Accuracy of
 Winograd Convolution for Deep Neural Networks.* 2018, revised 2019. https://arxiv.org/abs/1803.10986.
