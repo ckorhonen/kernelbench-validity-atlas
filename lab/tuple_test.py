@@ -159,13 +159,24 @@ def run_tuple():
         finally:
             torch.backends.cudnn.allow_tf32 = True
             torch.backends.cuda.matmul.allow_tf32 = True
+        # Record input/weight/output strides for all rows. Previous version stored
+        # only NHWC output strides under a single "strides" key; now each tensor's
+        # strides are explicit and layout-independent.
+        if layout == "NHWC":
+            x_strides = [int(v) for v in x_run.stride()]
+            o_strides = nhwc_strides
+        else:
+            x_strides = [int(v) for v in x.stride()]
+            o_strides = [int(v) for v in o.stride()]
         row.update({"class": cls, "kernels": dict(kn),
                     "rho": st, "rho_flagoff": st_off,
                     "flagoff_bit_equal": bit_equal,
                     "flagoff_rho_ratio": st_off["rho_max"] / max(st["rho_max"], 1e-30),
-                    "out_shape": [int(v) for v in o.shape[-2:]]})
-        if layout == "NHWC":
-            row["strides"] = nhwc_strides
+                    "out_shape": [int(v) for v in o.shape[-2:]],
+                    "input_layout": layout,
+                    "x_strides": x_strides,
+                    "w_strides": [int(v) for v in w.stride()],
+                    "o_strides": o_strides})
         results.append(row)
         del x, w, o, x64, w64, o64, x2, w2, o_off, x64o, w64o, o64_off
         torch.cuda.empty_cache()
