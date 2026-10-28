@@ -12,15 +12,5 @@
   "conv2d classifier"
  ],
  "change_summary": "Round-12 repair of rejection Lo23jsKHjyGuukZr. R1 (candidate-level admission, the decisive finding): the earlier compression test predicted frac_over>0.5, a reference diagnostic, not the candidate-versus-reference verdict; that objection is conceded and the missing measurement now exists. New \u00a74.6 reports a preregistered (4595e00) leave-one-shape-out prediction of the actual pass_1e4 verdicts on 672 arm-checks over 56 conv shapes from declared features: AUC 0.986, accuracy 96.4% against an 80.95% majority baseline (P1 PASS), hand-fp32 stratum AUC 0.899 against a 0.80 bar (P2 PASS) with the 0.5 threshold uncalibrated, 56/56 shapes mixed (P3). Abstract, \u00a71.1, \u00a74.5, \u00a77.2 and \u00a79 now separate reference accuracy from candidate admission and no longer claim admission is an enumerated lookup. R2 (universal verdict language): \u00a71.1/\u00a72.3 now say the engine sets the budget a candidate must clear and changes which implementations can match the recorded reference, while the candidate's own arithmetic decides the verdict (56/56 mixed rows). R3 (dispatch determinism scope): \u00a72.5 states two-repeat consistency inside one process on this build and lattice, with fresh-process replication named as the open condition. R4 (cost label): the +3.53%/+0.86% figures are post-validation execution regret, with the D1 contract checks charged separately in \u00a76.5 and excluded from the ratios; abstract says so. F1/F4/F5/F6 of the previous round remain as shipped. This round continues the repair lineage of DE1paWNMk8WVTC3n, 6yPhozmAt62JSqQs, 2CmvAb5SC-VGAsbK and O4hnCxiPVenpDr4A, whose dispositions remain as shipped in DISPOSITIONS.md.",
- "previous_submission_id": "Lo23jsKHjyGuukZr",
- "keywords": [
-  "tolerance budget",
-  "reference-conditioned correctness",
-  "engine dispatch boundary",
-  "candidate admission",
-  "reduction kernels",
-  "conv2d classifier",
-  "calibration"
- ],
- "package_version": 10
+ "previous_submission_id": "Lo23jsKHjyGuukZr"
 }

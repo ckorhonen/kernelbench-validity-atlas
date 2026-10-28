@@ -143,7 +143,7 @@ p3 = dict(mixed_rows=mixed, total_rows=len(row_keys))
 # descriptive: arm-class-only rule (no fitting) for context, not primary
 res = dict(
     prereg=f"lab/r57_candidate_admission_prereg.md sha256:{_prereg_sha()}",
-    source=SRC, source_sha=hashlib.sha256(open(SRC,'rb').read()).hexdigest()[:16],
+    source=SRC, source_sha=hashlib.sha256(_kb_open(SRC).read().encode()).hexdigest()[:16],
     date=datetime.datetime.utcnow().isoformat() + "Z",
     n_armchecks=n, positives=int(pos), rows=len(row_keys),
     P1=p1, P2=p2, P3=p3,
