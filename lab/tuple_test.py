@@ -126,16 +126,17 @@ def run_tuple():
         # nhwcToNchw conversions and the NHWC strides; the output is converted back
         # to NCHW before the fp64 comparison below.
         if layout == "NHWC":
-            x_run = x.permute(0, 2, 3, 1).contiguous()
+            x_nhwc = x.permute(0, 2, 3, 1).contiguous()
+            x_run = x_nhwc.permute(0, 3, 1, 2).contiguous()  # NCHW for F.conv2d
         else:
             x_run = x
+            x_nhwc = None
         o = F.conv2d(x_run, w, padding=p_val, stride=s, dilation=d)
         assert list(o.shape[-2:]) == [expected_h(s, p, d), expected_h(s, p, d)], (
             f"output shape {list(o.shape[-2:])} != expected {expected_h(s,p,d)} "
             f"for (s={s},p={p},d={d})")
         if layout == "NHWC":
             nhwc_strides = [int(v) for v in o.stride()]
-            o = o.permute(0, 3, 1, 2).contiguous()
         else:
             nhwc_strides = None
         kn = kernel_names(lambda: F.conv2d(x_run, w, padding=p_val, stride=s, dilation=d))
@@ -150,7 +151,7 @@ def run_tuple():
         torch.backends.cudnn.allow_tf32 = False
         torch.backends.cuda.matmul.allow_tf32 = False
         try:
-            x2 = x.clone(); w2 = w.clone()
+            x2 = x_run.clone(); w2 = w.clone()
             o_off = F.conv2d(x2, w2, padding=p_val, stride=s, dilation=d)
             x64o = x2.double(); w64o = w2.double()
             o64_off = F.conv2d(x64o, w64o, padding=p_val, stride=s, dilation=d)
@@ -163,7 +164,7 @@ def run_tuple():
         # only NHWC output strides under a single "strides" key; now each tensor's
         # strides are explicit and layout-independent.
         if layout == "NHWC":
-            x_strides = [int(v) for v in x_run.stride()]
+            x_strides = [int(v) for v in x_nhwc.stride()]
             o_strides = nhwc_strides
         else:
             x_strides = [int(v) for v in x.stride()]
