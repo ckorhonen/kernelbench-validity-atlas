@@ -2480,3 +2480,16 @@ baseline), then bias-vs-tail within-class check; (3) benchmark-wide reference-er
 Next tick: F6 + package + resubmit FIRST (one repair block, hard cap), then start the flip-table prereg.
 Ops: ssh alias dead as known (ckorhonen@192.168.62.102 + id_ed25519); only read-only eval.py grep this tick; no
 service touched.
+
+### Addendum (same tick, ~19:05-19:12Z): F6 discharged and RESUBMITTED
+- Package rebuilt with tuple_surface.py + tuple_surface.json included (build list patched); README's stale held-out
+  line corrected to the rerun (9/12 = 0.75, +0.86% SD 1.11 SE 0.37 n=9; deployed policy +3.53% SD 6.73 SE 1.37 n=24;
+  failures 1.61/2.57/7.11; conv 0/4 at 94-197). 145 entries, 1,963,844 expanded bytes (< 2,000,000), zip 742KB.
+- From-inside-zip verification executed (not described): unpacked to a clean dir, s53 15/15 exit 0, s54 6/6 exit 0,
+  s52 manuscript assembly exit 0 — the two scripts that had failed inside the previous package now pass, and the
+  failure they had was real (tuple_surface.json cited by Table 1 but absent from the archive).
+- Public repo pushed: github.com/ckorhonen/kernelbench-validity-atlas @ e054064.
+- RESUBMITTED **Lo23jsKHjyGuukZr** 19:10:07Z, previous_submission_id=AuBSkki84PdtDkPw, status under_review desk;
+  `files.supplement` read back non-null from /submissions/{id} (the assertion whose absence killed 69Xt-BDffnqLmTC9).
+- Debts now: (1) desk/review watch on Lo23jsKHjyGuukZr; (2) the refresh plan's measurement lane — flip table prereg
+  first, then out-of-family class prediction, then bias-vs-tail; (3) benchmark-wide audit scoping doc.
