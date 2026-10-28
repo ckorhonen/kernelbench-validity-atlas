@@ -251,3 +251,18 @@ O everywhere). §2.5 rewritten; ATLAS_TUPLE_SURFACE.md written. Remaining: F1 th
 question -> definitions -> method -> findings -> limitations; history to appendices; dispatch map), F6
 README consolidation + package verified from inside the zip incl. tuple_surface producers. Then resubmit
 previous_submission_id=AuBSkki84PdtDkPw. 24h-E1/CTA-edge/bt parked.
+
+## Active lane: REFRESH plan (strategic meta gQZYE8P3jyQM4bnU) — submitted 19:00:32Z 10-28
+
+Verified fact that reshapes the paper: KernelBench `eval.py:get_tolerance_for_precision` = 1e-4 for fp32 (1e-2 fp16/bf16),
+so the atlas runs at the benchmark's shipped gate and the reference's own deviation is the same order as the budget.
+Honest claim set: reference realization is a categorical dispatch decision (deterministic over the declared tuple,
+Table 1); rho_max compresses as a BIAS statistic; frac_over is an extremum statistic so admission stays an enumerated
+lookup; spine's continuous form is falsified (categorical survives).
+24h order: (1) F6 README/package + resubmit via previous_submission_id=AuBSkki84PdtDkPw; (2) prereg+run reference-swap
+flip table (default ref vs fp64 anchor at declared 1e-4, 56 conv + reduction rows; kill at <10% flips => claim narrows
+to TF32-class rows); (3) frozen out-of-family class prediction (kill at majority baseline) => decides §4.5 predictive vs
+declared lookup; (4) bias-vs-tail within-class geometry sweep; (5) benchmark-wide reference-error audit scoping doc.
+Change of course: few flips + baseline predictor => publish artifact set standalone, pivot to the benchmark-wide audit.
+Policies: one repair session per submission (hard cap); every session runs one experiment with a predeclared kill clause;
+audits as a single gate script, never narrated as achievement.
