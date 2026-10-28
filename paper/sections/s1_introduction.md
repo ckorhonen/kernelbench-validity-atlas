@@ -16,12 +16,17 @@ Does a benchmark's pass/fail verdict measure the candidate, or does it measure t
 compared against? On one GB10 device the answer is the second, and the mechanism is specific: the vendor
 convolution library dispatches a *different numerical engine* depending on the declared tuple, and at the
 benchmark's shipped fp32 tolerance the reference's own deviation from exact arithmetic is the same order of
-magnitude as the gate's budget. A candidate's verdict is therefore decided by which engine the reference
-happened to select, on shapes that a kernel author would reasonably treat as interchangeable.
+magnitude as the gate's budget. The engine therefore changes the numerical denominator and which
+implementations can match it, on shapes that a kernel author would reasonably treat as interchangeable. It
+does not decide a candidate's verdict by itself: on the 56 conv shapes of the held-out contract set every row
+has both passing and failing arms against the same recorded reference
+(`results/r57_candidate_admission.json`), so what separates a pass from a failure is the candidate's
+arithmetic relative to that reference, and the engine sets how much of the budget the candidate must clear.
 
 The paper answers that question with three measured objects: a dispatch map over declared coordinates, a
-magnitude surface that predicts how much of the budget the reference consumes, and an admission result that is
-an enumerated per-tuple lookup rather than a continuous law. It also reports where the continuous form of the
+magnitude surface that predicts how much of the budget the reference consumes, and a candidate-level
+admission study whose verdicts are predictable out of fold from declared features (AUC 0.986 over 672
+arm-checks) while the operating threshold inside a class is not calibrated. It also reports where the continuous form of the
 original hypothesis failed, because that failure is the reason the deliverable changed shape.
 
 ## 1.2 Definitions
@@ -84,12 +89,18 @@ tensorop at $\rho$ 251.69 with 78.2% (`results/a7_kernelclass.json`). On the con
 therefore torch on 52/56 rows, and the conv delivery claim for hand kernels is withdrawn rather than
 reinterpreted.
 
-**Magnitude compresses; admission does not.** The magnitude field is predictable out of fold from geometry
-alone (Spearman 0.833) and more so with the engine class supplied (0.986). The admission field is not: 79% bulk
-accuracy without the class, 100% with it, and the class itself is only 0.604 predictable from those coordinates
-against a 0.5625 majority baseline. That asymmetry is the paper's honest bottom line — a surface for magnitude,
-an enumerated lookup for admission — and it is why the certificate's two halves are reported separately rather
-than as one predictive claim.
+**Magnitude compresses; admission compresses as a class decision, not as a calibrated threshold.** The
+magnitude field is predictable out of fold from geometry alone (Spearman 0.833) and more so with the engine
+class supplied (0.986). Candidate admission — the benchmark's own candidate-versus-reference verdict, not the
+reference diagnostic — is predictable out of fold from declared features on 672 arm-checks over 56 shapes:
+AUC 0.986 and 96.4% accuracy against an 80.95% majority baseline, with all twelve arms of each held-out shape
+removed from its fold's fit (`results/r57_candidate_admission.json`, §4.6). Inside the hand-fp32 stratum the
+ranking survives (AUC 0.899 against a predeclared 0.80 bar) but a 0.5 threshold does not separate the 20
+passing arms from the 260 failing ones, so admission is a class decision plus a measured within-class residual.
+The reference-error diagnostic `frac_over` is the field that does not transfer: 79% bulk accuracy from geometry
+alone, 100% with the class, and the class itself only 0.604 predictable from those coordinates against a
+0.5625 majority baseline. That asymmetry is why the certificate's fields are reported separately rather than
+as one predictive claim.
 
 **Composition and delivery are bounded, not general.** On six two-stage chains with fp64 anchors, end-to-end
 budget consumption exceeds the worse stage by 1.0–2.5×, five of six inside a factor of two, with two named

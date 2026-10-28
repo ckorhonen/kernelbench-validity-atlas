@@ -36,7 +36,10 @@ decomposition survives; the claim that the class follows from the conv parameter
 **- The spine's continuous form.** The atlas's organizing hypothesis is that domain boundaries collapse
   onto continuous derived coordinates. On the reference-realization surface they do not: derived-only
   prediction reaches Spearman 0.833 for rho_max but only 79% bulk accuracy for frac_over, while supplying a
-  *categorical* engine coordinate lifts both to 0.986 / 100%. The collapse is categorical, and the
+  *categorical* engine coordinate lifts both to 0.986 / 100%. The candidate-level admission prediction of §4.6
+  is the exception that bounds this falsifier: on actual pass/fail verdicts, declared features reach AUC 0.986
+  out of fold (96.4% accuracy against an 80.95% majority), so the *class decision* is predictable even though
+  the within-class threshold is not. The collapse is categorical, and the
   categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline on a
   48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. Two fitted models are involved and an earlier draft conflated them. The 0.604 accuracy belongs to the
   leave-one-shape-out nearest-centroid classifier over the four derived coordinates (log k_eff, log n_elem,

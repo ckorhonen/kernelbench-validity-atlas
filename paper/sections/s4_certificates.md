@@ -145,9 +145,11 @@ The answer splits by field, and the split is the finding:
   distribution axis, where a separate measurement (§2.3, `results/a11_layernorm_reference_dist.json`) finds
   reference consumption rising near-linearly in row conditioning from rho 0.011 at kappa 1.73 to 2.529 at
   kappa 1000. So frac_over is not uncompressible in general; it is uncompressible *from geometry alone*.
-- **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
-  100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
-  exactly the dispatched rows, which are the ones that matter, because frac_over is the reference-accuracy predictor that admission is conditioned on — it is not itself a candidate-level admission test (§4.1).
+- **frac_over does not compress without the class, and it is not admission.** Bulk-failure classification
+  (frac_over > 0.5) is 100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21%
+  that fails is exactly the dispatched rows. frac_over is the reference-accuracy diagnostic that admission is
+  conditioned on, not a candidate-level admission test (§4.1); the candidate-level test is measured in §4.6
+  and returns a different, stronger answer.
 - **The class itself is barely predictable.** A leave-one-shape-out nearest-centroid classifier over the four
   derived coordinates (log k_eff, log n_elem, log C, log H) reaches 0.604 against a 0.5625 majority baseline
   (TF32) on the 48-shape lattice; the classifier, its features, its folds and its per-row predictions are in
@@ -168,8 +170,9 @@ not as shipped.  Both readings are reported; neither is hidden.
 
 The honest summary for §4: admission is conditional on a measured categorical coordinate whose own
 predictability is 0.60, and the magnitude field is predictable at 0.83 without it. A third party can use
-the certificate to *evaluate* a published row without trusting us; they cannot yet use it to *predict* a
-row they have not profiled, except in magnitude.
+the certificate to *evaluate* a published row without trusting us, and — §4.6 — can predict the *class
+decision* on an unprofiled shape from declared features at AUC 0.986; what they cannot yet predict is the
+operating threshold inside a class, which stays a measured per-arm quantity.
 
 One retraction belongs here rather than in §2. A7 stated that 3×3 stride-1 conv routes to the winograd
 engine. On this wider grid it does so only in a corner: C≥64 with small output extent (H7 at both C64 and
@@ -179,3 +182,39 @@ moves rho by 20-38×. A7's sentence was scoped to H=5 and is corrected here; the
 survives, but the class is a dispatch decision over (C, output extent), not a function of the conv
 parameters. This is the fourth retraction of this lane and the second that is mine rather than a
 reviewer's.
+
+## 4.6 Candidate-level admission, measured (r57, added round 12)
+
+The reviewer of submission Lo23jsKHjyGuukZr made the decisive objection that §4.5's compression experiment
+predicted `frac_over > 0.5` — a reference-versus-fp64 diagnostic — and not the candidate-versus-reference
+verdict that defines admission. That objection is correct as stated against the earlier draft, and this
+subsection reports the missing measurement. Prereg frozen at `4595e00` before fitting
+(`lab/r57_candidate_admission_prereg.md`); population, features, model, folds and kill clauses were fixed
+there and executed verbatim by `lab/r57_candidate_admission.py` → `results/r57_candidate_admission.json`.
+
+**Population and label.** The 672 arm-checks of `results/r1_conv_gated.jsonl` (56 conv shapes × 12 arms), with
+the evaluator-exact `pass_1e4` verdict against the recorded default reference at the declared 1e-4 contract as
+the label: 128 admissible, 544 not. These are candidate admission outcomes, the quantity the earlier test
+never used.
+
+**Model.** Linear probability model on ten declared features (log2 C, log2 K, log2 HW, N, log2 bytes, the
+row's measured reference flag-sensitivity refdev, is_compile, is_hand, prec_tf32, hand×refdev), leave-one-shape-
+out: all twelve arms of a held-out shape are removed from that fold's fit, so a shape's verdicts cannot leak
+into its own prediction. No tuning, no feature search, no alternative model reported as primary.
+
+**Result, with the prereg's verdicts verbatim.** P1 (global, bar AUC ≥ 0.85 and accuracy ≥ 80.95% + 0.05):
+AUC 0.986, accuracy 96.4% — **PASS**. P2 (hand-fp32 stratum only, n=280, 20 positives, bar AUC ≥ 0.80): AUC
+0.899 — **PASS**, while accuracy at a 0.5 threshold equals the 92.9% majority baseline because the fitted
+scores rank correctly but do not cross 0.5. P3 (descriptive): **56 of 56** shapes have both passing and failing
+arms at the same reference.
+
+**What this licenses, and what it does not.** The class decision — admissible or not, given a declared arm class
+and precision — is predictable out of fold from features a dispatcher has before running anything, so admission
+is not an enumerated per-arm lookup in the sense §4.5 claimed. What stays uncalibrated is the operating
+threshold *inside* the hand-fp32 class: the ranking there is informative (AUC 0.899) but turning it into a
+pass/fail decision needs a calibrated cut, which is a measured per-arm quantity in this record. Three limits
+are stated rather than smoothed: the folds hold out shapes, not candidate implementations, so an arm absent
+from the inventory is untested; the population is conv-only (56 shapes, no reduction rows); and every label is
+a verdict against one recorded reference realization, so the prediction is about the shipped benchmark's gate,
+not about numerical accuracy in the abstract.
+

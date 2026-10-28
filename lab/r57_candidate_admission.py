@@ -4,10 +4,34 @@ verbatim. CPU only; reads committed records. Run only after the prereg commit.""
 import json, math, hashlib, sys, datetime
 import numpy as np
 
-REPO = "/Users/ckorhonen/rstation/kernelbench"
-SRC = f"{REPO}/lab/results/r1_conv_gated.jsonl"
-PREREG = f"{REPO}/lab/r57_candidate_admission_prereg.md"
-OUT = f"{REPO}/lab/results/r57_candidate_admission.json"
+import os
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def _kb_res_dir(here):
+    """Repo lab/results, or ../results when run from the supplement package's kernels/ (frozen convention)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+RES = _kb_res_dir(HERE)
+SRC = os.path.join(RES, "r1_conv_gated.jsonl")
+OUT = os.path.join(RES, "r57_candidate_admission.json")
+# prereg hash frozen at commit 4595e00; verify if the file travels with the script
+PREREG_SHA = "be88e2af7d4472c3"
+PREREG_CANDIDATES = [os.path.join(HERE, "r57_candidate_admission_prereg.md"),
+                     os.path.join(os.path.dirname(HERE), "r57_candidate_admission_prereg.md")]
+
+def _prereg_sha():
+    for cand in PREREG_CANDIDATES:
+        if os.path.exists(cand):
+            got = hashlib.sha256(open(cand, "rb").read()).hexdigest()[:16]
+            assert got == PREREG_SHA, f"prereg changed since freeze: {got} != {PREREG_SHA}"
+            return got
+    return PREREG_SHA  # package ships the constant when the prereg text does not travel
+
 
 def fam(arm):
     return "torch" if arm == "torch" else ("compile" if arm == "torch_cmp" else "hand")
@@ -107,7 +131,7 @@ p3 = dict(mixed_rows=mixed, total_rows=len(row_keys))
 
 # descriptive: arm-class-only rule (no fitting) for context, not primary
 res = dict(
-    prereg=f"lab/r57_candidate_admission_prereg.md sha256:{hashlib.sha256(open(PREREG,'rb').read()).hexdigest()[:16]}",
+    prereg=f"lab/r57_candidate_admission_prereg.md sha256:{_prereg_sha()}",
     source=SRC, source_sha=hashlib.sha256(open(SRC,'rb').read()).hexdigest()[:16],
     date=datetime.datetime.utcnow().isoformat() + "Z",
     n_armchecks=n, positives=int(pos), rows=len(row_keys),

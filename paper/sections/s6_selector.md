@@ -59,7 +59,8 @@ failures at budget ratios 1.61, 2.57 and 7.11.
 - **reduction**: 9 of 12 gate hand deliveries pass the full contract, which is the prereg's middle branch
   and means the claim is per-row rather than a family rule. Correctness-conditioned cost: over the 9
   passing rows the gate costs **+0.86%** against the fastest admissible arm; over all 24 rows including the
-  three failures it costs +3.53% (SE 1.37). Both are reported because averaging a failed delivery into a
+  three failures the post-validation execution regret is +3.53% (SE 1.37), with the contract checks charged
+  separately (§6.5) rather than folded into the ratio. Both are reported because averaging a failed delivery into a
   cost for admissible delivery is the mistake the first version made — its +4.13% included a row at budget
   ratio 1.23 whose arm fails.
 - **conv**: 0 of 4 hand deliveries pass, at budget ratios 94-197. torch is the best admissible arm on
@@ -90,6 +91,9 @@ section is descriptive accounting, not a general law: on the 9 admissible reduct
 +0.86% (SD 1.11, SE 0.37, n=9) against the fastest admissible arm, and over all 24 rows the cost is +3.53%
 (SD 6.73, SE 1.37, n=24). The two standard errors belong to different populations and are not interchangeable;
 the 1.37 figure describes the deployed policy over all rows, the 0.37 figure describes admissible delivery only.
+Both are kernel-time ratios measured *after* validation: they are post-validation execution regret, not total
+deployment cost, because the checks D1 requires (reference build, one execution per checked arm, the comparison,
+and the fresh-input condition) are charged separately in §6.5 and are excluded from both figures.
 Every
 failing row has an explicit correctness-preserving fallback (torch, which passes), both policies are compared
 under one flush-and-probe cost model with probe arms pre-registered at b ∈ {1, 2, 4, 8} and their measured
@@ -105,7 +109,8 @@ rule is cheaper or faster on any individual row; the break-even numbers (6.35–
 failing conv rows) are reported as conditionality, not as a ranking. The rule's output is a decision rule
 that dispatches to the cheapest admissible arm. The 0.86% figure is the accounting restricted to the nine
 rows where a hand delivery is admissible; the 3.53% (±1.37) over all 24 rows, with torch executed on every
-failing row, is the cost of the deployed rule including its fallback. The two are different populations and
+failing row, is the post-validation execution regret of the deployed rule including its fallback — the checks
+themselves are charged separately (§6.5) and are not inside that ratio. The two are different populations and
 different policies and are quoted as such. That is what the numbers show; they show it without a
 probe-cost assumption and with every row's fallback named.
 
