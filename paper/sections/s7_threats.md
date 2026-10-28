@@ -33,14 +33,19 @@ decomposition survives; the claim that the class follows from the conv parameter
 
 ## 7.2 Falsifiers still standing
 
-- **The spine's continuous form.** The atlas's organizing hypothesis is that domain boundaries collapse
+**- The spine's continuous form.** The atlas's organizing hypothesis is that domain boundaries collapse
   onto continuous derived coordinates. On the reference-realization surface they do not: derived-only
   prediction reaches Spearman 0.833 for rho_max but only 79% bulk accuracy for frac_over, while supplying a
   *categorical* engine coordinate lifts both to 0.986 / 100%. The collapse is categorical, and the
   categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline on a
-  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. A
-  reader who believes the spine requires a continuous surface should read this paper as a negative result on
-  that form and a positive one on a bounded categorical surface.
+  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. The
+  missing-information argument is the reason no stronger claim is made: the fitted geometry-only model G is
+  single-coordinate, so it perturbs rank (a one-dimensional projection of the 4D derived space) and cannot
+  bound mass redistribution along the other three derived dimensions; a classifier that sees the full
+  vector can in principle do better, and the only honest statement is that 0.604 is a property of this
+  one-coordinate model on this one lattice, not an impossibility result. A reader who believes the spine
+  requires a continuous surface should read this paper as a negative result on that form and a positive one
+  on a bounded categorical surface.
 - **The floor model (E2b).** The claim that a hand kernel's advantage must exceed the two-launch floor
   (~2.04µs measured) was tested by bisection and produced a monotone *decreasing* relation between the time
   ratio and the sustaining M* (Spearman −0.643, permutation p = 0.049). The direction was never

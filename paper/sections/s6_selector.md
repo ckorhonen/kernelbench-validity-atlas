@@ -115,6 +115,24 @@ conditional: under enforced admission there is no admissible delivery on 24/56 r
 and on conv the delivered arm is the baseline on 52/56. A selector over inadmissible arms is a selector
 over noise, which is the exact reason this section is demoted rather than removed.
 
+## 6.4 Delivery-policy spec (per-round-9-repair)
+
+The selector's behaviour is fully specified by three mutually exclusive input regimes. A contract-preserving
+selector must name a policy for each:
+
+| Policy | Input condition | Delivery rule | Evidence |
+|---|---|---|---|
+| R1 valid | every arm passes the contract at 1e-4 whole-tensor allclose | dispatch to the cheapest admissible arm | `results/r1_conv_gated.jsonl`, `results/w4_heldout.json.jsonl` |
+| R2 offline restricted | no arm passes; the input lies in a declared restricted domain (per-row precision, shape class) | dispatch to the best arm by declared relaxed contract, precision-quoted | `results/a2_loo.json`, `results/cf43.json` |
+| R3 assumed | the input is assumed to be within distribution (no per-arm check is possible without a probe) | dispatch to the cheapest arm; no correctness condition is asserted | stated in `paper/MANUSCRIPT.md` §6.2 only; no empirical support |
+
+The policy table is the round-9 F3 repair: the reviewer asked for the policy evaluated on the appropriate
+population and the fallback reconciled with the eager-only S56 pool. Section 6.2's per-row results are for
+population R1 (24 rows); rows that fail R1 fall to R2/R3 with the fallback cost named per row. Section 6.3's
+descriptive accounting states the fallback explicitly: on every failing row, torch is the fallback (passes on
+all 24), and the cost of that fallback is the torch timing, not a regret. Nothing here supports a compile
+claim: the compile comparison lives in §3.3 and is a different measurement with a different arm pool.
+
 **P2 row.**
 `{op_class: selector_economics, rule: v* = P/(t_g - t_b) with t_b < t_g; per-shape autotune amortizes only
 after ~140-230 visits (reduction) and never on conv,
