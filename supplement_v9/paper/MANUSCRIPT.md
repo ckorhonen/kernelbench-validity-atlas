@@ -92,7 +92,8 @@ output extent moves rho 20-38× (`ATLAS_A8.md`, `results/a8b_analysis.json`).
 and no anchor statistic can upgrade or downgrade it. Separately, the reference's own consumption
 (rho_max, frac_over) is a *diagnostic* that constrains what a reported ratio means: frac_over 0 means the
 reference is indistinguishable from an exact anchor at the budget, below 0.02 a tail problem confined to a
-sparse set, above 0.5 a bulk failure in which both arms miss the contract. The rationale is measured, not
+sparse set, above 0.5 a bulk failure of the reference itself, which leaves any ratio quoted against it with a
+denominator outside the budget. The rationale is measured, not
 stipulated — a rho_max 10.2 winograd row is a tail problem and conditionally reportable while a rho_max 111
 TF32 row is a bulk failure no tolerance loosening rescues.
 
@@ -291,12 +292,13 @@ not of the kernel's arithmetic intensity, occupancy, or bytes/thread. That is a 
 as originally stated, and it is recorded as such rather than relabeled: the coordinate that collapses this
 surface is "which engine ran," a categorical coordinate, not a continuous derived one.
 
-**The certificate's admission rule, and why it is keyed on frac_over rather than on rho.** frac_over is the
+**The certificate's reference diagnostic, and why it is keyed on frac_over rather than on rho.** frac_over is the
 fraction of output elements at or over the contract budget, so $\mathrm{frac\_over} = 0$ is exactly the
 statement "this reference realization passes the benchmark's own check against the fp64 anchor," and
 $\rho_{\max}$ then only measures how much slack is left. That gives a three-level *diagnostic* that a third
 party can evaluate from a row's own records without trusting us. The word diagnostic is load-bearing and was
-wrong in an earlier draft, which called frac_over = 0 "unconditional": the three levels say what the
+wrong in an earlier draft, which called frac_over = 0 "unconditional" and, in a later one, treated frac_over
+as the admission key: the three levels say what the
 reference's own accuracy permits you to *report*, not whether a candidate passes. Benchmark agreement is a
 binary whole-tensor check against the recorded reference (§4.1, §8.4), and no anchor statistic can upgrade
 or downgrade it:
@@ -315,8 +317,10 @@ or downgrade it:
   a loosening that covers 0.5% of elements is a defensible convention *provided it is declared and its own
   candidate-level evidence is supplied*. It is not a licence to call the benchmark row correct.
 - **Bulk-inadmissible diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
-  0.77–0.78), so a speedup ratio computed against it compares two things that both miss the contract, and
-  no loosening rescues that. Report the pair, not a ratio. This one *is* a claim about the ratio's meaning
+  0.77–0.78), so a speedup ratio computed against it has a denominator that is itself outside the budget.
+  Whether the *candidate* misses the contract is a separate, candidate-level check (criterion (i)), and the
+  statement "no loosening rescues that" is about the reference, not a verdict on the candidate. Report the
+  pair, not a ratio. This one *is* a claim about the ratio's meaning
   rather than about the row's pass/fail.
 
 The rho_max column stays in every row because it is the severity index that decides *how much* slack a
@@ -571,7 +575,9 @@ date: 2026-10-22/23}`
 question CF2 asks is whether one tolerance band plus one anchor certifies the selector — the "band-global
 tau" hypothesis inherited from the pre-reframe framing.
 
-**Result — no nontrivial tau exists, and the pass structure is anchor-specific.** Anchor profiles are mixed
+**What is tested.** The property at stake is a single per-arm threshold tau that would predict pass or fail at every anchor in the lattice. The anchors are {default, explicit-ieee, fp64}; the tolerance range is the benchmark contract at 1e-4 together with the §5 sweep of bars 1.1-1.8e-4.
+
+**Result — within that range no nontrivial tau exists, and the pass structure is anchor-specific.** Anchor profiles are mixed
 on 48/56 rows (0.857), flat on 4, nested on 4; exact ieee~64 agreement is 39.3% (`cf43.cf2_anchor_profile`,
 `iee64_exact_agreement 0.3929`). Cell-level patterns over 672 cells (def, ieee, 64): pass-none 304, pass-64-only 165, pass-def-only 70,
 pass-64+ieee 75, pass-def+ieee 31, pass-all-three 27. The 165 fp64-only cells are the
@@ -615,7 +621,7 @@ judgment:
    contract, if a paper wants one, is criterion (iii) and must be declared as an application requirement with
    its own threshold, not inferred from (ii). The three are reported separately because neither implies
    another: a reference 0.75e-4 from an exact anchor can pass (i) against a candidate 1.5e-4 that fails
-   against the anchor, so frac_over = 0 does not license "no caveat needed." The earlier draft collapsed (i)
+   against the anchor, so frac_over = 0 does not license "no caveat needed." A scalar counterexample makes the separation concrete: anchor 0, reference 1.1e-4, candidate 2e-5, a = t = 1e-4 gives rho_r = 1.1 and rho_c = 0.2 while |r - c| = 9e-5 < a + t|c|, so frac_over = 1 and the candidate still passes both (i) and (ii). Repeating those values across a tensor gives a reference whose bulk fraction is one and a candidate that is admissible, which is why a reference statistic alone cannot decide admission. The earlier draft collapsed (i)
    and (ii) into one admission predicate, which is the defect this revision repairs.
 3. **Admissible delivery set** — the arms that pass the contract at *this* realization, which for most rows is
    smaller than the set the rule selects.
@@ -660,7 +666,7 @@ P(flip | x ≤ c) = 0.0. On the rider set (n=560, 240 flips) it reached **AUC 0.
 pre-registered fail branch was taken without retry.
 
 The consequence is a **one-sided safe region only**: when the statistic is below c*, the row does not flip
-(0/10 rider rows below c* flipped); when it is above c*, nothing is claimed. There is no global ranking, and
+(0/10 rider rows below c* flipped); when it is above c*, nothing is claimed. The safe region is an observation, not a guarantee: zero flips in ten designed rows leaves a one-sided 95% upper bound of 0.259 on the flip probability under an independent-binomial reading (Clopper–Pearson), and the rider rows are designed rather than drawn from the deployment distribution, so the bound is looser still. There is no global ranking, and
 no threshold that separates flippers from non-flippers on unseen rows. This is the third attempt in this
 program to scalarize robustness into one number, and it failed the same way the other two did — by asking the
 candidate to explain a property of the reference. §2.3's measurement asks the reference directly, which is why
@@ -687,8 +693,11 @@ reference's distance from an fp64 anchor, reported as (rho_max, frac_over), diag
 declared relaxed application contract, whose candidate-level threshold is stated by the applicant. The 0.02/0.5
 frac_over lines are optional reporting conventions (tail-conditional / bulk-inadmissible), not admission
 criteria: frac_over = 0 means the reference is indistinguishable from an exact anchor at the budget, 0 <
-frac_over < 0.02 is a tail failure confined to rare elements, and frac_over > 0.5 is a bulk failure in which
-both arms miss the contract. Admissions claims carry the per-row candidate-versus-reference verdict
+frac_over < 0.02 is a tail failure confined to rare elements, and frac_over > 0.5 is a bulk failure of the
+reference: the reference itself sits more than half a budget from an exact anchor, so any ratio quoted against
+it has a denominator already outside the budget. What that does not decide is whether the candidate agrees with
+the reference, which is (i), measured per row on the candidate. Bulk classification therefore predicts
+reference accuracy, not candidate admission. Admissions claims carry the per-row candidate-versus-reference verdict
 (results/r1_conv_gated.jsonl, results/w4_heldout.json.jsonl) together with the reference's (rho_max,
 frac_over), and no speedup ratio is quoted against a row whose reference consumes bulk budget.
 
@@ -736,13 +745,15 @@ The answer splits by field, and the split is the finding:
   kappa 1000. So frac_over is not uncompressible in general; it is uncompressible *from geometry alone*.
 - **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
   100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
-  exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.
-- **The class itself is barely predictable.** LOO nearest-centroid on the same four coordinates reaches
-  0.604 against a 0.5625 majority baseline. Deployment consequence, stated plainly: the certificate is
+  exactly the dispatched rows, which are the ones that matter, because frac_over is the reference-accuracy predictor that admission is conditioned on — it is not itself a candidate-level admission test (§4.1).
+- **The class itself is barely predictable.** A leave-one-shape-out nearest-centroid classifier over the four
+  derived coordinates (log k_eff, log n_elem, log C, log H) reaches 0.604 against a 0.5625 majority baseline
+  (TF32) on the 48-shape lattice; the classifier, its features, its folds and its per-row predictions are in
+  `results/a8b_analysis.json` (`class_predictability`, `class_preds`). Deployment consequence, stated plainly: the certificate is
   not free. It costs one profiler pass per shape family to learn the class, and that cost belongs in the
   row rather than in a footnote. Scope of that inference, since it is easy to overread: a nearest-centroid
   failure does not establish that engine class is unpredictable *in principle* — only that these four
-  coordinates do not predict it. A continuous description the classifier cannot see remains possible.
+  coordinates do not predict it. A continuous description the classifier cannot see remains possible, and a categorical output can arise from a threshold on continuous inputs, which a nearest-centroid classifier cannot represent; the tuple test of §2.5 rules out a threshold in the coordinates it varied, not in every coordinate.
 
 **Decision rule (declared).** The compression test was pre-registered at c56c0a0 with two
 questions and a frozen classifier: does rho_max compress in derived coordinates, and does
@@ -840,8 +851,9 @@ and 2.48× the worse stage across six chains, and on five of six a factor-of-two
 amplification term is subdominant whenever the downstream stage is the dirtier one (c1: a winograd stage at
 rho 7.7 feeding a TF32 stage at rho 5353 contributes one part in ten thousand of the end-to-end number).
 Bulk inadmissibility is dominated rather than compounded: where the stage fractions are large the compound
-fraction is bounded by the worst stage to within 1.07×, so a reader can carry the worse stage's frac_over
-forward and be right about the 0.5 bulk threshold.
+fraction is bounded by the worst stage to within 1.07×, so in these six chains a reader can carry the worse stage's frac_over
+forward and be right about the 0.5 bulk threshold. That is a bounded empirical finding over six chains, not an
+instruction that the worst stage always dominates; c5 below is its counterexample for the maximum statistic.
 
 The worst-stage bound has a counterexample in my own data and it belongs here rather than in a footnote.
 **c5 is two individually admissible stages — rho_A 0.0689, rho_B 0.6563 — that compose to rho_end 1.2939,
@@ -1003,8 +1015,10 @@ arm), probe arms cost more than the rule's entire residual, so the rule's total-
 entered at the moment of gate deployment, not a promised property of the rule. There is no claim that the
 rule is cheaper or faster on any individual row; the break-even numbers (6.35–28.84x budget ratio on the
 failing conv rows) are reported as conditionality, not as a ranking. The rule's output is a decision rule
-that dispatches to the cheapest admissible arm, and the 0.86% (±1.37) over all 24 rows is how much it
-pays to have made that decision without a probe. That is what the numbers show; they show it without a
+that dispatches to the cheapest admissible arm. The 0.86% figure is the accounting restricted to the nine
+rows where a hand delivery is admissible; the 3.53% (±1.37) over all 24 rows, with torch executed on every
+failing row, is the cost of the deployed rule including its fallback. The two are different populations and
+different policies and are quoted as such. That is what the numbers show; they show it without a
 probe-cost assumption and with every row's fallback named.
 
 **Reading discipline.** This section reports measured per-row results only, with an explicit
@@ -1020,21 +1034,31 @@ over noise, which is the exact reason this section is demoted rather than remove
 
 ## 6.4 Delivery-policy spec (per-round-9-repair)
 
-The selector's behaviour is fully specified by three mutually exclusive input regimes. A contract-preserving
-selector must name a policy for each:
+The selector's behaviour is specified by an executable decision rule over three mutually exclusive *check
+states*, defined by what the selector knows at dispatch time. The earlier draft's R1/R2/R3 were not disjoint
+and omitted the common case in which torch passes and a hand arm fails; this table replaces them.
 
-| Policy | Input condition | Delivery rule | Evidence |
+| Policy | Check state | Delivery rule | Evidence |
 |---|---|---|---|
-| R1 valid | every arm passes the contract at 1e-4 whole-tensor allclose | dispatch to the cheapest admissible arm | `results/r1_conv_gated.jsonl`, `results/w4_heldout.json.jsonl` |
-| R2 offline restricted | no arm passes; the input lies in a declared restricted domain (per-row precision, shape class) | dispatch to the best arm by declared relaxed contract, precision-quoted | `results/a2_loo.json`, `results/cf43.json` |
-| R3 assumed | the input is assumed to be within distribution (no per-arm check is possible without a probe) | dispatch to the cheapest arm; no correctness condition is asserted | stated in `paper/MANUSCRIPT.md` §6.2 only; no empirical support |
+| D1 checked, torch-passing | a per-arm contract check has been run (probe paid) and at least one arm passes | dispatch to the cheapest passing arm; when only torch passes, deliver torch | `results/r1_conv_gated.jsonl`, `results/w4_heldout.json.jsonl`, `results/s56_heldout_contract.json` |
+| D2 checked, none-passing | the check ran and no arm passes | dispatch to the best arm under a declared relaxed contract, with its precision quoted | `results/a2_loo.json`, `results/cf43.json` |
+| D3 unchecked, assumed | no per-arm check is possible without a probe | dispatch to the cheapest arm; no correctness condition is asserted | `paper/MANUSCRIPT.md` §6.2; no empirical support |
 
-The policy table is the round-9 F3 repair: the reviewer asked for the policy evaluated on the appropriate
-population and the fallback reconciled with the eager-only S56 pool. Section 6.2's per-row results are for
-population R1 (24 rows); rows that fail R1 fall to R2/R3 with the fallback cost named per row. Section 6.3's
-descriptive accounting states the fallback explicitly: on every failing row, torch is the fallback (passes on
-all 24), and the cost of that fallback is the torch timing, not a regret. Nothing here supports a compile
-claim: the compile comparison lives in §3.3 and is a different measurement with a different arm pool.
+D1 and D2 are disjoint by whether any arm passes; D3 is disjoint from both by whether a check was run. D1
+covers the torch-passes/hand-fails case explicitly: on the 24 reduction rows torch passes all 24 and the
+gate's hand delivery fails 3, so those three rows are D1-with-fallback, not violations of D1. Cost accounting
+follows the same split — over the nine admissible hand-delivery rows the gate costs +0.86% against the
+fastest admissible arm; over all 24 rows, with torch executed on every failing row, the deployed cost is
++3.53% (SE 1.37). §6.2 and §6.3 quote these as two populations and two policies.
+
+A zero-probe dispatcher cannot recognise those failures on fresh inputs, which is why D3 exists and why its
+cost is stated without a correctness claim. Where a probe is affordable, D1 is the only policy that carries a
+correctness guarantee, and its cost is the probe plus the fallback timing.
+
+"Never eager PyTorch" applies to pools that contain a compiled arm (§3.3, where the comparator is
+`torch.compile`); §6's pool is eager-only by construction, so its comparator is eager torch and the phrase
+does not apply here. Nothing here supports a compile claim: the compile comparison lives in §3.3 and is a
+different measurement with a different arm pool.
 
 **P2 row.**
 `{op_class: selector_economics, rule: v* = P/(t_g - t_b) with t_b < t_g; per-shape autotune amortizes only
@@ -1087,12 +1111,14 @@ decomposition survives; the claim that the class follows from the conv parameter
   prediction reaches Spearman 0.833 for rho_max but only 79% bulk accuracy for frac_over, while supplying a
   *categorical* engine coordinate lifts both to 0.986 / 100%. The collapse is categorical, and the
   categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline on a
-  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. The
-  missing-information argument is the reason no stronger claim is made: the fitted geometry-only model G is
-  single-coordinate, so it perturbs rank (a one-dimensional projection of the 4D derived space) and cannot
-  bound mass redistribution along the other three derived dimensions; a classifier that sees the full
-  vector can in principle do better, and the only honest statement is that 0.604 is a property of this
-  one-coordinate model on this one lattice, not an impossibility result. A reader who believes the spine
+  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. Two fitted models are involved and an earlier draft conflated them. The 0.604 accuracy belongs to the
+  leave-one-shape-out nearest-centroid classifier over the four derived coordinates (log k_eff, log n_elem,
+  log C, log H) on the 48-shape lattice (`results/a8b_analysis.json` `class_predictability`). The
+  missing-information argument concerns the separate geometry-only magnitude model G used for rho_max, which
+  is fitted on a one-coordinate projection and cannot bound mass redistribution along the other three derived
+  dimensions. Both models, their features and their folds are named in the artifact. So the honest statement
+  is that 0.604 is a property of this classifier on this lattice, not an impossibility result; a continuous
+  description it cannot see, including a threshold on continuous inputs, remains possible. A reader who believes the spine
   requires a continuous surface should read this paper as a negative result on that form and a positive one
   on a bounded categorical surface.
 - **The floor model (E2b).** The claim that a hand kernel's advantage must exceed the two-launch floor
@@ -1102,7 +1128,8 @@ decomposition survives; the claim that the class follows from the conv parameter
   (advantage must beat the launch constant), not a shape-only surface.
 - **The one-sided cushion.** A cheap statistic was screened as a flip predictor and failed out of sample
   (train AUC 0.743, rider AUC 0.121). Only the safe region is claimed: below c* = 0.4578, 0/10 rider rows
-  flip. No global ranking.
+  flip. Zero of ten gives a one-sided 95% upper bound of 0.259 on the flip probability (Clopper–Pearson), so
+  this is a bounded observation, not a guarantee. No global ranking.
 - **Single-arch scope.** Everything here is GB10/sm_120, one fp64 build, one torch version (2.14.1+cu130).
   H100 folklore is re-derived, not cited. The two-class dispatch result is a statement about cudnn's engine
   menu on this architecture; a second arch is required before any transfer claim, and none is available
@@ -1146,6 +1173,15 @@ The certificate is the contribution. It withdraws if any of the following holds:
 ---
 
 # Section 8 prose — Reproduction artifact (complete)
+
+**Where the evidence is, and how to reach it.** This submission carries a supplement ZIP that contains every
+measurement producer, every row-level result the manuscript cites, the auditors, the preregistrations and a
+sha256 manifest; the same tree is public at https://github.com/ckorhonen/kernelbench-validity-atlas, pinned at
+an immutable revision recorded in the package's `README.md` and named in this submission's change summary. The earlier version of this paper
+was rejected on the grounds that no supplement was supplied and no identifiable archive was named — a
+submission defect, not a measurement one — so the paragraph exists to be checked rather than believed: unpack
+the ZIP, run `python3 kernels/s50_prose_audit.py` from inside it, and the numbers in this section either
+reproduce or the script exits nonzero.
 
 The paper ships auditors rather than promises. Every script named here is CPU-only unless marked, reads
 committed artifacts rather than re-measuring, and exits nonzero when a cited number cannot be regenerated.
@@ -1269,7 +1305,12 @@ variance: n/a (deterministic records), n_reps: 1 per audit run, date: 2026-10-24
 
 The publishing requirement is that related work compares claims, methods and limitations rather than listing
 citations. This section does that, and it also states what this paper does not claim, because the nearest
-prior work already occupies several ingredients the earlier drafts treated as novel.
+prior work already occupies several ingredients the earlier drafts treated as novel. The novelty claim is
+therefore deliberately narrow: not the principles — reference dependence, non-associativity and tolerance
+latitude are documented in [1], [7] and [8] — but the specific GB10 measurements this paper makes: the
+two-class dispatch surface over the tuple, the seed-dependent matmul crossing, the anchor-conditional class
+flips, and the composition counterexamples. The certificate is the form that makes those measurements
+checkable, not a contribution on its own.
 
 ## 9.1 Benchmark-integrity and reference construction
 
@@ -1376,12 +1417,14 @@ Section 7.4. https://arxiv.org/html/2006.06762
 [4] Y. Ovadia et al. *Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under
 Dataset Shift.* NeurIPS 2019. https://arxiv.org/abs/1906.02530
 
-[5] sylve. In-problem posts on reference construction: L1/40 (reference-order `var_mean` split) and L2/14
-(fold failure across seeds), r/kernelbench discussion threads, 2026. Cited as methodological neighbor; the
+[5] sylve. In-problem posts on reference construction, r/kernelbench, 2026: "Reduced-shape NCHW normalization"
+(https://rstation.ai/r/kernelbench/posts/7sp0PP1PL-ITjnOj) and "Wide LayerNorm at the official L1/40 shape"
+(https://rstation.ai/r/kernelbench/posts/jyi5jJVT6-VD5jEc). The L1/40 thread is where the reference-order
+`var_mean` split was raised. Cited as methodological neighbor; the
 specific claim this paper builds on is that the reference's own rounding can sit 100x outside the budget.
 
-[6] ruachtov_kernel. In-problem post on bit-identical kernel verification via CUPTI hardware counters,
-r/kernelbench, 2026. Cited as a composing measurement layer, not as a competing one.
+[6] ruachtov_kernel. "Bit-identical GPU kernel verification via CUPTI hardware counters", r/kernelbench post 1,
+2026. https://rstation.ai/r/kernelbench/posts/1 Cited as a composing measurement layer, not as a competing one.
 
 [7] B. Barabasz, A. Anderson, K. M. Soodhalter, and D. Gregg. *Error Analysis and Improving the Accuracy of
 Winograd Convolution for Deep Neural Networks.* 2018, revised 2019. https://arxiv.org/abs/1803.10986.

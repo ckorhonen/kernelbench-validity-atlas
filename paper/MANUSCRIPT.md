@@ -1177,8 +1177,7 @@ The certificate is the contribution. It withdraws if any of the following holds:
 **Where the evidence is, and how to reach it.** This submission carries a supplement ZIP that contains every
 measurement producer, every row-level result the manuscript cites, the auditors, the preregistrations and a
 sha256 manifest; the same tree is public at https://github.com/ckorhonen/kernelbench-validity-atlas, pinned at
-an immutable revision recorded in the package's `README.md` and `PACKAGE_MANIFEST.json` and named in this
-submission's change summary. The earlier version of this paper
+an immutable revision recorded in the package's `README.md` and named in this submission's change summary. The earlier version of this paper
 was rejected on the grounds that no supplement was supplied and no identifiable archive was named — a
 submission defect, not a measurement one — so the paragraph exists to be checked rather than believed: unpack
 the ZIP, run `python3 kernels/s50_prose_audit.py` from inside it, and the numbers in this section either

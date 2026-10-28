@@ -22,7 +22,7 @@ judgment:
    contract, if a paper wants one, is criterion (iii) and must be declared as an application requirement with
    its own threshold, not inferred from (ii). The three are reported separately because neither implies
    another: a reference 0.75e-4 from an exact anchor can pass (i) against a candidate 1.5e-4 that fails
-   against the anchor, so frac_over = 0 does not license "no caveat needed." The earlier draft collapsed (i)
+   against the anchor, so frac_over = 0 does not license "no caveat needed." A scalar counterexample makes the separation concrete: anchor 0, reference 1.1e-4, candidate 2e-5, a = t = 1e-4 gives rho_r = 1.1 and rho_c = 0.2 while |r - c| = 9e-5 < a + t|c|, so frac_over = 1 and the candidate still passes both (i) and (ii). Repeating those values across a tensor gives a reference whose bulk fraction is one and a candidate that is admissible, which is why a reference statistic alone cannot decide admission. The earlier draft collapsed (i)
    and (ii) into one admission predicate, which is the defect this revision repairs.
 3. **Admissible delivery set** — the arms that pass the contract at *this* realization, which for most rows is
    smaller than the set the rule selects.
@@ -67,7 +67,7 @@ P(flip | x ≤ c) = 0.0. On the rider set (n=560, 240 flips) it reached **AUC 0.
 pre-registered fail branch was taken without retry.
 
 The consequence is a **one-sided safe region only**: when the statistic is below c*, the row does not flip
-(0/10 rider rows below c* flipped); when it is above c*, nothing is claimed. There is no global ranking, and
+(0/10 rider rows below c* flipped); when it is above c*, nothing is claimed. The safe region is an observation, not a guarantee: zero flips in ten designed rows leaves a one-sided 95% upper bound of 0.259 on the flip probability under an independent-binomial reading (Clopper–Pearson), and the rider rows are designed rather than drawn from the deployment distribution, so the bound is looser still. There is no global ranking, and
 no threshold that separates flippers from non-flippers on unseen rows. This is the third attempt in this
 program to scalarize robustness into one number, and it failed the same way the other two did — by asking the
 candidate to explain a property of the reference. §2.3's measurement asks the reference directly, which is why
@@ -94,8 +94,11 @@ reference's distance from an fp64 anchor, reported as (rho_max, frac_over), diag
 declared relaxed application contract, whose candidate-level threshold is stated by the applicant. The 0.02/0.5
 frac_over lines are optional reporting conventions (tail-conditional / bulk-inadmissible), not admission
 criteria: frac_over = 0 means the reference is indistinguishable from an exact anchor at the budget, 0 <
-frac_over < 0.02 is a tail failure confined to rare elements, and frac_over > 0.5 is a bulk failure in which
-both arms miss the contract. Admissions claims carry the per-row candidate-versus-reference verdict
+frac_over < 0.02 is a tail failure confined to rare elements, and frac_over > 0.5 is a bulk failure of the
+reference: the reference itself sits more than half a budget from an exact anchor, so any ratio quoted against
+it has a denominator already outside the budget. What that does not decide is whether the candidate agrees with
+the reference, which is (i), measured per row on the candidate. Bulk classification therefore predicts
+reference accuracy, not candidate admission. Admissions claims carry the per-row candidate-versus-reference verdict
 (results/r1_conv_gated.jsonl, results/w4_heldout.json.jsonl) together with the reference's (rho_max,
 frac_over), and no speedup ratio is quoted against a row whose reference consumes bulk budget.
 
@@ -143,13 +146,15 @@ The answer splits by field, and the split is the finding:
   kappa 1000. So frac_over is not uncompressible in general; it is uncompressible *from geometry alone*.
 - **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
   100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
-  exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.
-- **The class itself is barely predictable.** LOO nearest-centroid on the same four coordinates reaches
-  0.604 against a 0.5625 majority baseline. Deployment consequence, stated plainly: the certificate is
+  exactly the dispatched rows, which are the ones that matter, because frac_over is the reference-accuracy predictor that admission is conditioned on — it is not itself a candidate-level admission test (§4.1).
+- **The class itself is barely predictable.** A leave-one-shape-out nearest-centroid classifier over the four
+  derived coordinates (log k_eff, log n_elem, log C, log H) reaches 0.604 against a 0.5625 majority baseline
+  (TF32) on the 48-shape lattice; the classifier, its features, its folds and its per-row predictions are in
+  `results/a8b_analysis.json` (`class_predictability`, `class_preds`). Deployment consequence, stated plainly: the certificate is
   not free. It costs one profiler pass per shape family to learn the class, and that cost belongs in the
   row rather than in a footnote. Scope of that inference, since it is easy to overread: a nearest-centroid
   failure does not establish that engine class is unpredictable *in principle* — only that these four
-  coordinates do not predict it. A continuous description the classifier cannot see remains possible.
+  coordinates do not predict it. A continuous description the classifier cannot see remains possible, and a categorical output can arise from a threshold on continuous inputs, which a nearest-centroid classifier cannot represent; the tuple test of §2.5 rules out a threshold in the coordinates it varied, not in every coordinate.
 
 **Decision rule (declared).** The compression test was pre-registered at c56c0a0 with two
 questions and a frozen classifier: does rho_max compress in derived coordinates, and does

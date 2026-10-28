@@ -150,12 +150,13 @@ not of the kernel's arithmetic intensity, occupancy, or bytes/thread. That is a 
 as originally stated, and it is recorded as such rather than relabeled: the coordinate that collapses this
 surface is "which engine ran," a categorical coordinate, not a continuous derived one.
 
-**The certificate's admission rule, and why it is keyed on frac_over rather than on rho.** frac_over is the
+**The certificate's reference diagnostic, and why it is keyed on frac_over rather than on rho.** frac_over is the
 fraction of output elements at or over the contract budget, so $\mathrm{frac\_over} = 0$ is exactly the
 statement "this reference realization passes the benchmark's own check against the fp64 anchor," and
 $\rho_{\max}$ then only measures how much slack is left. That gives a three-level *diagnostic* that a third
 party can evaluate from a row's own records without trusting us. The word diagnostic is load-bearing and was
-wrong in an earlier draft, which called frac_over = 0 "unconditional": the three levels say what the
+wrong in an earlier draft, which called frac_over = 0 "unconditional" and, in a later one, treated frac_over
+as the admission key: the three levels say what the
 reference's own accuracy permits you to *report*, not whether a candidate passes. Benchmark agreement is a
 binary whole-tensor check against the recorded reference (§4.1, §8.4), and no anchor statistic can upgrade
 or downgrade it:
@@ -174,8 +175,10 @@ or downgrade it:
   a loosening that covers 0.5% of elements is a defensible convention *provided it is declared and its own
   candidate-level evidence is supplied*. It is not a licence to call the benchmark row correct.
 - **Bulk-inadmissible diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
-  0.77–0.78), so a speedup ratio computed against it compares two things that both miss the contract, and
-  no loosening rescues that. Report the pair, not a ratio. This one *is* a claim about the ratio's meaning
+  0.77–0.78), so a speedup ratio computed against it has a denominator that is itself outside the budget.
+  Whether the *candidate* misses the contract is a separate, candidate-level check (criterion (i)), and the
+  statement "no loosening rescues that" is about the reference, not a verdict on the candidate. Report the
+  pair, not a ratio. This one *is* a claim about the ratio's meaning
   rather than about the row's pass/fail.
 
 The rho_max column stays in every row because it is the severity index that decides *how much* slack a

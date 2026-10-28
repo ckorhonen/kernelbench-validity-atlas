@@ -74,7 +74,8 @@ output extent moves rho 20-38× (`ATLAS_A8.md`, `results/a8b_analysis.json`).
 and no anchor statistic can upgrade or downgrade it. Separately, the reference's own consumption
 (rho_max, frac_over) is a *diagnostic* that constrains what a reported ratio means: frac_over 0 means the
 reference is indistinguishable from an exact anchor at the budget, below 0.02 a tail problem confined to a
-sparse set, above 0.5 a bulk failure in which both arms miss the contract. The rationale is measured, not
+sparse set, above 0.5 a bulk failure of the reference itself, which leaves any ratio quoted against it with a
+denominator outside the budget. The rationale is measured, not
 stipulated — a rho_max 10.2 winograd row is a tail problem and conditionally reportable while a rho_max 111
 TF32 row is a bulk failure no tolerance loosening rescues.
 

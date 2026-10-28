@@ -38,12 +38,14 @@ decomposition survives; the claim that the class follows from the conv parameter
   prediction reaches Spearman 0.833 for rho_max but only 79% bulk accuracy for frac_over, while supplying a
   *categorical* engine coordinate lifts both to 0.986 / 100%. The collapse is categorical, and the
   categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline on a
-  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. The
-  missing-information argument is the reason no stronger claim is made: the fitted geometry-only model G is
-  single-coordinate, so it perturbs rank (a one-dimensional projection of the 4D derived space) and cannot
-  bound mass redistribution along the other three derived dimensions; a classifier that sees the full
-  vector can in principle do better, and the only honest statement is that 0.604 is a property of this
-  one-coordinate model on this one lattice, not an impossibility result. A reader who believes the spine
+  48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. Two fitted models are involved and an earlier draft conflated them. The 0.604 accuracy belongs to the
+  leave-one-shape-out nearest-centroid classifier over the four derived coordinates (log k_eff, log n_elem,
+  log C, log H) on the 48-shape lattice (`results/a8b_analysis.json` `class_predictability`). The
+  missing-information argument concerns the separate geometry-only magnitude model G used for rho_max, which
+  is fitted on a one-coordinate projection and cannot bound mass redistribution along the other three derived
+  dimensions. Both models, their features and their folds are named in the artifact. So the honest statement
+  is that 0.604 is a property of this classifier on this lattice, not an impossibility result; a continuous
+  description it cannot see, including a threshold on continuous inputs, remains possible. A reader who believes the spine
   requires a continuous surface should read this paper as a negative result on that form and a positive one
   on a bounded categorical surface.
 - **The floor model (E2b).** The claim that a hand kernel's advantage must exceed the two-launch floor
@@ -53,7 +55,8 @@ decomposition survives; the claim that the class follows from the conv parameter
   (advantage must beat the launch constant), not a shape-only surface.
 - **The one-sided cushion.** A cheap statistic was screened as a flip predictor and failed out of sample
   (train AUC 0.743, rider AUC 0.121). Only the safe region is claimed: below c* = 0.4578, 0/10 rider rows
-  flip. No global ranking.
+  flip. Zero of ten gives a one-sided 95% upper bound of 0.259 on the flip probability (Clopper–Pearson), so
+  this is a bounded observation, not a guarantee. No global ranking.
 - **Single-arch scope.** Everything here is GB10/sm_120, one fp64 build, one torch version (2.14.1+cu130).
   H100 folklore is re-derived, not cited. The two-class dispatch result is a statement about cudnn's engine
   menu on this architecture; a second arch is required before any transfer claim, and none is available

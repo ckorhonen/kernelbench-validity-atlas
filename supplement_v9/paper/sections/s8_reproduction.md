@@ -1,5 +1,14 @@
 # Section 8 prose — Reproduction artifact (draft, tick #51 2026-10-24)
 
+**Where the evidence is, and how to reach it.** This submission carries a supplement ZIP that contains every
+measurement producer, every row-level result the manuscript cites, the auditors, the preregistrations and a
+sha256 manifest; the same tree is public at https://github.com/ckorhonen/kernelbench-validity-atlas, pinned at
+an immutable revision recorded in the package's `README.md` and named in this submission's change summary. The earlier version of this paper
+was rejected on the grounds that no supplement was supplied and no identifiable archive was named — a
+submission defect, not a measurement one — so the paragraph exists to be checked rather than believed: unpack
+the ZIP, run `python3 kernels/s50_prose_audit.py` from inside it, and the numbers in this section either
+reproduce or the script exits nonzero.
+
 The paper ships auditors rather than promises. Every script named here is CPU-only unless marked, reads
 committed artifacts rather than re-measuring, and exits nonzero when a cited number cannot be regenerated.
 **Scope of that guarantee, stated because a review caught me overclaiming it:** the prose auditors
