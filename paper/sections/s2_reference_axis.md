@@ -140,6 +140,15 @@ but *which* property of its coefficient conditioning produces 10× amplification
 PyTorch exposes no algorithm handle for it. The measurement stands; the mechanism is a named candidate, and
 it is the specific question this paper would put to a peer with cudnn internals access.
 
+**$\rho$ is normalised by the benchmark's own fp32 tolerance, verified in source.** `src/kernelbench/eval.py`
+`get_tolerance_for_precision` returns $10^{-4}$ for `torch.float32` (citing torchbench) and $10^{-2}$ only for
+fp16/bf16, so the gate used throughout this paper is the benchmark's shipped contract, not a stricter private
+one. That makes $\rho$ an exact statement about the shipped benchmark rather than a remark about people who
+tighten tolerances: at fp32 the reference's own deviation and the gate's budget are the same order of magnitude,
+so on the shapes measured here a candidate's verdict is decided by which engine the reference dispatched to.
+$\rho \geq 1$ is a per-element statement, not a whole-tensor one — the fraction of elements over budget
+(`frac_over`, reported alongside every $\rho$) is what decides whether a candidate could pass at all.
+
 ## 2.4 What the instrument says about the atlas's spine hypothesis
 
 The spine predicted that domain boundaries, irregular in raw-shape space, collapse to low-complexity surfaces
@@ -208,3 +217,38 @@ What the surface measures:
 - **Reference realization.** Every cell's fp64 anchor dispatches to cutlass `implicit_convolve_dgemm` (class O) — no tensorop path exists at fp64 — so the anchor lattice, not a single anchor, is the object any certificate must be written over.
 
 Consequence for the claim: the boundary is categorical and deterministic in the declared tuple. That is the positive low-complexity result in tuple coordinates — admission becomes a lookup over an enumerated tuple partition rather than a continuous model — and it is also why the continuous derived-coordinate story (§4.5) cannot carry admission on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
+
+
+### Table 1 — the measured dispatch map (17 cells, two repeats each)
+
+`results/tuple_surface.json`, prereg frozen at `c16fb5e` before the run; base tuple C=256, k=3, H=W=7, batch=2,
+stride=1, pad=1, dilation=1, NCHW; seed 4321; GB10/sm_120, cudnn 92400. Classes: W = winograd non-fused,
+T = TF32 tensorop (cutlass), I = fp32 SIMT (implicit_convolve_sgemm), O = fp64 dgemm anchor. `flag-off` is the
+class measured with `allow_tf32=False` on the identical tuple; "I" there means the flag removes the tensorop path
+entirely. The fp64 anchor is class O in all 17 cells.
+
+| cell | varied coordinate | class | rho_max | frac_over | flag-off class |
+|---|---|---|---|---|---|
+| A00 | base | W | 6.736 | 0.004743 | W |
+| A01 | stride=2 | T | 369.4 | 0.781 | I |
+| A02 | stride=3 | T | 167.1 | 0.7717 | I |
+| A03 | dilation=2 | T | 315.1 | 0.7841 | I |
+| A04 | dilation=3 | T | 208.7 | 0.7856 | I |
+| A05 | pad=0 | W | 3.559 | 0.007734 | W |
+| A06 | pad=2 | W | 12.8 | 0.007186 | W |
+| A07 | layout=NHWC | T | 429.4 | 0.7837 | I |
+| A08 | batch=1 | W | 6.435 | 0.004225 | W |
+| A09 | batch=4 | W | 6.816 | 0.004903 | W |
+| A10 | batch=8 | W | 8.77 | 0.005122 | W |
+| B01 | C=16 | T | 60.25 | 0.7602 | I |
+| B02 | C=64 | W | 1.405 | 0.0004783 | W |
+| B03 | H=14, W=14 | T | 371.2 | 0.7855 | W |
+| C01 | stride=2, dilation=2 | T | 315.1 | 0.7869 | I |
+| C02 | pad=2, dilation=2 | T | 315.1 | 0.7847 | I |
+| C03 | stride=2, pad=2 | T | 221.2 | 0.7818 | I |
+
+Read as a dispatch surface, not a smooth field: the W→T step is one unit wide in stride, dilation and layout and
+does not appear at all in batch or pad; C=16 and a 14×14 extent both leave the winograd corner while C=64 stays
+inside it. The two magnitudes are separated by two to three orders of magnitude (rho 1.4–12.8 versus 60–429,
+frac_over 0.0005–0.0077 versus 0.760–0.787), which is why the admission question is a class question before it is
+a magnitude question.

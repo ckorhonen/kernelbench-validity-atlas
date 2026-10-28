@@ -1,5 +1,5 @@
 {
- "date": "2026-10-28T15:41:31Z",
+ "date": "2026-10-28T19:06:41Z",
  "n_cited": 48,
  "n_found": 48,
  "missing": [],
@@ -9,7 +9,6 @@
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
-    "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md"
    ],
    "sha256": "246aa82efdb16f309c5088d58605df19aae51c420b864b04ef413f7be6195309",
@@ -143,7 +142,6 @@
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
-    "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md"
    ],
    "sha256": "87016d2de387478ea522170bcc3e531b8c84d277f5d2c696c446bc8bd6b7b425",
@@ -286,7 +284,6 @@
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
-    "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s4_certificates.md",
     "paper/sections/s7_threats.md"
@@ -1146,7 +1143,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-10-28T15:41:25Z",
+   "mtime_utc": "2026-10-28T19:06:13Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1181,7 +1178,7 @@
    ],
    "sha256": "74bc3bec80dc0fbf2f023c8b6181c289113023a2c4ef8ef947dc631d826ceefb",
    "bytes": 5255,
-   "mtime_utc": "2026-10-28T15:41:25Z",
+   "mtime_utc": "2026-10-28T19:06:13Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1205,9 +1202,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md"
    ],
-   "sha256": "d63fdafc437e9f0b017b940284eba0b1efbae23653d18ad73d02d9f4b964f82d",
-   "bytes": 1763,
-   "mtime_utc": "2026-10-28T15:41:25Z",
+   "sha256": "e974199c82d046e7c1323793046c3a1cec667e310bcab41a99cea3f2ac73afef",
+   "bytes": 1762,
+   "mtime_utc": "2026-10-28T19:06:41Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1342,6 +1339,7 @@
    "cited_in": [
     "paper/ATLAS_TUPLE_SURFACE.md",
     "paper/MANUSCRIPT.md",
+    "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md"
    ],
    "sha256": "439d61ffe9058f266949d67896a238ddb5e83a7d91c72043c6ae976f1ce2ef21",
