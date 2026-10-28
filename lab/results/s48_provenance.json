@@ -1,7 +1,7 @@
 {
- "date": "2026-10-25T18:07:39Z",
- "n_cited": 44,
- "n_found": 44,
+ "date": "2026-10-28T15:40:06Z",
+ "n_cited": 48,
+ "n_found": 48,
  "missing": [],
  "entries": [
   {
@@ -16,7 +16,7 @@
    "bytes": 21123,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/a10_crossing_neighborhood.py"
+    "lab/a10_crossing_neighborhood.py"
    ],
    "content": {
     "kind": "json",
@@ -43,7 +43,7 @@
    "bytes": 10188,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/a11_layernorm_reference_dist.py"
+    "lab/a11_layernorm_reference_dist.py"
    ],
    "content": {
     "kind": "json",
@@ -51,6 +51,37 @@
      "header",
      "rows",
      "verdicts"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/a2_loo.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md",
+    "paper/sections/s6_selector.md"
+   ],
+   "sha256": "811c66750518687eb7b3cd03a77efedc9c05b05e83c266fafd51d5528b80915b",
+   "bytes": 25606,
+   "mtime_utc": "2026-10-22T09:09:05Z",
+   "producers": [
+    "lab/a2_loo.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "PASS",
+     "cuda_available",
+     "device",
+     "impl_notes",
+     "metric",
+     "prereg_commit",
+     "prereg_sha256",
+     "results",
+     "runtime_s",
+     "torch",
+     "when"
     ]
    },
    "compressed": false
@@ -66,7 +97,7 @@
    "bytes": 1918,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/a6_refdistance.py"
+    "lab/a6_refdistance.py"
    ],
    "content": {
     "kind": "json",
@@ -92,7 +123,7 @@
    "bytes": 2099,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/a6b_ksweep.py"
+    "lab/a6b_ksweep.py"
    ],
    "content": {
     "kind": "json",
@@ -119,7 +150,7 @@
    "bytes": 2435,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/a6d_crossing.py"
+    "lab/a6d_crossing.py"
    ],
    "content": {
     "kind": "json",
@@ -148,7 +179,7 @@
    "bytes": 15764,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/a7_kernelclass.py"
+    "lab/a7_kernelclass.py"
    ],
    "content": {
     "kind": "json",
@@ -174,7 +205,7 @@
    "bytes": 6693,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/a7b_precision_policy.py"
+    "lab/a7b_precision_policy.py"
    ],
    "content": {
     "kind": "json",
@@ -201,7 +232,7 @@
    "bytes": 36148,
    "mtime_utc": "2026-10-25T18:07:38Z",
    "producers": [
-    "kernels/a8_analysis.py"
+    "lab/a8_analysis.py"
    ],
    "content": {
     "kind": "json",
@@ -232,10 +263,12 @@
    "bytes": 57583,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/a8_compress.py",
-    "kernels/a8b_analysis.py",
-    "kernels/s51_prose_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/a8_compress.py",
+    "lab/a8b_analysis.py",
+    "lab/s51_prose_audit.py",
+    "lab/s52_supplement_build.py",
+    "lab/s57_supplement_build_v7.py",
+    "lab/s57_supplement_build_v9.py"
    ],
    "content": {
     "kind": "json",
@@ -262,7 +295,7 @@
    "bytes": 48991,
    "mtime_utc": "2026-10-25T18:07:39Z",
    "producers": [
-    "kernels/a8b_analysis.py"
+    "lab/a8b_analysis.py"
    ],
    "content": {
     "kind": "json",
@@ -292,7 +325,7 @@
    "bytes": 7436,
    "mtime_utc": "2026-10-25T18:07:39Z",
    "producers": [
-    "kernels/a9_analysis.py"
+    "lab/a9_analysis.py"
    ],
    "content": {
     "kind": "json",
@@ -320,7 +353,7 @@
    "bytes": 5043,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/a9_compose.py"
+    "lab/a9_compose.py"
    ],
    "content": {
     "kind": "json",
@@ -332,18 +365,21 @@
    "compressed": false
   },
   {
-   "artifact": "results/b2_direction_audit.json.gz",
+   "artifact": "results/b2_direction_audit.json",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "91121a1730b0271fbc8e5a87677d7e2a1f38a42a6754d8cd1bf7e11bcbdc9b55",
-   "bytes": 8431,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "588f843df48abbbd915cae2f497f0fb0597a42e4d0161b15c14afc8a5edc7ca1",
+   "bytes": 61419,
+   "mtime_utc": "2026-10-20T07:17:47Z",
    "producers": [
-    "kernels/s51_prose_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/b4_direction_audit.py",
+    "lab/s51_prose_audit.py",
+    "lab/s52_supplement_build.py",
+    "lab/s57_supplement_build_v7.py",
+    "lab/s57_supplement_build_v9.py"
    ],
    "content": {
     "kind": "json",
@@ -353,7 +389,7 @@
      "when"
     ]
    },
-   "compressed": true
+   "compressed": false
   },
   {
    "artifact": "results/b2_failure_corpus.jsonl",
@@ -366,8 +402,7 @@
    "bytes": 110871,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s51_prose_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/b2_failure_corpus.py"
    ],
    "content": {
     "kind": "jsonl",
@@ -420,8 +455,7 @@
    "bytes": 1095,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s51_prose_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/b4_direction_audit.py"
    ],
    "content": {
     "kind": "json",
@@ -451,8 +485,7 @@
    "bytes": 10229,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s51_prose_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/b5_stage1.py"
    ],
    "content": {
     "kind": "json",
@@ -480,9 +513,7 @@
    "bytes": 6029,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s50_prose_audit.py",
-    "kernels/s53_intro_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/calibration.py"
    ],
    "content": {
     "kind": "json",
@@ -516,13 +547,14 @@
     "paper/MANUSCRIPT.md",
     "paper/REFRAME_SKELETON.md",
     "paper/sections/s3b_conv_anchor.md",
-    "paper/sections/s5_tolerance.md"
+    "paper/sections/s5_tolerance.md",
+    "paper/sections/s6_selector.md"
    ],
    "sha256": "6f0b5d97570542487a82cda0cfb2b9144190f1a4e7450aabb99abb86ed3c8008",
    "bytes": 2747,
    "mtime_utc": "2026-10-25T18:07:36Z",
    "producers": [
-    "kernels/cf43.py"
+    "lab/cf43.py"
    ],
    "content": {
     "kind": "json",
@@ -549,7 +581,7 @@
    "bytes": 622,
    "mtime_utc": "2026-10-25T18:07:36Z",
    "producers": [
-    "kernels/cushion_screen.py"
+    "lab/cushion_screen.py"
    ],
    "content": {
     "kind": "json",
@@ -578,7 +610,10 @@
    "bytes": 7458,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s57_supplement_build_v7.py"
+    "lab/e1_analyze_v3.py",
+    "lab/s52_supplement_build.py",
+    "lab/s57_supplement_build_v7.py",
+    "lab/s57_supplement_build_v9.py"
    ],
    "content": {
     "kind": "json",
@@ -591,7 +626,7 @@
    "compressed": false
   },
   {
-   "artifact": "results/e1_triad_day2.json.gz",
+   "artifact": "results/e1_triad_day2.json",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
@@ -600,13 +635,11 @@
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s3_atlas.md"
    ],
-   "sha256": "0f329410f39d5c2449d51774659a5da0bd25c5c92f2ff957ccf3c75b93052cac",
-   "bytes": 14092,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "c26761b5281edbdeea011c8c36702c01f92e1f651a3afe9fe831931c97862ffd",
+   "bytes": 320419,
+   "mtime_utc": "2026-10-17T12:06:42Z",
    "producers": [
-    "kernels/s50_prose_audit.py",
-    "kernels/s53_intro_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/e1_triad_day2.py"
    ],
    "content": {
     "kind": "json",
@@ -615,20 +648,23 @@
      "rows"
     ]
    },
-   "compressed": true
+   "compressed": false
   },
   {
-   "artifact": "results/e1b_order_v2.json.gz",
+   "artifact": "results/e1b_order_v2.json",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
-   "sha256": "a12ed867d31a48043aed34add77cf082592fbe63c31564ea2e21554d3d3e9bce",
-   "bytes": 10624,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "5bacde18752142dae79dc6a639747ac3f1ff143f5a39320ff8da7c1eb48741ad",
+   "bytes": 114579,
+   "mtime_utc": "2026-10-17T05:44:39Z",
    "producers": [
-    "kernels/s57_supplement_build_v7.py"
+    "lab/e1b_order.py",
+    "lab/s52_supplement_build.py",
+    "lab/s57_supplement_build_v7.py",
+    "lab/s57_supplement_build_v9.py"
    ],
    "content": {
     "kind": "json",
@@ -637,20 +673,20 @@
      "runs"
     ]
    },
-   "compressed": true
+   "compressed": false
   },
   {
-   "artifact": "results/e2_splitk_v2.json.gz",
+   "artifact": "results/e2_splitk_v2.json",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
-   "sha256": "bd70e1ef01e178c42a9cec0a3e5034188b2f852194d4e362e85a4098bfbb3abb",
-   "bytes": 23078,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "57142c2acf46852756ca3ee674920bdd6c1600855baaa36e9e72e6dafcda26b7",
+   "bytes": 128215,
+   "mtime_utc": "2026-10-17T08:53:51Z",
    "producers": [
-    "kernels/s57_supplement_build_v7.py"
+    "lab/e2_splitk_v2.py"
    ],
    "content": {
     "kind": "json",
@@ -659,22 +695,26 @@
      "rows"
     ]
    },
-   "compressed": true
+   "compressed": false
   },
   {
-   "artifact": "results/e2_v3_err.json.gz",
+   "artifact": "results/e2_v3_err.json",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "b8bfcdf8ad1ace05f3e8ae2cc3fc881269ef27f6d72dcf20c00b416c9639a1b2",
-   "bytes": 8583,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "fa0a663a46af778bd28821ca087ae1613d1335bd79b4560f9b1be7f40656718a",
+   "bytes": 107522,
+   "mtime_utc": "2026-10-17T21:39:16Z",
    "producers": [
-    "kernels/s51_prose_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/e2_err_regen.py",
+    "lab/s51_prose_audit.py",
+    "lab/s52_supplement_build.py",
+    "lab/s57_supplement_build_v7.py",
+    "lab/s57_supplement_build_v9.py",
+    "lab/w4_dispatcher_v1.py"
    ],
    "content": {
     "kind": "json",
@@ -683,21 +723,20 @@
      "rows"
     ]
    },
-   "compressed": true
+   "compressed": false
   },
   {
-   "artifact": "results/e2b_floor.json.gz",
+   "artifact": "results/e2b_floor.json",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
-   "sha256": "29370113a81fbd1502d9cd4093253e758830d9d2e8d2ffef3e821786c346cd8c",
-   "bytes": 9301,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "c6d1ed7fd09e0b25513f19933101e12026666d5109f31bcff6f5a26592614684",
+   "bytes": 85525,
+   "mtime_utc": "2026-10-27T12:13:07Z",
    "producers": [
-    "kernels/s51_prose_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/e2b_floor.py"
    ],
    "content": {
     "kind": "json",
@@ -707,7 +746,7 @@
      "rows"
     ]
    },
-   "compressed": true
+   "compressed": false
   },
   {
    "artifact": "results/e3_gridgeom.json",
@@ -720,7 +759,7 @@
    "bytes": 23010,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s57_supplement_build_v7.py"
+    "lab/e3_gridgeom.py"
    ],
    "content": {
     "kind": "json",
@@ -747,7 +786,7 @@
    "bytes": 3240,
    "mtime_utc": "2026-10-25T18:07:36Z",
    "producers": [
-    "kernels/f24_verify.py"
+    "lab/f24_verify.py"
    ],
    "content": {
     "kind": "json",
@@ -761,25 +800,39 @@
    "compressed": false
   },
   {
-   "artifact": "results/m3_r42.jsonl.gz",
+   "artifact": "results/m3_r42.jsonl",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "31017d170583a535ddfb3908ca543ab2d7946d95e4b52d0637655b565d53ada1",
-   "bytes": 24986,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "c55fc502cb246f79f2475a7a07812fb84ba2fdb9dbe0600e2de798fbfa84d7dd",
+   "bytes": 245922,
+   "mtime_utc": "2026-10-22T19:16:04Z",
    "producers": [
-    "kernels/cushion_screen.py",
-    "kernels/f24_verify.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/m3_r42.py"
    ],
    "content": {
-    "kind": "unparseable",
-    "error": "JSONDecodeError"
+    "kind": "jsonl",
+    "rows": 96,
+    "row_keys": [
+     "K",
+     "M",
+     "adm",
+     "arms",
+     "bt_deployed",
+     "bytes",
+     "cert",
+     "date",
+     "domain_pred",
+     "family",
+     "gate_fires",
+     "n_reps",
+     "oracle_arg",
+     "t_oracle_ms"
+    ]
    },
-   "compressed": true
+   "compressed": false
   },
   {
    "artifact": "results/m3_r42_analysis.json",
@@ -792,7 +845,7 @@
    "bytes": 3650,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s57_supplement_build_v7.py"
+    "lab/m3_r42_analysis.py"
    ],
    "content": {
     "kind": "json",
@@ -805,44 +858,73 @@
    "compressed": false
   },
   {
-   "artifact": "results/r1_conv_gated.jsonl.gz",
+   "artifact": "results/r1_conv_gated.jsonl",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s3b_conv_anchor.md",
-    "paper/sections/s5_tolerance.md"
+    "paper/sections/s4_certificates.md",
+    "paper/sections/s5_tolerance.md",
+    "paper/sections/s6_selector.md"
    ],
-   "sha256": "84ad99bcb7b9a5aaf398bd02cca0113238009a2c02690bf39b97850167820678",
-   "bytes": 28654,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "e578e4a438659dda6b841dce50deb97877318a70ea745e12030cc245f3ef56bd",
+   "bytes": 282516,
+   "mtime_utc": "2026-10-22T02:08:33Z",
    "producers": [
-    "kernels/cushion_screen.py",
-    "kernels/f24_verify.py",
-    "kernels/r42_analysis.py",
-    "kernels/s55_review_repair.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/r1_conv_gated.py"
    ],
    "content": {
-    "kind": "unparseable",
-    "error": "JSONDecodeError"
+    "kind": "jsonl",
+    "rows": 56,
+    "row_keys": [
+     "C",
+     "CO",
+     "H",
+     "K",
+     "M",
+     "N",
+     "W",
+     "bytes",
+     "cmp_regret",
+     "contract",
+     "date",
+     "domain_predicate",
+     "gate",
+     "gate_published",
+     "gate_published_regret",
+     "hand_best",
+     "op_class",
+     "oracle",
+     "ref32_absmax",
+     "ref_absmax",
+     "rule",
+     "sm_count",
+     "tag",
+     "torch_regret",
+     "variants"
+    ]
    },
-   "compressed": true
+   "compressed": false
   },
   {
    "artifact": "results/r1_times.json",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
+    "paper/rejections/rejection_response_PseRykT8DYZnJmnp.md",
     "paper/sections/s8_reproduction.md"
    ],
    "sha256": "fa85a5c7a4b0a2cb779b82bcae4fba5a3df31dce45d7623045e3678f94b9a522",
    "bytes": 29488,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "mtime_utc": "2026-10-24T18:22:28Z",
    "producers": [
-    "kernels/r45_rider_adm.py",
-    "kernels/s48_provenance.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/r41_gate_stability.py",
+    "lab/r45_rider_adm.py",
+    "lab/s48_provenance.py",
+    "lab/s52_supplement_build.py",
+    "lab/s57_supplement_build_v7.py",
+    "lab/s57_supplement_build_v9.py"
    ],
    "content": {
     "kind": "json",
@@ -919,7 +1001,7 @@
    "bytes": 43315,
    "mtime_utc": "2026-10-25T18:07:36Z",
    "producers": [
-    "kernels/r42_analysis.py"
+    "lab/r42_analysis.py"
    ],
    "content": {
     "kind": "json",
@@ -950,7 +1032,7 @@
    "bytes": 43497,
    "mtime_utc": "2026-10-25T18:07:36Z",
    "producers": [
-    "kernels/r45_rider_adm.py"
+    "lab/r45_rider_adm.py"
    ],
    "content": {
     "kind": "json",
@@ -980,7 +1062,7 @@
    "bytes": 15940,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s57_supplement_build_v7.py"
+    "lab/s46_e2_recount.py"
    ],
    "content": {
     "kind": "json",
@@ -1009,8 +1091,7 @@
    "bytes": 3289,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s53_intro_audit.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/s48_prose_audit.py"
    ],
    "content": {
     "kind": "json",
@@ -1040,7 +1121,7 @@
    "bytes": null,
    "mtime_utc": null,
    "producers": [
-    "kernels/s48_provenance.py"
+    "lab/s48_provenance.py"
    ],
    "content": {
     "kind": "json",
@@ -1063,11 +1144,11 @@
     "paper/sections/s4_certificates.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "868e5856c103ba88ec13b08831d4e4009efadea38d744e9e9a2b74c91b65e1e1",
-   "bytes": 7701,
-   "mtime_utc": "2026-10-25T18:07:36Z",
+   "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
+   "bytes": 7782,
+   "mtime_utc": "2026-10-28T15:39:58Z",
    "producers": [
-    "kernels/s50_prose_audit.py"
+    "lab/s50_prose_audit.py"
    ],
    "content": {
     "kind": "json",
@@ -1098,11 +1179,11 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "378301b4ad5bb97847026a6160a98fafdb9a688567e79ad18abd1467c5d05c7d",
-   "bytes": 5268,
-   "mtime_utc": "2026-10-25T18:07:36Z",
+   "sha256": "ef9f1ec203f8647dd67d6dd0aaf13c7de2af724a030ab26befc76c7f9a5c736e",
+   "bytes": 5255,
+   "mtime_utc": "2026-10-28T15:39:54Z",
    "producers": [
-    "kernels/s51_prose_audit.py"
+    "lab/s51_prose_audit.py"
    ],
    "content": {
     "kind": "json",
@@ -1124,11 +1205,11 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md"
    ],
-   "sha256": "f74fbf1cfa2fffc0b5de11812f3a62a566bfde43aa7b0b5d2db50129ac438225",
+   "sha256": "d63fdafc437e9f0b017b940284eba0b1efbae23653d18ad73d02d9f4b964f82d",
    "bytes": 1763,
-   "mtime_utc": "2026-10-25T18:07:36Z",
+   "mtime_utc": "2026-10-28T15:39:54Z",
    "producers": [
-    "kernels/s53_intro_audit.py"
+    "lab/s53_intro_audit.py"
    ],
    "content": {
     "kind": "json",
@@ -1153,11 +1234,11 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "f355cb57c8b1816fdecd592737fb7d287b62fac5d4a8581f76574f206c581b5e",
-   "bytes": 10349,
-   "mtime_utc": "2026-10-25T18:07:36Z",
+   "sha256": "b4c75a09a686929900352ebcf88b68e56058f6045b0a030cb81eaee570943332",
+   "bytes": 10348,
+   "mtime_utc": "2026-10-28T12:14:48Z",
    "producers": [
-    "kernels/s55_review_repair.py"
+    "lab/s55_review_repair.py"
    ],
    "content": {
     "kind": "json",
@@ -1184,8 +1265,10 @@
    "bytes": 15562,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s56_heldout_contract.py",
-    "kernels/s57_supplement_build_v7.py"
+    "lab/s52_supplement_build.py",
+    "lab/s56_heldout_contract.py",
+    "lab/s57_supplement_build_v7.py",
+    "lab/s57_supplement_build_v9.py"
    ],
    "content": {
     "kind": "json",
@@ -1208,7 +1291,7 @@
    "bytes": 77711,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s56_heldout_contract.py"
+    "lab/s56_heldout_contract.py"
    ],
    "content": {
     "kind": "json",
@@ -1233,7 +1316,7 @@
    "bytes": 2080,
    "mtime_utc": "2026-10-25T18:07:36Z",
    "producers": [
-    "kernels/s6_dispatcher_audit.py"
+    "lab/s6_dispatcher_audit.py"
    ],
    "content": {
     "kind": "json",
@@ -1254,6 +1337,75 @@
    "compressed": false
   },
   {
+   "artifact": "results/tuple_surface.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md",
+    "paper/sections/s2_reference_axis.md"
+   ],
+   "sha256": "439d61ffe9058f266949d67896a238ddb5e83a7d91c72043c6ae976f1ce2ef21",
+   "bytes": 108027,
+   "mtime_utc": "2026-10-28T15:37:41Z",
+   "producers": [
+    "lab/tuple_surface.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "cells",
+     "prereg",
+     "rows",
+     "verdict"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/tuple_test.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/rejections/rejection_response_PseRykT8DYZnJmnp.md",
+    "paper/rejections/rejection_triage_PseRykT8DYZnJmnp.md"
+   ],
+   "sha256": "309b6a41648638584dffa5c5489c0b4b8438ed3d00101de02dcd45fea46a8bc2",
+   "bytes": 14737,
+   "mtime_utc": "2026-10-28T08:02:40Z",
+   "producers": [
+    "lab/tuple_test.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [],
+    "list_len": 9
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/w4_heldout.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md",
+    "paper/rejections/rejection_response_PseRykT8DYZnJmnp.md",
+    "paper/rejections/rejection_triage_PseRykT8DYZnJmnp.md",
+    "paper/sections/s4_certificates.md",
+    "paper/sections/s6_selector.md"
+   ],
+   "sha256": "3138dfd1d219b11a94735e8dc8879d8a89dbd4b50059ebe6811242120e053290",
+   "bytes": 70417,
+   "mtime_utc": "2026-10-18T21:18:50Z",
+   "producers": [
+    "lab/w4_heldout.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "meta",
+     "rows"
+    ]
+   },
+   "compressed": false
+  },
+  {
    "artifact": "results/w4_v1.json",
    "sha256_note": null,
    "cited_in": [
@@ -1264,7 +1416,10 @@
    "bytes": 13590,
    "mtime_utc": "2026-10-25T18:07:35Z",
    "producers": [
-    "kernels/s57_supplement_build_v7.py"
+    "lab/s52_supplement_build.py",
+    "lab/s57_supplement_build_v7.py",
+    "lab/s57_supplement_build_v9.py",
+    "lab/w4_dispatcher_v1.py"
    ],
    "content": {
     "kind": "json",

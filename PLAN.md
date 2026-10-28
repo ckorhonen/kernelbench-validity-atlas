@@ -240,3 +240,14 @@ reviewer disputes. If quiet: the engine-class tuple test reflection 56 pre-regis
 layout/batch at fixed shape; class flips => 0.604 is a projection artifact and admission becomes an
 enumerated-tuple dispatch; no flip => 0.604 is a real unpredictability result and §4's pessimism stands).
 24h-E1/CTA-edge/bt stay parked.
+
+## Active lane: ROUND-11 REPAIR — opened 2026-10-28 15:3xZ (AuBSkki84PdtDkPw rejected 12:35:49Z)
+
+Six findings; triage lab/triage_round11.md. F2/F3 DISCHARGED by the tuple-surface measurement
+(lab/tuple_surface.py -> lab/results/tuple_surface.json, prereg c16fb5e; determinism 34/34, simple (s,d)
+rule scoped by C=16 and H=14 cells, real channels_last = T rho 429.4, pad-2 rho 12.8024, fp64 anchor class
+O everywhere). §2.5 rewritten; ATLAS_TUPLE_SURFACE.md written. Remaining: F1 three-predicate prose repair
+(scope-wide), F4 fallback-policy spec + corrected population in §6.2-6.4, F5 structural rewrite (final
+question -> definitions -> method -> findings -> limitations; history to appendices; dispatch map), F6
+README consolidation + package verified from inside the zip incl. tuple_surface producers. Then resubmit
+previous_submission_id=AuBSkki84PdtDkPw. 24h-E1/CTA-edge/bt parked.

@@ -23,8 +23,18 @@ import torch
 import torch.nn.functional as F
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "results", "tuple_fp64.json")
-REPORT = os.path.join(HERE, "report_fp64_tuple_test.md")
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory (frozen packaging convention, round-11 F6)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+RES = _kb_res_dir(HERE)
+OUT = os.path.join(RES, "tuple_fp64.json")
+REPORT = os.path.join(RES, "report_fp64_tuple_test.md")
 
 ATOL = RTOL = 1e-4
 DEV = "cuda"
