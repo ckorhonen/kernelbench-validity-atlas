@@ -36,7 +36,18 @@ def _prereg_sha():
 def fam(arm):
     return "torch" if arm == "torch" else ("compile" if arm == "torch_cmp" else "hand")
 
-rows = [json.loads(l) for l in open(SRC)]
+def _kb_open(path):
+    """Open a plain or gzipped artifact; heavy row-streams ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip
+        return gzip.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+
+
+with _kb_open(SRC) as f:
+    rows = [json.loads(l) for l in f]
 recs = []
 for r in rows:
     refdev = abs(r["ref_absmax"] - r["ref32_absmax"]) / (1e-4 + 1e-4 * abs(r["ref_absmax"]))

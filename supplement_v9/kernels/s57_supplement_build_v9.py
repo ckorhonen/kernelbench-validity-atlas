@@ -33,7 +33,7 @@ BUDGET = 2_000_000
 # CPU-only scripts: run from inside the package at build, must exit 0. This is the whole F5b repair.
 CPU_RUNNABLE = """
 s48_provenance.py s50_prose_audit.py s51_prose_audit.py s52_prose_audit.py s53_intro_audit.py
-s54_metadata_audit.py s52_manuscript.py f24_verify.py r45_rider_adm.py r42_analysis.py cf43.py
+s54_metadata_audit.py s52_manuscript.py r57_candidate_admission.py f24_verify.py r45_rider_adm.py r42_analysis.py cf43.py
 cushion_screen.py s6_dispatcher_audit.py s55_review_repair.py a8_analysis.py a8b_analysis.py a9_analysis.py
 """.split()
 
@@ -47,7 +47,7 @@ tuple_test.py tuple_surface.py s57_supplement_build_v9.py
 
 PREREGS = """
 a6_refdistance_prereg.md a7_kernelclass_prereg.md a7b_precision_prereg.md a8_compress_prereg.md
-a9_compose_prereg.md
+a9_compose_prereg.md r57_candidate_admission_prereg.md
 """.split()
 
 # artifacts the shipped auditors load by name plus every round-4/5 evidence leg. Heavy row-streams are
@@ -68,7 +68,7 @@ b2_failure_corpus.jsonl gate_stability_summary.json m3_r42_analysis.json m3_summ
 r39_text_support.json a8_compress_v2.json a8_analysis.json a8b_analysis.json a9_compose.json
 a9_analysis.json s48_provenance.json s50_prose_audit.json s51_prose_audit.json s52_prose_audit.json
 s53_intro_audit.json s54_metadata_audit.json s55_review_repair.json s56_heldout_contract.json
-s56_analysis.json a10_crossing_neighborhood.json a11_layernorm_reference_dist.json a6_refdistance.json a6b_ksweep.json a6c_conv_tf32pair.json a6e_geometry_algo.json
+s56_analysis.json r57_candidate_admission.json a10_crossing_neighborhood.json a11_layernorm_reference_dist.json a6_refdistance.json a6b_ksweep.json a6c_conv_tf32pair.json a6e_geometry_algo.json
 a6f_geom_repl_convmech.json e1_analysis_v3.json e3_gridgeom.json m3_curve.json r42_gridfix.jsonl
 s46_e2_recount.json w4_v1.json s48_prose_audit.json b1_gatezero_v2.json
 a2_loo.json
@@ -82,7 +82,7 @@ w4_heldout.json w4_heldout.json.jsonl tuple_test.json tuple_surface.json a8_comp
 EXTRA_KERNEL_INPUTS = ["r1_times.json"]
 # the paper's submission metadata: s54 audits the abstract against the manuscript, so it must be inside
 # the package or s54 cannot run there (v5 shipped only the supplement's own metadata and s54 died on it).
-ROOT_FILES = {"submission_metadata_v9.json": "submission_metadata_v9.json"}
+ROOT_FILES = {"submission_metadata_v10.json": "submission_metadata_v10.json"}
 
 PAPER = ["REFRAME_SKELETON.md", "PROVENANCE.md", "MANUSCRIPT.md"]
 # Four archived full-stage reviews and two triages: §1, §7 and §8 cite them as evidence and s53 audits
