@@ -39,7 +39,20 @@
       7,
       7
     ],
-    "strides": [
+    "input_layout": "NCHW",
+    "x_strides": [
+      12544,
+      49,
+      7,
+      1
+    ],
+    "w_strides": [
+      2304,
+      9,
+      3,
+      1
+    ],
+    "o_strides": [
       12544,
       49,
       7,
@@ -85,7 +98,20 @@
       4,
       4
     ],
-    "strides": [
+    "input_layout": "NCHW",
+    "x_strides": [
+      12544,
+      49,
+      7,
+      1
+    ],
+    "w_strides": [
+      2304,
+      9,
+      3,
+      1
+    ],
+    "o_strides": [
       4096,
       16,
       4,
@@ -132,7 +158,20 @@
       9,
       9
     ],
-    "strides": [
+    "input_layout": "NCHW",
+    "x_strides": [
+      12544,
+      49,
+      7,
+      1
+    ],
+    "w_strides": [
+      2304,
+      9,
+      3,
+      1
+    ],
+    "o_strides": [
       20736,
       81,
       9,
@@ -178,7 +217,20 @@
       5,
       5
     ],
-    "strides": [
+    "input_layout": "NCHW",
+    "x_strides": [
+      12544,
+      49,
+      7,
+      1
+    ],
+    "w_strides": [
+      2304,
+      9,
+      3,
+      1
+    ],
+    "o_strides": [
       6400,
       25,
       5,
@@ -225,7 +277,20 @@
       7,
       7
     ],
-    "strides": [
+    "input_layout": "NHWC",
+    "x_strides": [
+      12544,
+      1792,
+      256,
+      1
+    ],
+    "w_strides": [
+      2304,
+      9,
+      3,
+      1
+    ],
+    "o_strides": [
       12544,
       49,
       7,
@@ -272,7 +337,20 @@
       7,
       7
     ],
-    "strides": [
+    "input_layout": "NCHW",
+    "x_strides": [
+      12544,
+      49,
+      7,
+      1
+    ],
+    "w_strides": [
+      2304,
+      9,
+      3,
+      1
+    ],
+    "o_strides": [
       12544,
       49,
       7,
@@ -296,8 +374,8 @@
       "cudaDeviceGetAttribute": 3,
       "cuLaunchKernel": 3,
       "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)": 3,
-      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3,
-      "cudaDeviceSynchronize": 2
+      "cudaDeviceSynchronize": 2,
+      "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)": 3
     },
     "rho": {
       "rho_max": 6.816156502283985,
@@ -319,7 +397,20 @@
       7,
       7
     ],
-    "strides": [
+    "input_layout": "NCHW",
+    "x_strides": [
+      12544,
+      49,
+      7,
+      1
+    ],
+    "w_strides": [
+      2304,
+      9,
+      3,
+      1
+    ],
+    "o_strides": [
       12544,
       49,
       7,
@@ -365,7 +456,20 @@
       5,
       5
     ],
-    "strides": [
+    "input_layout": "NCHW",
+    "x_strides": [
+      12544,
+      49,
+      7,
+      1
+    ],
+    "w_strides": [
+      2304,
+      9,
+      3,
+      1
+    ],
+    "o_strides": [
       6400,
       25,
       5,
@@ -412,7 +516,20 @@
       7,
       7
     ],
-    "strides": [
+    "input_layout": "NCHW",
+    "x_strides": [
+      12544,
+      49,
+      7,
+      1
+    ],
+    "w_strides": [
+      2304,
+      9,
+      3,
+      1
+    ],
+    "o_strides": [
       12544,
       49,
       7,
