@@ -5,7 +5,24 @@ import json, math, os, hashlib, random, statistics as st
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(HERE, "results")
+
+def _kb_res_dir(here):
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+
+
+RES = _kb_res_dir(HERE)
 OUT = os.path.join(RES, "s58_review_verify.json")
 PREREG = os.path.join(HERE, "s58_review_verify_prereg.md")
 PREREG_SHA = hashlib.sha256(open(PREREG, "rb").read()).hexdigest()[:16]
@@ -31,7 +48,7 @@ def auc(scores, labels):
     return (rank_sum - n_pos * (n_pos + 1) / 2.0) / (n_pos * n_neg)
 
 # ---- population
-rows = [json.loads(l) for l in open(os.path.join(RES, "r1_conv_gated.jsonl"))]
+rows = [json.loads(l) for l in _kb_open(os.path.join(RES, "r1_conv_gated.jsonl"))]
 recs = []
 for r in rows:
     key = (r["tag"], r["C"], r["H"], r["W"], r["N"], r["K"])
@@ -108,7 +125,7 @@ out["V3_hand_ieee"] = {"n": len(hi), "positives": sum(recs[i]["y"] for i in hi),
                        "bar_ci_lower_ge_0.70": bool(boot[int(.025 * len(boot))] >= 0.70)}
 
 # V4 fallback accounting from s56 rows
-s56 = json.load(open(os.path.join(RES, "s56_heldout_contract.json")))["rows"]
+s56 = json.load(_kb_open(os.path.join(RES, "s56_heldout_contract.json")))["rows"]
 regA = []; regB = []; detail = []
 for r in s56:
     arms = r["arms"]; gate = r["gate_choice"]; ga = arms.get(gate, {})
