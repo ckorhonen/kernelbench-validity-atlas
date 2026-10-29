@@ -512,7 +512,7 @@ def build_meta(pin):
                     return f"{s['n_pass']}/{s['n_checks']}"
             ch = d.get("checks")
             if isinstance(ch, list) and ch:
-                ok = sum(1 for c in ch if c.get("pass"))
+                ok = sum(1 for c in ch if c.get("pass") or c.get("ok"))
                 return f"{ok}/{len(ch)}"
             return "n/a"
         except Exception:
