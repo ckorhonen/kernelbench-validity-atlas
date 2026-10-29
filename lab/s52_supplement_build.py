@@ -501,8 +501,20 @@ def build_meta(pin):
     def _aud(name):
         try:
             d = json.load(open(os.path.join(ROOT, "lab", "results", name)))
-            p_, f_ = d.get("pass"), d.get("fail")
-            return f"{p_}/{p_ + f_}" if isinstance(p_, int) and isinstance(f_, int) else "n/a"
+            np_, nf_ = d.get("n_pass"), d.get("n_fail")
+            if isinstance(np_, int) and isinstance(nf_, int):
+                return f"{np_}/{np_ + nf_}"
+            if isinstance(np_, int) and isinstance(d.get("n_checks"), int):
+                return f"{np_}/{d['n_checks']}"
+            if isinstance(d.get("summary"), dict):
+                s = d["summary"]
+                if isinstance(s.get("n_pass"), int) and isinstance(s.get("n_checks"), int):
+                    return f"{s['n_pass']}/{s['n_checks']}"
+            ch = d.get("checks")
+            if isinstance(ch, list) and ch:
+                ok = sum(1 for c in ch if c.get("pass"))
+                return f"{ok}/{len(ch)}"
+            return "n/a"
         except Exception:
             return "n/a"
 
