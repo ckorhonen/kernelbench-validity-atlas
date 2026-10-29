@@ -283,3 +283,17 @@ declared lookup; (4) bias-vs-tail within-class geometry sweep; (5) benchmark-wid
 Change of course: few flips + baseline predictor => publish artifact set standalone, pivot to the benchmark-wide audit.
 Policies: one repair session per submission (hard cap); every session runs one experiment with a predeclared kill clause;
 audits as a single gate script, never narrated as achievement.
+
+## Active lane: ROUND-13 REPAIR — opened 2026-10-29 01:3xZ (5WxkQjcUg_JD3wtv rejected 2026-10-28T22:34:57Z, ~10 min after submission)
+
+Review lab/rejection_review_5WxkQjcUg.md; five findings, all locally checkable, verified this tick against a prereg frozen pre-computation
+(d2da0b8; lab/s58_review_verify.py -> results/s58_review_verify.json; triage lab/triage_round13.md). Results: V1 arm-class rule 96.4286%
+(TP108/TN540/FP4/FN20) is the baseline the manuscript hid; V2 declared-feature-only model AUC 0.974652 / 96.4286% (bar >=0.90 PASS) =>
+§4.6's execution-free claim survives with the model swapped; V3 hand-ieee AUC falls to 0.7548 (CI [0.537,0.923], 0/20 admitted at 0.5)
+=> within-class threshold stays measured; V4 policy-A reduction regret 3.49614% SE 1.37116 pp reproduces the reviewer exactly and the
+recorded conv mean of -6.35% proves the charged-failing-arm bug (producer patched to emit policy A/B, regeneration on spark);
+V5 cf3 = 169/360 = 46.94%, not 32.0% (`tot` carried 168 rider cells; `tot_arm` dead). R2/R5 prose contradictions and structure conceded.
+Repair session: §4.6 rewrite + baselines; §2.3/§4.4 quantity language; §6.3-6.5 one policy (A) with corrected numbers; §5.1 denominator
++ run-difference statement; §3.5 scoped to observed profiles; §2.5 r57 cited for candidate admission only; audits/provenance/package;
+resubmit previous_submission_id=5WxkQjcUg_JD3wtv. Then the owed flip table (kill <10% flips), out-of-family class prediction, bias-vs-tail,
+benchmark-wide audit scoping doc; fresh-process foreign-warm probe (the 01:28Z reflection's simpler question). 24h-E1/CTA-edge/bt parked.

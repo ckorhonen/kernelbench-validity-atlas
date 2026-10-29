@@ -79,7 +79,7 @@ for k in keys:
 auc_v2 = auc(list(pred), list(y)); acc_v2 = float(((pred > 0.5) == y).mean())
 out["V2_declared_only"] = {"features": "log2C,log2K,log2H*W,N,log2bytes,compile,hand,tf32 (no refdev, no interaction)",
                            "auc": round(auc_v2, 6), "accuracy": round(acc_v2, 6),
-                           "bar_auc_ge_0.90": auc_v2 >= 0.90,
+                           "bar_auc_ge_0.90": bool(auc_v2 >= 0.90),
                            "r57_reported_auc": 0.986, "r57_reported_accuracy": 0.964}
 
 # V3 hand-ieee stratum, shape-clustered bootstrap
@@ -105,7 +105,7 @@ out["V3_hand_ieee"] = {"n": len(hi), "positives": sum(recs[i]["y"] for i in hi),
                        "auc": round(auc_hi, 6) if auc_hi else None,
                        "cluster_boot_ci95": [round(boot[int(.025 * len(boot))], 4), round(boot[int(.975 * len(boot)) - 1], 4)],
                        "positives_admitted_at_0.5": admits,
-                       "bar_ci_lower_ge_0.70": boot[int(.025 * len(boot))] >= 0.70}
+                       "bar_ci_lower_ge_0.70": bool(boot[int(.025 * len(boot))] >= 0.70)}
 
 # V4 fallback accounting from s56 rows
 s56 = json.load(open(os.path.join(RES, "s56_heldout_contract.json")))["rows"]

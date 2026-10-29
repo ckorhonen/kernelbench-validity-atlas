@@ -297,8 +297,26 @@ def write_analysis(out):
                "fallback_for_failing_row": ("torch" if not gate_passes and arms.get("torch", {}).get("pass_full")
                                             else None)}
         if best and ga.get("t_ms") is not None:
+            # superseded: charges a FAILING gate arm's time (kept for history, see review 3)
             rec["gate_regret_time_frac"] = (ga["t_ms"] - arms[best]["t_ms"]) / arms[best]["t_ms"]
+        if best:
+            tb = arms[best]["t_ms"]
+            if gate_passes and ga.get("t_ms") is not None:
+                rec["policy_a_delivered"] = gate
+                rec["policy_a_regret_frac"] = (ga["t_ms"] - tb) / tb
+            elif arms.get("torch", {}).get("pass_full") and arms["torch"].get("t_ms") is not None:
+                rec["policy_a_delivered"] = "torch"
+                rec["policy_a_regret_frac"] = (arms["torch"]["t_ms"] - tb) / tb
+            else:
+                rec["policy_a_delivered"] = None
+            rec["policy_b_delivered"] = best
+            rec["policy_b_regret_frac"] = 0.0
         analysis["rows"].append(rec)
+
+    def _agg(v):
+        return {"n": len(v), "mean": st.mean(v) if v else None,
+                "sd": st.stdev(v) if len(v) > 1 else None,
+                "se": (st.stdev(v) / len(v) ** .5) if len(v) > 1 else None}
 
     summ = {}
     for fam in ("reduction", "conv"):
@@ -320,6 +338,8 @@ def write_analysis(out):
             "regret_all_rows": {"n": len(allreg), "mean": st.mean(allreg) if allreg else None,
                                 "se": (st.stdev(allreg) / len(allreg) ** .5) if len(allreg) > 1 else None},
             "regret_passing_rows_only": {"n": len(passreg), "mean": st.mean(passreg) if passreg else None},
+            "regret_policy_a_fallback": _agg([x["policy_a_regret_frac"] for x in fr if x.get("policy_a_regret_frac") is not None]),
+            "regret_policy_b_cheapest_admissible": _agg([x["policy_b_regret_frac"] for x in fr if x.get("policy_b_regret_frac") is not None]),
             "baseline_note": "eager torch; the pool has no torch.compile arm",
         }
     analysis["summary"] = summ
