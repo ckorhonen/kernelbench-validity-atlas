@@ -297,3 +297,13 @@ Repair session: §4.6 rewrite + baselines; §2.3/§4.4 quantity language; §6.3-
 + run-difference statement; §3.5 scoped to observed profiles; §2.5 r57 cited for candidate admission only; audits/provenance/package;
 resubmit previous_submission_id=5WxkQjcUg_JD3wtv. Then the owed flip table (kill <10% flips), out-of-family class prediction, bias-vs-tail,
 benchmark-wide audit scoping doc; fresh-process foreign-warm probe (the 01:28Z reflection's simpler question). 24h-E1/CTA-edge/bt parked.
+
+ROUND-13 DONE 17:0xZ 10-29: repaired by measurement and RESUBMITTED **qCxnisQsV7xiVE6M** (previous_submission_id=5WxkQjcUg_JD3wtv;
+files.supplement non-null). s58 reproduces the reviewer (arm-class 96.4286%, declared-only AUC .974652/96.4286%, hand .7548 CI [.537,.923],
+policy A 3.49614/1.37116 recorded and 4.0381/1.49762 fresh, cf3 169/360). Package rebuilt: r57+s58 producers/preregs shipped, recorded s56
+artifact recovered, 147 files / 1.71MB expanded, 11/11 CPU scripts exit 0 inside the unpacked zip. Manuscript 132,109 B; audits all green.
+Reflections: ditJQFukbFPzPj9a (representation -> admission as a rate; kill clause; probe deferred) and Jt88XgwJfPNWE22j (disagreement:
+tolerance as a free variable, not a fixed contract).
+Next: (1) desk/review watch; (2) the CPU-only epsilon admissible-set sweep over {1e-4,1e-3,1e-2,1e-1} from recorded per-arm budget ratios,
+kill if admissible ordering is invariant; (3) flip table (kill <10% flips); (4) foreign-warm probe; (5) K=8 seed admission-rate probe;
+(6) bias-vs-tail; (7) benchmark-wide audit scoping doc. 24h-E1/CTA-edge/bt parked.
