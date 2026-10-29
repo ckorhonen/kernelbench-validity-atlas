@@ -59,7 +59,7 @@ failures at budget ratios 1.61, 2.57 and 7.11.
 - **reduction**: 9 of 12 gate hand deliveries pass the full contract, which is the prereg's middle branch
   and means the claim is per-row rather than a family rule. Correctness-conditioned cost: over the 9
   passing rows the gate costs **+0.86%** against the fastest admissible arm; over all 24 rows including the
-  three failures the post-validation execution regret is +3.53% (SE 1.37), with the contract checks charged
+  three failures policy A's post-validation execution regret is 3.49614% (SE 1.37116 pp), with the contract checks charged
   separately (§6.5) rather than folded into the ratio. Both are reported because averaging a failed delivery into a
   cost for admissible delivery is the mistake the first version made — its +4.13% included a row at budget
   ratio 1.23 whose arm fails.

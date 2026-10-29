@@ -25,8 +25,9 @@ arithmetic relative to that reference, and the engine sets how much of the budge
 
 The paper answers that question with three measured objects: a dispatch map over declared coordinates, a
 magnitude surface that predicts how much of the budget the reference consumes, and a candidate-level
-admission study whose verdicts are predictable out of fold from declared features (AUC 0.986 over 672
-arm-checks) while the operating threshold inside a class is not calibrated. It also reports where the continuous form of the
+admission study whose verdicts are predictable out of fold from declared features (AUC 0.9747 over 672
+arm-checks, matching a two-line arm-class baseline) while the operating threshold inside a class is measured
+rather than predicted. It also reports where the continuous form of the
 original hypothesis failed, because that failure is the reason the deliverable changed shape.
 
 ## 1.2 Definitions
@@ -93,10 +94,11 @@ reinterpreted.
 magnitude field is predictable out of fold from geometry alone (Spearman 0.833) and more so with the engine
 class supplied (0.986). Candidate admission — the benchmark's own candidate-versus-reference verdict, not the
 reference diagnostic — is predictable out of fold from declared features on 672 arm-checks over 56 shapes:
-AUC 0.986 and 96.4% accuracy against an 80.95% majority baseline, with all twelve arms of each held-out shape
-removed from its fold's fit (`results/r57_candidate_admission.json`, §4.6). Inside the hand-fp32 stratum the
-ranking survives (AUC 0.899 against a predeclared 0.80 bar) but a 0.5 threshold does not separate the 20
-passing arms from the 260 failing ones, so admission is a class decision plus a measured within-class residual.
+AUC 0.9747 and 96.4286% accuracy, which equals a two-line rule that reads only the arm class (15.48 pp above
+the 80.95% pooled majority) with all twelve arms of each held-out shape removed from its fold's fit
+(`results/s58_review_verify.json`, §4.6). Inside the hand-fp32 stratum, once the measured reference-deviation
+feature is removed, the ranking falls to AUC 0.7548 (clustered CI [0.537, 0.9231]) and no positive crosses a 0.5
+cut, so admission is a class decision plus a measured within-class residual.
 The reference-error diagnostic `frac_over` is the field that does not transfer: 79% bulk accuracy from geometry
 alone, 100% with the class, and the class itself only 0.604 predictable from those coordinates against a
 0.5625 majority baseline. That asymmetry is why the certificate's fields are reported separately rather than

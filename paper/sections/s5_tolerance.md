@@ -53,7 +53,7 @@ out: it ruled out *validating a composed model from the committed CPU artifacts 
 rule out composition. Two things it left unexplained pointed at the repair. First, rho is already
 dimensionless — its denominator is the harness budget `atol + rtol·|R_64|` — so composition never needed
 the `|ref|` column whose absence killed the audit; the claim was being tested in the wrong currency.
-Second, CF3's flip mechanism (169/528 flips, all at budget ratios 1.1-1.8e-4) says the decisive quantity is
+Second, CF3's flip mechanism (169/360 flips, all at budget ratios 1.1-1.8e-4) says the decisive quantity is
 error in units of the budget, which is the shape of a dimensionless law rather than an absolute-error one.
 
 **A9 measures that law directly** (`lab/a9_compose_prereg.md` @ 53ca881, frozen before the run; artifacts
