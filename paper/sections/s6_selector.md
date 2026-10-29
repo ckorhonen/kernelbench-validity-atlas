@@ -86,21 +86,26 @@ rather than measurements. The family verdict survives that; a per-arm table woul
 
 ## 6.3 What the selector is and is not
 
-**It is** a zero-probe rule over derived coordinates with a measured transfer record. Its economics
-section is descriptive accounting, not a general law: on the 9 admissible reduction rows the delivered arm costs
-+0.86% (SD 1.11, SE 0.37, n=9) against the fastest admissible arm, and over all 24 rows the cost is +3.53%
-(SD 6.73, SE 1.37, n=24). The two standard errors belong to different populations and are not interchangeable;
-the 1.37 figure describes the deployed policy over all rows, the 0.37 figure describes admissible delivery only.
-Both are kernel-time ratios measured *after* validation: they are post-validation execution regret, not total
-deployment cost, because the checks D1 requires (reference build, one execution per checked arm, the comparison,
-and the fresh-input condition) are charged separately in §6.5 and are excluded from both figures.
-Every
-failing row has an explicit correctness-preserving fallback (torch, which passes), both policies are compared
-under one flush-and-probe cost model with probe arms pre-registered at b ∈ {1, 2, 4, 8} and their measured
-costs reported, and no intrinsic probe budget is assumed — the recorded break-even is conditional on probe
-cost, not intrinsic. On the conv family the gate delivers the baseline on all 4 admissible rows (0/4 hand
-deliveries admissible), so the conv branch of the economics statement does not exist: the classifier hears
-nothing about conv autotune there.
+**It is** a zero-probe rule over derived coordinates with a measured transfer record. Its economics section is
+descriptive accounting, not a general law, and it is stated under **one** policy (A: deliver the gate's arm when
+it passes the contract, otherwise deliver the fastest admissible torch arm on that row). On the reduction
+population (24 rows) policy A's post-validation execution regret is **3.49614% SD 6.7173 SE 1.37116 pp** when
+computed from the recorded times — the reviewer's figure to five decimals, now produced by the repaired
+accounting — and **4.0381% SE 1.4976 pp** when the same policy is re-measured in a fresh run
+(`results/s56_analysis.json` regenerated 2026-10-29T06:11Z, timings med-of-12, L2 flush); the 0.54 pp gap is
+run-to-run timing variance, and both are reported rather than one being chosen. On the 9 admissible reduction
+rows — the same policy, a narrower population — the cost is +0.86% (SD 1.11, SE 0.37, n=9); the two standard
+errors are not interchangeable because the populations differ. On the conv population (10 rows) policy A's
+regret is **0.0** because the gate's hand arm fails on all four rows where it fires and the policy delivers
+torch. The recorded −6.35% conv mean that earlier drafts quoted is retired: it charged a failing arm's time,
+which is the same bug the round-13 review found in the reduction numbers.
+
+All figures are kernel-time ratios measured *after* validation: they are post-validation execution regret, not
+total deployment cost, because the checks D1 requires (reference build, one execution per checked arm, the
+comparison, the fresh-input condition) are charged separately in §6.5 and are excluded. Every failing row has
+an explicit correctness-preserving fallback (torch, which passes on every failing row), probe arms are
+pre-registered at b ∈ {1, 2, 4, 8} with their measured costs reported, and no intrinsic probe budget is assumed
+— the recorded break-even is conditional on probe cost, not intrinsic.
 
 The honest statement is purely descriptive: on this benchmark and this arm pool (eager torch, no compile
 arm), probe arms cost more than the rule's entire residual, so the rule's total-time advantage is a cost
@@ -108,10 +113,10 @@ entered at the moment of gate deployment, not a promised property of the rule. T
 rule is cheaper or faster on any individual row; the break-even numbers (6.35–28.84x budget ratio on the
 failing conv rows) are reported as conditionality, not as a ranking. The rule's output is a decision rule
 that dispatches to the cheapest admissible arm. The 0.86% figure is the accounting restricted to the nine
-rows where a hand delivery is admissible; the 3.53% (±1.37) over all 24 rows, with torch executed on every
-failing row, is the post-validation execution regret of the deployed rule including its fallback — the checks
-themselves are charged separately (§6.5) and are not inside that ratio. The two are different populations and
-different policies and are quoted as such. That is what the numbers show; they show it without a
+rows where a hand delivery is admissible; 3.49614% (±1.37116) over all 24 rows, with torch executed on every
+failing row, is the post-validation execution regret of the same policy A including its fallback — the checks
+themselves are charged separately (§6.5) and are not inside that ratio. These are two populations under one
+policy, and they are quoted as such. That is what the numbers show; they show it without a
 probe-cost assumption and with every row's fallback named.
 
 **Reading discipline.** This section reports measured per-row results only, with an explicit
@@ -141,8 +146,9 @@ D1 and D2 are disjoint by whether any arm passes; D3 is disjoint from both by wh
 covers the torch-passes/hand-fails case explicitly: on the 24 reduction rows torch passes all 24 and the
 gate's hand delivery fails 3, so those three rows are D1-with-fallback, not violations of D1. Cost accounting
 follows the same split — over the nine admissible hand-delivery rows the gate costs +0.86% against the
-fastest admissible arm; over all 24 rows, with torch executed on every failing row, the deployed cost is
-+3.53% (SE 1.37). §6.2 and §6.3 quote these as two populations and two policies.
+fastest admissible arm; over all 24 rows, with torch executed on every failing row, policy A's regret is
+3.49614% (SE 1.37116 pp) on the recorded times and 4.0381% (SE 1.4976) on the fresh re-measurement. §6.2 and
+§6.3 quote these as two populations under one policy.
 
 A zero-probe dispatcher cannot recognise those failures on fresh inputs, which is why D3 exists and why its
 cost is stated without a correctness claim. Where a probe is affordable, D1 is the only policy that carries a
@@ -176,20 +182,22 @@ nothing beyond it was evaluated.
    `eval.py:get_tolerance_for_precision`), and timed only if it passes. No failing arm's timing enters a
    comparison.
 3. **Fallback substitution is the all-rows population.** On the three reduction rows where the gate's hand arm
-   fails the contract, the deployed policy substitutes the torch timing measured on that same row. That
-   substitution *is* the 24-row population (3.5304%, SD 6.73, SE 1.37); there is no third policy in the record
-   and no row is dropped.
+   fails the contract, policy A substitutes the fastest admissible torch timing measured on that same row, and
+   the producer now emits that substitution explicitly (`policy_a_delivered`, `policy_a_regret_frac`) alongside
+   the superseded `gate_regret_time_frac`, which is kept and labelled rather than erased because it charged the
+   failing arm's time. No row is dropped and there is no second policy in the record.
 4. **Check cost is charged separately.** The contract check costs one reference build (cached per row) plus one
-   execution per checked arm plus the comparison. The 0.86% (n=9) and 3.53% (n=24) figures are kernel-time
+   execution per checked arm plus the comparison. The 0.86% (n=9) and 3.49614% (n=24) figures are kernel-time
    ratios and exclude that check; a reader who wants probe-inclusive cost adds the per-arm single-execution
    times already recorded in the artifact (`arms[*].t_ms` are med-of-12, so one check execution is of that
    order). The check is not free and is not claimed to be.
 5. **Fresh inputs.** The zero-probe rule cannot run the check at dispatch time (policy D3), so its correctness
    claim is conditional: the measured 9/12 admissibility is the rate at which its chosen arm *would* have
-   passed had a check been run. A deployed D1 policy pays the check and delivers correctness on 24/24 rows by
-   construction — torch on the three failures — at the +3.53% cost.
+   passed had a check been run. A deployed D1 policy pays the check and delivers correctness on 24/24 reduction
+   rows by construction — torch on the three failures — at policy A's cost.
 
 Population accounting, restated once: 24 reduction rows, 12 gate hand firings, 9 admissible (0.75 pass
 fraction, the prereg's middle branch), 3 failures at budget ratios 1.61/2.57/7.11; 10 conv rows, 4 gate hand
-firings, 0 admissible (ratios 94-197). The two regret figures are two populations under one policy, and the
-standard errors are not interchangeable (0.37 for the 9-row admissible set, 1.37 for all 24 rows).
+firings, 0 admissible (ratios 94.1-197.3), so policy A delivers torch on all ten. Two populations under one
+policy; the standard errors are not interchangeable (0.37 for the 9-row admissible set, 1.37116 for all 24
+reduction rows on recorded times, 1.4976 on the fresh run).
