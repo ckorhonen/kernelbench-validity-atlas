@@ -307,3 +307,22 @@ tolerance as a free variable, not a fixed contract).
 Next: (1) desk/review watch; (2) the CPU-only epsilon admissible-set sweep over {1e-4,1e-3,1e-2,1e-1} from recorded per-arm budget ratios,
 kill if admissible ordering is invariant; (3) flip table (kill <10% flips); (4) foreign-warm probe; (5) K=8 seed admission-rate probe;
 (6) bias-vs-tail; (7) benchmark-wide audit scoping doc. 24h-E1/CTA-edge/bt parked.
+
+## Active lane: ROUND-14 REPAIR — opened 2026-10-29 20:1xZ (zZz7scE-UgX0Yf2P rejected 17:18:54Z, 13 min after submission)
+
+Review lab/rejection_review_zZz7scE.md. Five findings, all conceded: N1 novelty/attribution (Du arXiv:2609.22220,
+Zhang arXiv:2607.16241, Agarwal arXiv:2609.21058 — all read this tick), N2 repair-log structure + missing Appendix A,
+N3 provenance/manifest counts contradict each other (44/44 vs 49/49 vs 50/50/0, stale s58 manuscript_claim), N4
+rho/frac_over are anchor-normalized diagnostics not evaluator-exact statements, N5 admission headline = arm-class
+baseline + measured within-class threshold, not an execution-free certificate.
+Repair session (one, hard cap): (a) novelty section that quantitatively distinguishes the three papers — the measured
+distinction is the epsilon admissible-set frontier (e59c: FRONTIER_MOVES, 10/24/30 of 56 shapes flip at 1e-3/1e-2/1e-1,
+kill clause not fired), which scores arm ordering rather than protocol adequacy; (b) restructure to question ->
+contribution -> one current protocol -> GB10 results -> limitations, history to Appendix A (APPENDIX_HISTORY exists,
+must be supplied); (c) regenerate manuscript + provenance + manifest + audit summaries in ONE pass from the same
+artifact set, drop stale fields; (d) rho/frac_over renamed anchor-normalized diagnostic, "benchmark contract"
+reserved for evaluator-exact checks; (e) admission demoted to baseline+limitation with s58's 96.4286/0.974652/
+0.7548/[0.537,0.923]/0-20 numbers stated as such; (f) new tolerance-axis section from paper/ATLAS_EPSILON_FRONTIER.md;
+(g) package verified from inside the unpacked zip; resubmit previous_submission_id=zZz7scE-UgX0Yf2P.
+Next after: reference-swap flip table (7 deferrals), foreign-warm probe, K=8 admission-rate probe, bias-vs-tail,
+benchmark-wide audit scoping doc. 24h-E1/CTA-edge/bt parked.
