@@ -26,6 +26,7 @@ Frozen here BEFORE the run:
 import json, os, sys, time
 import torch
 import torch.nn.functional as F
+import triton
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import r1_conv_gated as R
@@ -76,7 +77,7 @@ def main():
             except Exception as ex:
                 A["torch_cmp"] = dict(error=repr(ex)[:200])
             for name, BM, BN, BK, nw in R.VARIANTS:
-                grid = (torch.cdiv(torch.tensor(M), BM).item() * torch.cdiv(torch.tensor(C), BN).item(),)
+                grid = (triton.cdiv(M, BM) * triton.cdiv(C, BN),)
                 for prec in R.PRECS:
                     out = torch.empty_like(ref)
                     R.conv_impgemm_ip[grid](x, w, out, N, H, H, C, C, BM=BM, BN=BN, BK=BK,
