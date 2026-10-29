@@ -145,9 +145,12 @@ it is the specific question this paper would put to a peer with cudnn internals 
 fp16/bf16, so the gate used throughout this paper is the benchmark's shipped contract, not a stricter private
 one. That makes $\rho$ an exact statement about the shipped benchmark rather than a remark about people who
 tighten tolerances: at fp32 the reference's own deviation and the gate's budget are the same order of magnitude,
-so on the shapes measured here a candidate's verdict is decided by which engine the reference dispatched to.
-$\rho \geq 1$ is a per-element statement, not a whole-tensor one — the fraction of elements over budget
-(`frac_over`, reported alongside every $\rho$) is what decides whether a candidate could pass at all.
+so on the shapes measured here which engine the reference dispatched to sets how much budget a candidate has
+left — and it is the candidate's own arithmetic, not the engine, that decides whether it spends it. That
+separation is measured in §4.6 and is the reason no universal verdict sentence survives here.
+$\rho \geq 1$ is a per-element statement, not a whole-tensor one; the exceedance fraction (`frac_over`, reported
+alongside every $\rho$) says how much of the reference's output is outside the budget, which is a diagnostic on
+the reference and not the candidate's verdict (the verdict is the candidate-versus-reference allclose, §4.1).
 
 ## 2.4 What the instrument says about the atlas's spine hypothesis
 
@@ -216,7 +219,7 @@ What the surface measures:
 - **Class spans, measured.** W: rho_max 1.4–12.8 (C=64 gives 1.4; pad-2 gives 12.8024, reproducing the round-9 reviewer's stored value), frac_over 0.0005–0.0077, bit-identical output under every precision flag in all seven W cells. T: rho_max 60.2–429.4, frac_over 0.760–0.786, and `allow_tf32=False` removes 96.4–99.9% of the budget (ratios 3.6e-2 down to 5.6e-4) with bit-inequal output. The published 6.4–6.8 / 315–369 ranges were pad-1-only readings; the measured class span replaces them.
 - **Reference realization.** Every cell's fp64 anchor dispatches to cutlass `implicit_convolve_dgemm` (class O) — no tensorop path exists at fp64 — so the anchor lattice, not a single anchor, is the object any certificate must be written over.
 
-Consequence for the claim: the boundary is categorical and repeat-consistent in the declared tuple. That is the positive low-complexity result in tuple coordinates — the class decision is a lookup over an enumerated tuple partition rather than a continuous model — and §4.6 measures that this lookup is predictable out of fold (AUC 0.986) while the within-class threshold stays per-arm measured. It is also why the continuous derived-coordinate story (§4.5) cannot carry the class on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
+Consequence for the claim: the boundary is categorical and repeat-consistent in the declared tuple. That is the positive low-complexity result in tuple coordinates — the class decision is a lookup over an enumerated tuple partition rather than a continuous model — and §4.6 measures that this class decision is predictable out of fold from declared features (AUC 0.9747, matching a two-line arm-class baseline) while the within-class threshold stays per-arm measured. It is also why the continuous derived-coordinate story (§4.5) cannot carry the class on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
 
 
 ### Table 1 — the measured dispatch map (17 cells, two repeats each)

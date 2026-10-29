@@ -23,12 +23,17 @@ elements at ratio ≤ 0.077). The reference's own rounding sits 100× outside th
 (`results/b2_failure_corpus.jsonl`, arms A/B, 5/5 seeds), so "more accurate than the reference" and
 "closer to the reference" are different properties, and only the second one passes.
 
-**The pass boundary is a magnitude, not a margin.** `results/cf43.json` CF3 matched 60 shapes and 528
-arm-instances across two measurement days and found **169 pass flips = 32.0%** under the deployed
-contract. Every flip sits at a budget ratio between 1.1e-4 and 1.8e-4 — i.e. within 80% of the bar — while
-the b1 factored pair, whose errors are ≤1.2e-7, never flips (0/13, margin ≥800×). The mechanism is
-family-general: what decides a flip is the distance from the bar in units of the bar, not the family, the
-day, or the arm. This is why §4's certificate carries a regret basis rather than a regret number.
+**The pass boundary is a magnitude, not a margin.** `results/cf43.json` CF3 matched 60 shapes and **360
+reduction arm-instances** across two measurement days and found **169 pass flips = 46.94%** under the
+deployed contract. (The published 32.0% divided the same 169 flips by 528, a denominator that carried 168
+cf1 rider cells: `tot` was not reset before the cf3 comparison and `tot_arm` was dead code. The corrected
+denominator and the mechanism are recorded in `results/s58_review_verify.json`; the two runs differ in
+population, not in flips — the flip count is unchanged.) Every flip sits at a budget ratio between 1.1e-4 and
+1.8e-4 — within 80% of the bar — while the b1 factored pair, whose errors are ≤1.2e-7, never flips (0/13,
+margin ≥800×). What decides a flip is the distance from the bar in units of the bar, not the family, the day,
+or the arm. The cf3 comparison is a tolerance sweep over the observed profiles, not a controlled sweep of every
+coordinate, so the law is scoped to those profiles. This is why §4's certificate carries a regret basis rather
+than a regret number.
 
 ## 5.2 Propagation: cut, then repaired by measurement (scope history kept)
 

@@ -177,8 +177,9 @@ not as shipped.  Both readings are reported; neither is hidden.
 The honest summary for §4: admission is conditional on a measured categorical coordinate whose own
 predictability is 0.60, and the magnitude field is predictable at 0.83 without it. A third party can use
 the certificate to *evaluate* a published row without trusting us, and — §4.6 — can predict the *class
-decision* on an unprofiled shape from declared features at AUC 0.986; what they cannot yet predict is the
-operating threshold inside a class, which stays a measured per-arm quantity.
+decision* on an unprofiled shape from declared features at AUC 0.9747, matching a two-line arm-class baseline
+(§4.6); what they cannot yet predict is the operating threshold inside a class, which stays a measured per-arm
+quantity.
 
 One retraction belongs here rather than in §2. A7 stated that 3×3 stride-1 conv routes to the winograd
 engine. On this wider grid it does so only in a corner: C≥64 with small output extent (H7 at both C64 and
@@ -189,38 +190,63 @@ survives, but the class is a dispatch decision over (C, output extent), not a fu
 parameters. This is the fourth retraction of this lane and the second that is mine rather than a
 reviewer's.
 
-## 4.6 Candidate-level admission, measured (r57, added round 12)
+## 4.6 Candidate-level admission, measured (r57, revised round 13)
 
 The reviewer of submission Lo23jsKHjyGuukZr made the decisive objection that §4.5's compression experiment
 predicted `frac_over > 0.5` — a reference-versus-fp64 diagnostic — and not the candidate-versus-reference
-verdict that defines admission. That objection is correct as stated against the earlier draft, and this
-subsection reports the missing measurement. Prereg frozen at `4595e00` before fitting
-(`lab/r57_candidate_admission_prereg.md`); population, features, model, folds and kill clauses were fixed
-there and executed verbatim by `lab/r57_candidate_admission.py` → `results/r57_candidate_admission.json`.
+verdict that defines admission. That objection is correct against the earlier draft, and the missing measurement
+was run: r57 (prereg `4595e00`, `lab/r57_candidate_admission.py` -> `results/r57_candidate_admission.json`)
+predicted actual `pass_1e4` verdicts out of fold at AUC 0.986 and 96.4% accuracy. The round-13 review then
+showed that the headline partly rested on `refdev`, a *measured* feature — the difference of two reference output
+maxima — so the execution-free claim was re-tested without it, under a prereg frozen before any computation
+(`lab/s58_review_verify_prereg.md` @ `d2da0b8`; `lab/s58_review_verify.py` -> `results/s58_review_verify.json`).
+What follows is the re-tested version; r57's numbers are quoted only where they are the object under discussion.
 
-**Population and label.** The 672 arm-checks of `results/r1_conv_gated.jsonl` (56 conv shapes × 12 arms), with
-the evaluator-exact `pass_1e4` verdict against the recorded default reference at the declared 1e-4 contract as
-the label: 128 admissible, 544 not. These are candidate admission outcomes, the quantity the earlier test
-never used.
+**Population and label.** The 672 arm-checks of `results/r1_conv_gated.jsonl` (56 conv shapes × 12 arms), label =
+the evaluator-exact `pass_1e4` verdict against the recorded default reference at the declared 1e-4 contract: 128
+admissible, 544 not.
 
-**Model.** Linear probability model on ten declared features (log2 C, log2 K, log2 HW, N, log2 bytes, the
-row's measured reference flag-sensitivity refdev, is_compile, is_hand, prec_tf32, hand×refdev), leave-one-shape-
-out: all twelve arms of a held-out shape are removed from that fold's fit, so a shape's verdicts cannot leak
-into its own prediction. No tuning, no feature search, no alternative model reported as primary.
+**The baseline the earlier draft hid.** A two-line rule that reads only the arm class — pass if the arm is
+`torch` or `torch.compile`, fail if it is a hand kernel — scores **96.4286%** (TP 108 / TN 540 / FP 4 / FN 20),
+which is 15.48 pp above the pooled majority of 80.95%. Comparing a model to the pooled majority therefore
+understates what is already available for free; the honest comparator is this rule.
 
-**Result, with the prereg's verdicts verbatim.** P1 (global, bar AUC ≥ 0.85 and accuracy ≥ 80.95% + 0.05):
-AUC 0.986, accuracy 96.4% — **PASS**. P2 (hand-fp32 stratum only, n=280, 20 positives, bar AUC ≥ 0.80): AUC
-0.899 — **PASS**, while accuracy at a 0.5 threshold equals the 92.9% majority baseline because the fitted
-scores rank correctly but do not cross 0.5. P3 (descriptive): **56 of 56** shapes have both passing and failing
-arms at the same reference.
+**Declared-feature model, re-tested without the measured feature.** Linear probability model on eight declared
+features only (log2 C, log2 K, log2 H·W, N, log2 bytes, is_compile, is_hand, prec_tf32 — no refdev, no
+interaction), leave-one-shape-out: **AUC 0.974652, accuracy 96.4286%**, clearing the prereg's bar (AUC ≥ 0.90).
+The execution-free claim survives, but its correct reading is narrower than r57's: the model *matches* the
+arm-class rule rather than beating it, so what the model adds is a feature-level statement — the verdict is
+predictable from the declared tuple and arm class alone — not extra accuracy.
 
-**What this licenses, and what it does not.** The class decision — admissible or not, given a declared arm class
-and precision — is predictable out of fold from features a dispatcher has before running anything, so admission
-is not an enumerated per-arm lookup in the sense §4.5 claimed. What stays uncalibrated is the operating
-threshold *inside* the hand-fp32 class: the ranking there is informative (AUC 0.899) but turning it into a
-pass/fail decision needs a calibrated cut, which is a measured per-arm quantity in this record. Three limits
-are stated rather than smoothed: the folds hold out shapes, not candidate implementations, so an arm absent
-from the inventory is untested; the population is conv-only (56 shapes, no reduction rows); and every label is
+**Within the hand-fp32 class, the threshold stays measured.** Removing the measured feature drops the hand-ieee
+stratum (n=280, 20 positives on 4 shapes) to AUC **0.7548**, shape-clustered bootstrap CI [0.537, 0.9231], with
+**0 of 20** positives admitted at a 0.5 cut. The prereg bar (CI lower ≥ 0.70) failed. So r57's 0.899 for that
+stratum was carried by `refdev`, and admission inside a class remains a measured per-arm quantity, not a
+predicted one. P3 is unchanged and load-bearing: 56 of 56 shapes carry both passing and failing arms at the
+same reference, so the verdict is candidate-dependent while the reference sets the budget.
+
+**Table 4.2 — diagnostics, prediction targets, and what each costs to acquire.**
+
+| quantity | what it is | acquisition cost | validation population |
+|---|---|---|---|
+| (rho_max, frac_over) | reference-versus-fp64 diagnostic; never a verdict | one fp64 anchor execution per shape, no candidate needed | 48-shape compression lattice (a8), 17 tuple cells (Table 1) |
+| engine class | which engine the reference dispatches to | one profiler pass per shape family | 17 cells, two repeats in one process; fresh-process replication open (§7.3) |
+| pooled admission | candidate verdict, class decision | none beyond the declared tuple and arm class | 672 arm-checks, leave-one-shape-out over 56 shapes |
+| within-hand admission | threshold on a measured deviation | one reference-deviation measurement per shape | 280 arm-checks, 20 positives, 4 shapes |
+| post-validation execution regret | delivered time ratio under one stated policy | one execution per checked arm plus the comparison (§6.5) | 24 reduction rows, 10 conv rows |
+
+**Limits, stated rather than smoothed.** The folds hold out shapes, not candidate implementations, so an arm
+absent from the inventory is untested; the population is conv-only (56 shapes, no reduction rows); every label is
 a verdict against one recorded reference realization, so the prediction is about the shipped benchmark's gate,
-not about numerical accuracy in the abstract.
+not numerical accuracy in the abstract; and the pooled model's accuracy equals a two-line class rule, so the
+contribution here is the declared-feature result and the measured within-class threshold, not a model that
+outperforms the obvious baseline.
 
+**P2 row.**
+`{op_class: conv2d_3x3_s1p1_fp32 (union), rule: pooled admission predictable from declared features (AUC .9747,
+acc 96.4286% = arm-class baseline); within-hand threshold measured, not predicted,
+domain_predicate: 672 arm-checks over 56 conv shapes at the shipped 1e-4 gate against one recorded reference,
+derived_coords: [arm_class, log2 C, log2 K, log2 HW, log2 bytes, prec_tf32, refdev],
+boundary_ref: results/s58_review_verify.json, results/r57_candidate_admission.json,
+variance: shape-clustered bootstrap CI [0.537, 0.9231] for the hand stratum; accuracy is a point estimate on 672
+checks, n_reps: 1 per arm-check (deterministic records), date: 2026-10-29}`
