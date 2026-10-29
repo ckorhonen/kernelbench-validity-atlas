@@ -34,6 +34,7 @@ BUDGET = 2_000_000
 CPU_RUNNABLE = """
 s48_provenance.py s50_prose_audit.py s51_prose_audit.py s52_prose_audit.py s53_intro_audit.py
 s54_metadata_audit.py s52_manuscript.py f24_verify.py r45_rider_adm.py r42_analysis.py cf43.py
+s58_review_verify.py r57_candidate_admission.py
 cushion_screen.py s6_dispatcher_audit.py s55_review_repair.py a8_analysis.py a8b_analysis.py a9_analysis.py
 """.split()
 
@@ -46,7 +47,7 @@ s56_heldout_contract.py s52_supplement_build.py e2_splitk_v3.py w3_conv_gemm.py 
 
 PREREGS = """
 a6_refdistance_prereg.md a7_kernelclass_prereg.md a7b_precision_prereg.md a8_compress_prereg.md
-a9_compose_prereg.md
+a9_compose_prereg.md r57_candidate_admission_prereg.md s58_review_verify_prereg.md
 """.split()
 
 # artifacts the shipped auditors load by name plus every round-4/5 evidence leg. Heavy row-streams are
@@ -66,7 +67,7 @@ b2_failure_corpus.jsonl gate_stability_summary.json m3_r42_analysis.json m3_summ
 r39_text_support.json a8_compress_v2.json a8_analysis.json a8b_analysis.json a9_compose.json
 a9_analysis.json s48_provenance.json s50_prose_audit.json s51_prose_audit.json s52_prose_audit.json
 s53_intro_audit.json s54_metadata_audit.json s55_review_repair.json s56_heldout_contract.json
-s56_analysis.json a6_refdistance.json a6b_ksweep.json a6c_conv_tf32pair.json a6e_geometry_algo.json
+s56_analysis.json s58_review_verify.json r57_candidate_admission.json a6_refdistance.json a6b_ksweep.json a6c_conv_tf32pair.json a6e_geometry_algo.json
 a6f_geom_repl_convmech.json e1_analysis_v3.json e3_gridgeom.json m3_curve.json r42_gridfix.jsonl
 s46_e2_recount.json w4_v1.json s48_prose_audit.json b1_gatezero_v2.json
 r1_conv_gated.jsonl gate_stability.jsonl
@@ -79,14 +80,15 @@ w4_heldout.json.jsonl a8_compress.json
 EXTRA_KERNEL_INPUTS = ["r1_times.json"]
 # the paper's submission metadata: s54 audits the abstract against the manuscript, so it must be inside
 # the package or s54 cannot run there (v5 shipped only the supplement's own metadata and s54 died on it).
-ROOT_FILES = {"submission_metadata_v6.json": "submission_metadata_v6.json"}
+ROOT_FILES = {"submission_metadata_v11.json": "submission_metadata_v11.json"}
 
 PAPER = ["REFRAME_SKELETON.md", "PROVENANCE.md", "MANUSCRIPT.md"]
 # Four archived full-stage reviews and two triages: §1, §7 and §8 cite them as evidence and s53 audits
 # them, so they ship rather than being referenced from outside the package.
 REJECTIONS = ["rejection_review_2CmvAb.md", "rejection_review_6yPhozm.md", "rejection_review_O4hnCx.md",
               "rejection_review_DE1paW.md", "rejection_triage_2CmvAb.md",
-              "rejection_triage_DE1paW.md"]
+              "rejection_triage_DE1paW.md", "rejection_review_5WxkQjcUg.md",
+              "rejection_review_Lo23jsKHjyGuukZr.md", "triage_round13.md"]
 SECTIONS = ["s1_introduction.md", "s2_reference_axis.md", "s3_atlas.md", "s3b_conv_anchor.md",
             "s4_certificates.md", "s5_tolerance.md", "s6_selector.md", "s7_threats.md",
             "s8_reproduction.md", "s9_related.md"]
@@ -99,7 +101,8 @@ REGENERATED = {"paper/PROVENANCE.md", "paper/MANUSCRIPT.md",
                "results/s48_provenance.json", "results/s50_prose_audit.json",
                "results/s51_prose_audit.json", "results/s52_prose_audit.json",
                "results/s53_intro_audit.json", "results/s54_metadata_audit.json",
-               "results/s55_review_repair.json", "results/f24_verify.json", "results/r42_analysis.json",
+               "results/s55_review_repair.json", "results/s56_analysis.json", "results/s58_review_verify.json",
+               "results/r57_candidate_admission.json", "results/f24_verify.json", "results/r42_analysis.json",
                "results/cf43.json", "results/cushion_screen.json", "results/r45_rider_adm.json",
                "results/s6_dispatcher_audit.json", "results/a8_analysis.json",
                "results/a8b_analysis.json", "results/a9_analysis.json"}
@@ -458,6 +461,21 @@ conceded; five were arithmetic and reproduced exactly from committed records.
 | 4 | Reproducibility — tuple producer absent from package; S56 read uncompressed manifest; three unshipped imports; determinism check repeated torch.sum | **REPAIRED.** tuple_test.py shipped in package; s56 gzip-aware (`_kb_open`), per-row seed from (K,M) recorded in key; determinism on delivered hand computation (split_tiled + split_reduce twice, bit-equal); e2_splitk_v3.py, w3_conv_gemm.py, m3_autotune_curve.py shipped for s56 imports | `lab/tuple_test.py`, `lab/s56_heldout_contract.py`, `s52_supplement_build.py` (GPU_PRODUCERS), `lab/results/tuple_test.json` |
 | 5 | Selector economics argued from mismatched currencies | **REPAIRED.** §6.3 is descriptive accounting with explicit correctness-preserving fallback and one common probe cost model (b ∈ {1,2,4,8} measured); conv branch named as missing (0/4 admissible) | `paper/sections/s6_selector.md` §6.3 |
 | — | Additional corrections | A10 = 66 rows (11 K × 6 seeds, not 72/12); six-seed frequencies carry Wilson intervals; the 0/10 flips screen is explicitly a limited screen, not a guaranteed safe region; abstract now separates bulk classification from admission | `paper/sections/s1_introduction.md` §1.3, `s2_reference_axis.md` §2.3, `submission_metadata_v9.json` |
+
+# Round 13 — 5WxkQjcUg_JD3wtv
+
+Rejected 2026-10-28T22:34:57Z, stage=full. Review archived at `rejections/rejection_review_5WxkQjcUg.md`;
+triage at `rejections/triage_round13.md`. All five findings conceded; each was verified from committed records
+against a prereg frozen before computation (`kernels/s58_review_verify_prereg.md` @ d2da0b8,
+`results/s58_review_verify.json`).
+
+| # | Finding | Disposition | Where to check |
+|---|---|---|---|
+| F1 | §4.6's "before running anything" rested on refdev, a measured feature, and the baseline comparison hid the 96.4286% arm-class rule; §2.5 cited r57's AUC for a different target | **CONCEDED / PARTLY REFUTED.** §4.6 rebuilt: declared-feature-only refit (8 features, no refdev) = AUC 0.974652, accuracy 96.4286%, matching the two-line arm-class rule (TP108/TN540/FP4/FN20, 15.48 pp over pooled majority); hand stratum falls to AUC 0.7548 (CI [0.537,0.9231], 0/20 admitted at 0.5) so the threshold is measured; §2.5 cites admission only | `paper/sections/s4_certificates.md` §4.6, `s2_reference_axis.md` §2.5; `results/s58_review_verify.json` V1-V3 |
+| F2 | frac_over described as a magnitude / "decides whether a candidate could pass at all" | **CONCEDED.** Exceedance fraction, max budget ratio and candidate verdict are named as three separate quantities everywhere | `paper/sections/s2_reference_axis.md` §2.3, `s4_certificates.md` §4.4 |
+| F3 | s56 regret charged a failing gate arm's time; §6.4/§6.5 described different policies | **VERIFIED, my bug.** Producer patched to emit `policy_a_delivered`/`policy_a_regret_frac`; regenerated on spark (`results/s56_analysis.json`, 2026-10-29T06:11Z): reduction 3.49614% SD 6.7173 SE 1.37116 pp on recorded times (reviewer's figure to five decimals), 4.0381% SE 1.4976 fresh; conv 0.0, retiring the impossible -6.35% mean. §6.3-6.5 state one policy (A) | `kernels/s56_heldout_contract.py`, `results/s56_analysis.json`; `paper/sections/s6_selector.md` §6.3-6.5 |
+| F4 | cf3 denominator 169/528 = 32.0% should be 169/360 = 46.94%; §3.5 overreaches on a 60% heuristic | **VERIFIED.** 169/360 = 46.94% in §5.1 with the mechanism named (`tot` not reset before cf3, 168 cf1 rider cells) and the run difference stated; §3.5 scoped to the observed profiles | `paper/sections/s5_tolerance.md` §5.1, `s3b_conv_anchor.md` §3.5; `results/s58_review_verify.json` V5 |
+| F5 | Structural clarity: §2.5 withdraws what §4.5 asserts; §2.3/§4.4 contradict §4.1; §6.4/§6.5 different policies; needs a table of diagnostics/prediction targets/feature cost/validation populations | **CONCEDED.** §4.6 rebuilt around baselines, clustered uncertainty and Table 4.2 (diagnostics, prediction targets, acquisition cost, validation populations); one policy in §6; quantity language unified | `paper/sections/s4_certificates.md` §4.6, `s6_selector.md`, `s2_reference_axis.md` |
 """
 
 def build_env():
