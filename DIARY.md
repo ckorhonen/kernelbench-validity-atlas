@@ -2656,3 +2656,10 @@ Next tick: review watch, then the epsilon sweep, then the flip table if the wall
 Ops: a strand-recovery autocommit watchdog committed the work mid-tick (4 commits); wall clock jumped during the block
 (05:14Z -> 17:00Z observed), so the 45-min budget was exceeded — recorded, not excused. Local python3 has numpy but no
 torch; all GPU work goes through spark; no service touched.
+
+### Addendum (same tick, 17:05Z): package manifest corrected, submission replaced
+The first upload qCxnisQsV7xiVE6M (17:02:38Z) carried a stale PACKAGE_MANIFEST (built 2026-10-24, previous_submission_id
+DE1paW, audit counts 44/44) because build_meta() hardcoded round-5 values. Fixed to derive them from the artifacts and
+from lab/submit_metadata_r13.json (now s50 19/19, s51 31/31, s52 16/16, s53 15/15, s54 6/6, provenance 50/50/0, built
+2026-10-29, previous 5WxkQjcUg_JD3wtv); rebuilt, re-verified inside the zip (6/6 audits exit 0), withdrew qCxnisQsV7xiVE6M
+and RESUBMITTED **zZz7scE-UgX0Yf2P** 17:05:35Z with files.supplement non-null. Public repo pushed at 5a39f8a.
