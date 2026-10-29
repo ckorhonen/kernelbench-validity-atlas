@@ -1,5 +1,14 @@
 # Section 8 prose — Reproduction artifact (draft, tick #51 2026-10-24)
 
+**Where the evidence is, and how to reach it.** This submission carries a supplement ZIP that contains every
+measurement producer, every row-level result the manuscript cites, the auditors, the preregistrations and a
+sha256 manifest; the same tree is public at https://github.com/ckorhonen/kernelbench-validity-atlas, pinned at
+an immutable revision recorded in the package's `README.md` and named in this submission's change summary. The earlier version of this paper
+was rejected on the grounds that no supplement was supplied and no identifiable archive was named — a
+submission defect, not a measurement one — so the paragraph exists to be checked rather than believed: unpack
+the ZIP, run `python3 kernels/s50_prose_audit.py` from inside it, and the numbers in this section either
+reproduce or the script exits nonzero.
+
 The paper ships auditors rather than promises. Every script named here is CPU-only unless marked, reads
 committed artifacts rather than re-measuring, and exits nonzero when a cited number cannot be regenerated.
 **Scope of that guarantee, stated because a review caught me overclaiming it:** the prose auditors
@@ -39,7 +48,7 @@ the class that let a unit error through — see the note above):
 
 | script | what it audits | status from inside the package |
 |---|---|---|
-| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 42 cited / 42 found / 0 missing |
+| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 44 cited / 44 found / 0 missing |
 | `s50_prose_audit.py` | every number cited in §2 and §4 | exit 0, 19/19 |
 | `s51_prose_audit.py` | every number cited in §4.5-§8 | exit 0, 31/31 |
 | `s52_prose_audit.py` | §4.5 and §5.2 composition numbers, computed from the artifacts rather than string-matched | exit 0, 16/16 |
@@ -58,7 +67,7 @@ pinned public commit, which the package names explicitly.
 
 `lab/s48_provenance.py` scans every markdown file in `paper/` for cited results artifacts and emits
 `paper/PROVENANCE.md` with sha256, byte size, mtime, producer script, and top-level fields per artifact. It
-hard-fails when a cited artifact is absent. Current state after the round-5 repairs: 42 cited, 42 found, 0 missing.
+hard-fails when a cited artifact is absent. Current state after the round-5 repairs, the A10 crossing study and the A11 distribution study: 44 cited, 44 found, 0 missing.
 Two defects in the generator itself were found and fixed before it was trusted: a regex alternation that
 truncated `.jsonl` names to `.json`, and self-poisoning when the generated `PROVENANCE.md` was included in
 the citation scan. A third was found at packaging: the table cites itself, so its own digest, byte size and

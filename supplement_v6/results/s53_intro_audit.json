@@ -2,8 +2,8 @@
  "date": "2026-10-24",
  "conventions": "docstring",
  "n_checks": 15,
- "n_pass": 15,
- "all_pass": true,
+ "n_pass": 14,
+ "all_pass": false,
  "checks": [
   {
    "id": "B01",
@@ -76,8 +76,8 @@
   },
   {
    "id": "B14",
-   "ok": true,
-   "detail": "cited=10 missing=[]"
+   "ok": false,
+   "detail": "cited=10 missing=['r57_candidate_admission.json', 's58_review_verify.json', 'tuple_surface.json']"
   },
   {
    "id": "B15",

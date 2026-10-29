@@ -35,7 +35,8 @@ def _kb_open(path):
         return _gz.open(path + ".gz", "rt")
     raise FileNotFoundError(path)
 ROOT = os.path.dirname(HERE)
-META = next((os.path.join(ROOT, n) for n in ("submission_metadata_v6.json", "submission_metadata.json")
+META = next((os.path.join(ROOT, n) for n in ("submission_metadata_v11.json", "submission_metadata_v10.json", "submission_metadata_v9.json", "submission_metadata_v7.json",
+                                              "submission_metadata_v6.json", "submission_metadata.json")
              if os.path.exists(os.path.join(ROOT, n))), os.path.join(ROOT, "submission_metadata_v5.json"))
 MS = os.path.join(ROOT, "paper", "MANUSCRIPT.md")
 OUT = os.path.join(_kb_res_dir(HERE), "s54_metadata_audit.json")

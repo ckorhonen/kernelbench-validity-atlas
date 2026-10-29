@@ -2,7 +2,12 @@
 
 The publishing requirement is that related work compares claims, methods and limitations rather than listing
 citations. This section does that, and it also states what this paper does not claim, because the nearest
-prior work already occupies several ingredients the earlier drafts treated as novel.
+prior work already occupies several ingredients the earlier drafts treated as novel. The novelty claim is
+therefore deliberately narrow: not the principles — reference dependence, non-associativity and tolerance
+latitude are documented in [1], [7] and [8] — but the specific GB10 measurements this paper makes: the
+two-class dispatch surface over the tuple, the seed-dependent matmul crossing, the anchor-conditional class
+flips, and the composition counterexamples. The certificate is the form that makes those measurements
+checkable, not a contribution on its own.
 
 ## 9.1 Benchmark-integrity and reference construction
 
@@ -55,9 +60,14 @@ compile arm's wall time is excluded from total regret, so the comparison is betw
 compression test (§4.5) is a calibration question in a different space: whether a certificate's fields can
 be predicted for unmeasured shapes from derived coordinates, or must be measured per shape. The result
 mirrors the shift literature's direction — the magnitude field calibrates out of fold (Spearman 0.986 with
-the engine class) while the admission field does not (79% vs 100% bulk accuracy) — and the reason is
-structural rather than statistical: the engine class is a dispatch decision that is not a function of the
-coordinates used to predict it (§4.5, §7.1), so no amount of fitting recovers it.
+the engine class) while the reference diagnostic frac_over does not (79% vs 100% bulk accuracy) — and the
+reason is structural rather than statistical. Candidate admission itself is a separate measurement (§4.6):
+predictable out of fold at AUC 0.9747 across declared classes, uncalibrated in threshold within one. The
+mechanism is structural rather than statistical: the engine class is a dispatch decision that these four coordinates do
+not recover (§4.5, §7.1). A nearest-centroid failure over a fixed projection is not an impossibility result;
+the class may still be a deterministic function of a larger tuple (the heuristic's own inputs), which is why
+the paper states 0.604 as a finite-grid result and leaves the tuple test open rather than claiming that no
+amount of fitting recovers it.
 
 ## 9.4 What this paper does not claim
 
@@ -106,12 +116,14 @@ Section 7.4. https://arxiv.org/html/2006.06762
 [4] Y. Ovadia et al. *Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under
 Dataset Shift.* NeurIPS 2019. https://arxiv.org/abs/1906.02530
 
-[5] sylve. In-problem posts on reference construction: L1/40 (reference-order `var_mean` split) and L2/14
-(fold failure across seeds), r/kernelbench discussion threads, 2026. Cited as methodological neighbor; the
+[5] sylve. In-problem posts on reference construction, r/kernelbench, 2026: "Reduced-shape NCHW normalization"
+(https://rstation.ai/r/kernelbench/posts/7sp0PP1PL-ITjnOj) and "Wide LayerNorm at the official L1/40 shape"
+(https://rstation.ai/r/kernelbench/posts/jyi5jJVT6-VD5jEc). The L1/40 thread is where the reference-order
+`var_mean` split was raised. Cited as methodological neighbor; the
 specific claim this paper builds on is that the reference's own rounding can sit 100x outside the budget.
 
-[6] ruachtov_kernel. In-problem post on bit-identical kernel verification via CUPTI hardware counters,
-r/kernelbench, 2026. Cited as a composing measurement layer, not as a competing one.
+[6] ruachtov_kernel. "Bit-identical GPU kernel verification via CUPTI hardware counters", r/kernelbench post 1,
+2026. https://rstation.ai/r/kernelbench/posts/1 Cited as a composing measurement layer, not as a competing one.
 
 [7] B. Barabasz, A. Anderson, K. M. Soodhalter, and D. Gregg. *Error Analysis and Improving the Accuracy of
 Winograd Convolution for Deep Neural Networks.* 2018, revised 2019. https://arxiv.org/abs/1803.10986.

@@ -172,8 +172,25 @@ for model, preds in a8["preds"].items():
                  "max_mult_err": max(mult),
                  "spearman": a8["models"][model]["spearman_logrho"],
                  "bulk_acc": a8["models"][model]["bulk_acc"]}
+# The corrected engine classification lives in a8b_analysis.json. The headline Spearman 0.986 belongs to
+# THAT model, so its magnitude errors must come from the same artifact; reading only a8_analysis.json pairs
+# a rank statistic from one model with residuals from another (DE1paW round-5 finding 4).
+f4b = {}
+a8b = load("a8b_analysis.json")
+for model, preds in a8b["preds_corrected"].items():
+    mult = [10 ** abs(p["pred_logrho"] - p["meas_logrho"]) for p in preds
+            if p.get("pred_logrho") is not None and p.get("meas_logrho") is not None]
+    if not mult:
+        continue
+    f4b[model] = {"n": len(mult), "median_mult_err": statistics.median(mult),
+                  "max_mult_err": max(mult),
+                  "spearman": a8b["models_corrected"][model]["spearman_logrho"],
+                  "bulk_acc": a8b["models_corrected"][model]["bulk_acc"]}
 out["F4_compression_magnitude"] = {
     "per_model": f4,
+    "per_model_corrected_class": f4b,
+    "model_match_note": "the .986 Spearman belongs to the corrected-class model; its magnitude errors are "
+                        "1.251x median / 2.409x worst (a8b), NOT the 2.09x/440x older-model figures.",
     "published_claim": "rho_max compresses out-of-fold (.833 geometry-only / .986 with class)",
     "reading": "rank compression holds; magnitude calibration does NOT -- geometry-only median "
                "multiplicative error ~6.8x, max ~157x. Both must be reported together.",

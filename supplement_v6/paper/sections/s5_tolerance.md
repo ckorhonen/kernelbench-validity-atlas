@@ -23,12 +23,17 @@ elements at ratio ≤ 0.077). The reference's own rounding sits 100× outside th
 (`results/b2_failure_corpus.jsonl`, arms A/B, 5/5 seeds), so "more accurate than the reference" and
 "closer to the reference" are different properties, and only the second one passes.
 
-**The pass boundary is a magnitude, not a margin.** `results/cf43.json` CF3 matched 60 shapes and 528
-arm-instances across two measurement days and found **169 pass flips = 32.0%** under the deployed
-contract. Every flip sits at a budget ratio between 1.1e-4 and 1.8e-4 — i.e. within 80% of the bar — while
-the b1 factored pair, whose errors are ≤1.2e-7, never flips (0/13, margin ≥800×). The mechanism is
-family-general: what decides a flip is the distance from the bar in units of the bar, not the family, the
-day, or the arm. This is why §4's certificate carries a regret basis rather than a regret number.
+**The pass boundary is a magnitude, not a margin.** `results/cf43.json` CF3 matched 60 shapes and **360
+reduction arm-instances** across two measurement days and found **169 pass flips = 46.94%** under the
+deployed contract. (The published 32.0% divided the same 169 flips by 528, a denominator that carried 168
+cf1 rider cells: `tot` was not reset before the cf3 comparison and `tot_arm` was dead code. The corrected
+denominator and the mechanism are recorded in `results/s58_review_verify.json`; the two runs differ in
+population, not in flips — the flip count is unchanged.) Every flip sits at a budget ratio between 1.1e-4 and
+1.8e-4 — within 80% of the bar — while the b1 factored pair, whose errors are ≤1.2e-7, never flips (0/13,
+margin ≥800×). What decides a flip is the distance from the bar in units of the bar, not the family, the day,
+or the arm. The cf3 comparison is a tolerance sweep over the observed profiles, not a controlled sweep of every
+coordinate, so the law is scoped to those profiles. This is why §4's certificate carries a regret basis rather
+than a regret number.
 
 ## 5.2 Propagation: cut, then repaired by measurement (scope history kept)
 
@@ -48,7 +53,7 @@ out: it ruled out *validating a composed model from the committed CPU artifacts 
 rule out composition. Two things it left unexplained pointed at the repair. First, rho is already
 dimensionless — its denominator is the harness budget `atol + rtol·|R_64|` — so composition never needed
 the `|ref|` column whose absence killed the audit; the claim was being tested in the wrong currency.
-Second, CF3's flip mechanism (169/528 flips, all at budget ratios 1.1-1.8e-4) says the decisive quantity is
+Second, CF3's flip mechanism (169/360 flips, all at budget ratios 1.1-1.8e-4) says the decisive quantity is
 error in units of the budget, which is the shape of a dimensionless law rather than an absolute-error one.
 
 **A9 measures that law directly** (`lab/a9_compose_prereg.md` @ 53ca881, frozen before the run; artifacts
@@ -69,8 +74,9 @@ and 2.48× the worse stage across six chains, and on five of six a factor-of-two
 amplification term is subdominant whenever the downstream stage is the dirtier one (c1: a winograd stage at
 rho 7.7 feeding a TF32 stage at rho 5353 contributes one part in ten thousand of the end-to-end number).
 Bulk inadmissibility is dominated rather than compounded: where the stage fractions are large the compound
-fraction is bounded by the worst stage to within 1.07×, so a reader can carry the worse stage's frac_over
-forward and be right about the 0.5 bulk threshold.
+fraction is bounded by the worst stage to within 1.07×, so in these six chains a reader can carry the worse stage's frac_over
+forward and be right about the 0.5 bulk threshold. That is a bounded empirical finding over six chains, not an
+instruction that the worst stage always dominates; c5 below is its counterexample for the maximum statistic.
 
 The worst-stage bound has a counterexample in my own data and it belongs here rather than in a footnote.
 **c5 is two individually admissible stages — rho_A 0.0689, rho_B 0.6563 — that compose to rho_end 1.2939,

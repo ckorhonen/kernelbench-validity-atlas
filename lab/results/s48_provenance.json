@@ -1,7 +1,7 @@
 {
- "date": "2026-10-28T22:21:43Z",
- "n_cited": 49,
- "n_found": 49,
+ "date": "2026-10-29T12:24:30Z",
+ "n_cited": 50,
+ "n_found": 50,
  "missing": [],
  "entries": [
   {
@@ -1055,9 +1055,9 @@
     "paper/sections/s1_introduction.md",
     "paper/sections/s4_certificates.md"
    ],
-   "sha256": "682dcc29555e91089793ffc2526f737e118e84ce6ebc39abd306ab3c4068f9e5",
+   "sha256": "ab18e9a1729d6d42e53519218a6be267323b93b82b7d0dc01d7492e63f5f54ae",
    "bytes": 943,
-   "mtime_utc": "2026-10-28T22:21:14Z",
+   "mtime_utc": "2026-10-28T22:22:07Z",
    "producers": [
     "lab/r57_candidate_admission.py"
    ],
@@ -1176,7 +1176,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-10-28T22:20:34Z",
+   "mtime_utc": "2026-10-29T10:53:05Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1209,9 +1209,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "74bc3bec80dc0fbf2f023c8b6181c289113023a2c4ef8ef947dc631d826ceefb",
+   "sha256": "3f8fb1e176d4511069743024bacdb4957674ff344f2cf277e0091ca994707f2a",
    "bytes": 5255,
-   "mtime_utc": "2026-10-28T22:20:34Z",
+   "mtime_utc": "2026-10-29T10:46:51Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1235,9 +1235,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md"
    ],
-   "sha256": "1371f76bdd833f656b6f6e9d283b06f0d3c6ca3e2cdb594aad79b5cd445ed9a0",
-   "bytes": 1762,
-   "mtime_utc": "2026-10-28T22:20:34Z",
+   "sha256": "3ca221fcc9821d26170241097c51f4e04c74c59573a9f4ef7c04b11cde352390",
+   "bytes": 1763,
+   "mtime_utc": "2026-10-29T10:46:51Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1291,9 +1291,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "091ad8cdb5555a677dd7fd1646d4556c9f83f6ee7d89362af338d286a6a4531d",
-   "bytes": 15562,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "38c40745877c6f066038581ec2d3093306da8901d6dafba5c68df2a18a9d1319",
+   "bytes": 20223,
+   "mtime_utc": "2026-10-29T06:12:09Z",
    "producers": [
     "lab/s52_supplement_build.py",
     "lab/s56_heldout_contract.py",
@@ -1317,9 +1317,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "c8733a403a072b81913e20af1ddeebac0a8f773d1c585729a2af68f3e5c15816",
-   "bytes": 77711,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "096e5f94572953efbd1efd8b88b204249949e5426cfbfaa6104a6e9aecbc60ea",
+   "bytes": 78252,
+   "mtime_utc": "2026-10-29T06:12:09Z",
    "producers": [
     "lab/s56_heldout_contract.py"
    ],
@@ -1329,6 +1329,38 @@
      "determinism",
      "header",
      "rows"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s58_review_verify.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md",
+    "paper/sections/s1_introduction.md",
+    "paper/sections/s4_certificates.md",
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "f6395c90d7f72c84e062699dc0fb72713fa1e520b8a2ba7713dae554b89fc47f",
+   "bytes": 3317,
+   "mtime_utc": "2026-10-29T01:32:51Z",
+   "producers": [
+    "lab/s58_review_verify.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "V1_armclass_baseline",
+     "V2_declared_only",
+     "V3_hand_ieee",
+     "V4_addendum_posthoc_family_split",
+     "V4_fallback_accounting",
+     "V5_cf3_denominator",
+     "date",
+     "population",
+     "prereg_sha",
+     "source"
     ]
    },
    "compressed": false

@@ -22,7 +22,7 @@ judgment:
    contract, if a paper wants one, is criterion (iii) and must be declared as an application requirement with
    its own threshold, not inferred from (ii). The three are reported separately because neither implies
    another: a reference 0.75e-4 from an exact anchor can pass (i) against a candidate 1.5e-4 that fails
-   against the anchor, so frac_over = 0 does not license "no caveat needed." The earlier draft collapsed (i)
+   against the anchor, so frac_over = 0 does not license "no caveat needed." A scalar counterexample makes the separation concrete: anchor 0, reference 1.1e-4, candidate 2e-5, a = t = 1e-4 gives rho_r = 1.1 and rho_c = 0.2 while |r - c| = 9e-5 < a + t|c|, so frac_over = 1 and the candidate still passes both (i) and (ii). Repeating those values across a tensor gives a reference whose bulk fraction is one and a candidate that is admissible, which is why a reference statistic alone cannot decide admission. The earlier draft collapsed (i)
    and (ii) into one admission predicate, which is the defect this revision repairs.
 3. **Admissible delivery set** — the arms that pass the contract at *this* realization, which for most rows is
    smaller than the set the rule selects.
@@ -67,7 +67,7 @@ P(flip | x ≤ c) = 0.0. On the rider set (n=560, 240 flips) it reached **AUC 0.
 pre-registered fail branch was taken without retry.
 
 The consequence is a **one-sided safe region only**: when the statistic is below c*, the row does not flip
-(0/10 rider rows below c* flipped); when it is above c*, nothing is claimed. There is no global ranking, and
+(0/10 rider rows below c* flipped); when it is above c*, nothing is claimed. The safe region is an observation, not a guarantee: zero flips in ten designed rows leaves a one-sided 95% upper bound of 0.259 on the flip probability under an independent-binomial reading (Clopper–Pearson), and the rider rows are designed rather than drawn from the deployment distribution, so the bound is looser still. There is no global ranking, and
 no threshold that separates flippers from non-flippers on unseen rows. This is the third attempt in this
 program to scalarize robustness into one number, and it failed the same way the other two did — by asking the
 candidate to explain a property of the reference. §2.3's measurement asks the reference directly, which is why
@@ -75,25 +75,52 @@ it produced a two-class decomposition instead of a failed AUC.
 
 ## 4.4 What the certificate changes, and what it does not
 
-**Changes.** A speedup at a row whose frac_over is 0.77 (any TF32 conv route) is not a speedup; it is a
-comparison of two arms that both miss the contract, and the paper says so before the ratio. A speedup at a
-winograd row with frac_over 0.005 is claimable on 99.5% of elements and the paper states the subset. On the
-reduction family, where the certificate is clean at default precision (baseline 56/56), the published
-rankings stand unchanged — the certificate costs nothing where it is not needed, which is the test of whether
-it is a ritual.
+**Changes.** Three quantities are kept apart here, because an earlier draft conflated them. `frac_over` is an
+exceedance fraction — the share of the reference's output elements whose budget ratio is above 1 — not a
+magnitude. The magnitude is the max budget ratio, which on TF32 conv rows sits in the hundreds (94.1-197.3 on
+§6's conv rows, 429.4 on Table 1's channels-last cell). The candidate verdict is the benchmark's own
+whole-tensor allclose against the recorded reference. At a row with frac_over 0.77 (any TF32 conv route) about
+77% of the reference's elements are outside the budget and its worst element is hundreds of budgets away, so
+the denominator of a speedup ratio is a reference that is itself far from an exact anchor — while the
+remaining 23% of elements are inside, which is why such a row can still be evaluated at all. That is a
+statement about the reference's accuracy, not a verdict on either arm: a candidate identical to that reference
+passes. At a winograd row with frac_over 0.005 the ratio stands as measured, and the paper states that 0.5% of
+reference elements are the ones the reference itself misses. On the reduction family, where the certificate is
+clean at default precision (baseline 56/56), the published rankings stand unchanged — the certificate costs
+nothing where it is not needed, which is the test of whether it is a ritual.
 
 **Does not change.** The certificate does not tell you which kernel is faster. It tells you whether the
 comparison was admissible, which is prior to the question. That is the deliberate demotion: §6 treats the
 selector as a studied object precisely because a selector over inadmissible arms is a selector over noise.
 
+"Targets and conventions." Three comparisons are kept separate and no threshold is implied by any single
+statistic: (i) benchmark agreement — the row's own whole-tensor verdict against its recorded reference
+(binary, at the recorded realization, and never inferred from frac_over); (ii) anchor accuracy — the
+reference's distance from an fp64 anchor, reported as (rho_max, frac_over), diagnostic only; (iii) a
+declared relaxed application contract, whose candidate-level threshold is stated by the applicant. The 0.02/0.5
+frac_over lines are optional reporting conventions (tail-conditional / bulk-inadmissible), not admission
+criteria: frac_over = 0 means the reference is indistinguishable from an exact anchor at the budget, 0 <
+frac_over < 0.02 means a tail of rare elements is outside the budget, and frac_over > 0.5 means the bulk of the
+reference's output is outside it, so any ratio quoted against that reference has a denominator whose majority
+is already outside the contract. The exceedance fraction is not a magnitude; the magnitude is the max budget
+ratio, reported alongside it. What none of these decides is whether the candidate agrees with the reference,
+which is (i), measured per row on the candidate. Bulk classification therefore predicts reference accuracy,
+not candidate admission. Admissions claims carry the per-row candidate-versus-reference verdict
+(results/r1_conv_gated.jsonl, results/w4_heldout.json.jsonl) together with the reference's (rho_max,
+frac_over), and no speedup ratio is quoted against a row whose reference consumes bulk budget.
+
 **P2 row.**
 `{op_class: all_benchmark_rows, rule: every results row carries {reference_realization, rho_max, frac_over,
-admissible_delivery_set, regret_basis}; delivery claims are conditional on frac_over as in §4.1,
-domain_predicate: certificate defined for every row; delivery claim defined iff frac_over < 0.5,
+admissible_delivery_set, regret_basis}; a delivery claim requires the candidate to pass the benchmark's own
+whole-tensor check against the recorded reference — the (rho_max, frac_over) pair is a diagnostic on the
+reference and cannot substitute for that check, as in §4.1,
+domain_predicate: certificate defined for every row; delivery claim defined iff candidate-vs-reference allclose
+passes at 1e-4 (binary, whole-tensor); a relaxed contract, if declared, states its own candidate-level
+threshold and justification rather than inheriting frac_over,
 derived_coords: frac_over, rho_max, admissible_pool_size, boundary_ref: results/r45_rider_adm.json,
 results/cushion_screen.json, results/a7_kernelclass.json, variance: regret bounds reported as paired
 differences with n; AUC reported with its rider transfer, n_reps: 1 per row (deterministic records),
-date: 2026-10-24}`
+date: 2026-10-25}`
 
 ## 4.5 Is the certificate a surface or a lookup table? (A8, added tick #51)
 
@@ -109,29 +136,50 @@ The answer splits by field, and the split is the finding:
   with the engine class supplied as one categorical coordinate, and 0.833 from derived geometry alone
   (log k_eff, log n_elem, log C, log H) with no class at all. But rank is not calibration: the geometry-only
   model's median multiplicative prediction error is **6.84×** and its worst row is 156.7× off
-  (`results/s55_review_repair.json`; class+derived 2.09×/440×, class-median 2.71×/978×). So the field is a
-  surface for *ordering* and a lookup for *value*, and the earlier draft reported only the Spearman. Both
-  numbers belong in the row.
-- **frac_over does not compress without the class.** Bulk-failure classification (frac_over > 0.5) is
-  100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21% that fails is
-  exactly the dispatched rows, which are the ones that matter, because frac_over is the admission key.
-- **The class itself is barely predictable.** LOO nearest-centroid on the same four coordinates reaches
-  0.604 against a 0.5625 majority baseline. Deployment consequence, stated plainly: the certificate is
+  (`results/s55_review_repair.json`). The model the headline Spearman 0.986 belongs to is the
+  corrected-class model, and its own magnitude errors must be read from the same artifact that produced the
+  correlation: refitted on `results/a8_compress_v2.json` it gives median 1.251× and worst 2.409×
+  (`results/a8b_analysis.json`; recomputed in `results/s55_review_repair.json`). An earlier draft paired the
+  0.986 with 2.09×/440×, which are the *older* classification's numbers from `results/a8_analysis.json` — a
+  model mismatch, since a rank statistic from one model cannot be calibrated by another's residuals. Both
+  models' numbers are reported here rather than merged: geometry-only 6.84×/156.7×, corrected class+derived
+  1.251×/2.409×, older class+derived 2.09×/440×. So the field is a surface for *ordering* and a lookup for
+  *value*, and the magnitude of the lookup depends on which model is being looked up.
+- **Scope of the frac_over negative: it is a geometry result, not a verdict on the coordinate.** The
+  compression test varied shape and engine class at a *fixed input distribution*, so "frac_over does not
+  compress without the class" is a statement about the geometry axis. It says nothing about the input
+  distribution axis, where a separate measurement (§2.3, `results/a11_layernorm_reference_dist.json`) finds
+  reference consumption rising near-linearly in row conditioning from rho 0.011 at kappa 1.73 to 2.529 at
+  kappa 1000. So frac_over is not uncompressible in general; it is uncompressible *from geometry alone*.
+- **frac_over does not compress without the class, and it is not admission.** Bulk-failure classification
+  (frac_over > 0.5) is 100% out-of-fold when the class is supplied and 79% from geometry alone — and the 21%
+  that fails is exactly the dispatched rows. frac_over is the reference-accuracy diagnostic that admission is
+  conditioned on, not a candidate-level admission test (§4.1); the candidate-level test is measured in §4.6
+  and returns a different, stronger answer.
+- **The class itself is barely predictable.** A leave-one-shape-out nearest-centroid classifier over the four
+  derived coordinates (log k_eff, log n_elem, log C, log H) reaches 0.604 against a 0.5625 majority baseline
+  (TF32) on the 48-shape lattice; the classifier, its features, its folds and its per-row predictions are in
+  `results/a8b_analysis.json` (`class_predictability`, `class_preds`). Deployment consequence, stated plainly: the certificate is
   not free. It costs one profiler pass per shape family to learn the class, and that cost belongs in the
   row rather than in a footnote. Scope of that inference, since it is easy to overread: a nearest-centroid
   failure does not establish that engine class is unpredictable *in principle* — only that these four
-  coordinates do not predict it. A continuous description the classifier cannot see remains possible.
+  coordinates do not predict it. A continuous description the classifier cannot see remains possible, and a categorical output can arise from a threshold on continuous inputs, which a nearest-centroid classifier cannot represent; the tuple test of §2.5 rules out a threshold in the coordinates it varied, not in every coordinate.
 
-We also checked the prereg's falsifier for "the class alone is sufficient" (within-class span < 1 decade
-with cross-class gap > 1 decade): it does not hold. The largest within-class span is 3.04 decades
-(fp32-SIMT, monotone in reduction depth: 0.005 at K_eff 16 rising to 5.82 at 8192), and the TF32 and
-fp32-SIMT ranges overlap. So the certificate needs the pair (class, geometry), not either alone — which is
-what the 0.986-vs-0.574 gap between the joint model and the class-median model measures.
+**Decision rule (declared).** The compression test was pre-registered at c56c0a0 with two
+questions and a frozen classifier: does rho_max compress in derived coordinates, and does
+frac_over predict without the class?  The strict reading — COMPRESSION_PARTIAL — is that
+magnitude compresses (LOO Spearman 0.986 with the class, 0.833 from geometry alone) while
+frac_over does not (bulk 79% vs 100% out-of-fold without the class).  The continuous
+reading (COMPRESSION_SUPPORTED_CONTINUOUS) is reported as measured, never as a pass: its own
+prediction fails under the strict reading, and the manuscript describes it as measured,
+not as shipped.  Both readings are reported; neither is hidden.
 
 The honest summary for §4: admission is conditional on a measured categorical coordinate whose own
 predictability is 0.60, and the magnitude field is predictable at 0.83 without it. A third party can use
-the certificate to *evaluate* a published row without trusting us; they cannot yet use it to *predict* a
-row they have not profiled, except in magnitude.
+the certificate to *evaluate* a published row without trusting us, and — §4.6 — can predict the *class
+decision* on an unprofiled shape from declared features at AUC 0.9747, matching a two-line arm-class baseline
+(§4.6); what they cannot yet predict is the operating threshold inside a class, which stays a measured per-arm
+quantity.
 
 One retraction belongs here rather than in §2. A7 stated that 3×3 stride-1 conv routes to the winograd
 engine. On this wider grid it does so only in a corner: C≥64 with small output extent (H7 at both C64 and
@@ -141,3 +189,64 @@ moves rho by 20-38×. A7's sentence was scoped to H=5 and is corrected here; the
 survives, but the class is a dispatch decision over (C, output extent), not a function of the conv
 parameters. This is the fourth retraction of this lane and the second that is mine rather than a
 reviewer's.
+
+## 4.6 Candidate-level admission, measured (r57, revised round 13)
+
+The reviewer of submission Lo23jsKHjyGuukZr made the decisive objection that §4.5's compression experiment
+predicted `frac_over > 0.5` — a reference-versus-fp64 diagnostic — and not the candidate-versus-reference
+verdict that defines admission. That objection is correct against the earlier draft, and the missing measurement
+was run: r57 (prereg `4595e00`, `lab/r57_candidate_admission.py` -> `results/r57_candidate_admission.json`)
+predicted actual `pass_1e4` verdicts out of fold at AUC 0.986 and 96.4% accuracy. The round-13 review then
+showed that the headline partly rested on `refdev`, a *measured* feature — the difference of two reference output
+maxima — so the execution-free claim was re-tested without it, under a prereg frozen before any computation
+(`lab/s58_review_verify_prereg.md` @ `d2da0b8`; `lab/s58_review_verify.py` -> `results/s58_review_verify.json`).
+What follows is the re-tested version; r57's numbers are quoted only where they are the object under discussion.
+
+**Population and label.** The 672 arm-checks of `results/r1_conv_gated.jsonl` (56 conv shapes × 12 arms), label =
+the evaluator-exact `pass_1e4` verdict against the recorded default reference at the declared 1e-4 contract: 128
+admissible, 544 not.
+
+**The baseline the earlier draft hid.** A two-line rule that reads only the arm class — pass if the arm is
+`torch` or `torch.compile`, fail if it is a hand kernel — scores **96.4286%** (TP 108 / TN 540 / FP 4 / FN 20),
+which is 15.48 pp above the pooled majority of 80.95%. Comparing a model to the pooled majority therefore
+understates what is already available for free; the honest comparator is this rule.
+
+**Declared-feature model, re-tested without the measured feature.** Linear probability model on eight declared
+features only (log2 C, log2 K, log2 H·W, N, log2 bytes, is_compile, is_hand, prec_tf32 — no refdev, no
+interaction), leave-one-shape-out: **AUC 0.974652, accuracy 96.4286%**, clearing the prereg's bar (AUC ≥ 0.90).
+The execution-free claim survives, but its correct reading is narrower than r57's: the model *matches* the
+arm-class rule rather than beating it, so what the model adds is a feature-level statement — the verdict is
+predictable from the declared tuple and arm class alone — not extra accuracy.
+
+**Within the hand-fp32 class, the threshold stays measured.** Removing the measured feature drops the hand-ieee
+stratum (n=280, 20 positives on 4 shapes) to AUC **0.7548**, shape-clustered bootstrap CI [0.537, 0.9231], with
+**0 of 20** positives admitted at a 0.5 cut. The prereg bar (CI lower ≥ 0.70) failed. So r57's 0.899 for that
+stratum was carried by `refdev`, and admission inside a class remains a measured per-arm quantity, not a
+predicted one. P3 is unchanged and load-bearing: 56 of 56 shapes carry both passing and failing arms at the
+same reference, so the verdict is candidate-dependent while the reference sets the budget.
+
+**Table 4.2 — diagnostics, prediction targets, and what each costs to acquire.**
+
+| quantity | what it is | acquisition cost | validation population |
+|---|---|---|---|
+| (rho_max, frac_over) | reference-versus-fp64 diagnostic; never a verdict | one fp64 anchor execution per shape, no candidate needed | 48-shape compression lattice (a8), 17 tuple cells (Table 1) |
+| engine class | which engine the reference dispatches to | one profiler pass per shape family | 17 cells, two repeats in one process; fresh-process replication open (§7.3) |
+| pooled admission | candidate verdict, class decision | none beyond the declared tuple and arm class | 672 arm-checks, leave-one-shape-out over 56 shapes |
+| within-hand admission | threshold on a measured deviation | one reference-deviation measurement per shape | 280 arm-checks, 20 positives, 4 shapes |
+| post-validation execution regret | delivered time ratio under one stated policy | one execution per checked arm plus the comparison (§6.5) | 24 reduction rows, 10 conv rows |
+
+**Limits, stated rather than smoothed.** The folds hold out shapes, not candidate implementations, so an arm
+absent from the inventory is untested; the population is conv-only (56 shapes, no reduction rows); every label is
+a verdict against one recorded reference realization, so the prediction is about the shipped benchmark's gate,
+not numerical accuracy in the abstract; and the pooled model's accuracy equals a two-line class rule, so the
+contribution here is the declared-feature result and the measured within-class threshold, not a model that
+outperforms the obvious baseline.
+
+**P2 row.**
+`{op_class: conv2d_3x3_s1p1_fp32 (union), rule: pooled admission predictable from declared features (AUC .9747,
+acc 96.4286% = arm-class baseline); within-hand threshold measured, not predicted,
+domain_predicate: 672 arm-checks over 56 conv shapes at the shipped 1e-4 gate against one recorded reference,
+derived_coords: [arm_class, log2 C, log2 K, log2 HW, log2 bytes, prec_tf32, refdev],
+boundary_ref: results/s58_review_verify.json, results/r57_candidate_admission.json,
+variance: shape-clustered bootstrap CI [0.537, 0.9231] for the hand stratum; accuracy is a point estimate on 672
+checks, n_reps: 1 per arm-check (deterministic records), date: 2026-10-29}`

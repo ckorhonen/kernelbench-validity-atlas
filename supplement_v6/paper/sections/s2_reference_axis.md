@@ -59,12 +59,33 @@ Measured on real benchmark shapes (`results/a6_refdistance.json`, `a6b_ksweep.js
 `a7_kernelclass.json`, `a7b_precision_policy.json`; preregs `lab/a6_refdistance_prereg.md` and
 `lab/a7_kernelclass_prereg.md`, both committed before their runs):
 
-**fp32 matmul is monotone in reduction depth and crosses the budget.** rho 0.081 at K=128, 0.271 at K=512,
-0.672 at K=2048, 3.414 at K=8192 under pure fp32 accumulation (`allow_tf32=False`, precision highest). The
-crossing was **measured**, not interpolated: bisection put it between K=3608 (rho 0.990) and K=3632
-(rho 1.232). An ordinary fp32 matmul reference cannot pass this benchmark's own 1e-4 contract at K ≳ 3.6k.
-The pre-registered 2× band around the interpolated 2875 was satisfied (P1 held); the log-log model was not
-retracted, but the measured point is what the paper reports.
+**fp32 matmul reference error grows with reduction depth, and the pass verdict is a draw, not a threshold.**
+rho 0.081 at K=128, 0.271 at K=512, 0.672 at K=2048, 3.414 at K=8192 under pure fp32 accumulation
+(`allow_tf32=False`, precision highest), and the 6-seed medians rise 1.046 -> 1.398 across K 3.6k-4.1k. But
+the rho=1 crossing is **not** a threshold: a neighborhood-and-seed study at M=N=1024
+(`results/a10_crossing_neighborhood.json`, prereg frozen pre-run; 66 rows, 11 K values x 6 seeds) finds the
+pass fraction at K=3608 to be 4/6 and at K=3632 to be 2/6, per-draw rho scatter of +-0.2, **no seed monotone
+in K** (0/6, violations to -0.36), and a re-entry at K=3840 (1/6 pass) after two all-fail K values. The
+earlier bisected bracket (K=3608 rho 0.990 / K=3632 rho 1.232, `results/a6d_crossing.json`) was one draw's
+answer and is now reported as such. What the paper claims is the measured pass-probability curve: an ordinary
+fp32 matmul reference at 1e-4 fails on most draws from K~3.6k and on all sampled draws from 3.68k, while a
+minority of draws still pass at 3.6k-3.84k. The pre-registered 2x band around the interpolated 2875 was
+satisfied (A6d's P1 held); the log-log model was not retracted.
+
+**A third reference family has a measured input-distribution boundary: fp32 LayerNorm at the official L1/40
+shape.** rho is 0.011 at the benchmark's own default distribution (`torch.rand` = U[0,1), kappa = |mean|/std
+= 1.73), 0.559 at kappa 100, and **2.529 at kappa 1000 with 18.99% of elements over budget** — so the
+reference itself fails an anchor contract at that distribution (`results/a11_layernorm_reference_dist.json`,
+prereg frozen pre-run; (16,64,256,256), 4.19M values per row, fp64 anchor, six distributions, determinism
+2/2). The fitted exponent in kappa is 0.85 over 2.76 decades, i.e. the consumption is close to linear in the
+row's conditioning, consistent with the merge-error amplification derivation. This is the first row in this
+program where a candidate that fails the benchmark check is *closer to exact arithmetic* than the reference
+it failed against: at kappa 1000 a split-statistics LayerNorm candidate sits at rho 0.663, anchor-clean on
+every element, while the reference sits at 2.529 with 19% of elements over budget. Both statements are true
+and they are different criteria — benchmark agreement is binary candidate-versus-reference and is not
+upgraded by the anchor; anchor accuracy says which of the two numbers is the worse one. One coordinate
+defect found: kappa is undefined for a zero-variance row (constant 10000 gives std 0, kappa infinite, rho
+exactly 0), so the predicate needs a non-degenerate-variance condition alongside kappa.
 
 **fp32 conv2d is not a depth function at all — it is a dispatch surface with two classes, and the classes
 have different fixes.** The profiler names the engines directly, and the routing is what produces the
@@ -119,6 +140,18 @@ but *which* property of its coefficient conditioning produces 10× amplification
 PyTorch exposes no algorithm handle for it. The measurement stands; the mechanism is a named candidate, and
 it is the specific question this paper would put to a peer with cudnn internals access.
 
+**$\rho$ is normalised by the benchmark's own fp32 tolerance, verified in source.** `src/kernelbench/eval.py`
+`get_tolerance_for_precision` returns $10^{-4}$ for `torch.float32` (citing torchbench) and $10^{-2}$ only for
+fp16/bf16, so the gate used throughout this paper is the benchmark's shipped contract, not a stricter private
+one. That makes $\rho$ an exact statement about the shipped benchmark rather than a remark about people who
+tighten tolerances: at fp32 the reference's own deviation and the gate's budget are the same order of magnitude,
+so on the shapes measured here which engine the reference dispatched to sets how much budget a candidate has
+left — and it is the candidate's own arithmetic, not the engine, that decides whether it spends it. That
+separation is measured in §4.6 and is the reason no universal verdict sentence survives here.
+$\rho \geq 1$ is a per-element statement, not a whole-tensor one; the exceedance fraction (`frac_over`, reported
+alongside every $\rho$) says how much of the reference's output is outside the budget, which is a diagnostic on
+the reference and not the candidate's verdict (the verdict is the candidate-versus-reference allclose, §4.1).
+
 ## 2.4 What the instrument says about the atlas's spine hypothesis
 
 The spine predicted that domain boundaries, irregular in raw-shape space, collapse to low-complexity surfaces
@@ -129,34 +162,96 @@ not of the kernel's arithmetic intensity, occupancy, or bytes/thread. That is a 
 as originally stated, and it is recorded as such rather than relabeled: the coordinate that collapses this
 surface is "which engine ran," a categorical coordinate, not a continuous derived one.
 
-**The certificate's admission rule, and why it is keyed on frac_over rather than on rho.** frac_over is the
+**The certificate's reference diagnostic, and why it is keyed on frac_over rather than on rho.** frac_over is the
 fraction of output elements at or over the contract budget, so $\mathrm{frac\_over} = 0$ is exactly the
 statement "this reference realization passes the benchmark's own check against the fp64 anchor," and
-$\rho_{\max}$ then only measures how much slack is left. That gives a three-level rule that a third party can evaluate from a row's
-own records without trusting us:
+$\rho_{\max}$ then only measures how much slack is left. That gives a three-level *diagnostic* that a third
+party can evaluate from a row's own records without trusting us. The word diagnostic is load-bearing and was
+wrong in an earlier draft, which called frac_over = 0 "unconditional" and, in a later one, treated frac_over
+as the admission key: the three levels say what the
+reference's own accuracy permits you to *report*, not whether a candidate passes. Benchmark agreement is a
+binary whole-tensor check against the recorded reference (§4.1, §8.4), and no anchor statistic can upgrade
+or downgrade it:
 
-- **Unconditional** — $\mathrm{frac\_over} = 0$: the baseline is admissible against an exact anchor, so a speedup
-  reported against it is a claim about the kernel, and no reference caveat is needed. Measured rows in this
-  class: explicit im2col+fp32 matmul (rho 0.657), cudnn-disabled conv (0.192), plain fp32 matmul K=2304 (0.202).
-- **Distribution-conditional** — $0 < \mathrm{frac\_over} < 0.02$: the baseline fails on a negligible tail (winograd
-  3×3 s1: frac_over 0.0052, rho_max 10.195), so the speedup is claimable only for the element subset that
-  passes, and the paper must say how many elements that is. Rescue is possible here because the failing set
-  is sparse; a tolerance loosening that covers 0.5% of elements is a defensible convention, not a fiction.
-- **Inadmissible** — $\mathrm{frac\_over} > 0.5$: the baseline fails in bulk (TF32 routes: 0.77–0.78), so a speedup
-  against it is a comparison between two things that both miss the contract, and neither can be certified by
-  loosening. Report the pair, not a ratio.
+- **No anchor caveat** — $\mathrm{frac\_over} = 0$: this reference realization is indistinguishable from an exact
+  anchor at the budget, so the diagnostic pair (rho_max, frac_over) adds nothing beyond saying the anchor and
+  the reference agree on every element. It does **not** make the row's verdict unconditional: benchmark
+  agreement is candidate-versus-reference, and a candidate identical to the recorded reference passes
+  whatever the reference's own distance from fp64. What frac_over = 0 buys is that a *separately declared*
+  relaxed application contract has no sparse-failure problem to argue about. Measured rows in this class:
+  explicit im2col+fp32 matmul (rho 0.657), cudnn-disabled conv (0.192), plain fp32 matmul K=2304 (0.202).
+- **Tail-conditional diagnostic** — $0 < \mathrm{frac\_over} < 0.02$: the reference fails on a negligible tail
+  (winograd 3×3 s1: frac_over 0.0052, rho_max 10.195). Two things follow and they are separate. For the
+  benchmark contract, nothing follows — the row is scored whole-tensor candidate-versus-reference and the
+  verdict is whatever that check returns. For a relaxed contract, the reference's failing set is sparse, so
+  a loosening that covers 0.5% of elements is a defensible convention *provided it is declared and its own
+  candidate-level evidence is supplied*. It is not a licence to call the benchmark row correct.
+- **Bulk reference-error diagnostic** — $\mathrm{frac\_over} > 0.5$: the reference fails in bulk (TF32 routes:
+  0.77–0.78), so a speedup ratio computed against it has a denominator whose own error is outside the budget.
+  This is a property of the reference and not an admission verdict on the row.
+  Whether the *candidate* misses the contract is a separate, candidate-level check (criterion (i)), and the
+  statement "no loosening rescues that" is about the reference, not a verdict on the candidate. Report the
+  pair, not a ratio. This one *is* a claim about the ratio's meaning
+  rather than about the row's pass/fail.
 
 The rho_max column stays in every row because it is the severity index that decides *how much* slack a
 conditional row has, but it does not decide admissibility on its own: a row can have rho_max 10.2 and be
 distribution-conditional (winograd) while a row with rho_max 111 is inadmissible (TF32 1×1), because the
 distribution, not the maximum, is what a tolerance convention can act on.
 
-**P2 row.**
-`{op_class: conv2d_fp32_reference_budget, rule: report (rho_max, frac_over) per (family, engine class,
-reduction depth, geometry); admission is keyed on frac_over, not rho, domain_predicate: unconditional iff
-$\mathrm{frac\_over} = 0$; distribution-conditional iff $0 < \mathrm{frac\_over} < 0.02$; inadmissible iff
-$\mathrm{frac\_over} > 0.5$;
-derived_coords: K_eff, engine_class (categorical), rho_max, frac_over, C, output extent; boundary_ref:
-results/a7_kernelclass.json + results/a7b_precision_policy.json + results/a8_compress_v2.json;
-variance: rho is a deterministic max statistic, no timing variance, seeds fixed per row, 2-run
-bit-equality asserted per profiled row; n_reps: 1 per row (deterministic); date: 2026-10-24}`
+All reference statistics in this section are reported under a named criterion and are read with it. The paper uses three separate criteria, never one conflated number:
+- (i) Benchmark agreement — the binary, whole-tensor verdict of the candidate against the recorded reference at the recorded realization. This is the only criterion that decides a row's pass/fail, and it is never inferred from an anchor statistic.
+- (ii) Anchor accuracy — the diagnostic pair (rho_max, frac_over): the reference's own distance from the fp64 anchor. Reported per row, equal weight, never upgraded or downgraded.
+- (iii) Declared relaxed application contract — a candidate-level threshold stated by the applicant, with its own justification. Never inherited from (i) or (ii).
+
+These criteria were conflated in an earlier draft ("unconditional", "not a speedup"), and the section below is the scope-wide correction of that defect. A row may be judged under criterion (i) while its reference statistics are read under (ii) or (iii); the paper's conclusions name the criterion they use.
+
+
+## 2.5 The tuple surface: class is a deterministic partition of the declared tuple, and the simple (s,d) rule is scoped
+
+Round-8's tuple test varied stride, pad, dilation, layout and batch at one fixed shape and reported six class changes over a manually ordered list. The round-11 review is right on two counts: such an ordering cannot by itself rule out a simple threshold, and the NHWC row never ran channels-last convolution — its branch permuted the tensor back to contiguous NCHW before `F.conv2d`, so the recorded strides described an intermediate tensor rather than the convolution input. Both objections are answered by measurement. A pre-registered 17-cell surface (`kernels/tuple_surface.py`, frozen before the run; record `results/tuple_surface.json`) sweeps each coordinate independently at the base shape (C256, k3, H=W=7, batch 2, seed 4321), includes the two cells the round-9 review found outside the published ranges, runs the declared layout for real (channels_last input handed directly to `F.conv2d`, with the strides of the tensors actually passed recorded for both flag settings), repeats every cell twice, and records the fp64 anchor's class per cell.
+
+What the surface measures:
+
+- **Determinism, the dispatchability condition.** All 17 cells return the same class in both repeats (34/34 runs). Class is consistent across two repeats inside one process on this build and this lattice (34/34), so the class decision can be dispatched from declared coordinates without profiling the candidate. This is the premise §4.5's rule and §4.6's prediction rest on. The wording is deliberately weaker than "a function of the declared tuple": two repeats in one process cannot distinguish a deterministic dispatch from a cached decision, so replication across fresh processes and runtime conditions is the open condition recorded in §7.3 and §7.4.
+- **The simple rule holds where round-8 looked and fails one step away.** Every cell with s=1, d=1 and (C, extent) = (64,7) or (256,7) is W; every cell with s≠1 or d≠1 is T; the pad axis 0→2 stays W. But C=16 at s=1, d=1 is T (rho_max 60.2, frac_over 0.760) and H=W=14 at s=1, d=1 is T (rho_max 371.2, frac_over 0.786). So "W iff s=d=1" is a partial rule: correct on the axes the round-8 grid varied, false in depth and extent. The §4.5 sentence that the tuple test "rules out a threshold in the coordinates it varied" is withdrawn; the accurate statement is that the boundary is a single step in each coordinate varied, with step positions that depend on C and extent.
+- **Layout is a dispatch coordinate.** A genuine channels_last input at the base shape runs T (rho_max 429.4, frac_over 0.784, input strides [12544, 1, 1792, 256]) while the same shape in NCHW runs W (rho_max 6.7). The round-8 "NCHW or NHWC" wording is withdrawn: that test compared NCHW against itself. Layout invariance is false on GB10 at this shape. Under `allow_tf32=False` the channels_last cell becomes fp32 SIMT (rho_max 0.239, ratio 5.6e-4, bit-inequal).
+- **Class spans, measured.** W: rho_max 1.4–12.8 (C=64 gives 1.4; pad-2 gives 12.8024, reproducing the round-9 reviewer's stored value), frac_over 0.0005–0.0077, bit-identical output under every precision flag in all seven W cells. T: rho_max 60.2–429.4, frac_over 0.760–0.786, and `allow_tf32=False` removes 96.4–99.9% of the budget (ratios 3.6e-2 down to 5.6e-4) with bit-inequal output. The published 6.4–6.8 / 315–369 ranges were pad-1-only readings; the measured class span replaces them.
+- **Reference realization.** Every cell's fp64 anchor dispatches to cutlass `implicit_convolve_dgemm` (class O) — no tensorop path exists at fp64 — so the anchor lattice, not a single anchor, is the object any certificate must be written over.
+
+Consequence for the claim: the boundary is categorical and repeat-consistent in the declared tuple. That is the positive low-complexity result in tuple coordinates — the class decision is a lookup over an enumerated tuple partition rather than a continuous model — and §4.6 measures that this class decision is predictable out of fold from declared features (AUC 0.9747, matching a two-line arm-class baseline) while the within-class threshold stays per-arm measured. It is also why the continuous derived-coordinate story (§4.5) cannot carry the class on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
+
+
+### Table 1 — the measured dispatch map (17 cells, two repeats each)
+
+`results/tuple_surface.json`, prereg frozen at `c16fb5e` before the run; base tuple C=256, k=3, H=W=7, batch=2,
+stride=1, pad=1, dilation=1, NCHW; seed 4321; GB10/sm_120, cudnn 92400. Classes: W = winograd non-fused,
+T = TF32 tensorop (cutlass), I = fp32 SIMT (implicit_convolve_sgemm), O = fp64 dgemm anchor. `flag-off` is the
+class measured with `allow_tf32=False` on the identical tuple; "I" there means the flag removes the tensorop path
+entirely. The fp64 anchor is class O in all 17 cells.
+
+| cell | varied coordinate | class | rho_max | frac_over | flag-off class |
+|---|---|---|---|---|---|
+| A00 | base | W | 6.736 | 0.004743 | W |
+| A01 | stride=2 | T | 369.4 | 0.781 | I |
+| A02 | stride=3 | T | 167.1 | 0.7717 | I |
+| A03 | dilation=2 | T | 315.1 | 0.7841 | I |
+| A04 | dilation=3 | T | 208.7 | 0.7856 | I |
+| A05 | pad=0 | W | 3.559 | 0.007734 | W |
+| A06 | pad=2 | W | 12.8 | 0.007186 | W |
+| A07 | layout=NHWC | T | 429.4 | 0.7837 | I |
+| A08 | batch=1 | W | 6.435 | 0.004225 | W |
+| A09 | batch=4 | W | 6.816 | 0.004903 | W |
+| A10 | batch=8 | W | 8.77 | 0.005122 | W |
+| B01 | C=16 | T | 60.25 | 0.7602 | I |
+| B02 | C=64 | W | 1.405 | 0.0004783 | W |
+| B03 | H=14, W=14 | T | 371.2 | 0.7855 | W |
+| C01 | stride=2, dilation=2 | T | 315.1 | 0.7869 | I |
+| C02 | pad=2, dilation=2 | T | 315.1 | 0.7847 | I |
+| C03 | stride=2, pad=2 | T | 221.2 | 0.7818 | I |
+
+Read as a dispatch surface, not a smooth field: the W→T step is one unit wide in stride, dilation and layout and
+does not appear at all in batch or pad; C=16 and a 14×14 extent both leave the winograd corner while C=64 stays
+inside it. The two magnitudes are separated by two to three orders of magnitude (rho 1.4–12.8 versus 60–429,
+frac_over 0.0005–0.0077 versus 0.760–0.787), which is why the admission question is a class question before it is
+a magnitude question.
