@@ -119,7 +119,7 @@ def sha(path):
 
 
 def find(rel):
-    for base in ("lab/results", "results", "lab"):
+    for base in ("lab/results", "results", "lab", ""):
         p = os.path.join(ROOT, base, rel)
         if os.path.exists(p):
             return p
@@ -185,8 +185,8 @@ def main():
             continue
         emitted[f"paper/sections/{name}"] = sp
     for name in REJECTIONS:
-        sp = os.path.join(ROOT, name)
-        if not os.path.exists(sp):
+        sp = find(name)
+        if sp is None:
             errors.append(f"missing rejection record {name}")
             continue
         emitted[f"rejections/{name}"] = sp

@@ -242,13 +242,11 @@
    "ok": false,
    "detail": {
     "cited": 49,
-    "found": 42,
+    "found": 44,
     "missing": [
      "a10_crossing_neighborhood.json",
      "a11_layernorm_reference_dist.json",
      "a2_loo.json",
-     "r57_candidate_admission.json",
-     "s58_review_verify.json",
      "tuple_surface.json",
      "w4_heldout.json"
     ]
