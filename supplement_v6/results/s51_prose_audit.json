@@ -2,8 +2,8 @@
  "prereg": "docstring of lab/s51_prose_audit.py, frozen before run",
  "date": "2026-10-24",
  "n_checks": 31,
- "n_pass": 30,
- "n_fail": 1,
+ "n_pass": 31,
+ "n_fail": 0,
  "checks": [
   {
    "id": "C01",
@@ -239,17 +239,11 @@
   },
   {
    "id": "C24",
-   "ok": false,
+   "ok": true,
    "detail": {
     "cited": 49,
-    "found": 44,
-    "missing": [
-     "a10_crossing_neighborhood.json",
-     "a11_layernorm_reference_dist.json",
-     "a2_loo.json",
-     "tuple_surface.json",
-     "w4_heldout.json"
-    ]
+    "found": 49,
+    "missing": []
    }
   },
   {

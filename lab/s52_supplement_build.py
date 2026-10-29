@@ -56,7 +56,9 @@ a9_compose_prereg.md r57_candidate_admission_prereg.md s58_review_verify_prereg.
 GZIP = {"b4_guard_v1.jsonl", "r1_conv_gated.jsonl", "gate_stability.jsonl", "m3_curve.json",
         "e2_splitk_v2.json", "e1b_order_v2.json", "e2_v3_err.json", "e2b_floor.json",
         "b2_direction_audit.json", "e1_triad_day2.json", "e1_triad.json", "m3_r42.jsonl",
-        "w4_heldout.json.jsonl", "a8_compress.json", "r42_gridfix.jsonl", "m3_r42.json"}
+        "w4_heldout.json.jsonl", "a8_compress.json", "r42_gridfix.jsonl", "m3_r42.json",
+        "pop_confirm.json", "a8_compress_v2.json", "s56_heldout_contract.json",
+        "s56_heldout_contract_recorded.json", "tuple_surface.json", "w4_heldout.json"}
 
 RESULTS = """
 calibration.json e1_triad.json e1_triad_day2.json e2_v3_err.json e2b_floor.json a6d_crossing.json
@@ -67,7 +69,9 @@ b2_failure_corpus.jsonl gate_stability_summary.json m3_r42_analysis.json m3_summ
 r39_text_support.json a8_compress_v2.json a8_analysis.json a8b_analysis.json a9_compose.json
 a9_analysis.json s48_provenance.json s50_prose_audit.json s51_prose_audit.json s52_prose_audit.json
 s53_intro_audit.json s54_metadata_audit.json s55_review_repair.json s56_heldout_contract.json
-s56_analysis.json s58_review_verify.json r57_candidate_admission.json a6_refdistance.json a6b_ksweep.json a6c_conv_tf32pair.json a6e_geometry_algo.json
+s56_analysis.json s58_review_verify.json r57_candidate_admission.json
+s56_heldout_contract_recorded.json a10_crossing_neighborhood.json a11_layernorm_reference_dist.json
+a2_loo.json tuple_surface.json w4_heldout.json a6_refdistance.json a6b_ksweep.json a6c_conv_tf32pair.json a6e_geometry_algo.json
 a6f_geom_repl_convmech.json e1_analysis_v3.json e3_gridgeom.json m3_curve.json r42_gridfix.jsonl
 s46_e2_recount.json w4_v1.json s48_prose_audit.json b1_gatezero_v2.json
 r1_conv_gated.jsonl gate_stability.jsonl

@@ -5,7 +5,24 @@ import json, math, os, hashlib, random, statistics as st
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(HERE, "results")
+
+def _kb_res_dir(here):
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+def _kb_open(path):
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+
+
+RES = _kb_res_dir(HERE)
 OUT = os.path.join(RES, "s58_review_verify.json")
 PREREG = os.path.join(HERE, "s58_review_verify_prereg.md")
 PREREG_SHA = hashlib.sha256(open(PREREG, "rb").read()).hexdigest()[:16]
@@ -31,7 +48,7 @@ def auc(scores, labels):
     return (rank_sum - n_pos * (n_pos + 1) / 2.0) / (n_pos * n_neg)
 
 # ---- population
-rows = [json.loads(l) for l in open(os.path.join(RES, "r1_conv_gated.jsonl"))]
+rows = [json.loads(l) for l in _kb_open(os.path.join(RES, "r1_conv_gated.jsonl"))]
 recs = []
 for r in rows:
     key = (r["tag"], r["C"], r["H"], r["W"], r["N"], r["K"])
@@ -107,36 +124,68 @@ out["V3_hand_ieee"] = {"n": len(hi), "positives": sum(recs[i]["y"] for i in hi),
                        "positives_admitted_at_0.5": admits,
                        "bar_ci_lower_ge_0.70": bool(boot[int(.025 * len(boot))] >= 0.70)}
 
-# V4 fallback accounting from s56 rows
-s56 = json.load(open(os.path.join(RES, "s56_heldout_contract.json")))["rows"]
-regA = []; regB = []; detail = []
-for r in s56:
-    arms = r["arms"]; gate = r["gate_choice"]; ga = arms.get(gate, {})
-    adm = [k for k, v in arms.items() if v.get("pass_full") and v.get("t_ms") is not None]
-    if not adm:
-        continue
-    best = min(adm, key=lambda k: arms[k]["t_ms"]); tb = arms[best]["t_ms"]
-    if ga.get("pass_full") and ga.get("t_ms") is not None:
-        td = ga["t_ms"]
-    else:
-        cand = [k for k in adm if k == "torch"]
-        if not cand:
+# V4 fallback accounting. PRIMARY source = the recorded run (s56_heldout_contract_recorded.json, the artifact
+# the reviewer read); SECONDARY = the fresh regeneration (s56_heldout_contract.json, 2026-10-29T06:11Z). The
+# reviewer's 3.49614% is a function of the recorded times, so reproducing it requires the recorded file; quoting
+# only the fresh run would silently replace the population under test.
+def compute_v4(rows):
+    regA = []; regB = []; detail = []; regfam = []
+    for r in rows:
+        arms = r["arms"]; gate = r["gate_choice"]; ga = arms.get(gate, {})
+        adm = [k for k, v in arms.items() if v.get("pass_full") and v.get("t_ms") is not None]
+        if not adm:
             continue
-        td = arms["torch"]["t_ms"]
-    regA.append((td - tb) / tb); regB.append(0.0)
-    if not ga.get("pass_full"):
-        detail.append({"family": r["family"], "shape": {k: r.get(k) for k in ("K", "M", "H", "C") if r.get(k) is not None},
-                       "gate": gate, "policy_A_regret": round((td - tb) / tb, 6)})
-meanA = st.mean(regA); sdA = st.stdev(regA) if len(regA) > 1 else 0.0
-seA = sdA / len(regA) ** .5
-out["V4_fallback_accounting"] = {"n": len(regA), "policy_A_mean_pp": round(100 * meanA, 5),
-                                 "policy_A_sd_pp": round(100 * sdA, 4), "policy_A_se_pp": round(100 * seA, 5),
-                                 "policy_B_mean_pp": 0.0,
-                                 "reviewer_claim_mean_pp": 3.49614, "reviewer_claim_se_pp": 1.37116,
-                                 "delta_pp": round(100 * meanA - 3.49614, 5),
-                                 "bar_within_0.05pp": abs(100 * meanA - 3.49614) <= 0.05,
-                                 "failing_gate_rows": detail,
-                                 "manuscript_claim": 3.5304}
+        best = min(adm, key=lambda k: arms[k]["t_ms"]); tb = arms[best]["t_ms"]
+        if ga.get("pass_full") and ga.get("t_ms") is not None:
+            td = ga["t_ms"]
+        else:
+            cand = [k for k in adm if k == "torch"]
+            if not cand:
+                continue
+            td = arms["torch"]["t_ms"]
+        regA.append((td - tb) / tb); regB.append(0.0)
+        regfam.append((r["family"], (td - tb) / tb))
+        if not ga.get("pass_full"):
+            detail.append({"family": r["family"], "shape": {k: r.get(k) for k in ("K", "M", "H", "C") if r.get(k) is not None},
+                           "gate": gate, "policy_A_regret": round((td - tb) / tb, 6)})
+    meanA = st.mean(regA); sdA = st.stdev(regA) if len(regA) > 1 else 0.0
+    seA = sdA / len(regA) ** .5
+
+    def _split(fam):
+        xs = [x for f, x in regfam if f == fam]
+        if not xs:
+            return {"n": 0, "policy_a_mean_pp": None, "sd_pp": None, "se_pp": None}
+        m = st.mean(xs); sd = st.stdev(xs) if len(xs) > 1 else 0.0
+        return {"n": len(xs), "policy_a_mean_pp": round(100 * m, 5), "sd_pp": round(100 * sd, 4),
+                "se_pp": round(100 * sd / len(xs) ** .5, 5)}
+
+    return {"n": len(regA), "policy_A_mean_pp": round(100 * meanA, 5),
+            "policy_A_sd_pp": round(100 * sdA, 4), "policy_A_se_pp": round(100 * seA, 5),
+            "policy_B_mean_pp": 0.0,
+            "reviewer_claim_mean_pp": 3.49614, "reviewer_claim_se_pp": 1.37116,
+            "delta_pp": round(100 * meanA - 3.49614, 5),
+            "bar_within_0.05pp": abs(100 * meanA - 3.49614) <= 0.05,
+            "failing_gate_rows": detail,
+            "manuscript_claim": 3.5304,
+            "posthoc_family_split": {"label": "POST-HOC decomposition of a declared bar that failed (pooled 34 rows); the manuscript's 3.5304% was a reduction-only figure",
+                                     "reduction": _split("reduction"), "conv": _split("conv")}}
+
+
+rec_rows = json.load(_kb_open(os.path.join(RES, "s56_heldout_contract_recorded.json")))["rows"]
+out["V4_fallback_accounting"] = compute_v4(rec_rows)
+out["V4_fallback_accounting"]["source"] = "s56_heldout_contract_recorded.json (the run the reviewer read)"
+
+fresh_rows = json.load(_kb_open(os.path.join(RES, "s56_heldout_contract.json")))["rows"]
+v4f = compute_v4(fresh_rows)
+v4f["source"] = "s56_heldout_contract.json regenerated 2026-10-29T06:11Z (fresh timings; run-to-run variance)"
+try:
+    s56a = json.load(_kb_open(os.path.join(RES, "s56_analysis.json")))["summary"]
+    v4f["producer_summary"] = {"reduction_policy_a_mean_pp": round(100 * s56a["reduction"]["regret_policy_a_fallback"]["mean"], 5),
+                               "reduction_policy_a_se_pp": round(100 * s56a["reduction"]["regret_policy_a_fallback"]["se"], 5),
+                               "conv_policy_a_mean_pp": round(100 * s56a["conv"]["regret_policy_a_fallback"]["mean"], 5)}
+except Exception as e:
+    v4f["producer_summary"] = {"error": str(e)}
+out["V4_fresh_remeasurement"] = v4f
 
 # V5 cf3 denominator
 cf = json.load(open(os.path.join(RES, "cf43.json")))

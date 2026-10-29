@@ -2,8 +2,8 @@
  "date": "2026-10-24",
  "conventions": "docstring",
  "n_checks": 15,
- "n_pass": 14,
- "all_pass": false,
+ "n_pass": 15,
+ "all_pass": true,
  "checks": [
   {
    "id": "B01",
@@ -76,8 +76,8 @@
   },
   {
    "id": "B14",
-   "ok": false,
-   "detail": "cited=10 missing=['tuple_surface.json']"
+   "ok": true,
+   "detail": "cited=10 missing=[]"
   },
   {
    "id": "B15",

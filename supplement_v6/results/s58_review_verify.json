@@ -112,7 +112,94 @@
     "policy_A_regret": 0.0
    }
   ],
-  "manuscript_claim": 3.5304
+  "manuscript_claim": 3.5304,
+  "posthoc_family_split": {
+   "label": "POST-HOC decomposition of a declared bar that failed (pooled 34 rows); the manuscript's 3.5304% was a reduction-only figure",
+   "reduction": {
+    "n": 24,
+    "policy_a_mean_pp": 3.49614,
+    "sd_pp": 6.7173,
+    "se_pp": 1.37116
+   },
+   "conv": {
+    "n": 10,
+    "policy_a_mean_pp": 0.0,
+    "sd_pp": 0.0,
+    "se_pp": 0.0
+   }
+  },
+  "source": "s56_heldout_contract_recorded.json (the run the reviewer read)"
+ },
+ "V4_fresh_remeasurement": {
+  "n": 34,
+  "policy_A_mean_pp": 2.85045,
+  "policy_A_sd_pp": 6.4035,
+  "policy_A_se_pp": 1.09819,
+  "policy_B_mean_pp": 0.0,
+  "reviewer_claim_mean_pp": 3.49614,
+  "reviewer_claim_se_pp": 1.37116,
+  "delta_pp": -0.64569,
+  "bar_within_0.05pp": false,
+  "failing_gate_rows": [
+   {
+    "family": "conv",
+    "shape": {
+     "H": 5,
+     "C": 32
+    },
+    "gate": "imp_B32x32",
+    "policy_A_regret": 0.0
+   },
+   {
+    "family": "conv",
+    "shape": {
+     "H": 8,
+     "C": 32
+    },
+    "gate": "imp_B32x32",
+    "policy_A_regret": 0.0
+   },
+   {
+    "family": "conv",
+    "shape": {
+     "H": 12,
+     "C": 32
+    },
+    "gate": "imp_B32x32",
+    "policy_A_regret": 0.0
+   },
+   {
+    "family": "conv",
+    "shape": {
+     "H": 5,
+     "C": 32
+    },
+    "gate": "imp_B32x32",
+    "policy_A_regret": 0.0
+   }
+  ],
+  "manuscript_claim": 3.5304,
+  "posthoc_family_split": {
+   "label": "POST-HOC decomposition of a declared bar that failed (pooled 34 rows); the manuscript's 3.5304% was a reduction-only figure",
+   "reduction": {
+    "n": 24,
+    "policy_a_mean_pp": 4.03814,
+    "sd_pp": 7.3368,
+    "se_pp": 1.49762
+   },
+   "conv": {
+    "n": 10,
+    "policy_a_mean_pp": 0.0,
+    "sd_pp": 0.0,
+    "se_pp": 0.0
+   }
+  },
+  "source": "s56_heldout_contract.json regenerated 2026-10-29T06:11Z (fresh timings; run-to-run variance)",
+  "producer_summary": {
+   "reduction_policy_a_mean_pp": 4.03814,
+   "reduction_policy_a_se_pp": 1.49762,
+   "conv_policy_a_mean_pp": 0.0
+  }
  },
  "V5_cf3_denominator": {
   "flips": 169,
@@ -122,26 +209,5 @@
   "corrected_frac": 0.4694,
   "published_frac": 0.3201,
   "mechanism": "tot not reset before cf3; 528 = 168 rider cells + 360 reduction comparisons; tot_arm unused"
- },
- "V4_addendum_posthoc_family_split": {
-  "label": "POST-HOC decomposition of a declared bar that failed (pooled 34 rows); reported because the manuscript's 3.5304% is a reduction-only figure",
-  "reduction": {
-   "n": 24,
-   "policy_a_mean_pp": 3.49614,
-   "sd_pp": 6.7173,
-   "se_pp": 1.37116
-  },
-  "conv": {
-   "n": 10,
-   "policy_a_mean_pp": 0.0,
-   "sd_pp": 0.0,
-   "se_pp": 0.0
-  },
-  "recorded_s56_analysis": {
-   "reduction_all_rows_pp": 3.53036,
-   "reduction_se_pp": 1.37455,
-   "conv_all_rows_pp": -6.35258
-  },
-  "reading": "policy A on the reduction population reproduces the reviewer's 3.49614% / SE 1.37116 pp to five decimals; the recorded conv mean is NEGATIVE (-6.35%), which is impossible for a delivered policy and is the direct signature of charging a failing arm's time"
  }
 }

@@ -197,30 +197,5 @@ out["V5_cf3_denominator"] = {"flips": flips, "recorded_arms_compared": arms_comp
                              "published_frac": cf3["flip_frac"],
                              "mechanism": "tot not reset before cf3; 528 = 168 rider cells + 360 reduction comparisons; tot_arm unused"}
 
-# V4 addendum: POST-HOC family split of a declared bar that failed. Kept in the script rather than
-# hand-added to the artifact (round-13 lesson: a hand-added section is erased by the next regeneration).
-def _split(fam):
-    xs = [x for f, x in regfam if f == fam]
-    if not xs:
-        return {"n": 0, "policy_a_mean_pp": None, "sd_pp": None, "se_pp": None}
-    m = st.mean(xs); sd = st.stdev(xs) if len(xs) > 1 else 0.0
-    return {"n": len(xs), "policy_a_mean_pp": round(100 * m, 5), "sd_pp": round(100 * sd, 4),
-            "se_pp": round(100 * sd / len(xs) ** .5, 5)}
-
-
-try:
-    s56a = json.load(_kb_open(os.path.join(RES, "s56_analysis.json")))["summary"]
-    rec = {"reduction_all_rows_pp": round(100 * s56a["reduction"]["regret_all_rows"]["mean"], 5),
-           "reduction_se_pp": round(100 * s56a["reduction"]["regret_all_rows"]["se"], 5),
-           "conv_all_rows_pp": round(100 * s56a["conv"]["regret_all_rows"]["mean"], 5)}
-except Exception as e:  # the artifact is optional; the split does not depend on it
-    rec = {"error": str(e)}
-
-out["V4_addendum_posthoc_family_split"] = {
-    "label": "POST-HOC decomposition of a declared bar that failed (pooled 34 rows); reported because the manuscript's 3.5304% was a reduction-only figure",
-    "reduction": _split("reduction"), "conv": _split("conv"),
-    "recorded_s56_analysis": rec,
-    "reading": "the reduction-only split is the reviewer's population; the recorded all-rows conv mean is negative because that field charged a failing arm's time (fixed in the producer, regenerated 2026-10-29)"}
-
 json.dump(out, open(OUT, "w"), indent=1)
 print(json.dumps(out, indent=1))
