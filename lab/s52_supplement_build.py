@@ -496,21 +496,42 @@ def build_env():
 
 
 def build_meta(pin):
+    import datetime
+
+    def _aud(name):
+        try:
+            d = json.load(open(os.path.join(ROOT, "lab", "results", name)))
+            p_, f_ = d.get("pass"), d.get("fail")
+            return f"{p_}/{p_ + f_}" if isinstance(p_, int) and isinstance(f_, int) else "n/a"
+        except Exception:
+            return "n/a"
+
+    try:
+        prov = json.load(open(os.path.join(ROOT, "lab", "results", "s48_provenance.json")))
+        prov_s = f"{prov.get('n_cited')}/{prov.get('n_found')}/{len(prov.get('missing', []))}"
+    except Exception:
+        prov_s = "n/a"
+    try:
+        prev = json.load(open(os.path.join(ROOT, "lab", "submit_metadata_r13.json"))).get("previous_submission_id")
+    except Exception:
+        prev = None
     return json.dumps({
         "supplement": "v6",
-        "built": "2026-10-24",
+        "built": datetime.datetime.utcnow().strftime("%Y-%m-%d"),
         "supersedes": "supplement_v5",
         "repository": "https://github.com/ckorhonen/kernelbench-validity-atlas",
         "repository_commit": pin,
-        "previous_submission_id": "DE1paWNMk8WVTC3n",
+        "previous_submission_id": prev,
         "paper_sections": ["s1", "s2", "s3", "s3b", "s4", "s5", "s6", "s7", "s8", "s9"],
-        "audits": {"s50": "19/19", "s51": "31/31", "s52": "16/16", "s53": "15/15", "s54": "6/6",
-                   "provenance": "44/44"},
+        "audits": {"s50": _aud("s50_prose_audit.json"), "s51": _aud("s51_prose_audit.json"),
+                   "s52": _aud("s52_prose_audit.json"), "s53": _aud("s53_intro_audit.json"),
+                   "s54": _aud("s54_metadata_audit.json"), "provenance": prov_s},
         "packaged_scripts_run_from_inside_package": len(CPU_RUNNABLE),
         "declared_retractions": 4,
         "curation": "results/ carries the artifacts the shipped auditors load plus every round-4/5 leg; "
                     "omissions listed in DROPPED.md, all retrievable at the pinned commit",
-        "dispositions": "DISPOSITIONS.md maps every DE1paW finding to its change and its checkable location",
+        "dispositions": "DISPOSITIONS.md maps every DE1paW finding to its change and its checkable location, "
+                        "and carries a separate round-13 block for 5WxkQjcUg_JD3wtv",
     }, indent=1) + "\n"
 
 
