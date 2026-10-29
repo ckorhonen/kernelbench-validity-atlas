@@ -75,14 +75,19 @@ it produced a two-class decomposition instead of a failed AUC.
 
 ## 4.4 What the certificate changes, and what it does not
 
-**Changes.** At a row whose frac_over is 0.77 (any TF32 conv route), the *denominator* of a speedup ratio is
-a reference that itself sits ~0.78 budget-units from an exact anchor. That is a statement about the reference's
-accuracy, not a verdict on either arm: the row's own *verdict* is the benchmark's candidate-versus-reference
-check, which frac_over does not enter, and a candidate identical to that reference passes it. At a
-winograd row with frac_over 0.005 the ratio stands as measured and the paper states that 0.5% of reference
-elements are the ones the reference itself misses. On the reduction family, where the certificate is clean at
-default precision (baseline 56/56), the published rankings stand unchanged — the certificate costs nothing
-where it is not needed, which is the test of whether it is a ritual.
+**Changes.** Three quantities are kept apart here, because an earlier draft conflated them. `frac_over` is an
+exceedance fraction — the share of the reference's output elements whose budget ratio is above 1 — not a
+magnitude. The magnitude is the max budget ratio, which on TF32 conv rows sits in the hundreds (94.1-197.3 on
+§6's conv rows, 429.4 on Table 1's channels-last cell). The candidate verdict is the benchmark's own
+whole-tensor allclose against the recorded reference. At a row with frac_over 0.77 (any TF32 conv route) about
+77% of the reference's elements are outside the budget and its worst element is hundreds of budgets away, so
+the denominator of a speedup ratio is a reference that is itself far from an exact anchor — while the
+remaining 23% of elements are inside, which is why such a row can still be evaluated at all. That is a
+statement about the reference's accuracy, not a verdict on either arm: a candidate identical to that reference
+passes. At a winograd row with frac_over 0.005 the ratio stands as measured, and the paper states that 0.5% of
+reference elements are the ones the reference itself misses. On the reduction family, where the certificate is
+clean at default precision (baseline 56/56), the published rankings stand unchanged — the certificate costs
+nothing where it is not needed, which is the test of whether it is a ritual.
 
 **Does not change.** The certificate does not tell you which kernel is faster. It tells you whether the
 comparison was admissible, which is prior to the question. That is the deliberate demotion: §6 treats the
@@ -95,11 +100,12 @@ reference's distance from an fp64 anchor, reported as (rho_max, frac_over), diag
 declared relaxed application contract, whose candidate-level threshold is stated by the applicant. The 0.02/0.5
 frac_over lines are optional reporting conventions (tail-conditional / bulk-inadmissible), not admission
 criteria: frac_over = 0 means the reference is indistinguishable from an exact anchor at the budget, 0 <
-frac_over < 0.02 is a tail failure confined to rare elements, and frac_over > 0.5 is a bulk failure of the
-reference: the reference itself sits more than half a budget from an exact anchor, so any ratio quoted against
-it has a denominator already outside the budget. What that does not decide is whether the candidate agrees with
-the reference, which is (i), measured per row on the candidate. Bulk classification therefore predicts
-reference accuracy, not candidate admission. Admissions claims carry the per-row candidate-versus-reference verdict
+frac_over < 0.02 means a tail of rare elements is outside the budget, and frac_over > 0.5 means the bulk of the
+reference's output is outside it, so any ratio quoted against that reference has a denominator whose majority
+is already outside the contract. The exceedance fraction is not a magnitude; the magnitude is the max budget
+ratio, reported alongside it. What none of these decides is whether the candidate agrees with the reference,
+which is (i), measured per row on the candidate. Bulk classification therefore predicts reference accuracy,
+not candidate admission. Admissions claims carry the per-row candidate-versus-reference verdict
 (results/r1_conv_gated.jsonl, results/w4_heldout.json.jsonl) together with the reference's (rho_max,
 frac_over), and no speedup ratio is quoted against a row whose reference consumes bulk budget.
 
