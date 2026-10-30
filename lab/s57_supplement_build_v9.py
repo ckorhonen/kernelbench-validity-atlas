@@ -37,7 +37,7 @@ CPU_RUNNABLE = """
 s48_provenance.py s50_prose_audit.py s51_prose_audit.py s52_prose_audit.py s53_intro_audit.py
 s54_metadata_audit.py s52_manuscript.py r57_candidate_admission.py f24_verify.py r45_rider_adm.py r42_analysis.py cf43.py
 cushion_screen.py s6_dispatcher_audit.py s55_review_repair.py a8_analysis.py a8b_analysis.py a9_analysis.py
-s58_review_verify.py e59c_epsilon_analysis.py s59_f1_input_draw.py s60_pool_diversity.py
+s58_review_verify.py e59c_epsilon_analysis.py s59_f1_input_draw.py s60_pool_diversity.py s61_round17_verify.py
 """.split()
 
 # GPU producers: shipped so the measurement is inspectable, not re-derivable on a CPU-only reader.
@@ -46,11 +46,13 @@ a6_refdistance.py a6b_ksweep.py a6c_conv_tf32pair.py a6d_crossing.py a6e_geometr
 a6f_geom_repl_convmech.py a7_kernelclass.py a7b_precision_policy.py a8_compress.py a9_compose.py
 a10_crossing_neighborhood.py a11_layernorm_reference_dist.py s56_heldout_contract.py e2_splitk_v3.py w3_conv_gemm.py m3_autotune_curve.py
 tuple_test.py tuple_surface.py s57_supplement_build_v9.py e59b_ratio_record.py e59_epsilon_sweep.py
+r1_conv_gated.py r41_gate_stability.py
 """.split()
 
 PREREGS = """
 a6_refdistance_prereg.md a7_kernelclass_prereg.md a7b_precision_prereg.md a8_compress_prereg.md
 a9_compose_prereg.md r57_candidate_admission_prereg.md e59_epsilon_sweep_prereg.md s58_review_verify_prereg.md
+r41_gate_stability_prereg.md
 """.split()
 
 # artifacts the shipped auditors load by name plus every round-4/5 evidence leg. Heavy row-streams are

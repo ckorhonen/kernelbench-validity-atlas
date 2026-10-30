@@ -428,3 +428,47 @@ ELEVENTH deferral, CPU, prereg lab/r41_gate_stability_prereg.md, kill <10% flips
 next measurement, so it leads if the desk is quiet; (3) foreign-warm probe; (4) K=8 admission-rate probe (s59
 prior 26/228 at 5.9x); (5) bias-vs-tail; (6) pool-diversity dedup on an arithmetic-spanning pool.
 24h-E1/CTA-edge/bt parked.
+
+## Active lane: ROUND-17 REPAIR — opened 2026-10-30 17:1xZ (DbvG6Bpe-qNTdmWK rejected 14:09:24Z, 12 min after submission)
+
+Review lab/rejection_review_DbvG6Bpe.md (8,865 B); triage lab/triage_round17.md; verification
+lab/s61_round17_verify.py -> results/s61_round17_verify.json (CPU arithmetic on committed records, no thresholds).
+Reviewer reproduces 672 labels, 128/203/293/672, 10/24/30 with strict/tie splits, both selector regrets, 26 changed
+reduction labels. Five finding groups, all conceded in substance, none challenges a measurement.
+
+**THE TICK'S CORRECTION: the flip table was never unrun.** results/gate_stability.jsonl (56 rows,
+2026-10-22T12:36:21Z, prereg r41 sha 5ff93b20) exists and ships in package v16, while MANUSCRIPT.md:1845 still says
+"registered and not yet run". Recomputed independently this tick: R_def->R_64 at fixed inputs/candidates changes the
+delivered arm on 21/56 rows (all 21 of the 25 in-rule rows), admissible membership on 48/56, 341 arm verdict flips
+(torch 52, torch_cmp 49, each ieee tile 48, every tf32 tile 0), regret delta median 0 max +41.20pp; the pure
+engine-class swap R_def->R_ieee changes delivered arm on 11/56 and membership on 15/56 with 145 flips; bootstrap
+delivered-flip median 0.0, max 0.899, nonzero on 9/56. The eleven recorded deferrals were deferrals of CITING an
+existing measurement, not of running it.
+
+F1 (dispatch->frontier mechanism): the reviewer asked for a matched comparison holding candidates and inputs fixed
+while changing the reference realization — r41 is exactly that and answers it (11/56 from engine class alone,
+21/56 vs anchor). Repair: cite r41 in 1.7/9.5, ship producer+prereg, delete the "which is why the frontier moves in
+steps" causal sentence; 1.1/2.3 "budget left" language conceded (agreement is |e_c-e_r|).
+F2 VERIFIED EXACTLY: crossed accounting on the reviewer's population (24 reduction rows; s58's pooled 34-row 2.46787
+was never their number) gives 3.49614 / 3.92334 / 3.59633 / 4.03814, all four cells to 0.00000 pp; timing effect
++0.42720, label effect +0.11480 (fresh times) / +0.10019 (recorded times). Exclusive correctness-population
+attribution WITHDRAWN.
+F3 conceded: 7.4 vs 9 certificate framing; 2.4 tail-conditional vs 2.3 bulk exceedance (exceedance primary);
+2.5 rho_max "bias statistic" -> rank/ordering result.
+F4 VERIFIED EXACTLY: s60 error_sigs sum 172 not 168 (52 shapes at 3, 4 at 4: m3m2 (1,4,256),(4,4,64),(4,4,256),
+(1,7,64)); admissible class-cells 60/75/93/172 for eps 1e-4/1e-3/1e-2/1e-1 (reviewer exact); "32->168" wrong in
+both endpoints; ratio-class signature must not be called a distinct output tensor.
+F4b packaging/reproducibility FIXED THIS TICK: r1_conv_gated.py and r41_gate_stability.py + r41 prereg were absent
+from the package (build lists patched at producer level, s61 added to the CPU-runnable gate); the advertised pin
+eca5275 did not resolve because the remote sat at 055ea50 — local main pushed, raw source and commit API now 200/200.
+Rule going forward: pin a commit that is an ancestor of public main, checked before upload.
+F5 conceded: novelty narrows to the GB10 dispatch observations; [10]'s direction statement corrected.
+
+Round-17 repair session (one, hard cap, NEXT tick): (1) 1.7/9.5 r41 matched measurement + delete causal sentence;
+(2) 1.1/2.3 |e_c-e_r| language; (3) 6.3 crossed table in full + exclusivity withdrawn, 6.5 partial-cost; (4) 7.4/9
+one contribution statement, 2.4 exceedance primary, 2.5 rank result; (5) 5.4 172/60/75/93/172 + 4-signature shapes
+named; (6) one-pass regen + package from inside the zip with the two producers and r41 prereg; (7) resubmit
+previous_submission_id=DbvG6Bpe-qNTdmWK. Reconsider-if (bemOT-ro37iGp_eF): rejected again for internal
+contradiction => split the paper or publish the artifact set standalone.
+After: foreign-warm probe, K=8 admission-rate probe (s59 prior 26/228 at 5.9x), bias-vs-tail, pool-diversity dedup
+on an arithmetic-spanning pool, benchmark-wide audit scoping doc. 24h-E1/CTA-edge/bt parked.
