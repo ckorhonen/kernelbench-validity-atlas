@@ -13,7 +13,7 @@ otherwise), ships the A6/A7 producers and the S55/S56 legs, carries `r1_times.js
 it, and pins the public source:
 
     https://github.com/ckorhonen/kernelbench-validity-atlas
-    commit 31357f41ad39505ebf48404bfc3afc58878ac497
+    commit d4ba71c4529ea9fabed2b04825c361f3cce25e8d
 
 That commit is the exact tree this package was built from. Anything omitted here is retrievable there at
 that revision, so no essential evidence depends on private access.
@@ -27,19 +27,23 @@ that revision, so no essential evidence depends on private access.
   `s48_provenance.py`, `s50_prose_audit.py` (19 checks), `s51_prose_audit.py` (31), `s52_prose_audit.py`
   (16), `s53_intro_audit.py` (15), `s54_metadata_audit.py` (6), `s52_manuscript.py`, `f24_verify.py`,
   `r45_rider_adm.py`, `r42_analysis.py`, `cf43.py`, `cushion_screen.py`, `s6_dispatcher_audit.py`,
-  `s55_review_repair.py`, `a8_analysis.py`, `a8b_analysis.py`, `a9_analysis.py`.
+  `s55_review_repair.py`, `a8_analysis.py`, `a8b_analysis.py`, `a9_analysis.py`, `e59c_epsilon_analysis.py`.
   GPU legs (shipped for inspection; they reproduce only on a GB10 with this stack): `a6_refdistance.py`,
   `a6b_ksweep.py`, `a6c_conv_tf32pair.py`, `a6d_crossing.py`, `a6e_geometry_algo.py`,
   `a6f_geom_repl_convmech.py`, `a7_kernelclass.py`, `a7b_precision_policy.py`, `a8_compress.py`,
-  `a9_compose.py`, `s56_heldout_contract.py`. Each produced an artifact shipped under `results/`, so a
+  `a9_compose.py`, `s56_heldout_contract.py`, `e59_epsilon_sweep.py`, `e59b_ratio_record.py`. Each produced an
+  artifact shipped under `results/`, so a
   reader without a GPU can audit the result without re-running the measurement.
 - `results/` — the artifacts the auditors load, plus every artifact the paper cites. Row-level corpora ship
   where a claim is per-row. Fifteen heavy row-streams ship gzipped (`*.gz`) to stay inside the budget; the
   readers handle them transparently and `s48_provenance.py` reports the compressed digest plus the
   uncompressed row/field structure. The list is in `DROPPED.md`.
-- `paper/` — the complete section set (§1-§9), the reframe skeleton, `MANUSCRIPT.md` (90,896 bytes,
-  reassembled from the repaired sections), and `PROVENANCE.md`.
-- `atlas/` — `ATLAS_A6`, `ATLAS_A7`, `ATLAS_A8`, `ATLAS_A9`, `ATLAS_S56`, `SCHOOL_COMPLETION`.
+- `paper/` — the complete section set (§1-§9) including the tolerance-axis section §5.4, Appendix A
+  (review history, retraction ledger, audit counts), `MANUSCRIPT.md` (reassembled from the audited sections;
+  its header counts are read from the artifacts), `APPENDIX_HISTORY.md`, `ATLAS_EPSILON_FRONTIER.md`,
+  `ATLAS_TUPLE_SURFACE.md`, and `PROVENANCE.md`.
+- `atlas/` — `ATLAS_A6`, `ATLAS_A7`, `ATLAS_A8`, `ATLAS_A9`, `ATLAS_S56`, `ATLAS_EPSILON_FRONTIER`,
+  `SCHOOL_COMPLETION`.
 - `rejections/` — four archived full-stage reviews and two triages, including the DE1paW review this
   package answers.
 - `DISPOSITIONS.md` — the per-finding disposition map for DE1paW. Every finding, what was found, what

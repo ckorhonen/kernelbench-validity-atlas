@@ -3,7 +3,7 @@
 *Artifact status.* Every number in this manuscript is regenerated from committed artifacts by shipped
 auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16,
 `s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 6/6) and mapped to its file and field in
-`PROVENANCE.md` (44 cited / 44 found / 0 missing). The auditors exit nonzero on a cited value they cannot
+`PROVENANCE.md` (52 cited / 52 found / 0 missing). The auditors exit nonzero on a cited value they cannot
 reproduce, the supplement ships them together with the artifacts they read, and the build runs every
 CPU-only script from inside the shipped package and fails if any exits nonzero, so the package is
 re-runnable as delivered.
@@ -16,7 +16,7 @@ permission). H100 folklore is re-derived here, not cited.
 
 ---
 
-# Section 1 prose — Introduction (rewritten 2026-10-28, round-11 F5 restructure)
+# Section 1 — Introduction
 
 Every number in this section is regenerated from committed artifacts by `lab/s53_intro_audit.py`
 (`results/s53_intro_audit.json`), which runs before the file is committed and hard-fails on any cited
@@ -154,6 +154,27 @@ quoted with its class. Treat any delivery claim without an admission field as a 
 The package ships auditors that read committed artifacts and exit nonzero when a cited number cannot be
 regenerated, and the provenance table maps every number in the text to its file and field, so the checks do not
 require a GPU.
+
+## 1.7 Novelty and attribution
+
+Three 2026 papers already measure parts of this premise, and the paper's claim is stated so that it does not
+collide with them. Du et al. (arXiv:2609.22220) measure what a checker fails to detect: 16.9% of witnessed
+faults are missed, the blind band grows with reduction size, and official references violate their own
+tolerance on two problems. Zhang et al. (arXiv:2607.16241) measure how speedups move under a TF32 baseline
+with hidden input distributions, from 1.43x to 0.88x. Agarwal et al. (arXiv:2609.21058) measure workload
+coverage and report a zeros-pass hole on 4 of 60 L1 problems. Each scores the *protocol*: what faults a
+checker catches, how a speedup moves when the baseline changes, which workloads a kernel set governs.
+
+The distinct object here is the *admissible-set frontier*: which candidate arm is fastest among the arms that
+satisfy a declared tolerance, as a function of that tolerance. It is measured in §5.4 and it is not implied by
+any of the three: on 56 conv shapes, relaxing the gate from 1e-4 to 1e-2 moves the fastest admissible arm on
+24 shapes while the reference's own engine-class partition is unchanged. That makes the 1e-4 atlas a slice of
+a family rather than the whole object, and it is the reason the paper is framed as a slice atlas. The three
+papers are cited and distinguished in §9.5.
+
+Naming is fixed throughout: $\rho_{\max}$ and frac_over are **anchor-normalized diagnostics** — they compare
+a reference realization to an fp64 anchor and never score a candidate. "Passes the benchmark contract" is
+reserved for the evaluator-exact candidate-versus-reference check of §4.6 and §6.
 
 ---
 
@@ -368,14 +389,14 @@ These criteria were conflated in an earlier draft ("unconditional", "not a speed
 
 ## 2.5 The tuple surface: class is a deterministic partition of the declared tuple, and the simple (s,d) rule is scoped
 
-Round-8's tuple test varied stride, pad, dilation, layout and batch at one fixed shape and reported six class changes over a manually ordered list. The round-11 review is right on two counts: such an ordering cannot by itself rule out a simple threshold, and the NHWC row never ran channels-last convolution — its branch permuted the tensor back to contiguous NCHW before `F.conv2d`, so the recorded strides described an intermediate tensor rather than the convolution input. Both objections are answered by measurement. A pre-registered 17-cell surface (`kernels/tuple_surface.py`, frozen before the run; record `results/tuple_surface.json`) sweeps each coordinate independently at the base shape (C256, k3, H=W=7, batch 2, seed 4321), includes the two cells the round-9 review found outside the published ranges, runs the declared layout for real (channels_last input handed directly to `F.conv2d`, with the strides of the tensors actually passed recorded for both flag settings), repeats every cell twice, and records the fp64 anchor's class per cell.
+An earlier tuple test varied stride, pad, dilation, layout and batch at one fixed shape and reported six class changes over a manually ordered list. Two objections to that test are correct: such an ordering cannot by itself rule out a simple threshold, and the NHWC row never ran channels-last convolution — its branch permuted the tensor back to contiguous NCHW before `F.conv2d`, so the recorded strides described an intermediate tensor rather than the convolution input. Both objections are answered by measurement. A pre-registered 17-cell surface (`kernels/tuple_surface.py`, frozen before the run; record `results/tuple_surface.json`) sweeps each coordinate independently at the base shape (C256, k3, H=W=7, batch 2, seed 4321), includes the two cells the earlier review found outside the published ranges, runs the declared layout for real (channels_last input handed directly to `F.conv2d`, with the strides of the tensors actually passed recorded for both flag settings), repeats every cell twice, and records the fp64 anchor's class per cell.
 
 What the surface measures:
 
 - **Determinism, the dispatchability condition.** All 17 cells return the same class in both repeats (34/34 runs). Class is consistent across two repeats inside one process on this build and this lattice (34/34), so the class decision can be dispatched from declared coordinates without profiling the candidate. This is the premise §4.5's rule and §4.6's prediction rest on. The wording is deliberately weaker than "a function of the declared tuple": two repeats in one process cannot distinguish a deterministic dispatch from a cached decision, so replication across fresh processes and runtime conditions is the open condition recorded in §7.3 and §7.4.
 - **The simple rule holds where round-8 looked and fails one step away.** Every cell with s=1, d=1 and (C, extent) = (64,7) or (256,7) is W; every cell with s≠1 or d≠1 is T; the pad axis 0→2 stays W. But C=16 at s=1, d=1 is T (rho_max 60.2, frac_over 0.760) and H=W=14 at s=1, d=1 is T (rho_max 371.2, frac_over 0.786). So "W iff s=d=1" is a partial rule: correct on the axes the round-8 grid varied, false in depth and extent. The §4.5 sentence that the tuple test "rules out a threshold in the coordinates it varied" is withdrawn; the accurate statement is that the boundary is a single step in each coordinate varied, with step positions that depend on C and extent.
 - **Layout is a dispatch coordinate.** A genuine channels_last input at the base shape runs T (rho_max 429.4, frac_over 0.784, input strides [12544, 1, 1792, 256]) while the same shape in NCHW runs W (rho_max 6.7). The round-8 "NCHW or NHWC" wording is withdrawn: that test compared NCHW against itself. Layout invariance is false on GB10 at this shape. Under `allow_tf32=False` the channels_last cell becomes fp32 SIMT (rho_max 0.239, ratio 5.6e-4, bit-inequal).
-- **Class spans, measured.** W: rho_max 1.4–12.8 (C=64 gives 1.4; pad-2 gives 12.8024, reproducing the round-9 reviewer's stored value), frac_over 0.0005–0.0077, bit-identical output under every precision flag in all seven W cells. T: rho_max 60.2–429.4, frac_over 0.760–0.786, and `allow_tf32=False` removes 96.4–99.9% of the budget (ratios 3.6e-2 down to 5.6e-4) with bit-inequal output. The published 6.4–6.8 / 315–369 ranges were pad-1-only readings; the measured class span replaces them.
+- **Class spans, measured.** W: rho_max 1.4–12.8 (C=64 gives 1.4; pad-2 gives 12.8024, reproducing the value recorded in the earlier review), frac_over 0.0005–0.0077, bit-identical output under every precision flag in all seven W cells. T: rho_max 60.2–429.4, frac_over 0.760–0.786, and `allow_tf32=False` removes 96.4–99.9% of the budget (ratios 3.6e-2 down to 5.6e-4) with bit-inequal output. The published 6.4–6.8 / 315–369 ranges were pad-1-only readings; the measured class span replaces them.
 - **Reference realization.** Every cell's fp64 anchor dispatches to cutlass `implicit_convolve_dgemm` (class O) — no tensorop path exists at fp64 — so the anchor lattice, not a single anchor, is the object any certificate must be written over.
 
 Consequence for the claim: the boundary is categorical and repeat-consistent in the declared tuple. That is the positive low-complexity result in tuple coordinates — the class decision is a lookup over an enumerated tuple partition rather than a continuous model — and §4.6 measures that this class decision is predictable out of fold from declared features (AUC 0.9747, matching a two-line arm-class baseline) while the within-class threshold stays per-arm measured. It is also why the continuous derived-coordinate story (§4.5) cannot carry the class on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
@@ -846,36 +867,30 @@ C256, H13 at C64), while C16 at every H and C256 at H13/H21 route to the TF32 te
 dispatch boundary sits between H13 and H21 at C64 and between H7 and H13 at C256, and one step across it
 moves rho by 20-38×. A7's sentence was scoped to H=5 and is corrected here; the two-class decomposition
 survives, but the class is a dispatch decision over (C, output extent), not a function of the conv
-parameters. This is the fourth retraction of this lane and the second that is mine rather than a
-reviewer's.
+parameters. This is the fourth retraction recorded in this program and the second that is mine rather than
+one found in review.
 
-## 4.6 Candidate-level admission, measured (r57, revised round 13)
+## 4.6 Candidate admission: a class baseline plus a measured within-class threshold
 
-The reviewer of submission Lo23jsKHjyGuukZr made the decisive objection that §4.5's compression experiment
-predicted `frac_over > 0.5` — a reference-versus-fp64 diagnostic — and not the candidate-versus-reference
-verdict that defines admission. That objection is correct against the earlier draft, and the missing measurement
-was run: r57 (prereg `4595e00`, `lab/r57_candidate_admission.py` -> `results/r57_candidate_admission.json`)
-predicted actual `pass_1e4` verdicts out of fold at AUC 0.986 and 96.4% accuracy. The round-13 review then
-showed that the headline partly rested on `refdev`, a *measured* feature — the difference of two reference output
-maxima — so the execution-free claim was re-tested without it, under a prereg frozen before any computation
-(`lab/s58_review_verify_prereg.md` @ `d2da0b8`; `lab/s58_review_verify.py` -> `results/s58_review_verify.json`).
-What follows is the re-tested version; r57's numbers are quoted only where they are the object under discussion.
+The result here is narrower than a predictive certificate and is stated that way. Admission is the
+evaluator-exact candidate-versus-reference verdict, and on this population it is decided by the arm class plus a
+measured within-class residual, not by the reference diagnostic of §4.5. The population is the 672 arm-checks of
+`results/r1_conv_gated.jsonl` (56 conv shapes × 12 arms), labelled by the evaluator-exact `pass_1e4` verdict
+against the recorded default reference at the declared 1e-4 contract: 128 admissible, 544 not.
 
-**Population and label.** The 672 arm-checks of `results/r1_conv_gated.jsonl` (56 conv shapes × 12 arms), label =
-the evaluator-exact `pass_1e4` verdict against the recorded default reference at the declared 1e-4 contract: 128
-admissible, 544 not.
-
-**The baseline the earlier draft hid.** A two-line rule that reads only the arm class — pass if the arm is
+**The baseline comes first.** A two-line rule that reads only the arm class — pass if the arm is
 `torch` or `torch.compile`, fail if it is a hand kernel — scores **96.4286%** (TP 108 / TN 540 / FP 4 / FN 20),
 which is 15.48 pp above the pooled majority of 80.95%. Comparing a model to the pooled majority therefore
 understates what is already available for free; the honest comparator is this rule.
 
-**Declared-feature model, re-tested without the measured feature.** Linear probability model on eight declared
-features only (log2 C, log2 K, log2 H·W, N, log2 bytes, is_compile, is_hand, prec_tf32 — no refdev, no
+**Declared-feature model.** Linear probability model on eight declared
+features only (log2 C, log2 K, log2 H·W, N, log2 bytes, is_compile, is_hand, prec_tf32 — no measured reference
+feature, no
 interaction), leave-one-shape-out: **AUC 0.974652, accuracy 96.4286%**, clearing the prereg's bar (AUC ≥ 0.90).
-The execution-free claim survives, but its correct reading is narrower than r57's: the model *matches* the
+Its correct reading is narrower than an earlier draft's: the model *matches* the
 arm-class rule rather than beating it, so what the model adds is a feature-level statement — the verdict is
-predictable from the declared tuple and arm class alone — not extra accuracy.
+predictable from the declared tuple and arm class alone — not extra accuracy. Admission is therefore reported as
+a baseline plus a limitation, not as a general predictive result.
 
 **Within the hand-fp32 class, the threshold stays measured.** Removing the measured feature drops the hand-ieee
 stratum (n=280, 20 positives on 4 shapes) to AUC **0.7548**, shape-clustered bootstrap CI [0.537, 0.9231], with
@@ -912,7 +927,7 @@ checks, n_reps: 1 per arm-check (deterministic records), date: 2026-10-29}`
 
 ---
 
-# Section 5 prose — Tolerance as a distribution axis (complete)
+# Section 5 — Tolerance as a distribution axis
 
 Every number here traces to a committed artifact; the pre-prose audit for this section is
 `lab/s51_prose_audit.py` → `results/s51_prose_audit.json` (run before commit, hard-fails on a cited
@@ -949,7 +964,7 @@ or the arm. The cf3 comparison is a tolerance sweep over the observed profiles, 
 coordinate, so the law is scoped to those profiles. This is why §4's certificate carries a regret basis rather
 than a regret number.
 
-## 5.2 Propagation: cut, then repaired by measurement (scope history kept)
+## 5.2 Propagation through composed graphs
 
 The program's original intent was to propagate tolerance through composed graphs: take a per-element error
 distribution measured at a kernel, compose it across a small network, and state a bound on the end-to-end
@@ -1048,6 +1063,37 @@ variance: flip counts reported as exact integers over fixed populations; no resa
 determinism-verified 6/6 (bit-equal repeat runs), G linearity checked at 1x and 10x,
 n_reps: 3 seeds (e2_v3_err), 2 days (CF3), 1 run per chain with determinism assertion (A9), date: 2026-10-24}`
 
+## 5.4 The admissible frontier is tolerance-conditional (slice atlas)
+
+The gate above is one point on a family. Recomputing admissible sets from recorded per-element budget ratios
+at $\varepsilon \in \{10^{-4}, 10^{-3}, 10^{-2}, 10^{-1}\}$ (`results/e59c_epsilon_sweep.json`, prereg
+`lab/e59_epsilon_sweep_prereg.md` frozen at `09103c0` before computation; the ratios come from
+`results/e59b_budget_ratios.jsonl`, which reproduced all 672 arm-checks of `results/r1_conv_gated.jsonl`
+exactly, 0 mismatches) gives a frontier that moves:
+
+| $\varepsilon$ | admissible arms | shapes with an admissible hand arm | hand arm faster than best non-hand | frontier composition | flips vs $10^{-4}$ |
+|---|---|---|---|---|---|
+| 1e-4 | 128 | 4 | 2 | torch 45 / compile 8 / hand 3 | — |
+| 1e-3 | 203 | 19 | 10 | torch 37 / hand 13 / compile 6 | 10/56 |
+| 1e-2 | 293 | 32 | 24 | torch 25 / hand 21 / compile 6 / hand-tf32 4 | 24/56 |
+| 1e-1 | 672 | 56 | 27 | torch 21 / hand-tf32 28 / compile 7 | 30/56 |
+
+The first flip appears at $10^{-3}$. At the benchmark's own fp16/bf16 tolerance ($10^{-2}$) the fastest
+admissible arm changes on 24 of 56 conv shapes and 24 shapes have a hand arm that is both admissible and
+faster than the best admissible torch or compiled arm. Pairwise class dominance moves while the 1e-4
+engine-class partition stays fixed: hand-ieee beats hand-tf32 on 4 shapes at 1e-4 and 27 at 1e-2, and torch
+beats hand-ieee on 52 shapes at 1e-4 and 24 at 1e-2. No arm-class rule can produce that movement, which is
+what rules out the reading that the effect is class dominance.
+
+The kill clause was written before the run: invariant frontier identity at every $\varepsilon$ would mean the
+gate framing is adequate and the "tolerance is a free variable" disagreement gets withdrawn. It did not fire,
+so the paper claims the slice form and states its scope plainly — conv 3x3 s1 p1 fp32 only, 56 shapes from
+three declared grids, one device, one reference realization per shape, timings inherited from the r1 record
+rather than re-measured. The instrument is worth one line because it failed first: rebuilding admissibility
+from recorded maxima agreed on 587/672 (87.35% against a 95% bar) and over-admitted on 21 shapes, since a
+max-based threshold is too generous at atol-dominated elements; that leg was discarded and the per-element
+recorder replaced it.
+
 ---
 
 # Section 6 prose — Selector economics, demoted to a studied object (complete)
@@ -1062,8 +1108,7 @@ The decisive public object was a break-even curve: how many repeated visits to o
 autotune cheaper than a zero-probe rule. The published numbers (reduction 122 at budget 2, 628 at budget
 8; conv 34/145) regenerate **exactly** from an inverted filter — $t_b > t_g$ where the model requires
 $t_b < t_g$, located in `lab/m3_r42_analysis.py` L59 (`results/f24_verify.json`, `f1`). The defect was a
-comparison direction, not the data, which is why a reviewer reproducing our arithmetic found it and a
-reviewer reproducing our arithmetic could not have found anything else.
+comparison direction, not the data: an arithmetic check finds it, and no other check could.
 
 Corrected, with $t_b < t_g$ and
 
@@ -1142,7 +1187,7 @@ rather than measurements. The family verdict survives that; a per-arm table woul
 descriptive accounting, not a general law, and it is stated under **one** policy (A: deliver the gate's arm when
 it passes the contract, otherwise deliver the fastest admissible torch arm on that row). On the reduction
 population (24 rows) policy A's post-validation execution regret is **3.49614% SD 6.7173 SE 1.37116 pp** when
-computed from the recorded times — the reviewer's figure to five decimals, now produced by the repaired
+computed from the recorded times — the recorded figure to five decimals, now produced by the repaired
 accounting — and **4.0381% SE 1.4976 pp** when the same policy is re-measured in a fresh run
 (`results/s56_analysis.json` regenerated 2026-10-29T06:11Z, timings med-of-12, L2 flush); the 0.54 pp gap is
 run-to-run timing variance, and both are reported rather than one being chosen. On the 9 admissible reduction
@@ -1150,7 +1195,7 @@ rows — the same policy, a narrower population — the cost is +0.86% (SD 1.11,
 errors are not interchangeable because the populations differ. On the conv population (10 rows) policy A's
 regret is **0.0** because the gate's hand arm fails on all four rows where it fires and the policy delivers
 torch. The recorded −6.35% conv mean that earlier drafts quoted is retired: it charged a failing arm's time,
-which is the same bug the round-13 review found in the reduction numbers.
+which is the same accounting bug found in the reduction numbers.
 
 All figures are kernel-time ratios measured *after* validation: they are post-validation execution regret, not
 total deployment cost, because the checks D1 requires (reference build, one execution per checked arm, the
@@ -1221,9 +1266,9 @@ variance: paired regret differences with n and SE; regret totals flagged as lowe
 arm fails the contract, n_reps: 12 per cell (m3 chain), date: 2026-10-24}`
 
 
-## 6.5 The evaluated policy, stated as executed (round-11 F4)
+## 6.5 The evaluated policy, stated as executed
 
-The reviewer's F4 objection was that §6.2's numbers did not name the policy they evaluated, so the fallback was
+§6.2's numbers did not name the policy they evaluated, so the fallback was
 described rather than measured. Here is the policy, as executed in `results/s56_heldout_contract.json`, and
 nothing beyond it was evaluated.
 
@@ -1282,7 +1327,7 @@ would *reduce* rho by a factor of 5. It rose 22-25× instead, because winograd-i
 "no algorithm" — it installs the TF32 tensorop engine, which is a far larger consumer. The frozen rule
 fired RETRACT on P2/P3 and no regrade was applied.
 
-**The class-is-a-function-of-(k,s,d) claim (A8, mine, this tick).** A7 named the winograd engine as the
+**The class-is-a-function-of-(k,s,d) claim (A8, mine).** A7 named the winograd engine as the
 route for 3×3 stride-1 conv. On a wider geometry grid that holds only in a corner (C≥64 with small output
 extent); everywhere else — including C16 at all extents and C256 at H≥13 — the same parameters route to the
 TF32 tensorop engine. The dispatch boundary moves rho by 20-38× in one step of H. The two-class
@@ -1489,7 +1534,7 @@ variance: n/a (deterministic records), n_reps: 1 per audit run, date: 2026-10-24
 
 ---
 
-# Section 9 prose — Related work, distinction, references (complete)
+# Section 9 — Related work, novelty, and references
 
 The publishing requirement is that related work compares claims, methods and limitations rather than listing
 citations. This section does that, and it also states what this paper does not claim, because the nearest
@@ -1591,6 +1636,32 @@ domain predicate, harness commits bound to data, adoption naming a boundary, fal
 claim) are proposed as reporting practice, not as a necessary condition for falsifiability. A structured
 record is useful; it is not what makes a claim scientific.
 
+## 9.5 Three 2026 checker papers, and the measured distinction
+
+The nearest 2026 work measures the checker rather than the candidate ordering, and the distinction is
+quantitative rather than rhetorical.
+
+**Du et al.** (arXiv:2609.22220, "Measuring the Checker") measure tolerance blindness: 16.9% of witnessed
+faults escape the check, the blind band widens with reduction size, and official references violate their own
+tolerance on two problems. This paper's $\rho$ is the same phenomenon expressed as a budget multiple, and its
+contribution relative to Du is not the observation but the dispatch map that explains which reference
+realizations produce it on GB10 (§2.5, Table 1).
+
+**Zhang et al.** (arXiv:2607.16241, "KernelBench-Verified") measure how speedups move when the baseline is a
+TF32 kernel under hidden input distributions — 1.43x under their protocol falling to 0.88x. That is a
+statement about a *speedup number* under a fixed tolerance. §5.4 asks the orthogonal question: given a
+declared tolerance, which arm is fastest among those that satisfy it, and how does that set change with the
+tolerance itself.
+
+**Agarwal et al.** (arXiv:2609.21058) measure workload coverage and report that zeros pass on 4 of 60 L1
+problems. Coverage asks whether a kernel set exercises the operator; §5.4 asks whether the fastest arm is
+still the same arm when the tolerance moves, and finds it is not on 24 of 56 shapes at 1e-2.
+
+The measured distinction, then, is the frontier table in §5.4: admissible arms 128 -> 203 -> 293 -> 672,
+shapes with an admissible hand arm 4 -> 19 -> 32 -> 56, frontier flips 10/24/30 of 56 at 1e-3/1e-2/1e-1, with
+the 1e-4 engine-class partition unchanged. None of the three papers reports that object, and the atlas's
+1e-4 result is one slice of it.
+
 ## References
 
 [1] A. Ouyang et al. *KernelBench: Can LLMs Write Efficient GPU Kernels?* 2025.
@@ -1626,5 +1697,92 @@ results, and TF32 controls. https://docs.pytorch.org/docs/2.14/notes/numerical_a
 principle that reduction order and precision flags change results; this paper supplies the per-shape
 measurement the documentation describes qualitatively.
 
+[9] Y. Du et al. *Measuring the Checker: Tolerance Blindness in LLM-Generated Kernel Benchmarks.* 2026.
+https://arxiv.org/abs/2609.22220. Cited for tolerance blindness (16.9% of witnessed faults missed, blind band
+growing with reduction size, official references violating their own tolerance on two problems).
+
+[10] Zhang et al. *KernelBench-Verified.* 2026. https://arxiv.org/abs/2607.16241. Cited for the TF32-baseline
+speedup movement (1.43x to 0.88x under hidden input distributions).
+
+[11] Agarwal et al. 2026. https://arxiv.org/abs/2609.21058. Cited for workload coverage and the zeros-pass
+hole on 4 of 60 L1 problems.
+
 ---
 
+# Appendix A — review history, retraction ledger, audit counts
+
+This appendix holds what the main text no longer narrates: how the framing changed, which claims were retracted
+and by which pre-registered rule, and how many checks stand behind the reported numbers. The main text is
+organised claim → definitions → method → findings → limitations; history lives here.
+
+## A.1 Why the framing changed
+
+This paper replaces a selector-first framing that was rejected three times at full review
+(`2CmvAb5SC-VGAsbK` 10-22 19:51Z, `6yPhozmAt62JSqQs` 10-21 19:44Z, `O4hnCxiPVenpDr4A`). In each round the
+reviewer reproduced our arithmetic — paired differences, t-statistics, the population residual — and rejected
+the interpretive layer on top of it. The defects were ours and they clustered: an inverted break-even filter
+(`t_b < t_g`, `v* = P/(t_g − t_b)`; the published finite crossovers were computed on `t > t_g`, the complement of
+the population the model describes), a mixed-unit count (`n_fail = 223` was check-level deliveries minus
+row-level passes), and an admission rule that let the baseline pass a check the baseline itself fails.
+
+Three review rounds were enough to establish that our numbers were right and our claims were not. That is why the
+deliverable is a certificate rather than a ranking: a certificate names the reference realization and flags, the
+budget-consumption pair, the admissible delivery set, and whether the regret basis is an upper or lower bound,
+so a reader who does not trust us can check it.
+
+Later rounds (rounds 5–11) produced six further rejections, all of whose findings were verified against committed
+records before repair. The pattern across those rounds is recorded in `lab/triage_round*.md`: measurements
+survived; interpretation, population accounting and packaging did not. Round 10's first finding was mechanical —
+a submission whose supplement arrived null — which is why the submit path now asserts `files.supplement` on
+read-back.
+
+## A.2 Retraction ledger
+
+Four claims in this program were retracted by their own pre-registered rules, with mechanisms rather than
+apologies:
+
+1. **The conv depth law** — the claim that winograd-class deviation scales smoothly with reduction depth. The
+   two-class decomposition replaced it: deviation is a class property, and depth only orders the fp32 class.
+2. **"Flag-invisible everywhere"** — the attribution that no precision flag changes the winograd path. True for
+   winograd, false as a general statement: TF32 tensorop rows move 99.9% under `allow_tf32=False`.
+3. **The ineligibility prediction** — the expectation that excluding winograd would lower $\rho$. It rose 22–25×,
+   because ineligibility installs a worse engine.
+4. **Engine class as a function of (k, s, d)** — the most consequential. Class is a dispatch decision over
+   (C, output extent, stride, dilation, layout, batch); one step of output extent moves $\rho$ 20–38×. The 17-cell
+   tuple surface (§2.5, Table 1) is the measurement that replaced the parameter-based prediction.
+
+A fifth, narrower withdrawal: the round-8 claim that the reference's class is invariant to NCHW-versus-NHWC
+layout. That test compared NCHW with itself; the real channels_last cell flips the class (§2.5, A07).
+
+## A.3 Audit and provenance counts
+
+- `s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16, `s53_intro_audit.py` 15/15,
+  `s54` 6/6 — these are consistency checks that recompute cited values from committed artifacts, not independent
+  regenerations. They catch transcription and drift; they cannot validate a measurement.
+- `paper/PROVENANCE.md` maps every cited number to its artifact and field (cited/found/missing counted at build
+  time; the build hard-fails on a missing citation). The manuscript's own header reads these counts from the
+  artifacts instead of stating them by hand, so the three numbers cannot drift apart again.
+- The tolerance-axis frontier (§5.4) carries its own instrument record: `results/e59b_budget_ratios.jsonl`
+  reproduced all 672 arm-checks exactly, and the first reconstruction attempt (`e59`) failed its 95% validation
+  bar at 87.35% and was discarded rather than reported.
+- The auditors were themselves audited once: an earlier version of the s55 F2 check rewrote the artifact it read
+  and reported a ratio of 1.0 for a real 0.0100 discrepancy. Pre-repair values are now declared constants with a
+  build assertion, and the lesson is recorded in the diary as "a check must execute the intervention, not a proxy
+  for it".
+
+## A.4 Schema entries (P2)
+
+Every reported result carries the P2 schema row `{op_class, rule, domain_predicate, derived_coords, boundary_ref,
+variance, n_reps, date}` in the section that reports it; the rows for the certificate, the compression result, the
+composition chains and the selector economics are in §4, §5, §6 respectively. Results without a schema row are not
+reported as results.
+
+## A.5 Open items carried forward
+
+Three measurements are registered and not yet run: a reference-swap flip table (holding candidates fixed and
+changing only the reference realization from the default dispatch to the fp64 anchor, kill at <10% flips), a
+fresh-process class-invariance probe (cold cache and benchmark mode, since determinism here was measured across
+two repeats in one process), and an out-of-family class prediction with the frozen predictor (kill at the majority
+baseline). A within-class geometry sweep testing whether $\rho_{\max}$ is a bias statistic rather than a tail
+statistic is registered too. A larger item is scoped but not started: a benchmark-wide reference-error audit
+across all KernelBench tasks, which is the generalisation this paper does not attempt.

@@ -1,4 +1,4 @@
-# Section 5 prose — Tolerance as a distribution axis (draft, tick #51 2026-10-24)
+# Section 5 — Tolerance as a distribution axis
 
 Every number here traces to a committed artifact; the pre-prose audit for this section is
 `lab/s51_prose_audit.py` → `results/s51_prose_audit.json` (run before commit, hard-fails on a cited
@@ -35,7 +35,7 @@ or the arm. The cf3 comparison is a tolerance sweep over the observed profiles, 
 coordinate, so the law is scoped to those profiles. This is why §4's certificate carries a regret basis rather
 than a regret number.
 
-## 5.2 Propagation: cut, then repaired by measurement (scope history kept)
+## 5.2 Propagation through composed graphs
 
 The program's original intent was to propagate tolerance through composed graphs: take a per-element error
 distribution measured at a kernel, compose it across a small network, and state a bound on the end-to-end
@@ -133,3 +133,34 @@ results/a9_compose.json, results/a9_analysis.json, results/s55_review_repair.jso
 variance: flip counts reported as exact integers over fixed populations; no resampling; A9 chains
 determinism-verified 6/6 (bit-equal repeat runs), G linearity checked at 1x and 10x,
 n_reps: 3 seeds (e2_v3_err), 2 days (CF3), 1 run per chain with determinism assertion (A9), date: 2026-10-24}`
+
+## 5.4 The admissible frontier is tolerance-conditional (slice atlas)
+
+The gate above is one point on a family. Recomputing admissible sets from recorded per-element budget ratios
+at $\varepsilon \in \{10^{-4}, 10^{-3}, 10^{-2}, 10^{-1}\}$ (`results/e59c_epsilon_sweep.json`, prereg
+`lab/e59_epsilon_sweep_prereg.md` frozen at `09103c0` before computation; the ratios come from
+`results/e59b_budget_ratios.jsonl`, which reproduced all 672 arm-checks of `results/r1_conv_gated.jsonl`
+exactly, 0 mismatches) gives a frontier that moves:
+
+| $\varepsilon$ | admissible arms | shapes with an admissible hand arm | hand arm faster than best non-hand | frontier composition | flips vs $10^{-4}$ |
+|---|---|---|---|---|---|
+| 1e-4 | 128 | 4 | 2 | torch 45 / compile 8 / hand 3 | — |
+| 1e-3 | 203 | 19 | 10 | torch 37 / hand 13 / compile 6 | 10/56 |
+| 1e-2 | 293 | 32 | 24 | torch 25 / hand 21 / compile 6 / hand-tf32 4 | 24/56 |
+| 1e-1 | 672 | 56 | 27 | torch 21 / hand-tf32 28 / compile 7 | 30/56 |
+
+The first flip appears at $10^{-3}$. At the benchmark's own fp16/bf16 tolerance ($10^{-2}$) the fastest
+admissible arm changes on 24 of 56 conv shapes and 24 shapes have a hand arm that is both admissible and
+faster than the best admissible torch or compiled arm. Pairwise class dominance moves while the 1e-4
+engine-class partition stays fixed: hand-ieee beats hand-tf32 on 4 shapes at 1e-4 and 27 at 1e-2, and torch
+beats hand-ieee on 52 shapes at 1e-4 and 24 at 1e-2. No arm-class rule can produce that movement, which is
+what rules out the reading that the effect is class dominance.
+
+The kill clause was written before the run: invariant frontier identity at every $\varepsilon$ would mean the
+gate framing is adequate and the "tolerance is a free variable" disagreement gets withdrawn. It did not fire,
+so the paper claims the slice form and states its scope plainly — conv 3x3 s1 p1 fp32 only, 56 shapes from
+three declared grids, one device, one reference realization per shape, timings inherited from the r1 record
+rather than re-measured. The instrument is worth one line because it failed first: rebuilding admissibility
+from recorded maxima agreed on 587/672 (87.35% against a 95% bar) and over-admitted on 21 shapes, since a
+max-based threshold is too generous at atol-dominated elements; that leg was discarded and the per-element
+recorder replaced it.

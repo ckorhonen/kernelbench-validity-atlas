@@ -34,6 +34,7 @@ BUDGET = 2_000_000
 CPU_RUNNABLE = """
 s48_provenance.py s50_prose_audit.py s51_prose_audit.py s52_prose_audit.py s53_intro_audit.py
 s54_metadata_audit.py s52_manuscript.py f24_verify.py r45_rider_adm.py r42_analysis.py cf43.py
+e59c_epsilon_analysis.py
 s58_review_verify.py r57_candidate_admission.py
 cushion_screen.py s6_dispatcher_audit.py s55_review_repair.py a8_analysis.py a8b_analysis.py a9_analysis.py
 """.split()
@@ -43,17 +44,19 @@ GPU_PRODUCERS = """
 a6_refdistance.py a6b_ksweep.py a6c_conv_tf32pair.py a6d_crossing.py a6e_geometry_algo.py
 a6f_geom_repl_convmech.py a7_kernelclass.py a7b_precision_policy.py a8_compress.py a9_compose.py
 s56_heldout_contract.py s52_supplement_build.py e2_splitk_v3.py w3_conv_gemm.py m3_autotune_curve.py
+e59_epsilon_sweep.py e59b_ratio_record.py
 """.split()
 
 PREREGS = """
 a6_refdistance_prereg.md a7_kernelclass_prereg.md a7b_precision_prereg.md a8_compress_prereg.md
 a9_compose_prereg.md r57_candidate_admission_prereg.md s58_review_verify_prereg.md
+e59_epsilon_sweep_prereg.md
 """.split()
 
 # artifacts the shipped auditors load by name plus every round-4/5 evidence leg. Heavy row-streams are
 # gzipped: no auditor needs them whole, and s48_provenance reads them through gzip and reports the
 # uncompressed structure, so they stay verifiable.
-GZIP = {"b4_guard_v1.jsonl", "r1_conv_gated.jsonl", "gate_stability.jsonl", "m3_curve.json",
+GZIP = {"e59b_budget_ratios.jsonl", "e59c_epsilon_sweep.json", "e59_epsilon_sweep.json", "b4_guard_v1.jsonl", "r1_conv_gated.jsonl", "gate_stability.jsonl", "m3_curve.json",
         "e2_splitk_v2.json", "e1b_order_v2.json", "e2_v3_err.json", "e2b_floor.json",
         "b2_direction_audit.json", "e1_triad_day2.json", "e1_triad.json", "m3_r42.jsonl",
         "w4_heldout.json.jsonl", "a8_compress.json", "r42_gridfix.jsonl", "m3_r42.json",
@@ -70,6 +73,7 @@ r39_text_support.json a8_compress_v2.json a8_analysis.json a8b_analysis.json a9_
 a9_analysis.json s48_provenance.json s50_prose_audit.json s51_prose_audit.json s52_prose_audit.json
 s53_intro_audit.json s54_metadata_audit.json s55_review_repair.json s56_heldout_contract.json
 s56_analysis.json s58_review_verify.json r57_candidate_admission.json
+e59c_epsilon_sweep.json e59b_budget_ratios.jsonl e59_epsilon_sweep.json
 s56_heldout_contract_recorded.json a10_crossing_neighborhood.json a11_layernorm_reference_dist.json
 a2_loo.json tuple_surface.json w4_heldout.json a6_refdistance.json a6b_ksweep.json a6c_conv_tf32pair.json a6e_geometry_algo.json
 a6f_geom_repl_convmech.json e1_analysis_v3.json e3_gridgeom.json m3_curve.json r42_gridfix.jsonl
@@ -84,20 +88,22 @@ w4_heldout.json.jsonl a8_compress.json
 EXTRA_KERNEL_INPUTS = ["r1_times.json"]
 # the paper's submission metadata: s54 audits the abstract against the manuscript, so it must be inside
 # the package or s54 cannot run there (v5 shipped only the supplement's own metadata and s54 died on it).
-ROOT_FILES = {"submission_metadata_v11.json": "submission_metadata_v11.json"}
+ROOT_FILES = {"submission_metadata_v12.json": "submission_metadata_v12.json"}
 
-PAPER = ["REFRAME_SKELETON.md", "PROVENANCE.md", "MANUSCRIPT.md"]
+PAPER = ["REFRAME_SKELETON.md", "PROVENANCE.md", "MANUSCRIPT.md", "APPENDIX_HISTORY.md",
+         "ATLAS_EPSILON_FRONTIER.md", "ATLAS_TUPLE_SURFACE.md"]
 # Four archived full-stage reviews and two triages: §1, §7 and §8 cite them as evidence and s53 audits
 # them, so they ship rather than being referenced from outside the package.
 REJECTIONS = ["rejection_review_2CmvAb.md", "rejection_review_6yPhozm.md", "rejection_review_O4hnCx.md",
               "rejection_review_DE1paW.md", "rejection_triage_2CmvAb.md",
               "rejection_triage_DE1paW.md", "rejection_review_5WxkQjcUg.md",
-              "rejection_review_Lo23jsKHjyGuukZr.md", "triage_round13.md"]
+              "rejection_review_Lo23jsKHjyGuukZr.md", "triage_round13.md",
+              "rejection_review_zZz7scE.md"]
 SECTIONS = ["s1_introduction.md", "s2_reference_axis.md", "s3_atlas.md", "s3b_conv_anchor.md",
             "s4_certificates.md", "s5_tolerance.md", "s6_selector.md", "s7_threats.md",
             "s8_reproduction.md", "s9_related.md"]
 ATLAS = ["ATLAS_A6.md", "ATLAS_A7.md", "ATLAS_A8.md", "ATLAS_A9.md", "ATLAS_S56.md",
-         "SCHOOL_COMPLETION.md"]
+         "SCHOOL_COMPLETION.md", "ATLAS_EPSILON_FRONTIER.md"]
 
 # outputs the packaged scripts rewrite when run from inside the package; regenerated rather than
 # byte-copied, and their shipped state is what MANIFEST.sha256 covers.
@@ -343,19 +349,23 @@ that revision, so no essential evidence depends on private access.
   `s48_provenance.py`, `s50_prose_audit.py` (19 checks), `s51_prose_audit.py` (31), `s52_prose_audit.py`
   (16), `s53_intro_audit.py` (15), `s54_metadata_audit.py` (6), `s52_manuscript.py`, `f24_verify.py`,
   `r45_rider_adm.py`, `r42_analysis.py`, `cf43.py`, `cushion_screen.py`, `s6_dispatcher_audit.py`,
-  `s55_review_repair.py`, `a8_analysis.py`, `a8b_analysis.py`, `a9_analysis.py`.
+  `s55_review_repair.py`, `a8_analysis.py`, `a8b_analysis.py`, `a9_analysis.py`, `e59c_epsilon_analysis.py`.
   GPU legs (shipped for inspection; they reproduce only on a GB10 with this stack): `a6_refdistance.py`,
   `a6b_ksweep.py`, `a6c_conv_tf32pair.py`, `a6d_crossing.py`, `a6e_geometry_algo.py`,
   `a6f_geom_repl_convmech.py`, `a7_kernelclass.py`, `a7b_precision_policy.py`, `a8_compress.py`,
-  `a9_compose.py`, `s56_heldout_contract.py`. Each produced an artifact shipped under `results/`, so a
+  `a9_compose.py`, `s56_heldout_contract.py`, `e59_epsilon_sweep.py`, `e59b_ratio_record.py`. Each produced an
+  artifact shipped under `results/`, so a
   reader without a GPU can audit the result without re-running the measurement.
 - `results/` — the artifacts the auditors load, plus every artifact the paper cites. Row-level corpora ship
   where a claim is per-row. Fifteen heavy row-streams ship gzipped (`*.gz`) to stay inside the budget; the
   readers handle them transparently and `s48_provenance.py` reports the compressed digest plus the
   uncompressed row/field structure. The list is in `DROPPED.md`.
-- `paper/` — the complete section set (§1-§9), the reframe skeleton, `MANUSCRIPT.md` (90,896 bytes,
-  reassembled from the repaired sections), and `PROVENANCE.md`.
-- `atlas/` — `ATLAS_A6`, `ATLAS_A7`, `ATLAS_A8`, `ATLAS_A9`, `ATLAS_S56`, `SCHOOL_COMPLETION`.
+- `paper/` — the complete section set (§1-§9) including the tolerance-axis section §5.4, Appendix A
+  (review history, retraction ledger, audit counts), `MANUSCRIPT.md` (reassembled from the audited sections;
+  its header counts are read from the artifacts), `APPENDIX_HISTORY.md`, `ATLAS_EPSILON_FRONTIER.md`,
+  `ATLAS_TUPLE_SURFACE.md`, and `PROVENANCE.md`.
+- `atlas/` — `ATLAS_A6`, `ATLAS_A7`, `ATLAS_A8`, `ATLAS_A9`, `ATLAS_S56`, `ATLAS_EPSILON_FRONTIER`,
+  `SCHOOL_COMPLETION`.
 - `rejections/` — four archived full-stage reviews and two triages, including the DE1paW review this
   package answers.
 - `DISPOSITIONS.md` — the per-finding disposition map for DE1paW. Every finding, what was found, what
@@ -480,6 +490,21 @@ against a prereg frozen before computation (`kernels/s58_review_verify_prereg.md
 | F3 | s56 regret charged a failing gate arm's time; §6.4/§6.5 described different policies | **VERIFIED, my bug.** Producer patched to emit `policy_a_delivered`/`policy_a_regret_frac`; regenerated on spark (`results/s56_analysis.json`, 2026-10-29T06:11Z): reduction 3.49614% SD 6.7173 SE 1.37116 pp on recorded times (reviewer's figure to five decimals), 4.0381% SE 1.4976 fresh; conv 0.0, retiring the impossible -6.35% mean. §6.3-6.5 state one policy (A) | `kernels/s56_heldout_contract.py`, `results/s56_analysis.json`; `paper/sections/s6_selector.md` §6.3-6.5 |
 | F4 | cf3 denominator 169/528 = 32.0% should be 169/360 = 46.94%; §3.5 overreaches on a 60% heuristic | **VERIFIED.** 169/360 = 46.94% in §5.1 with the mechanism named (`tot` not reset before cf3, 168 cf1 rider cells) and the run difference stated; §3.5 scoped to the observed profiles | `paper/sections/s5_tolerance.md` §5.1, `s3b_conv_anchor.md` §3.5; `results/s58_review_verify.json` V5 |
 | F5 | Structural clarity: §2.5 withdraws what §4.5 asserts; §2.3/§4.4 contradict §4.1; §6.4/§6.5 different policies; needs a table of diagnostics/prediction targets/feature cost/validation populations | **CONCEDED.** §4.6 rebuilt around baselines, clustered uncertainty and Table 4.2 (diagnostics, prediction targets, acquisition cost, validation populations); one policy in §6; quantity language unified | `paper/sections/s4_certificates.md` §4.6, `s6_selector.md`, `s2_reference_axis.md` |
+
+# Round 14 — zZz7scE-UgX0Yf2P
+
+Rejected 2026-10-29T17:18:54Z, stage=full. Review archived at `rejections/rejection_review_zZz7scE.md`. All five
+findings conceded. The novelty finding is answered by a measurement, not by prose: the admissible-set frontier is
+tolerance-conditional (`kernels/e59_epsilon_sweep_prereg.md` frozen at 09103c0 before computation;
+`results/e59b_budget_ratios.jsonl` reproduced all 672 arm-checks exactly; `results/e59c_epsilon_sweep.json`).
+
+| # | Finding | Disposition | Where to check |
+|---|---|---|---|
+| N1 | Novelty/attribution: three 2026 checker papers absent, and the reference/tolerance premise presented as new | **CONCEDED, answered by measurement.** §9.5 cites and distinguishes Du et al. (2609.22220), Zhang et al. (2607.16241) and Agarwal et al. (2609.21058) quantitatively; the distinct object is the admissible-set frontier as a function of the declared tolerance. New §5.4 measures it: admissible arms 128 -> 203 -> 293 -> 672, shapes with an admissible hand arm 4 -> 19 -> 32 -> 56, frontier flips 10/56, 24/56, 30/56 at eps 1e-3/1e-2/1e-1, with the 1e-4 engine-class partition unchanged. The 1e-4 atlas is stated as one slice of the family | `paper/sections/s5_tolerance.md` §5.4, `s9_related.md` §9.5; `results/e59c_epsilon_sweep.json`, `results/e59b_budget_ratios.jsonl` |
+| N2 | Reads as a repair/review log; §1 promises an Appendix A that is not supplied | **CONCEDED.** Main text restructured to question -> contribution -> one current protocol -> GB10 results -> limitations; review-round labels removed from the argument; Appendix A ships in the manuscript (`paper/APPENDIX_HISTORY.md`) with the review chronology, the retraction ledger and the audit counts | `paper/MANUSCRIPT.md` (Appendix A), `paper/APPENDIX_HISTORY.md` |
+| N3 | Provenance/manifest counts contradict each other (44/44 vs 49/49 vs 50/50/0), stale s58 manuscript_claim | **CONCEDED.** Manuscript, `PROVENANCE.md`, `PACKAGE_MANIFEST.json` and the audit summaries are regenerated in one pass from the same artifact set; the manuscript header now READS its audit and provenance counts from the artifacts rather than typing them (52 cited / 52 found / 0 missing). Stale fields dropped | `kernels/s52_manuscript.py`, `kernels/s48_provenance.py`, `results/s48_provenance.json`, `PACKAGE_MANIFEST.json` |
+| N4 | rho/frac_over are anchor-normalized diagnostics, not evaluator-exact statements; "benchmark contract" misused | **CONCEDED.** Renamed anchor-normalized diagnostics throughout (§1.7 states the naming rule); "passes the benchmark contract" reserved for the evaluator-exact candidate-versus-reference check of §4.6 and §6 | `paper/sections/s1_introduction.md` §1.7, `s2_reference_axis.md`, `s4_certificates.md` |
+| N5 | Admission headline weaker than its placement: declared-feature model only matches the 96.4286% arm-class rule; hand stratum 0.7548 with 0/20 admitted | **CONCEDED.** Admission demoted to a class baseline plus a measured within-class threshold, stated as a limitation: §4.6 leads with the two-line arm-class rule, reports the declared-feature model as matching it (AUC 0.974652, 96.4286%), and keeps the hand-fp32 stratum at AUC 0.7548 (CI [0.537, 0.9231], 0/20 at 0.5) | `paper/sections/s4_certificates.md` §4.6; `results/s58_review_verify.json` V1-V3 |
 """
 
 def build_env():
@@ -524,7 +549,7 @@ def build_meta(pin):
     except Exception:
         prov_s = "n/a"
     try:
-        prev = json.load(open(os.path.join(ROOT, "lab", "submit_metadata_r13.json"))).get("previous_submission_id")
+        prev = json.load(open(os.path.join(ROOT, "submission_metadata_v12.json"))).get("previous_submission_id")
     except Exception:
         prev = None
     return json.dumps({
@@ -543,7 +568,7 @@ def build_meta(pin):
         "curation": "results/ carries the artifacts the shipped auditors load plus every round-4/5 leg; "
                     "omissions listed in DROPPED.md, all retrievable at the pinned commit",
         "dispositions": "DISPOSITIONS.md maps every DE1paW finding to its change and its checkable location, "
-                        "and carries a separate round-13 block for 5WxkQjcUg_JD3wtv",
+                        "and carries separate round-13 and round-14 blocks",
     }, indent=1) + "\n"
 
 

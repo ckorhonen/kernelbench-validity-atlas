@@ -11,6 +11,7 @@ Conventions frozen here BEFORE the run:
 - Hard fail on: a missing section, an empty section, a section that cites a results/ artifact absent from
   lab/results (plain or .gz), or a total size over 400 KB.
 """
+import json
 import os
 import re
 import sys
@@ -48,12 +49,36 @@ TITLE = "A validity-domain atlas for GPU kernels: conditional certificates, not 
 errors = []
 parts = []
 
+# Audit counts and provenance totals are READ from the artifacts, never typed here. N3 of the round-14
+# review: the manuscript said 44/44/0 while the shipped s48_provenance.json said 49/49 and the package
+# manifest said 50/50/0. A hardcoded number is a claim that can drift away from the artifact it describes.
+def _audit_counts():
+    def load(n):
+        with _kb_open(os.path.join(RES, n)) as f:
+            return json.load(f)
+    out = {}
+    a = load("s50_prose_audit.json")["summary"]
+    out["s50"] = f'{a["n_checks"] - a["n_failed"]}/{a["n_checks"]}'
+    a = load("s51_prose_audit.json")
+    out["s51"] = f'{a["n_pass"]}/{a["n_checks"]}'
+    a = load("s52_prose_audit.json")
+    out["s52"] = f'{a["n_pass"]}/{a["n_checks"]}'
+    a = load("s53_intro_audit.json")
+    out["s53"] = f'{a["n_pass"]}/{a["n_checks"]}'
+    a = load("s54_metadata_audit.json")
+    out["s54"] = f'{a["pass"]}/{a["total"]}'
+    p = load("s48_provenance.json")
+    out["prov"] = f'{p["n_cited"]} cited / {p["n_found"]} found / {len(p["missing"])} missing'
+    return out
+
+AC = _audit_counts()
+
 header = f"""# {TITLE}
 
 *Artifact status.* Every number in this manuscript is regenerated from committed artifacts by shipped
-auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16,
-`s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 6/6) and mapped to its file and field in
-`PROVENANCE.md` (44 cited / 44 found / 0 missing). The auditors exit nonzero on a cited value they cannot
+auditors (`s50_prose_audit.py` {AC['s50']}, `s51_prose_audit.py` {AC['s51']}, `s52_prose_audit.py` {AC['s52']},
+`s53_intro_audit.py` {AC['s53']}, `s54_metadata_audit.py` {AC['s54']}) and mapped to its file and field in
+`PROVENANCE.md` ({AC['prov']}). The auditors exit nonzero on a cited value they cannot
 reproduce, the supplement ships them together with the artifacts they read, and the build runs every
 CPU-only script from inside the shipped package and fails if any exits nonzero, so the package is
 re-runnable as delivered.
@@ -82,7 +107,14 @@ for name in ORDER:
     txt = re.sub(r"\(draft, tick #\d+ 2026-10-\d+\)", "(complete)", txt, count=1)
     parts.append(txt + "\n\n---\n\n")
 
-body = "".join(parts)
+body_parts = parts
+APPX = os.path.join(ROOT, "paper", "APPENDIX_HISTORY.md")
+if not os.path.exists(APPX):
+    errors.append("missing appendix paper/APPENDIX_HISTORY.md")
+else:
+    body_parts.append(open(APPX).read().strip() + "\n")
+
+body = "".join(body_parts)
 
 cited = set(re.findall(r"results/([A-Za-z0-9_\.\-]+\.jsonl?)", body))
 missing = sorted(c for c in cited

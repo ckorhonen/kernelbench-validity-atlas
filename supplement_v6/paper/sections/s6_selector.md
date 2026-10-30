@@ -10,8 +10,7 @@ The decisive public object was a break-even curve: how many repeated visits to o
 autotune cheaper than a zero-probe rule. The published numbers (reduction 122 at budget 2, 628 at budget
 8; conv 34/145) regenerate **exactly** from an inverted filter — $t_b > t_g$ where the model requires
 $t_b < t_g$, located in `lab/m3_r42_analysis.py` L59 (`results/f24_verify.json`, `f1`). The defect was a
-comparison direction, not the data, which is why a reviewer reproducing our arithmetic found it and a
-reviewer reproducing our arithmetic could not have found anything else.
+comparison direction, not the data: an arithmetic check finds it, and no other check could.
 
 Corrected, with $t_b < t_g$ and
 
@@ -90,7 +89,7 @@ rather than measurements. The family verdict survives that; a per-arm table woul
 descriptive accounting, not a general law, and it is stated under **one** policy (A: deliver the gate's arm when
 it passes the contract, otherwise deliver the fastest admissible torch arm on that row). On the reduction
 population (24 rows) policy A's post-validation execution regret is **3.49614% SD 6.7173 SE 1.37116 pp** when
-computed from the recorded times — the reviewer's figure to five decimals, now produced by the repaired
+computed from the recorded times — the recorded figure to five decimals, now produced by the repaired
 accounting — and **4.0381% SE 1.4976 pp** when the same policy is re-measured in a fresh run
 (`results/s56_analysis.json` regenerated 2026-10-29T06:11Z, timings med-of-12, L2 flush); the 0.54 pp gap is
 run-to-run timing variance, and both are reported rather than one being chosen. On the 9 admissible reduction
@@ -98,7 +97,7 @@ rows — the same policy, a narrower population — the cost is +0.86% (SD 1.11,
 errors are not interchangeable because the populations differ. On the conv population (10 rows) policy A's
 regret is **0.0** because the gate's hand arm fails on all four rows where it fires and the policy delivers
 torch. The recorded −6.35% conv mean that earlier drafts quoted is retired: it charged a failing arm's time,
-which is the same bug the round-13 review found in the reduction numbers.
+which is the same accounting bug found in the reduction numbers.
 
 All figures are kernel-time ratios measured *after* validation: they are post-validation execution regret, not
 total deployment cost, because the checks D1 requires (reference build, one execution per checked arm, the
@@ -169,9 +168,9 @@ variance: paired regret differences with n and SE; regret totals flagged as lowe
 arm fails the contract, n_reps: 12 per cell (m3 chain), date: 2026-10-24}`
 
 
-## 6.5 The evaluated policy, stated as executed (round-11 F4)
+## 6.5 The evaluated policy, stated as executed
 
-The reviewer's F4 objection was that §6.2's numbers did not name the policy they evaluated, so the fallback was
+§6.2's numbers did not name the policy they evaluated, so the fallback was
 described rather than measured. Here is the policy, as executed in `results/s56_heldout_contract.json`, and
 nothing beyond it was evaluated.
 
