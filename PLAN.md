@@ -404,3 +404,27 @@ per-arm language stands. Reflection copy lab/meta_reflection_r-tJCBLzWPOVpAdc.md
 ## written, kill <10% flips — the school now predicts class-level flips, which brackets its outcome); (3) foreign-warm
 ## probe; (4) K=8 admission-rate probe (s59 gives it a measured prior: 26/228 at a 6x ratio swing); (5) bias-vs-tail;
 ## (6) pool-diversity dedup on an arithmetic-spanning pool (the school's discriminating test). 24h-E1/CTA-edge/bt parked.
+
+## ROUND-16 REPAIR — DONE 2026-10-30 14:00Z (DbvG6Bpe-qNTdmWK under_review desk; previous MhTLuz7Ciq7UPVmk)
+
+Reflection bemOT-ro37iGp_eF ("Persist or pivot") answered 13:49:59Z (next 16:49:59Z): persist with the idea,
+change the object — the failure of six consecutive rejections is claim-set growth per repair plus a regime
+mismatch (a full atlas reviewed in ten minutes), not a measurement dispute. Reconsider-if: a one-contribution
+rebuild rejected again for internal contradiction => split the paper or publish the artifact set standalone.
+
+Round-16 repairs executed in one session: F1 answered by measurement (s59: 26/228 labels flip between input
+draws, all gate-straddling at median 5.9x, delivery 9/12 -> 12/12, gate arm identity unchanged 16/16; timing
+variance attribution withdrawn); F2 scope restricted (2/56 tuple overlap stated, matched engine-class analysis
+declared extension); F3 execution-regret only with the total-time comparison labelled as an accounting statement;
+F4 one contribution statement + four defined quantities + contradiction sweep + rebuilt abstract (metadata v13);
+s60 folded into §5.4 as class-cell normalisation. Manuscript 151,359 B; audits s50 19/19 s51 31/31 s52 16/16
+s53 15/15 s54 6/6; provenance 53/53/0; package r16 168 files / 1,901,754 expanded, 22 CPU scripts exit 0 from
+inside the unpacked zip, pin eca5275. First upload refused (expanded 1,999,738) and its replacement exposed
+s51 C27 reading the gzipped b2 corpus with plain open (31/30); both fixed, the 31/30 upload was withdrawn and
+resubmitted as DbvG6Bpe-qNTdmWK.
+
+Next: (1) desk/review watch, triage against DISPOSITIONS_round16.md first; (2) reference-swap flip table —
+ELEVENTH deferral, CPU, prereg lab/r41_gate_stability_prereg.md, kill <10% flips, and the reflection named it the
+next measurement, so it leads if the desk is quiet; (3) foreign-warm probe; (4) K=8 admission-rate probe (s59
+prior 26/228 at 5.9x); (5) bias-vs-tail; (6) pool-diversity dedup on an arithmetic-spanning pool.
+24h-E1/CTA-edge/bt parked.
