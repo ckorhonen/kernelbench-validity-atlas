@@ -117,10 +117,16 @@ for r in rows60:
     sig_dist[r["error_sigs"]] = sig_dist.get(r["error_sigs"], 0) + 1
 four_sig_shapes = [r["shape"] for r in rows60 if r["error_sigs"] == 4]
 
-rat = [json.loads(l) for l in open(os.path.join(BASE, "e59b_budget_ratios.jsonl"))]
-if not rat:
+def _open_rows(name):
+    """Plain or gzipped row-stream; the package ships .gz (#55 defect class, again here)."""
     import gzip
-    rat = [json.loads(l) for l in gzip.open(os.path.join(BASE, "e59b_budget_ratios.jsonl.gz"), "rt")]
+    plain = os.path.join(BASE, name)
+    if os.path.exists(plain):
+        return open(plain)
+    return gzip.open(plain + ".gz", "rt")
+
+
+rat = [json.loads(l) for l in _open_rows("e59b_budget_ratios.jsonl") if l.strip()]
 
 eps_cells = {}
 for eps, thr in (("1e-4", 1.0), ("1e-3", 10.0), ("1e-2", 100.0), ("1e-1", 1000.0)):

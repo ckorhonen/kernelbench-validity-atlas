@@ -145,8 +145,10 @@ it is the specific question this paper would put to a peer with cudnn internals 
 fp16/bf16, so the gate used throughout this paper is the benchmark's shipped contract, not a stricter private
 one. That makes $\rho$ an exact statement about the shipped benchmark rather than a remark about people who
 tighten tolerances: at fp32 the reference's own deviation and the gate's budget are the same order of magnitude,
-so on the shapes measured here which engine the reference dispatched to sets how much budget a candidate has
-left — and it is the candidate's own arithmetic, not the engine, that decides whether it spends it. That
+so on the shapes measured here which engine the reference dispatched to sets $e_r$, and the check compares
+$|e_c - e_r|$ with the element budget. Agreement therefore depends on the difference, not on a budget the
+candidate has "left" after the reference spends some of it; the candidate's own arithmetic decides the
+difference and the engine decides the point it is measured from. That
 separation is measured in §4.6 and is the reason no universal verdict sentence survives here.
 $\rho \geq 1$ is a per-element statement, not a whole-tensor one; the exceedance fraction (`frac_over`, reported
 alongside every $\rho$) says how much of the reference's output is outside the budget, which is a diagnostic on
@@ -195,10 +197,11 @@ or downgrade it:
   rather than about the row's pass/fail.
 
 The rho_max column stays in every row because it is the severity index that decides *how much* slack a
-conditional row has, but it does not decide admissibility on its own: a row can have rho_max 10.2 and be
-distribution-conditional (winograd) while a row with rho_max 111 is tail-conditional at every declared budget
-(TF32 1×1): the two rows differ in what a tolerance convention can act on, and neither verdict is read off the
-maximum, because the distribution is what a convention acts on.
+conditional row has, but it does not decide admissibility on its own: a row can have rho_max 10.2 with
+frac_over 0.0052 (winograd) while a row with rho_max 111 has frac_over 0.77–0.78 (TF32 1×1). The exceedance
+fraction is the primary statement in both cases: the winograd row fails on a negligible tail, the TF32 row fails
+in bulk, and "tail-conditional" for the TF32 row is a restatement of its bulk exceedance rather than a second
+interpretation of it. Neither verdict is read off the maximum.
 
 All reference statistics in this section are reported under a named criterion and are read with it. The paper uses three separate criteria, never one conflated number:
 - (i) Benchmark agreement — the binary, whole-tensor verdict of the candidate against the recorded reference at the recorded realization. This is the only criterion that decides a row's pass/fail, and it is never inferred from an anchor statistic.
@@ -220,7 +223,8 @@ What the surface measures:
 - **Class spans, measured.** W: rho_max 1.4–12.8 (C=64 gives 1.4; pad-2 gives 12.8024, reproducing the value recorded in the earlier review), frac_over 0.0005–0.0077, bit-identical output under every precision flag in all seven W cells. T: rho_max 60.2–429.4, frac_over 0.760–0.786, and `allow_tf32=False` removes 96.4–99.9% of the budget (ratios 3.6e-2 down to 5.6e-4) with bit-inequal output. The published 6.4–6.8 / 315–369 ranges were pad-1-only readings; the measured class span replaces them.
 - **Reference realization.** Every cell's fp64 anchor dispatches to cutlass `implicit_convolve_dgemm` (class O) — no tensorop path exists at fp64 — so the anchor lattice, not a single anchor, is the object any certificate must be written over.
 
-Consequence for the claim: the boundary is categorical and repeat-consistent in the declared tuple. That is the positive low-complexity result in tuple coordinates — the class decision is a lookup over an enumerated tuple partition rather than a continuous model. §4.6 measures a different quantity, and the three prediction targets in this paper are kept apart by name: (i) *which engine the reference dispatches*, the categorical partition of the declared tuple in Table 1, whose predictability from four derived coordinates is 0.604 against a 0.5625 majority (§4.5); (ii) *the reference's error given that dispatch*, rho_max, which compresses as a bias statistic; (iii) *whether a candidate passes the evaluator's check*, predicted out of fold from declared features at AUC 0.9747 over 672 arm-checks, matching a two-line arm-class baseline. The 0.9747 figure belongs to (iii): it does not establish a deployable engine predictor, and the operating threshold inside a class stays per-arm measured. It is also why the continuous derived-coordinate story (§4.5) cannot carry the class on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
+Consequence for the claim: the boundary is categorical and repeat-consistent in the declared tuple. That is the positive low-complexity result in tuple coordinates — the class decision is a lookup over an enumerated tuple partition rather than a continuous model. §4.6 measures a different quantity, and the three prediction targets in this paper are kept apart by name: (i) *which engine the reference dispatches*, the categorical partition of the declared tuple in Table 1, whose predictability from four derived coordinates is 0.604 against a 0.5625 majority (§4.5); (ii) *the reference's error given that dispatch*, rho_max, whose compressibility is a rank/ordering result
+(LOO Spearman 0.833 geometry-only, 0.986 with the engine class, §4.5) rather than a bias or magnitude law; (iii) *whether a candidate passes the evaluator's check*, predicted out of fold from declared features at AUC 0.9747 over 672 arm-checks, matching a two-line arm-class baseline. The 0.9747 figure belongs to (iii): it does not establish a deployable engine predictor, and the operating threshold inside a class stays per-arm measured. It is also why the continuous derived-coordinate story (§4.5) cannot carry the class on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
 
 
 ### Table 1 — the measured dispatch map (17 cells, two repeats each)

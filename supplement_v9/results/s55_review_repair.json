@@ -1,6 +1,6 @@
 {
  "header": {
-  "date": "2026-10-30T13:57Z",
+  "date": "2026-10-30T20:45Z",
   "conventions": "frozen in module docstring before run",
   "purpose": "recompute DE1paW review findings F2/F3/F4/F4b/F5 from records only",
   "no_gpu": true

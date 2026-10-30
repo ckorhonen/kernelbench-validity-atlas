@@ -29,7 +29,7 @@ import gzip, hashlib, json, os, shutil, subprocess, sys
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 LAB = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "supplement_v9")
-META_FILE = "submit_metadata_r16.json"
+META_FILE = "submit_metadata_r17.json"
 BUDGET = 2_000_000
 
 # CPU-only scripts: run from inside the package at build, must exit 0. This is the whole F5b repair.
@@ -37,7 +37,7 @@ CPU_RUNNABLE = """
 s48_provenance.py s50_prose_audit.py s51_prose_audit.py s52_prose_audit.py s53_intro_audit.py
 s54_metadata_audit.py s52_manuscript.py r57_candidate_admission.py f24_verify.py r45_rider_adm.py r42_analysis.py cf43.py
 cushion_screen.py s6_dispatcher_audit.py s55_review_repair.py a8_analysis.py a8b_analysis.py a9_analysis.py
-s58_review_verify.py e59c_epsilon_analysis.py s59_f1_input_draw.py s60_pool_diversity.py s61_round17_verify.py
+s58_review_verify.py e59c_epsilon_analysis.py s59_f1_input_draw.py s60_pool_diversity.py s61_round17_verify.py s62_resolution.py
 """.split()
 
 # GPU producers: shipped so the measurement is inspectable, not re-derivable on a CPU-only reader.
@@ -64,7 +64,8 @@ GZIP = {"b2_failure_corpus.jsonl", "b4_guard_v1.jsonl", "r1_conv_gated.jsonl", "
         "w4_heldout.json.jsonl", "a8_compress.json", "a8_compress_v2.json", "r42_gridfix.jsonl", "m3_r42.json",
         "pop_confirm.json",
         "tuple_surface.json", "s56_heldout_contract.json", "e59b_budget_ratios.jsonl",
-        "s56_heldout_contract_recorded.json", "e59c_epsilon_sweep.json", "e59_epsilon_sweep.json"}
+        "s56_heldout_contract_recorded.json", "e59c_epsilon_sweep.json", "e59_epsilon_sweep.json",
+        "w4_heldout.json", "a2_loo.json", "a11_layernorm_reference_dist.json"}
 
 RESULTS = """
 calibration.json e1_triad.json e1_triad_day2.json e2_v3_err.json e2b_floor.json a6d_crossing.json
@@ -84,6 +85,7 @@ b4_guard_v1.jsonl e1b_order_v2.json e2_splitk_v2.json m3_r42.jsonl m3_r42.json
 w4_heldout.json w4_heldout.json.jsonl tuple_test.json tuple_surface.json a8_compress.json
 e59_epsilon_sweep.json e59b_budget_ratios.jsonl e59c_epsilon_sweep.json s58_review_verify.json
 s56_heldout_contract_recorded.json s59_f1_input_draw.json s60_pool_diversity.json
+s61_round17_verify.json s62_resolution.json
 """.split()
 
 # r1_times.json lives at lab/ (not lab/results/) and r45_rider_adm.py requires it; the reviewer flagged
@@ -92,14 +94,15 @@ EXTRA_KERNEL_INPUTS = ["r1_times.json"]
 # the paper's submission metadata: s54 audits the abstract against the manuscript, so it must be inside
 # the package or s54 cannot run there (v5 shipped only the supplement's own metadata and s54 died on it).
 ROOT_FILES = {"submission_metadata_v10.json": "submission_metadata_v10.json",
-              "submission_metadata_v13.json": "submission_metadata_v13.json"}
+              "submission_metadata_v14.json": "submission_metadata_v14.json"}
 
 PAPER = ["REFRAME_SKELETON.md", "PROVENANCE.md", "MANUSCRIPT.md", "APPENDIX_HISTORY.md"]
 # Four archived full-stage reviews and two triages: §1, §7 and §8 cite them as evidence and s53 audits
 # them, so they ship rather than being referenced from outside the package.
 REJECTIONS = ["rejection_review_2CmvAb.md", "rejection_review_6yPhozm.md", "rejection_review_O4hnCx.md",
               "rejection_review_DE1paW.md", "rejection_triage_2CmvAb.md",
-              "rejection_triage_DE1paW.md", "rejection_review_f01MfL.md", "rejection_review_gU24dOLN.md", "rejection_review_MhTLuz7Ciq7UPVmk.md"]
+              "rejection_triage_DE1paW.md", "rejection_review_f01MfL.md", "rejection_review_gU24dOLN.md", "rejection_review_MhTLuz7Ciq7UPVmk.md",
+              "rejection_review_DbvG6Bpe.md", "rejection_triage_DbvG6Bpe.md"]
 SECTIONS = ["s1_introduction.md", "s2_reference_axis.md", "s3_atlas.md", "s3b_conv_anchor.md",
             "s4_certificates.md", "s5_tolerance.md", "s6_selector.md", "s7_threats.md",
             "s8_reproduction.md", "s9_related.md"]
@@ -116,7 +119,8 @@ REGENERATED = {"paper/PROVENANCE.md", "paper/MANUSCRIPT.md",
                "results/cf43.json", "results/cushion_screen.json", "results/r45_rider_adm.json",
                "results/s6_dispatcher_audit.json", "results/a8_analysis.json",
                "results/a8b_analysis.json", "results/a9_analysis.json",
-               "results/s59_f1_input_draw.json", "results/s60_pool_diversity.json"}
+               "results/s59_f1_input_draw.json", "results/s60_pool_diversity.json",
+               "results/s61_round17_verify.json", "results/s62_resolution.json"}
 
 errors = []
 

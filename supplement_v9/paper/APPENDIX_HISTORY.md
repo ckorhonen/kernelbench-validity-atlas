@@ -68,10 +68,14 @@ reported as results.
 
 ## A.5 Open items carried forward
 
-Three measurements are registered and not yet run: a reference-swap flip table (holding candidates fixed and
-changing only the reference realization from the default dispatch to the fp64 anchor, kill at <10% flips), a
-fresh-process class-invariance probe (cold cache and benchmark mode, since determinism here was measured across
-two repeats in one process), and an out-of-family class prediction with the frozen predictor (kill at the majority
-baseline). A within-class geometry sweep testing whether $\rho_{\max}$ is a bias statistic rather than a tail
-statistic is registered too. A larger item is scoped but not started: a benchmark-wide reference-error audit
+Three measurements are registered; one of them has been run and is reported in §1.7 and §9.5. The
+**reference-swap flip table** (`results/gate_stability.jsonl`, 56 rows, prereg `lab/r41_gate_stability_prereg.md`
+sha 5ff93b20, run 2026-10-22) holds candidates and inputs fixed and varies only the reference realization:
+R_def→R_64 changes the delivered arm on 21/56 rows (all 21 inside the 25 in-rule rows), admissible-set membership
+on 48/56, and 341 per-arm verdicts; the pure engine-class swap R_def→R_ieee changes the delivered arm on 11/56 and
+membership on 15/56. The <10% adequacy clause therefore did not fire, and admission is at minimum a rate over
+reference realizations rather than a point predicate. Two remain unrun: a **fresh-process class-invariance
+probe** (cold cache and benchmark mode, since determinism here was measured across two repeats in one process)
+and an **out-of-family class prediction** with the frozen predictor (kill at the majority baseline). A within-class geometry sweep testing whether $\rho_{\max}$'s rank compressibility also holds as a magnitude law
+is registered too; the compression result is a rank result, not a bias statistic (§4.5, §2.5). A larger item is scoped but not started: a benchmark-wide reference-error audit
 across all KernelBench tasks, which is the generalisation this paper does not attempt.

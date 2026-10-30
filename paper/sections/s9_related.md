@@ -117,10 +117,12 @@ Appendix J Table 6 evaluates tolerance sensitivity directly, reporting correctne
 1e-4 (99%/0.90x to 83%/1.25x on their GPT-5.5 Level-1 results) and explaining the selection effect from the
 changing admitted population. Tolerance-dependent admissibility and performance summaries are therefore
 already studied there, and this paper does not claim that variable. The object here is narrower: the per-shape
-minimum over a fixed candidate pool at a declared tolerance. What the GB10 map adds is the mechanism behind
-the movement — the tolerance-conditional frontier moves because the reference's dispatched engine sets the
-budget, and the engine class is a categorical dispatch decision over the declared tuple (Table 1). That is a
-different explanatory level from an aggregate sensitivity curve. Its scope is stated rather than implied: the
+minimum over a fixed candidate pool at a declared tolerance. What the GB10 map adds is a matched measurement on the reference axis rather than an
+explanation of the aggregate curve: at fixed shapes, inputs and candidate outputs, changing only the reference
+realization changes the delivered arm on 21 of 56 conv rows (48/56 admissible-set membership), and a pure
+engine-class swap accounts for 11 of those rows (`results/gate_stability.jsonl`, prereg sha 5ff93b20). The
+engine class is a categorical dispatch decision over the declared tuple (Table 1), so the reference realization
+is a measured admission determinant at a different explanatory level from an aggregate sensitivity curve. Its scope is stated rather than implied: the
 dispatch map is measured on the 48-shape lattice, and only **2 of the 56 frontier shapes exactly match Table 1's
 default-layout tuples**, so the map explains the mechanism where it was measured and does not predict the
 frontier population row by row. A matched engine-class analysis over the frontier population is a declared

@@ -152,12 +152,23 @@ exactly, 0 mismatches) gives a frontier that moves:
 Normalised by behaviour rather than by arm name, the same record is smaller: across the 12 nominal arms per
 shape there are 3-4 distinct candidate-scaled budget ratios (median 3, max 4, mean 3.07), because the five
 `imp_*[ieee]` tiles share one ratio, the five `imp_*[tf32]` tiles another, and `torch`/`torch_cmp` a third
-(`results/s60_pool_diversity.json`, computed from `results/e59b_budget_ratios.jsonl`). The 672 arm-checks at
-$10^{-1}$ are therefore 168 class-cells, and the growth 128→203→293→672 is 32→168 class-cells. The arm counts
-stay in the table above because they are what a pool reports; the class-cell counts are the honest denominator
-for any claim about how many distinct *behaviours* become admissible. The speed axis is not aliased — 654 of
-672 joint (error, median-time) signatures are distinct and each shape carries 9-12 distinct median times — so
-selection inside an admitted class remains a twelve-way measurement problem. Scope: this conv pool, this arch,
+(`results/s60_pool_diversity.json`, computed from `results/e59b_budget_ratios.jsonl`). The signature there is a
+**ratio-class signature** — the rounded candidate-scaled budget ratio — not a distinct output tensor; four shapes
+carry four such classes rather than three (`m3m2` (1,4,256), (4,4,64), (4,4,256), (1,7,64)), so the error-axis
+classes sum to **172** across the 56 shapes. Under the same convention the admissible class-cells are
+**60 / 75 / 93 / 172** at $\varepsilon$ = 1e-4 / 1e-3 / 1e-2 / 1e-1 (`results/s62_resolution.json`, which
+reproduces both counts from the committed rows), so the arm growth 128→203→293→672 is 60→172 class-cells, not
+32→168. The arm counts stay in the table above because they are what a pool reports; the class-cell counts are
+the honest denominator for any claim about how many distinct *behaviours* become admissible.
+
+The speed axis is **not** aliased at the resolution at which the pool was measured, but the count is
+resolution-dependent and must be quoted with its resolution. At exact recorded precision 654 of 672 joint
+(error, median-time) signatures are distinct; collapsing pairs whose median times differ by less than the
+recorded 12-repetition spread leaves **600 of 672**, and at a 5% decision resolution (the scale of the delivery
+deltas this paper argues about) **518 of 672** (`results/s62_resolution.json`, prereg in the script's docstring;
+class-cell counts are resolution-free because they are exact ratio classes). So selection inside an admitted
+class remains a measurement problem rather than an aliased lookup, but the honest statement is "654 at exact
+precision, 600 at measurement resolution, 518 at 5%" rather than a bare count. Scope: this conv pool, this arch,
 this revision.
 
 The first flip appears at $10^{-3}$. Of the 10/24/30 identity changes, 8/23/29 move to an arm with a strictly

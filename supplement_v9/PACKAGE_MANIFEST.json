@@ -1,9 +1,9 @@
 {
- "supplement": "r16",
+ "supplement": "r17",
  "built": "2026-10-30",
  "repository": "https://github.com/ckorhonen/kernelbench-validity-atlas",
- "repository_commit": "eca5275bca67d549e15ba3e8e60e951ffe53b1fe",
- "previous_submission_id": "MhTLuz7Ciq7UPVmk",
+ "repository_commit": "b79c3807d76f6a094e9abdc004f9a6d004804420",
+ "previous_submission_id": "DbvG6Bpe-qNTdmWK",
  "paper_sections": [
   "s1",
   "s2",
@@ -22,9 +22,9 @@
   "s52": "16/16",
   "s53": "15/15",
   "s54": "6/6",
-  "provenance": "53/53/0"
+  "provenance": "56/56/0"
  },
- "packaged_scripts_run_from_inside_package": 22,
+ "packaged_scripts_run_from_inside_package": 24,
  "declared_retractions": 5,
  "curation": "results/ carries the artifacts the shipped auditors load plus every round-4/5 leg; omissions listed in DROPPED.md, all retrievable at the pinned commit",
  "dispositions": "DISPOSITIONS.md maps each review finding to its change and its checkable location"

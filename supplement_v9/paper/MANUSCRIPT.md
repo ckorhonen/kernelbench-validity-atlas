@@ -3,7 +3,7 @@
 *Artifact status.* Every number in this manuscript is regenerated from committed artifacts by shipped
 auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16,
 `s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 6/6) and mapped to its file and field in
-`PROVENANCE.md` (53 cited / 53 found / 0 missing). The auditors exit nonzero on a cited value they cannot
+`PROVENANCE.md` (56 cited / 56 found / 0 missing). The auditors exit nonzero on a cited value they cannot
 reproduce, the supplement ships them together with the artifacts they read, and the build runs every
 CPU-only script from inside the shipped package and fails if any exits nonzero, so the package is
 re-runnable as delivered.
@@ -39,7 +39,11 @@ implementations can match it, on shapes that a kernel author would reasonably tr
 does not decide a candidate's verdict by itself: on the 56 conv shapes of the held-out contract set every row
 has both passing and failing arms against the same recorded reference
 (`results/r57_candidate_admission.json`), so what separates a pass from a failure is the candidate's
-arithmetic relative to that reference, and the engine sets how much of the budget the candidate must clear.
+arithmetic relative to that reference. The check compares $|e_c - e_r|$ with the element budget, where $e_r$ is
+the reference's own deviation from exact arithmetic: the engine sets $e_r$, and agreement is a property of the
+difference rather than of either error magnitude alone. Nothing here subtracts the reference's error from a
+shared allowance; a candidate that matches the reference closely passes whatever the reference's absolute
+error is.
 
 The paper's contribution is one statement about one object: a benchmark row's verdict is a function of the
 reference realization as well as of the candidate, so a delivery claim needs the reference's own accuracy as a
@@ -147,8 +151,8 @@ available, so architecture-level statements remain reanalysis of published numbe
 here. The selector's economics in §6 are eager-only by construction and support no compile claim.
 
 The two open questions the paper does not answer are named rather than buried: whether the frozen class
-predictor beats a majority baseline out of family (untested), and whether $\rho_{\max}$ is a bias statistic
-rather than a tail statistic under a within-class geometry sweep (untested). Both are registered as the next
+predictor beats a majority baseline out of family (untested), and whether $\rho_{\max}$'s rank/ordering compressibility (§4.5, LOO Spearman) also holds as a magnitude law
+under a within-class geometry sweep (untested: the compression result is a rank result, not a bias statistic). Both are registered as the next
 measurements.
 
 ## 1.6 What a reader should do with this
@@ -166,8 +170,9 @@ require a GPU.
 Three 2026 papers already measure parts of this premise, and the paper's claim is stated so that it does not
 collide with them. Du et al. (arXiv:2609.22220) measure what a checker fails to detect: 16.9% of witnessed
 faults are missed, the blind band grows with reduction size, and official references violate their own
-tolerance on two problems. Zhang et al. (arXiv:2607.16241) build a verified benchmark: they replace the TF32 baseline
-with a stricter one and report speedups moving from 1.43x to 0.88x under hidden input distributions, and
+tolerance on two problems. Zhang et al. (arXiv:2607.16241) build a verified benchmark that enables TF32 as the reference
+baseline rather than replacing a TF32 baseline with a stricter one, and report speedups moving from 1.43x to
+0.88x under hidden input distributions, and
 their Appendix J Table 6 evaluates tolerance sensitivity directly at 1e-3 and 1e-4, with correctness and
 speedup moving together (99%/0.90x to 83%/1.25x on their GPT-5.5 Level-1 results) and the selection effect
 from the changing admitted population explained. Agarwal et al. (arXiv:2609.21058) measure workload
@@ -178,9 +183,14 @@ Tolerance-dependent admissibility is therefore already studied in the cited lite
 not claim that variable as new. The object here is narrower: the per-shape minimum over a fixed candidate
 pool at a declared tolerance, reported shape by shape rather than aggregated over a suite, together with the
 dispatch map that says which reference realization set the budget in the first place. What the map adds
-beyond an aggregate sensitivity curve is the mechanism — on GB10 the tolerance-dependent movement is produced
-by the engine the reference dispatched (Table 1), which is why the frontier moves in steps rather than
-smoothly and why the 1e-4 engine-class partition is unchanged across tolerances. Measured: on 56 conv shapes,
+beyond an aggregate sensitivity curve is a matched measurement of the reference axis: holding shapes, inputs and
+candidate outputs fixed and changing only the reference realization, the delivered arm changes on **21 of 56
+conv rows** against the fp64 anchor, and on **11 of 56** from an engine-class swap alone (default dispatch to
+the fp32-SIMT route), with admissible-set membership changing on 48 and 15 rows respectively
+(`results/gate_stability.jsonl`, prereg `lab/r41_gate_stability_prereg.md`, sha 5ff93b20, run 2026-10-22). So
+the reference realization is a measured first-order determinant of admission, not an assumed baseline. The
+stepwise shape of the finite-pool frontier is a separate descriptive fact, reported as such in §5.4; the 1e-4
+engine-class partition is unchanged across tolerances. Measured: on 56 conv shapes,
 relaxing the gate from 1e-4 to 1e-2 moves the fastest admissible arm on 24 shapes (23 to a strictly faster
 arm, 1 tie) while the reference's engine-class partition is unchanged. That makes the 1e-4 atlas a slice of
 a family rather than the whole object, and it is the reason the paper is framed as a slice atlas. The three
@@ -339,8 +349,10 @@ it is the specific question this paper would put to a peer with cudnn internals 
 fp16/bf16, so the gate used throughout this paper is the benchmark's shipped contract, not a stricter private
 one. That makes $\rho$ an exact statement about the shipped benchmark rather than a remark about people who
 tighten tolerances: at fp32 the reference's own deviation and the gate's budget are the same order of magnitude,
-so on the shapes measured here which engine the reference dispatched to sets how much budget a candidate has
-left — and it is the candidate's own arithmetic, not the engine, that decides whether it spends it. That
+so on the shapes measured here which engine the reference dispatched to sets $e_r$, and the check compares
+$|e_c - e_r|$ with the element budget. Agreement therefore depends on the difference, not on a budget the
+candidate has "left" after the reference spends some of it; the candidate's own arithmetic decides the
+difference and the engine decides the point it is measured from. That
 separation is measured in §4.6 and is the reason no universal verdict sentence survives here.
 $\rho \geq 1$ is a per-element statement, not a whole-tensor one; the exceedance fraction (`frac_over`, reported
 alongside every $\rho$) says how much of the reference's output is outside the budget, which is a diagnostic on
@@ -389,10 +401,11 @@ or downgrade it:
   rather than about the row's pass/fail.
 
 The rho_max column stays in every row because it is the severity index that decides *how much* slack a
-conditional row has, but it does not decide admissibility on its own: a row can have rho_max 10.2 and be
-distribution-conditional (winograd) while a row with rho_max 111 is tail-conditional at every declared budget
-(TF32 1×1): the two rows differ in what a tolerance convention can act on, and neither verdict is read off the
-maximum, because the distribution is what a convention acts on.
+conditional row has, but it does not decide admissibility on its own: a row can have rho_max 10.2 with
+frac_over 0.0052 (winograd) while a row with rho_max 111 has frac_over 0.77–0.78 (TF32 1×1). The exceedance
+fraction is the primary statement in both cases: the winograd row fails on a negligible tail, the TF32 row fails
+in bulk, and "tail-conditional" for the TF32 row is a restatement of its bulk exceedance rather than a second
+interpretation of it. Neither verdict is read off the maximum.
 
 All reference statistics in this section are reported under a named criterion and are read with it. The paper uses three separate criteria, never one conflated number:
 - (i) Benchmark agreement — the binary, whole-tensor verdict of the candidate against the recorded reference at the recorded realization. This is the only criterion that decides a row's pass/fail, and it is never inferred from an anchor statistic.
@@ -414,7 +427,8 @@ What the surface measures:
 - **Class spans, measured.** W: rho_max 1.4–12.8 (C=64 gives 1.4; pad-2 gives 12.8024, reproducing the value recorded in the earlier review), frac_over 0.0005–0.0077, bit-identical output under every precision flag in all seven W cells. T: rho_max 60.2–429.4, frac_over 0.760–0.786, and `allow_tf32=False` removes 96.4–99.9% of the budget (ratios 3.6e-2 down to 5.6e-4) with bit-inequal output. The published 6.4–6.8 / 315–369 ranges were pad-1-only readings; the measured class span replaces them.
 - **Reference realization.** Every cell's fp64 anchor dispatches to cutlass `implicit_convolve_dgemm` (class O) — no tensorop path exists at fp64 — so the anchor lattice, not a single anchor, is the object any certificate must be written over.
 
-Consequence for the claim: the boundary is categorical and repeat-consistent in the declared tuple. That is the positive low-complexity result in tuple coordinates — the class decision is a lookup over an enumerated tuple partition rather than a continuous model. §4.6 measures a different quantity, and the three prediction targets in this paper are kept apart by name: (i) *which engine the reference dispatches*, the categorical partition of the declared tuple in Table 1, whose predictability from four derived coordinates is 0.604 against a 0.5625 majority (§4.5); (ii) *the reference's error given that dispatch*, rho_max, which compresses as a bias statistic; (iii) *whether a candidate passes the evaluator's check*, predicted out of fold from declared features at AUC 0.9747 over 672 arm-checks, matching a two-line arm-class baseline. The 0.9747 figure belongs to (iii): it does not establish a deployable engine predictor, and the operating threshold inside a class stays per-arm measured. It is also why the continuous derived-coordinate story (§4.5) cannot carry the class on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
+Consequence for the claim: the boundary is categorical and repeat-consistent in the declared tuple. That is the positive low-complexity result in tuple coordinates — the class decision is a lookup over an enumerated tuple partition rather than a continuous model. §4.6 measures a different quantity, and the three prediction targets in this paper are kept apart by name: (i) *which engine the reference dispatches*, the categorical partition of the declared tuple in Table 1, whose predictability from four derived coordinates is 0.604 against a 0.5625 majority (§4.5); (ii) *the reference's error given that dispatch*, rho_max, whose compressibility is a rank/ordering result
+(LOO Spearman 0.833 geometry-only, 0.986 with the engine class, §4.5) rather than a bias or magnitude law; (iii) *whether a candidate passes the evaluator's check*, predicted out of fold from declared features at AUC 0.9747 over 672 arm-checks, matching a two-line arm-class baseline. The 0.9747 figure belongs to (iii): it does not establish a deployable engine predictor, and the operating threshold inside a class stays per-arm measured. It is also why the continuous derived-coordinate story (§4.5) cannot carry the class on its own. The ×2.5 nearest-centroid figure remains what it always was: one classifier on four log coordinates at one lattice, not evidence that class identification requires profiling.
 
 
 ### Table 1 — the measured dispatch map (17 cells, two repeats each)
@@ -1096,12 +1110,23 @@ exactly, 0 mismatches) gives a frontier that moves:
 Normalised by behaviour rather than by arm name, the same record is smaller: across the 12 nominal arms per
 shape there are 3-4 distinct candidate-scaled budget ratios (median 3, max 4, mean 3.07), because the five
 `imp_*[ieee]` tiles share one ratio, the five `imp_*[tf32]` tiles another, and `torch`/`torch_cmp` a third
-(`results/s60_pool_diversity.json`, computed from `results/e59b_budget_ratios.jsonl`). The 672 arm-checks at
-$10^{-1}$ are therefore 168 class-cells, and the growth 128→203→293→672 is 32→168 class-cells. The arm counts
-stay in the table above because they are what a pool reports; the class-cell counts are the honest denominator
-for any claim about how many distinct *behaviours* become admissible. The speed axis is not aliased — 654 of
-672 joint (error, median-time) signatures are distinct and each shape carries 9-12 distinct median times — so
-selection inside an admitted class remains a twelve-way measurement problem. Scope: this conv pool, this arch,
+(`results/s60_pool_diversity.json`, computed from `results/e59b_budget_ratios.jsonl`). The signature there is a
+**ratio-class signature** — the rounded candidate-scaled budget ratio — not a distinct output tensor; four shapes
+carry four such classes rather than three (`m3m2` (1,4,256), (4,4,64), (4,4,256), (1,7,64)), so the error-axis
+classes sum to **172** across the 56 shapes. Under the same convention the admissible class-cells are
+**60 / 75 / 93 / 172** at $\varepsilon$ = 1e-4 / 1e-3 / 1e-2 / 1e-1 (`results/s62_resolution.json`, which
+reproduces both counts from the committed rows), so the arm growth 128→203→293→672 is 60→172 class-cells, not
+32→168. The arm counts stay in the table above because they are what a pool reports; the class-cell counts are
+the honest denominator for any claim about how many distinct *behaviours* become admissible.
+
+The speed axis is **not** aliased at the resolution at which the pool was measured, but the count is
+resolution-dependent and must be quoted with its resolution. At exact recorded precision 654 of 672 joint
+(error, median-time) signatures are distinct; collapsing pairs whose median times differ by less than the
+recorded 12-repetition spread leaves **600 of 672**, and at a 5% decision resolution (the scale of the delivery
+deltas this paper argues about) **518 of 672** (`results/s62_resolution.json`, prereg in the script's docstring;
+class-cell counts are resolution-free because they are exact ratio classes). So selection inside an admitted
+class remains a measurement problem rather than an aliased lookup, but the honest statement is "654 at exact
+precision, 600 at measurement resolution, 518 at 5%" rather than a bare count. Scope: this conv pool, this arch,
 this revision.
 
 The first flip appears at $10^{-3}$. Of the 10/24/30 identity changes, 8/23/29 move to an arm with a strictly
@@ -1217,9 +1242,19 @@ it passes the contract, otherwise deliver the fastest admissible torch arm on th
 population (24 rows) policy A's post-validation execution regret is **3.49614% SD 6.7173 SE 1.37116 pp** when
 computed from the recorded times — the recorded figure to five decimals, now produced by the repaired
 accounting — and **4.0381% SE 1.4976 pp** when the same policy is re-measured in a fresh run
-(`results/s56_analysis.json` regenerated 2026-10-29T06:11Z, timings med-of-12, L2 flush). The 0.54 pp gap is
-**not** timing variance — it is a correctness-population difference produced by a different input draw, and
-both populations are reported rather than one being chosen. The two runs do not share inputs: the recorded
+(`results/s56_analysis.json` regenerated 2026-10-29T06:11Z, timings med-of-12, L2 flush). The gap between those two figures is **not** attributable to a single factor, and the earlier "not timing
+variance" attribution is withdrawn. Crossed accounting on the 24-row reduction population gives all four cells
+(`results/s61_round17_verify.json`, arithmetic on the two committed records):
+
+| labels | recorded times | fresh times |
+|---|---:|---:|
+| recorded | 3.49614 | 3.92334 |
+| fresh | 3.59633 | 4.03814 |
+
+Swapping the timing source moves policy-A regret by +0.42720 pp at recorded labels, and swapping the label
+population moves it by +0.11480 pp at fresh times and +0.10019 pp at recorded times: both factors move the
+number. Both populations are therefore reported rather than one being chosen, and neither is offered as the
+"true" one. The two runs do not share inputs: the recorded
 run's producer set no seed and recorded none (a defect documented in its docstring and fixed afterwards),
 while the fresh run seeds per shape and records the seed per row; `ref_absmax` differs by a median 9.3% and
 up to 121%, with 22 of 34 shapes over 1%. Re-scored on the fresh draw, **26 of 228 per-arm pass labels flip**
@@ -1340,7 +1375,9 @@ nothing beyond it was evaluated.
    execution per checked arm plus the comparison. The 0.86% (n=9) and 3.49614% (n=24) figures are kernel-time
    ratios and exclude that check; a reader who wants probe-inclusive cost adds the per-arm single-execution
    times already recorded in the artifact (`arms[*].t_ms` are med-of-12, so one check execution is of that
-   order). The check is not free and is not claimed to be.
+   order). The check is not free and is not claimed to be, and this accounting is **partial**: it charges per-arm execution
+and comparison but measures no reference-build cost and no dispatch-time overhead, so the probe-inclusive
+comparison in §6.2 is a statement about this accounting, not about total deployment cost.
 5. **Fresh inputs.** The zero-probe rule cannot run the check at dispatch time (policy D3), so its correctness
    claim is conditional: the measured 9/12 admissibility is the rate at which its chosen arm *would* have
    passed had a check been run. A deployed D1 policy pays the check and delivers correctness on 24/24 reduction
@@ -1445,7 +1482,10 @@ peer with cudnn internals access — stated here rather than buried.
 
 ## 7.4 What would make us withdraw the primary claim
 
-The certificate is the contribution. It withdraws if any of the following holds:
+The contribution is one statement — a benchmark row's verdict is a function of the reference realization as
+well as of the candidate, so a delivery claim needs the reference's own accuracy as a measured quantity beside
+it (§1.1) — carried by the four quantities defined there. The certificate is the form that makes it checkable,
+not a separate contribution (§9). The statement withdraws if any of the following holds:
 
 1. An anchor-declared rerun shows delivery invariant across all three reference realizations — then the
    lattice is ceremony and the certificate reduces to a flag.
@@ -1706,10 +1746,12 @@ Appendix J Table 6 evaluates tolerance sensitivity directly, reporting correctne
 1e-4 (99%/0.90x to 83%/1.25x on their GPT-5.5 Level-1 results) and explaining the selection effect from the
 changing admitted population. Tolerance-dependent admissibility and performance summaries are therefore
 already studied there, and this paper does not claim that variable. The object here is narrower: the per-shape
-minimum over a fixed candidate pool at a declared tolerance. What the GB10 map adds is the mechanism behind
-the movement — the tolerance-conditional frontier moves because the reference's dispatched engine sets the
-budget, and the engine class is a categorical dispatch decision over the declared tuple (Table 1). That is a
-different explanatory level from an aggregate sensitivity curve. Its scope is stated rather than implied: the
+minimum over a fixed candidate pool at a declared tolerance. What the GB10 map adds is a matched measurement on the reference axis rather than an
+explanation of the aggregate curve: at fixed shapes, inputs and candidate outputs, changing only the reference
+realization changes the delivered arm on 21 of 56 conv rows (48/56 admissible-set membership), and a pure
+engine-class swap accounts for 11 of those rows (`results/gate_stability.jsonl`, prereg sha 5ff93b20). The
+engine class is a categorical dispatch decision over the declared tuple (Table 1), so the reference realization
+is a measured admission determinant at a different explanatory level from an aggregate sensitivity curve. Its scope is stated rather than implied: the
 dispatch map is measured on the 48-shape lattice, and only **2 of the 56 frontier shapes exactly match Table 1's
 default-layout tuples**, so the map explains the mechanism where it was measured and does not predict the
 frontier population row by row. A matched engine-class analysis over the frontier population is a declared
@@ -1842,10 +1884,14 @@ reported as results.
 
 ## A.5 Open items carried forward
 
-Three measurements are registered and not yet run: a reference-swap flip table (holding candidates fixed and
-changing only the reference realization from the default dispatch to the fp64 anchor, kill at <10% flips), a
-fresh-process class-invariance probe (cold cache and benchmark mode, since determinism here was measured across
-two repeats in one process), and an out-of-family class prediction with the frozen predictor (kill at the majority
-baseline). A within-class geometry sweep testing whether $\rho_{\max}$ is a bias statistic rather than a tail
-statistic is registered too. A larger item is scoped but not started: a benchmark-wide reference-error audit
+Three measurements are registered; one of them has been run and is reported in §1.7 and §9.5. The
+**reference-swap flip table** (`results/gate_stability.jsonl`, 56 rows, prereg `lab/r41_gate_stability_prereg.md`
+sha 5ff93b20, run 2026-10-22) holds candidates and inputs fixed and varies only the reference realization:
+R_def→R_64 changes the delivered arm on 21/56 rows (all 21 inside the 25 in-rule rows), admissible-set membership
+on 48/56, and 341 per-arm verdicts; the pure engine-class swap R_def→R_ieee changes the delivered arm on 11/56 and
+membership on 15/56. The <10% adequacy clause therefore did not fire, and admission is at minimum a rate over
+reference realizations rather than a point predicate. Two remain unrun: a **fresh-process class-invariance
+probe** (cold cache and benchmark mode, since determinism here was measured across two repeats in one process)
+and an **out-of-family class prediction** with the frozen predictor (kill at the majority baseline). A within-class geometry sweep testing whether $\rho_{\max}$'s rank compressibility also holds as a magnitude law
+is registered too; the compression result is a rank result, not a bias statistic (§4.5, §2.5). A larger item is scoped but not started: a benchmark-wide reference-error audit
 across all KernelBench tasks, which is the generalisation this paper does not attempt.

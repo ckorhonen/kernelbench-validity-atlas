@@ -80,9 +80,19 @@ it passes the contract, otherwise deliver the fastest admissible torch arm on th
 population (24 rows) policy A's post-validation execution regret is **3.49614% SD 6.7173 SE 1.37116 pp** when
 computed from the recorded times — the recorded figure to five decimals, now produced by the repaired
 accounting — and **4.0381% SE 1.4976 pp** when the same policy is re-measured in a fresh run
-(`results/s56_analysis.json` regenerated 2026-10-29T06:11Z, timings med-of-12, L2 flush). The 0.54 pp gap is
-**not** timing variance — it is a correctness-population difference produced by a different input draw, and
-both populations are reported rather than one being chosen. The two runs do not share inputs: the recorded
+(`results/s56_analysis.json` regenerated 2026-10-29T06:11Z, timings med-of-12, L2 flush). The gap between those two figures is **not** attributable to a single factor, and the earlier "not timing
+variance" attribution is withdrawn. Crossed accounting on the 24-row reduction population gives all four cells
+(`results/s61_round17_verify.json`, arithmetic on the two committed records):
+
+| labels | recorded times | fresh times |
+|---|---:|---:|
+| recorded | 3.49614 | 3.92334 |
+| fresh | 3.59633 | 4.03814 |
+
+Swapping the timing source moves policy-A regret by +0.42720 pp at recorded labels, and swapping the label
+population moves it by +0.11480 pp at fresh times and +0.10019 pp at recorded times: both factors move the
+number. Both populations are therefore reported rather than one being chosen, and neither is offered as the
+"true" one. The two runs do not share inputs: the recorded
 run's producer set no seed and recorded none (a defect documented in its docstring and fixed afterwards),
 while the fresh run seeds per shape and records the seed per row; `ref_absmax` differs by a median 9.3% and
 up to 121%, with 22 of 34 shapes over 1%. Re-scored on the fresh draw, **26 of 228 per-arm pass labels flip**
@@ -203,7 +213,9 @@ nothing beyond it was evaluated.
    execution per checked arm plus the comparison. The 0.86% (n=9) and 3.49614% (n=24) figures are kernel-time
    ratios and exclude that check; a reader who wants probe-inclusive cost adds the per-arm single-execution
    times already recorded in the artifact (`arms[*].t_ms` are med-of-12, so one check execution is of that
-   order). The check is not free and is not claimed to be.
+   order). The check is not free and is not claimed to be, and this accounting is **partial**: it charges per-arm execution
+and comparison but measures no reference-build cost and no dispatch-time overhead, so the probe-inclusive
+comparison in §6.2 is a statement about this accounting, not about total deployment cost.
 5. **Fresh inputs.** The zero-probe rule cannot run the check at dispatch time (policy D3), so its correctness
    claim is conditional: the measured 9/12 admissibility is the rate at which its chosen arm *would* have
    passed had a check been run. A deployed D1 policy pays the check and delivers correctness on 24/24 reduction

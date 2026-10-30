@@ -1,0 +1,145 @@
+{
+ "artifact": "s61_round17_verify",
+ "date": "2026-10-30T20:45:39Z",
+ "source": [
+  "lab/results/s56_heldout_contract_recorded.json",
+  "lab/results/s56_heldout_contract.json",
+  "lab/results/s60_pool_diversity.json",
+  "lab/results/e59b_budget_ratios.jsonl"
+ ],
+ "F2_crossed_accounting": {
+  "cells_reduction_only": {
+   "recorded_labels_recorded_times": {
+    "n": 24,
+    "mean_pp": 3.49614,
+    "sd_pp": 6.7173,
+    "se_pp": 1.37116,
+    "reviewer_value_pp": 3.49614,
+    "abs_delta_pp": 0.0,
+    "reproduced_within_0.05pp": true
+   },
+   "recorded_labels_fresh_times": {
+    "n": 24,
+    "mean_pp": 3.92334,
+    "sd_pp": 7.3811,
+    "se_pp": 1.50666,
+    "reviewer_value_pp": 3.92334,
+    "abs_delta_pp": 0.0,
+    "reproduced_within_0.05pp": true
+   },
+   "fresh_labels_recorded_times": {
+    "n": 24,
+    "mean_pp": 3.59633,
+    "sd_pp": 6.6786,
+    "se_pp": 1.36327,
+    "reviewer_value_pp": 3.59633,
+    "abs_delta_pp": 0.0,
+    "reproduced_within_0.05pp": true
+   },
+   "fresh_labels_fresh_times": {
+    "n": 24,
+    "mean_pp": 4.03814,
+    "sd_pp": 7.3368,
+    "se_pp": 1.49762,
+    "reviewer_value_pp": 4.03814,
+    "abs_delta_pp": 0.0,
+    "reproduced_within_0.05pp": true
+   }
+  },
+  "cells_pooled_34": {
+   "recorded_labels_recorded_times": {
+    "n": 34,
+    "mean_pp": 2.46787,
+    "sd_pp": 5.8364,
+    "se_pp": 1.00093
+   },
+   "recorded_labels_fresh_times": {
+    "n": 34,
+    "mean_pp": 2.76942,
+    "sd_pp": 6.4237,
+    "se_pp": 1.10165
+   },
+   "fresh_labels_recorded_times": {
+    "n": 34,
+    "mean_pp": 2.53859,
+    "sd_pp": 5.8184,
+    "se_pp": 0.99785
+   },
+   "fresh_labels_fresh_times": {
+    "n": 34,
+    "mean_pp": 2.85045,
+    "sd_pp": 6.4035,
+    "se_pp": 1.09819
+   }
+  },
+  "effects_pp": {
+   "timing_swap_at_recorded_labels": 0.4272,
+   "label_swap_at_recorded_times": 0.10019,
+   "both_swaps": 0.542
+  },
+  "reviewer_effect_claims": {
+   "timing": 0.4272,
+   "labels": 0.1148
+  },
+  "reading": "both factors move policy-A regret; the manuscript's exclusive 'not timing variance' attribution is refuted by arithmetic on its own two runs"
+ },
+ "F4_behavioural_counts": {
+  "error_sigs_sum": 172,
+  "error_sigs_distribution": {
+   "3": 52,
+   "4": 4
+  },
+  "shapes_with_four_signatures": [
+   [
+    "m3m2",
+    1,
+    4,
+    256
+   ],
+   [
+    "m3m2",
+    4,
+    4,
+    64
+   ],
+   [
+    "m3m2",
+    4,
+    4,
+    256
+   ],
+   [
+    "m3m2",
+    1,
+    7,
+    64
+   ]
+  ],
+  "manuscript_claim_class_cells_at_1e-1": 168,
+  "per_tolerance_class_cells": {
+   "1e-4": {
+    "class_cells": 60,
+    "shapes_with_admissible": 56
+   },
+   "1e-3": {
+    "class_cells": 75,
+    "shapes_with_admissible": 56
+   },
+   "1e-2": {
+    "class_cells": 93,
+    "shapes_with_admissible": 56
+   },
+   "1e-1": {
+    "class_cells": 172,
+    "shapes_with_admissible": 56
+   }
+  },
+  "reviewer_claim_per_tolerance": {
+   "1e-4": 60,
+   "1e-3": 75,
+   "1e-2": 93,
+   "1e-1": 172
+  },
+  "reading": "the endpoint 32->168 progression is not what the artifact yields; class-cell counts are 60/75/93/172 under the script's rounding convention"
+ }
+}
