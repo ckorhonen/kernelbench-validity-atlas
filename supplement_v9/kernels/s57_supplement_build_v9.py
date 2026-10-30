@@ -308,6 +308,14 @@ def main():
     if total > BUDGET:
         errors.append(f"package expanded {total} bytes exceeds budget {BUDGET}")
 
+    # N3 repair: the manifest must state the counts a reader will actually reproduce from inside the
+    # package, not the repo's. Regenerate it from the packaged artifacts after the script gate.
+    try:
+        with open(os.path.join(OUT, "PACKAGE_MANIFEST.json"), "w") as f:
+            f.write(build_meta(pin, base=OUT))
+    except Exception as e:
+        errors.append(f"manifest regeneration from package failed: {e}")
+
     print(f"final files={len(manifest)} expanded_bytes={total}")
     if errors:
         for e in errors:
@@ -478,14 +486,15 @@ def build_env():
     }, indent=1) + "\n"
 
 
-def build_meta(pin):
+def build_meta(pin, base=None):
     """Derive every count from the artifacts and from the round's submit metadata (round-15 repair of N3):
     a hardcoded manifest is how the manuscript, the shipped json and this file came to disagree."""
     import glob
+    base = base or LAB
     meta = json.load(open(os.path.join(LAB, META_FILE)))
 
     def counts(name):
-        p = os.path.join(LAB, "results", name)
+        p = os.path.join(base, "results", name)
         d = json.load(open(p))
         if name == "s50_prose_audit.json":
             return "%d/%d" % (d["summary"]["n_checks"], d["summary"]["n_checks"] - d["summary"]["n_failed"])
@@ -493,7 +502,7 @@ def build_meta(pin):
             return "%d/%d" % (d["pass"], d["total"])
         return "%d/%d" % (d["n_checks"], d["n_pass"])
 
-    prov = json.load(open(os.path.join(LAB, "results", "s48_provenance.json")))
+    prov = json.load(open(os.path.join(base, "results", "s48_provenance.json")))
     return json.dumps({
         "supplement": META_FILE.replace("submit_metadata_", "").replace(".json", ""),
         "built": __import__("datetime").datetime.utcnow().strftime("%Y-%m-%d"),
