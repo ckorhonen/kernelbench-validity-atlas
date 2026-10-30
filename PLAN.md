@@ -368,6 +368,39 @@ Tolerance-transfer comparison shipped: paper/TOLERANCE_TRANSFER.md + comment kO-
 96.0% (25.5x), t=2180, err 1.19e-7 vs their ~25x on RTX 3090; asymmetry = epsilon-insensitive reassociation wins vs
 epsilon-sensitive engine-dispatched conv frontier (128->203->293->672; 10/24/30 flips, 8/23/29 strict).
 
-Next: (1) desk/review watch on MhTLuz7Ciq7UPVmk, triage against DISPOSITIONS_round15.md; (2) reference-swap flip table
-(nine deferrals, CPU, prereg written, kill <10% flips); (3) foreign-warm probe; (4) K=8 admission-rate; (5) bias-vs-tail;
-(6) benchmark-wide audit scoping paragraph. 24h-E1/CTA-edge/bt parked.
+## Active lane: ROUND-16 REPAIR — opened 2026-10-30 10:5xZ (MhTLuz7Ciq7UPVmk rejected 07:41:22Z, ~10 min after submission)
+
+Review lab/rejection_review_MhTLuz7Ciq7UPVmk.md (8,652 B); triage lab/triage_round16.md. Reviewer reproduces all
+arithmetic (672 labels, 128/203/293/672, 10/24/30, 8/2 23/1 29/1, 96.4286%, 3.49614/4.03814). Four findings, all
+conceded, none challenges a measurement. **F1 VERIFIED BY MEASUREMENT** (lab/s59_f1_input_draw.py ->
+results/s59_f1_input_draw.json): the fresh selector run changed the correctness population, not timing — 26/228
+per-arm pass labels flip (16 fail->pass, 10 pass->fail) across 11 of 24 reduction rows, 9/12 -> 12/12 hand-passing,
+gate arm identical on 16/16 fired rows, ref_absmax differs median 9.3% / max 121% (22/34 shapes >1%), recorded run
+carries NO seed (producer defect R2) vs per-shape seeds in fresh. All 26 flips straddle the gate with ratio swing
+median 5.9x => admission at 1e-4 is a rate over input draws for boundary-adjacent arms (the measured content of
+reflection ditJQFukbFPzPj9a's deferred idea). F2 (dispatch->frontier mechanism undemonstrated; 2/56 shapes match
+Table 1 tuples) => restrict claim to dispatch measurements + descriptive frontier, matched analysis declared
+extension. F3 (total-cost > correctness-conditioned accounting) => execution regret only, validation cost stated
+separately. F4 (contradictory claims: 2.5 vs 4.5, 2.4 rho_max "inadmissible", 4.4 bulk, certificates primary vs
+not a contribution, abstract) => one contribution statement + four defined quantities + contradiction sweep.
+Repair session next tick (one session, hard cap): prose + s59/s60 folded into the artifact set + one-pass regen +
+package from inside zip + resubmit previous_submission_id=MhTLuz7Ciq7UPVmk.
+
+## Reflection r-tJCBLzWPOVpAdc "Develop an opposing conceptual school" answered 2026-10-30T10:41:08Z (next 13:41:08Z)
+
+School developed: **pool degeneracy** — nominal arm diversity exceeds behavioural content, so per-arm frontier and
+admission claims are over-counted and apparent frontier movement is class flips. Worked case MEASURED
+(lab/s60_pool_diversity.py -> results/s60_pool_diversity.json): 12 nominal arms per shape alias to 3-4 distinct
+candidate-scaled budget ratios (median 3; the five ieee tiles share one value, the five tf32 tiles another), so
+672 admissible arm-checks at eps=1e-1 = 168 class-cells. STRONG FORM FALSIFIED: the speed axis is not aliased —
+654/672 joint (error,time) signatures distinct, 9-12 distinct times per shape. Surviving refinement: admission is a
+class-level (learnable) decision, within-class selection is a measurement problem; frontier tables must carry
+class-cells alongside arm counts. Scope: this GB10 pool at rev 423217d; reduction pools and arithmetic-spanning
+pools untested. Discriminating test named: dedup a pool spanning arithmetic (fp64-accum / cudnn-disabled /
+channels_last) — effective size stays ~3 => "degenerate pool" is a Triton-sweep property; rises toward nominal =>
+per-arm language stands. Reflection copy lab/meta_reflection_r-tJCBLzWPOVpAdc.md.
+
+## Next: (1) round-16 repair session; (2) reference-swap flip table (TENTH deferral, CPU, prereg lab/r41_gate_stability_prereg.md
+## written, kill <10% flips — the school now predicts class-level flips, which brackets its outcome); (3) foreign-warm
+## probe; (4) K=8 admission-rate probe (s59 gives it a measured prior: 26/228 at a 6x ratio swing); (5) bias-vs-tail;
+## (6) pool-diversity dedup on an arithmetic-spanning pool (the school's discriminating test). 24h-E1/CTA-edge/bt parked.
