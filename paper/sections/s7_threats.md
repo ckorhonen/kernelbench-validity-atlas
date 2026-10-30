@@ -24,7 +24,7 @@ would *reduce* rho by a factor of 5. It rose 22-25× instead, because winograd-i
 "no algorithm" — it installs the TF32 tensorop engine, which is a far larger consumer. The frozen rule
 fired RETRACT on P2/P3 and no regrade was applied.
 
-**The class-is-a-function-of-(k,s,d) claim (A8, mine, this tick).** A7 named the winograd engine as the
+**The class-is-a-function-of-(k,s,d) claim (A8, mine).** A7 named the winograd engine as the
 route for 3×3 stride-1 conv. On a wider geometry grid that holds only in a corner (C≥64 with small output
 extent); everywhere else — including C16 at all extents and C256 at H≥13 — the same parameters route to the
 TF32 tensorop engine. The dispatch boundary moves rho by 20-38× in one step of H. The two-class

@@ -1,4 +1,4 @@
-# Section 1 prose — Introduction (rewritten 2026-10-28, round-11 F5 restructure)
+# Section 1 — Introduction
 
 Every number in this section is regenerated from committed artifacts by `lab/s53_intro_audit.py`
 (`results/s53_intro_audit.json`), which runs before the file is committed and hard-fails on any cited
@@ -136,3 +136,24 @@ quoted with its class. Treat any delivery claim without an admission field as a 
 The package ships auditors that read committed artifacts and exit nonzero when a cited number cannot be
 regenerated, and the provenance table maps every number in the text to its file and field, so the checks do not
 require a GPU.
+
+## 1.7 Novelty and attribution
+
+Three 2026 papers already measure parts of this premise, and the paper's claim is stated so that it does not
+collide with them. Du et al. (arXiv:2609.22220) measure what a checker fails to detect: 16.9% of witnessed
+faults are missed, the blind band grows with reduction size, and official references violate their own
+tolerance on two problems. Zhang et al. (arXiv:2607.16241) measure how speedups move under a TF32 baseline
+with hidden input distributions, from 1.43x to 0.88x. Agarwal et al. (arXiv:2609.21058) measure workload
+coverage and report a zeros-pass hole on 4 of 60 L1 problems. Each scores the *protocol*: what faults a
+checker catches, how a speedup moves when the baseline changes, which workloads a kernel set governs.
+
+The distinct object here is the *admissible-set frontier*: which candidate arm is fastest among the arms that
+satisfy a declared tolerance, as a function of that tolerance. It is measured in §5.4 and it is not implied by
+any of the three: on 56 conv shapes, relaxing the gate from 1e-4 to 1e-2 moves the fastest admissible arm on
+24 shapes while the reference's own engine-class partition is unchanged. That makes the 1e-4 atlas a slice of
+a family rather than the whole object, and it is the reason the paper is framed as a slice atlas. The three
+papers are cited and distinguished in §9.5.
+
+Naming is fixed throughout: $\rho_{\max}$ and frac_over are **anchor-normalized diagnostics** — they compare
+a reference realization to an fp64 anchor and never score a candidate. "Passes the benchmark contract" is
+reserved for the evaluator-exact candidate-versus-reference check of §4.6 and §6.

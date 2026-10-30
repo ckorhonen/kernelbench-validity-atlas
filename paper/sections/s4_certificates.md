@@ -187,16 +187,16 @@ C256, H13 at C64), while C16 at every H and C256 at H13/H21 route to the TF32 te
 dispatch boundary sits between H13 and H21 at C64 and between H7 and H13 at C256, and one step across it
 moves rho by 20-38×. A7's sentence was scoped to H=5 and is corrected here; the two-class decomposition
 survives, but the class is a dispatch decision over (C, output extent), not a function of the conv
-parameters. This is the fourth retraction of this lane and the second that is mine rather than a
-reviewer's.
+parameters. This is the fourth retraction recorded in this program and the second that is mine rather than
+one found in review.
 
-## 4.6 Candidate-level admission, measured (r57, revised round 13)
+## 4.6 Candidate admission: a class baseline plus a measured within-class threshold
 
-The reviewer of submission Lo23jsKHjyGuukZr made the decisive objection that §4.5's compression experiment
+The decisive objection to an earlier draft of §4.5 was that its compression experiment
 predicted `frac_over > 0.5` — a reference-versus-fp64 diagnostic — and not the candidate-versus-reference
 verdict that defines admission. That objection is correct against the earlier draft, and the missing measurement
 was run: r57 (prereg `4595e00`, `lab/r57_candidate_admission.py` -> `results/r57_candidate_admission.json`)
-predicted actual `pass_1e4` verdicts out of fold at AUC 0.986 and 96.4% accuracy. The round-13 review then
+predicted actual `pass_1e4` verdicts out of fold at AUC 0.986 and 96.4% accuracy. A later check then
 showed that the headline partly rested on `refdev`, a *measured* feature — the difference of two reference output
 maxima — so the execution-free claim was re-tested without it, under a prereg frozen before any computation
 (`lab/s58_review_verify_prereg.md` @ `d2da0b8`; `lab/s58_review_verify.py` -> `results/s58_review_verify.json`).
