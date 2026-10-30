@@ -120,8 +120,11 @@ already studied there, and this paper does not claim that variable. The object h
 minimum over a fixed candidate pool at a declared tolerance. What the GB10 map adds is the mechanism behind
 the movement — the tolerance-conditional frontier moves because the reference's dispatched engine sets the
 budget, and the engine class is a categorical dispatch decision over the declared tuple (Table 1). That is a
-different explanatory level from an aggregate sensitivity curve, and it is what lets a reader predict which
-shapes will move rather than only how far an aggregate moves.
+different explanatory level from an aggregate sensitivity curve. Its scope is stated rather than implied: the
+dispatch map is measured on the 48-shape lattice, and only **2 of the 56 frontier shapes exactly match Table 1's
+default-layout tuples**, so the map explains the mechanism where it was measured and does not predict the
+frontier population row by row. A matched engine-class analysis over the frontier population is a declared
+extension, not a result of this paper.
 
 **Agarwal et al.** (arXiv:2609.21058) measure workload coverage and report that zeros pass on 4 of 60 L1
 problems. Coverage asks whether a kernel set exercises the operator; §5.4 asks whether the fastest arm is

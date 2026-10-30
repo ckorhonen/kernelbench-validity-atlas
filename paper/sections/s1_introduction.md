@@ -23,12 +23,16 @@ has both passing and failing arms against the same recorded reference
 (`results/r57_candidate_admission.json`), so what separates a pass from a failure is the candidate's
 arithmetic relative to that reference, and the engine sets how much of the budget the candidate must clear.
 
-The paper answers that question with three measured objects: a dispatch map over declared coordinates, a
-magnitude surface that predicts how much of the budget the reference consumes, and a candidate-level
-admission study whose verdicts are predictable out of fold from declared features (AUC 0.9747 over 672
-arm-checks, matching a two-line arm-class baseline) while the operating threshold inside a class is measured
-rather than predicted. It also reports where the continuous form of the
-original hypothesis failed, because that failure is the reason the deliverable changed shape.
+The paper's contribution is one statement about one object: a benchmark row's verdict is a function of the
+reference realization as well as of the candidate, so a delivery claim needs the reference's own accuracy as a
+measured quantity beside it. Four quantities carry that statement, each defined in §1.2 and each reported once
+with its population and the inference it supports — reference accuracy (how far the recorded reference sits
+from an fp64 anchor: `rho_max`, `frac_over`), candidate agreement (the evaluator's own whole-tensor check of a
+candidate against that reference), engine prediction (whether the dispatched numerical engine is recoverable
+from declared coordinates), and selection cost (what a zero-probe rule versus a budgeted autotune costs under
+one stated policy). The dispatch map is the measurement behind engine prediction; the tolerance-conditional
+frontier is descriptive. The paper also reports where the continuous form of the original hypothesis failed,
+because that failure is why the deliverable changed shape.
 
 ## 1.2 Definitions
 

@@ -80,8 +80,18 @@ it passes the contract, otherwise deliver the fastest admissible torch arm on th
 population (24 rows) policy A's post-validation execution regret is **3.49614% SD 6.7173 SE 1.37116 pp** when
 computed from the recorded times — the recorded figure to five decimals, now produced by the repaired
 accounting — and **4.0381% SE 1.4976 pp** when the same policy is re-measured in a fresh run
-(`results/s56_analysis.json` regenerated 2026-10-29T06:11Z, timings med-of-12, L2 flush); the 0.54 pp gap is
-run-to-run timing variance, and both are reported rather than one being chosen. On the 9 admissible reduction
+(`results/s56_analysis.json` regenerated 2026-10-29T06:11Z, timings med-of-12, L2 flush). The 0.54 pp gap is
+**not** timing variance — it is a correctness-population difference produced by a different input draw, and
+both populations are reported rather than one being chosen. The two runs do not share inputs: the recorded
+run's producer set no seed and recorded none (a defect documented in its docstring and fixed afterwards),
+while the fresh run seeds per shape and records the seed per row; `ref_absmax` differs by a median 9.3% and
+up to 121%, with 22 of 34 shapes over 1%. Re-scored on the fresh draw, **26 of 228 per-arm pass labels flip**
+(16 fail→pass, 10 pass→fail) across 11 of 24 reduction rows, every one of them straddling the gate with a
+budget-ratio swing of median 5.9x and minimum 1.47x (`results/s59_f1_input_draw.json`); hand-passing delivery
+moves from 9/12 to 12/12 while the gate's arm choice is unchanged on 16/16 fired rows, so what moved was the
+verdict, not the selector's choice. Read as a result rather than a repair: for boundary-adjacent arms,
+admission at a fixed 1e-4 gate is a *rate over input draws*, not a property of the (shape, arm) pair. Conv
+contributes zero flips because its arms sit three to four orders of magnitude above the gate. On the 9 admissible reduction
 rows — the same policy, a narrower population — the cost is +0.86% (SD 1.11, SE 0.37, n=9); the two standard
 errors are not interchangeable because the populations differ. On the conv population (10 rows) policy A's
 regret is **0.0** because the gate's hand arm fails on all four rows where it fires and the policy delivers
@@ -96,8 +106,11 @@ pre-registered at b ∈ {1, 2, 4, 8} with their measured costs reported, and no 
 — the recorded break-even is conditional on probe cost, not intrinsic.
 
 The honest statement is purely descriptive: on this benchmark and this arm pool (eager torch, no compile
-arm), probe arms cost more than the rule's entire residual, so the rule's total-time advantage is a cost
-entered at the moment of gate deployment, not a promised property of the rule. There is no claim that the
+arm), probe arms cost more than the rule's entire residual. That comparison is a **total-time** statement and
+is labelled as one: it charges probes at their measured cost and assumes the rule's admitted arm is what gets
+deployed, while validation and timing cost sit outside it (§6.5) and admission can remove a fast candidate and
+change the fallback discontinuously. The total-time advantage is therefore a statement about this accounting
+rather than a property of the rule. There is no claim that the
 rule is cheaper or faster on any individual row; the break-even numbers (6.35–28.84x budget ratio on the
 failing conv rows) are reported as conditionality, not as a ranking. The rule's output is a decision rule
 that retains the gate's recorded choice when that choice passes the check and otherwise substitutes the

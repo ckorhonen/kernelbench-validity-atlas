@@ -1,0 +1,461 @@
+{
+ "artifact": "s59_f1_input_draw",
+ "date": "2026-10-30T13:54:51Z",
+ "source": [
+  "lab/results/s56_heldout_contract_recorded.json",
+  "lab/results/s56_heldout_contract.json"
+ ],
+ "population": {
+  "shapes": 34,
+  "arm_checks_compared": 228,
+  "families": {
+   "reduction": 24,
+   "conv": 10
+  }
+ },
+ "seed_provenance": {
+  "recorded": "none \u2014 producer set no seed, artifact carries no seed field",
+  "fresh": "per-shape seed = (K*1000003 + M*7919) % (2**31-1), recorded per row"
+ },
+ "input_realization_differs": {
+  "n": 34,
+  "ref_absmax_reldiff_median": 0.093368,
+  "ref_absmax_reldiff_max": 1.209885,
+  "n_over_1pct": 22
+ },
+ "pass_label_flips": {
+  "n": 26,
+  "frac_of_checks": 0.114035,
+  "by_family": {
+   "reduction": 26
+  },
+  "direction": {
+   "fail->pass": 16,
+   "pass->fail": 10
+  },
+  "rows_touched": 11,
+  "rows_touched_detail": [
+   {
+    "family": "reduction",
+    "shape": [
+     98304,
+     48
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     98304,
+     192
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     98304,
+     384
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     393216,
+     20
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     393216,
+     48
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     393216,
+     192
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     393216,
+     384
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     1572864,
+     20
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     1572864,
+     48
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     1572864,
+     192
+    ]
+   },
+   {
+    "family": "reduction",
+    "shape": [
+     1572864,
+     384
+    ]
+   }
+  ]
+ },
+ "gate_arm_identity": {
+  "hand_fired_rows": 16,
+  "arm_changed_rows": 0,
+  "changed_detail": []
+ },
+ "delivery": {
+  "recorded_hand_passing": 9,
+  "fresh_hand_passing": 12
+ },
+ "boundary_locality": {
+  "flip_ratio_swing": {
+   "n": 26,
+   "median_max_over_min": 5.898,
+   "min_max_over_min": 1.4727,
+   "all_straddle_gate": true
+  },
+  "flip_min_ratio": {
+   "n": 26,
+   "median": 0.3228,
+   "max": 0.9939
+  },
+  "nonflip_min_ratio": {
+   "n": 202,
+   "median": 0.0882,
+   "min": 0.0
+  }
+ },
+ "flips": [
+  {
+   "family": "reduction",
+   "shape": [
+    98304,
+    48
+   ],
+   "arm": "tsplit_S4_KT64",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.2620664882514554,
+   "fresh_ratio": 0.07364348697001237
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    98304,
+    192
+   ],
+   "arm": "tsplit_S4_KT16",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.779925674618799,
+   "fresh_ratio": 0.45905430145551335
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    98304,
+    384
+   ],
+   "arm": "tsplit_S4_KT64",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.294512346411504,
+   "fresh_ratio": 0.8789851285218796
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    20
+   ],
+   "arm": "tsplit_S4_KT16",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 4.750613620926036,
+   "fresh_ratio": 0.5897822249332455
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    20
+   ],
+   "arm": "tsplit_S4_KT64",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.0838707525814884,
+   "fresh_ratio": 0.061551845119143855
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    48
+   ],
+   "arm": "tsplit_S16_KT16",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.3023265800717395,
+   "fresh_ratio": 1.0070289056328043
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    192
+   ],
+   "arm": "tsplit_S4_KT16",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.323038072821693,
+   "fresh_ratio": 5.604433729795127
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    192
+   ],
+   "arm": "tsplit_S4_KT64",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.23711908409572904,
+   "fresh_ratio": 1.0670270847041665
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    192
+   ],
+   "arm": "tsplit_S16_KT16",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.6000703811362281,
+   "fresh_ratio": 3.5576427059430418
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    192
+   ],
+   "arm": "tsplit_S64_KT16",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.2149563439588112,
+   "fresh_ratio": 1.5116889122064434
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    384
+   ],
+   "arm": "tsplit_S4_KT64",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.5528363962354355,
+   "fresh_ratio": 1.8766520527379156
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    384
+   ],
+   "arm": "tsplit_S16_KT64",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.8015477645142088,
+   "fresh_ratio": 0.5765465361658157
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    384
+   ],
+   "arm": "tsplit_S64_KT16",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.2994364952332458,
+   "fresh_ratio": 1.7568867965964312
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    393216,
+    384
+   ],
+   "arm": "tsplit_S64_KT64",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.6056959125248196,
+   "fresh_ratio": 0.7059582879503005
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    20
+   ],
+   "arm": "tsplit_S4_KT16",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 4.280204728950403,
+   "fresh_ratio": 0.07740137774452384
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    20
+   ],
+   "arm": "tsplit_S4_KT64",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.6224035909199477,
+   "fresh_ratio": 0.03977291128700839
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    20
+   ],
+   "arm": "tsplit_S16_KT16",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.4200351176938628,
+   "fresh_ratio": 0.1109535144088864
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    20
+   ],
+   "arm": "tsplit_S64_KT16",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.2847763024138015,
+   "fresh_ratio": 0.03386681086402136
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    48
+   ],
+   "arm": "tsplit_S4_KT16",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.5430868279462137,
+   "fresh_ratio": 2.563910480485265
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    48
+   ],
+   "arm": "tsplit_S4_KT64",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.5731910786681518,
+   "fresh_ratio": 1.6461183263619517
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    48
+   ],
+   "arm": "tsplit_S16_KT16",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 1.004729959501654,
+   "fresh_ratio": 0.3226046997687294
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    48
+   ],
+   "arm": "tsplit_S64_KT16",
+   "recorded_pass": true,
+   "fresh_pass": false,
+   "recorded_ratio": 0.45350309283645424,
+   "fresh_ratio": 1.0104221216490195
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    192
+   ],
+   "arm": "tsplit_S4_KT64",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 4.67399648366887,
+   "fresh_ratio": 0.9939161867097711
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    192
+   ],
+   "arm": "tsplit_S64_KT16",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 5.215967360735993,
+   "fresh_ratio": 0.20394121496449255
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    192
+   ],
+   "arm": "tsplit_S64_KT64",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 2.573303169424067,
+   "fresh_ratio": 0.20595982344993163
+  },
+  {
+   "family": "reduction",
+   "shape": [
+    1572864,
+    384
+   ],
+   "arm": "tsplit_S64_KT64",
+   "recorded_pass": false,
+   "fresh_pass": true,
+   "recorded_ratio": 7.112991182149027,
+   "fresh_ratio": 0.8589455722508698
+  }
+ ],
+ "verdict": "INPUT_DRAW_NOT_TIMING",
+ "claim": "Same 34 shapes and same arm pool, different input realization: 26/228 pass labels flip (16 fail->pass, 10 pass->fail, 11 of 24 reduction rows), gate ARM identity unchanged on every hand-fired row, 0 conv flips. The fresh-vs-recorded regret difference is therefore a correctness-population difference, not timing variance.",
+ "scope": "descriptive count on GB10 conv/reduction pool at rev 423217d; the recorded run's inputs are irreproducible (no seed recorded), so its population is one draw, not a baseline."
+}

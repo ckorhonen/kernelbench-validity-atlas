@@ -196,8 +196,9 @@ or downgrade it:
 
 The rho_max column stays in every row because it is the severity index that decides *how much* slack a
 conditional row has, but it does not decide admissibility on its own: a row can have rho_max 10.2 and be
-distribution-conditional (winograd) while a row with rho_max 111 is inadmissible (TF32 1×1), because the
-distribution, not the maximum, is what a tolerance convention can act on.
+distribution-conditional (winograd) while a row with rho_max 111 is tail-conditional at every declared budget
+(TF32 1×1): the two rows differ in what a tolerance convention can act on, and neither verdict is read off the
+maximum, because the distribution is what a convention acts on.
 
 All reference statistics in this section are reported under a named criterion and are read with it. The paper uses three separate criteria, never one conflated number:
 - (i) Benchmark agreement — the binary, whole-tensor verdict of the candidate against the recorded reference at the recorded realization. This is the only criterion that decides a row's pass/fail, and it is never inferred from an anchor statistic.

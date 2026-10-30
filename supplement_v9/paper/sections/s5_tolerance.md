@@ -149,6 +149,17 @@ exactly, 0 mismatches) gives a frontier that moves:
 | 1e-2 | 293 | 32 | 24 | torch 25 / hand 21 / compile 6 / hand-tf32 4 | 24 (23 / 1 / 0) |
 | 1e-1 | 672 | 56 | 27 | torch 21 / hand-tf32 28 / compile 7 | 30 (29 / 1 / 0) |
 
+Normalised by behaviour rather than by arm name, the same record is smaller: across the 12 nominal arms per
+shape there are 3-4 distinct candidate-scaled budget ratios (median 3, max 4, mean 3.07), because the five
+`imp_*[ieee]` tiles share one ratio, the five `imp_*[tf32]` tiles another, and `torch`/`torch_cmp` a third
+(`results/s60_pool_diversity.json`, computed from `results/e59b_budget_ratios.jsonl`). The 672 arm-checks at
+$10^{-1}$ are therefore 168 class-cells, and the growth 128→203→293→672 is 32→168 class-cells. The arm counts
+stay in the table above because they are what a pool reports; the class-cell counts are the honest denominator
+for any claim about how many distinct *behaviours* become admissible. The speed axis is not aliased — 654 of
+672 joint (error, median-time) signatures are distinct and each shape carries 9-12 distinct median times — so
+selection inside an admitted class remains a twelve-way measurement problem. Scope: this conv pool, this arch,
+this revision.
+
 The first flip appears at $10^{-3}$. Of the 10/24/30 identity changes, 8/23/29 move to an arm with a strictly
 lower recorded median and 2/1/1 are exact ties; no flip is to a slower arm. A tie is an admission change, not
 a performance change — at $10^{-2}$ the shape `a2` (2, 6, 48) moves from torch to an IEEE hand arm at the same

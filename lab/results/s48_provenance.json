@@ -1,7 +1,7 @@
 {
- "date": "2026-10-30T07:30:21Z",
- "n_cited": 51,
- "n_found": 51,
+ "date": "2026-10-30T13:53:07Z",
+ "n_cited": 53,
+ "n_found": 53,
  "missing": [],
  "entries": [
   {
@@ -775,7 +775,8 @@
     "lab/e59b_ratio_record.py",
     "lab/e59c_epsilon_analysis.py",
     "lab/s52_supplement_build.py",
-    "lab/s57_supplement_build_v9.py"
+    "lab/s57_supplement_build_v9.py",
+    "lab/s60_pool_diversity.py"
    ],
    "content": {
     "kind": "jsonl",
@@ -1418,6 +1419,72 @@
      "population",
      "prereg_sha",
      "source"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s59_f1_input_draw.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md",
+    "paper/sections/s6_selector.md"
+   ],
+   "sha256": "92019dd5544c44c1d66503d69cf244cf2dde5cad961adba943c260483e3f1495",
+   "bytes": 8828,
+   "mtime_utc": "2026-10-30T10:43:49Z",
+   "producers": [
+    "lab/s59_f1_input_draw.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "artifact",
+     "boundary_locality",
+     "claim",
+     "date",
+     "delivery",
+     "flips",
+     "gate_arm_identity",
+     "input_realization_differs",
+     "pass_label_flips",
+     "population",
+     "scope",
+     "seed_provenance",
+     "source",
+     "verdict"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s60_pool_diversity.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md",
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "babd0d355d520a046b5ba3f359b4019690f689db7b7a460d72b255862f336c5f",
+   "bytes": 9996,
+   "mtime_utc": "2026-10-30T10:44:15Z",
+   "producers": [
+    "lab/s60_pool_diversity.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "alias_groups_first_shape",
+     "artifact",
+     "date",
+     "error_signatures",
+     "joint_signature_total",
+     "joint_signatures",
+     "nominal_arms_per_shape",
+     "population",
+     "rows",
+     "source",
+     "time_signatures",
+     "verdict"
     ]
    },
    "compressed": false

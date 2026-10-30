@@ -22,7 +22,15 @@ docstring: "v1 set no seed and recorded none"); the fresh run seeds per shape
 """
 import json, statistics, collections, os, datetime
 
-BASE = os.path.dirname(os.path.abspath(__file__)) + "/results"
+def _kb_res_dir(here):
+    """Artifact directory: lab/results in the repo, ../results inside the supplement package (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+
+BASE = _kb_res_dir(os.path.dirname(os.path.abspath(__file__)))
 
 
 def _kb_open(name):
