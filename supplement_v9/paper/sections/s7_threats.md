@@ -24,7 +24,7 @@ would *reduce* rho by a factor of 5. It rose 22-25× instead, because winograd-i
 "no algorithm" — it installs the TF32 tensorop engine, which is a far larger consumer. The frozen rule
 fired RETRACT on P2/P3 and no regrade was applied.
 
-**The class-is-a-function-of-(k,s,d) claim (A8, mine, this tick).** A7 named the winograd engine as the
+**The class-is-a-function-of-(k,s,d) claim (A8, mine).** A7 named the winograd engine as the
 route for 3×3 stride-1 conv. On a wider geometry grid that holds only in a corner (C≥64 with small output
 extent); everywhere else — including C16 at all extents and C256 at H≥13 — the same parameters route to the
 TF32 tensorop engine. The dispatch boundary moves rho by 20-38× in one step of H. The two-class
@@ -37,9 +37,9 @@ decomposition survives; the claim that the class follows from the conv parameter
   onto continuous derived coordinates. On the reference-realization surface they do not: derived-only
   prediction reaches Spearman 0.833 for rho_max but only 79% bulk accuracy for frac_over, while supplying a
   *categorical* engine coordinate lifts both to 0.986 / 100%. The candidate-level admission prediction of §4.6
-  is the exception that bounds this falsifier: on actual pass/fail verdicts, declared features reach AUC 0.986
-  out of fold (96.4% accuracy against an 80.95% majority), so the *class decision* is predictable even though
-  the within-class threshold is not. The collapse is categorical, and the
+  is the exception that bounds this falsifier: on actual pass/fail verdicts, declared features reach AUC 0.9747
+  out of fold (96.4286% accuracy, matching a two-line arm-class baseline and 15.48 pp above the pooled
+  majority), so the *class decision* is predictable even though the within-class threshold is not. The collapse is categorical, and the
   categorical coordinate's own predictability from geometry is 0.604 against a 0.5625 majority baseline on a
   48-shape lattice — a finite-grid result about a fixed projection, not an impossibility claim. Two fitted models are involved and an earlier draft conflated them. The 0.604 accuracy belongs to the
   leave-one-shape-out nearest-centroid classifier over the four derived coordinates (log k_eff, log n_elem,

@@ -27,7 +27,9 @@ review, and each one is asserted rather than promised:
 import gzip, hashlib, json, os, shutil, subprocess, sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+LAB = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "supplement_v9")
+META_FILE = "submit_metadata_r15.json"
 BUDGET = 2_000_000
 
 # CPU-only scripts: run from inside the package at build, must exit 0. This is the whole F5b repair.
@@ -35,6 +37,7 @@ CPU_RUNNABLE = """
 s48_provenance.py s50_prose_audit.py s51_prose_audit.py s52_prose_audit.py s53_intro_audit.py
 s54_metadata_audit.py s52_manuscript.py r57_candidate_admission.py f24_verify.py r45_rider_adm.py r42_analysis.py cf43.py
 cushion_screen.py s6_dispatcher_audit.py s55_review_repair.py a8_analysis.py a8b_analysis.py a9_analysis.py
+s58_review_verify.py e59c_epsilon_analysis.py
 """.split()
 
 # GPU producers: shipped so the measurement is inspectable, not re-derivable on a CPU-only reader.
@@ -42,12 +45,12 @@ GPU_PRODUCERS = """
 a6_refdistance.py a6b_ksweep.py a6c_conv_tf32pair.py a6d_crossing.py a6e_geometry_algo.py
 a6f_geom_repl_convmech.py a7_kernelclass.py a7b_precision_policy.py a8_compress.py a9_compose.py
 a10_crossing_neighborhood.py a11_layernorm_reference_dist.py s56_heldout_contract.py e2_splitk_v3.py w3_conv_gemm.py m3_autotune_curve.py
-tuple_test.py tuple_surface.py s57_supplement_build_v9.py
+tuple_test.py tuple_surface.py s57_supplement_build_v9.py e59b_ratio_record.py e59_epsilon_sweep.py
 """.split()
 
 PREREGS = """
 a6_refdistance_prereg.md a7_kernelclass_prereg.md a7b_precision_prereg.md a8_compress_prereg.md
-a9_compose_prereg.md r57_candidate_admission_prereg.md
+a9_compose_prereg.md r57_candidate_admission_prereg.md e59_epsilon_sweep_prereg.md s58_review_verify_prereg.md
 """.split()
 
 # artifacts the shipped auditors load by name plus every round-4/5 evidence leg. Heavy row-streams are
@@ -57,7 +60,9 @@ GZIP = {"b4_guard_v1.jsonl", "r1_conv_gated.jsonl", "gate_stability.jsonl", "m3_
         "e2_splitk_v2.json", "e1b_order_v2.json", "e2_v3_err.json", "e2b_floor.json",
         "b2_direction_audit.json", "e1_triad_day2.json", "e1_triad.json", "m3_r42.jsonl",
         "w4_heldout.json.jsonl", "a8_compress.json", "a8_compress_v2.json", "r42_gridfix.jsonl", "m3_r42.json",
-        "pop_confirm.json"}
+        "pop_confirm.json",
+        "tuple_surface.json", "s56_heldout_contract.json", "e59b_budget_ratios.jsonl",
+        "s56_heldout_contract_recorded.json", "e59c_epsilon_sweep.json", "e59_epsilon_sweep.json"}
 
 RESULTS = """
 calibration.json e1_triad.json e1_triad_day2.json e2_v3_err.json e2b_floor.json a6d_crossing.json
@@ -75,6 +80,8 @@ a2_loo.json
 r1_conv_gated.jsonl gate_stability.jsonl
 b4_guard_v1.jsonl e1b_order_v2.json e2_splitk_v2.json m3_r42.jsonl m3_r42.json
 w4_heldout.json w4_heldout.json.jsonl tuple_test.json tuple_surface.json a8_compress.json
+e59_epsilon_sweep.json e59b_budget_ratios.jsonl e59c_epsilon_sweep.json s58_review_verify.json
+s56_heldout_contract_recorded.json
 """.split()
 
 # r1_times.json lives at lab/ (not lab/results/) and r45_rider_adm.py requires it; the reviewer flagged
@@ -84,12 +91,12 @@ EXTRA_KERNEL_INPUTS = ["r1_times.json"]
 # the package or s54 cannot run there (v5 shipped only the supplement's own metadata and s54 died on it).
 ROOT_FILES = {"submission_metadata_v10.json": "submission_metadata_v10.json"}
 
-PAPER = ["REFRAME_SKELETON.md", "PROVENANCE.md", "MANUSCRIPT.md"]
+PAPER = ["REFRAME_SKELETON.md", "PROVENANCE.md", "MANUSCRIPT.md", "APPENDIX_HISTORY.md"]
 # Four archived full-stage reviews and two triages: §1, §7 and §8 cite them as evidence and s53 audits
 # them, so they ship rather than being referenced from outside the package.
 REJECTIONS = ["rejection_review_2CmvAb.md", "rejection_review_6yPhozm.md", "rejection_review_O4hnCx.md",
               "rejection_review_DE1paW.md", "rejection_triage_2CmvAb.md",
-              "rejection_triage_DE1paW.md", "rejection_review_f01MfL.md"]
+              "rejection_triage_DE1paW.md", "rejection_review_f01MfL.md", "rejection_review_gU24dOLN.md"]
 SECTIONS = ["s1_introduction.md", "s2_reference_axis.md", "s3_atlas.md", "s3b_conv_anchor.md",
             "s4_certificates.md", "s5_tolerance.md", "s6_selector.md", "s7_threats.md",
             "s8_reproduction.md", "s9_related.md"]
@@ -451,7 +458,7 @@ def build_dispositions():
     +4.13%, which the S56 rerun corrected). Reading the files is the fix.
     """
     parts = []
-    for name in ("DISPOSITIONS_round6.md", "supplement_v6/DISPOSITIONS.md"):
+    for name in ("DISPOSITIONS_round15.md", "DISPOSITIONS_round6.md", "supplement_v6/DISPOSITIONS.md"):
         p = os.path.join(ROOT, name)
         if not os.path.exists(p):
             errors.append(f"missing disposition map {name}")
@@ -472,22 +479,37 @@ def build_env():
 
 
 def build_meta(pin):
+    """Derive every count from the artifacts and from the round's submit metadata (round-15 repair of N3):
+    a hardcoded manifest is how the manuscript, the shipped json and this file came to disagree."""
+    import glob
+    meta = json.load(open(os.path.join(LAB, META_FILE)))
+
+    def counts(name):
+        p = os.path.join(LAB, "results", name)
+        d = json.load(open(p))
+        if name == "s50_prose_audit.json":
+            return "%d/%d" % (d["summary"]["n_checks"], d["summary"]["n_checks"] - d["summary"]["n_failed"])
+        if name == "s54_metadata_audit.json":
+            return "%d/%d" % (d["pass"], d["total"])
+        return "%d/%d" % (d["n_checks"], d["n_pass"])
+
+    prov = json.load(open(os.path.join(LAB, "results", "s48_provenance.json")))
     return json.dumps({
-        "supplement": "v7",
-        "built": "2026-10-25",
-        "supersedes": "supplement_v6",
+        "supplement": META_FILE.replace("submit_metadata_", "").replace(".json", ""),
+        "built": __import__("datetime").datetime.utcnow().strftime("%Y-%m-%d"),
         "repository": "https://github.com/ckorhonen/kernelbench-validity-atlas",
         "repository_commit": pin,
-        "previous_submission_id": "f01MfLhPgzuuQ1_3",
+        "previous_submission_id": meta["previous_submission_id"],
         "paper_sections": ["s1", "s2", "s3", "s3b", "s4", "s5", "s6", "s7", "s8", "s9"],
-        "audits": {"s50": "19/19", "s51": "31/31", "s52": "16/16", "s53": "15/15", "s54": "6/6",
-                   "provenance": "44/44"},
+        "audits": {"s50": counts("s50_prose_audit.json"), "s51": counts("s51_prose_audit.json"),
+                   "s52": counts("s52_prose_audit.json"), "s53": counts("s53_intro_audit.json"),
+                   "s54": counts("s54_metadata_audit.json"),
+                   "provenance": "%d/%d/%d" % (prov["n_cited"], prov["n_found"], len(prov["missing"]))},
         "packaged_scripts_run_from_inside_package": len(CPU_RUNNABLE),
         "declared_retractions": 5,
         "curation": "results/ carries the artifacts the shipped auditors load plus every round-4/5 leg; "
                     "omissions listed in DROPPED.md, all retrievable at the pinned commit",
-        "dispositions": "DISPOSITIONS.md carries the round-6 (f01MfL) map followed by the round-5 (DE1paW) map, "
-                        "each finding mapped to its change and its checkable location",
+        "dispositions": "DISPOSITIONS.md maps each review finding to its change and its checkable location",
     }, indent=1) + "\n"
 
 

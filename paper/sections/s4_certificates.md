@@ -134,17 +134,13 @@ The answer splits by field, and the split is the finding:
 
 - **rho_max compresses in rank, not in magnitude.** Out-of-fold Spearman against measured log rho is 0.986
   with the engine class supplied as one categorical coordinate, and 0.833 from derived geometry alone
-  (log k_eff, log n_elem, log C, log H) with no class at all. But rank is not calibration: the geometry-only
-  model's median multiplicative prediction error is **6.84×** and its worst row is 156.7× off
-  (`results/s55_review_repair.json`). The model the headline Spearman 0.986 belongs to is the
-  corrected-class model, and its own magnitude errors must be read from the same artifact that produced the
-  correlation: refitted on `results/a8_compress_v2.json` it gives median 1.251× and worst 2.409×
-  (`results/a8b_analysis.json`; recomputed in `results/s55_review_repair.json`). An earlier draft paired the
-  0.986 with 2.09×/440×, which are the *older* classification's numbers from `results/a8_analysis.json` — a
-  model mismatch, since a rank statistic from one model cannot be calibrated by another's residuals. Both
-  models' numbers are reported here rather than merged: geometry-only 6.84×/156.7×, corrected class+derived
-  1.251×/2.409×, older class+derived 2.09×/440×. So the field is a surface for *ordering* and a lookup for
-  *value*, and the magnitude of the lookup depends on which model is being looked up.
+  (log k_eff, log n_elem, log C, log H) with no class at all. Rank is not calibration: the geometry-only
+  model's median multiplicative prediction error is **6.84×** and its worst row is 156.7× off, while the
+  corrected class+derived model — the one the 0.986 belongs to — gives median 1.251× and worst 2.409×, both
+  refitted on `results/a8_compress_v2.json` and recomputed in `results/s55_review_repair.json`. A third pair
+  (2.09×/440×) belongs to a superseded classification and is quoted only as that; a rank statistic from one
+  model cannot be calibrated by another's residuals, so the numbers are reported per model rather than merged.
+  The field is a surface for *ordering* and a lookup for *value*.
 - **Scope of the frac_over negative: it is a geometry result, not a verdict on the coordinate.** The
   compression test varied shape and engine class at a *fixed input distribution*, so "frac_over does not
   compress without the class" is a statement about the geometry axis. It says nothing about the input
@@ -176,10 +172,12 @@ not as shipped.  Both readings are reported; neither is hidden.
 
 The honest summary for §4: admission is conditional on a measured categorical coordinate whose own
 predictability is 0.60, and the magnitude field is predictable at 0.83 without it. A third party can use
-the certificate to *evaluate* a published row without trusting us, and — §4.6 — can predict the *class
-decision* on an unprofiled shape from declared features at AUC 0.9747, matching a two-line arm-class baseline
-(§4.6); what they cannot yet predict is the operating threshold inside a class, which stays a measured per-arm
-quantity.
+the certificate to *evaluate* a published row without trusting us, and — §4.6 — can predict a candidate's
+*admission* on an unprofiled shape from declared features at AUC 0.9747 over 672 arm-checks, matching a
+two-line arm-class baseline (§4.6); what they cannot yet predict is the operating threshold inside a class,
+which stays a measured per-arm quantity. That 0.9747 target is candidate admission, not the engine class: the
+engine-class predictability is the separate 0.604 result above, on a different population, feature set and
+label.
 
 One retraction belongs here rather than in §2. A7 stated that 3×3 stride-1 conv routes to the winograd
 engine. On this wider grid it does so only in a corner: C≥64 with small output extent (H7 at both C64 and

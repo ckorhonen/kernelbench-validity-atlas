@@ -112,19 +112,26 @@ contribution relative to Du is not the observation but the dispatch map that exp
 realizations produce it on GB10 (§2.5, Table 1).
 
 **Zhang et al.** (arXiv:2607.16241, "KernelBench-Verified") measure how speedups move when the baseline is a
-TF32 kernel under hidden input distributions — 1.43x under their protocol falling to 0.88x. That is a
-statement about a *speedup number* under a fixed tolerance. §5.4 asks the orthogonal question: given a
-declared tolerance, which arm is fastest among those that satisfy it, and how does that set change with the
-tolerance itself.
+TF32 kernel under hidden input distributions — 1.43x under their protocol falling to 0.88x — and their
+Appendix J Table 6 evaluates tolerance sensitivity directly, reporting correctness and speedup at 1e-3 and
+1e-4 (99%/0.90x to 83%/1.25x on their GPT-5.5 Level-1 results) and explaining the selection effect from the
+changing admitted population. Tolerance-dependent admissibility and performance summaries are therefore
+already studied there, and this paper does not claim that variable. The object here is narrower: the per-shape
+minimum over a fixed candidate pool at a declared tolerance. What the GB10 map adds is the mechanism behind
+the movement — the tolerance-conditional frontier moves because the reference's dispatched engine sets the
+budget, and the engine class is a categorical dispatch decision over the declared tuple (Table 1). That is a
+different explanatory level from an aggregate sensitivity curve, and it is what lets a reader predict which
+shapes will move rather than only how far an aggregate moves.
 
 **Agarwal et al.** (arXiv:2609.21058) measure workload coverage and report that zeros pass on 4 of 60 L1
 problems. Coverage asks whether a kernel set exercises the operator; §5.4 asks whether the fastest arm is
 still the same arm when the tolerance moves, and finds it is not on 24 of 56 shapes at 1e-2.
 
 The measured distinction, then, is the frontier table in §5.4: admissible arms 128 -> 203 -> 293 -> 672,
-shapes with an admissible hand arm 4 -> 19 -> 32 -> 56, frontier flips 10/24/30 of 56 at 1e-3/1e-2/1e-1, with
-the 1e-4 engine-class partition unchanged. None of the three papers reports that object, and the atlas's
-1e-4 result is one slice of it.
+shapes with an admissible hand arm 4 -> 19 -> 32 -> 56, frontier flips 10/24/30 of 56 at 1e-3/1e-2/1e-1
+(8/23/29 of those to a strictly faster arm, 2/1/1 exact ties), with the 1e-4 engine-class partition
+unchanged. None of the three papers reports that object per shape, and none attributes its movement to a
+measured engine-class dispatch; the atlas's 1e-4 result is one slice of it.
 
 ## References
 

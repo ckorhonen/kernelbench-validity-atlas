@@ -1,4 +1,4 @@
-# Section 1 prose — Introduction (rewritten 2026-10-28, round-11 F5 restructure)
+# Section 1 — Introduction
 
 Every number in this section is regenerated from committed artifacts by `lab/s53_intro_audit.py`
 (`results/s53_intro_audit.json`), which runs before the file is committed and hard-fails on any cited
@@ -25,8 +25,9 @@ arithmetic relative to that reference, and the engine sets how much of the budge
 
 The paper answers that question with three measured objects: a dispatch map over declared coordinates, a
 magnitude surface that predicts how much of the budget the reference consumes, and a candidate-level
-admission study whose verdicts are predictable out of fold from declared features (AUC 0.986 over 672
-arm-checks) while the operating threshold inside a class is not calibrated. It also reports where the continuous form of the
+admission study whose verdicts are predictable out of fold from declared features (AUC 0.9747 over 672
+arm-checks, matching a two-line arm-class baseline) while the operating threshold inside a class is measured
+rather than predicted. It also reports where the continuous form of the
 original hypothesis failed, because that failure is the reason the deliverable changed shape.
 
 ## 1.2 Definitions
@@ -68,8 +69,10 @@ executably in §6.5.
 
 ## 1.4 Supported findings
 
-**The dispatch map is measured, deterministic and categorical.** Across 17 cells and two repeats each, the
-engine class agreed 34/34 times (`results/tuple_surface.json`). It is a step function of declared coordinates,
+**The dispatch map is measured, categorical and repeat-consistent.** Across 17 cells and two repeats each, the
+engine class agreed 34/34 times within one process (`results/tuple_surface.json`). Repeat consistency is what
+those data support; a fresh process or a contended device could distinguish a deterministic dispatch from a
+cached decision, and that is the open condition named in §7.3. Within that scope it is a step function of declared coordinates,
 and the steps are one unit wide: stride 2, dilation 2, real channels-last layout and C=16 each leave the
 winograd corner, while pad, batch and C=64 stay inside it. The fp64 anchor is class O in every cell. Table 1
 (§2.5) is the map itself.
@@ -93,10 +96,11 @@ reinterpreted.
 magnitude field is predictable out of fold from geometry alone (Spearman 0.833) and more so with the engine
 class supplied (0.986). Candidate admission — the benchmark's own candidate-versus-reference verdict, not the
 reference diagnostic — is predictable out of fold from declared features on 672 arm-checks over 56 shapes:
-AUC 0.986 and 96.4% accuracy against an 80.95% majority baseline, with all twelve arms of each held-out shape
-removed from its fold's fit (`results/r57_candidate_admission.json`, §4.6). Inside the hand-fp32 stratum the
-ranking survives (AUC 0.899 against a predeclared 0.80 bar) but a 0.5 threshold does not separate the 20
-passing arms from the 260 failing ones, so admission is a class decision plus a measured within-class residual.
+AUC 0.9747 and 96.4286% accuracy, which equals a two-line rule that reads only the arm class (15.48 pp above
+the 80.95% pooled majority) with all twelve arms of each held-out shape removed from its fold's fit
+(`results/s58_review_verify.json`, §4.6). Inside the hand-fp32 stratum, once the measured reference-deviation
+feature is removed, the ranking falls to AUC 0.7548 (clustered CI [0.537, 0.9231]) and no positive crosses a 0.5
+cut, so admission is a class decision plus a measured within-class residual.
 The reference-error diagnostic `frac_over` is the field that does not transfer: 79% bulk accuracy from geometry
 alone, 100% with the class, and the class itself only 0.604 predictable from those coordinates against a
 0.5625 majority baseline. That asymmetry is why the certificate's fields are reported separately rather than
@@ -134,3 +138,32 @@ quoted with its class. Treat any delivery claim without an admission field as a 
 The package ships auditors that read committed artifacts and exit nonzero when a cited number cannot be
 regenerated, and the provenance table maps every number in the text to its file and field, so the checks do not
 require a GPU.
+
+## 1.7 Novelty and attribution
+
+Three 2026 papers already measure parts of this premise, and the paper's claim is stated so that it does not
+collide with them. Du et al. (arXiv:2609.22220) measure what a checker fails to detect: 16.9% of witnessed
+faults are missed, the blind band grows with reduction size, and official references violate their own
+tolerance on two problems. Zhang et al. (arXiv:2607.16241) build a verified benchmark: they replace the TF32 baseline
+with a stricter one and report speedups moving from 1.43x to 0.88x under hidden input distributions, and
+their Appendix J Table 6 evaluates tolerance sensitivity directly at 1e-3 and 1e-4, with correctness and
+speedup moving together (99%/0.90x to 83%/1.25x on their GPT-5.5 Level-1 results) and the selection effect
+from the changing admitted population explained. Agarwal et al. (arXiv:2609.21058) measure workload
+coverage and report a zeros-pass hole on 4 of 60 L1 problems. Each scores the *protocol*: what faults a
+checker catches, how a speedup moves when the baseline changes, which workloads a kernel set governs.
+
+Tolerance-dependent admissibility is therefore already studied in the cited literature, and this paper does
+not claim that variable as new. The object here is narrower: the per-shape minimum over a fixed candidate
+pool at a declared tolerance, reported shape by shape rather than aggregated over a suite, together with the
+dispatch map that says which reference realization set the budget in the first place. What the map adds
+beyond an aggregate sensitivity curve is the mechanism — on GB10 the tolerance-dependent movement is produced
+by the engine the reference dispatched (Table 1), which is why the frontier moves in steps rather than
+smoothly and why the 1e-4 engine-class partition is unchanged across tolerances. Measured: on 56 conv shapes,
+relaxing the gate from 1e-4 to 1e-2 moves the fastest admissible arm on 24 shapes (23 to a strictly faster
+arm, 1 tie) while the reference's engine-class partition is unchanged. That makes the 1e-4 atlas a slice of
+a family rather than the whole object, and it is the reason the paper is framed as a slice atlas. The three
+papers are cited and distinguished in §9.5.
+
+Naming is fixed throughout: $\rho_{\max}$ and frac_over are **anchor-normalized diagnostics** — they compare
+a reference realization to an fp64 anchor and never score a candidate. "Passes the benchmark contract" is
+reserved for the evaluator-exact candidate-versus-reference check of §4.6 and §6.

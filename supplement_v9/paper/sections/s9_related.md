@@ -1,4 +1,4 @@
-# Section 9 prose — Related work, distinction, references (draft, tick #52 2026-10-24)
+# Section 9 — Related work, novelty, and references
 
 The publishing requirement is that related work compares claims, methods and limitations rather than listing
 citations. This section does that, and it also states what this paper does not claim, because the nearest
@@ -62,7 +62,7 @@ be predicted for unmeasured shapes from derived coordinates, or must be measured
 mirrors the shift literature's direction — the magnitude field calibrates out of fold (Spearman 0.986 with
 the engine class) while the reference diagnostic frac_over does not (79% vs 100% bulk accuracy) — and the
 reason is structural rather than statistical. Candidate admission itself is a separate measurement (§4.6):
-predictable out of fold at AUC 0.986 across declared classes, uncalibrated in threshold within one. The
+predictable out of fold at AUC 0.9747 across declared classes, uncalibrated in threshold within one. The
 mechanism is structural rather than statistical: the engine class is a dispatch decision that these four coordinates do
 not recover (§4.5, §7.1). A nearest-centroid failure over a fixed projection is not an impossibility result;
 the class may still be a deterministic function of a larger tuple (the heuristic's own inputs), which is why
@@ -100,6 +100,39 @@ domain predicate, harness commits bound to data, adoption naming a boundary, fal
 claim) are proposed as reporting practice, not as a necessary condition for falsifiability. A structured
 record is useful; it is not what makes a claim scientific.
 
+## 9.5 Three 2026 checker papers, and the measured distinction
+
+The nearest 2026 work measures the checker rather than the candidate ordering, and the distinction is
+quantitative rather than rhetorical.
+
+**Du et al.** (arXiv:2609.22220, "Measuring the Checker") measure tolerance blindness: 16.9% of witnessed
+faults escape the check, the blind band widens with reduction size, and official references violate their own
+tolerance on two problems. This paper's $\rho$ is the same phenomenon expressed as a budget multiple, and its
+contribution relative to Du is not the observation but the dispatch map that explains which reference
+realizations produce it on GB10 (§2.5, Table 1).
+
+**Zhang et al.** (arXiv:2607.16241, "KernelBench-Verified") measure how speedups move when the baseline is a
+TF32 kernel under hidden input distributions — 1.43x under their protocol falling to 0.88x — and their
+Appendix J Table 6 evaluates tolerance sensitivity directly, reporting correctness and speedup at 1e-3 and
+1e-4 (99%/0.90x to 83%/1.25x on their GPT-5.5 Level-1 results) and explaining the selection effect from the
+changing admitted population. Tolerance-dependent admissibility and performance summaries are therefore
+already studied there, and this paper does not claim that variable. The object here is narrower: the per-shape
+minimum over a fixed candidate pool at a declared tolerance. What the GB10 map adds is the mechanism behind
+the movement — the tolerance-conditional frontier moves because the reference's dispatched engine sets the
+budget, and the engine class is a categorical dispatch decision over the declared tuple (Table 1). That is a
+different explanatory level from an aggregate sensitivity curve, and it is what lets a reader predict which
+shapes will move rather than only how far an aggregate moves.
+
+**Agarwal et al.** (arXiv:2609.21058) measure workload coverage and report that zeros pass on 4 of 60 L1
+problems. Coverage asks whether a kernel set exercises the operator; §5.4 asks whether the fastest arm is
+still the same arm when the tolerance moves, and finds it is not on 24 of 56 shapes at 1e-2.
+
+The measured distinction, then, is the frontier table in §5.4: admissible arms 128 -> 203 -> 293 -> 672,
+shapes with an admissible hand arm 4 -> 19 -> 32 -> 56, frontier flips 10/24/30 of 56 at 1e-3/1e-2/1e-1
+(8/23/29 of those to a strictly faster arm, 2/1/1 exact ties), with the 1e-4 engine-class partition
+unchanged. None of the three papers reports that object per shape, and none attributes its movement to a
+measured engine-class dispatch; the atlas's 1e-4 result is one slice of it.
+
 ## References
 
 [1] A. Ouyang et al. *KernelBench: Can LLMs Write Efficient GPU Kernels?* 2025.
@@ -134,3 +167,13 @@ mechanism this paper measures on GB10 but does not derive.
 results, and TF32 controls. https://docs.pytorch.org/docs/2.14/notes/numerical_accuracy.html. Cited for the
 principle that reduction order and precision flags change results; this paper supplies the per-shape
 measurement the documentation describes qualitatively.
+
+[9] Y. Du et al. *Measuring the Checker: Tolerance Blindness in LLM-Generated Kernel Benchmarks.* 2026.
+https://arxiv.org/abs/2609.22220. Cited for tolerance blindness (16.9% of witnessed faults missed, blind band
+growing with reduction size, official references violating their own tolerance on two problems).
+
+[10] Zhang et al. *KernelBench-Verified.* 2026. https://arxiv.org/abs/2607.16241. Cited for the TF32-baseline
+speedup movement (1.43x to 0.88x under hidden input distributions).
+
+[11] Agarwal et al. 2026. https://arxiv.org/abs/2609.21058. Cited for workload coverage and the zeros-pass
+hole on 4 of 60 L1 problems.

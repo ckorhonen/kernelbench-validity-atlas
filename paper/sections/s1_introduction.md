@@ -69,8 +69,10 @@ executably in §6.5.
 
 ## 1.4 Supported findings
 
-**The dispatch map is measured, deterministic and categorical.** Across 17 cells and two repeats each, the
-engine class agreed 34/34 times (`results/tuple_surface.json`). It is a step function of declared coordinates,
+**The dispatch map is measured, categorical and repeat-consistent.** Across 17 cells and two repeats each, the
+engine class agreed 34/34 times within one process (`results/tuple_surface.json`). Repeat consistency is what
+those data support; a fresh process or a contended device could distinguish a deterministic dispatch from a
+cached decision, and that is the open condition named in §7.3. Within that scope it is a step function of declared coordinates,
 and the steps are one unit wide: stride 2, dilation 2, real channels-last layout and C=16 each leave the
 winograd corner, while pad, batch and C=64 stay inside it. The fp64 anchor is class O in every cell. Table 1
 (§2.5) is the map itself.

@@ -142,19 +142,32 @@ at $\varepsilon \in \{10^{-4}, 10^{-3}, 10^{-2}, 10^{-1}\}$ (`results/e59c_epsil
 `results/e59b_budget_ratios.jsonl`, which reproduced all 672 arm-checks of `results/r1_conv_gated.jsonl`
 exactly, 0 mismatches) gives a frontier that moves:
 
-| $\varepsilon$ | admissible arms | shapes with an admissible hand arm | hand arm faster than best non-hand | frontier composition | flips vs $10^{-4}$ |
+| $\varepsilon$ | admissible arms | shapes with an admissible hand arm | hand arm faster than best non-hand | frontier composition | frontier flips vs $10^{-4}$ (strict / tie / higher) |
 |---|---|---|---|---|---|
 | 1e-4 | 128 | 4 | 2 | torch 45 / compile 8 / hand 3 | — |
-| 1e-3 | 203 | 19 | 10 | torch 37 / hand 13 / compile 6 | 10/56 |
-| 1e-2 | 293 | 32 | 24 | torch 25 / hand 21 / compile 6 / hand-tf32 4 | 24/56 |
-| 1e-1 | 672 | 56 | 27 | torch 21 / hand-tf32 28 / compile 7 | 30/56 |
+| 1e-3 | 203 | 19 | 10 | torch 37 / hand 13 / compile 6 | 10 (8 / 2 / 0) |
+| 1e-2 | 293 | 32 | 24 | torch 25 / hand 21 / compile 6 / hand-tf32 4 | 24 (23 / 1 / 0) |
+| 1e-1 | 672 | 56 | 27 | torch 21 / hand-tf32 28 / compile 7 | 30 (29 / 1 / 0) |
 
-The first flip appears at $10^{-3}$. At the benchmark's own fp16/bf16 tolerance ($10^{-2}$) the fastest
-admissible arm changes on 24 of 56 conv shapes and 24 shapes have a hand arm that is both admissible and
-faster than the best admissible torch or compiled arm. Pairwise class dominance moves while the 1e-4
-engine-class partition stays fixed: hand-ieee beats hand-tf32 on 4 shapes at 1e-4 and 27 at 1e-2, and torch
-beats hand-ieee on 52 shapes at 1e-4 and 24 at 1e-2. No arm-class rule can produce that movement, which is
-what rules out the reading that the effect is class dominance.
+The first flip appears at $10^{-3}$. Of the 10/24/30 identity changes, 8/23/29 move to an arm with a strictly
+lower recorded median and 2/1/1 are exact ties; no flip is to a slower arm. A tie is an admission change, not
+a performance change — at $10^{-2}$ the shape `a2` (2, 6, 48) moves from torch to an IEEE hand arm at the same
+recorded median of 0.028384 ms — and some non-tied changes have overlapping timing IQRs, so the strict column
+is the count of resolved speed changes and IQR separation alone is not a significance test. At the benchmark's
+own fp16/bf16 tolerance ($10^{-2}$) the fastest admissible arm changes on 24 of 56 conv shapes, 23 of them to
+a strictly faster arm, and 24 shapes have a hand arm that is both admissible and faster than the best
+admissible torch or compiled arm.
+
+Pairwise class dominance moves while the 1e-4 engine-class partition stays fixed: hand-ieee beats hand-tf32 on
+4 shapes at 1e-4 and 27 at 1e-2, and torch beats hand-ieee on 52 shapes at 1e-4 and 24 at 1e-2. These counts
+are admission counts rather than speed comparisons: each counts shapes where the named class has an admissible
+member and the other does not, or where its admissible member is faster, and the second reading applies only
+where both classes are admitted. What the movement rules out is a single fixed, tolerance-independent
+admission rule. It does not rule out a shape-and-tolerance-conditioned precision-class rule: the five IEEE arms
+carry one candidate-scaled ratio per shape and the five TF32 arms likewise, so a rule keyed on (shape,
+$\varepsilon$, precision class) reproduces every hand admission in the record, with recorded timings then
+selecting among the admitted arms. That class-conditioned rule is the alternative the measurement leaves
+standing, and the paper states it as such rather than as excluded.
 
 The kill clause was written before the run: invariant frontier identity at every $\varepsilon$ would mean the
 gate framing is adequate and the "tolerance is a free variable" disagreement gets withdrawn. It did not fire,

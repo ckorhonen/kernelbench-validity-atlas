@@ -1,4 +1,4 @@
-# Section 5 prose — Tolerance as a distribution axis (draft, tick #51 2026-10-24)
+# Section 5 — Tolerance as a distribution axis
 
 Every number here traces to a committed artifact; the pre-prose audit for this section is
 `lab/s51_prose_audit.py` → `results/s51_prose_audit.json` (run before commit, hard-fails on a cited
@@ -23,14 +23,19 @@ elements at ratio ≤ 0.077). The reference's own rounding sits 100× outside th
 (`results/b2_failure_corpus.jsonl`, arms A/B, 5/5 seeds), so "more accurate than the reference" and
 "closer to the reference" are different properties, and only the second one passes.
 
-**The pass boundary is a magnitude, not a margin.** `results/cf43.json` CF3 matched 60 shapes and 528
-arm-instances across two measurement days and found **169 pass flips = 32.0%** under the deployed
-contract. Every flip sits at a budget ratio between 1.1e-4 and 1.8e-4 — i.e. within 80% of the bar — while
-the b1 factored pair, whose errors are ≤1.2e-7, never flips (0/13, margin ≥800×). The mechanism is
-family-general: what decides a flip is the distance from the bar in units of the bar, not the family, the
-day, or the arm. This is why §4's certificate carries a regret basis rather than a regret number.
+**The pass boundary is a magnitude, not a margin.** `results/cf43.json` CF3 matched 60 shapes and **360
+reduction arm-instances** across two measurement days and found **169 pass flips = 46.94%** under the
+deployed contract. (The published 32.0% divided the same 169 flips by 528, a denominator that carried 168
+cf1 rider cells: `tot` was not reset before the cf3 comparison and `tot_arm` was dead code. The corrected
+denominator and the mechanism are recorded in `results/s58_review_verify.json`; the two runs differ in
+population, not in flips — the flip count is unchanged.) Every flip sits at a budget ratio between 1.1e-4 and
+1.8e-4 — within 80% of the bar — while the b1 factored pair, whose errors are ≤1.2e-7, never flips (0/13,
+margin ≥800×). What decides a flip is the distance from the bar in units of the bar, not the family, the day,
+or the arm. The cf3 comparison is a tolerance sweep over the observed profiles, not a controlled sweep of every
+coordinate, so the law is scoped to those profiles. This is why §4's certificate carries a regret basis rather
+than a regret number.
 
-## 5.2 Propagation: cut, then repaired by measurement (scope history kept)
+## 5.2 Propagation through composed graphs
 
 The program's original intent was to propagate tolerance through composed graphs: take a per-element error
 distribution measured at a kernel, compose it across a small network, and state a bound on the end-to-end
@@ -48,7 +53,7 @@ out: it ruled out *validating a composed model from the committed CPU artifacts 
 rule out composition. Two things it left unexplained pointed at the repair. First, rho is already
 dimensionless — its denominator is the harness budget `atol + rtol·|R_64|` — so composition never needed
 the `|ref|` column whose absence killed the audit; the claim was being tested in the wrong currency.
-Second, CF3's flip mechanism (169/528 flips, all at budget ratios 1.1-1.8e-4) says the decisive quantity is
+Second, CF3's flip mechanism (169/360 flips, all at budget ratios 1.1-1.8e-4) says the decisive quantity is
 error in units of the budget, which is the shape of a dimensionless law rather than an absolute-error one.
 
 **A9 measures that law directly** (`lab/a9_compose_prereg.md` @ 53ca881, frozen before the run; artifacts
@@ -128,3 +133,47 @@ results/a9_compose.json, results/a9_analysis.json, results/s55_review_repair.jso
 variance: flip counts reported as exact integers over fixed populations; no resampling; A9 chains
 determinism-verified 6/6 (bit-equal repeat runs), G linearity checked at 1x and 10x,
 n_reps: 3 seeds (e2_v3_err), 2 days (CF3), 1 run per chain with determinism assertion (A9), date: 2026-10-24}`
+
+## 5.4 The admissible frontier is tolerance-conditional (slice atlas)
+
+The gate above is one point on a family. Recomputing admissible sets from recorded per-element budget ratios
+at $\varepsilon \in \{10^{-4}, 10^{-3}, 10^{-2}, 10^{-1}\}$ (`results/e59c_epsilon_sweep.json`, prereg
+`lab/e59_epsilon_sweep_prereg.md` frozen at `09103c0` before computation; the ratios come from
+`results/e59b_budget_ratios.jsonl`, which reproduced all 672 arm-checks of `results/r1_conv_gated.jsonl`
+exactly, 0 mismatches) gives a frontier that moves:
+
+| $\varepsilon$ | admissible arms | shapes with an admissible hand arm | hand arm faster than best non-hand | frontier composition | frontier flips vs $10^{-4}$ (strict / tie / higher) |
+|---|---|---|---|---|---|
+| 1e-4 | 128 | 4 | 2 | torch 45 / compile 8 / hand 3 | — |
+| 1e-3 | 203 | 19 | 10 | torch 37 / hand 13 / compile 6 | 10 (8 / 2 / 0) |
+| 1e-2 | 293 | 32 | 24 | torch 25 / hand 21 / compile 6 / hand-tf32 4 | 24 (23 / 1 / 0) |
+| 1e-1 | 672 | 56 | 27 | torch 21 / hand-tf32 28 / compile 7 | 30 (29 / 1 / 0) |
+
+The first flip appears at $10^{-3}$. Of the 10/24/30 identity changes, 8/23/29 move to an arm with a strictly
+lower recorded median and 2/1/1 are exact ties; no flip is to a slower arm. A tie is an admission change, not
+a performance change — at $10^{-2}$ the shape `a2` (2, 6, 48) moves from torch to an IEEE hand arm at the same
+recorded median of 0.028384 ms — and some non-tied changes have overlapping timing IQRs, so the strict column
+is the count of resolved speed changes and IQR separation alone is not a significance test. At the benchmark's
+own fp16/bf16 tolerance ($10^{-2}$) the fastest admissible arm changes on 24 of 56 conv shapes, 23 of them to
+a strictly faster arm, and 24 shapes have a hand arm that is both admissible and faster than the best
+admissible torch or compiled arm.
+
+Pairwise class dominance moves while the 1e-4 engine-class partition stays fixed: hand-ieee beats hand-tf32 on
+4 shapes at 1e-4 and 27 at 1e-2, and torch beats hand-ieee on 52 shapes at 1e-4 and 24 at 1e-2. These counts
+are admission counts rather than speed comparisons: each counts shapes where the named class has an admissible
+member and the other does not, or where its admissible member is faster, and the second reading applies only
+where both classes are admitted. What the movement rules out is a single fixed, tolerance-independent
+admission rule. It does not rule out a shape-and-tolerance-conditioned precision-class rule: the five IEEE arms
+carry one candidate-scaled ratio per shape and the five TF32 arms likewise, so a rule keyed on (shape,
+$\varepsilon$, precision class) reproduces every hand admission in the record, with recorded timings then
+selecting among the admitted arms. That class-conditioned rule is the alternative the measurement leaves
+standing, and the paper states it as such rather than as excluded.
+
+The kill clause was written before the run: invariant frontier identity at every $\varepsilon$ would mean the
+gate framing is adequate and the "tolerance is a free variable" disagreement gets withdrawn. It did not fire,
+so the paper claims the slice form and states its scope plainly — conv 3x3 s1 p1 fp32 only, 56 shapes from
+three declared grids, one device, one reference realization per shape, timings inherited from the r1 record
+rather than re-measured. The instrument is worth one line because it failed first: rebuilding admissibility
+from recorded maxima agreed on 587/672 (87.35% against a 95% bar) and over-admitted on 21 shapes, since a
+max-based threshold is too generous at atol-dominated elements; that leg was discarded and the per-element
+recorder replaced it.

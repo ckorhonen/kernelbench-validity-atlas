@@ -174,6 +174,15 @@ def main():
         json.dump({"date": __import__("datetime").datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
                    "n_cited": len(cited), "n_found": len(entries), "missing": missing,
                    "entries": entries}, f, indent=1)
+    # N3 repair: the repo-root results/ shim held a stale copy of this file, which is how the manuscript,
+    # the shipped json and PACKAGE_MANIFEST came to disagree on provenance counts. Write both locations
+    # from the same run so no second copy can drift.
+    root_res = os.path.join(ROOT, "results")
+    if os.path.isdir(root_res) and os.path.abspath(root_res) != os.path.abspath(RES):
+        with open(os.path.join(root_res, "s48_provenance.json"), "w", encoding="utf-8") as f:
+            json.dump({"date": __import__("datetime").datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                       "n_cited": len(cited), "n_found": len(entries), "missing": missing,
+                       "entries": entries}, f, indent=1)
     print("cited=%d found=%d missing=%d" % (len(cited), len(entries), len(missing)))
     for e in entries:
         print("  %-34s %s %8s %s" % (e["artifact"],

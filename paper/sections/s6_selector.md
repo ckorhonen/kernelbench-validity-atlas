@@ -1,28 +1,17 @@
-# Section 6 prose — Selector economics, demoted to a studied object (draft, tick #51 2026-10-24)
+# Section 6 — Selector economics
 
-The selector was the program's first framing and became its most-rejected claim: three rounds of review
-reproduced our arithmetic and rejected the interpretive layer built on top of it. It survives here as a
-studied object with its bookkeeping repaired, and the repair is the content.
+## 6.1 The break-even curve, measured
 
-## 6.1 The published break-even table reproduced digit-for-digit from a filter inversion
-
-The decisive public object was a break-even curve: how many repeated visits to one shape make a budgeted
-autotune cheaper than a zero-probe rule. The published numbers (reduction 122 at budget 2, 628 at budget
-8; conv 34/145) regenerate **exactly** from an inverted filter — $t_b > t_g$ where the model requires
-$t_b < t_g$, located in `lab/m3_r42_analysis.py` L59 (`results/f24_verify.json`, `f1`). The defect was a
-comparison direction, not the data: an arithmetic check finds it, and no other check could.
-
-Corrected, with $t_b < t_g$ and
-
-$$
-v^{*} = \frac{P}{t_g - t_b},
-$$
-
-reduction finite crossovers at budget 1: 6 shapes /
+A zero-probe dispatch rule is worth deploying only if it beats a budgeted autotune that pays for probes. The
+public object is the break-even curve: how many repeated visits to one shape make autotune cheaper than the
+rule. Corrected ($t_b < t_g$, $v^{*} = P/(t_g - t_b)$), reduction finite crossovers at budget 1: 6 shapes /
 median 195.0 visits; budget 2: 7 / 225.4; budget 4: 15 / 141.4; budget 8: 21 / 232.3. Conv is **exactly
-zero**: 35 of 36 rows are structurally all-torch, so there is no gate-versus-autotune gap to amortize at
-all, and the published finite conv crossovers were spurious. The honest reading is that autotune amortizes
-after roughly 140-230 repeated visits per shape on this family, and never on the conv family.
+zero**: 35 of 36 rows are structurally all-torch, so there is no gate-versus-autotune gap to amortize, and the
+earlier finite conv crossovers were spurious. The reading is that autotune amortizes after roughly 140-230
+repeated visits per shape on this family and never on the conv family. The previously published table
+(reduction 122/628, conv 34/145) came from an inverted filter, $t_b > t_g$ where the model requires
+$t_b < t_g$ (`lab/m3_r42_analysis.py` L59, `results/f24_verify.json`); the repair and its history are recorded
+in Appendix A.
 
 ## 6.2 The transfer property holds; the per-arm contract numbers are lower bounds
 
@@ -111,7 +100,8 @@ arm), probe arms cost more than the rule's entire residual, so the rule's total-
 entered at the moment of gate deployment, not a promised property of the rule. There is no claim that the
 rule is cheaper or faster on any individual row; the break-even numbers (6.35–28.84x budget ratio on the
 failing conv rows) are reported as conditionality, not as a ranking. The rule's output is a decision rule
-that dispatches to the cheapest admissible arm. The 0.86% figure is the accounting restricted to the nine
+that retains the gate's recorded choice when that choice passes the check and otherwise substitutes the
+fastest admissible fallback measured on the same row (policy A, §6.5). The 0.86% figure is the accounting restricted to the nine
 rows where a hand delivery is admissible; 3.49614% (±1.37116) over all 24 rows, with torch executed on every
 failing row, is the post-validation execution regret of the same policy A including its fallback — the checks
 themselves are charged separately (§6.5) and are not inside that ratio. These are two populations under one
@@ -137,7 +127,7 @@ and omitted the common case in which torch passes and a hand arm fails; this tab
 
 | Policy | Check state | Delivery rule | Evidence |
 |---|---|---|---|
-| D1 checked, torch-passing | a per-arm contract check has been run (probe paid) and at least one arm passes | dispatch to the cheapest passing arm; when only torch passes, deliver torch | `results/r1_conv_gated.jsonl`, `results/w4_heldout.json.jsonl`, `results/s56_heldout_contract.json` |
+| D1 checked, torch-passing | a per-arm contract check has been run (probe paid) and at least one arm passes | retain the gate's recorded choice if it passes; when it fails, substitute the fastest admissible fallback measured on that row (policy A, §6.5) | `results/r1_conv_gated.jsonl`, `results/w4_heldout.json.jsonl`, `results/s56_heldout_contract.json` |
 | D2 checked, none-passing | the check ran and no arm passes | dispatch to the best arm under a declared relaxed contract, with its precision quoted | `results/a2_loo.json`, `results/cf43.json` |
 | D3 unchecked, assumed | no per-arm check is possible without a probe | dispatch to the cheapest arm; no correctness condition is asserted | `paper/MANUSCRIPT.md` §6.2; no empirical support |
 
@@ -148,6 +138,15 @@ follows the same split — over the nine admissible hand-delivery rows the gate 
 fastest admissible arm; over all 24 rows, with torch executed on every failing row, policy A's regret is
 3.49614% (SE 1.37116 pp) on the recorded times and 4.0381% (SE 1.4976) on the fresh re-measurement. §6.2 and
 §6.3 quote these as two populations under one policy.
+
+Two policies are distinguishable inside D1 and only one was evaluated. **Policy A** is the one above and the
+one every number in this section refers to: the gate's recorded choice is retained if it passes, and a
+failing choice is replaced by the fastest admissible fallback on that row. **Policy B** would instead pick the
+cheapest admissible arm from the checked pool, so its regret against the measured admissible minimum is zero
+by construction. They select different arms on 11 of the 24 reduction shapes. Policy B is a lower-bound
+reference, not a measured deployment: it needs the same check as A and buys its zero regret by discarding the
+gate's choice, which is the object the selector exists to provide. The paper states one policy (A) with its
+own numbers and reports B only as the denominator's definition.
 
 A zero-probe dispatcher cannot recognise those failures on fresh inputs, which is why D3 exists and why its
 cost is stated without a correctness claim. Where a probe is affordable, D1 is the only policy that carries a
@@ -176,10 +175,12 @@ nothing beyond it was evaluated.
 
 1. **Gate choice is read, not re-derived.** Each row's delivered arm is taken from the recorded zero-probe
    decision; no re-tuning and no re-timing of arms beyond the recorded med-of-12 is used.
-2. **Validate-then-time.** Every candidate arm is checked against the benchmark contract first (evaluator-exact
-   `allclose` against the reference at the shipped fp32 gate, $\mathrm{atol}=\mathrm{rtol}=10^{-4}$ per
-   `eval.py:get_tolerance_for_precision`), and timed only if it passes. No failing arm's timing enters a
-   comparison.
+2. **Timing follows execution, not admission.** Every candidate arm that executes successfully is timed after
+   its correctness result is computed — the producer (`red_row`, `conv_row`) computes the check, then times
+   each executed arm; timing is not conditioned on passing. Only arms that pass enter the delivered-arm
+   comparison, and no failing arm's median is used to rank delivery. The distinction matters because the two
+   protocols give different numbers: a "time only if it passes" protocol would report a cheaper policy, and it
+   is not the one that produced these records.
 3. **Fallback substitution is the all-rows population.** On the three reduction rows where the gate's hand arm
    fails the contract, policy A substitutes the fastest admissible torch timing measured on that same row, and
    the producer now emits that substitution explicitly (`policy_a_delivered`, `policy_a_regret_frac`) alongside
