@@ -40,17 +40,29 @@ def sha256(path):
 
 
 def cited_artifacts():
+    """Scan the canonical prose set only: MANUSCRIPT.md, sections/, APPENDIX_HISTORY.md.
+
+    N3 repair: walking all of paper/ made the count depend on which auxiliary notes happened to sit in the
+    directory, so the repo and the package reported different provenance totals (52 vs 51) for the same
+    manuscript. The canonical set exists identically in both, so the two counts now agree by construction.
+    """
+    targets = []
+    for fn in ("MANUSCRIPT.md", "APPENDIX_HISTORY.md"):
+        p = os.path.join(PAPER, fn)
+        if os.path.exists(p):
+            targets.append(p)
+    secdir = os.path.join(PAPER, "sections")
+    if os.path.isdir(secdir):
+        for fn in sorted(os.listdir(secdir)):
+            if fn.endswith(".md"):
+                targets.append(os.path.join(secdir, fn))
     cited = {}
-    for dirpath, _dirs, files in os.walk(PAPER):
-        for fn in files:
-            if not fn.endswith(".md") or fn == "PROVENANCE.md":
-                continue  # PROVENANCE.md is generated; scanning it would self-poison
-            p = os.path.join(dirpath, fn)
-            with open(p, encoding="utf-8", errors="replace") as f:
-                text = f.read()
-            for m in ART_RE.finditer(text):
-                name = m.group(1)
-                cited.setdefault(name, set()).add(os.path.relpath(p, ROOT))
+    for p in targets:
+        with open(p, encoding="utf-8", errors="replace") as f:
+            text = f.read()
+        for m in ART_RE.finditer(text):
+            name = m.group(1)
+            cited.setdefault(name, set()).add(os.path.relpath(p, ROOT))
     return cited
 
 
