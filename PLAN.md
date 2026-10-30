@@ -326,3 +326,22 @@ reserved for evaluator-exact checks; (e) admission demoted to baseline+limitatio
 (g) package verified from inside the unpacked zip; resubmit previous_submission_id=zZz7scE-UgX0Yf2P.
 Next after: reference-swap flip table (7 deferrals), foreign-warm probe, K=8 admission-rate probe, bias-vs-tail,
 benchmark-wide audit scoping doc. 24h-E1/CTA-edge/bt parked.
+
+## Active lane: ROUND-15 REPAIR — opened 2026-10-30 03:06Z (gU24dOLNR6TCh4Od rejected 03:06:09Z, 12 min after submission)
+
+Review lab/rejection_review_gU24dOLN.md (8,143 B). Reviewer reproduces 672 labels and 128/203/293/672 counts. Five findings,
+all conceded in substance, none challenges a measurement:
+(1) Zhang et al. [10] Appendix J Table 6 DOES measure tolerance sensitivity (1e-3/1e-4; 99%/0.90x -> 83%/1.25x), so §1.7/§9.5's
+"under a fixed tolerance" is wrong; the narrower object (per-shape minimum over a fixed pool at a declared tolerance) must be
+stated as narrower, and what the GB10 map adds beyond that sensitivity named explicitly.
+(2) Frontier identity change != speed improvement: verified 8/23/29 of 10/24/30 flips have strictly lower median time (2/1/1 exact
+ties, 0 higher); the five IEEE arms share one candidate-scaled ratio per shape, so a shape-and-tolerance-conditioned precision-class
+admission rule reproduces all hand admissions => "no arm-class rule can produce that movement" overclaims. Table gains strict/tie
+columns; dominance counts re-described as admission-not-speed; relaxed-tolerance results kept separate from fp32-contract improvements.
+(3) §2.5/§4.5 conflate reference-engine prediction (0.604) with candidate admission (0.9747); three targets must be named separately.
+(4) §6.4 describes cheapest-passing (policy B) while §6.3/6.5 state policy A; differ on 11/24 reduction shapes, 4.0381% is A's.
+(5) "timed only if they pass" contradicts the producer (times every executed candidate).
+Repair session (one, hard cap): prose + table columns + policy unification + protocol sentence; regen manuscript/provenance/manifest/audits
+in one pass; package from inside the zip; resubmit previous_submission_id=gU24dOLNR6TCh4Od.
+Next after: reference-swap flip table (8 deferrals), foreign-warm probe, K=8 admission-rate probe, bias-vs-tail, benchmark-wide audit scoping doc.
+24h-E1/CTA-edge/bt parked.

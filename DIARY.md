@@ -2723,3 +2723,58 @@ manuscript as the tolerance-axis result (new §, the slice-atlas statement) — 
 Next tick: ROUND-14 repair session (prose + novelty + artifact synchronization), one block, hard cap.
 Ops: ssh alias dead as known (user@host + id_ed25519); r1 jsonl had to be scp'd to spark separately (rsync excludes results);
 local python3 3.9 has numpy but no torch; no service touched.
+
+## 2026-10-29 23:24Z - 2026-10-30 03:16Z -- tick: ROUND-14 repair executed (novelty by measurement, restructure, one-pass regen); RESUBMITTED gU24dOLNR6TCh4Od; rejected 12 min later
+
+Reflection lane: xlg-6pFmuR3lRHpY "Choose a useful smaller problem" answered 23:30Z (next 02:30Z), o4WNuWj7CqGXl5Sd
+"Persist or pivot" answered 02:48Z (next 05:48Z); both copies in lab/. Candid follow-up recorded: the epsilon sweep
+named last tick DID run (e59c FRONTIER_MOVES), the round-14 repair was this block's only work item.
+
+### Round-14 repair (one session, hard cap) -- executed, not described
+- (a) Novelty/attribution: new s1 1.7 + s9 9.5 cite Du 2609.22220, Zhang 2607.16241, Agarwal 2609.21058 and state the
+  measured distinction (frontier as a function of declared tolerance); refs [9][10][11] added.
+- (b) Restructure: main text question -> contribution -> one protocol -> GB10 results -> limitations; review-round
+  labels removed from the argument (s1/s2/s4/s5/s6/s7 headers and sentences scrubbed); Appendix A (paper/APPENDIX_HISTORY.md)
+  now SHIPS inside the manuscript via s52_manuscript.py, so the promise s1 makes is delivered.
+- (c) One-pass regeneration: s48_provenance 52/52/0; manuscript 143,413 B / 21,689 words; the manuscript header now READS
+  audit and provenance counts from the artifacts (hardcoded 44/44 killed); PACKAGE_MANIFEST derives the same counts
+  (s50 19/19, s51 31/31, s52 16/16, s53 15/15, s54 6/6, prov 52/52/0).
+- (d) rho_max/frac_over named anchor-normalized diagnostics (1.7 naming rule); "passes the benchmark contract" reserved
+  for the evaluator-exact check.
+- (e) Admission demoted: 4.6 retitled "Candidate admission: a class baseline plus a measured within-class threshold",
+  leads with the 96.4286% arm-class rule, model reported as matching it (0.974652), hand stratum 0.7548 CI [0.537,0.9231]
+  with 0/20 admitted, stated as limitation.
+- (f) New 5.4 tolerance-axis section from ATLAS_EPSILON_FRONTIER (table, kill clause, instrument debt e59 recorded).
+- (g) Package v14: 159 files, 1,824,020 expanded bytes, 811 KB zip; e59/e59b/e59c producers + prereg shipped; e59c given the
+  shared _kb_res_dir/_kb_open resolver (it failed inside the package on the first build and was fixed); 9/9 key scripts
+  exit 0 from inside the unpacked zip. Repo pushed 2e6d96b (package pin 8af7ef7). Audits all exit 0.
+
+### Submission gU24dOLNR6TCh4Od
+Upload mechanics correction: POST /submissions takes multipart fields `metadata`, `manuscript`, `supplement` -- NOT
+`body.metadata`/`body.manuscript`, and NOT per-part boundaries (my hand-built multipart with a different boundary per part
+was rejected twice with "body.metadata Field required"; curl -F worked first try). Submitted 02:54:07Z, files.supplement
+non-null (verified by GET), REJECTED 03:06:09Z stage=full (8,143-char review, lab/rejection_review_gU24dOLN.md).
+
+### Rejection triage (headline only; full triage owed next tick)
+Reviewer reproduces all 672 labels and 128/203/293/672 counts. Findings: (1) N1 again -- Zhang et al. [10] Appendix J
+Table 6 DOES evaluate tolerance sensitivity at 1e-3/1e-4 (99%/0.90x -> 83%/1.25x), so my "under a fixed tolerance"
+characterisation of [10] is inaccurate; the per-shape minimum over a fixed pool is the narrower object and must be stated
+as such. (2) Frontier flips conflate identity change with speed improvement: VERIFIED from results/e59c_epsilon_sweep.json
+-- of 10/24/30 flips only 8/23/29 have strictly lower median time (2/1/1 exact ties, 0 higher), so "no arm-class rule can
+produce that movement" overclaims: the five IEEE arms share one ratio per shape, so a shape-and-tolerance-conditioned
+precision-class admission rule reproduces all hand admissions. (3) Reference-engine prediction vs candidate admission
+conflated in 2.5/4.5 (AUC 0.9747 is admission, not dispatch; 0.604 is dispatch). (4) Selector policy: 6.4 describes
+cheapest-passing (policy B) while 6.3/6.5 state policy A; they differ on 11/24 reduction shapes, regret 4.0381% is A's.
+(5) "timed only if they pass" contradicts the producer, which times every successfully executed candidate.
+All five are locally checkable and conceded in substance; none challenges a measurement.
+
+Debts: (1) ROUND-15 repair (one session): Zhang [10] corrected characterisation + narrower-object statement; frontier
+table gains strict-improvement/tie columns and the class-conditioned alternative stated; 2.5/4.5/4.6 target separation;
+6.3-6.5 one policy with its own numbers; timing-protocol sentence; then regen/package/resubmit prev=gU24dOLNR6TCh4Od.
+(2) reference-swap flip table (8 deferrals), (3) foreign-warm probe, (4) K=8 admission-rate probe, (5) bias-vs-tail,
+(6) benchmark-wide audit scoping doc, (7) 24h-E1/CTA-edge/bt parked.
+Next tick: round-15 repair session; if the desk verdict lands first, triage it against this block before editing.
+Ops: curl -F for submissions (python multipart per-part boundaries is wrong); ssh not needed this tick (CPU + packaging
+only); strand-recovery autocommit fired twice mid-tick (667a485, 9391cd6); wall clock 23:24Z -> 03:16Z = ~3h50m, well over
+the 45-min target -- recorded, not excused: the package build's from-inside-zip script gate plus two API 428 chains and a
+rejection triage consumed the margin.
