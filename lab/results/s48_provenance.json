@@ -1,7 +1,7 @@
 {
- "date": "2026-10-29T12:24:30Z",
- "n_cited": 50,
- "n_found": 50,
+ "date": "2026-10-30T00:09:49Z",
+ "n_cited": 52,
+ "n_found": 52,
  "missing": [],
  "entries": [
   {
@@ -769,6 +769,72 @@
    "compressed": false
   },
   {
+   "artifact": "results/e59b_budget_ratios.jsonl",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/ATLAS_EPSILON_FRONTIER.md",
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "8cb997f45870b1e2ce7607b83a2382b06b268f492f020e521cb753088ca382b7",
+   "bytes": 79096,
+   "mtime_utc": "2026-10-29T20:17:14Z",
+   "producers": [
+    "lab/e59b_ratio_record.py",
+    "lab/e59c_epsilon_analysis.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 56,
+    "row_keys": [
+     "C",
+     "H",
+     "M",
+     "N",
+     "arms",
+     "date",
+     "ref_absmax",
+     "sm_count",
+     "tag",
+     "validation"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/e59c_epsilon_sweep.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/ATLAS_EPSILON_FRONTIER.md",
+    "paper/sections/s5_tolerance.md"
+   ],
+   "sha256": "5674c762be0ab66fa6bb6eeca4db6a5e0cab2c5fae41cd48157a408f64942a9b",
+   "bytes": 31752,
+   "mtime_utc": "2026-10-29T20:17:14Z",
+   "producers": [
+    "lab/e59c_epsilon_analysis.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "class_dominance",
+     "date",
+     "first_flip_eps",
+     "flip_detail",
+     "frontier_flips",
+     "hand_only",
+     "instrument",
+     "instrument_validation",
+     "per_eps",
+     "population",
+     "prereg",
+     "source_ratio",
+     "source_times",
+     "verdict"
+    ]
+   },
+   "compressed": false
+  },
+  {
    "artifact": "results/f24_verify.json",
    "sha256_note": null,
    "cited_in": [
@@ -858,6 +924,7 @@
    "artifact": "results/r1_conv_gated.jsonl",
    "sha256_note": null,
    "cited_in": [
+    "paper/ATLAS_EPSILON_FRONTIER.md",
     "paper/MANUSCRIPT.md",
     "paper/sections/s1_introduction.md",
     "paper/sections/s3b_conv_anchor.md",
@@ -1298,7 +1365,8 @@
     "lab/s52_supplement_build.py",
     "lab/s56_heldout_contract.py",
     "lab/s57_supplement_build_v7.py",
-    "lab/s57_supplement_build_v9.py"
+    "lab/s57_supplement_build_v9.py",
+    "lab/s58_review_verify.py"
    ],
    "content": {
     "kind": "json",
@@ -1342,9 +1410,9 @@
     "paper/sections/s4_certificates.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "f6395c90d7f72c84e062699dc0fb72713fa1e520b8a2ba7713dae554b89fc47f",
-   "bytes": 3317,
-   "mtime_utc": "2026-10-29T01:32:51Z",
+   "sha256": "497dd312ef9d49b2e2f3d3d36fc9c90f6e08c89830a877b35a65e47039e98fee",
+   "bytes": 4487,
+   "mtime_utc": "2026-10-29T16:08:57Z",
    "producers": [
     "lab/s58_review_verify.py"
    ],
@@ -1354,8 +1422,8 @@
      "V1_armclass_baseline",
      "V2_declared_only",
      "V3_hand_ieee",
-     "V4_addendum_posthoc_family_split",
      "V4_fallback_accounting",
+     "V4_fresh_remeasurement",
      "V5_cf3_denominator",
      "date",
      "population",

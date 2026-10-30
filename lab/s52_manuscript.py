@@ -107,7 +107,14 @@ for name in ORDER:
     txt = re.sub(r"\(draft, tick #\d+ 2026-10-\d+\)", "(complete)", txt, count=1)
     parts.append(txt + "\n\n---\n\n")
 
-body = "".join(parts)
+body_parts = parts
+APPX = os.path.join(ROOT, "paper", "APPENDIX_HISTORY.md")
+if not os.path.exists(APPX):
+    errors.append("missing appendix paper/APPENDIX_HISTORY.md")
+else:
+    body_parts.append(open(APPX).read().strip() + "\n")
+
+body = "".join(body_parts)
 
 cited = set(re.findall(r"results/([A-Za-z0-9_\.\-]+\.jsonl?)", body))
 missing = sorted(c for c in cited
