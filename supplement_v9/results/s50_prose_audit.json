@@ -4,13 +4,13 @@
    "label": "A_calibration_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "results/calibration.json"
+   "artifact": "lab/results/calibration.json"
   },
   {
    "label": "A_e1_day2_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "results/e1_triad_day2.json.gz"
+   "artifact": "lab/results/e1_triad_day2.json"
   },
   {
    "label": "B_rho_artifacts_count",
@@ -52,19 +52,19 @@
    "label": "C_baseline_admissibility_present",
    "ok": true,
    "detail": "value {'def': 56, 'ieee': 21, '64': 4}",
-   "artifact": "results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "D_f24_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "results/f24_verify.json"
+   "artifact": "lab/results/f24_verify.json"
   },
   {
    "label": "E_r1_summary_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "results/r1_conv_gated_summary.json"
+   "artifact": "lab/results/r1_conv_gated_summary.json"
   },
   {
    "label": "F1_paired_bounds_recomputed",
@@ -89,7 +89,7 @@
      "stored_max_pp": 0.0
     }
    },
-   "artifact": "results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F1b_stored_fields_now_pp",
@@ -108,7 +108,7 @@
      "stored_mean": -4.4268
     }
    },
-   "artifact": "results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F2_arm_disagree_0_24_31",
@@ -118,7 +118,7 @@
     "ieee": 24,
     "64": 31
    },
-   "artifact": "results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F3_no_delivery_24_31",
@@ -128,7 +128,7 @@
     "ieee": 24,
     "64": 31
    },
-   "artifact": "results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F4_oracle_undef_20_4",
@@ -138,7 +138,7 @@
     "ieee": 20,
     "64": 4
    },
-   "artifact": "results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F5_def_to_64_52_eq_21plus31",
@@ -149,19 +149,19 @@
     "to_none": 31,
     "from_none": 0
    },
-   "artifact": "results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "F6_published_21_matches",
    "ok": true,
    "detail": 21,
-   "artifact": "results/r45_rider_adm.json"
+   "artifact": "lab/results/r45_rider_adm.json"
   },
   {
    "label": "G_cushion_present",
    "ok": true,
    "detail": "loaded",
-   "artifact": "results/cushion_screen.json"
+   "artifact": "lab/results/cushion_screen.json"
   }
  ],
  "unsupported": [],
@@ -194,14 +194,14 @@
   "rows"
  ],
  "rho_artifacts": {
-  "a6_refdistance.json": "results/a6_refdistance.json",
-  "a6b_ksweep.json": "results/a6b_ksweep.json",
-  "a6c_conv_tf32pair.json": "results/a6c_conv_tf32pair.json",
-  "a6d_crossing.json": "results/a6d_crossing.json",
-  "a6e_geometry_algo.json": "results/a6e_geometry_algo.json",
-  "a6f_geom_repl_convmech.json": "results/a6f_geom_repl_convmech.json",
-  "a7_kernelclass.json": "results/a7_kernelclass.json",
-  "a7b_precision_policy.json": "results/a7b_precision_policy.json"
+  "a6_refdistance.json": "lab/results/a6_refdistance.json",
+  "a6b_ksweep.json": "lab/results/a6b_ksweep.json",
+  "a6c_conv_tf32pair.json": "lab/results/a6c_conv_tf32pair.json",
+  "a6d_crossing.json": "lab/results/a6d_crossing.json",
+  "a6e_geometry_algo.json": "lab/results/a6e_geometry_algo.json",
+  "a6f_geom_repl_convmech.json": "lab/results/a6f_geom_repl_convmech.json",
+  "a7_kernelclass.json": "lab/results/a7_kernelclass.json",
+  "a7b_precision_policy.json": "lab/results/a7b_precision_policy.json"
  },
  "pair_statistic": {
   "winograd_C256": {

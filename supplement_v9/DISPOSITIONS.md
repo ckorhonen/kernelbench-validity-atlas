@@ -1,3 +1,23 @@
+# DISPOSITIONS — round-15 review (gU24dOLNR6TCh4Od)
+
+Each finding from `rejections/rejection_review_gU24dOLN.md` mapped to the change made and to the location where
+a reader can check it. No measurement was disputed; the reviewer reproduced all 672 admission labels and the
+128/203/293/672 counts.
+
+| # | Finding | Disposition | Checkable location |
+|---|---|---|---|
+| 1 | Zhang et al. [10] Appendix J Table 6 does evaluate tolerance sensitivity (1e-3/1e-4, 99%/0.90x -> 83%/1.25x), so "under a fixed tolerance" mischaracterises it | Corrected. The paper now states that tolerance-dependent admissibility is already studied, frames its own object as the narrower per-shape minimum over a fixed candidate pool at a declared tolerance, and names what the GB10 map adds: the reference's dispatched engine sets the budget, so the frontier moves in steps and the 1e-4 partition is unchanged across tolerances | `paper/sections/s1_introduction.md` §1.7; `paper/sections/s9_related.md` §9.5; `results/e59c_epsilon_sweep.json` |
+| 2 | Frontier identity change is not speed improvement (8/23/29 of 10/24/30 flips strictly faster, 2/1/1 ties); a shape-and-tolerance-conditioned precision-class rule reproduces all hand admissions; dominance counts are admission counts | Corrected. §5.4 gains strict/tie/higher columns, states that a tie is an admission change (a2 (2,6,48) at 0.028384 ms), withdraws "no arm-class rule can produce that movement" and states the class-conditioned rule as the alternative left standing; dominance counts are described as admission counts, not speed comparisons | `paper/sections/s5_tolerance.md` §5.4; `results/e59c_epsilon_sweep.json` (`flip_detail`, `class_dominance`) |
+| 3 | Reference-engine prediction, reference error and candidate admission conflated (0.604 vs 0.9747); "deterministic" overstates two repeats in one process | Corrected. §2.5, §4.5 and §4.6 name the three targets separately with their own populations and metrics; §1.4 downgrades to repeat-consistent within one process (34/34) and names fresh-process replication as the open condition | `paper/sections/s2_reference_axis.md` §2.5; `paper/sections/s4_certificates.md` §4.5, §4.6; `paper/sections/s1_introduction.md` §1.4; `results/s58_review_verify.json`; `results/tuple_surface.json` |
+| 4 | §6.4 describes cheapest-passing (policy B) while §6.3/6.5 state policy A; they differ on 11/24 reduction shapes and 4.0381% is A's | Corrected. One policy (A) is stated with its own numbers (recorded 3.49614% SE 1.37116; fresh 4.0381% SE 1.4976); policy B is defined and used only as the denominator, with the 11/24 divergence named | `paper/sections/s6_selector.md` §6.3, §6.4, §6.5; `results/s56_analysis.json`; `results/s58_review_verify.json` |
+| 5 | "timed only if they pass" contradicts the producer, which times every executed candidate | Corrected. §6.5 states the protocol as executed: every successfully executed candidate is timed after its correctness result is computed, timing is not conditioned on admission, and only passing arms enter the delivery comparison | `paper/sections/s6_selector.md` §6.5; `kernels/s56_heldout_contract.py` (`red_row`, `conv_row`) |
+| 6 | Clarity: main text still follows repair chronology (§6 opens with review history, §4.5 interleaves old and corrected results) | Corrected. §6 opens with the question and the measured break-even curve, with repair history moved to Appendix A (which ships inside the manuscript); §4.5 reports the current model's numbers and labels the superseded pair as such | `paper/sections/s6_selector.md` §6.1; `paper/sections/s4_certificates.md` §4.5; `paper/APPENDIX_HISTORY.md` |
+
+Reproduction: the supplement ships every producer, prereg and artifact these rows cite; the build runs each
+CPU-only script from inside the unpacked package and fails on a nonzero exit.
+
+---
+
 # Per-finding disposition map — f01MfLhPgzuuQ1_3 (round 6)
 
 Rejected 2026-10-25T06:38:58Z, stage=full. Review archived at `rejections/rejection_review_f01MfL.md`.
