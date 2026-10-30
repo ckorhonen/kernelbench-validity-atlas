@@ -1,8 +1,24 @@
-# Supplement v7 -- validity-domain atlas: runnable producers, artifacts, pinned source
+# Supplement r17 -- validity-domain atlas: runnable producers, artifacts, pinned source
 
-Built 2026-10-25 (tick #56). Supersedes supplement_v6.
+Built 2026-10-30 (round-17 repair). Supersedes supplement v9 (r16).
 
-## What changed from v6, and why
+## What changed in r17, and why
+
+The DbvG6Bpe review found five groups of defects, none of which challenged a measurement. The load-bearing
+repair is a citation, not a new run: the reference-swap flip table the manuscript called "registered and not
+yet run" had in fact been run on 2026-10-22 (`results/gate_stability.jsonl`, prereg sha 5ff93b20) and already
+shipped in r16. It is now cited where the reviewer asked for a matched comparison: holding shapes, inputs and
+candidate outputs fixed and varying only the reference realization changes the delivered arm on 21/56 rows
+(11/56 from an engine-class swap alone), membership on 48/56 and 341 per-arm verdicts, so the <10% adequacy
+clause did not fire. The producer and prereg now ship in this package. The crossed accounting for policy-A
+regret is stated in full (3.49614 / 3.92334 / 3.59633 / 4.03814 pp), the exclusive "not timing variance"
+attribution is withdrawn, one contribution statement replaces three competing framings, the class-cell
+counts are corrected to 60/75/93/172 per tolerance (172, not 168, error-signature classes), and
+`results/s62_resolution.json` reports behavioural distinctness at a decision-relevant resolution
+(654/672 exact, 600/672 at measurement resolution, 518/672 at 5%) so the count in Sec.5.4 carries its
+resolution. `DISPOSITIONS.md` maps each finding to its change.
+
+## What changed from v6 to v7, and why (previous round, retained)
 
 The f01MfL review found five substantive defects. Four of them were answered by measurement, not by prose:
 a neighborhood-and-seed study of the matmul crossing (A10) that shows the named bracket is a coin flip and
@@ -15,7 +31,7 @@ The fifth was the prose inconsistency the review describes, now repaired in §2.
 otherwise), ships the A10/A11 producers and the S56 rerun, and pins the public source:
 
     https://github.com/ckorhonen/kernelbench-validity-atlas
-    commit b79c3807d76f6a094e9abdc004f9a6d004804420
+    commit 21759c38c781c9f4d73d0db23503f563cf59789d
 
 That commit is the exact tree this package was built from. Anything omitted here is retrievable there at
 that revision, so no essential evidence depends on private access.
