@@ -142,15 +142,23 @@ require a GPU.
 Three 2026 papers already measure parts of this premise, and the paper's claim is stated so that it does not
 collide with them. Du et al. (arXiv:2609.22220) measure what a checker fails to detect: 16.9% of witnessed
 faults are missed, the blind band grows with reduction size, and official references violate their own
-tolerance on two problems. Zhang et al. (arXiv:2607.16241) measure how speedups move under a TF32 baseline
-with hidden input distributions, from 1.43x to 0.88x. Agarwal et al. (arXiv:2609.21058) measure workload
+tolerance on two problems. Zhang et al. (arXiv:2607.16241) build a verified benchmark: they replace the TF32 baseline
+with a stricter one and report speedups moving from 1.43x to 0.88x under hidden input distributions, and
+their Appendix J Table 6 evaluates tolerance sensitivity directly at 1e-3 and 1e-4, with correctness and
+speedup moving together (99%/0.90x to 83%/1.25x on their GPT-5.5 Level-1 results) and the selection effect
+from the changing admitted population explained. Agarwal et al. (arXiv:2609.21058) measure workload
 coverage and report a zeros-pass hole on 4 of 60 L1 problems. Each scores the *protocol*: what faults a
 checker catches, how a speedup moves when the baseline changes, which workloads a kernel set governs.
 
-The distinct object here is the *admissible-set frontier*: which candidate arm is fastest among the arms that
-satisfy a declared tolerance, as a function of that tolerance. It is measured in §5.4 and it is not implied by
-any of the three: on 56 conv shapes, relaxing the gate from 1e-4 to 1e-2 moves the fastest admissible arm on
-24 shapes while the reference's own engine-class partition is unchanged. That makes the 1e-4 atlas a slice of
+Tolerance-dependent admissibility is therefore already studied in the cited literature, and this paper does
+not claim that variable as new. The object here is narrower: the per-shape minimum over a fixed candidate
+pool at a declared tolerance, reported shape by shape rather than aggregated over a suite, together with the
+dispatch map that says which reference realization set the budget in the first place. What the map adds
+beyond an aggregate sensitivity curve is the mechanism — on GB10 the tolerance-dependent movement is produced
+by the engine the reference dispatched (Table 1), which is why the frontier moves in steps rather than
+smoothly and why the 1e-4 engine-class partition is unchanged across tolerances. Measured: on 56 conv shapes,
+relaxing the gate from 1e-4 to 1e-2 moves the fastest admissible arm on 24 shapes (23 to a strictly faster
+arm, 1 tie) while the reference's engine-class partition is unchanged. That makes the 1e-4 atlas a slice of
 a family rather than the whole object, and it is the reason the paper is framed as a slice atlas. The three
 papers are cited and distinguished in §9.5.
 
