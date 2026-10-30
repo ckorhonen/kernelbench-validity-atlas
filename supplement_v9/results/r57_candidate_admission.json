@@ -1,8 +1,8 @@
 {
  "prereg": "lab/r57_candidate_admission_prereg.md sha256:be88e2af7d4472c3",
- "source": "/Users/ckorhonen/rstation/kernelbench/lab/results/r1_conv_gated.jsonl",
+ "source": "/Users/ckorhonen/rstation/kernelbench/supplement_v9/results/r1_conv_gated.jsonl",
  "source_sha": "e578e4a438659dda",
- "date": "2026-10-28T22:22:07.446322Z",
+ "date": "2026-10-30T07:28:52.357352Z",
  "n_armchecks": 672,
  "positives": 128,
  "rows": 56,

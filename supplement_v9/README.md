@@ -15,7 +15,7 @@ The fifth was the prose inconsistency the review describes, now repaired in §2.
 otherwise), ships the A10/A11 producers and the S56 rerun, and pins the public source:
 
     https://github.com/ckorhonen/kernelbench-validity-atlas
-    commit c5430e0c21ca0b5cbc8e9408a0cf32af590fa879
+    commit f7a05658fca926f32e16f6772ac10a601b6a6bbd
 
 That commit is the exact tree this package was built from. Anything omitted here is retrievable there at
 that revision, so no essential evidence depends on private access.
