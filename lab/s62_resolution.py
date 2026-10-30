@@ -187,7 +187,7 @@ verdict = {
 }
 results["verdict"] = verdict
 
-out = {"artifact": "s62_resolution", "date": "2026-10-30T20:2xZ",
+out = {"artifact": "s62_resolution", "date": __import__("datetime").datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
        "source": ["lab/results/r1_conv_gated.jsonl", "lab/results/e59b_budget_ratios.jsonl",
                   "lab/results/s60_pool_diversity.json"],
        "prereg": "docstring of lab/s62_resolution.py, frozen before computation",

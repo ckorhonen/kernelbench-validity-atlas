@@ -1,6 +1,6 @@
 {
  "artifact": "s62_resolution",
- "date": "2026-10-30T20:2xZ",
+ "date": "2026-10-30T20:28:26Z",
  "source": [
   "lab/results/r1_conv_gated.jsonl",
   "lab/results/e59b_budget_ratios.jsonl",
@@ -3039,7 +3039,12 @@
    "reconsider_if": "joint distinctness at noise-floor resolution >= 600/672 => speed axis genuinely non-degenerate",
    "joint_at_noise_floor": 600,
    "threshold": 600,
-   "outcome": "DISCHARGED \u2014 speed axis non-degenerate at decision-relevant resolution"
+   "outcome": "DISCHARGED \u2014 speed axis non-degenerate at decision-relevant resolution",
+   "texture_reported_not_refitted": {
+    "knife_edge": "R1 lands exactly on the predeclared threshold (600/672), so the discharge is not a margin.",
+    "resolution_sensitivity": "at a 5% decision resolution the joint count falls to 518/672 and the time count to 459/672; at 10% to 462 and 353. So the count 654 is precision-dependent and must be quoted with its resolution.",
+    "reading": "the school's strong form stays falsified at measurement resolution, but only if the count carries its resolution; class-cell counts (60/75/93/172 per tolerance) are resolution-free because they are exact ratio classes."
+   }
   }
  }
 }
