@@ -3,7 +3,7 @@
  "instrument": "lab/e59b_ratio_record.py",
  "source_ratio": "/Users/ckorhonen/rstation/kernelbench/supplement_v9/results/e59b_budget_ratios.jsonl",
  "source_times": "/Users/ckorhonen/rstation/kernelbench/supplement_v9/results/r1_conv_gated.jsonl",
- "date": "2026-10-30T13:57:24Z",
+ "date": "2026-10-30T13:57:37Z",
  "population": {
   "shapes": 56,
   "arm_checks": 672,
