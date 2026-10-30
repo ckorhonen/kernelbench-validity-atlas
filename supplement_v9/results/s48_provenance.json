@@ -1,5 +1,5 @@
 {
- "date": "2026-10-30T13:54:51Z",
+ "date": "2026-10-30T13:57:24Z",
  "n_cited": 53,
  "n_found": 53,
  "missing": [],
@@ -13,7 +13,7 @@
    ],
    "sha256": "246aa82efdb16f309c5088d58605df19aae51c420b864b04ef413f7be6195309",
    "bytes": 21123,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/a10_crossing_neighborhood.py"
    ],
@@ -40,7 +40,7 @@
    ],
    "sha256": "5895ad05dd8ac078644dc118c9627f5b9dfd60183ce891426a2a7db06907cce2",
    "bytes": 10188,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/a11_layernorm_reference_dist.py"
    ],
@@ -63,7 +63,7 @@
    ],
    "sha256": "811c66750518687eb7b3cd03a77efedc9c05b05e83c266fafd51d5528b80915b",
    "bytes": 25606,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s57_supplement_build_v9.py"
    ],
@@ -94,7 +94,7 @@
    ],
    "sha256": "5c0092b57ea2852218a99db5c0fdd24f7bb8d378d7b8f6e25fa5aa4e705b1500",
    "bytes": 1918,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/a6_refdistance.py"
    ],
@@ -120,7 +120,7 @@
    ],
    "sha256": "19ac88e7f90d432b5fd57b0400beea570cbb440891cfd4fa2926027aed0aa1e4",
    "bytes": 2099,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/a6b_ksweep.py"
    ],
@@ -146,7 +146,7 @@
    ],
    "sha256": "87016d2de387478ea522170bcc3e531b8c84d277f5d2c696c446bc8bd6b7b425",
    "bytes": 2435,
-   "mtime_utc": "2026-10-30T13:54:46Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/a6d_crossing.py"
    ],
@@ -175,7 +175,7 @@
    ],
    "sha256": "25f31f86da179716dcaf3acfd480ba598e792d835d2c0842193de07bf30a19f3",
    "bytes": 15764,
-   "mtime_utc": "2026-10-30T13:54:46Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/a7_kernelclass.py"
    ],
@@ -201,7 +201,7 @@
    ],
    "sha256": "78700d7c6085756409d8f37bf851aad7e79ab39c448984ad6a9e3f02efc270a2",
    "bytes": 6693,
-   "mtime_utc": "2026-10-30T13:54:46Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/a7b_precision_policy.py"
    ],
@@ -227,7 +227,7 @@
    ],
    "sha256": "6ea0c0a8660772942709b39ccd23efa04f0705bb153444478b1ffb6112b878f3",
    "bytes": 36148,
-   "mtime_utc": "2026-10-30T13:54:50Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/a8_analysis.py"
    ],
@@ -255,9 +255,9 @@
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s4_certificates.md"
    ],
-   "sha256": "9cae230a6d4c4533eeab579ddfe4bf510d1af59b83e0a58dc87d494d88170538",
+   "sha256": "f8fecaea6283e731f43446b6b8ecbd719ed4064c8719517e60b7094e1ee8ffef",
    "bytes": 5221,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/a8_compress.py",
     "kernels/a8b_analysis.py",
@@ -285,7 +285,7 @@
    ],
    "sha256": "d966eebf2e2934e50412a7c83258a8f356e72e955217ffc938cc00ab8234a0b9",
    "bytes": 48991,
-   "mtime_utc": "2026-10-30T13:54:50Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/a8b_analysis.py"
    ],
@@ -314,7 +314,7 @@
    ],
    "sha256": "6cbdf646ded21a068869130a8e0c2adfb78acbf4c941e5c819f854b3906e3e96",
    "bytes": 7436,
-   "mtime_utc": "2026-10-30T13:54:50Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/a9_analysis.py"
    ],
@@ -341,7 +341,7 @@
    ],
    "sha256": "a6bbb1dab9d7ccf358c4456ef2556cf7f3323597992ec3715ed758ce3913d268",
    "bytes": 5043,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/a9_compose.py"
    ],
@@ -361,9 +361,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "132a3fe399eb691ba1e8eb8b25073a3cbe5d9191caa3c33bb674482beec4e7c8",
+   "sha256": "75d219213e5a9769686af4ea7554f179560bad787719c3f25786b233619eff0d",
    "bytes": 8431,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s51_prose_audit.py",
     "kernels/s57_supplement_build_v9.py"
@@ -379,58 +379,24 @@
    "compressed": true
   },
   {
-   "artifact": "results/b2_failure_corpus.jsonl",
+   "artifact": "results/b2_failure_corpus.jsonl.gz",
    "sha256_note": null,
    "cited_in": [
     "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "32df8b43c038924fea9f184e4b857798512b1a7a94f161dee0eac0abfda3a1c1",
-   "bytes": 110871,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "sha256": "acbc9f9e3f5869be64a7bca9df906cea9ce6f936af62ae3655bdeb3bb9d8adbd",
+   "bytes": 13330,
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s51_prose_audit.py",
     "kernels/s57_supplement_build_v9.py"
    ],
    "content": {
-    "kind": "jsonl",
-    "rows": 180,
-    "row_keys": [
-     "B",
-     "H",
-     "K",
-     "collapse_work_ratio",
-     "dtype",
-     "family",
-     "fan_in_sum",
-     "fold32_bad",
-     "fold32_max_abs",
-     "fold32_max_budget_ratio",
-     "fold32_pass",
-     "fold32_ratio_q50",
-     "fold32_ratio_q90",
-     "fold32_ratio_q99",
-     "fold64_bad",
-     "fold64_max_abs",
-     "fold64_max_budget_ratio",
-     "fold64_pass",
-     "fold64_ratio_q50",
-     "fold64_ratio_q90",
-     "fold64_ratio_q99",
-     "label",
-     "method",
-     "phi",
-     "ref_rounding_vs64",
-     "scale",
-     "seed",
-     "tf32",
-     "tol",
-     "w_max",
-     "w_mean_abs",
-     "w_rel_spread"
-    ]
+    "kind": "unparseable",
+    "error": "JSONDecodeError"
    },
-   "compressed": false
+   "compressed": true
   },
   {
    "artifact": "results/b4_direction_audit.json",
@@ -441,7 +407,7 @@
    ],
    "sha256": "72ed3b7ae0752588fbae1ed3cebd18545248f26314acae062c17b8c3aaadf8e6",
    "bytes": 1095,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s51_prose_audit.py",
     "kernels/s57_supplement_build_v9.py"
@@ -472,7 +438,7 @@
    ],
    "sha256": "09225eb81504b0c185ba05e38f869d9563a769217f8e529cdd2cfd6f6080e046",
    "bytes": 10229,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s51_prose_audit.py",
     "kernels/s57_supplement_build_v9.py"
@@ -501,7 +467,7 @@
    ],
    "sha256": "abf69295ddb8d301df008b6a7d0852970079a00770057d98a0deed70afbb01a8",
    "bytes": 6029,
-   "mtime_utc": "2026-10-30T13:54:46Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s50_prose_audit.py",
     "kernels/s53_intro_audit.py",
@@ -541,9 +507,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "0f5d9a5b772941df03894819b603f646b1dda185864d1b9f618909cb991702f5",
+   "sha256": "e31e305d356405a06cc9cc45f07a4ab80911b2d651b881987f86a6dafddcada3",
    "bytes": 2747,
-   "mtime_utc": "2026-10-30T13:54:49Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/cf43.py"
    ],
@@ -567,9 +533,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s4_certificates.md"
    ],
-   "sha256": "523be5ca800715395707ea1ce61a89a6ddaabc8fda19ce7cc2ad6d968707967d",
+   "sha256": "75c233e816199aed7f5211a3799e4490ebb05f35ca13c9db547719c4ada76a83",
    "bytes": 622,
-   "mtime_utc": "2026-10-30T13:54:49Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/cushion_screen.py"
    ],
@@ -598,7 +564,7 @@
    ],
    "sha256": "7ea044289982eadff2300c2a2e4d1c938f6a2a3c9c066d82f621368eb4247a47",
    "bytes": 7458,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s57_supplement_build_v9.py"
    ],
@@ -621,9 +587,9 @@
     "paper/sections/s2_reference_axis.md",
     "paper/sections/s3_atlas.md"
    ],
-   "sha256": "fb77b9c2a21e060c003fd4919edc2d7f64c0f40298cb0c400e7d1ed7af534955",
+   "sha256": "c7ed14596fc3b870b38f9868976b64612d897fc018a717f26d84dde4ee36ba8c",
    "bytes": 14092,
-   "mtime_utc": "2026-10-30T13:54:46Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s50_prose_audit.py",
     "kernels/s53_intro_audit.py",
@@ -645,9 +611,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
-   "sha256": "5397462136ac3325ed4676cce1a84cfb2b15d1b0002c74411564d1dc277c2814",
+   "sha256": "f8f3f6f5ba9b1a9e9f1b90199868e6dfbde96c5302d9dc38ad246fe9aa122374",
    "bytes": 10624,
-   "mtime_utc": "2026-10-30T13:54:48Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s57_supplement_build_v9.py"
    ],
@@ -667,9 +633,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
-   "sha256": "f45a94f70d2fe791b1ed88faec627b764e735b5090b3140abc151ff6a682341b",
+   "sha256": "babcd8f63bda5e162a6df11b763aadd0075387ea8492af923fc10b3b0862ec0c",
    "bytes": 23078,
-   "mtime_utc": "2026-10-30T13:54:48Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s57_supplement_build_v9.py"
    ],
@@ -690,9 +656,9 @@
     "paper/sections/s3_atlas.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "188892d8b583ba1fcc15cb238511b781e040d7a8530431e4080af9a8ca717913",
+   "sha256": "7c17f85275f5dd88e2c91ff21d7ed139992666e063cbe36bb5394e3dfcfc0bcb",
    "bytes": 8583,
-   "mtime_utc": "2026-10-30T13:54:46Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s51_prose_audit.py",
     "kernels/s57_supplement_build_v9.py"
@@ -713,9 +679,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s3_atlas.md"
    ],
-   "sha256": "ac5a465723b821d95bd7993fbbf12a5bee12b4a0a6bdbdd13d683eef37244c41",
+   "sha256": "b9892db8d5f631b27ba9087c1ff04c487bfcf965700627b5a7ba6149efb5ed5c",
    "bytes": 9294,
-   "mtime_utc": "2026-10-30T13:54:46Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s51_prose_audit.py",
     "kernels/s57_supplement_build_v9.py"
@@ -739,7 +705,7 @@
    ],
    "sha256": "a55f640b9a699d771861ec3c38f6abbed21c094b45368218382fb5e58ca0f21f",
    "bytes": 23010,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s57_supplement_build_v9.py"
    ],
@@ -761,9 +727,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "62fbdc3cb13b51c3a0fd99d9807ff09bb9f8704bda63f5c9b09f431b8e1faecd",
+   "sha256": "37087399da31a1290831425147b7b3dd98a306591020320c45b539d97206f594",
    "bytes": 6256,
-   "mtime_utc": "2026-10-30T13:54:48Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/e59b_ratio_record.py",
     "kernels/e59c_epsilon_analysis.py",
@@ -783,9 +749,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "d4dd8db1275c2f576ad70da56487069877864fb7f4059c91d5ffb75ab599b869",
+   "sha256": "a7a7477cc4824432b595fdf6bca491c5a1e732bfe80f348f3f5dc8166ae9497f",
    "bytes": 31772,
-   "mtime_utc": "2026-10-30T13:54:51Z",
+   "mtime_utc": "2026-10-30T13:57:24Z",
    "producers": [
     "kernels/e59c_epsilon_analysis.py",
     "kernels/s57_supplement_build_v9.py"
@@ -821,9 +787,9 @@
     "paper/sections/s3b_conv_anchor.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "e8d0a0d85846202755aa4a74a48f97d97a2475b163b7e90cb1022f10b5ff75a2",
+   "sha256": "108868d90075ceb82ae1e5ec094e1d6c13098151d6c723136a992b9166ffc570",
    "bytes": 3240,
-   "mtime_utc": "2026-10-30T13:54:49Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/f24_verify.py"
    ],
@@ -845,9 +811,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "8a2317710309de3980758bff457b66cf97d65607f17753dffa8dfd5338a8fd1e",
+   "sha256": "78636ed948077452c2bb64a8ad25cfff85cd17e255687b56712e3502489f6161",
    "bytes": 24986,
-   "mtime_utc": "2026-10-30T13:54:48Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/cushion_screen.py",
     "kernels/f24_verify.py",
@@ -868,7 +834,7 @@
    ],
    "sha256": "8901690399c26e29d630b0d2da01c24ad9e39f78cf0afb70f9b28ef3c994315d",
    "bytes": 3650,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s57_supplement_build_v9.py"
    ],
@@ -893,9 +859,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "9c46805ccd8e9f13758d613608ae9416ee6fa331d7ebae192a8612e78771a831",
+   "sha256": "7ad7d922656cc537cd0e5c4434f0f62ece3ad03ef06b0bdbee5f111662964b10",
    "bytes": 28654,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/cushion_screen.py",
     "kernels/e59_epsilon_sweep.py",
@@ -924,7 +890,7 @@
    ],
    "sha256": "fa85a5c7a4b0a2cb779b82bcae4fba5a3df31dce45d7623045e3678f94b9a522",
    "bytes": 29488,
-   "mtime_utc": "2026-10-30T13:54:48Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/r45_rider_adm.py",
     "kernels/s48_provenance.py",
@@ -1001,9 +967,9 @@
     "paper/sections/s1_introduction.md",
     "paper/sections/s3b_conv_anchor.md"
    ],
-   "sha256": "4e13eabe2a1ae95ad83dd31eafd3aff51e9137af2991946fbf6fb83de30a6396",
+   "sha256": "c69641f21ea74365341949ca41aea187a8a8acd6cafdd6d4791842b7d6d8a94c",
    "bytes": 43316,
-   "mtime_utc": "2026-10-30T13:54:49Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/r42_analysis.py"
    ],
@@ -1031,9 +997,9 @@
     "paper/sections/s4_certificates.md",
     "paper/sections/s7_threats.md"
    ],
-   "sha256": "4b3a14441f744f0503410acd8712e2cdc52cd9bdb3226f9be2bc23976238fca3",
+   "sha256": "2de94b2ee166297465a17ee2f57ab7f95b258870aaf2d1525f2d4084cbbd9585",
    "bytes": 43497,
-   "mtime_utc": "2026-10-30T13:54:49Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/r45_rider_adm.py"
    ],
@@ -1061,9 +1027,9 @@
     "paper/sections/s1_introduction.md",
     "paper/sections/s4_certificates.md"
    ],
-   "sha256": "c6e6c69598edcf6cd4a4dcc99c9d9e9d13b5c4a802cfdcd40a59b872bb0f5b37",
+   "sha256": "42925c24beba4851188ad3cc6a657a341cbd7e90c243e824cc5c3021a5daeaf5",
    "bytes": 953,
-   "mtime_utc": "2026-10-30T13:54:49Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/r57_candidate_admission.py"
    ],
@@ -1095,7 +1061,7 @@
    ],
    "sha256": "2d38acc21d25c7c5cb71d7c1bbf695d97e24cc8adf25da37b4a051df1c19c195",
    "bytes": 15940,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s57_supplement_build_v9.py"
    ],
@@ -1123,7 +1089,7 @@
    ],
    "sha256": "adae9e7fc93496ff7961138964a7ab358064d227963ce795d4f6d93f5f8fd270",
    "bytes": 3289,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s53_intro_audit.py",
     "kernels/s57_supplement_build_v9.py"
@@ -1180,7 +1146,7 @@
    ],
    "sha256": "fa7b091ca0737b0faef09392e07a5c092a59065317c70d88d6aa8a5f46a20573",
    "bytes": 7701,
-   "mtime_utc": "2026-10-30T13:54:49Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s50_prose_audit.py"
    ],
@@ -1214,7 +1180,7 @@
    ],
    "sha256": "ee3f68172b5107b9cc2fc11548fbdd258480a1fec4a3cd3497a312fde181ae80",
    "bytes": 5255,
-   "mtime_utc": "2026-10-30T13:54:49Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s51_prose_audit.py"
    ],
@@ -1240,7 +1206,7 @@
    ],
    "sha256": "58c6a993687a4e53cdb00bc85f4cb3ea032e12af8886a2118f07933dc72f6266",
    "bytes": 1763,
-   "mtime_utc": "2026-10-30T13:54:49Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s53_intro_audit.py"
    ],
@@ -1267,9 +1233,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "3ed549304dd5ac0e7a2ddc1d370be99546d7d16e570017067359163100564840",
+   "sha256": "26f36948654dcb2484f371388af2c904e4941675154d4f2cdfd022e2764d5e6e",
    "bytes": 10348,
-   "mtime_utc": "2026-10-30T13:54:50Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/s55_review_repair.py"
    ],
@@ -1296,7 +1262,7 @@
    ],
    "sha256": "38c40745877c6f066038581ec2d3093306da8901d6dafba5c68df2a18a9d1319",
    "bytes": 20223,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s56_heldout_contract.py",
     "kernels/s57_supplement_build_v9.py",
@@ -1319,9 +1285,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "f496d817cb3e06152ac1fda1dc541e2a3557f1a71a7d08464bed30cd125144a3",
+   "sha256": "0b949b68e03bb8d6ff06334e3a9eea6aa777304372f56d4c2e4c10d65964c727",
    "bytes": 12098,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s56_heldout_contract.py"
    ],
@@ -1346,7 +1312,7 @@
    ],
    "sha256": "497dd312ef9d49b2e2f3d3d36fc9c90f6e08c89830a877b35a65e47039e98fee",
    "bytes": 4487,
-   "mtime_utc": "2026-10-30T13:54:50Z",
+   "mtime_utc": "2026-10-30T13:57:24Z",
    "producers": [
     "kernels/s58_review_verify.py"
    ],
@@ -1374,9 +1340,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s6_selector.md"
    ],
-   "sha256": "fa9f77e6bd0f74a04d7d0b900a5baa1f78fd6dd5d2b4a6b70508726c90d4fff7",
+   "sha256": "bd179b77dccca9d894abcfa5d7dd8e04abc842cd91859940dae3b8c7447f51b3",
    "bytes": 8828,
-   "mtime_utc": "2026-10-30T13:54:51Z",
+   "mtime_utc": "2026-10-30T13:57:24Z",
    "producers": [
     "kernels/s59_f1_input_draw.py"
    ],
@@ -1408,9 +1374,9 @@
     "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
-   "sha256": "c74a3465ed9f03c8a7ab85554239c4530c55a7b5f14257e171316062fb4870af",
+   "sha256": "c37d9906cff6233a69db567deb739f6f4d06aa69e8f2e219c84b8f4be10e669d",
    "bytes": 9996,
-   "mtime_utc": "2026-10-30T13:54:51Z",
+   "mtime_utc": "2026-10-30T13:57:24Z",
    "producers": [
     "kernels/s60_pool_diversity.py"
    ],
@@ -1443,7 +1409,7 @@
    ],
    "sha256": "df1f8be8f7efb6f1505c679347db9e98a465c98018fc2cd408cc477167fcb65b",
    "bytes": 2081,
-   "mtime_utc": "2026-10-30T13:54:50Z",
+   "mtime_utc": "2026-10-30T13:57:23Z",
    "producers": [
     "kernels/s6_dispatcher_audit.py"
    ],
@@ -1473,9 +1439,9 @@
     "paper/sections/s1_introduction.md",
     "paper/sections/s2_reference_axis.md"
    ],
-   "sha256": "b7b5c3289e3eef0a1ed6ec9edcf38e0409e07b398c70de1e764a348b7651c87e",
+   "sha256": "86856914c69a1b9ef18e858e285e03ad3b32406bf3e1c552f60138cf2b017814",
    "bytes": 4802,
-   "mtime_utc": "2026-10-30T13:54:48Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/tuple_surface.py"
    ],
@@ -1500,7 +1466,7 @@
    ],
    "sha256": "3138dfd1d219b11a94735e8dc8879d8a89dbd4b50059ebe6811242120e053290",
    "bytes": 70417,
-   "mtime_utc": "2026-10-30T13:54:48Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s56_heldout_contract.py",
     "kernels/s57_supplement_build_v9.py",
@@ -1524,7 +1490,7 @@
    ],
    "sha256": "6ce8cfe25e69d635e892cf57aa26a08f0939ac1b7e0b5bf4e03d799c5a12342e",
    "bytes": 13590,
-   "mtime_utc": "2026-10-30T13:54:47Z",
+   "mtime_utc": "2026-10-30T13:57:22Z",
    "producers": [
     "kernels/s57_supplement_build_v9.py"
    ],

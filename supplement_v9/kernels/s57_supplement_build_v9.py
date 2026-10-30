@@ -56,7 +56,7 @@ a9_compose_prereg.md r57_candidate_admission_prereg.md e59_epsilon_sweep_prereg.
 # artifacts the shipped auditors load by name plus every round-4/5 evidence leg. Heavy row-streams are
 # gzipped: no auditor needs them whole, and s48_provenance reads them through gzip and reports the
 # uncompressed structure, so they stay verifiable.
-GZIP = {"b4_guard_v1.jsonl", "r1_conv_gated.jsonl", "gate_stability.jsonl", "m3_curve.json",
+GZIP = {"b2_failure_corpus.jsonl", "b4_guard_v1.jsonl", "r1_conv_gated.jsonl", "gate_stability.jsonl", "m3_curve.json",
         "e2_splitk_v2.json", "e1b_order_v2.json", "e2_v3_err.json", "e2b_floor.json",
         "b2_direction_audit.json", "e1_triad_day2.json", "e1_triad.json", "m3_r42.jsonl",
         "w4_heldout.json.jsonl", "a8_compress.json", "a8_compress_v2.json", "r42_gridfix.jsonl", "m3_r42.json",
@@ -468,7 +468,7 @@ def build_dispositions():
     +4.13%, which the S56 rerun corrected). Reading the files is the fix.
     """
     parts = []
-    for name in ("DISPOSITIONS_round15.md", "DISPOSITIONS_round6.md", "supplement_v6/DISPOSITIONS.md"):
+    for name in ("DISPOSITIONS_round16.md", "DISPOSITIONS_round15.md", "DISPOSITIONS_round6.md", "supplement_v6/DISPOSITIONS.md"):
         p = os.path.join(ROOT, name)
         if not os.path.exists(p):
             errors.append(f"missing disposition map {name}")

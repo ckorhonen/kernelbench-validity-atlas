@@ -1,3 +1,28 @@
+# DISPOSITIONS — round-16 review (MhTLuz7Ciq7UPVmk)
+
+Each finding from `rejections/rejection_review_MhTLuz7Ciq7UPVmk.md` mapped to the change made and to the
+location where a reader can check it. No measurement was disputed: the reviewer independently reproduced the
+672 candidate labels, the 128/203/293/672 admissible counts, the 10/24/30 frontier changes, the 8/2 23/1 29/1
+strict/tie splits, 96.4286%, and 3.49614 / 4.03814.
+
+| # | Finding | Disposition | Checkable location |
+|---|---|---|---|
+| 1 | The fresh selector run changed the correctness population, not only timing; the recorded run's inputs are not reproducible | **Answered by measurement.** `results/s59_f1_input_draw.json` recomputes both populations from the two committed s56 artifacts: 26 of 228 per-arm pass labels flip (16 fail->pass, 10 pass->fail) across 11 of 24 reduction rows, hand-passing delivery 9/12 -> 12/12, gate arm identity unchanged on 16/16 fired rows, `ref_absmax` differing median 9.3% / max 121%, every flip straddling the gate with a median ratio swing of 5.9x, conv contributing zero flips. The recorded producer set no seed and recorded none (defect documented and fixed); the fresh run seeds per shape. The manuscript's "0.54pp attributable to timing variance" is withdrawn and admission at a fixed gate is stated as a rate over input draws for boundary-adjacent arms | `paper/sections/s6_selector.md` §6.3; `results/s59_f1_input_draw.json`; `kernels/s59_f1_input_draw.py`; `results/s56_heldout_contract_recorded.json`; `results/s56_heldout_contract.json` |
+| 2 | The dispatch-to-frontier mechanism is not demonstrated on the frontier population: only 2 of 56 shapes match Table 1's tuples | **Scope restricted.** §9.5 now states the 2/56 overlap explicitly and restricts the claim to (a) the dispatch measurements themselves (winograd vs TF32 tensorop, flag-inertness, `rho_max`) and (b) a descriptive frontier; a matched engine-class analysis over the frontier population is a declared extension, not a result | `paper/sections/s9_related.md` §9.5; `paper/sections/s5_tolerance.md` §5.4; `results/e59c_epsilon_sweep.json`; `results/a7_kernelclass.json` |
+| 3 | Total-cost conclusions exceed the correctness-conditioned accounting: admission can remove a fast candidate and change the fallback, and validation/timing cost is excluded | **Relabelled.** §6.3 keeps post-validation execution regret with its population and states the probe comparison as a total-time statement about this accounting — charging probes at measured cost and assuming the admitted arm is deployed — rather than a property of the rule; validation and timing cost stay separate in §6.5 | `paper/sections/s6_selector.md` §6.3, §6.5; `results/s56_analysis.json`; `results/s58_review_verify.json` |
+| 4 | Incompatible claims coexist (2.5 vs 4.5; 2.4 "inadmissible" from `rho_max` 111; 4.4 "bulk"; certificates primary vs not a contribution; abstract centred on dispatch/frontier) | **Structural repair.** §1.1 carries one contribution statement with four defined quantities (reference accuracy, candidate agreement, engine prediction, selection cost), each reported once with its population. Contradiction sweep executed: §4's header no longer calls itself the primary contribution (agreeing with §9.4), §4.5's threshold sentence is aligned with §2.5's withdrawal, §2.4 no longer reads "inadmissible" off `rho_max` 111, §4.4's "bulk-inadmissible" label becomes "bulk-exceedance", and the abstract is rebuilt around the four quantities | `paper/sections/s1_introduction.md` §1.1, §1.4; `paper/sections/s2_reference_axis.md` §2.4, §2.5; `paper/sections/s4_certificates.md` header, §4.4, §4.5; `paper/sections/s9_related.md` §9.4; `submission_metadata_v13.json` (`abstract`) |
+| 5 | Novelty: [9] Du title, [10] Zhang Appendix J tolerance sensitivity | Carried from round 15 and retained: tolerance-dependent admissibility is stated as already studied in [10], the per-shape minimum over a fixed pool is stated as the narrower object, and [9]'s title is corrected to *Measuring the Checker: Mutation Analysis for GPU-Kernel Benchmarks* | `paper/sections/s9_related.md` §9.5; `paper/sections/s1_introduction.md` §1.7 |
+
+Folded in from the opposing-school measurement (not a review finding): §5.4 now normalises the frontier by
+behaviour — 12 nominal arms resolve to 3-4 distinct candidate-scaled budget ratios per shape (median 3), so 672
+arm-checks at 1e-1 are 168 class-cells — while 654 of 672 joint (error, time) signatures remain distinct, so the
+speed axis is not aliased (`results/s60_pool_diversity.json`, `kernels/s60_pool_diversity.py`).
+
+Reproduction: the supplement ships every producer, prereg and artifact these rows cite; the build runs each
+CPU-only script from inside the unpacked package and fails on a nonzero exit.
+
+---
+
 # DISPOSITIONS — round-15 review (gU24dOLNR6TCh4Od)
 
 Each finding from `rejections/rejection_review_gU24dOLN.md` mapped to the change made and to the location where

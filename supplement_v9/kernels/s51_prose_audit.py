@@ -239,7 +239,13 @@ e2_n = sum(len(v.get("max_abs_err", [])) for r in e2_rows for v in r.get("varian
 ck("C26", e2_n == 1260, e2_n)
 
 b2c = os.path.join(RES, "b2_failure_corpus.jsonl")
-n_rows = sum(1 for _ in open(b2c)) if os.path.exists(b2c) else None
+if os.path.exists(b2c):
+    n_rows = sum(1 for _ in open(b2c))
+elif os.path.exists(b2c + ".gz"):
+    import gzip as _gz
+    n_rows = sum(1 for _ in _gz.open(b2c + ".gz", "rt"))
+else:
+    n_rows = None
 ck("C27", n_rows == 180, n_rows)
 
 a7b = load("a7b_precision_policy.json")
