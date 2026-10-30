@@ -11,9 +11,28 @@ otherwise no eps-ordering claim is made (reported as INSTRUMENT_INVALID).
 import json, os, itertools, datetime
 
 LAB = os.path.dirname(os.path.abspath(__file__))
-RAT = os.path.join(LAB, "results", "e59b_budget_ratios.jsonl")
-R1 = os.path.join(LAB, "results", "r1_conv_gated.jsonl")
-OUT = os.path.join(LAB, "results", "e59c_epsilon_sweep.json")
+
+def _kb_res_dir(here):
+    """Resolve the artifact directory: lab/results in the repo, ../results when run from the
+    supplement package's kernels/ directory. Frozen packaging convention (#55)."""
+    for cand in (os.path.join(here, "results"), os.path.join(os.path.dirname(here), "results")):
+        if os.path.isdir(cand):
+            return cand
+    return os.path.join(here, "results")
+
+def _kb_open(path):
+    """Open a plain or gzipped artifact; row-streams ship gzipped in the package."""
+    if os.path.exists(path):
+        return open(path)
+    if os.path.exists(path + ".gz"):
+        import gzip as _gz
+        return _gz.open(path + ".gz", "rt")
+    raise FileNotFoundError(path)
+
+RES = _kb_res_dir(LAB)
+RAT = os.path.join(RES, "e59b_budget_ratios.jsonl")
+R1 = os.path.join(RES, "r1_conv_gated.jsonl")
+OUT = os.path.join(RES, "e59c_epsilon_sweep.json")
 EPS = [1e-4, 1e-3, 1e-2, 1e-1]
 
 def cls(arm):
@@ -23,12 +42,12 @@ def cls(arm):
 
 def main():
     rec = {}
-    for line in open(R1):
+    for line in _kb_open(R1):
         if line.strip():
             r = json.loads(line)
             rec[(r["tag"], r["N"], r["H"], r["C"])] = r
     rows = []
-    for line in open(RAT):
+    for line in _kb_open(RAT):
         if line.strip():
             rows.append(json.loads(line))
     checks = []
