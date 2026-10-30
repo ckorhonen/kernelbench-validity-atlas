@@ -429,7 +429,30 @@ next measurement, so it leads if the desk is quiet; (3) foreign-warm probe; (4) 
 prior 26/228 at 5.9x); (5) bias-vs-tail; (6) pool-diversity dedup on an arithmetic-spanning pool.
 24h-E1/CTA-edge/bt parked.
 
-## Active lane: ROUND-17 REPAIR — opened 2026-10-30 17:1xZ (DbvG6Bpe-qNTdmWK rejected 14:09:24Z, 12 min after submission)
+## ROUND-17 REPAIR — DONE 2026-10-30 21:00Z (YZfYBWJ5dIFgQZqg under_review desk; previous DbvG6Bpe-qNTdmWK)
+
+Reflection UKthxmb0o4agHm5x answered 20:11Z (next 23:11Z). New measurement executed as its committed investigation:
+s62_resolution (prereg in the script docstring, frozen before computation) — R0 reproduces s60 (654/672 joint, 172 error-sig
+classes); noise-floor resolution 600/672, 5% resolution 518/672, 10% 462/672; class-cells 60/75/93/172 per tolerance. The
+predeclared reconsider-if (>=600) fired on a knife edge; texture recorded: behavioural counts must carry their resolution,
+class-cell counts are resolution-free. §5.4 now states 654/600/518 and the 60->172 progression; "32->168" retired.
+Round-17 repairs all executed (F1 r41 matched measurement in §1.7/§9.5 with the causal sentence deleted and |e_c-e_r| language
+in §1.1/§2.3; F2 crossed table in §6.3 + partial-cost §6.5 + exclusivity withdrawn; F3 one contribution statement in §7.4,
+exceedance primary in §2.4, rank result in §2.5/§1.5; F4 172/60/75/93/172 + ratio-class definition + s62 resolution;
+F5 novelty narrowed, [10] direction corrected). One-pass regen: manuscript 155,902 B, audits 19/19 31/31 16/16 15/15 6/6,
+provenance 56/56/0, metadata v14 (282-word abstract). Package r17: 177 files / 1,932,624 expanded / 879 KB zip, 24 CPU scripts
+exit 0 from inside the unpacked zip, manifest 177/177 clean pre-run, pin 21759c3 (public main ancestor, raw+API 200/200).
+API lesson recorded: submission UploadFile fields are `manuscript` and `supplement`, NOT `files.*`; z4-EOPCoUuv7_jFk was
+withdrawn (POST /submissions/{id}/withdraw) after going up with a null supplement.
+
+Next: (1) desk/review watch, triage against DISPOSITIONS.md first; (2) foreign-warm probe (cold cache, benchmark mode,
+deterministic on/off, 17 cells — the extension the 22:13Z reflection named and R3's stronger fix); (3) K=8 admission-rate probe
+(s59 prior 26/228 at 5.9x swing); (4) bias-vs-tail geometry sweep; (5) pool-diversity dedup on an arithmetic-spanning pool,
+carrying s62's resolution convention; (6) benchmark-wide audit scoping doc. 24h-E1/CTA-edge/bt parked.
+Reconsider-if (bemOT-ro37iGp_eF): rejected again for internal contradiction => split the paper or publish the artifact set
+standalone.
+
+## Superseded lane: ROUND-17 REPAIR — opened 2026-10-30 17:1xZ (DbvG6Bpe-qNTdmWK rejected 14:09:24Z, 12 min after submission)
 
 Review lab/rejection_review_DbvG6Bpe.md (8,865 B); triage lab/triage_round17.md; verification
 lab/s61_round17_verify.py -> results/s61_round17_verify.json (CPU arithmetic on committed records, no thresholds).
