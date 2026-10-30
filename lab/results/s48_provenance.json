@@ -1,5 +1,5 @@
 {
- "date": "2026-10-30T00:09:49Z",
+ "date": "2026-10-30T01:57:23Z",
  "n_cited": 52,
  "n_found": 52,
  "missing": [],
@@ -772,7 +772,9 @@
    "artifact": "results/e59b_budget_ratios.jsonl",
    "sha256_note": null,
    "cited_in": [
+    "paper/APPENDIX_HISTORY.md",
     "paper/ATLAS_EPSILON_FRONTIER.md",
+    "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
    "sha256": "8cb997f45870b1e2ce7607b83a2382b06b268f492f020e521cb753088ca382b7",
@@ -780,7 +782,8 @@
    "mtime_utc": "2026-10-29T20:17:14Z",
    "producers": [
     "lab/e59b_ratio_record.py",
-    "lab/e59c_epsilon_analysis.py"
+    "lab/e59c_epsilon_analysis.py",
+    "lab/s52_supplement_build.py"
    ],
    "content": {
     "kind": "jsonl",
@@ -805,13 +808,15 @@
    "sha256_note": null,
    "cited_in": [
     "paper/ATLAS_EPSILON_FRONTIER.md",
+    "paper/MANUSCRIPT.md",
     "paper/sections/s5_tolerance.md"
    ],
    "sha256": "5674c762be0ab66fa6bb6eeca4db6a5e0cab2c5fae41cd48157a408f64942a9b",
    "bytes": 31752,
    "mtime_utc": "2026-10-29T20:17:14Z",
    "producers": [
-    "lab/e59c_epsilon_analysis.py"
+    "lab/e59c_epsilon_analysis.py",
+    "lab/s52_supplement_build.py"
    ],
    "content": {
     "kind": "json",
@@ -1243,7 +1248,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-10-29T10:53:05Z",
+   "mtime_utc": "2026-10-30T01:15:11Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1276,9 +1281,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "3f8fb1e176d4511069743024bacdb4957674ff344f2cf277e0091ca994707f2a",
+   "sha256": "c92f3a15e3c137dcce1f30237728d6ba77e2f5160cc5f38b03ff84e3a6079020",
    "bytes": 5255,
-   "mtime_utc": "2026-10-29T10:46:51Z",
+   "mtime_utc": "2026-10-30T01:15:12Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1304,7 +1309,7 @@
    ],
    "sha256": "3ca221fcc9821d26170241097c51f4e04c74c59573a9f4ef7c04b11cde352390",
    "bytes": 1763,
-   "mtime_utc": "2026-10-29T10:46:51Z",
+   "mtime_utc": "2026-10-30T01:15:12Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],

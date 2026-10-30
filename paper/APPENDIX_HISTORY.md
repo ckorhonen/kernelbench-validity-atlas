@@ -49,7 +49,11 @@ layout. That test compared NCHW with itself; the real channels_last cell flips t
   `s54` 6/6 — these are consistency checks that recompute cited values from committed artifacts, not independent
   regenerations. They catch transcription and drift; they cannot validate a measurement.
 - `paper/PROVENANCE.md` maps every cited number to its artifact and field (cited/found/missing counted at build
-  time; the build hard-fails on a missing citation).
+  time; the build hard-fails on a missing citation). The manuscript's own header reads these counts from the
+  artifacts instead of stating them by hand, so the three numbers cannot drift apart again.
+- The tolerance-axis frontier (§5.4) carries its own instrument record: `results/e59b_budget_ratios.jsonl`
+  reproduced all 672 arm-checks exactly, and the first reconstruction attempt (`e59`) failed its 95% validation
+  bar at 87.35% and was discarded rather than reported.
 - The auditors were themselves audited once: an earlier version of the s55 F2 check rewrote the artifact it read
   and reported a ratio of 1.0 for a real 0.0100 discrepancy. Pre-repair values are now declared constants with a
   build assertion, and the lesson is recorded in the diary as "a check must execute the intervention, not a proxy
@@ -64,7 +68,10 @@ reported as results.
 
 ## A.5 Open items carried forward
 
-Two measurements are registered and not yet run: out-of-family class prediction with the frozen predictor (kill
-at the majority baseline) and a within-class geometry sweep testing whether $\rho_{\max}$ is a bias statistic
-rather than a tail statistic. A third, larger item is scoped but not started: a benchmark-wide reference-error
-audit across all KernelBench tasks, which is the generalisation this paper does not attempt.
+Three measurements are registered and not yet run: a reference-swap flip table (holding candidates fixed and
+changing only the reference realization from the default dispatch to the fp64 anchor, kill at <10% flips), a
+fresh-process class-invariance probe (cold cache and benchmark mode, since determinism here was measured across
+two repeats in one process), and an out-of-family class prediction with the frozen predictor (kill at the majority
+baseline). A within-class geometry sweep testing whether $\rho_{\max}$ is a bias statistic rather than a tail
+statistic is registered too. A larger item is scoped but not started: a benchmark-wide reference-error audit
+across all KernelBench tasks, which is the generalisation this paper does not attempt.

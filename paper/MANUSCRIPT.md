@@ -872,31 +872,25 @@ one found in review.
 
 ## 4.6 Candidate admission: a class baseline plus a measured within-class threshold
 
-The decisive objection to an earlier draft of §4.5 was that its compression experiment
-predicted `frac_over > 0.5` — a reference-versus-fp64 diagnostic — and not the candidate-versus-reference
-verdict that defines admission. That objection is correct against the earlier draft, and the missing measurement
-was run: r57 (prereg `4595e00`, `lab/r57_candidate_admission.py` -> `results/r57_candidate_admission.json`)
-predicted actual `pass_1e4` verdicts out of fold at AUC 0.986 and 96.4% accuracy. A later check then
-showed that the headline partly rested on `refdev`, a *measured* feature — the difference of two reference output
-maxima — so the execution-free claim was re-tested without it, under a prereg frozen before any computation
-(`lab/s58_review_verify_prereg.md` @ `d2da0b8`; `lab/s58_review_verify.py` -> `results/s58_review_verify.json`).
-What follows is the re-tested version; r57's numbers are quoted only where they are the object under discussion.
+The result here is narrower than a predictive certificate and is stated that way. Admission is the
+evaluator-exact candidate-versus-reference verdict, and on this population it is decided by the arm class plus a
+measured within-class residual, not by the reference diagnostic of §4.5. The population is the 672 arm-checks of
+`results/r1_conv_gated.jsonl` (56 conv shapes × 12 arms), labelled by the evaluator-exact `pass_1e4` verdict
+against the recorded default reference at the declared 1e-4 contract: 128 admissible, 544 not.
 
-**Population and label.** The 672 arm-checks of `results/r1_conv_gated.jsonl` (56 conv shapes × 12 arms), label =
-the evaluator-exact `pass_1e4` verdict against the recorded default reference at the declared 1e-4 contract: 128
-admissible, 544 not.
-
-**The baseline the earlier draft hid.** A two-line rule that reads only the arm class — pass if the arm is
+**The baseline comes first.** A two-line rule that reads only the arm class — pass if the arm is
 `torch` or `torch.compile`, fail if it is a hand kernel — scores **96.4286%** (TP 108 / TN 540 / FP 4 / FN 20),
 which is 15.48 pp above the pooled majority of 80.95%. Comparing a model to the pooled majority therefore
 understates what is already available for free; the honest comparator is this rule.
 
-**Declared-feature model, re-tested without the measured feature.** Linear probability model on eight declared
-features only (log2 C, log2 K, log2 H·W, N, log2 bytes, is_compile, is_hand, prec_tf32 — no refdev, no
+**Declared-feature model.** Linear probability model on eight declared
+features only (log2 C, log2 K, log2 H·W, N, log2 bytes, is_compile, is_hand, prec_tf32 — no measured reference
+feature, no
 interaction), leave-one-shape-out: **AUC 0.974652, accuracy 96.4286%**, clearing the prereg's bar (AUC ≥ 0.90).
-The execution-free claim survives, but its correct reading is narrower than r57's: the model *matches* the
+Its correct reading is narrower than an earlier draft's: the model *matches* the
 arm-class rule rather than beating it, so what the model adds is a feature-level statement — the verdict is
-predictable from the declared tuple and arm class alone — not extra accuracy.
+predictable from the declared tuple and arm class alone — not extra accuracy. Admission is therefore reported as
+a baseline plus a limitation, not as a general predictive result.
 
 **Within the hand-fp32 class, the threshold stays measured.** Removing the measured feature drops the hand-ieee
 stratum (n=280, 20 positives on 4 shapes) to AUC **0.7548**, shape-clustered bootstrap CI [0.537, 0.9231], with
@@ -1766,7 +1760,11 @@ layout. That test compared NCHW with itself; the real channels_last cell flips t
   `s54` 6/6 — these are consistency checks that recompute cited values from committed artifacts, not independent
   regenerations. They catch transcription and drift; they cannot validate a measurement.
 - `paper/PROVENANCE.md` maps every cited number to its artifact and field (cited/found/missing counted at build
-  time; the build hard-fails on a missing citation).
+  time; the build hard-fails on a missing citation). The manuscript's own header reads these counts from the
+  artifacts instead of stating them by hand, so the three numbers cannot drift apart again.
+- The tolerance-axis frontier (§5.4) carries its own instrument record: `results/e59b_budget_ratios.jsonl`
+  reproduced all 672 arm-checks exactly, and the first reconstruction attempt (`e59`) failed its 95% validation
+  bar at 87.35% and was discarded rather than reported.
 - The auditors were themselves audited once: an earlier version of the s55 F2 check rewrote the artifact it read
   and reported a ratio of 1.0 for a real 0.0100 discrepancy. Pre-repair values are now declared constants with a
   build assertion, and the lesson is recorded in the diary as "a check must execute the intervention, not a proxy
@@ -1781,7 +1779,10 @@ reported as results.
 
 ## A.5 Open items carried forward
 
-Two measurements are registered and not yet run: out-of-family class prediction with the frozen predictor (kill
-at the majority baseline) and a within-class geometry sweep testing whether $\rho_{\max}$ is a bias statistic
-rather than a tail statistic. A third, larger item is scoped but not started: a benchmark-wide reference-error
-audit across all KernelBench tasks, which is the generalisation this paper does not attempt.
+Three measurements are registered and not yet run: a reference-swap flip table (holding candidates fixed and
+changing only the reference realization from the default dispatch to the fp64 anchor, kill at <10% flips), a
+fresh-process class-invariance probe (cold cache and benchmark mode, since determinism here was measured across
+two repeats in one process), and an out-of-family class prediction with the frozen predictor (kill at the majority
+baseline). A within-class geometry sweep testing whether $\rho_{\max}$ is a bias statistic rather than a tail
+statistic is registered too. A larger item is scoped but not started: a benchmark-wide reference-error audit
+across all KernelBench tasks, which is the generalisation this paper does not attempt.
