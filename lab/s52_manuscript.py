@@ -1,4 +1,7 @@
-"""Assemble the submission manuscript from the audited section files.
+"""Assemble the DETAILED section set (paper/DETAIL_SECTIONS.md) from the audited section files.
+
+Round-18 split: MANUSCRIPT.md is assembled by s64_split_manuscript.py from paper/split/. This script keeps
+the full §1-§9 record as a shipped detail document so the audit chain stays intact.
 
 Conventions frozen here BEFORE the run:
 - Sections are concatenated in order §1..§9 from paper/sections/; each section file is byte-identical to
@@ -37,7 +40,7 @@ def _kb_open(path):
     raise FileNotFoundError(path)
 ROOT = os.path.dirname(HERE)
 SECTIONS = os.path.join(ROOT, "paper", "sections")
-OUT = os.path.join(ROOT, "paper", "MANUSCRIPT.md")
+OUT = os.path.join(ROOT, "paper", "DETAIL_SECTIONS.md")
 RES = _kb_res_dir(HERE)
 
 ORDER = ["s1_introduction.md", "s2_reference_axis.md", "s3_atlas.md", "s3b_conv_anchor.md",

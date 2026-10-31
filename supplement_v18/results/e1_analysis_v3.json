@@ -1,0 +1,287 @@
+{
+ "meta": {
+  "date": "2026-10-17T02:29:01Z",
+  "device": "NVIDIA GB10",
+  "sm_count": 48,
+  "calibration_launch_single_ms": 0.007455999962985516,
+  "calibration_launch_b2b_ms": 0.002939840078353882,
+  "note": "c0 anchor from calibration, not fitted; see analysis",
+  "version": 3
+ },
+ "c0_launch_ms": 0.007455999962985516,
+ "configs": {
+  "triton_persistent {\"BLOCK\": 1024, \"cap\": 192, \"kind\": \"persistent\", \"num_warps\": 4}": {
+   "c0_asym_ms": 0.10721,
+   "c0_spread_tail_pct": 93.7,
+   "BW_local_min_med_max_Gbps": [
+    216.7,
+    217.6,
+    221.8
+   ],
+   "resid_rms_large_n_v3": 0.0295,
+   "resid_max_abs_large_n": 0.0681,
+   "resid_spearman_vs_log2n": 0.983,
+   "n_points": 37
+  },
+  "triton_persistent {\"BLOCK\": 1024, \"cap\": 48, \"kind\": \"persistent\", \"num_warps\": 4}": {
+   "c0_asym_ms": 0.00426,
+   "c0_spread_tail_pct": 3387.9,
+   "BW_local_min_med_max_Gbps": [
+    220.7,
+    223.0,
+    224.7
+   ],
+   "resid_rms_large_n_v3": 0.0112,
+   "resid_max_abs_large_n": 0.0214,
+   "resid_spearman_vs_log2n": -0.983,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 1024, \"kind\": \"flat\", \"num_warps\": 1}": {
+   "c0_asym_ms": -0.05516,
+   "c0_spread_tail_pct": 937.5,
+   "BW_local_min_med_max_Gbps": [
+    216.2,
+    236.6,
+    247.4
+   ],
+   "resid_rms_large_n_v3": 0.0488,
+   "resid_max_abs_large_n": 0.0964,
+   "resid_spearman_vs_log2n": -0.917,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 1024, \"kind\": \"flat\", \"num_warps\": 2}": {
+   "c0_asym_ms": -0.04025,
+   "c0_spread_tail_pct": 1029.9,
+   "BW_local_min_med_max_Gbps": [
+    216.3,
+    224.4,
+    244.2
+   ],
+   "resid_rms_large_n_v3": 0.0361,
+   "resid_max_abs_large_n": 0.0767,
+   "resid_spearman_vs_log2n": -0.967,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 1024, \"kind\": \"flat\", \"num_warps\": 4}": {
+   "c0_asym_ms": -0.11654,
+   "c0_spread_tail_pct": 673.7,
+   "BW_local_min_med_max_Gbps": [
+    219.9,
+    235.9,
+    247.7
+   ],
+   "resid_rms_large_n_v3": 0.0767,
+   "resid_max_abs_large_n": 0.1714,
+   "resid_spearman_vs_log2n": -0.983,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 1024, \"kind\": \"flat\", \"num_warps\": 8}": {
+   "c0_asym_ms": -0.24046,
+   "c0_spread_tail_pct": 482.5,
+   "BW_local_min_med_max_Gbps": [
+    225.9,
+    247.5,
+    261.5
+   ],
+   "resid_rms_large_n_v3": 0.1589,
+   "resid_max_abs_large_n": 0.3688,
+   "resid_spearman_vs_log2n": -1.0,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 16384, \"kind\": \"flat\", \"num_warps\": 1}": {
+   "c0_asym_ms": 12.86371,
+   "c0_spread_tail_pct": 250.4,
+   "BW_local_min_med_max_Gbps": [
+    39.2,
+    40.0,
+    455.3
+   ],
+   "resid_rms_large_n_v3": 0.5542,
+   "resid_max_abs_large_n": 0.8594,
+   "resid_spearman_vs_log2n": 0.967,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 16384, \"kind\": \"flat\", \"num_warps\": 2}": {
+   "c0_asym_ms": 1.69533,
+   "c0_spread_tail_pct": 197.3,
+   "BW_local_min_med_max_Gbps": [
+    162.7,
+    164.0,
+    191.3
+   ],
+   "resid_rms_large_n_v3": 0.2805,
+   "resid_max_abs_large_n": 0.5442,
+   "resid_spearman_vs_log2n": 1.0,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 16384, \"kind\": \"flat\", \"num_warps\": 4}": {
+   "c0_asym_ms": -0.02746,
+   "c0_spread_tail_pct": 1234.5,
+   "BW_local_min_med_max_Gbps": [
+    216.5,
+    224.4,
+    238.3
+   ],
+   "resid_rms_large_n_v3": 0.0297,
+   "resid_max_abs_large_n": 0.0612,
+   "resid_spearman_vs_log2n": -0.933,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 16384, \"kind\": \"flat\", \"num_warps\": 8}": {
+   "c0_asym_ms": -0.14367,
+   "c0_spread_tail_pct": 432.9,
+   "BW_local_min_med_max_Gbps": [
+    201.9,
+    207.2,
+    272.6
+   ],
+   "resid_rms_large_n_v3": 0.0917,
+   "resid_max_abs_large_n": 0.215,
+   "resid_spearman_vs_log2n": -0.9,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 256, \"kind\": \"flat\", \"num_warps\": 1}": {
+   "c0_asym_ms": -0.29158,
+   "c0_spread_tail_pct": 393.6,
+   "BW_local_min_med_max_Gbps": [
+    236.1,
+    239.7,
+    252.4
+   ],
+   "resid_rms_large_n_v3": 0.2013,
+   "resid_max_abs_large_n": 0.4817,
+   "resid_spearman_vs_log2n": -1.0,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 256, \"kind\": \"flat\", \"num_warps\": 2}": {
+   "c0_asym_ms": -0.29219,
+   "c0_spread_tail_pct": 424.8,
+   "BW_local_min_med_max_Gbps": [
+    236.2,
+    245.1,
+    264.6
+   ],
+   "resid_rms_large_n_v3": 0.2054,
+   "resid_max_abs_large_n": 0.4834,
+   "resid_spearman_vs_log2n": -1.0,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 256, \"kind\": \"flat\", \"num_warps\": 4}": {
+   "c0_asym_ms": -0.42264,
+   "c0_spread_tail_pct": 318.3,
+   "BW_local_min_med_max_Gbps": [
+    238.1,
+    250.2,
+    251.5
+   ],
+   "resid_rms_large_n_v3": 0.3401,
+   "resid_max_abs_large_n": 0.8548,
+   "resid_spearman_vs_log2n": -1.0,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 256, \"kind\": \"flat\", \"num_warps\": 8}": {
+   "c0_asym_ms": -0.5702,
+   "c0_spread_tail_pct": 259.4,
+   "BW_local_min_med_max_Gbps": [
+    243.1,
+    250.4,
+    279.7
+   ],
+   "resid_rms_large_n_v3": 0.595,
+   "resid_max_abs_large_n": 1.5783,
+   "resid_spearman_vs_log2n": -1.0,
+   "n_points": 37
+  },
+  "triton_persistent {\"BLOCK\": 4096, \"cap\": 192, \"kind\": \"persistent\", \"num_warps\": 4}": {
+   "c0_asym_ms": 0.04521,
+   "c0_spread_tail_pct": 56.5,
+   "BW_local_min_med_max_Gbps": [
+    218.1,
+    220.6,
+    222.6
+   ],
+   "resid_rms_large_n_v3": 0.0059,
+   "resid_max_abs_large_n": 0.0135,
+   "resid_spearman_vs_log2n": 0.283,
+   "n_points": 37
+  },
+  "triton_persistent {\"BLOCK\": 4096, \"cap\": 48, \"kind\": \"persistent\", \"num_warps\": 4}": {
+   "c0_asym_ms": 0.00886,
+   "c0_spread_tail_pct": 1823.4,
+   "BW_local_min_med_max_Gbps": [
+    220.8,
+    223.1,
+    225.9
+   ],
+   "resid_rms_large_n_v3": 0.0106,
+   "resid_max_abs_large_n": 0.0197,
+   "resid_spearman_vs_log2n": -0.95,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 4096, \"kind\": \"flat\", \"num_warps\": 1}": {
+   "c0_asym_ms": -0.01931,
+   "c0_spread_tail_pct": 1777.1,
+   "BW_local_min_med_max_Gbps": [
+    218.6,
+    227.0,
+    235.0
+   ],
+   "resid_rms_large_n_v3": 0.0246,
+   "resid_max_abs_large_n": 0.0516,
+   "resid_spearman_vs_log2n": -0.983,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 4096, \"kind\": \"flat\", \"num_warps\": 2}": {
+   "c0_asym_ms": -0.05464,
+   "c0_spread_tail_pct": 727.9,
+   "BW_local_min_med_max_Gbps": [
+    212.1,
+    216.7,
+    249.8
+   ],
+   "resid_rms_large_n_v3": 0.0431,
+   "resid_max_abs_large_n": 0.0957,
+   "resid_spearman_vs_log2n": -0.967,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 4096, \"kind\": \"flat\", \"num_warps\": 4}": {
+   "c0_asym_ms": -0.0331,
+   "c0_spread_tail_pct": 1053.1,
+   "BW_local_min_med_max_Gbps": [
+    214.3,
+    217.8,
+    245.9
+   ],
+   "resid_rms_large_n_v3": 0.0324,
+   "resid_max_abs_large_n": 0.0695,
+   "resid_spearman_vs_log2n": -0.95,
+   "n_points": 37
+  },
+  "triton_flat {\"BLOCK\": 4096, \"kind\": \"flat\", \"num_warps\": 8}": {
+   "c0_asym_ms": -0.07407,
+   "c0_spread_tail_pct": 622.2,
+   "BW_local_min_med_max_Gbps": [
+    217.5,
+    224.7,
+    245.8
+   ],
+   "resid_rms_large_n_v3": 0.0533,
+   "resid_max_abs_large_n": 0.1185,
+   "resid_spearman_vs_log2n": -0.967,
+   "n_points": 37
+  },
+  "torch_add {}": {
+   "c0_asym_ms": -0.13439,
+   "c0_spread_tail_pct": 571.4,
+   "BW_local_min_med_max_Gbps": [
+    226.3,
+    233.2,
+    240.8
+   ],
+   "resid_rms_large_n_v3": 0.0881,
+   "resid_max_abs_large_n": 0.1994,
+   "resid_spearman_vs_log2n": -1.0,
+   "n_points": 37
+  }
+ }
+}

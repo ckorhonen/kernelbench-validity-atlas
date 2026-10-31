@@ -1,0 +1,117 @@
+{
+ "date": "2026-10-30T23:19:40Z",
+ "thresholds": "see module docstring (fixed pre-run)",
+ "cf1_chain_order": {
+  "m3_conv_rows": 36,
+  "order_dependent": 0,
+  "fired_variant": 1,
+  "fallback_torch": 35,
+  "order_dependent_frac": 0.0,
+  "order_dependent_rows": [],
+  "rider_rows": 56,
+  "rider_cells": 168,
+  "rider_order_dependent": 0,
+  "rider_order_dependent_frac": 0.0,
+  "rider_order_dependent_cells": []
+ },
+ "cf2_anchor_profile": {
+  "n_rows": 56,
+  "profile_counts": {
+   "mixed": 48,
+   "flat": 4,
+   "nested": 4
+  },
+  "profile_frac": {
+   "mixed": 0.8571,
+   "flat": 0.0714,
+   "nested": 0.0714
+  },
+  "iee64_exact_agreement": 0.3929,
+  "arm_level_patterns": {
+   "100": 70,
+   "011": 75,
+   "000": 304,
+   "110": 31,
+   "001": 165,
+   "111": 27
+  }
+ },
+ "cf3_cross_family": {
+  "note": "day1 m3 errs vs m3_r42 adm, contract 1e-4 vs deployed reference; same grids",
+  "rows_matched": 60,
+  "arms_compared": 528,
+  "pass_flips": 169,
+  "flip_frac": 0.3201,
+  "flip_examples": [
+   {
+    "K": 16384,
+    "M": 4,
+    "arm": "tsplit_S4_KT64",
+    "day1_err": 0.00012969970703125,
+    "r42_err": 1.9073486328125e-05
+   },
+   {
+    "K": 16384,
+    "M": 32,
+    "arm": "tsplit_S4_KT16",
+    "day1_err": 0.00012969970703125,
+    "r42_err": 0.000110626220703125
+   },
+   {
+    "K": 16384,
+    "M": 64,
+    "arm": "tsplit_S4_KT16",
+    "day1_err": 0.0001220703125,
+    "r42_err": 0.0001068115234375
+   },
+   {
+    "K": 16384,
+    "M": 128,
+    "arm": "tsplit_S4_KT16",
+    "day1_err": 0.0001220703125,
+    "r42_err": 0.000152587890625
+   },
+   {
+    "K": 16384,
+    "M": 128,
+    "arm": "tsplit_S64_KT16",
+    "day1_err": 0.0001220703125,
+    "r42_err": 0.0001373291015625
+   },
+   {
+    "K": 16384,
+    "M": 256,
+    "arm": "tsplit_S4_KT16",
+    "day1_err": 0.0001373291015625,
+    "r42_err": 0.00018310546875
+   },
+   {
+    "K": 16384,
+    "M": 256,
+    "arm": "tsplit_S16_KT16",
+    "day1_err": 0.0001220703125,
+    "r42_err": 0.0001068115234375
+   },
+   {
+    "K": 16384,
+    "M": 256,
+    "arm": "tsplit_S64_KT16",
+    "day1_err": 0.0001068115234375,
+    "r42_err": 9.1552734375e-05
+   }
+  ],
+  "b1_reduction_margin": "b1_gatezero_v2: 12/12 cells correct, err_factored_vs_ref <=1.2e-7 vs 1e-4 bar (>=800x margin, single-anchor; no lattice recorded)",
+  "conv_contrast": "rider armA: delivered 21/56, admissible-set 48/56, arm-verdict flips 341",
+  "day1_torch_caveat": "day1 errs dict lacks 'torch' key on reduction rows; torch==ref assumed (err 0), excluded from counts"
+ },
+ "decision": {
+  "chain_sensitive": false,
+  "cross_family_quiet": false,
+  "monotone_dominant": false,
+  "mixed_heavy": true,
+  "nontrivial_tau": false,
+  "branches": [
+   "no nontrivial tau certifies selector: stability axis measured-but-empty; P5 write"
+  ]
+ }
+}

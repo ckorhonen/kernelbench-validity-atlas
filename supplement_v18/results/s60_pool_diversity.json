@@ -1,0 +1,741 @@
+{
+ "artifact": "s60_pool_diversity",
+ "date": "2026-10-31T03:19:41Z",
+ "source": [
+  "lab/results/e59b_budget_ratios.jsonl",
+  "lab/results/r1_conv_gated.jsonl"
+ ],
+ "population": {
+  "shapes": 56,
+  "nominal_arm_checks": 672
+ },
+ "nominal_arms_per_shape": {
+  "n": 56,
+  "min": 12,
+  "median": 12.0,
+  "max": 12,
+  "mean": 12.0
+ },
+ "error_signatures": {
+  "n": 56,
+  "min": 3,
+  "median": 3.0,
+  "max": 4,
+  "mean": 3.071
+ },
+ "time_signatures": {
+  "n": 56,
+  "min": 9,
+  "median": 12.0,
+  "max": 12,
+  "mean": 11.607
+ },
+ "joint_signatures": {
+  "n": 56,
+  "min": 9,
+  "median": 12.0,
+  "max": 12,
+  "mean": 11.679
+ },
+ "joint_signature_total": 654,
+ "alias_groups_first_shape": {
+  "0.0": [
+   "torch",
+   "torch_cmp"
+  ],
+  "48.73": [
+   "imp_B32x32[ieee]",
+   "imp_B64x32[ieee]",
+   "imp_B64x64[ieee]",
+   "imp_B128x64[ieee]",
+   "imp_B32x64K64[ieee]"
+  ],
+  "106.849": [
+   "imp_B32x32[tf32]",
+   "imp_B64x32[tf32]",
+   "imp_B64x64[tf32]",
+   "imp_B128x64[tf32]",
+   "imp_B32x64K64[tf32]"
+  ]
+ },
+ "verdict": {
+  "strong_form": "FALSIFIED \u2014 the pool is not degenerate on the speed axis: 654/672 joint (error,time) signatures are distinct and the time axis carries 9-12 distinct values per shape.",
+  "surviving_form": "WORKED CASE \u2014 the admissibility axis is aliased to a precision-class level: 3-4 distinct candidate-scaled budget ratios per shape across 12 nominal arms (median 3). At eps=1e-1 the 672 admissible arm-checks are 168 class-cells.",
+  "consequence": "Frontier claims must be normalised by class-cells alongside arm counts; class-level admission is learnable, within-class selection is not.",
+  "scope": "GB10 conv pool at rev 423217d, 56 shapes, this pool as built. Conjectural: the same aliasing governs reduction pools and pools spanning arithmetic (fp64-accum, cudnn-disabled, channels_last) \u2014 untested here."
+ },
+ "rows": [
+  {
+   "shape": [
+    "m3m2",
+    1,
+    4,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    4,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    4,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 4,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    4,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    4,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 4,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    4,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 4,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    7,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    7,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 4,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    7,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    7,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 9,
+   "joint_sigs": 9
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    7,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    7,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    10,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    10,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    10,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    10,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    10,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    10,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    14,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    14,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    14,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    14,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    14,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    14,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    20,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    20,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    20,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    20,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    20,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    20,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    28,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    28,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    1,
+    28,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    28,
+    16
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    28,
+    64
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "m3m2",
+    4,
+    28,
+    256
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    5,
+    32
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    5,
+    96
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    8,
+    32
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 10,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    8,
+    96
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    12,
+    32
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 10,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    12,
+    96
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    24,
+    32
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    24,
+    96
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    3,
+    5
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "w4",
+    2,
+    3,
+    12
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    6,
+    48
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 10,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    6,
+    128
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    10,
+    48
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    10,
+    128
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    18,
+    48
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    18,
+    128
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    26,
+    48
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    26,
+    128
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    4,
+    9
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 11,
+   "joint_sigs": 11
+  },
+  {
+   "shape": [
+    "a2",
+    2,
+    4,
+    20
+   ],
+   "nominal_arms": 12,
+   "error_sigs": 3,
+   "time_sigs": 12,
+   "joint_sigs": 12
+  }
+ ]
+}

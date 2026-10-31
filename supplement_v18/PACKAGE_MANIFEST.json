@@ -1,0 +1,27 @@
+{
+ "supplement": "r18",
+ "built": "2026-10-31",
+ "repository": "https://github.com/ckorhonen/kernelbench-validity-atlas",
+ "repository_commit": "51bfa7ee17ae40fa6d67039cea41801eddaeea42",
+ "previous_submission_id": "YZfYBWJ5dIFgQZqg",
+ "paper_sections": [
+  "p1",
+  "p2",
+  "p3",
+  "p4",
+  "p5",
+  "p6"
+ ],
+ "audits": {
+  "s50": "19/19",
+  "s51": "31/31",
+  "s52": "16/16",
+  "s53": "15/15",
+  "s54": "6/6",
+  "provenance": "58/58/0"
+ },
+ "packaged_scripts_run_from_inside_package": 24,
+ "declared_retractions": 5,
+ "curation": "results/ carries the artifacts the shipped auditors load plus every round-4/5 leg; omissions listed in DROPPED.md, all retrievable at the pinned commit",
+ "dispositions": "DISPOSITIONS.md maps each review finding to its change and its checkable location"
+}
