@@ -1,0 +1,10 @@
+{
+ "rows": 56,
+ "arm_change_tf32off": 19,
+ "arm_change_fp64": 49,
+ "pool_change_tf32off": 35,
+ "pool_change_fp64": 52,
+ "empty_pool_default": 0,
+ "empty_pool_tf32off": 20,
+ "empty_pool_fp64": 4
+}
