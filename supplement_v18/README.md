@@ -45,10 +45,13 @@ The fifth was the prose inconsistency the review describes, now repaired in §2.
 otherwise), ships the A10/A11 producers and the S56 rerun, and pins the public source:
 
     https://github.com/ckorhonen/kernelbench-validity-atlas
-    commit 51bfa7ee17ae40fa6d67039cea41801eddaeea42
+    commit 7b60834a51af80bc6bdcb824f9d72ddc4cd91dea
 
 That commit is the exact tree this package was built from. Anything omitted here is retrievable there at
 that revision, so no essential evidence depends on private access.
+
+The atlas notes (`ATLAS_A6` … `ATLAS_S56`, `SCHOOL_COMPLETION`) are not in this package; they are at the
+pinned commit, and the body no longer cites them section-by-section.
 
 ## Layout
 

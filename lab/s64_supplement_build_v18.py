@@ -110,8 +110,9 @@ REJECTIONS = ["rejection_review_2CmvAb.md", "rejection_review_6yPhozm.md", "reje
 SECTIONS = ["s1_introduction.md", "s2_reference_axis.md", "s3_atlas.md", "s3b_conv_anchor.md",
             "s4_certificates.md", "s5_tolerance.md", "s6_selector.md", "s7_threats.md",
             "s8_reproduction.md", "s9_related.md"]
-ATLAS = ["ATLAS_A6.md", "ATLAS_A7.md", "ATLAS_A8.md", "ATLAS_A9.md", "ATLAS_A10.md", "ATLAS_A11.md",
-         "ATLAS_S56.md", "SCHOOL_COMPLETION.md"]
+# round-18: the atlas notes are repo-resident at the pinned commit; the split body no longer cites them
+# section-by-section, and the 2 MB expanded cap is the binding constraint.
+ATLAS = ["ATLAS_A9.md"]
 
 # outputs the packaged scripts rewrite when run from inside the package; regenerated rather than
 # byte-copied, and their shipped state is what MANIFEST.sha256 covers.
@@ -395,6 +396,9 @@ otherwise), ships the A10/A11 producers and the S56 rerun, and pins the public s
 
 That commit is the exact tree this package was built from. Anything omitted here is retrievable there at
 that revision, so no essential evidence depends on private access.
+
+The atlas notes (`ATLAS_A6` … `ATLAS_S56`, `SCHOOL_COMPLETION`) are not in this package; they are at the
+pinned commit, and the body no longer cites them section-by-section.
 
 ## Layout
 

@@ -3,7 +3,7 @@
  "instrument": "lab/e59b_ratio_record.py",
  "source_ratio": "/Users/ckorhonen/rstation/kernelbench/supplement_v18/results/e59b_budget_ratios.jsonl",
  "source_times": "/Users/ckorhonen/rstation/kernelbench/supplement_v18/results/r1_conv_gated.jsonl",
- "date": "2026-10-31T03:19:41Z",
+ "date": "2026-10-31T03:21:35Z",
  "population": {
   "shapes": 56,
   "arm_checks": 672,
@@ -27,8 +27,8 @@
    "n_shapes_any_admissible": 56,
    "n_shapes_with_hand": 4,
    "class_shape_counts": {
-    "torch": 56,
     "compile": 52,
+    "torch": 56,
     "hand_ieee": 4
    },
    "frontier_class_counts": {
@@ -42,8 +42,8 @@
    "n_shapes_any_admissible": 56,
    "n_shapes_with_hand": 19,
    "class_shape_counts": {
-    "torch": 56,
     "compile": 52,
+    "torch": 56,
     "hand_ieee": 19
    },
    "frontier_class_counts": {
@@ -57,9 +57,9 @@
    "n_shapes_any_admissible": 56,
    "n_shapes_with_hand": 32,
    "class_shape_counts": {
+    "compile": 52,
     "hand_ieee": 32,
     "torch": 56,
-    "compile": 52,
     "hand_tf32": 5
    },
    "frontier_class_counts": {
@@ -74,10 +74,10 @@
    "n_shapes_any_admissible": 56,
    "n_shapes_with_hand": 56,
    "class_shape_counts": {
+    "compile": 56,
     "hand_ieee": 56,
     "hand_tf32": 56,
-    "torch": 56,
-    "compile": 56
+    "torch": 56
    },
    "frontier_class_counts": {
     "torch": 21,

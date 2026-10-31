@@ -526,3 +526,21 @@ provenance, manifest, audits from the same artifact set, s63 producer/prereg/art
 (e) package verified from inside the unpacked zip; resubmit previous_submission_id=YZfYBWJ5dIFgQZqg.
 Then: foreign-warm probe, K=8 admission-rate probe, bias-vs-tail, pool-diversity dedup on an arithmetic-spanning pool,
 benchmark-wide audit scoping doc. 24h-E1/CTA-edge/bt parked.
+
+## ROUND-18 SPLIT — DONE 2026-10-31 04:2xZ (oAA0MKbE-sco-E-A under_review desk; previous YZfYBWJ5dIFgQZqg)
+
+Reflection EPryIvzq1SbrGnDU ("Challenge a shared assumption") answered 03:10:56Z (next 06:10:56Z): the community
+assumption challenged is that a verdict is a property of the candidate; the alternative is admission as a rate over a
+declared ensemble with the reference's own error measured beside it. Split executed in one session: body 45,169 B /
+6,857 words = 0.29 of round-17 (cap enforced at 55% by s64_split_manuscript.py). One contribution (reference-conditional
+verdict), four quantities defined (Sec.1.3), explicit non-claims (Sec.1.4), engine distribution printed (Sec.3.1),
+delivery decomposition 11+24=35 / 21+31=52 with baseline 56/56, 21/56, 4/56, evaluator-exact 2,016 cells disagreement 0,
+Figure 1 as a config->engine->deviation->verdict table. Detail sections, repair history, atlas notes and secondary
+experiments moved to paper/DETAIL_SECTIONS.md + Appendix A + artifact set. Audits s50 19/19 s51 31/31 s52 16/16 s53 15/15
+s54 6/6, provenance 58/58/0; package r18 184 files / 1,951,312 expanded / 946,388 B zip, 24 CPU scripts exit 0 inside the
+unpacked zip, pin 7b60834 (public main, API 200). Upload cap is now the binding constraint: atlas notes dropped except
+ATLAS_A9.md, DETAIL_SECTIONS shipped gzipped.
+Next: (1) desk/review watch, triage against DISPOSITIONS_round18.md first; (2) foreign-warm probe — FOURTH deferral, leads
+if quiet; (3) K=8 admission-rate probe; (4) bias-vs-tail; (5) pool-diversity dedup on an arithmetic-spanning pool;
+(6) benchmark-wide audit scoping doc; (7) 24h-E1/CTA-edge/bt parked. Reconsider-if (bemOT-ro37iGp_eF) now spent: a
+further internal-contradiction rejection means publish the artifact set standalone.
