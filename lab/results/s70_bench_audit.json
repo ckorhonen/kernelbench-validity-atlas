@@ -1,0 +1,1647 @@
+{
+ "summary": {
+  "population_rule": "level1+level2, problem_id % 5 == 1",
+  "tasks_attempted": 40,
+  "tasks_anchor_admissible": 38,
+  "excluded": [
+   {
+    "level": 1,
+    "problem_id": 36,
+    "name": "36_RMSNorm_.py",
+    "reason": "fp64 estimated working set 28.0 GB > 24 GB"
+   },
+   {
+    "level": 1,
+    "problem_id": 76,
+    "name": "76_conv_standard_1D_dilated_strided__.py",
+    "reason": "fp64 estimated working set 26.7 GB > 24 GB"
+   }
+  ],
+  "exceedance": {
+   "bench_default": {
+    "count": 23,
+    "denominator": 38
+   },
+   "bench_tf32off": {
+    "count": 23,
+    "denominator": 38
+   },
+   "strict_default": {
+    "count": 26,
+    "denominator": 38
+   },
+   "strict_tf32off": {
+    "count": 26,
+    "denominator": 38
+   },
+   "A_vs_B_any_delta": {
+    "count": 27,
+    "denominator": 40
+   }
+  },
+  "max_rho_bench_default": 177.12036041202,
+  "max_rho_bench_tf32off": 121.4378187163084,
+  "wall_s": 124.2,
+  "torch": "2.14.1+cu130",
+  "prereg_sha256": "45cec2b68943193d9cb3e6b402400d25081ff07a01834fb3ce6656a38aa828f8"
+ },
+ "rows": [
+  {
+   "level": 1,
+   "problem_id": 11,
+   "name": "11_4D_tensor_matrix_multiplication.py",
+   "input_bytes": 1074528256,
+   "output_bytes": 3221225472,
+   "output_shape": [
+    8,
+    256,
+    512,
+    768
+   ],
+   "input_shapes": [
+    [
+     8,
+     256,
+     512,
+     256
+    ],
+    [
+     256,
+     768
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32",
+    "torch.float32"
+   ],
+   "t_default_s": 0.512,
+   "t_tf32off_s": 0.123,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 8591507456,
+   "t_fp64_s": 1.283,
+   "anchor": "admissible",
+   "ref_max_abs": 86.0163175868607,
+   "rho_bench_default": 0.00012040767605085229,
+   "rho_bench_tf32off": 0.00012040767605085229,
+   "rho_strict_default": 0.01204076760508523,
+   "rho_strict_tf32off": 0.01204076760508523,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 16,
+   "name": "16_Matmul_with_transposed_A.py",
+   "input_bytes": 201326592,
+   "output_bytes": 33554432,
+   "output_shape": [
+    2048,
+    4096
+   ],
+   "input_shapes": [
+    [
+     8192,
+     2048
+    ],
+    [
+     8192,
+     4096
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32",
+    "torch.float32"
+   ],
+   "t_default_s": 0.013,
+   "t_tf32off_s": 0.011,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 469762048,
+   "t_fp64_s": 0.027,
+   "anchor": "admissible",
+   "ref_max_abs": 2147.8097840769196,
+   "rho_bench_default": 0.0002383284746882759,
+   "rho_bench_tf32off": 0.0002383284746882759,
+   "rho_strict_default": 0.023832847468827596,
+   "rho_strict_tf32off": 0.023832847468827596,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 1,
+   "name": "1_Square_matrix_multiplication_.py",
+   "input_bytes": 134217728,
+   "output_bytes": 67108864,
+   "output_shape": [
+    4096,
+    4096
+   ],
+   "input_shapes": [
+    [
+     4096,
+     4096
+    ],
+    [
+     4096,
+     4096
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32",
+    "torch.float32"
+   ],
+   "t_default_s": 0.01,
+   "t_tf32off_s": 0.012,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 402653184,
+   "t_fp64_s": 0.022,
+   "anchor": "admissible",
+   "ref_max_abs": 1106.2127705244093,
+   "rho_bench_default": 0.00042027651426448795,
+   "rho_bench_tf32off": 0.00042027651426448795,
+   "rho_strict_default": 0.04202765142644879,
+   "rho_strict_tf32off": 0.04202765142644879,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 21,
+   "name": "21_Sigmoid.py",
+   "input_bytes": 6442450944,
+   "output_bytes": 6442450944,
+   "output_shape": [
+    4096,
+    393216
+   ],
+   "input_shapes": [
+    [
+     4096,
+     393216
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.559,
+   "t_tf32off_s": 0.419,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 25769803776,
+   "t_fp64_s": 1.323,
+   "anchor": "admissible",
+   "ref_max_abs": 0.7310585669110203,
+   "rho_bench_default": 4.904895319788006e-06,
+   "rho_bench_tf32off": 4.904895319788006e-06,
+   "rho_strict_default": 0.0004904895319788006,
+   "rho_strict_tf32off": 0.0004904895319788006,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 26,
+   "name": "26_GELU_.py",
+   "input_bytes": 6442450944,
+   "output_bytes": 6442450944,
+   "output_shape": [
+    4096,
+    393216
+   ],
+   "input_shapes": [
+    [
+     4096,
+     393216
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.595,
+   "t_tf32off_s": 0.462,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 25769803776,
+   "t_fp64_s": 0.455,
+   "anchor": "admissible",
+   "ref_max_abs": 0.8413446814979096,
+   "rho_bench_default": 4.702141221032317e-06,
+   "rho_bench_tf32off": 4.702141221032317e-06,
+   "rho_strict_default": 0.00047021412210323165,
+   "rho_strict_tf32off": 0.00047021412210323165,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 31,
+   "name": "31_ELU.py",
+   "input_bytes": 6442450944,
+   "output_bytes": 6442450944,
+   "output_shape": [
+    4096,
+    393216
+   ],
+   "input_shapes": [
+    [
+     4096,
+     393216
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.6,
+   "t_tf32off_s": 0.562,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 25769803776,
+   "t_fp64_s": 0.453,
+   "anchor": "admissible",
+   "ref_max_abs": 0.9999999403953552,
+   "rho_bench_default": 0.0,
+   "rho_bench_tf32off": 0.0,
+   "rho_strict_default": 0.0,
+   "rho_strict_tf32off": 0.0,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 36,
+   "name": "36_RMSNorm_.py",
+   "input_bytes": 7516192768,
+   "output_bytes": 7516192768,
+   "output_shape": [
+    112,
+    64,
+    512,
+    512
+   ],
+   "input_shapes": [
+    [
+     112,
+     64,
+     512,
+     512
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.825,
+   "t_tf32off_s": 0.511,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 30064771072,
+   "anchor": "inadmissible:working_set"
+  },
+  {
+   "level": 1,
+   "problem_id": 41,
+   "name": "41_Max_Pooling_1D.py",
+   "input_bytes": 3221225472,
+   "output_bytes": 3220586496,
+   "output_shape": [
+    64,
+    192,
+    65523
+   ],
+   "input_shapes": [
+    [
+     64,
+     192,
+     65536
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.538,
+   "t_tf32off_s": 0.445,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 12883623936,
+   "t_fp64_s": 0.228,
+   "anchor": "admissible",
+   "ref_max_abs": 0.9999999403953552,
+   "rho_bench_default": 0.0,
+   "rho_bench_tf32off": 0.0,
+   "rho_strict_default": 0.0,
+   "rho_strict_tf32off": 0.0,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 46,
+   "name": "46_Average_Pooling_3D.py",
+   "input_bytes": 8589934592,
+   "output_bytes": 1073741824,
+   "output_shape": [
+    16,
+    32,
+    64,
+    64,
+    128
+   ],
+   "input_shapes": [
+    [
+     16,
+     32,
+     128,
+     128,
+     256
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.476,
+   "t_tf32off_s": 0.429,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 19327352832,
+   "t_fp64_s": 1.133,
+   "anchor": "admissible",
+   "ref_max_abs": 0.7984667751524184,
+   "rho_bench_default": 1.5097986486022555e-05,
+   "rho_bench_tf32off": 1.5097986486022555e-05,
+   "rho_strict_default": 0.0015097986486022556,
+   "rho_strict_tf32off": 0.0015097986486022556,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 51,
+   "name": "51_Argmax_over_a_dimension.py",
+   "input_bytes": 8587837440,
+   "output_bytes": 4193280,
+   "output_shape": [
+    128,
+    4095
+   ],
+   "input_shapes": [
+    [
+     128,
+     4096,
+     4095
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.452,
+   "t_tf32off_s": 0.289,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 17184061440,
+   "t_fp64_s": 1.134,
+   "anchor": "admissible",
+   "ref_max_abs": 4095.0,
+   "rho_bench_default": 0.0,
+   "rho_bench_tf32off": 0.0,
+   "rho_strict_default": 0.0,
+   "rho_strict_tf32off": 0.0,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 56,
+   "name": "56_conv_standard_2D__asymmetric_input__asymmetric_kernel.py",
+   "input_bytes": 268435456,
+   "output_bytes": 520192000,
+   "output_shape": [
+    8,
+    128,
+    508,
+    250
+   ],
+   "input_shapes": [
+    [
+     8,
+     64,
+     512,
+     256
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.185,
+   "t_tf32off_s": 0.029,
+   "A_vs_B_maxabs": 2.3108290433883667,
+   "A_vs_B_rho_bench": 84.48648822985633,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 1577254912,
+   "t_fp64_s": 0.042,
+   "anchor": "admissible",
+   "ref_max_abs": 1.6325251597174306,
+   "rho_bench_default": 88.08443125710751,
+   "rho_bench_tf32off": 84.32919654522411,
+   "rho_strict_default": 8808.44312571075,
+   "rho_strict_tf32off": 8432.91965452241,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 1,
+   "problem_id": 61,
+   "name": "61_conv_transposed_3D__square_input__square_kernel.py",
+   "input_bytes": 402653184,
+   "output_bytes": 441593856,
+   "output_shape": [
+    8,
+    48,
+    66,
+    66,
+    66
+   ],
+   "input_shapes": [
+    [
+     8,
+     48,
+     64,
+     64,
+     64
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.085,
+   "t_tf32off_s": 0.032,
+   "A_vs_B_maxabs": 2.0855758786201477,
+   "A_vs_B_rho_bench": 78.2135580437444,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 1688494080,
+   "t_fp64_s": 0.069,
+   "anchor": "admissible",
+   "ref_max_abs": 1.6643445507226615,
+   "rho_bench_default": 77.3028561822716,
+   "rho_bench_tf32off": 95.07429629981347,
+   "rho_strict_default": 7730.285618227159,
+   "rho_strict_tf32off": 9507.429629981345,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 1,
+   "problem_id": 66,
+   "name": "66_conv_standard_3D__asymmetric_input__asymmetric_kernel.py",
+   "input_bytes": 25165824,
+   "output_bytes": 433750016,
+   "output_shape": [
+    8,
+    64,
+    14,
+    124,
+    122
+   ],
+   "input_shapes": [
+    [
+     8,
+     3,
+     16,
+     128,
+     128
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.037,
+   "t_tf32off_s": 0.018,
+   "A_vs_B_maxabs": 2.2599188089370728,
+   "A_vs_B_rho_bench": 86.04428561936034,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 917831680,
+   "t_fp64_s": 0.025,
+   "anchor": "admissible",
+   "ref_max_abs": 1.628655564727604,
+   "rho_bench_default": 85.09391063424813,
+   "rho_bench_tf32off": 82.15732763087249,
+   "rho_strict_default": 8509.391063424813,
+   "rho_strict_tf32off": 8215.732763087248,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 1,
+   "problem_id": 6,
+   "name": "6_Matmul_with_large_K_dimension_.py",
+   "input_bytes": 1073741824,
+   "output_bytes": 262144,
+   "output_shape": [
+    256,
+    256
+   ],
+   "input_shapes": [
+    [
+     256,
+     524288
+    ],
+    [
+     524288,
+     256
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32",
+    "torch.float32"
+   ],
+   "t_default_s": 0.058,
+   "t_tf32off_s": 0.025,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 2148007936,
+   "t_fp64_s": 0.15,
+   "anchor": "admissible",
+   "ref_max_abs": 131785.08539564768,
+   "rho_bench_default": 0.00024830315450387525,
+   "rho_bench_tf32off": 0.00024830315450387525,
+   "rho_strict_default": 0.024830315450387525,
+   "rho_strict_tf32off": 0.024830315450387525,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 71,
+   "name": "71_conv_transposed_2D__asymmetric_input__square_kernel.py",
+   "input_bytes": 536870912,
+   "output_bytes": 540020736,
+   "output_shape": [
+    8,
+    32,
+    514,
+    1026
+   ],
+   "input_shapes": [
+    [
+     8,
+     32,
+     512,
+     1024
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.095,
+   "t_tf32off_s": 0.026,
+   "A_vs_B_maxabs": 2.3425775170326233,
+   "A_vs_B_rho_bench": 85.34729824563232,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 2153783296,
+   "t_fp64_s": 0.054,
+   "anchor": "admissible",
+   "ref_max_abs": 1.455130423842585,
+   "rho_bench_default": 88.79975537485792,
+   "rho_bench_tf32off": 97.04970328994959,
+   "rho_strict_default": 8879.975537485792,
+   "rho_strict_tf32off": 9704.970328994958,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 1,
+   "problem_id": 76,
+   "name": "76_conv_standard_1D_dilated_strided__.py",
+   "input_bytes": 8589803520,
+   "output_bytes": 5726470144,
+   "output_shape": [
+    64,
+    128,
+    174758
+   ],
+   "input_shapes": [
+    [
+     64,
+     64,
+     524280
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 1.128,
+   "t_tf32off_s": 0.274,
+   "A_vs_B_maxabs": 2.4100441932678223,
+   "A_vs_B_rho_bench": 91.14616200117533,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 28632547328,
+   "anchor": "inadmissible:working_set"
+  },
+  {
+   "level": 1,
+   "problem_id": 81,
+   "name": "81_conv_transposed_2D_asymmetric_input_square_kernel___dilated____padded____strided__.py",
+   "input_bytes": 16777216,
+   "output_bytes": 831012864,
+   "output_shape": [
+    16,
+    64,
+    318,
+    638
+   ],
+   "input_shapes": [
+    [
+     16,
+     32,
+     64,
+     128
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.067,
+   "t_tf32off_s": 0.017,
+   "A_vs_B_maxabs": 0.5612813532352448,
+   "A_vs_B_rho_bench": 40.96079770552266,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 1695580160,
+   "t_fp64_s": 0.017,
+   "anchor": "admissible",
+   "ref_max_abs": 0.38275025442049765,
+   "rho_bench_default": 42.53773721240993,
+   "rho_bench_tf32off": 39.931518085760054,
+   "rho_strict_default": 4253.773721240993,
+   "rho_strict_tf32off": 3993.1518085760054,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 1,
+   "problem_id": 86,
+   "name": "86_conv_depthwise_separable_2D.py",
+   "input_bytes": 1073741824,
+   "output_bytes": 2147483648,
+   "output_shape": [
+    16,
+    128,
+    512,
+    512
+   ],
+   "input_shapes": [
+    [
+     16,
+     64,
+     512,
+     512
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.193,
+   "t_tf32off_s": 0.108,
+   "A_vs_B_maxabs": 1.3470868468284607,
+   "A_vs_B_rho_bench": 68.03328158171801,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 6442450944,
+   "t_fp64_s": 0.103,
+   "anchor": "admissible",
+   "ref_max_abs": 0.8440574948241496,
+   "rho_bench_default": 72.94678557414761,
+   "rho_bench_tf32off": 72.80415108630402,
+   "rho_strict_default": 7294.678557414762,
+   "rho_strict_tf32off": 7280.415108630402,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 1,
+   "problem_id": 91,
+   "name": "91_cumsum_reverse.py",
+   "input_bytes": 4294967296,
+   "output_bytes": 4294967296,
+   "output_shape": [
+    32768,
+    32768
+   ],
+   "input_shapes": [
+    [
+     32768,
+     32768
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.58,
+   "t_tf32off_s": 0.563,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 17179869184,
+   "t_fp64_s": 0.303,
+   "anchor": "admissible",
+   "ref_max_abs": 16600.464479148388,
+   "rho_bench_default": 0.0004977589993578253,
+   "rho_bench_tf32off": 0.0004977589993578253,
+   "rho_strict_default": 0.04977589993578252,
+   "rho_strict_tf32off": 0.04977589993578252,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 1,
+   "problem_id": 96,
+   "name": "96_HuberLoss.py",
+   "input_bytes": 8589934592,
+   "output_bytes": 4,
+   "output_shape": [],
+   "input_shapes": [
+    [
+     32768,
+     32768
+    ],
+    [
+     32768,
+     32768
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32",
+    "torch.float32"
+   ],
+   "t_default_s": 0.733,
+   "t_tf32off_s": 0.617,
+   "A_vs_B_maxabs": 0.0,
+   "A_vs_B_rho_bench": 0.0,
+   "A_vs_B_bit_identical": true,
+   "fp64_est_bytes": 17179869192,
+   "t_fp64_s": 1.634,
+   "anchor": "admissible",
+   "ref_max_abs": 0.0836518471754195,
+   "rho_bench_default": 8.877013363334187e-08,
+   "rho_bench_tf32off": 8.877013363334187e-08,
+   "rho_strict_default": 8.877013363334187e-06,
+   "rho_strict_tf32off": 8.877013363334187e-06,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": false,
+   "exceed_strict_tf32off": false
+  },
+  {
+   "level": 2,
+   "problem_id": 11,
+   "name": "11_ConvTranspose2d_BatchNorm_Tanh_MaxPool_GroupNorm.py",
+   "input_bytes": 134217728,
+   "output_bytes": 75759616,
+   "output_shape": [
+    512,
+    128,
+    17,
+    17
+   ],
+   "input_shapes": [
+    [
+     512,
+     64,
+     32,
+     32
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.073,
+   "t_tf32off_s": 0.043,
+   "A_vs_B_maxabs": 5.803069829940796,
+   "A_vs_B_rho_bench": 122.73074073937742,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 419954688,
+   "t_fp64_s": 0.05,
+   "anchor": "admissible",
+   "ref_max_abs": 3.8283450374614287,
+   "rho_bench_default": 115.85093704920362,
+   "rho_bench_tf32off": 121.4378187163084,
+   "rho_strict_default": 11585.093704920362,
+   "rho_strict_tf32off": 12143.78187163084,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 16,
+   "name": "16_ConvTranspose2d_Mish_Add_Hardtanh_Scaling.py",
+   "input_bytes": 536870912,
+   "output_bytes": 2147483648,
+   "output_shape": [
+    128,
+    64,
+    256,
+    256
+   ],
+   "input_shapes": [
+    [
+     128,
+     64,
+     128,
+     128
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.336,
+   "t_tf32off_s": 0.133,
+   "A_vs_B_maxabs": 1.535230278968811,
+   "A_vs_B_rho_bench": 51.1743426322937,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 5368709120,
+   "t_fp64_s": 0.427,
+   "anchor": "admissible",
+   "ref_max_abs": 2.0,
+   "rho_bench_default": 52.62987077564276,
+   "rho_bench_tf32off": 51.30826234817505,
+   "rho_strict_default": 5262.987077564275,
+   "rho_strict_tf32off": 5130.826234817504,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 1,
+   "name": "1_Conv2D_ReLU_BiasAdd.py",
+   "input_bytes": 536870912,
+   "output_bytes": 1040449536,
+   "output_shape": [
+    128,
+    128,
+    126,
+    126
+   ],
+   "input_shapes": [
+    [
+     128,
+     64,
+     128,
+     128
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.16,
+   "t_tf32off_s": 0.162,
+   "A_vs_B_maxabs": 5.613188982009888,
+   "A_vs_B_rho_bench": 124.83083346513602,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 3154640896,
+   "t_fp64_s": 0.122,
+   "anchor": "admissible",
+   "ref_max_abs": 3.878233085922918,
+   "rho_bench_default": 97.39308486926164,
+   "rho_bench_tf32off": 86.20341543965033,
+   "rho_strict_default": 9739.308486926164,
+   "rho_strict_tf32off": 8620.341543965033,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 21,
+   "name": "21_Conv2d_Add_Scale_Sigmoid_GroupNorm.py",
+   "input_bytes": 268435456,
+   "output_bytes": 1057030144,
+   "output_shape": [
+    128,
+    32,
+    254,
+    254
+   ],
+   "input_shapes": [
+    [
+     128,
+     8,
+     256,
+     256
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.112,
+   "t_tf32off_s": 0.099,
+   "A_vs_B_maxabs": 6.761170327663422,
+   "A_vs_B_rho_bench": 156.123311271141,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 2650931200,
+   "t_fp64_s": 0.021,
+   "anchor": "admissible",
+   "ref_max_abs": 3.394111530702329,
+   "rho_bench_default": 177.12036041202,
+   "rho_bench_tf32off": 94.05095796989033,
+   "rho_strict_default": 17712.036041202,
+   "rho_strict_tf32off": 9405.095796989035,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 26,
+   "name": "26_ConvTranspose3d_Add_HardSwish.py",
+   "input_bytes": 1140850688,
+   "output_bytes": 1073741824,
+   "output_shape": [
+    128,
+    64,
+    32,
+    32,
+    32
+   ],
+   "input_shapes": [
+    [
+     128,
+     32,
+     16,
+     16,
+     16
+    ],
+    [
+     128,
+     64,
+     32,
+     32,
+     32
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32",
+    "torch.float32"
+   ],
+   "t_default_s": 0.243,
+   "t_tf32off_s": 0.09,
+   "A_vs_B_maxabs": 1.3501002490520477,
+   "A_vs_B_rho_bench": 47.93805457993775,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 4429185024,
+   "t_fp64_s": 0.525,
+   "anchor": "admissible",
+   "ref_max_abs": 1.800352936168361,
+   "rho_bench_default": 53.14706925022616,
+   "rho_bench_tf32off": 41.34905424095934,
+   "rho_strict_default": 5314.706925022616,
+   "rho_strict_tf32off": 4134.905424095934,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 31,
+   "name": "31_Conv2d_Min_Add_Multiply.py",
+   "input_bytes": 536870912,
+   "output_bytes": 1040449536,
+   "output_shape": [
+    128,
+    128,
+    126,
+    126
+   ],
+   "input_shapes": [
+    [
+     128,
+     64,
+     128,
+     128
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.177,
+   "t_tf32off_s": 0.172,
+   "A_vs_B_maxabs": 11.31117057800293,
+   "A_vs_B_rho_bench": 152.3646107172734,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 3154640896,
+   "t_fp64_s": 0.197,
+   "anchor": "admissible",
+   "ref_max_abs": 7.574438095092773,
+   "rho_bench_default": 118.83362436672432,
+   "rho_bench_tf32off": 108.27944587792103,
+   "rho_strict_default": 11883.36243667243,
+   "rho_strict_tf32off": 10827.944587792103,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 36,
+   "name": "36_ConvTranspose2d_Min_Sum_GELU_Add.py",
+   "input_bytes": 67108864,
+   "output_bytes": 16384,
+   "output_shape": [
+    16,
+    1,
+    1,
+    256
+   ],
+   "input_shapes": [
+    [
+     16,
+     64,
+     128,
+     128
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.086,
+   "t_tf32off_s": 0.002,
+   "A_vs_B_maxabs": 0.5529333204030991,
+   "A_vs_B_rho_bench": 41.917521273239245,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 134250496,
+   "t_fp64_s": 0.055,
+   "anchor": "admissible",
+   "ref_max_abs": 0.650831401348114,
+   "rho_bench_default": 25.259781476660017,
+   "rho_bench_tf32off": 58.75401474309526,
+   "rho_strict_default": 2525.9781476660014,
+   "rho_strict_tf32off": 5875.401474309525,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 41,
+   "name": "41_Gemm_BatchNorm_GELU_ReLU.py",
+   "input_bytes": 268435456,
+   "output_bytes": 268435456,
+   "output_shape": [
+    16384,
+    4096
+   ],
+   "input_shapes": [
+    [
+     16384,
+     4096
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.163,
+   "t_tf32off_s": 0.068,
+   "A_vs_B_maxabs": 1.68962562084198,
+   "A_vs_B_rho_bench": 62.8201043204313,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 1073741824,
+   "t_fp64_s": 0.057,
+   "anchor": "admissible",
+   "ref_max_abs": 1.7456489710890757,
+   "rho_bench_default": 63.578738195241876,
+   "rho_bench_tf32off": 63.578738195241876,
+   "rho_strict_default": 6357.873819524187,
+   "rho_strict_tf32off": 6357.873819524187,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 46,
+   "name": "46_Conv2d_Subtract_Tanh_Subtract_AvgPool.py",
+   "input_bytes": 536870912,
+   "output_bytes": 260112384,
+   "output_shape": [
+    128,
+    128,
+    63,
+    63
+   ],
+   "input_shapes": [
+    [
+     128,
+     64,
+     128,
+     128
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.178,
+   "t_tf32off_s": 0.149,
+   "A_vs_B_maxabs": 1.2499986588954926,
+   "A_vs_B_rho_bench": 59.37198914631837,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 1593966592,
+   "t_fp64_s": 0.116,
+   "anchor": "admissible",
+   "ref_max_abs": 1.1143222433729836,
+   "rho_bench_default": 60.213591638570364,
+   "rho_bench_tf32off": 55.48853326084813,
+   "rho_strict_default": 6021.359163857036,
+   "rho_strict_tf32off": 5548.853326084813,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 51,
+   "name": "51_Gemm_Subtract_GlobalAvgPool_LogSumExp_GELU_ResidualAdd.py",
+   "input_bytes": 67108864,
+   "output_bytes": 67108864,
+   "output_shape": [
+    2048,
+    8192
+   ],
+   "input_shapes": [
+    [
+     2048,
+     8192
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.232,
+   "t_tf32off_s": 0.14,
+   "A_vs_B_maxabs": 0.008884519338607788,
+   "A_vs_B_rho_bench": 0.4420648386477797,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 268435456,
+   "t_fp64_s": 0.177,
+   "anchor": "admissible",
+   "ref_max_abs": 0.9993185817064746,
+   "rho_bench_default": 0.5507566060957804,
+   "rho_bench_tf32off": 0.7400676894765614,
+   "rho_strict_default": 55.07566060957803,
+   "rho_strict_tf32off": 74.00676894765613,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 56,
+   "name": "56_Matmul_Sigmoid_Sum.py",
+   "input_bytes": 16777216,
+   "output_bytes": 512,
+   "output_shape": [
+    128,
+    1
+   ],
+   "input_shapes": [
+    [
+     128,
+     32768
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 2.307,
+   "t_tf32off_s": 2.135,
+   "A_vs_B_maxabs": 52.0205078125,
+   "A_vs_B_rho_bench": 0.3169466781793794,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 33555456,
+   "t_fp64_s": 2.661,
+   "anchor": "admissible",
+   "ref_max_abs": 16399.754013049987,
+   "rho_bench_default": 0.2594923411211685,
+   "rho_bench_tf32off": 0.29176436249751025,
+   "rho_strict_default": 25.94923411211685,
+   "rho_strict_tf32off": 29.176436249751028,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 61,
+   "name": "61_ConvTranspose3d_ReLU_GroupNorm.py",
+   "input_bytes": 134217728,
+   "output_bytes": 321978368,
+   "output_shape": [
+    16,
+    128,
+    34,
+    34,
+    34
+   ],
+   "input_shapes": [
+    [
+     16,
+     64,
+     32,
+     32,
+     32
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.042,
+   "t_tf32off_s": 0.034,
+   "A_vs_B_maxabs": 9.238525807857513,
+   "A_vs_B_rho_bench": 96.51157677576316,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 912392192,
+   "t_fp64_s": 0.063,
+   "anchor": "admissible",
+   "ref_max_abs": 8.495188148328072,
+   "rho_bench_default": 97.05354633167074,
+   "rho_bench_tf32off": 95.71379998988702,
+   "rho_strict_default": 9705.354633167073,
+   "rho_strict_tf32off": 9571.379998988701,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 66,
+   "name": "66_Matmul_Dropout_Softmax.py",
+   "input_bytes": 8388608,
+   "output_bytes": 8388608,
+   "output_shape": [
+    128,
+    16384
+   ],
+   "input_shapes": [
+    [
+     128,
+     16384
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.599,
+   "t_tf32off_s": 0.535,
+   "A_vs_B_maxabs": 0.00027354329904483166,
+   "A_vs_B_rho_bench": 0.027346319142802278,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 33554432,
+   "t_fp64_s": 0.673,
+   "anchor": "admissible",
+   "ref_max_abs": 0.00031826238232639595,
+   "rho_bench_default": 0.0255048297295851,
+   "rho_bench_tf32off": 0.026910441509710958,
+   "rho_strict_default": 2.55048297295851,
+   "rho_strict_tf32off": 2.691044150971096,
+   "exceed_bench_default": false,
+   "exceed_bench_tf32off": false,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 6,
+   "name": "6_Conv3d_Softmax_MaxPool_MaxPool.py",
+   "input_bytes": 25165824,
+   "output_bytes": 1204224,
+   "output_shape": [
+    128,
+    16,
+    3,
+    7,
+    7
+   ],
+   "input_shapes": [
+    [
+     128,
+     3,
+     16,
+     32,
+     32
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.016,
+   "t_tf32off_s": 0.002,
+   "A_vs_B_maxabs": 0.15639815479516983,
+   "A_vs_B_rho_bench": 13.020730630329528,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 52740096,
+   "t_fp64_s": 0.021,
+   "anchor": "admissible",
+   "ref_max_abs": 0.1867533537495643,
+   "rho_bench_default": 11.696514563273823,
+   "rho_bench_tf32off": 11.535560860142121,
+   "rho_strict_default": 1169.651456327382,
+   "rho_strict_tf32off": 1153.556086014212,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 71,
+   "name": "71_Conv2d_Divide_LeakyReLU.py",
+   "input_bytes": 67108864,
+   "output_bytes": 520224768,
+   "output_shape": [
+    128,
+    64,
+    126,
+    126
+   ],
+   "input_shapes": [
+    [
+     128,
+     8,
+     128,
+     128
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.06,
+   "t_tf32off_s": 0.033,
+   "A_vs_B_maxabs": 0.7454700737798703,
+   "A_vs_B_rho_bench": 42.44174475762843,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 1174667264,
+   "t_fp64_s": 0.006,
+   "anchor": "admissible",
+   "ref_max_abs": 0.6954213744085578,
+   "rho_bench_default": 41.23659174786699,
+   "rho_bench_tf32off": 44.74002031591922,
+   "rho_strict_default": 4123.659174786698,
+   "rho_strict_tf32off": 4474.002031591921,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 76,
+   "name": "76_Gemm_Add_ReLU.py",
+   "input_bytes": 33554432,
+   "output_bytes": 33554432,
+   "output_shape": [
+    1024,
+    8192
+   ],
+   "input_shapes": [
+    [
+     1024,
+     8192
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.151,
+   "t_tf32off_s": 0.136,
+   "A_vs_B_maxabs": 4.210158348083496,
+   "A_vs_B_rho_bench": 78.53193922082149,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 134217728,
+   "t_fp64_s": 0.217,
+   "anchor": "admissible",
+   "ref_max_abs": 4.306003272386176,
+   "rho_bench_default": 76.29894038420855,
+   "rho_bench_tf32off": 79.3470740961329,
+   "rho_strict_default": 7629.8940384208545,
+   "rho_strict_tf32off": 7934.707409613289,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 81,
+   "name": "81_Gemm_Swish_Divide_Clamp_Tanh_Clamp.py",
+   "input_bytes": 33554432,
+   "output_bytes": 33554432,
+   "output_shape": [
+    1024,
+    8192
+   ],
+   "input_shapes": [
+    [
+     1024,
+     8192
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.155,
+   "t_tf32off_s": 0.134,
+   "A_vs_B_maxabs": 0.6915958020836115,
+   "A_vs_B_rho_bench": 42.77935499747853,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 134217728,
+   "t_fp64_s": 0.171,
+   "anchor": "admissible",
+   "ref_max_abs": 0.6443056026753584,
+   "rho_bench_default": 44.21564902248204,
+   "rho_bench_tf32off": 42.39752698757456,
+   "rho_strict_default": 4421.564902248204,
+   "rho_strict_tf32off": 4239.752698757456,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 86,
+   "name": "86_Matmul_Divide_GELU.py",
+   "input_bytes": 33554432,
+   "output_bytes": 33554432,
+   "output_shape": [
+    1024,
+    8192
+   ],
+   "input_shapes": [
+    [
+     1024,
+     8192
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.151,
+   "t_tf32off_s": 0.134,
+   "A_vs_B_maxabs": 0.11564131639897823,
+   "A_vs_B_rho_bench": 10.545635582952187,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 134217728,
+   "t_fp64_s": 0.172,
+   "anchor": "admissible",
+   "ref_max_abs": 0.102041904681848,
+   "rho_bench_default": 11.462276464838071,
+   "rho_bench_tf32off": 10.631607997160426,
+   "rho_strict_default": 1146.227646483807,
+   "rho_strict_tf32off": 1063.1607997160424,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 91,
+   "name": "91_ConvTranspose2d_Softmax_BiasAdd_Scaling_Sigmoid.py",
+   "input_bytes": 134217728,
+   "output_bytes": 1090584576,
+   "output_shape": [
+    128,
+    128,
+    129,
+    129
+   ],
+   "input_shapes": [
+    [
+     128,
+     64,
+     64,
+     64
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.099,
+   "t_tf32off_s": 0.137,
+   "A_vs_B_maxabs": 0.9319358915090561,
+   "A_vs_B_rho_bench": 46.76806294341157,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 2449604608,
+   "t_fp64_s": 0.107,
+   "anchor": "admissible",
+   "ref_max_abs": 0.9974484708265755,
+   "rho_bench_default": 48.685912555469116,
+   "rho_bench_tf32off": 47.866225214421895,
+   "rho_strict_default": 4868.591255546912,
+   "rho_strict_tf32off": 4786.622521442189,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  },
+  {
+   "level": 2,
+   "problem_id": 96,
+   "name": "96_ConvTranspose3d_Multiply_Max_GlobalAvgPool_Clamp.py",
+   "input_bytes": 25165824,
+   "output_bytes": 8192,
+   "output_shape": [
+    128,
+    16,
+    1,
+    1,
+    1
+   ],
+   "input_shapes": [
+    [
+     128,
+     3,
+     16,
+     32,
+     32
+    ]
+   ],
+   "input_dtypes": [
+    "torch.float32"
+   ],
+   "t_default_s": 0.088,
+   "t_tf32off_s": 0.031,
+   "A_vs_B_maxabs": 0.05905391927808523,
+   "A_vs_B_rho_bench": 5.4960755996640485,
+   "A_vs_B_bit_identical": false,
+   "fp64_est_bytes": 50348032,
+   "t_fp64_s": 0.163,
+   "anchor": "admissible",
+   "ref_max_abs": 0.07581279239207239,
+   "rho_bench_default": 6.35782604210366,
+   "rho_bench_tf32off": 4.719128381122737,
+   "rho_strict_default": 635.782604210366,
+   "rho_strict_tf32off": 471.9128381122737,
+   "exceed_bench_default": true,
+   "exceed_bench_tf32off": true,
+   "exceed_strict_default": true,
+   "exceed_strict_tf32off": true
+  }
+ ]
+}
