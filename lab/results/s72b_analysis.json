@@ -1,0 +1,1113 @@
+{
+ "date": "2026-10-31T23:15:44Z",
+ "source": "results/s72_fresh_process.jsonl",
+ "n_cells": 104,
+ "n_rows": 26,
+ "class_distribution": {
+  "TF32_TENSOROP": 64,
+  "WINOGRAD": 36,
+  "FP32_SIMT": 4
+ },
+ "class_identical_rows": 26,
+ "kernel_names_identical_rows": 26,
+ "ref_absmax_identical_rows": 26,
+ "distinct_pids": 104,
+ "distinct_nonces": 104,
+ "rows": [
+  {
+   "H": 3,
+   "N": 2,
+   "C": 5,
+   "n_cells": 4,
+   "engine_class": "FP32_SIMT",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 15.328232765197754,
+   "top_kernel": "void cudnn::cnn::conv2d_grouped_direct_kernel<false, true, false, false, false, false, 0, 0, int, float, float, float, f",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    60538,
+    60567,
+    60596,
+    60625
+   ],
+   "nonces": [
+    "0bf23274f87b",
+    "b777304d0fcf",
+    "59b4cfa2c993",
+    "af1da82a9356"
+   ]
+  },
+  {
+   "H": 3,
+   "N": 2,
+   "C": 12,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 33.856449127197266,
+   "top_kernel": "sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x32x64_stage1_warpsize4x1x1_g",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    59595,
+    59624,
+    59653,
+    59682
+   ],
+   "nonces": [
+    "d17e9dbb38c7",
+    "f9293690ef77",
+    "3471135e0d55",
+    "c810034688c9"
+   ]
+  },
+  {
+   "H": 4,
+   "N": 1,
+   "C": 16,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 26.789003372192383,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    54298,
+    54327,
+    54368,
+    54397
+   ],
+   "nonces": [
+    "28571ce5128a",
+    "be95a5e11448",
+    "d117e6bd0398",
+    "173366adedcf"
+   ]
+  },
+  {
+   "H": 4,
+   "N": 1,
+   "C": 64,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 70.91114044189453,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    54426,
+    54455,
+    54484,
+    54790
+   ],
+   "nonces": [
+    "ac7756525147",
+    "cf642486ed8f",
+    "fe78b38e8d45",
+    "74698f1e00be"
+   ]
+  },
+  {
+   "H": 4,
+   "N": 2,
+   "C": 20,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 36.87813949584961,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    60137,
+    60450,
+    60480,
+    60509
+   ],
+   "nonces": [
+    "2e1ef36c9173",
+    "5f497591830d",
+    "8793881549cc",
+    "a1f5ec314af7"
+   ]
+  },
+  {
+   "H": 4,
+   "N": 4,
+   "C": 16,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 41.912227630615234,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    54819,
+    54849,
+    54878,
+    54907
+   ],
+   "nonces": [
+    "cea4ebd15568",
+    "b2647e4ecda8",
+    "90eddac690ff",
+    "92aa74774541"
+   ]
+  },
+  {
+   "H": 4,
+   "N": 4,
+   "C": 64,
+   "n_cells": 4,
+   "engine_class": "WINOGRAD",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 78.53207397460938,
+   "top_kernel": "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    54936,
+    54966,
+    54996,
+    55208
+   ],
+   "nonces": [
+    "bb7d9b4382f0",
+    "36da0035936f",
+    "fe78b28a3f63",
+    "5c7317ebaf70"
+   ]
+  },
+  {
+   "H": 6,
+   "N": 2,
+   "C": 48,
+   "n_cells": 4,
+   "engine_class": "WINOGRAD",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 70.99544525146484,
+   "top_kernel": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTe",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    59711,
+    59740,
+    59950,
+    59979
+   ],
+   "nonces": [
+    "61f3ea14dbec",
+    "ded66a76943a",
+    "02e2e871d6d4",
+    "15a95162f6a0"
+   ]
+  },
+  {
+   "H": 7,
+   "N": 1,
+   "C": 16,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 38.04753494262695,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    55237,
+    55278,
+    55307,
+    55336
+   ],
+   "nonces": [
+    "d5f347fd6af9",
+    "d814846d73a6",
+    "62c3f9fdc073",
+    "238b5213f759"
+   ]
+  },
+  {
+   "H": 7,
+   "N": 1,
+   "C": 64,
+   "n_cells": 4,
+   "engine_class": "WINOGRAD",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 100.31588745117188,
+   "top_kernel": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTe",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    60654,
+    60865,
+    60894,
+    60935
+   ],
+   "nonces": [
+    "fe2c135ee08a",
+    "bfef2d9cd8e7",
+    "e56f8dcf951a",
+    "098dc2629ed7"
+   ]
+  },
+  {
+   "H": 7,
+   "N": 4,
+   "C": 16,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 42.520259857177734,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    55365,
+    55394,
+    56001,
+    56031
+   ],
+   "nonces": [
+    "4ed5d329e7ab",
+    "8ee4730c965c",
+    "a94b7cce01dd",
+    "b3479c607a76"
+   ]
+  },
+  {
+   "H": 7,
+   "N": 4,
+   "C": 64,
+   "n_cells": 4,
+   "engine_class": "WINOGRAD",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 97.18727111816406,
+   "top_kernel": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTe",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    56060,
+    56089,
+    56118,
+    56147
+   ],
+   "nonces": [
+    "8c0811f12235",
+    "ef24683fe1f2",
+    "7eb0867c06d7",
+    "0a0cd75592f8"
+   ]
+  },
+  {
+   "H": 8,
+   "N": 2,
+   "C": 32,
+   "n_cells": 4,
+   "engine_class": "WINOGRAD",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 63.79970169067383,
+   "top_kernel": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTe",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    58799,
+    58840,
+    58869,
+    58898
+   ],
+   "nonces": [
+    "76b36358a46e",
+    "68735907da18",
+    "7f0796e921ba",
+    "5ee876bfba39"
+   ]
+  },
+  {
+   "H": 10,
+   "N": 1,
+   "C": 16,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 40.142234802246094,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    56176,
+    56383,
+    56412,
+    56453
+   ],
+   "nonces": [
+    "5f7a7d651b4d",
+    "fd5021fd88c6",
+    "111f581d33d3",
+    "1ece2271655e"
+   ]
+  },
+  {
+   "H": 10,
+   "N": 1,
+   "C": 64,
+   "n_cells": 4,
+   "engine_class": "WINOGRAD",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 83.83743286132812,
+   "top_kernel": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTe",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    56482,
+    56511,
+    56540,
+    56569
+   ],
+   "nonces": [
+    "03b236769570",
+    "a4593328c633",
+    "6ee5e9136052",
+    "3e53c4a7d92d"
+   ]
+  },
+  {
+   "H": 10,
+   "N": 2,
+   "C": 48,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 83.01295471191406,
+   "top_kernel": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10_nhwc_align4>(cutlass_tensorop_s168",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    60020,
+    60049,
+    60079,
+    60108
+   ],
+   "nonces": [
+    "9826b9cf966e",
+    "555966afd58a",
+    "bb1cb6039628",
+    "f1a88268d2cb"
+   ]
+  },
+  {
+   "H": 10,
+   "N": 4,
+   "C": 16,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 41.71686553955078,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    56598,
+    56908,
+    56937,
+    56967
+   ],
+   "nonces": [
+    "4706a1d88ae7",
+    "d41427250ec9",
+    "b3c150a9c8a7",
+    "934d9e36e48c"
+   ]
+  },
+  {
+   "H": 10,
+   "N": 4,
+   "C": 64,
+   "n_cells": 4,
+   "engine_class": "WINOGRAD",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 102.64228820800781,
+   "top_kernel": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTe",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    56997,
+    57026,
+    57055,
+    57084
+   ],
+   "nonces": [
+    "ad5a812268bb",
+    "96d9c044384a",
+    "ac471fad5a99",
+    "c30c8572444c"
+   ]
+  },
+  {
+   "H": 12,
+   "N": 2,
+   "C": 32,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 70.3823013305664,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    58927,
+    58956,
+    59537,
+    59566
+   ],
+   "nonces": [
+    "d87f4fcdc707",
+    "87f00ec34220",
+    "1d494ab1df08",
+    "253bbd2438da"
+   ]
+  },
+  {
+   "H": 12,
+   "N": 2,
+   "C": 96,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 128.89071655273438,
+   "top_kernel": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_16x10_nhwc_align4>(cutlass_tensorop_s168",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    60964,
+    60993,
+    61022,
+    61051
+   ],
+   "nonces": [
+    "e5acd78aceb3",
+    "5732fda65426",
+    "820e217f4ddd",
+    "da55ac9c9764"
+   ]
+  },
+  {
+   "H": 14,
+   "N": 1,
+   "C": 16,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 41.27983474731445,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    57291,
+    57320,
+    57361,
+    57390
+   ],
+   "nonces": [
+    "242ac6f77e24",
+    "677d23bb8c84",
+    "cf048bbab764",
+    "f30578b37b75"
+   ]
+  },
+  {
+   "H": 14,
+   "N": 1,
+   "C": 64,
+   "n_cells": 4,
+   "engine_class": "WINOGRAD",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 100.60902404785156,
+   "top_kernel": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTe",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    57420,
+    57449,
+    57478,
+    57904
+   ],
+   "nonces": [
+    "c3d3f1c27338",
+    "b49898981113",
+    "5dfe529f14f6",
+    "1b2959485365"
+   ]
+  },
+  {
+   "H": 14,
+   "N": 4,
+   "C": 16,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 42.7806510925293,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    58101,
+    58130,
+    58159,
+    58188
+   ],
+   "nonces": [
+    "58fc26ac40fd",
+    "09c1f4157577",
+    "29510609af3a",
+    "a5f79a14ebb7"
+   ]
+  },
+  {
+   "H": 14,
+   "N": 4,
+   "C": 64,
+   "n_cells": 4,
+   "engine_class": "WINOGRAD",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 111.94895935058594,
+   "top_kernel": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTe",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    58217,
+    58246,
+    58275,
+    58770
+   ],
+   "nonces": [
+    "3f45553582a7",
+    "de9ca3df8754",
+    "82eaf1d6b797",
+    "617a42c6074d"
+   ]
+  },
+  {
+   "H": 20,
+   "N": 1,
+   "C": 256,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 207.43844604492188,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    61370,
+    61399,
+    61428,
+    61457
+   ],
+   "nonces": [
+    "a496e47d1171",
+    "c14b6794a89f",
+    "e2c144c803b4",
+    "b4f8e55266e2"
+   ]
+  },
+  {
+   "H": 26,
+   "N": 2,
+   "C": 128,
+   "n_cells": 4,
+   "engine_class": "TF32_TENSOROP",
+   "class_identical": true,
+   "kernel_names_identical": true,
+   "ref_absmax_identical": true,
+   "ref_absmax": 156.94973754882812,
+   "top_kernel": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::eng",
+   "budgets": [
+    "default",
+    "default",
+    "default",
+    "constrained"
+   ],
+   "pids": [
+    61486,
+    61515,
+    61544,
+    61573
+   ],
+   "nonces": [
+    "c3bd65dda321",
+    "f85006ce591f",
+    "7fdf31982079",
+    "1c25b83fe6d7"
+   ]
+  }
+ ],
+ "top_kernel_us_dispersion": [
+  {
+   "H": 3,
+   "N": 2,
+   "C": 5,
+   "top_us": [
+    12.99,
+    12.86,
+    12.9,
+    12.83
+   ],
+   "spread": 0.16
+  },
+  {
+   "H": 3,
+   "N": 2,
+   "C": 12,
+   "top_us": [
+    5.66,
+    5.86,
+    5.66,
+    5.7
+   ],
+   "spread": 0.2
+  },
+  {
+   "H": 4,
+   "N": 1,
+   "C": 16,
+   "top_us": [
+    5.25,
+    5.25,
+    5.28,
+    5.18
+   ],
+   "spread": 0.1
+  },
+  {
+   "H": 4,
+   "N": 1,
+   "C": 64,
+   "top_us": [
+    7.52,
+    7.78,
+    7.49,
+    7.62
+   ],
+   "spread": 0.29
+  },
+  {
+   "H": 4,
+   "N": 2,
+   "C": 20,
+   "top_us": [
+    6.14,
+    6.08,
+    6.02,
+    6.05
+   ],
+   "spread": 0.12
+  },
+  {
+   "H": 4,
+   "N": 4,
+   "C": 16,
+   "top_us": [
+    5.28,
+    5.22,
+    5.95,
+    5.18
+   ],
+   "spread": 0.77
+  },
+  {
+   "H": 4,
+   "N": 4,
+   "C": 64,
+   "top_us": [
+    10.21,
+    10.37,
+    8.77,
+    10.27
+   ],
+   "spread": 1.6
+  },
+  {
+   "H": 6,
+   "N": 2,
+   "C": 48,
+   "top_us": [
+    7.68,
+    7.65,
+    7.49,
+    7.65
+   ],
+   "spread": 0.19
+  },
+  {
+   "H": 7,
+   "N": 1,
+   "C": 16,
+   "top_us": [
+    5.25,
+    5.6,
+    5.25,
+    5.31
+   ],
+   "spread": 0.35
+  },
+  {
+   "H": 7,
+   "N": 1,
+   "C": 64,
+   "top_us": [
+    10.05,
+    9.47,
+    10.24,
+    10.14
+   ],
+   "spread": 0.77
+  },
+  {
+   "H": 7,
+   "N": 4,
+   "C": 16,
+   "top_us": [
+    5.28,
+    5.63,
+    5.09,
+    5.09
+   ],
+   "spread": 0.54
+  },
+  {
+   "H": 7,
+   "N": 4,
+   "C": 64,
+   "top_us": [
+    10.66,
+    10.05,
+    9.98,
+    10.11
+   ],
+   "spread": 0.68
+  },
+  {
+   "H": 8,
+   "N": 2,
+   "C": 32,
+   "top_us": [
+    5.98,
+    5.92,
+    6.02,
+    5.92
+   ],
+   "spread": 0.1
+  },
+  {
+   "H": 10,
+   "N": 1,
+   "C": 16,
+   "top_us": [
+    5.38,
+    5.22,
+    5.38,
+    5.41
+   ],
+   "spread": 0.19
+  },
+  {
+   "H": 10,
+   "N": 1,
+   "C": 64,
+   "top_us": [
+    17.31,
+    16.35,
+    16.22,
+    17.63
+   ],
+   "spread": 1.41
+  },
+  {
+   "H": 10,
+   "N": 2,
+   "C": 48,
+   "top_us": [
+    6.14,
+    6.14,
+    6.05,
+    6.18
+   ],
+   "spread": 0.13
+  },
+  {
+   "H": 10,
+   "N": 4,
+   "C": 16,
+   "top_us": [
+    5.02,
+    4.96,
+    5.18,
+    5.12
+   ],
+   "spread": 0.22
+  },
+  {
+   "H": 10,
+   "N": 4,
+   "C": 64,
+   "top_us": [
+    16.7,
+    16.42,
+    17.38,
+    17.57
+   ],
+   "spread": 1.15
+  },
+  {
+   "H": 12,
+   "N": 2,
+   "C": 32,
+   "top_us": [
+    6.88,
+    26.3,
+    6.72,
+    6.88
+   ],
+   "spread": 19.58
+  },
+  {
+   "H": 12,
+   "N": 2,
+   "C": 96,
+   "top_us": [
+    10.5,
+    10.56,
+    10.66,
+    11.1
+   ],
+   "spread": 0.6
+  },
+  {
+   "H": 14,
+   "N": 1,
+   "C": 16,
+   "top_us": [
+    4.99,
+    5.31,
+    5.09,
+    5.25
+   ],
+   "spread": 0.32
+  },
+  {
+   "H": 14,
+   "N": 1,
+   "C": 64,
+   "top_us": [
+    19.23,
+    19.46,
+    19.1,
+    20.16
+   ],
+   "spread": 1.06
+  },
+  {
+   "H": 14,
+   "N": 4,
+   "C": 16,
+   "top_us": [
+    5.22,
+    5.12,
+    5.18,
+    5.09
+   ],
+   "spread": 0.13
+  },
+  {
+   "H": 14,
+   "N": 4,
+   "C": 64,
+   "top_us": [
+    19.81,
+    21.34,
+    22.72,
+    21.7
+   ],
+   "spread": 2.91
+  },
+  {
+   "H": 20,
+   "N": 1,
+   "C": 256,
+   "top_us": [
+    33.95,
+    34.34,
+    34.24,
+    36.42
+   ],
+   "spread": 2.47
+  },
+  {
+   "H": 26,
+   "N": 2,
+   "C": 128,
+   "top_us": [
+    18.98,
+    19.49,
+    19.39,
+    18.85
+   ],
+   "spread": 0.64
+  }
+ ],
+ "note": "descriptive; the registered reads are s72's R1/R2, decided by the producer summary"
+}

@@ -1,0 +1,646 @@
+{
+ "date": "2026-10-31T23:11:14Z",
+ "prereg": "docstring of lab/s72_fresh_process.py",
+ "n_rows": 26,
+ "reps": 3,
+ "budget_fraction": 0.1,
+ "cells": 104,
+ "rows": [
+  {
+   "H": 4,
+   "N": 1,
+   "C": 16,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    26.789003372192383,
+    26.789003372192383,
+    26.789003372192383,
+    26.789003372192383
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 4,
+   "N": 1,
+   "C": 64,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    70.91114044189453,
+    70.91114044189453,
+    70.91114044189453,
+    70.91114044189453
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 4,
+   "N": 4,
+   "C": 16,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    41.912227630615234,
+    41.912227630615234,
+    41.912227630615234,
+    41.912227630615234
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 4,
+   "N": 4,
+   "C": 64,
+   "classes_fresh": [
+    "WINOGRAD",
+    "WINOGRAD",
+    "WINOGRAD"
+   ],
+   "s63": "WINOGRAD",
+   "s66": "WINOGRAD",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "WINOGRAD",
+   "budget_matches": true,
+   "absmax": [
+    78.53207397460938,
+    78.53207397460938,
+    78.53207397460938,
+    78.53207397460938
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 7,
+   "N": 1,
+   "C": 16,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    38.04753494262695,
+    38.04753494262695,
+    38.04753494262695,
+    38.04753494262695
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 7,
+   "N": 4,
+   "C": 16,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    42.520259857177734,
+    42.520259857177734,
+    42.520259857177734,
+    42.520259857177734
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 7,
+   "N": 4,
+   "C": 64,
+   "classes_fresh": [
+    "WINOGRAD",
+    "WINOGRAD",
+    "WINOGRAD"
+   ],
+   "s63": "WINOGRAD",
+   "s66": "WINOGRAD",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "WINOGRAD",
+   "budget_matches": true,
+   "absmax": [
+    97.18727111816406,
+    97.18727111816406,
+    97.18727111816406,
+    97.18727111816406
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 10,
+   "N": 1,
+   "C": 16,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    40.142234802246094,
+    40.142234802246094,
+    40.142234802246094,
+    40.142234802246094
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 10,
+   "N": 1,
+   "C": 64,
+   "classes_fresh": [
+    "WINOGRAD",
+    "WINOGRAD",
+    "WINOGRAD"
+   ],
+   "s63": "WINOGRAD",
+   "s66": "WINOGRAD",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "WINOGRAD",
+   "budget_matches": true,
+   "absmax": [
+    83.83743286132812,
+    83.83743286132812,
+    83.83743286132812,
+    83.83743286132812
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 10,
+   "N": 4,
+   "C": 16,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    41.71686553955078,
+    41.71686553955078,
+    41.71686553955078,
+    41.71686553955078
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 10,
+   "N": 4,
+   "C": 64,
+   "classes_fresh": [
+    "WINOGRAD",
+    "WINOGRAD",
+    "WINOGRAD"
+   ],
+   "s63": "WINOGRAD",
+   "s66": "WINOGRAD",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "WINOGRAD",
+   "budget_matches": true,
+   "absmax": [
+    102.64228820800781,
+    102.64228820800781,
+    102.64228820800781,
+    102.64228820800781
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 14,
+   "N": 1,
+   "C": 16,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    41.27983474731445,
+    41.27983474731445,
+    41.27983474731445,
+    41.27983474731445
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 14,
+   "N": 1,
+   "C": 64,
+   "classes_fresh": [
+    "WINOGRAD",
+    "WINOGRAD",
+    "WINOGRAD"
+   ],
+   "s63": "WINOGRAD",
+   "s66": "WINOGRAD",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "WINOGRAD",
+   "budget_matches": true,
+   "absmax": [
+    100.60902404785156,
+    100.60902404785156,
+    100.60902404785156,
+    100.60902404785156
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 14,
+   "N": 4,
+   "C": 16,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    42.7806510925293,
+    42.7806510925293,
+    42.7806510925293,
+    42.7806510925293
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 14,
+   "N": 4,
+   "C": 64,
+   "classes_fresh": [
+    "WINOGRAD",
+    "WINOGRAD",
+    "WINOGRAD"
+   ],
+   "s63": "WINOGRAD",
+   "s66": "WINOGRAD",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "WINOGRAD",
+   "budget_matches": true,
+   "absmax": [
+    111.94895935058594,
+    111.94895935058594,
+    111.94895935058594,
+    111.94895935058594
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 8,
+   "N": 2,
+   "C": 32,
+   "classes_fresh": [
+    "WINOGRAD",
+    "WINOGRAD",
+    "WINOGRAD"
+   ],
+   "s63": "WINOGRAD",
+   "s66": "WINOGRAD",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "WINOGRAD",
+   "budget_matches": true,
+   "absmax": [
+    63.79970169067383,
+    63.79970169067383,
+    63.79970169067383,
+    63.79970169067383
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 12,
+   "N": 2,
+   "C": 32,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    70.3823013305664,
+    70.3823013305664,
+    70.3823013305664,
+    70.3823013305664
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 3,
+   "N": 2,
+   "C": 12,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    33.856449127197266,
+    33.856449127197266,
+    33.856449127197266,
+    33.856449127197266
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 6,
+   "N": 2,
+   "C": 48,
+   "classes_fresh": [
+    "WINOGRAD",
+    "WINOGRAD",
+    "WINOGRAD"
+   ],
+   "s63": "WINOGRAD",
+   "s66": "WINOGRAD",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "WINOGRAD",
+   "budget_matches": true,
+   "absmax": [
+    70.99544525146484,
+    70.99544525146484,
+    70.99544525146484,
+    70.99544525146484
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 10,
+   "N": 2,
+   "C": 48,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    83.01295471191406,
+    83.01295471191406,
+    83.01295471191406,
+    83.01295471191406
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 4,
+   "N": 2,
+   "C": 20,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    36.87813949584961,
+    36.87813949584961,
+    36.87813949584961,
+    36.87813949584961
+   ],
+   "armA_delivered_change": true
+  },
+  {
+   "H": 3,
+   "N": 2,
+   "C": 5,
+   "classes_fresh": [
+    "FP32_SIMT",
+    "FP32_SIMT",
+    "FP32_SIMT"
+   ],
+   "s63": "FP32_SIMT",
+   "s66": "OTHER",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": false,
+   "budget_class": "FP32_SIMT",
+   "budget_matches": true,
+   "absmax": [
+    15.328232765197754,
+    15.328232765197754,
+    15.328232765197754,
+    15.328232765197754
+   ],
+   "armA_delivered_change": false
+  },
+  {
+   "H": 7,
+   "N": 1,
+   "C": 64,
+   "classes_fresh": [
+    "WINOGRAD",
+    "WINOGRAD",
+    "WINOGRAD"
+   ],
+   "s63": "WINOGRAD",
+   "s66": "WINOGRAD",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "WINOGRAD",
+   "budget_matches": true,
+   "absmax": [
+    100.31588745117188,
+    100.31588745117188,
+    100.31588745117188,
+    100.31588745117188
+   ],
+   "armA_delivered_change": false
+  },
+  {
+   "H": 12,
+   "N": 2,
+   "C": 96,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    128.89071655273438,
+    128.89071655273438,
+    128.89071655273438,
+    128.89071655273438
+   ],
+   "armA_delivered_change": false
+  },
+  {
+   "H": 20,
+   "N": 1,
+   "C": 256,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    207.43844604492188,
+    207.43844604492188,
+    207.43844604492188,
+    207.43844604492188
+   ],
+   "armA_delivered_change": false
+  },
+  {
+   "H": 26,
+   "N": 2,
+   "C": 128,
+   "classes_fresh": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   "s63": "TF32_TENSOROP",
+   "s66": "TF32_TENSOROP",
+   "agree_reps": true,
+   "agree_s63": true,
+   "agree_s66": true,
+   "budget_class": "TF32_TENSOROP",
+   "budget_matches": true,
+   "absmax": [
+    156.94973754882812,
+    156.94973754882812,
+    156.94973754882812,
+    156.94973754882812
+   ],
+   "armA_delivered_change": false
+  }
+ ],
+ "r1_process_identity": {
+  "rows_agree_all_reps": 26,
+  "rows_agree_s63": 26,
+  "rows_disagree_reps": [],
+  "rows_disagree_s63": [],
+  "pass": true
+ },
+ "r2_budget": {
+  "rows_budget_invariant": 26,
+  "rows_flip": [],
+  "pass": true
+ }
+}
