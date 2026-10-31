@@ -1,0 +1,52 @@
+{
+ "date": "2026-10-31T00:01:32Z",
+ "n_rows": 56,
+ "sm_count": 48,
+ "engine_class_counts": {
+  "def": {
+   "TF32_TENSOROP": 35,
+   "WINOGRAD": 19,
+   "FP32_SIMT": 2
+  },
+  "ieee": {
+   "FP32_SIMT": 18,
+   "OTHER": 1,
+   "WINOGRAD": 37
+  },
+  "64": {
+   "FP64": 56
+  }
+ },
+ "def_to_ieee_engine_transitions": {
+  "('TF32_TENSOROP', 'FP32_SIMT')": 16,
+  "('TF32_TENSOROP', 'OTHER')": 1,
+  "('WINOGRAD', 'WINOGRAD')": 19,
+  "('TF32_TENSOROP', 'WINOGRAD')": 18,
+  "('FP32_SIMT', 'FP32_SIMT')": 2
+ },
+ "predicate_disagreements_by_ref": {},
+ "predicate_disagreements_total": 0,
+ "swap_counts": {
+  "ref_scaled:def->ieee": {
+   "n_sel": 11,
+   "n_eng_moved": 11,
+   "n_eng_same": 0
+  },
+  "ref_scaled:def->64": {
+   "n_sel": 21,
+   "n_eng_moved": 21,
+   "n_eng_same": 0
+  },
+  "cand_scaled:def->ieee": {
+   "n_sel": 11,
+   "n_eng_moved": 11,
+   "n_eng_same": 0
+  },
+  "cand_scaled:def->64": {
+   "n_sel": 21,
+   "n_eng_moved": 21,
+   "n_eng_same": 0
+  }
+ },
+ "note": "engine labels are observations from torch.profiler on the reference conv call itself; counts are descriptive, no threshold applied"
+}

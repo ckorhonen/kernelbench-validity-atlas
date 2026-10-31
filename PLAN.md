@@ -495,3 +495,34 @@ previous_submission_id=DbvG6Bpe-qNTdmWK. Reconsider-if (bemOT-ro37iGp_eF): rejec
 contradiction => split the paper or publish the artifact set standalone.
 After: foreign-warm probe, K=8 admission-rate probe (s59 prior 26/228 at 5.9x), bias-vs-tail, pool-diversity dedup
 on an arithmetic-spanning pool, benchmark-wide audit scoping doc. 24h-E1/CTA-edge/bt parked.
+
+## Active lane: ROUND-18 REPAIR + SPLIT — opened 2026-10-31 00:0xZ (YZfYBWJ5dIFgQZqg rejected 2026-10-30T21:03:11Z, 10 min after submission)
+
+Review lab/rejection_review_YZfYBWJ.md (8,224 B); triage lab/triage_round18.md. Four findings. The bemOT-ro37iGp_eF
+reconsider-if fires (second consecutive rejection for internal contradiction) => the paper SPLITS, as committed in the
+23:58Z reflection answer. This tick executed verification + the measurement F1/F3 require:
+- s63 (prereg = docstring, frozen pre-run; lab/s63_engine_predicate.py -> results/s63_engine_predicate.jsonl, summary):
+  reference-engine OBSERVATIONS from torch.profiler on the reference conv call itself, 56/56 r1 rows. Default flags:
+  TF32_TENSOROP 35 / WINOGRAD 19 / FP32_SIMT 2; tf32-off: WINOGRAD 37 / FP32_SIMT 18 / OTHER 1; fp64: FP64 56.
+  Transitions def->ieee: TF32->SIMT 16, TF32->WINOGRAD 18, WINOGRAD->WINOGRAD 19, SIMT->SIMT 2, TF32->OTHER 1. On the 11
+  delivered-arm-change rows the engine class changed 11/11 (10 TF32->SIMT, 1 TF32->OTHER) => the attribution is supported
+  but must be scoped: 19 Winograd and 2 SIMT rows do not move, 18 rows go tensor-op->Winograd with no arm change (the
+  reviewer's B03 class is real). "engine-class swap" may be said only for observed transitions; the distribution must print.
+- F3: both margins recorded for 56x12x3 = 2,016 cells; candidate-scaled vs reference-scaled disagreement = 0 => the swap
+  labels are predicate-invariant on this population and the evaluator-exact claim is certified with retained margins.
+- F2 verified exactly and identically under both predicates: selected-arm changes 11/21, same-arm verdict flips 24/31,
+  delivery-status changes 35/52, full admissible-set changes 35/52 (11+24=35, 21+31=52). The manuscript's 48/56 and 15/56
+  were hand-only. NEW headline fact: the benchmark's baseline arm passes its own check on 56/56 rows against the default
+  reference, 21/56 against tf32-off, 4/56 against the fp64 anchor => the baseline's verdict is reference-conditional.
+- F4 conceded: §1.6 frac_over-as-usability vs §4.4 evaluability; §9.3 "calibrates" vs rank agreement; §8.4 0.604 =>
+  "must remain measured per shape" overclaim. Structural instruction accepted.
+
+REPAIR (next tick, one session, hard cap): (a) F1/F2/F3 numbers into §2/§4 with the four-quantity table and the transition
+distribution; (b) split to ONE contribution — reference diagnostic + paired reference intervention + admission consequence
+(~40% of current length) — with repair history, audits, superseded interpretations and secondary experiments moved to
+appendices + artifact set, each stated once with its artifact path; (c) reference-configuration figure (config -> observed
+engine -> reference deviation -> candidate verdict, measured vs hypothesis marked); (d) one-pass regen of manuscript,
+provenance, manifest, audits from the same artifact set, s63 producer/prereg/artifact in the build lists and CPU gate;
+(e) package verified from inside the unpacked zip; resubmit previous_submission_id=YZfYBWJ5dIFgQZqg.
+Then: foreign-warm probe, K=8 admission-rate probe, bias-vs-tail, pool-diversity dedup on an arithmetic-spanning pool,
+benchmark-wide audit scoping doc. 24h-E1/CTA-edge/bt parked.
