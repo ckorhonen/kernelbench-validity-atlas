@@ -1,0 +1,1246 @@
+{
+ "artifact": "s69_analysis",
+ "date": "2026-10-31T13:07:12Z",
+ "source": [
+  "results/s69_k8_draw_rate.jsonl",
+  "results/s59_f1_input_draw.json"
+ ],
+ "header": {
+  "date": "2026-10-31T13:02Z",
+  "prereg": "lab/s69_prereg.md frozen 09:55Z before run; docstring mirrors it",
+  "contract": {
+   "atol": 0.0001,
+   "rtol": 0.0001,
+   "direction": "evaluator-exact, candidate-scaled",
+   "reference": "torch.sum(x, dim=0) on the same draw"
+  },
+  "arms": [
+   "torch",
+   "compile",
+   "tsplit_S4_KT16",
+   "tsplit_S4_KT64",
+   "tsplit_S16_KT16",
+   "tsplit_S16_KT64",
+   "tsplit_S64_KT16",
+   "tsplit_S64_KT64"
+  ],
+  "n_draws": 32,
+  "prereg_slip": "prereg said 12 arms / 4,224 checks; shipped pool is 8 arms => 2,816 checks"
+ },
+ "population": {
+  "shapes": 11,
+  "draws": 352,
+  "checks": 2816
+ },
+ "per_shape": {
+  "98304x48": {
+   "n_draws": 32,
+   "swing_s59": 17.1375,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 28,
+     "n": 32,
+     "freq": 0.875,
+     "wilson": [
+      0.7193,
+      0.9503
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 2,
+   "admitted_set_counts": {
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 28,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 4
+   },
+   "ref_rho_fp64_median": 0.030465,
+   "ref_rho_fp64_max": 0.26864
+  },
+  "98304x192": {
+   "n_draws": 32,
+   "swing_s59": 3.8774,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 19,
+     "n": 32,
+     "freq": 0.5938,
+     "wilson": [
+      0.4226,
+      0.7448
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 28,
+     "n": 32,
+     "freq": 0.875,
+     "wilson": [
+      0.7193,
+      0.9503
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 25,
+     "n": 32,
+     "freq": 0.7812,
+     "wilson": [
+      0.6124,
+      0.8898
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 8,
+   "admitted_set_counts": {
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 18,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 5,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 3,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 2,
+    "torch|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT16": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT64": 1
+   },
+   "ref_rho_fp64_median": 0.179558,
+   "ref_rho_fp64_max": 0.766405
+  },
+  "98304x384": {
+   "n_draws": 32,
+   "swing_s59": 1.4727,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 16,
+     "n": 32,
+     "freq": 0.5,
+     "wilson": [
+      0.3363,
+      0.6637
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 27,
+     "n": 32,
+     "freq": 0.8438,
+     "wilson": [
+      0.6825,
+      0.9314
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 24,
+     "n": 32,
+     "freq": 0.75,
+     "wilson": [
+      0.5789,
+      0.8675
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 30,
+     "n": 32,
+     "freq": 0.9375,
+     "wilson": [
+      0.7985,
+      0.9827
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 9,
+   "admitted_set_counts": {
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 13,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 7,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 5,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S64_KT16|tsplit_S64_KT64": 2,
+    "torch|tsplit_S16_KT64|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT64": 1
+   },
+   "ref_rho_fp64_median": 0.250156,
+   "ref_rho_fp64_max": 0.707805
+  },
+  "393216x20": {
+   "n_draws": 32,
+   "swing_s59": 17.6091,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 28,
+     "n": 32,
+     "freq": 0.875,
+     "wilson": [
+      0.7193,
+      0.9503
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 30,
+     "n": 32,
+     "freq": 0.9375,
+     "wilson": [
+      0.7985,
+      0.9827
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 29,
+     "n": 32,
+     "freq": 0.9062,
+     "wilson": [
+      0.7578,
+      0.9676
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 5,
+   "admitted_set_counts": {
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 27,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 2,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1
+   },
+   "ref_rho_fp64_median": 0.024779,
+   "ref_rho_fp64_max": 0.196687
+  },
+  "393216x48": {
+   "n_draws": 32,
+   "swing_s59": 3.3309,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 22,
+     "n": 32,
+     "freq": 0.6875,
+     "wilson": [
+      0.5143,
+      0.8205
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 27,
+     "n": 32,
+     "freq": 0.8438,
+     "wilson": [
+      0.6825,
+      0.9314
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 23,
+     "n": 32,
+     "freq": 0.7188,
+     "wilson": [
+      0.5463,
+      0.8444
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 28,
+     "n": 32,
+     "freq": 0.875,
+     "wilson": [
+      0.7193,
+      0.9503
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 29,
+     "n": 32,
+     "freq": 0.9062,
+     "wilson": [
+      0.7578,
+      0.9676
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 10,
+   "admitted_set_counts": {
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 18,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 4,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 3,
+    "compile|torch|tsplit_S16_KT16|tsplit_S64_KT16": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S4_KT64|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S64_KT64": 1
+   },
+   "ref_rho_fp64_median": 0.048663,
+   "ref_rho_fp64_max": 0.785815
+  },
+  "393216x192": {
+   "n_draws": 32,
+   "swing_s59": 17.3491,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 27,
+     "n": 32,
+     "freq": 0.8438,
+     "wilson": [
+      0.6825,
+      0.9314
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 11,
+     "n": 32,
+     "freq": 0.3438,
+     "wilson": [
+      0.2041,
+      0.5169
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 20,
+     "n": 32,
+     "freq": 0.625,
+     "wilson": [
+      0.4525,
+      0.7707
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 20,
+     "n": 32,
+     "freq": 0.625,
+     "wilson": [
+      0.4525,
+      0.7707
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 19,
+     "n": 32,
+     "freq": 0.5938,
+     "wilson": [
+      0.4226,
+      0.7448
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 23,
+     "n": 32,
+     "freq": 0.7188,
+     "wilson": [
+      0.5463,
+      0.8444
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 28,
+     "n": 32,
+     "freq": 0.875,
+     "wilson": [
+      0.7193,
+      0.9503
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 18,
+   "admitted_set_counts": {
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 8,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 5,
+    "compile|torch|tsplit_S16_KT16|tsplit_S64_KT16|tsplit_S64_KT64": 2,
+    "torch": 2,
+    "compile|torch|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 2,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT64": 1,
+    "torch|tsplit_S16_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch": 1,
+    "compile|torch|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT64": 1,
+    "torch|tsplit_S16_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S4_KT16|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S4_KT64|tsplit_S64_KT64": 1
+   },
+   "ref_rho_fp64_median": 0.392502,
+   "ref_rho_fp64_max": 1.865489
+  },
+  "393216x384": {
+   "n_draws": 32,
+   "swing_s59": 5.8673,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 21,
+     "n": 32,
+     "freq": 0.6562,
+     "wilson": [
+      0.4831,
+      0.7959
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 5,
+     "n": 32,
+     "freq": 0.1562,
+     "wilson": [
+      0.0686,
+      0.3175
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 11,
+     "n": 32,
+     "freq": 0.3438,
+     "wilson": [
+      0.2041,
+      0.5169
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 9,
+     "n": 32,
+     "freq": 0.2812,
+     "wilson": [
+      0.1556,
+      0.4537
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 17,
+     "n": 32,
+     "freq": 0.5312,
+     "wilson": [
+      0.3645,
+      0.6913
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 16,
+     "n": 32,
+     "freq": 0.5,
+     "wilson": [
+      0.3363,
+      0.6637
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 19,
+     "n": 32,
+     "freq": 0.5938,
+     "wilson": [
+      0.4226,
+      0.7448
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 18,
+   "admitted_set_counts": {
+    "torch": 5,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 4,
+    "torch|tsplit_S64_KT64": 3,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 3,
+    "compile|torch|tsplit_S64_KT64": 2,
+    "compile|torch|tsplit_S64_KT16": 2,
+    "compile|torch": 2,
+    "torch|tsplit_S16_KT64|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "torch|tsplit_S64_KT16": 1,
+    "compile|torch|tsplit_S16_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT64": 1
+   },
+   "ref_rho_fp64_median": 0.484729,
+   "ref_rho_fp64_max": 1.822121
+  },
+  "1572864x20": {
+   "n_draws": 32,
+   "swing_s59": 55.2988,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 26,
+     "n": 32,
+     "freq": 0.8125,
+     "wilson": [
+      0.6469,
+      0.9111
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 29,
+     "n": 32,
+     "freq": 0.9062,
+     "wilson": [
+      0.7578,
+      0.9676
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 26,
+     "n": 32,
+     "freq": 0.8125,
+     "wilson": [
+      0.6469,
+      0.9111
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 30,
+     "n": 32,
+     "freq": 0.9375,
+     "wilson": [
+      0.7985,
+      0.9827
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 31,
+     "n": 32,
+     "freq": 0.9688,
+     "wilson": [
+      0.8426,
+      0.9945
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 7,
+   "admitted_set_counts": {
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 24,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 2,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 2,
+    "torch": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S64_KT16|tsplit_S64_KT64": 1
+   },
+   "ref_rho_fp64_median": 0.029503,
+   "ref_rho_fp64_max": 0.735038
+  },
+  "1572864x48": {
+   "n_draws": 32,
+   "swing_s59": 4.721,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 15,
+     "n": 32,
+     "freq": 0.4688,
+     "wilson": [
+      0.3087,
+      0.6355
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 23,
+     "n": 32,
+     "freq": 0.7188,
+     "wilson": [
+      0.5463,
+      0.8444
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 22,
+     "n": 32,
+     "freq": 0.6875,
+     "wilson": [
+      0.5143,
+      0.8205
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 28,
+     "n": 32,
+     "freq": 0.875,
+     "wilson": [
+      0.7193,
+      0.9503
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 25,
+     "n": 32,
+     "freq": 0.7812,
+     "wilson": [
+      0.6124,
+      0.8898
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 30,
+     "n": 32,
+     "freq": 0.9375,
+     "wilson": [
+      0.7985,
+      0.9827
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 11,
+   "admitted_set_counts": {
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 12,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 6,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S64_KT64": 4,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 3,
+    "compile|torch|tsplit_S64_KT16": 1,
+    "compile|torch|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S4_KT16": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S4_KT16|tsplit_S64_KT16|tsplit_S64_KT64": 1
+   },
+   "ref_rho_fp64_median": 0.076399,
+   "ref_rho_fp64_max": 0.805408
+  },
+  "1572864x192": {
+   "n_draws": 32,
+   "swing_s59": 25.5758,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 1,
+     "n": 32,
+     "freq": 0.0312,
+     "wilson": [
+      0.0055,
+      0.1574
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 9,
+     "n": 32,
+     "freq": 0.2812,
+     "wilson": [
+      0.1556,
+      0.4537
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 7,
+     "n": 32,
+     "freq": 0.2188,
+     "wilson": [
+      0.1102,
+      0.3876
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 14,
+     "n": 32,
+     "freq": 0.4375,
+     "wilson": [
+      0.2817,
+      0.6067
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 11,
+     "n": 32,
+     "freq": 0.3438,
+     "wilson": [
+      0.2041,
+      0.5169
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 18,
+     "n": 32,
+     "freq": 0.5625,
+     "wilson": [
+      0.3933,
+      0.7183
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 13,
+   "admitted_set_counts": {
+    "compile|torch": 12,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT64": 4,
+    "compile|torch|tsplit_S64_KT64": 3,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 3,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 2,
+    "compile|torch|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S4_KT16|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S16_KT16|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1
+   },
+   "ref_rho_fp64_median": 0.563873,
+   "ref_rho_fp64_max": 3.115447
+  },
+  "1572864x384": {
+   "n_draws": 32,
+   "swing_s59": 8.2811,
+   "arm_freq": {
+    "torch": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "compile": {
+     "pass": 32,
+     "n": 32,
+     "freq": 1.0,
+     "wilson": [
+      0.8928,
+      1.0
+     ]
+    },
+    "tsplit_S4_KT16": {
+     "pass": 0,
+     "n": 32,
+     "freq": 0.0,
+     "wilson": [
+      0.0,
+      0.1072
+     ]
+    },
+    "tsplit_S4_KT64": {
+     "pass": 3,
+     "n": 32,
+     "freq": 0.0938,
+     "wilson": [
+      0.0324,
+      0.2422
+     ]
+    },
+    "tsplit_S16_KT16": {
+     "pass": 0,
+     "n": 32,
+     "freq": 0.0,
+     "wilson": [
+      0.0,
+      0.1072
+     ]
+    },
+    "tsplit_S16_KT64": {
+     "pass": 10,
+     "n": 32,
+     "freq": 0.3125,
+     "wilson": [
+      0.1795,
+      0.4857
+     ]
+    },
+    "tsplit_S64_KT16": {
+     "pass": 5,
+     "n": 32,
+     "freq": 0.1562,
+     "wilson": [
+      0.0686,
+      0.3175
+     ]
+    },
+    "tsplit_S64_KT64": {
+     "pass": 12,
+     "n": 32,
+     "freq": 0.375,
+     "wilson": [
+      0.2293,
+      0.5475
+     ]
+    }
+   },
+   "any_arm_admitted_draws": 32,
+   "any_arm_freq": 1.0,
+   "any_arm_wilson": [
+    0.8928,
+    1.0
+   ],
+   "distinct_admitted_sets": 8,
+   "admitted_set_counts": {
+    "compile|torch": 17,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT64": 5,
+    "compile|torch|tsplit_S64_KT64": 4,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 2,
+    "compile|torch|tsplit_S16_KT64": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S64_KT16|tsplit_S64_KT64": 1,
+    "compile|torch|tsplit_S64_KT16": 1,
+    "compile|torch|tsplit_S16_KT64|tsplit_S4_KT64|tsplit_S64_KT16": 1
+   },
+   "ref_rho_fp64_median": 0.839013,
+   "ref_rho_fp64_max": 5.969963
+  }
+ },
+ "shape_aggregate": {
+  "98304x48": {
+   "admitted": 252,
+   "checks": 256,
+   "freq": 0.9844,
+   "wilson": [
+    0.9605,
+    0.9939
+   ]
+  },
+  "98304x192": {
+   "admitted": 229,
+   "checks": 256,
+   "freq": 0.8945,
+   "wilson": [
+    0.8509,
+    0.9265
+   ]
+  },
+  "98304x384": {
+   "admitted": 223,
+   "checks": 256,
+   "freq": 0.8711,
+   "wilson": [
+    0.8245,
+    0.9067
+   ]
+  },
+  "393216x20": {
+   "admitted": 246,
+   "checks": 256,
+   "freq": 0.9609,
+   "wilson": [
+    0.9296,
+    0.9786
+   ]
+  },
+  "393216x48": {
+   "admitted": 224,
+   "checks": 256,
+   "freq": 0.875,
+   "wilson": [
+    0.8289,
+    0.91
+   ]
+  },
+  "393216x192": {
+   "admitted": 180,
+   "checks": 256,
+   "freq": 0.7031,
+   "wilson": [
+    0.6445,
+    0.7558
+   ]
+  },
+  "393216x384": {
+   "admitted": 130,
+   "checks": 256,
+   "freq": 0.5078,
+   "wilson": [
+    0.4469,
+    0.5685
+   ]
+  },
+  "1572864x20": {
+   "admitted": 236,
+   "checks": 256,
+   "freq": 0.9219,
+   "wilson": [
+    0.8824,
+    0.9489
+   ]
+  },
+  "1572864x48": {
+   "admitted": 207,
+   "checks": 256,
+   "freq": 0.8086,
+   "wilson": [
+    0.756,
+    0.8521
+   ]
+  },
+  "1572864x192": {
+   "admitted": 124,
+   "checks": 256,
+   "freq": 0.4844,
+   "wilson": [
+    0.4238,
+    0.5454
+   ]
+  },
+  "1572864x384": {
+   "admitted": 94,
+   "checks": 256,
+   "freq": 0.3672,
+   "wilson": [
+    0.3105,
+    0.4278
+   ]
+  }
+ },
+ "ordering_test": {
+  "statistic": "Spearman(swing_s59, shape_admission_freq)",
+  "rho": 0.0636,
+  "p_permutation_one_sided_abs": 0.863,
+  "n_shapes": 11,
+  "K1_fired": true
+ },
+ "K2": {
+  "pooled_baseline": 0.114,
+  "shapes_whose_CI_contains_baseline": [],
+  "n": 0,
+  "K2_fired": false
+ },
+ "discordance": {
+  "per_arm_check_mean_freq": 0.7617,
+  "per_arm_check_min": 0.0,
+  "per_arm_check_max": 1.0
+ },
+ "verdict": "K1_FIRED_DISCORDANCE_ONLY",
+ "scope": "11 s59 flip shapes, this draw generator, GB10 rev 423217d; labels only, no timing; the s56 pool has 8 arms, not the prereg's 12 (slip recorded)."
+}
