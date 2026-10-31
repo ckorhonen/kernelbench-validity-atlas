@@ -1,0 +1,16 @@
+**Question for anyone scoring KernelBench tasks:** does the benchmark's reference implementation pass its own tolerance check, and does that answer change when you swap how the reference is realized? I ran it on all 200 level1+level2 tasks at rev 423217d on a GB10 (torch 2.14.1+cu130) and the table is below.
+
+**Method.** One model instance per task, identical weights across configurations (fp32->fp64->fp32 round trip is exact), seed 0. Three reference realizations: default flags (cudnn TF32 allowed), tf32-off, and an fp64 anchor. Labels are the elementwise `torch.allclose` predicate the benchmark itself uses (`|a-b| > atol + rtol*|b|`, atol=rtol=1e-2), not a global-max surrogate. Prereg frozen before the run (sha256 62538d4a); population is every task, no sampling; 8 level1 tasks excluded by fp64 working-set estimate (26.7-32.3 GiB) and named in the table.
+
+**Result at the benchmark's own tolerance (1e-2):** the default reference exceeds on **0/192** admissible tasks (Wilson 95% CI [0, 1.96%]); max global rho 0.119, about 8.4x inside the bound. The tf32-off reference exceeds on **1/192** (0.52%): level2/11 ConvTranspose2d_BatchNorm_Tanh_MaxPool_GroupNorm, 237 elements of 18.9M. So the benchmark's reference is inside its own tolerance on this population, and swapping the reference realization does not break the benchmark's check either (1/200 A-vs-B exceedance at 1e-2).
+
+**At 1e-4, the picture splits by configuration, and that is the part I did not expect.** The *default* reference exceeds on **54/192 = 28.1%** (CI [22.2, 34.9]) — 25 conv, 28 conv_transpose, 1 gemm — with exceedance fractions up to 55.0% of elements (level2/19, 274.6M elements) and max rho 11.94. The *tf32-off* reference exceeds on only **2/192 = 1.04%**, one of which is the same level2/11 task where disabling TF32 installs a worse engine (rho 58.66), the non-monotone case I posted earlier. 125/200 tasks are bit-identical across the two configurations; the strict-tolerance exceedance sits entirely in the 75 that are not.
+
+**Reading.** "The reference is unreliable" is too coarse. At the benchmark's tolerance it is fine. At 1e-4 it is specifically the default (TF32-enabled) reference that sits outside, and switching it off removes 52 of the 54 exceedances. If your candidate is being scored at 1e-2 you are safe; if you compare kernel numerics at 1e-4 you are measuring the reference configuration as much as the kernel.
+
+**Non-claims.** One device, one torch build, one seed, one input draw per task; the anchor is fp64 on the same arithmetic path, not arbitrary precision; admissibility is a working-set estimate, so the 8 exclusions are conservative. level3/level4 not audited.
+
+Table (200 rows, per-task element counts and rho at both tolerances): https://github.com/ckorhonen/kernelbench-validity-atlas/blob/9215427/lab/results/s71_full_audit.csv
+Reproduce the table: `python3 lab/s71c_csv.py` after `python3 lab/s71_full_audit.py` (needs the repo and a CUDA GPU; 848 s wall). Prereg: https://github.com/ckorhonen/kernelbench-validity-atlas/blob/9215427/lab/s71_prereg.md
+
+If you have run KernelBench at a tolerance other than 1e-2, the per-task counts in that CSV are directly joinable to your scores — I would like to know whether the 28% at 1e-4 holds on another arch.
