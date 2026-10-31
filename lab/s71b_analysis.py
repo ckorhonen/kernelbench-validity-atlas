@@ -62,9 +62,11 @@ for c in sorted({r["op_class"] for r in rows}):
     out["op_class_counts"][c] = {"adm": len(pop), "exceed_bench": k, "ci": wilson(k, len(pop)),
                                  "exceed_strict": sum(1 for r in pop if r.get("exceed_strict_default"))}
 
-for key, pop in (("bench_default", adm), ("bench_tf32off", adm), ("strict_default", adm), ("strict_tf32off", adm)):
+for key, pop in (("exceed_bench_default", adm), ("exceed_bench_tf32off", adm),
+                 ("exceed_strict_default", adm), ("exceed_strict_tf32off", adm)):
     k = sum(1 for r in pop if r.get(key))
-    out["exceedance"][key] = {"count": k, "n": len(pop), "rate": round(k / max(1, len(pop)), 4), "ci": wilson(k, len(pop))}
+    out["exceedance"][key.replace("exceed_", "")] = {"count": k, "n": len(pop), "rate": round(k / max(1, len(pop)), 4),
+                                                     "ci": wilson(k, len(pop))}
 
 ab = [r for r in rows if "A_vs_B" in r]
 out["exceedance"]["ab_bench"] = {"count": sum(1 for r in ab if r["A_vs_B"]["ew_1e-2"]["count"] > 0), "n": len(ab)}
@@ -80,6 +82,23 @@ for r in adm:
     elif a["frac"] > 0:
         out["near_tasks"].append({"level": r["level"], "id": r["problem_id"], "name": r["name"],
                                   "op": r["op_class"], "ew_frac": a["frac"], "rho_global": a["rho_global"]})
+
+out["strict_exceeding_tasks"] = [
+    {"level": r["level"], "id": r["problem_id"], "name": r["name"], "op": r["op_class"],
+     "ew_frac_1e-4": r["A_vs_anchor"]["ew_1e-4"]["frac"], "ew_count_1e-4": r["A_vs_anchor"]["ew_1e-4"]["count"],
+     "rho_global_1e-4": r["A_vs_anchor"]["ew_1e-4"]["rho_global"],
+     "tf32off_ew_count_1e-4": r["B_vs_anchor"]["ew_1e-4"]["count"],
+     "ab_ew_count_1e-4": r["A_vs_B"]["ew_1e-4"]["count"]}
+    for r in adm if r.get("exceed_strict_default")]
+out["strict_exceed_tf32off_tasks"] = [
+    {"level": r["level"], "id": r["problem_id"], "name": r["name"], "op": r["op_class"],
+     "ew_count": r["B_vs_anchor"]["ew_1e-4"]["count"], "rho_global": r["B_vs_anchor"]["ew_1e-4"]["rho_global"]}
+    for r in adm if r.get("exceed_strict_tf32off")]
+out["bench_exceed_tf32off_tasks"] = [
+    {"level": r["level"], "id": r["problem_id"], "name": r["name"], "op": r["op_class"],
+     "ew_count": r["B_vs_anchor"]["ew_1e-2"]["count"], "ew_frac": r["B_vs_anchor"]["ew_1e-2"]["frac"],
+     "rho_global": r["B_vs_anchor"]["ew_1e-2"]["rho_global"]}
+    for r in adm if r.get("exceed_bench_tf32off")]
 
 out["max_ew_frac_bench"] = max((r["A_vs_anchor"]["ew_1e-2"]["frac"] for r in adm), default=None)
 out["median_ew_frac_bench"] = sorted(r["A_vs_anchor"]["ew_1e-2"]["frac"] for r in adm)[len(adm) // 2] if adm else None

@@ -1,0 +1,319 @@
+population size 200
+{"level": 1, "problem_id": 100, "name": "100_HingeLoss.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 10, "name": "10_3D_tensor_matrix_multiplication.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 11, "name": "11_4D_tensor_matrix_multiplication.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 12, "name": "12_Matmul_with_diagonal_matrices_.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 13, "name": "13_Matmul_for_symmetric_matrices.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 14, "name": "14_Matmul_for_upper_triangular_matrices.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 15, "name": "15_Matmul_for_lower_triangular_matrices.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 16, "name": "16_Matmul_with_transposed_A.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 17, "name": "17_Matmul_with_transposed_B.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 18, "name": "18_Matmul_with_transposed_both.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 19, "name": "19_ReLU.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 1, "name": "1_Square_matrix_multiplication_.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 20, "name": "20_LeakyReLU.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 21, "name": "21_Sigmoid.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 22, "name": "22_Tanh.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 23, "name": "23_Softmax.py", "op_class": "softmax", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 24, "name": "24_LogSoftmax.py", "op_class": "softmax", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 25, "name": "25_Swish.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 26, "name": "26_GELU_.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 27, "name": "27_SELU_.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 28, "name": "28_HardSigmoid.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 29, "name": "29_Softplus.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 2, "name": "2_Standard_matrix_multiplication_.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 30, "name": "30_Softsign.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 31, "name": "31_ELU.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 32, "name": "32_HardTanh.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 33, "name": "33_BatchNorm.py", "op_class": "norm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 34, "name": "34_InstanceNorm.py", "op_class": "norm", "anchor": "inadmissible:working_set", "status": null, "exceed_bench_default": null, "exceed_strict_default": null}
+{"level": 1, "problem_id": 35, "name": "35_GroupNorm_.py", "op_class": "norm", "anchor": "inadmissible:working_set", "status": null, "exceed_bench_default": null, "exceed_strict_default": null}
+{"level": 1, "problem_id": 36, "name": "36_RMSNorm_.py", "op_class": "norm", "anchor": "inadmissible:working_set", "status": null, "exceed_bench_default": null, "exceed_strict_default": null}
+{"level": 1, "problem_id": 37, "name": "37_FrobeniusNorm_.py", "op_class": "other", "anchor": "inadmissible:working_set", "status": null, "exceed_bench_default": null, "exceed_strict_default": null}
+{"level": 1, "problem_id": 38, "name": "38_L1Norm_.py", "op_class": "other", "anchor": "inadmissible:working_set", "status": null, "exceed_bench_default": null, "exceed_strict_default": null}
+{"level": 1, "problem_id": 39, "name": "39_L2Norm_.py", "op_class": "other", "anchor": "inadmissible:working_set", "status": null, "exceed_bench_default": null, "exceed_strict_default": null}
+{"level": 1, "problem_id": 3, "name": "3_Batched_matrix_multiplication.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 40, "name": "40_LayerNorm.py", "op_class": "norm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 41, "name": "41_Max_Pooling_1D.py", "op_class": "pool", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 42, "name": "42_Max_Pooling_2D.py", "op_class": "pool", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 43, "name": "43_Max_Pooling_3D.py", "op_class": "pool", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 44, "name": "44_Average_Pooling_1D.py", "op_class": "pool", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 45, "name": "45_Average_Pooling_2D.py", "op_class": "pool", "anchor": "inadmissible:working_set", "status": null, "exceed_bench_default": null, "exceed_strict_default": null}
+{"level": 1, "problem_id": 46, "name": "46_Average_Pooling_3D.py", "op_class": "pool", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 47, "name": "47_Sum_reduction_over_a_dimension.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 48, "name": "48_Mean_reduction_over_a_dimension.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 49, "name": "49_Max_reduction_over_a_dimension.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 4, "name": "4_Matrix_vector_multiplication_.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 50, "name": "50_conv_standard_2D__square_input__square_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 51, "name": "51_Argmax_over_a_dimension.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 52, "name": "52_Argmin_over_a_dimension.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 53, "name": "53_Min_reduction_over_a_dimension.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 54, "name": "54_conv_standard_3D__square_input__square_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 55, "name": "55_conv_standard_2D__asymmetric_input__square_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 56, "name": "56_conv_standard_2D__asymmetric_input__asymmetric_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 57, "name": "57_conv_transposed_2D__square_input__square_kernel.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 58, "name": "58_conv_transposed_3D__asymmetric_input__asymmetric_kernel.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 59, "name": "59_conv_standard_3D__asymmetric_input__square_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 5, "name": "5_Matrix_scalar_multiplication.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 60, "name": "60_conv_standard_3D__square_input__asymmetric_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 61, "name": "61_conv_transposed_3D__square_input__square_kernel.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 62, "name": "62_conv_standard_2D__square_input__asymmetric_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 63, "name": "63_conv_standard_2D__square_input__square_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 64, "name": "64_conv_transposed_1D.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 65, "name": "65_conv_transposed_2D__square_input__asymmetric_kernel.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 66, "name": "66_conv_standard_3D__asymmetric_input__asymmetric_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 67, "name": "67_conv_standard_1D.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 68, "name": "68_conv_transposed_3D__square_input__asymmetric_kernel.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 69, "name": "69_conv_transposed_2D__asymmetric_input__asymmetric_kernel.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 6, "name": "6_Matmul_with_large_K_dimension_.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 70, "name": "70_conv_transposed_3D__asymmetric_input__square_kernel.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 71, "name": "71_conv_transposed_2D__asymmetric_input__square_kernel.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 72, "name": "72_conv_transposed_3D_asymmetric_input_asymmetric_kernel___strided_padded_grouped_.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 73, "name": "73_conv_transposed_3D_asymmetric_input_square_kernel__strided_padded__grouped.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 74, "name": "74_conv_transposed_1D_dilated.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 75, "name": "75_conv_transposed_2D_asymmetric_input_asymmetric_kernel_strided__grouped____padded____dilated__.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 76, "name": "76_conv_standard_1D_dilated_strided__.py", "op_class": "conv", "anchor": "inadmissible:working_set", "status": null, "exceed_bench_default": null, "exceed_strict_default": null}
+{"level": 1, "problem_id": 77, "name": "77_conv_transposed_3D_square_input_square_kernel___padded____dilated____strided__.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 78, "name": "78_conv_transposed_2D_asymmetric_input_asymmetric_kernel___padded__.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 79, "name": "79_conv_transposed_1D_asymmetric_input_square_kernel___padded____strided____dilated__.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 7, "name": "7_Matmul_with_small_K_dimension_.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 80, "name": "80_conv_standard_2D_square_input_asymmetric_kernel___dilated____padded__.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 81, "name": "81_conv_transposed_2D_asymmetric_input_square_kernel___dilated____padded____strided__.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 82, "name": "82_conv_depthwise_2D_square_input_square_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 83, "name": "83_conv_depthwise_2D_square_input_asymmetric_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 84, "name": "84_conv_depthwise_2D_asymmetric_input_square_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 85, "name": "85_conv_depthwise_2D_asymmetric_input_asymmetric_kernel.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 86, "name": "86_conv_depthwise_separable_2D.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 87, "name": "87_conv_pointwise_2D.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 1, "problem_id": 88, "name": "88_MinGPTNewGelu.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 89, "name": "89_cumsum.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 8, "name": "8_Matmul_with_irregular_shapes_.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 90, "name": "90_cumprod.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 91, "name": "91_cumsum_reverse.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 92, "name": "92_cumsum_exclusive.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 93, "name": "93_masked_cumsum.py", "op_class": "reduction", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 94, "name": "94_MSELoss.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 95, "name": "95_CrossEntropyLoss.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 96, "name": "96_HuberLoss.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 97, "name": "97_ScaledDotProductAttention.py", "op_class": "attention", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 98, "name": "98_KLDivLoss.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 99, "name": "99_TripletMarginLoss.py", "op_class": "other", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 1, "problem_id": 9, "name": "9_Tall_skinny_matrix_multiplication_.py", "op_class": "elementwise", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 100, "name": "100_ConvTranspose3d_Clamp_Min_Divide.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 10, "name": "10_ConvTranspose2d_MaxPool_Hardtanh_Mean_Tanh.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 11, "name": "11_ConvTranspose2d_BatchNorm_Tanh_MaxPool_GroupNorm.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 12, "name": "12_Gemm_Multiply_LeakyReLU.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 13, "name": "13_ConvTranspose3d_Mean_Add_Softmax_Tanh_Scaling.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 14, "name": "14_Gemm_Divide_Sum_Scaling.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 15, "name": "15_ConvTranspose3d_BatchNorm_Subtract.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 16, "name": "16_ConvTranspose2d_Mish_Add_Hardtanh_Scaling.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 17, "name": "17_Conv2d_InstanceNorm_Divide.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 18, "name": "18_Matmul_Sum_Max_AvgPool_LogSumExp_LogSumExp.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 19, "name": "19_ConvTranspose2d_GELU_GroupNorm.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 1, "name": "1_Conv2D_ReLU_BiasAdd.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 20, "name": "20_ConvTranspose3d_Sum_ResidualAdd_Multiply_ResidualAdd.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 21, "name": "21_Conv2d_Add_Scale_Sigmoid_GroupNorm.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 22, "name": "22_Matmul_Scale_ResidualAdd_Clamp_LogSumExp_Mish.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 23, "name": "23_Conv3d_GroupNorm_Mean.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 24, "name": "24_Conv3d_Min_Softmax.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 25, "name": "25_Conv2d_Min_Tanh_Tanh.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 26, "name": "26_ConvTranspose3d_Add_HardSwish.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 27, "name": "27_Conv3d_HardSwish_GroupNorm_Mean.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+/home/ckorhonen/kernelbench/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py:1794: UserWarning: input's size at dim=1 does not match num_features. You can silence this warning by not passing in num_features, which is not used because affine=False
+  return forward_call(*args, **kwargs)
+{"level": 2, "problem_id": 28, "name": "28_BMM_InstanceNorm_Sum_ResidualAdd_Multiply.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 29, "name": "29_Matmul_Mish_Mish.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 2, "name": "2_ConvTranspose2d_BiasAdd_Clamp_Scaling_Clamp_Divide.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 30, "name": "30_Gemm_GroupNorm_Hardtanh.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 31, "name": "31_Conv2d_Min_Add_Multiply.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 32, "name": "32_Conv2d_Scaling_Min.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 33, "name": "33_Gemm_Scale_BatchNorm.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 34, "name": "34_ConvTranspose3d_LayerNorm_GELU_Scaling.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 35, "name": "35_Conv2d_Subtract_HardSwish_MaxPool_Mish.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 36, "name": "36_ConvTranspose2d_Min_Sum_GELU_Add.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 37, "name": "37_Matmul_Swish_Sum_GroupNorm.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 38, "name": "38_ConvTranspose3d_AvgPool_Clamp_Softmax_Multiply.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 39, "name": "39_Gemm_Scale_BatchNorm.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 3, "name": "3_ConvTranspose3d_Sum_LayerNorm_AvgPool_GELU.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 40, "name": "40_Matmul_Scaling_ResidualAdd.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 41, "name": "41_Gemm_BatchNorm_GELU_ReLU.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 42, "name": "42_ConvTranspose2d_GlobalAvgPool_BiasAdd_LogSumExp_Sum_Multiply.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 43, "name": "43_Conv3d_Max_LogSumExp_ReLU.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 44, "name": "44_ConvTranspose2d_Multiply_GlobalAvgPool_GlobalAvgPool_Mean.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 45, "name": "45_Gemm_Sigmoid_LogSumExp.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 46, "name": "46_Conv2d_Subtract_Tanh_Subtract_AvgPool.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 47, "name": "47_Conv3d_Mish_Tanh.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 48, "name": "48_Conv3d_Scaling_Tanh_Multiply_Sigmoid.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 49, "name": "49_ConvTranspose3d_Softmax_Sigmoid.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 4, "name": "4_Conv2d_Mish_Mish.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 50, "name": "50_ConvTranspose3d_Scaling_AvgPool_BiasAdd_Scaling.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 51, "name": "51_Gemm_Subtract_GlobalAvgPool_LogSumExp_GELU_ResidualAdd.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 52, "name": "52_Conv2d_Activation_BatchNorm.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 53, "name": "53_Gemm_Scaling_Hardtanh_GELU.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 54, "name": "54_Conv2d_Multiply_LeakyReLU_GELU.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 55, "name": "55_Matmul_MaxPool_Sum_Scale.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 56, "name": "56_Matmul_Sigmoid_Sum.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 57, "name": "57_Conv2d_ReLU_HardSwish.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 58, "name": "58_ConvTranspose3d_LogSumExp_HardSwish_Subtract_Clamp.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 59, "name": "59_Matmul_Swish_Scaling.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 5, "name": "5_ConvTranspose2d_Subtract_Tanh.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 60, "name": "60_ConvTranspose3d_Swish_GroupNorm_HardSwish.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 61, "name": "61_ConvTranspose3d_ReLU_GroupNorm.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 62, "name": "62_Matmul_GroupNorm_LeakyReLU_Sum.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 63, "name": "63_Gemm_ReLU_Divide.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 64, "name": "64_Gemm_LogSumExp_LeakyReLU_LeakyReLU_GELU_GELU.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 65, "name": "65_Conv2d_AvgPool_Sigmoid_Sum.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 66, "name": "66_Matmul_Dropout_Softmax.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 67, "name": "67_Conv2d_GELU_GlobalAvgPool.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 68, "name": "68_Matmul_Min_Subtract.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 69, "name": "69_Conv2d_HardSwish_ReLU.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 6, "name": "6_Conv3d_Softmax_MaxPool_MaxPool.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 70, "name": "70_Gemm_Sigmoid_Scaling_ResidualAdd.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 71, "name": "71_Conv2d_Divide_LeakyReLU.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 72, "name": "72_ConvTranspose3d_BatchNorm_AvgPool_AvgPool.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 73, "name": "73_Conv2d_BatchNorm_Scaling.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 74, "name": "74_ConvTranspose3d_LeakyReLU_Multiply_LeakyReLU_Max.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 75, "name": "75_Gemm_GroupNorm_Min_BiasAdd.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 76, "name": "76_Gemm_Add_ReLU.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 77, "name": "77_ConvTranspose3d_Scale_BatchNorm_GlobalAvgPool.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 78, "name": "78_ConvTranspose3d_Max_Max_Sum.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 79, "name": "79_Conv3d_Multiply_InstanceNorm_Clamp_Multiply_Max.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 7, "name": "7_Conv3d_ReLU_LeakyReLU_GELU_Sigmoid_BiasAdd.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 80, "name": "80_Gemm_Max_Subtract_GELU.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 81, "name": "81_Gemm_Swish_Divide_Clamp_Tanh_Clamp.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 82, "name": "82_Conv2d_Tanh_Scaling_BiasAdd_Max.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 83, "name": "83_Conv3d_GroupNorm_Min_Clamp_Dropout.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 84, "name": "84_Gemm_BatchNorm_Scaling_Softmax.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 85, "name": "85_Conv2d_GroupNorm_Scale_MaxPool_Clamp.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 86, "name": "86_Matmul_Divide_GELU.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 87, "name": "87_Conv2d_Subtract_Subtract_Mish.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 88, "name": "88_Gemm_GroupNorm_Swish_Multiply_Swish.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 89, "name": "89_ConvTranspose3d_MaxPool_Softmax_Subtract_Swish_Max.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 8, "name": "8_Conv3d_Divide_Max_GlobalAvgPool_BiasAdd_Sum.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 90, "name": "90_Conv3d_LeakyReLU_Sum_Clamp_GELU.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 91, "name": "91_ConvTranspose2d_Softmax_BiasAdd_Scaling_Sigmoid.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 92, "name": "92_Conv2d_GroupNorm_Tanh_HardSwish_ResidualAdd_LogSumExp.py", "op_class": "conv", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 93, "name": "93_ConvTranspose2d_Add_Min_GELU_Multiply.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": true}
+{"level": 2, "problem_id": 94, "name": "94_Gemm_BiasAdd_Hardtanh_Mish_GroupNorm.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 95, "name": "95_Matmul_Add_Swish_Tanh_GELU_Hardtanh.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 96, "name": "96_ConvTranspose3d_Multiply_Max_GlobalAvgPool_Clamp.py", "op_class": "conv_transpose", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 97, "name": "97_Matmul_BatchNorm_BiasAdd_Divide_Swish.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 98, "name": "98_Matmul_AvgPool_GELU_Scale_Max.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 99, "name": "99_Matmul_GELU_Softmax.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{"level": 2, "problem_id": 9, "name": "9_Matmul_Subtract_Multiply_ReLU.py", "op_class": "gemm", "anchor": "admissible", "status": null, "exceed_bench_default": false, "exceed_strict_default": false}
+{
+ "population_rule": "all level1+level2 tasks, rev 423217d",
+ "tasks_attempted": 200,
+ "tasks_anchor_admissible": 192,
+ "anchor_admissibility_rate": 0.96,
+ "excluded": [
+  {
+   "level": 1,
+   "problem_id": 34,
+   "name": "34_InstanceNorm.py",
+   "reason": "fp64 estimated working set 28.00 GiB > 24 GiB"
+  },
+  {
+   "level": 1,
+   "problem_id": 35,
+   "name": "35_GroupNorm_.py",
+   "reason": "fp64 estimated working set 28.00 GiB > 24 GiB"
+  },
+  {
+   "level": 1,
+   "problem_id": 36,
+   "name": "36_RMSNorm_.py",
+   "reason": "fp64 estimated working set 28.00 GiB > 24 GiB"
+  },
+  {
+   "level": 1,
+   "problem_id": 37,
+   "name": "37_FrobeniusNorm_.py",
+   "reason": "fp64 estimated working set 28.00 GiB > 24 GiB"
+  },
+  {
+   "level": 1,
+   "problem_id": 38,
+   "name": "38_L1Norm_.py",
+   "reason": "fp64 estimated working set 32.00 GiB > 24 GiB"
+  },
+  {
+   "level": 1,
+   "problem_id": 39,
+   "name": "39_L2Norm_.py",
+   "reason": "fp64 estimated working set 32.00 GiB > 24 GiB"
+  },
+  {
+   "level": 1,
+   "problem_id": 45,
+   "name": "45_Average_Pooling_2D.py",
+   "reason": "fp64 estimated working set 32.26 GiB > 24 GiB"
+  },
+  {
+   "level": 1,
+   "problem_id": 76,
+   "name": "76_conv_standard_1D_dilated_strided__.py",
+   "reason": "fp64 estimated working set 26.67 GiB > 24 GiB"
+  }
+ ],
+ "truncated_by_deadline": false,
+ "exceedance_anchor": {
+  "bench_default": {
+   "count": 0,
+   "denominator": 192
+  },
+  "bench_tf32off": {
+   "count": 1,
+   "denominator": 192
+  },
+  "strict_default": {
+   "count": 54,
+   "denominator": 192
+  },
+  "strict_tf32off": {
+   "count": 2,
+   "denominator": 192
+  }
+ },
+ "exceedance_ab": {
+  "bench": {
+   "count": 1,
+   "denominator": 200
+  },
+  "strict": {
+   "count": 54,
+   "denominator": 200
+  }
+ },
+ "max_rho_global_bench_default": 0.11937019451959704,
+ "max_ew_frac_bench_default": 0.0,
+ "max_rho_global_bench_tf32off": 0.586561606188976,
+ "op_class_counts": {
+  "attention": 1,
+  "conv": 51,
+  "conv_transpose": 47,
+  "elementwise": 16,
+  "gemm": 47,
+  "norm": 5,
+  "other": 13,
+  "pool": 6,
+  "reduction": 12,
+  "softmax": 2
+ },
+ "op_class_adm": {
+  "attention": 1,
+  "conv": 50,
+  "conv_transpose": 47,
+  "elementwise": 16,
+  "gemm": 47,
+  "norm": 2,
+  "other": 10,
+  "pool": 5,
+  "reduction": 12,
+  "softmax": 2
+ },
+ "wall_s": 847.8,
+ "torch": "2.14.1+cu130",
+ "prereg_sha256": "62538d4a03667aa357bcdb095c00314b39479b7b104c9e6a2a5a48bb2e9eb2eb",
+ "prereg_path": "lab/s71_prereg.md"
+}
