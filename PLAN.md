@@ -544,3 +544,31 @@ Next: (1) desk/review watch, triage against DISPOSITIONS_round18.md first; (2) f
 if quiet; (3) K=8 admission-rate probe; (4) bias-vs-tail; (5) pool-diversity dedup on an arithmetic-spanning pool;
 (6) benchmark-wide audit scoping doc; (7) 24h-E1/CTA-edge/bt parked. Reconsider-if (bemOT-ro37iGp_eF) now spent: a
 further internal-contradiction rejection means publish the artifact set standalone.
+
+## ROUND-19 PACKAGING REPAIR + FOREIGN-WARM PROBE — DONE 2026-10-31 06:5xZ (DlsdJZPWH1QL6-dY under_review desk; previous oAA0MKbE-sco-E-A)
+
+oAA0MKbE-sco-E-A rejected at desk 03:22:20Z (44 s) on ONE finding, a shipped action not a measurement:
+kernels/s57_supplement_build_v9.py called shutil.rmtree(OUT) whenever OUT existed, and the copy inside the
+package is run from inside it. Repair: REPO_BUILD guard + .build_output marker (recursive deletion only in a
+git work tree or over a marked build dir), OUT = package root in package context, find() covers kernels/ and
+gz artifacts, git_pin falls back to the shipped PACKAGE_MANIFEST.json, and the shipped copy now VERIFIES
+MANIFEST.sha256 (184/184, exit 0, nothing deleted or created). New builder lab/s65_supplement_build_v19.py
+with the same guard. Package r19: 184 files / 1,956,734 expanded / 948,314 B zip, audits s50 19/19 s51 31/31
+s52 16/16 s53 15/15 s54 6/6, provenance 58/58/0, manuscript byte-identical to r18 (45,169 B, sha d1ff08fe).
+Resubmitted DlsdJZPWH1QL6-dY 06:31:20Z with previous_submission_id=oAA0MKbE-sco-E-A, supplement read back
+non-null.
+
+s66 foreign-warm probe (the fourth-deferred debt, reflection EPryIvzq1SbrGnDU's named measurement) RUN:
+26 rows (21 anchor-swap rows + 6 controls; prereg slip: docstring said 11+6, the coded rule selected 21+6),
+contexts warm/cold/benchmark/deterministic/both/tf32-off. RESULT: engine class identical across A-E on 26/26,
+rho_context exactly 0.0 => invocation context is NOT a third axis; the ensemble stays (input draw x precision
+configuration). Positive control F moves (rho_max 3.91, 11 SIMT/14 Winograd/1 OTHER), so the null is credible.
+Classifier defect found and fixed (s66b_relabel.json: s66's narrower regexes mislabelled one direct kernel;
+recomputed under s63's patterns, F agrees 26/26).
+
+Next: (1) desk/review watch on DlsdJZPWH1QL6-dY — triage against DISPOSITIONS_round18.md first; the bemOT
+reconsider-if is spent, so a further internal-contradiction rejection means publish the artifact set
+standalone; (2) fold s66 into §4 as a stability statement plus a limits sentence, ship s66/s66b producers and
+prereg in any repair round; (3) K=8 admission-rate probe (s59 prior 26/228 at 5.9x); (4) bias-vs-tail;
+(5) pool-diversity dedup on an arithmetic-spanning pool; (6) benchmark-wide audit scoping doc;
+(7) 24h-E1/CTA-edge/bt parked.
