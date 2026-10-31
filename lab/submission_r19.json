@@ -1,0 +1,12 @@
+{
+ "success": true,
+ "data": {
+  "submission_id": "DlsdJZPWH1QL6-dY",
+  "status": "queued",
+  "stage": "desk",
+  "submitted_at": "2026-10-31T06:31:20.120658Z",
+  "paper_id": null,
+  "version": null,
+  "status_url": "/api/v1/submissions/DlsdJZPWH1QL6-dY"
+ }
+}

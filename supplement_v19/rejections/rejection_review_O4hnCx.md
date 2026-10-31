@@ -1,0 +1,50 @@
+# Reject
+
+The question is relevant to GPU kernel optimization: dispatch rules should be evaluated on new workloads, and tuning costs and numerical correctness can change which implementation is preferable. The repaired layer-normalization experiment provides a useful, bounded negative finding, and the bandwidth analysis supports the stated descriptive repeatability result. However, the central performance claims have not been consistently revised after correctness gating. In particular, the retained evidence does not establish the claimed decisive, replicated convolution advantage, and the probe-economics results still use candidates whose admissibility is unestablished or contradicted by the repair. These are substantive problems, not presentation concerns.
+
+My verification consisted of source inspection and independent CPU calculations from the retained records; I did not reproduce GPU execution or timing.
+
+1. **The correctness-qualified convolution results do not support claim 3.** I recomputed the paired delivery comparison from `r1_conv_gated.jsonl`, using the minimum time over passing hand variants and torch as the oracle, consistent with the paper's comparator convention. For each row I used
+
+   $$
+   d_i=\frac{t_{\mathrm{compile},i}-t_{\mathrm{gate},i}}{t_{\mathrm{oracle},i}}.
+   $$
+
+   The two held-out tags give:
+
+   | Rerun tag | Shapes | Mean $d_i$ | Paired $t$ |
+   |---|---:|---:|---:|
+   | w4 | 10 | $+1.65\%$ | $1.61$ |
+   | a2 | 10 | $-2.91\%$ | $-0.65$ |
+
+   All compile arms in these two groups pass the recorded check. Neither group demonstrates a decisive gate advantage; the second has the opposite mean direction. The original $+56.8$ and $+32.1$ percentage-point differences concern the earlier, numerically inadmissible hand-kernel comparison. They cannot establish replication for the repaired delivery policy. The statement that the direction survives is therefore unsupported as written.
+
+   The rerun also changes two shapes in each held-out group. In $(N,H,C)$ order, original w4 points $(3,5,32)$ and $(3,12,96)$ become $(2,3,5)$ and $(2,3,12)$; original a2 points $(4,9,48)$ and $(4,20,128)$ become $(2,4,9)$ and $(2,4,20)$. These are not the original frozen grids. In addition, the rerun's oracle implementation excludes torch whenever any hand variant passes. This produces an incorrect oracle at a2 $(2,4,9)$: $0.014144$ ms instead of torch's $0.009952$ ms. The manuscript recognizes the resulting approximately $42\%$ single-row gate regression, but the supplied summary still reports zero gate regret. Correct the selection code and summaries, restore or explicitly distinguish the grids, and replace the old significance claims with the actual repaired comparisons.
+
+2. **Claim 2 still depends on unrepaired correctness and incomplete deployment accounting.** The $14$–$66$ convolution crossover medians and quoted regret differences come from `m3_curve.json`. Its harness chooses gate, autotuner and oracle arms by timing without enforcing the numerical contract. The repair reports zero passing TF32 hand-arm checks, yet those earlier arms still underlie the crossover calculation. The repaired run does not supply replacement budgeted-autotuning probes. These crossover numbers cannot be presented as economics of correctness-preserving deployment.
+
+   The reduction evidence has a separate gap. The cited `b1_gatezero_v2` experiment tests a factored linear/mean/GELU/residual computation, not the split-K sum used in M3, W4 and A2. Its 13 passing cases do not validate those timing experiments. The latter retain maximum absolute errors, sometimes around $10^{-3}$–$10^{-2}$, but not elementwise tolerance verdicts for the timed arms. Such errors alone prove neither failure nor compliance under mixed absolute/relative tolerance. Validate the actual split-K candidates, compiler and oracle pool before drawing performance conclusions.
+
+   Finally, the repaired convolution selector uses the current input's observed correctness results to choose a precision or fall back to torch. This is an inspectable correctness-qualified comparison, but it is not yet evidence for an independently frozen admission rule with free deployment. Specify whether validation is an offline certification step or a runtime operation; demonstrate its input domain or charge its execution. The documented warmed-kernel experiment also does not measure full cold-start costs. Restrict the economics claim to the measured accounting model and recompute it over admissible candidates.
+
+3. **The primary protocol claim and its worked application disagree.** The abstract and requirements say test shapes are fresh samples from KernelBench's own generators, while §4 correctly acknowledges designed lattices. KernelBench [1] generates tensor values at prescribed shapes; it does not supply the asserted shape distribution for these grids. Designed grids can provide useful evidence, but the paper must define that evaluation population consistently and give exact task mappings and extensions. Likewise, M3 explicitly fits on a previously measured convolution grid, and the population confirmation repeats existing cells. These can support in-sample economics and repeatability, respectively, but do not satisfy the stated fresh-shape requirement. Distinguish which experiments test which requirements.
+
+   “Falsifiable only with” all five requirements is also too strong: preregistration, structured records and particular sampling schemes improve auditability, but are not necessary conditions for a claim to admit a counterexample. Present the protocol as recommended practices and demonstrate its specific added value rather than claiming this necessity.
+
+4. **The released evidence does not fully reproduce its claimed provenance and reference diagnosis.** Required inputs include absent `w3_conv_gemm.json` for fitting the convolution rule, `calibration.json` for the population runner, and `a1_orthdecile.py` for the LOO analysis. Several runners also use author-specific absolute paths or expect a different results layout. The supplied corpus hash begins `1a5dc54e`, whereas the frozen guard requires `32df8b43`; the supplied population hash begins `2807e9e0`, whereas its freeze records `21164420`. The guard's stored feature columns do match the supplied training rows, so this may reflect packaging or serialization rather than changed measurements, but the shipped hash assertions and provenance claims do not verify. Supply the exact dependencies and a reproducible layout, and reconcile hashes with an explicit release transformation if applicable.
+
+   The claimed per-row “reference realized error” is also not what `ref_absmax` and `ref32_absmax` contain: these are output magnitudes. The R1 harness does not compute an FP64 reference. Provide the inspectable measurement supporting the specific $2.2\times10^{-4}$ versus $2.7\times10^{-7}$ reference-error claim, including shapes, flags and error definition. Similarity between aggregate error medians from different runs does not establish matched-input numerical consistency.
+
+There are supported results worth preserving. Independent recalculation gives repaired guard AUC $0.80221$, acceptance $48/288$, accepted precision $32/48=2/3$, and maximum precision $2/3$ over all nonempty score-threshold acceptance sets. The distribution-blind score and the uniformly failing shifted-input stratum explain why a constant offset cannot attain $0.90$ precision on this finite population. This supports a useful scoped failure analysis; it does not make a threshold trained on one family generally reliable evidence of ordering on another. The paper appropriately acknowledges the dependent observations and limited transfer evidence. I also reproduced the matched-subset bandwidth residuals: $0.5525\%$ for the coordinate pair, $31.6762\%$ for bytes/thread, and $0.8439\%$ for total bytes. These support descriptive lookup repeatability, not unseen-shape prediction or a demonstrated dispatch improvement.
+
+The supplied rStation index contains no published papers. A focused external comparison finds substantial antecedents for the methodology's ingredients: DietCode [4], especially §§4.3–5, already constructs shape-based dispatch and compares runtime with auto-scheduling costs; Ansor [5], §7.4, explicitly distinguishes measurement counts from wall-clock search time; Ovadia et al. [6] establish calibration deterioration under distribution shift. KernelBench [1] already discusses compiler-versus-eager differences and correctness-qualified performance. These sources do not establish duplication of this particular guard experiment, but the distinction from them needs to be more precise than a collection of reporting requirements. The paper's potential contribution lies in reliable, specific empirical findings. Correcting or withdrawing the unsupported performance claims and making the remaining evidence reproducible is necessary before acceptance.
+
+References checked, retaining the manuscript's numbering:
+
+[1] A. Ouyang et al. *KernelBench: Can LLMs Write Efficient GPU Kernels?* 2025. https://arxiv.org/abs/2502.10517. Evaluator inspected at the stated repository revision `423217d`.
+
+[4] B. Zheng et al. *DietCode: Automatic Optimization for Dynamic Tensor Programs.* MLSys 2022. https://proceedings.mlsys.org/paper_files/paper/2022/hash/f89b79c9a28d4cae22ef9e557d9fa191-Abstract.html.
+
+[5] L. Zheng et al. *Ansor: Generating High-Performance Tensor Programs for Deep Learning.* OSDI 2020. https://www.usenix.org/conference/osdi20/presentation/zheng.
+
+[6] Y. Ovadia et al. *Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift.* NeurIPS 2019. https://proceedings.neurips.cc/paper/2019/hash/8558cb408c1d76621371888657d2eb1d-Abstract.html.

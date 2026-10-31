@@ -1,0 +1,48 @@
+{
+ "date": "2026-10-22T12:36:21Z",
+ "n_rows": 56,
+ "prereg_sha": "5ff93b20",
+ "armA_delivered_changes": 21,
+ "armA_admissible_changes": 48,
+ "armA_arm_verdict_flips_total": 341,
+ "armA_flips_by_arm": {
+  "torch": 52,
+  "torch_cmp": 49,
+  "imp_B32x32[ieee]": 48,
+  "imp_B32x32[tf32]": 0,
+  "imp_B64x32[ieee]": 48,
+  "imp_B64x32[tf32]": 0,
+  "imp_B64x64[ieee]": 48,
+  "imp_B64x64[tf32]": 0,
+  "imp_B128x64[ieee]": 48,
+  "imp_B128x64[tf32]": 0,
+  "imp_B32x64K64[ieee]": 48,
+  "imp_B32x64K64[tf32]": 0
+ },
+ "armA_regret_delta_pp": [
+  0.0,
+  66.55247502326027
+ ],
+ "boot_delivered_flip_frac": {
+  "median": 0.0,
+  "max": 0.899
+ },
+ "boot_arm_flip_frac_median": {
+  "torch": 1.0,
+  "torch_cmp": 1.0,
+  "imp_B32x32[ieee]": 0.0,
+  "imp_B32x32[tf32]": 0.0,
+  "imp_B64x32[ieee]": 0.0,
+  "imp_B64x32[tf32]": 0.0,
+  "imp_B64x64[ieee]": 0.0,
+  "imp_B64x64[tf32]": 0.0,
+  "imp_B128x64[ieee]": 0.0,
+  "imp_B128x64[tf32]": 0.0,
+  "imp_B32x64K64[ieee]": 0.0,
+  "imp_B32x64K64[tf32]": 0.0
+ },
+ "ref_err_def_max": 0.07592391967773438,
+ "ref_err_def_median": 0.002198144793510437,
+ "ref_err_ieee_max": 0.002998828887939453,
+ "verdict": "CHANGES: 21 delivered-arm / 48 admissible-set -> claim-3/4/5 denominators take stability intervals in the #42 revision"
+}

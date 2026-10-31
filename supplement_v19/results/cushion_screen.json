@@ -1,0 +1,34 @@
+{
+ "date": "2026-10-31T06:30:49Z",
+ "prereg": "lab/cushion_screen_prereg.md (thresholds frozen pre-run)",
+ "train": {
+  "n": 360,
+  "flips": 169,
+  "auc_x1": 0.7428978592893213,
+  "c_star": 0.457763671875,
+  "flip_rate_below_c": 0.0
+ },
+ "rider": {
+  "n": 560,
+  "flips": 240,
+  "auc": 0.12109375,
+  "below_c": {
+   "n": 10,
+   "detail": null
+  }
+ },
+ "rider_below_c": {
+  "n": 10,
+  "flip_frac": 0.0
+ },
+ "b1_sanity": "ALIVE",
+ "conv_x_below_c": [
+  0,
+  0
+ ],
+ "conv_x_stats": {
+  "n": 0,
+  "max": null
+ },
+ "verdict": "train AUC 0.743 >= 0.70; rider AUC 0.121 < 0.60; c*=0.457764 trainP(flip|x<=c)=0.0 riderBelow=0.0"
+}

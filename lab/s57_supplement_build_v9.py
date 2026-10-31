@@ -28,7 +28,23 @@ import gzip, hashlib, json, os, shutil, subprocess, sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 LAB = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(ROOT, "supplement_v9")
+MARKER = ".build_output"
+
+
+def _git_worktree(path):
+    r = subprocess.run(["git", "rev-parse", "--is-inside-work-tree"], cwd=path,
+                       capture_output=True, text=True)
+    return r.returncode == 0 and r.stdout.strip() == "true"
+
+
+# Round-19 fix (desk rejection of oAA0MKbE-sco-E-A): this file ships INSIDE the package and is run from
+# there, where ROOT is the package root and there is no git work tree. A plain rmtree(OUT) there deleted
+# a directory the builder had not created in that invocation. Two changes: (a) OUT is a sibling build
+# directory only in a repo build and the package root itself otherwise, so the shipped copy rebuilds in
+# place; (b) recursive deletion is guarded -- it happens only in a git work tree, or when OUT carries the
+# marker this builder writes on a successful build.
+REPO_BUILD = _git_worktree(ROOT)
+OUT = os.path.join(ROOT, "supplement_v9") if REPO_BUILD else ROOT
 META_FILE = "submit_metadata_r17.json"
 BUDGET = 2_000_000
 
@@ -134,25 +150,79 @@ def sha(path):
 
 
 def find(rel):
-    for base in ("lab/results", "results", "lab"):
-        p = os.path.join(ROOT, base, rel)
-        if os.path.exists(p):
-            return p
+    """Locate a shipped input. The packaged copy of this builder has its producers at kernels/ and its
+    artifacts gzipped, so both are searched before reporting a missing input."""
+    for base in ("lab/results", "results", "lab", "kernels"):
+        for cand in (rel, rel + ".gz"):
+            p = os.path.join(ROOT, base, cand)
+            if os.path.exists(p):
+                return p
     return None
 
 
 def git_pin():
-    r = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True)
-    if r.returncode != 0:
-        errors.append("git rev-parse failed — the repo pin is a required field")
+    if REPO_BUILD:
+        r = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True)
+        if r.returncode == 0:
+            return r.stdout.strip()
+        errors.append("git rev-parse failed inside a work tree — the repo pin is a required field")
         return None
-    return r.stdout.strip()
+    # package context: the pin is the one recorded in the manifest that shipped beside us
+    try:
+        return json.load(open(os.path.join(ROOT, "PACKAGE_MANIFEST.json")))["repository_commit"]
+    except Exception:
+        errors.append("no git work tree and no PACKAGE_MANIFEST.json repository_commit — pin unavailable")
+        return None
+
+
+def reset_out():
+    """Create OUT. Never erase a directory this builder cannot identify as its own output."""
+    if not os.path.isdir(OUT):
+        os.makedirs(OUT, exist_ok=True)
+        return
+    own = REPO_BUILD or os.path.exists(os.path.join(OUT, MARKER))
+    if own:
+        shutil.rmtree(OUT)
+    os.makedirs(OUT, exist_ok=True)
+
+
+def verify_manifest():
+    """Package context: the shipped copy verifies, it does not rebuild.
+
+    ROOT is the unpacked package here and its curation is not this builder's list (the round-18 package
+    was built by s64_supplement_build_v18.py), so rebuilding in place would report false missing inputs.
+    Nothing is deleted or written: MANIFEST.sha256 is recomputed and every mismatch printed. Run it
+    before any other packaged script for a clean check.
+    """
+    man = os.path.join(ROOT, "MANIFEST.sha256")
+    if not os.path.exists(man):
+        print("no MANIFEST.sha256 beside this package — nothing to verify")
+        return
+    bad = 0
+    n = 0
+    for line in open(man):
+        line = line.strip()
+        if not line:
+            continue
+        want, rel = line.split("  ", 1)
+        n += 1
+        target = os.path.join(ROOT, rel)
+        if not os.path.exists(target):
+            bad += 1
+            print("MISSING", rel)
+        elif sha(target) != want:
+            bad += 1
+            print("DIFFERS", rel)
+    print("verified %d/%d manifest entries from inside the package" % (n - bad, n))
+    if bad:
+        print("files rewritten by other packaged scripts are expected to differ; run this first")
+        sys.exit(1)
 
 
 def main():
-    if os.path.isdir(OUT):
-        shutil.rmtree(OUT)
-    os.makedirs(OUT)
+    if not REPO_BUILD:
+        return verify_manifest()
+    reset_out()
 
     pin = git_pin()
 
@@ -216,11 +286,17 @@ def main():
     for rel, sp in list(emitted.items()):
         dest = os.path.join(OUT, rel)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
-        if os.path.basename(sp) in GZIP:
-            dest = dest + ".gz"
-            with open(sp, "rb") as f, gzip.open(dest, "wb", compresslevel=9) as g:
-                shutil.copyfileobj(f, g)
-        else:
+        src_gz = sp.endswith(".gz")
+        if os.path.basename(sp) in GZIP or src_gz:
+            dest = dest if dest.endswith(".gz") else dest + ".gz"
+            if os.path.abspath(sp) == os.path.abspath(dest):
+                pass
+            elif src_gz:
+                shutil.copyfile(sp, dest)
+            else:
+                with open(sp, "rb") as f, gzip.open(dest, "wb", compresslevel=9) as g:
+                    shutil.copyfileobj(f, g)
+        elif os.path.abspath(sp) != os.path.abspath(dest):
             shutil.copyfile(sp, dest)
         shipped[os.path.relpath(dest, OUT)] = sp
 
@@ -241,6 +317,8 @@ def main():
     # byte-copy verification against repo sources. REGENERATED files are compared for regenerability
     # rather than byte equality, because running the packaged scripts rewrites them.
     for rel, sp in shipped.items():
+        if os.path.abspath(os.path.join(OUT, rel)) == os.path.abspath(sp):
+            continue  # rebuilt in place: the source and the emitted file are the same file
         if rel.endswith(".gz"):
             with gzip.open(os.path.join(OUT, rel), "rb") as g:
                 got = hashlib.sha256(g.read()).hexdigest()
@@ -329,6 +407,8 @@ def main():
         for e in errors:
             print("ERROR:", e, file=sys.stderr)
         sys.exit(1)
+    with open(os.path.join(OUT, MARKER), "w") as f:
+        f.write("written by s57_supplement_build_v9.py on a successful build\n")
     print("build OK")
 
 
@@ -514,8 +594,14 @@ def build_meta(pin, base=None):
     """Derive every count from the artifacts and from the round's submit metadata (round-15 repair of N3):
     a hardcoded manifest is how the manuscript, the shipped json and this file came to disagree."""
     import glob
-    base = base or LAB
-    meta = json.load(open(os.path.join(LAB, META_FILE)))
+    base = base or (LAB if os.path.isdir(os.path.join(LAB, "results")) else ROOT)
+    meta_path = os.path.join(LAB, META_FILE)
+    if not os.path.exists(meta_path):
+        meta_path = os.path.join(ROOT, META_FILE)
+    if os.path.exists(meta_path):
+        meta = json.load(open(meta_path))
+    else:
+        meta = {"previous_submission_id": None}  # packaged copy: round metadata is not shipped
 
     def counts(name):
         p = os.path.join(base, "results", name)

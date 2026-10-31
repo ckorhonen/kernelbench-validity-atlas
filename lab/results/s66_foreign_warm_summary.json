@@ -1,0 +1,487 @@
+{
+ "date": "2026-10-31T06:33:59Z",
+ "prereg": "docstring of lab/s66_foreign_warm.py",
+ "n_rows": 26,
+ "contexts": [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F"
+ ],
+ "rows": [
+  {
+   "row": [
+    4,
+    1,
+    16
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    4,
+    1,
+    64
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    4,
+    4,
+    16
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    4,
+    4,
+    64
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD"
+   }
+  },
+  {
+   "row": [
+    7,
+    1,
+    16
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    7,
+    4,
+    16
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    7,
+    4,
+    64
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD"
+   }
+  },
+  {
+   "row": [
+    10,
+    1,
+    16
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    10,
+    1,
+    64
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD"
+   }
+  },
+  {
+   "row": [
+    10,
+    4,
+    16
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    10,
+    4,
+    64
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD"
+   }
+  },
+  {
+   "row": [
+    14,
+    1,
+    16
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    14,
+    1,
+    64
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD"
+   }
+  },
+  {
+   "row": [
+    14,
+    4,
+    16
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    14,
+    4,
+    64
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD"
+   }
+  },
+  {
+   "row": [
+    8,
+    2,
+    32
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD"
+   }
+  },
+  {
+   "row": [
+    12,
+    2,
+    32
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    3,
+    2,
+    12
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    6,
+    2,
+    48
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD"
+   }
+  },
+  {
+   "row": [
+    10,
+    2,
+    48
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    4,
+    2,
+    20
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    3,
+    2,
+    5
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "OTHER",
+    "B": "OTHER",
+    "C": "OTHER",
+    "D": "OTHER",
+    "E": "OTHER"
+   }
+  },
+  {
+   "row": [
+    7,
+    1,
+    64
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD"
+   }
+  },
+  {
+   "row": [
+    12,
+    2,
+    96
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    20,
+    1,
+    256
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  },
+  {
+   "row": [
+    26,
+    2,
+    128
+   ],
+   "context_stable": true,
+   "transitions": {},
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP"
+   }
+  }
+ ],
+ "engine_by_context": {
+  "A": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "OTHER": 1
+  },
+  "B": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "OTHER": 1
+  },
+  "C": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "OTHER": 1
+  },
+  "D": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "OTHER": 1
+  },
+  "E": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "OTHER": 1
+  },
+  "F": {
+   "FP32_SIMT": 10,
+   "OTHER": 2,
+   "WINOGRAD": 14
+  }
+ },
+ "transitions": {},
+ "rho_max_by_context": {
+  "B": 0.0,
+  "C": 0.0,
+  "D": 0.0,
+  "E": 0.0
+ },
+ "replication_F_vs_s63": {
+  "agree": 25,
+  "disagree": 1,
+  "detail": [
+   {
+    "row": [
+     3,
+     2,
+     5
+    ],
+    "s66_F": "OTHER",
+    "s63_ieee": "FP32_SIMT"
+   }
+  ]
+ },
+ "n_context_stable": 26,
+ "n_unstable": 0
+}

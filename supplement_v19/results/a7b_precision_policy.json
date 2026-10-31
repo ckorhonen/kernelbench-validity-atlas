@@ -1,0 +1,201 @@
+{
+ "header": {
+  "date": "2026-10-24T07:27Z",
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA GB10",
+  "prereg": "lab/a7b_precision_prereg.md (frozen pre-run)",
+  "upstream": "results/a7_kernelclass.json"
+ },
+ "conv_rows": [
+  {
+   "C": 256,
+   "tag": "winograd_s1",
+   "k": 3,
+   "s": 1,
+   "d": 1,
+   "rho_on": 10.194867622731039,
+   "rho_off": 10.194867622731039,
+   "med_on": 0.014738207845815834,
+   "med_off": 0.014738207845815834,
+   "frac_over_on": 0.00515625,
+   "frac_over_off": 0.00515625,
+   "bit_equal": true,
+   "ratio_off_over_on": 1.0,
+   "engines": [
+    "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+    "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)",
+    "void cutlass::Kernel2<cutlass_80_simt_sgemm_64x64_8x5_nn_align1>(cutlass_80_simt_sgemm_64x64_8x5_nn_align1::Params)",
+    "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)"
+   ]
+  },
+  {
+   "C": 256,
+   "tag": "s2",
+   "k": 3,
+   "s": 2,
+   "d": 1,
+   "rho_on": 251.69235626820176,
+   "rho_off": 0.39425208081165425,
+   "med_on": 2.8133319859155392,
+   "med_off": 0.005140750275908587,
+   "frac_over_on": 0.7816840277777777,
+   "frac_over_off": 0.0,
+   "bit_equal": false,
+   "ratio_off_over_on": 0.00156640466423836,
+   "engines": [
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)"
+   ]
+  },
+  {
+   "C": 256,
+   "tag": "d2",
+   "k": 3,
+   "s": 1,
+   "d": 2,
+   "rho_on": 231.8553112958306,
+   "rho_off": 0.5006994417253704,
+   "med_on": 2.8177780132874917,
+   "med_off": 0.004905563625285424,
+   "frac_over_on": 0.7778125,
+   "frac_over_off": 0.0,
+   "bit_equal": false,
+   "ratio_off_over_on": 0.0021595340599573935,
+   "engines": [
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)"
+   ]
+  },
+  {
+   "C": 256,
+   "tag": "k1",
+   "k": 1,
+   "s": 1,
+   "d": 1,
+   "rho_on": 110.85274171888956,
+   "rho_off": 0.07423016854959487,
+   "med_on": 2.6195795013257075,
+   "med_off": 0.0021075198199459683,
+   "frac_over_on": 0.77,
+   "frac_over_off": 0.0,
+   "bit_equal": false,
+   "ratio_off_over_on": 0.0006696286208042961,
+   "engines": [
+    "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x64_16x6_nn_align1>(cutlass_80_tensorop_s1688gemm_64x64_16x6_nn_align1::Params)"
+   ]
+  },
+  {
+   "C": 64,
+   "tag": "winograd_s1",
+   "k": 3,
+   "s": 1,
+   "d": 1,
+   "rho_on": 1.4151408294184094,
+   "rho_off": 1.4151408294184094,
+   "med_on": 0.007244667811689241,
+   "med_off": 0.007244667811689241,
+   "frac_over_on": 0.0003125,
+   "frac_over_off": 0.0003125,
+   "bit_equal": true,
+   "ratio_off_over_on": 1.0,
+   "engines": [
+    "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+    "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)",
+    "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+    "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)"
+   ]
+  },
+  {
+   "C": 64,
+   "tag": "s2",
+   "k": 3,
+   "s": 2,
+   "d": 1,
+   "rho_on": 103.14724187273394,
+   "rho_off": 0.02398411722867827,
+   "med_on": 2.7021795096993655,
+   "med_off": 0.0010848678103967525,
+   "frac_over_on": 0.7994791666666666,
+   "frac_over_off": 0.0,
+   "bit_equal": false,
+   "ratio_off_over_on": 0.0002325231076781536,
+   "engines": [
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)"
+   ]
+  },
+  {
+   "C": 64,
+   "tag": "d2",
+   "k": 3,
+   "s": 1,
+   "d": 2,
+   "rho_on": 96.53535197598463,
+   "rho_off": 0.07785873392373917,
+   "med_on": 2.665699104896543,
+   "med_off": 0.0022602186392675617,
+   "frac_over_on": 0.7825,
+   "frac_over_off": 0.0,
+   "bit_equal": false,
+   "ratio_off_over_on": 0.0008065307923993307,
+   "engines": [
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)"
+   ]
+  },
+  {
+   "C": 64,
+   "tag": "k1",
+   "k": 1,
+   "s": 1,
+   "d": 1,
+   "rho_on": 51.42568619367783,
+   "rho_off": 0.018304712112443677,
+   "med_on": 2.429602111078179,
+   "med_off": 0.0009589371389593423,
+   "frac_over_on": 0.7625000000000001,
+   "frac_over_off": 0.0,
+   "bit_equal": false,
+   "ratio_off_over_on": 0.0003559449268893571,
+   "engines": [
+    "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x64_16x6_nn_align1>(cutlass_80_tensorop_s1688gemm_64x64_16x6_nn_align1::Params)"
+   ]
+  }
+ ],
+ "matmul_rows": [
+  {
+   "allow_tf32": true,
+   "rho_max": 286.8657501806635,
+   "med": 2.824343432021048
+  },
+  {
+   "allow_tf32": false,
+   "rho_max": 0.2018846781972287,
+   "med": 0.0019174316889074572
+  }
+ ],
+ "Q1": {
+  "ratios": {
+   "s2": 0.00156640466423836,
+   "d2": 0.0021595340599573935,
+   "k1": 0.0006696286208042961
+  },
+  "bit_equal": {
+   "s2": false,
+   "d2": false,
+   "k1": false
+  },
+  "pass": true
+ },
+ "Q2": {
+  "bit_equal": true,
+  "rho_on": 10.194867622731039,
+  "rho_off": 10.194867622731039,
+  "pass": true
+ },
+ "Q3": {
+  "tf32_rho": 286.8657501806635,
+  "fp32_rho": 0.2018846781972287,
+  "pass": true
+ }
+}

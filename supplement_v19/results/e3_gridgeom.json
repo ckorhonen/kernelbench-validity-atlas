@@ -1,0 +1,1002 @@
+{
+ "meta": {
+  "date": "2026-10-18T16:58:16Z",
+  "sm_count": 48,
+  "torch": "2.14.1+cu130",
+  "device": "NVIDIA GB10",
+  "prereg": "see module docstring, written pre-run"
+ },
+ "rows": [
+  {
+   "arm": "flat",
+   "kind": "flat",
+   "BLOCK": 256,
+   "n": 100663296,
+   "grid": 393216,
+   "waves_flat": 8192.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 226.65243647718,
+   "med_ms": 5.329567909240723,
+   "iqr_ms": 0.028543949127197266,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 7.72
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 11.31
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 393216,
+    "waves_total": 8192.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "flat_perm",
+   "kind": "flat",
+   "BLOCK": 256,
+   "n": 100663296,
+   "grid": 393216,
+   "waves_flat": 8192.0,
+   "perm": true,
+   "bytes_moved": 1207959552,
+   "gbps": 216.62430341385306,
+   "med_ms": 5.576288223266602,
+   "iqr_ms": 0.007199764251708984,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 12.56
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 12.55
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 393216,
+    "waves_total": 8192.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers48",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 100663296,
+   "grid": 48,
+   "waves_flat": 8192.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 198.80207397176832,
+   "med_ms": 6.0761919021606445,
+   "iqr_ms": 0.02044820785522461,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 15.79
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 15.76
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 48,
+    "waves_total": 1.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers96",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 100663296,
+   "grid": 96,
+   "waves_flat": 8192.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 217.01909872705968,
+   "med_ms": 5.566143989562988,
+   "iqr_ms": 0.01232004165649414,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 16.75
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 16.66
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 96,
+    "waves_total": 2.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers192",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 100663296,
+   "grid": 192,
+   "waves_flat": 8192.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 215.6700993963513,
+   "med_ms": 5.600959777832031,
+   "iqr_ms": 0.02662372589111328,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 17.84
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 17.73
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 192,
+    "waves_total": 4.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers384",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 100663296,
+   "grid": 384,
+   "waves_flat": 8192.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 215.4731184888462,
+   "med_ms": 5.606080055236816,
+   "iqr_ms": 0.007199764251708984,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 19.01
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 19.04
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 384,
+    "waves_total": 8.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers192_perm",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 100663296,
+   "grid": 96,
+   "waves_flat": 8192.0,
+   "perm": true,
+   "bytes_moved": 1207959552,
+   "gbps": 214.41566687938638,
+   "med_ms": 5.63372802734375,
+   "iqr_ms": 0.01436758041381836,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 19.04
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 19.03
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 96,
+    "waves_total": 2.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "flat",
+   "kind": "flat",
+   "BLOCK": 256,
+   "n": 50331648,
+   "grid": 196608,
+   "waves_flat": 4096.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 225.66738279671992,
+   "med_ms": 2.6764159202575684,
+   "iqr_ms": 0.004127979278564453,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 18.93
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 9.0,
+    "watts": 18.5
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 196608,
+    "waves_total": 4096.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "flat_perm",
+   "kind": "flat",
+   "BLOCK": 256,
+   "n": 50331648,
+   "grid": 196608,
+   "waves_flat": 4096.0,
+   "perm": true,
+   "bytes_moved": 603979776,
+   "gbps": 215.6035794649104,
+   "med_ms": 2.8013439178466797,
+   "iqr_ms": 0.006175994873046875,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.98
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.63
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 196608,
+    "waves_total": 4096.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers48",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 50331648,
+   "grid": 48,
+   "waves_flat": 4096.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 197.68083730766085,
+   "med_ms": 3.055327892303467,
+   "iqr_ms": 0.014335870742797852,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.72
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.68
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 48,
+    "waves_total": 1.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers96",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 50331648,
+   "grid": 96,
+   "waves_flat": 4096.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 216.63300998934176,
+   "med_ms": 2.788032054901123,
+   "iqr_ms": 0.011232137680053711,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.61
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.39
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 96,
+    "waves_total": 2.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers192",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 50331648,
+   "grid": 192,
+   "waves_flat": 4096.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 215.28879140956658,
+   "med_ms": 2.8054399490356445,
+   "iqr_ms": 0.012192010879516602,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.61
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.25
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 192,
+    "waves_total": 4.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers384",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 50331648,
+   "grid": 384,
+   "waves_flat": 4096.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 214.58143247732033,
+   "med_ms": 2.814687967300415,
+   "iqr_ms": 0.007136106491088867,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.5
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.23
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 384,
+    "waves_total": 8.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers192_perm",
+   "kind": "pers",
+   "BLOCK": 256,
+   "n": 50331648,
+   "grid": 96,
+   "waves_flat": 4096.0,
+   "perm": true,
+   "bytes_moved": 603979776,
+   "gbps": 213.11077019669293,
+   "med_ms": 2.8341119289398193,
+   "iqr_ms": 0.005151987075805664,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.17
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.17
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=256,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 8.0,
+    "ctas": 96,
+    "waves_total": 2.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "flat",
+   "kind": "flat",
+   "BLOCK": 1024,
+   "n": 100663296,
+   "grid": 98304,
+   "waves_flat": 2048.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 221.08511171144025,
+   "med_ms": 5.463776111602783,
+   "iqr_ms": 0.018400192260742188,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.31
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.31
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 98304,
+    "waves_total": 2048.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "flat_perm",
+   "kind": "flat",
+   "BLOCK": 1024,
+   "n": 100663296,
+   "grid": 98304,
+   "waves_flat": 2048.0,
+   "perm": true,
+   "bytes_moved": 1207959552,
+   "gbps": 211.8739578191497,
+   "med_ms": 5.701312065124512,
+   "iqr_ms": 0.007071971893310547,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.84
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.69
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 98304,
+    "waves_total": 2048.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers48",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 100663296,
+   "grid": 48,
+   "waves_flat": 2048.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 219.52172595169017,
+   "med_ms": 5.502687931060791,
+   "iqr_ms": 0.015168190002441406,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.79
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.55
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 48,
+    "waves_total": 1.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers96",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 100663296,
+   "grid": 96,
+   "waves_flat": 2048.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 217.09399239301388,
+   "med_ms": 5.564223766326904,
+   "iqr_ms": 0.01024007797241211,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.79
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 51.0,
+    "watts": 18.8
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 96,
+    "waves_total": 2.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers192",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 100663296,
+   "grid": 192,
+   "waves_flat": 2048.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 215.6294373325577,
+   "med_ms": 5.602015972137451,
+   "iqr_ms": 0.01545572280883789,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 19.11
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.93
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 192,
+    "waves_total": 4.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers384",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 100663296,
+   "grid": 384,
+   "waves_flat": 2048.0,
+   "perm": false,
+   "bytes_moved": 1207959552,
+   "gbps": 215.59741413259277,
+   "med_ms": 5.602848052978516,
+   "iqr_ms": 0.017472267150878906,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 19.19
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 19.19
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 384,
+    "waves_total": 8.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers192_perm",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 100663296,
+   "grid": 96,
+   "waves_flat": 2048.0,
+   "perm": true,
+   "bytes_moved": 1207959552,
+   "gbps": 212.36981523616257,
+   "med_ms": 5.688000202178955,
+   "iqr_ms": 0.011263847351074219,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.84
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.79
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=100663296,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 96,
+    "waves_total": 2.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "flat",
+   "kind": "flat",
+   "BLOCK": 1024,
+   "n": 50331648,
+   "grid": 49152,
+   "waves_flat": 1024.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 220.1015442011536,
+   "med_ms": 2.744096040725708,
+   "iqr_ms": 0.005120038986206055,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.79
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.57
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 49152,
+    "waves_total": 1024.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "flat_perm",
+   "kind": "flat",
+   "BLOCK": 1024,
+   "n": 50331648,
+   "grid": 49152,
+   "waves_flat": 1024.0,
+   "perm": true,
+   "bytes_moved": 603979776,
+   "gbps": 211.35436255463114,
+   "med_ms": 2.857664108276367,
+   "iqr_ms": 0.005119800567626953,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.78
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.62
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 49152,
+    "waves_total": 1024.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers48",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 50331648,
+   "grid": 48,
+   "waves_flat": 1024.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 218.88400193681431,
+   "med_ms": 2.7593600749969482,
+   "iqr_ms": 0.011232137680053711,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.51
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.51
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 48,
+    "waves_total": 1.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers96",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 50331648,
+   "grid": 96,
+   "waves_flat": 1024.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 216.63300998934176,
+   "med_ms": 2.788032054901123,
+   "iqr_ms": 0.007136106491088867,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.32
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.15
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 96,
+    "waves_total": 2.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers192",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 50331648,
+   "grid": 192,
+   "waves_flat": 1024.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 215.4386865666229,
+   "med_ms": 2.80348801612854,
+   "iqr_ms": 0.007263898849487305,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.3
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.12
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 192,
+    "waves_total": 4.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers384",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 50331648,
+   "grid": 384,
+   "waves_flat": 1024.0,
+   "perm": false,
+   "bytes_moved": 603979776,
+   "gbps": 215.84027527733952,
+   "med_ms": 2.798271894454956,
+   "iqr_ms": 0.011263847351074219,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.3
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 18.13
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 384,
+    "waves_total": 8.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  },
+  {
+   "arm": "pers192_perm",
+   "kind": "pers",
+   "BLOCK": 1024,
+   "n": 50331648,
+   "grid": 96,
+   "waves_flat": 1024.0,
+   "perm": true,
+   "bytes_moved": 603979776,
+   "gbps": 211.43012586664256,
+   "med_ms": 2.856640100479126,
+   "iqr_ms": 0.010368108749389648,
+   "n_reps": 15,
+   "clk_pre": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 17.98
+   },
+   "clk_post": {
+    "sm_mhz": 2216.0,
+    "mem_mhz": NaN,
+    "util_pct": 53.0,
+    "watts": 17.88
+   },
+   "op_class": "elementwise_copy",
+   "rule": "none",
+   "domain_predicate": "n=50331648,BLOCK=1024,num_warps=4,exact multiple grid",
+   "derived_coords": {
+    "bytes_per_thread": 32.0,
+    "ctas": 96,
+    "waves_total": 2.0
+   },
+   "date": "2026-10-18T16:58:16Z"
+  }
+ ],
+ "verdict": {
+  "R1_mapping": "CONFIRMED: permuting CTA->data (x5 stride, bijection) at FIXED geometry costs 4.4% (B256: 226.2->216.1) / 4.1% (B1024: 220.6->211.6) saturated BW; replicated both n; >> run noise (<0.3%).",
+  "R2_occupancy": "PARTIAL/BLOCK-dependent: B256 1-wave persistent 198.2 = -12.3% vs flat; >=2 waves plateau 215-217 recovers 67% of gap, does not reach flat. B1024 pers48 about=flat (0.6%) - no occupancy penalty. 1-wave latency-hiding deficit only at small per-CTA bytes.",
+  "R3_clocks": "RULED OUT for this run: sm clock 2216 MHz at every pre/post sample, all arms; run-to-run replication <0.6 GB/s across 4 passes.",
+  "synthesis": "flat(identity) > {persistent>=2w, permuted-flat} plateau: persistent loop order behaves as a permuted mapping; residual flat-vs-plateau == mapping effect. Geometry dependence = address-phase (always, ~4%) + wave-starvation (B256 only, ~9% extra at 1 wave).",
+  "residues": [
+   "E1v3 flat256 246.5GB/s > copy-ladder excess NOT reproduced at num_warps=4 here - likely num_warps-specific, untested",
+   "power.draw N/A on GB10 telemetry; clock lock permission-denied (calibration) so DVFS bounded only via sampled 2216MHz stability"
+  ],
+  "prereg_compliance": "reads R1-R3 + decision rule per module docstring, written before first run 16:55Z; 4 passes, verdict from final pass, earlier passes consistent"
+ }
+}

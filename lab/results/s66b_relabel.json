@@ -1,0 +1,555 @@
+{
+ "date": "2026-10-31T06:33:59Z",
+ "n_rows": 26,
+ "source": "results/s66_foreign_warm.jsonl",
+ "relabel_rule": "s63_engine_predicate.CLASS_PATTERNS verbatim, applied to the recorded kernel names",
+ "label_changes": [
+  {
+   "row": [
+    3,
+    2,
+    5
+   ],
+   "context": "A",
+   "s66_label": "OTHER",
+   "relabelled": "FP32_SIMT"
+  },
+  {
+   "row": [
+    3,
+    2,
+    5
+   ],
+   "context": "B",
+   "s66_label": "OTHER",
+   "relabelled": "FP32_SIMT"
+  },
+  {
+   "row": [
+    3,
+    2,
+    5
+   ],
+   "context": "C",
+   "s66_label": "OTHER",
+   "relabelled": "FP32_SIMT"
+  },
+  {
+   "row": [
+    3,
+    2,
+    5
+   ],
+   "context": "D",
+   "s66_label": "OTHER",
+   "relabelled": "FP32_SIMT"
+  },
+  {
+   "row": [
+    3,
+    2,
+    5
+   ],
+   "context": "E",
+   "s66_label": "OTHER",
+   "relabelled": "FP32_SIMT"
+  },
+  {
+   "row": [
+    3,
+    2,
+    5
+   ],
+   "context": "F",
+   "s66_label": "OTHER",
+   "relabelled": "FP32_SIMT"
+  }
+ ],
+ "engine_by_context": {
+  "A": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "FP32_SIMT": 1
+  },
+  "B": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "FP32_SIMT": 1
+  },
+  "C": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "FP32_SIMT": 1
+  },
+  "D": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "FP32_SIMT": 1
+  },
+  "E": {
+   "TF32_TENSOROP": 16,
+   "WINOGRAD": 9,
+   "FP32_SIMT": 1
+  },
+  "F": {
+   "FP32_SIMT": 11,
+   "OTHER": 1,
+   "WINOGRAD": 14
+  }
+ },
+ "context_stability": {
+  "stable": 26,
+  "unstable": 0
+ },
+ "rho_max_by_context": {
+  "B": 0.0,
+  "C": 0.0,
+  "D": 0.0,
+  "E": 0.0,
+  "F": 3.910531
+ },
+ "rows": [
+  {
+   "row": [
+    4,
+    1,
+    16
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    4,
+    1,
+    64
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "OTHER"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    4,
+    4,
+    16
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    4,
+    4,
+    64
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    7,
+    1,
+    16
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    7,
+    4,
+    16
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    7,
+    4,
+    64
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    10,
+    1,
+    16
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    10,
+    1,
+    64
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    10,
+    4,
+    16
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    10,
+    4,
+    64
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    14,
+    1,
+    16
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    14,
+    1,
+    64
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    14,
+    4,
+    16
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    14,
+    4,
+    64
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    8,
+    2,
+    32
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    12,
+    2,
+    32
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    3,
+    2,
+    12
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    6,
+    2,
+    48
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    10,
+    2,
+    48
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    4,
+    2,
+    20
+   ],
+   "delivered_change": true,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    3,
+    2,
+    5
+   ],
+   "delivered_change": false,
+   "classes": {
+    "A": "FP32_SIMT",
+    "B": "FP32_SIMT",
+    "C": "FP32_SIMT",
+    "D": "FP32_SIMT",
+    "E": "FP32_SIMT",
+    "F": "FP32_SIMT"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    7,
+    1,
+    64
+   ],
+   "delivered_change": false,
+   "classes": {
+    "A": "WINOGRAD",
+    "B": "WINOGRAD",
+    "C": "WINOGRAD",
+    "D": "WINOGRAD",
+    "E": "WINOGRAD",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    12,
+    2,
+    96
+   ],
+   "delivered_change": false,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    20,
+    1,
+    256
+   ],
+   "delivered_change": false,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  },
+  {
+   "row": [
+    26,
+    2,
+    128
+   ],
+   "delivered_change": false,
+   "classes": {
+    "A": "TF32_TENSOROP",
+    "B": "TF32_TENSOROP",
+    "C": "TF32_TENSOROP",
+    "D": "TF32_TENSOROP",
+    "E": "TF32_TENSOROP",
+    "F": "WINOGRAD"
+   },
+   "context_stable": true
+  }
+ ]
+}
