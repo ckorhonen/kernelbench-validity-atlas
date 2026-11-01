@@ -1,0 +1,604 @@
+{
+ "summary": {
+  "population_rule": "s71 anchor==inadmissible:working_set (8 tasks)",
+  "attempted": 8,
+  "completed": 8,
+  "tie_out_failures": [],
+  "failed": [],
+  "coverage": "200/200",
+  "exceed_bench_default": 0,
+  "exceed_strict_default": 1,
+  "max_rho_global_bench_default": 0.018353719643185575,
+  "wall_s": 163.9,
+  "torch": "2.14.1+cu130"
+ },
+ "rows": [
+  {
+   "level": 1,
+   "problem_id": 34,
+   "name": "34_InstanceNorm.py",
+   "output_shape": [
+    112,
+    64,
+    512,
+    512
+   ],
+   "output_bytes": 7516192768,
+   "A_vs_B": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    }
+   },
+   "tie_out": {
+    "s71_bench": 0,
+    "s71_strict": 0,
+    "new_bench": 0,
+    "new_strict": 0
+   },
+   "tie_out_ok": true,
+   "anchor": "admissible",
+   "ref_max_abs": 1.7418437155895743,
+   "A_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 5.024394202912674e-07,
+     "rho_global": 1.832487451544001e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 5.024394202912674e-07,
+     "rho_global": 0.001832487451544001
+    }
+   },
+   "exceed_bench_default": false,
+   "exceed_strict_default": false,
+   "B_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 5.024394202912674e-07,
+     "rho_global": 1.832487451544001e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 5.024394202912674e-07,
+     "rho_global": 0.001832487451544001
+    }
+   },
+   "exceed_bench_tf32off": false,
+   "exceed_strict_tf32off": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 35,
+   "name": "35_GroupNorm_.py",
+   "output_shape": [
+    112,
+    64,
+    512,
+    512
+   ],
+   "output_bytes": 7516192768,
+   "A_vs_B": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    }
+   },
+   "tie_out": {
+    "s71_bench": 0,
+    "s71_strict": 0,
+    "new_bench": 0,
+    "new_strict": 0
+   },
+   "tie_out_ok": true,
+   "anchor": "admissible",
+   "ref_max_abs": 1.7353972016692372,
+   "A_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 6.45904289831023e-07,
+     "rho_global": 2.3612815332152457e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 6.45904289831023e-07,
+     "rho_global": 0.002361281533215246
+    }
+   },
+   "exceed_bench_default": false,
+   "exceed_strict_default": false,
+   "B_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 6.45904289831023e-07,
+     "rho_global": 2.3612815332152457e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 6.45904289831023e-07,
+     "rho_global": 0.002361281533215246
+    }
+   },
+   "exceed_bench_tf32off": false,
+   "exceed_strict_tf32off": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 36,
+   "name": "36_RMSNorm_.py",
+   "output_shape": [
+    112,
+    64,
+    512,
+    512
+   ],
+   "output_bytes": 7516192768,
+   "A_vs_B": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    }
+   },
+   "tie_out": {
+    "s71_bench": 0,
+    "s71_strict": 0,
+    "new_bench": 0,
+    "new_strict": 0
+   },
+   "tie_out_ok": true,
+   "anchor": "admissible",
+   "ref_max_abs": 2.459147109024316,
+   "A_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 3.7735861369014856e-07,
+     "rho_global": 1.0909007388141582e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 3.7735861369014856e-07,
+     "rho_global": 0.0010909007388141582
+    }
+   },
+   "exceed_bench_default": false,
+   "exceed_strict_default": false,
+   "B_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 3.7735861369014856e-07,
+     "rho_global": 1.0909007388141582e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 3.7735861369014856e-07,
+     "rho_global": 0.0010909007388141582
+    }
+   },
+   "exceed_bench_tf32off": false,
+   "exceed_strict_tf32off": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 37,
+   "name": "37_FrobeniusNorm_.py",
+   "output_shape": [
+    112,
+    64,
+    512,
+    512
+   ],
+   "output_bytes": 7516192768,
+   "A_vs_B": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    }
+   },
+   "tie_out": {
+    "s71_bench": 0,
+    "s71_strict": 0,
+    "new_bench": 0,
+    "new_strict": 0
+   },
+   "tie_out_ok": true,
+   "anchor": "admissible",
+   "ref_max_abs": 3.9957085118393843e-05,
+   "A_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 2.605346832913226e-12,
+     "rho_global": 2.605242735007509e-10
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 2.605346832913226e-12,
+     "rho_global": 2.6052427350075092e-08
+    }
+   },
+   "exceed_bench_default": false,
+   "exceed_strict_default": false,
+   "B_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 2.605346832913226e-12,
+     "rho_global": 2.605242735007509e-10
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1879048192,
+     "frac": 0.0,
+     "maxabs": 2.605346832913226e-12,
+     "rho_global": 2.6052427350075092e-08
+    }
+   },
+   "exceed_bench_tf32off": false,
+   "exceed_strict_tf32off": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 38,
+   "name": "38_L1Norm_.py",
+   "output_shape": [
+    32768,
+    65535
+   ],
+   "output_bytes": 8589803520,
+   "A_vs_B": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    }
+   },
+   "tie_out": {
+    "s71_bench": 0,
+    "s71_strict": 0,
+    "new_bench": 0,
+    "new_strict": 0
+   },
+   "tie_out_ok": true,
+   "anchor": "admissible",
+   "ref_max_abs": 2.0178336158235592,
+   "A_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 4.6738714631899825e-07,
+     "rho_global": 1.548750546976227e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 4.6738714631899825e-07,
+     "rho_global": 0.0015487505469762271
+    }
+   },
+   "exceed_bench_default": false,
+   "exceed_strict_default": false,
+   "B_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 4.6738714631899825e-07,
+     "rho_global": 1.548750546976227e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 4.6738714631899825e-07,
+     "rho_global": 0.0015487505469762271
+    }
+   },
+   "exceed_bench_tf32off": false,
+   "exceed_strict_tf32off": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 39,
+   "name": "39_L2Norm_.py",
+   "output_shape": [
+    32768,
+    65535
+   ],
+   "output_bytes": 8589803520,
+   "A_vs_B": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    }
+   },
+   "tie_out": {
+    "s71_bench": 0,
+    "s71_strict": 0,
+    "new_bench": 0,
+    "new_strict": 0
+   },
+   "tie_out_ok": true,
+   "anchor": "admissible",
+   "ref_max_abs": 0.0068123121951843574,
+   "A_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 9.682350424894404e-10,
+     "rho_global": 9.616837525341413e-08
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 9.682350424894404e-10,
+     "rho_global": 9.616837525341413e-06
+    }
+   },
+   "exceed_bench_default": false,
+   "exceed_strict_default": false,
+   "B_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 9.682350424894404e-10,
+     "rho_global": 9.616837525341413e-08
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 2147450880,
+     "frac": 0.0,
+     "maxabs": 9.682350424894404e-10,
+     "rho_global": 9.616837525341413e-06
+    }
+   },
+   "exceed_bench_tf32off": false,
+   "exceed_strict_tf32off": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 45,
+   "name": "45_Average_Pooling_2D.py",
+   "output_shape": [
+    16,
+    64,
+    186,
+    186
+   ],
+   "output_bytes": 141705216,
+   "A_vs_B": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 35426304,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 35426304,
+     "frac": 0.0,
+     "maxabs": 0.0,
+     "rho_global": 0.0
+    }
+   },
+   "tie_out": {
+    "s71_bench": 0,
+    "s71_strict": 0,
+    "new_bench": 0,
+    "new_strict": 0
+   },
+   "tie_out_ok": true,
+   "anchor": "admissible",
+   "ref_max_abs": 0.6452922929417003,
+   "A_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 35426304,
+     "frac": 0.0,
+     "maxabs": 4.428477327067526e-07,
+     "rho_global": 2.691605221798997e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 35426304,
+     "frac": 0.0,
+     "maxabs": 4.428477327067526e-07,
+     "rho_global": 0.0026916052217989973
+    }
+   },
+   "exceed_bench_default": false,
+   "exceed_strict_default": false,
+   "B_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 35426304,
+     "frac": 0.0,
+     "maxabs": 4.428477327067526e-07,
+     "rho_global": 2.691605221798997e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 35426304,
+     "frac": 0.0,
+     "maxabs": 4.428477327067526e-07,
+     "rho_global": 0.0026916052217989973
+    }
+   },
+   "exceed_bench_tf32off": false,
+   "exceed_strict_tf32off": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 76,
+   "name": "76_conv_standard_1D_dilated_strided__.py",
+   "output_shape": [
+    64,
+    128,
+    174758
+   ],
+   "output_bytes": 5726470144,
+   "A_vs_B": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1431617536,
+     "frac": 0.0,
+     "maxabs": 0.0005491375923156738,
+     "rho_global": 0.018364694975233676
+    },
+    "ew_1e-4": {
+     "count": 263654070,
+     "total": 1431617536,
+     "frac": 0.18416515820046508,
+     "maxabs": 0.0005491375923156738,
+     "rho_global": 1.8364694975233675
+    }
+   },
+   "tie_out": {
+    "s71_bench": 0,
+    "s71_strict": 263654070,
+    "new_bench": 0,
+    "new_strict": 263654070
+   },
+   "tie_out_ok": true,
+   "anchor": "admissible",
+   "ref_max_abs": 1.9901805165855726,
+   "A_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1431617536,
+     "frac": 0.0,
+     "maxabs": 0.0005488093488392742,
+     "rho_global": 0.018353719643185575
+    },
+    "ew_1e-4": {
+     "count": 263654458,
+     "total": 1431617536,
+     "frac": 0.18416542922257137,
+     "maxabs": 0.0005488093488392742,
+     "rho_global": 1.8353719643185578
+    }
+   },
+   "exceed_bench_default": false,
+   "exceed_strict_default": true,
+   "B_vs_anchor": {
+    "ew_1e-2": {
+     "count": 0,
+     "total": 1431617536,
+     "frac": 0.0,
+     "maxabs": 1.7737702608933148e-06,
+     "rho_global": 5.9319838754041094e-05
+    },
+    "ew_1e-4": {
+     "count": 0,
+     "total": 1431617536,
+     "frac": 0.0,
+     "maxabs": 1.7737702608933148e-06,
+     "rho_global": 0.0059319838754041095
+    }
+   },
+   "exceed_bench_tf32off": false,
+   "exceed_strict_tf32off": false,
+   "status": "ok"
+  }
+ ]
+}

@@ -647,3 +647,25 @@ Comment rOZ7mxOvxdfVUWIf on post 10 at 09:10:34Z, 1,678 chars, read back intact.
 Next: (1) chunked fp64 anchor for the 8 s71-excluded tasks (coverage 200/200; s73b already proved the chunking);
 (2) the 6 no-bias + 4 unparsed s73 rows; (3) indexed-dgrad cluster probe (n=10, 10,654x; fixed tuple, depth/split);
 (4) pool-diversity dedup on an arithmetic-spanning pool; (5) 24h-E1/CTA-edge/bt parked.
+
+## ACTIVE LANE: EXPLOITATION — realization matching + margin accounting (strategic reflection Ql0j6ypFn_bBjYD1, plan submitted 2026-11-01 12:22:47Z; next meta 15:22:47Z)
+
+Plan: lab/understand_2026-11-01/exploitation_plan_2026-11-01.md (stage0_wrapup.md, stage1_frontier.md alongside).
+Build on the strongest community school (sylve posts 2-5, realization-matched numerics) with the mechanism they
+lack: margin accounting (reference-induced vs candidate-induced share) so a failing verdict is attributable rather
+than a single number. Policy: every construction claim ships a tree-equality flag + decomposition, or is labelled a
+measurement; no coordinate is promoted to a law in the tick that discovers it.
+
+DONE 12:5xZ: s76 coverage closure 192/200 -> **200/200** (8/8, tie-out 8/8 exact, 163.9 s); full-population counts
+now 0/200 at the shipped 1e-2 gate, **55/200** at 1e-4; the one new strict exceedance L1/76 conv_standard_1D is
+100% TF32-caused (18.42% of 1.43B elements, rho 1.835; tf32-off clean). s77 E1 on sylve's L1/40 family: reference
+CLEAN (0/67.1M over budget at both tolerances, max deviation 3.40e-6); three constructions numerically equal
+(max 4.05e-6, 4% of budget) and none bit-identical => NUMERICALLY_EQUAL_NOT_IDENTICAL (declared distinct outcome;
+the coded branch selector's (iv) was a zero-failing-case artifact, falsifier clause governs). Reading: bit identity
+is sufficient-not-necessary on reference-clean families; the reference axis is family-specific (conv, not
+norm/reduction at default shapes). Comment 6OeBZOHyQqkGOm6Y on post 9 (12:36:43Z, 2,182 chars, read back intact).
+
+Next: (1) decompose L1/76 at 1e-4 with real candidate arms (compile / tf32-off) — cheapest conv-family instance of
+the reference axis in the previously-excluded set; (2) dgrad-cluster probe (fixed tuple, depth/split; one instance
+spans 10,654x); (3) 6 no-bias + 4 unparsed s73 rows; (4) pool-diversity dedup on an arithmetic-spanning pool;
+(5) 24h-E1/CTA-edge/bt parked.

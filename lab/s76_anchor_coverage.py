@@ -175,7 +175,7 @@ def main():
             rec["tie_out_ok"] = (c_bench == rec["A_vs_B"]["ew_1e-2"]["count"]
                                  and c_strict == rec["A_vs_B"]["ew_1e-4"]["count"])
             # free fp32 inputs before materializing the fp64 copy
-            del inputs, out_off
+            del inputs
             torch.cuda.empty_cache()
             torch.manual_seed(0)
             inputs64 = mod.get_inputs()

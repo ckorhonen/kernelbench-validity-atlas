@@ -1,0 +1,132 @@
+{
+ "task": "level1/40_LayerNorm",
+ "shape": [
+  16,
+  64,
+  256,
+  256
+ ],
+ "eps": 1e-05,
+ "wall_s": 1.53,
+ "torch": "2.14.1+cu130",
+ "arms": {
+  "C1_compile": {
+   "bit_identical_to_A": false,
+   "vs_A_1e-4": {
+    "count": 0,
+    "total": 67108864,
+    "frac": 0.0,
+    "maxabs": 3.337860107421875e-06
+   },
+   "vs_A_1e-2": {
+    "count": 0,
+    "total": 67108864,
+    "frac": 0.0,
+    "maxabs": 3.337860107421875e-06
+   },
+   "vs_X_1e-4": {
+    "count": 0,
+    "total": 67108864,
+    "frac": 0.0,
+    "maxabs": 3.054153956405514e-07
+   },
+   "decomp_1e-4": {
+    "n_fail": 0,
+    "ref_induced": 0,
+    "cand_induced": 0,
+    "ref_share": null
+   },
+   "decomp_1e-2": {
+    "n_fail": 0,
+    "ref_induced": 0,
+    "cand_induced": 0,
+    "ref_share": null
+   }
+  },
+  "C2_serial_stats": {
+   "bit_identical_to_A": false,
+   "vs_A_1e-4": {
+    "count": 0,
+    "total": 67108864,
+    "frac": 0.0,
+    "maxabs": 4.0531158447265625e-06
+   },
+   "vs_A_1e-2": {
+    "count": 0,
+    "total": 67108864,
+    "frac": 0.0,
+    "maxabs": 4.0531158447265625e-06
+   },
+   "vs_X_1e-4": {
+    "count": 0,
+    "total": 67108864,
+    "frac": 0.0,
+    "maxabs": 1.955888094817837e-06
+   },
+   "decomp_1e-4": {
+    "n_fail": 0,
+    "ref_induced": 0,
+    "cand_induced": 0,
+    "ref_share": null
+   },
+   "decomp_1e-2": {
+    "n_fail": 0,
+    "ref_induced": 0,
+    "cand_induced": 0,
+    "ref_share": null
+   }
+  },
+  "C3_fast_stats": {
+   "bit_identical_to_A": false,
+   "vs_A_1e-4": {
+    "count": 0,
+    "total": 67108864,
+    "frac": 0.0,
+    "maxabs": 3.337860107421875e-06
+   },
+   "vs_A_1e-2": {
+    "count": 0,
+    "total": 67108864,
+    "frac": 0.0,
+    "maxabs": 3.337860107421875e-06
+   },
+   "vs_X_1e-4": {
+    "count": 0,
+    "total": 67108864,
+    "frac": 0.0,
+    "maxabs": 3.6030134165088157e-07
+   },
+   "decomp_1e-4": {
+    "n_fail": 0,
+    "ref_induced": 0,
+    "cand_induced": 0,
+    "ref_share": null
+   },
+   "decomp_1e-2": {
+    "n_fail": 0,
+    "ref_induced": 0,
+    "cand_induced": 0,
+    "ref_share": null
+   }
+  }
+ },
+ "reference": {
+  "A_vs_X_1e-4": {
+   "count": 0,
+   "total": 67108864,
+   "frac": 0.0,
+   "maxabs": 3.3984506231377054e-06
+  },
+  "A_vs_X_1e-2": {
+   "count": 0,
+   "total": 67108864,
+   "frac": 0.0,
+   "maxabs": 3.3984506231377054e-06
+  },
+  "ref_max_abs": 1.7329549883369157,
+  "over_budget_frac_1e-4": 0.0,
+  "over_budget_frac_1e-2": 0.0
+ },
+ "branch": "(iv)",
+ "bit_identical_arms": []
+}
