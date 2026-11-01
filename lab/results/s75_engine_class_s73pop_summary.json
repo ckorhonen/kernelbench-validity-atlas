@@ -1,0 +1,32 @@
+{
+ "prereg": "docstring of this file, frozen pre-run",
+ "population_attempted": 62,
+ "rows_written": 62,
+ "ok": 62,
+ "exceed_ok": 54,
+ "control_ok": 8,
+ "excluded": [],
+ "label_coverage": 1.0,
+ "K1_fired": false,
+ "class_counts_primary_exceed": {
+  "TF32_TENSOROP": 47,
+  "FP32_SIMT": 1,
+  "OTHER": 6
+ },
+ "class_counts_refined_exceed": {
+  "TF32_TENSOROP": 47,
+  "FP32_SIMT_OR_OTHER": 7
+ },
+ "class_counts_primary_control": {
+  "OTHER": 6,
+  "FP32_SIMT": 1,
+  "FP64": 1
+ },
+ "class_counts_refined_control": {
+  "FP32_SIMT_OR_OTHER": 8
+ },
+ "distinct_top1_names_exceed": 19,
+ "date": "2026-11-01T09:06:31Z",
+ "wall_s": 46.6,
+ "distinct_top1_names_control": 3
+}

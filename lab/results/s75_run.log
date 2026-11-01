@@ -1,0 +1,219 @@
+population 62 exceed 54 controls 8
+USDT:2026-11-01 04:05:45 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:45 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 54 ok TF32_TENSOROP TF32_TENSOROP 0.94
+USDT:2026-11-01 04:05:46 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:46 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 55 ok TF32_TENSOROP TF32_TENSOROP 0.71
+USDT:2026-11-01 04:05:46 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:46 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 56 ok TF32_TENSOROP TF32_TENSOROP 0.26
+USDT:2026-11-01 04:05:47 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:48 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 57 ok TF32_TENSOROP TF32_TENSOROP 1.4
+USDT:2026-11-01 04:05:48 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:48 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 58 ok TF32_TENSOROP TF32_TENSOROP 0.15
+USDT:2026-11-01 04:05:48 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:48 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 60 ok TF32_TENSOROP TF32_TENSOROP 0.11
+USDT:2026-11-01 04:05:48 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:48 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 61 ok TF32_TENSOROP TF32_TENSOROP 0.31
+USDT:2026-11-01 04:05:48 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:49 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 62 ok TF32_TENSOROP TF32_TENSOROP 0.28
+USDT:2026-11-01 04:05:50 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:50 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 64 ok TF32_TENSOROP TF32_TENSOROP 1.4
+USDT:2026-11-01 04:05:50 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:50 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 65 ok TF32_TENSOROP TF32_TENSOROP 0.44
+USDT:2026-11-01 04:05:50 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:51 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 66 ok TF32_TENSOROP TF32_TENSOROP 0.08
+USDT:2026-11-01 04:05:51 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:51 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 67 ok TF32_TENSOROP TF32_TENSOROP 0.7
+USDT:2026-11-01 04:05:52 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:52 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 68 ok TF32_TENSOROP TF32_TENSOROP 0.48
+USDT:2026-11-01 04:05:52 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:52 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 69 ok TF32_TENSOROP TF32_TENSOROP 0.44
+USDT:2026-11-01 04:05:53 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:53 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 70 ok TF32_TENSOROP TF32_TENSOROP 0.89
+USDT:2026-11-01 04:05:53 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:53 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 71 ok TF32_TENSOROP TF32_TENSOROP 0.4
+USDT:2026-11-01 04:05:54 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:54 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 73 ok TF32_TENSOROP TF32_TENSOROP 0.19
+USDT:2026-11-01 04:05:54 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:54 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 74 ok TF32_TENSOROP TF32_TENSOROP 0.41
+USDT:2026-11-01 04:05:54 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:54 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 79 ok TF32_TENSOROP TF32_TENSOROP 0.27
+USDT:2026-11-01 04:05:54 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:55 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 80 ok TF32_TENSOROP TF32_TENSOROP 0.26
+USDT:2026-11-01 04:05:55 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:55 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 81 ok TF32_TENSOROP TF32_TENSOROP 0.1
+USDT:2026-11-01 04:05:55 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:55 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 86 ok TF32_TENSOROP TF32_TENSOROP 0.84
+USDT:2026-11-01 04:05:57 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:57 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 10 ok TF32_TENSOROP TF32_TENSOROP 1.48
+USDT:2026-11-01 04:05:57 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:57 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 11 ok TF32_TENSOROP TF32_TENSOROP 0.22
+USDT:2026-11-01 04:05:58 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:58 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 14 ok FP32_SIMT FP32_SIMT_OR_OTHER 0.41
+USDT:2026-11-01 04:05:58 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:58 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 15 ok TF32_TENSOROP TF32_TENSOROP 0.04
+USDT:2026-11-01 04:05:58 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:58 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 16 ok TF32_TENSOROP TF32_TENSOROP 0.58
+USDT:2026-11-01 04:05:59 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:05:59 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 17 ok TF32_TENSOROP TF32_TENSOROP 0.46
+USDT:2026-11-01 04:06:00 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:00 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 19 ok TF32_TENSOROP TF32_TENSOROP 1.47
+USDT:2026-11-01 04:06:01 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:01 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 1 ok TF32_TENSOROP TF32_TENSOROP 0.49
+USDT:2026-11-01 04:06:01 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:01 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 20 ok OTHER FP32_SIMT_OR_OTHER 0.15
+USDT:2026-11-01 04:06:01 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:01 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 25 ok TF32_TENSOROP TF32_TENSOROP 0.43
+USDT:2026-11-01 04:06:02 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:02 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 26 ok OTHER FP32_SIMT_OR_OTHER 0.79
+USDT:2026-11-01 04:06:02 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:02 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 27 ok TF32_TENSOROP TF32_TENSOROP 0.25
+USDT:2026-11-01 04:06:03 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:03 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 2 ok TF32_TENSOROP TF32_TENSOROP 0.61
+USDT:2026-11-01 04:06:03 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:03 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 31 ok TF32_TENSOROP TF32_TENSOROP 0.49
+USDT:2026-11-01 04:06:04 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:04 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 32 ok TF32_TENSOROP TF32_TENSOROP 0.81
+USDT:2026-11-01 04:06:04 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:04 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 34 ok OTHER FP32_SIMT_OR_OTHER 0.24
+USDT:2026-11-01 04:06:05 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:05 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 35 ok TF32_TENSOROP TF32_TENSOROP 0.43
+USDT:2026-11-01 04:06:05 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:05 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 3 ok TF32_TENSOROP TF32_TENSOROP 0.21
+USDT:2026-11-01 04:06:05 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:05 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 46 ok TF32_TENSOROP TF32_TENSOROP 0.43
+USDT:2026-11-01 04:06:06 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:06 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 47 ok TF32_TENSOROP TF32_TENSOROP 0.23
+USDT:2026-11-01 04:06:06 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:06 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 48 ok OTHER FP32_SIMT_OR_OTHER 0.14
+USDT:2026-11-01 04:06:06 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:07 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 4 ok TF32_TENSOROP TF32_TENSOROP 0.81
+USDT:2026-11-01 04:06:07 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:07 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 52 ok TF32_TENSOROP TF32_TENSOROP 0.31
+USDT:2026-11-01 04:06:07 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:08 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 54 ok TF32_TENSOROP TF32_TENSOROP 0.74
+USDT:2026-11-01 04:06:08 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:08 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 5 ok TF32_TENSOROP TF32_TENSOROP 0.57
+USDT:2026-11-01 04:06:08 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:08 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 61 ok TF32_TENSOROP TF32_TENSOROP 0.17
+USDT:2026-11-01 04:06:08 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:08 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 74 ok TF32_TENSOROP TF32_TENSOROP 0.07
+USDT:2026-11-01 04:06:09 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:09 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 77 ok TF32_TENSOROP TF32_TENSOROP 0.09
+USDT:2026-11-01 04:06:09 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:09 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 79 ok OTHER FP32_SIMT_OR_OTHER 0.05
+USDT:2026-11-01 04:06:09 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:09 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 2 93 ok OTHER FP32_SIMT_OR_OTHER 0.22
+USDT:2026-11-01 04:06:11 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:11 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+control 1 100 ok OTHER FP32_SIMT_OR_OTHER 2.64
+USDT:2026-11-01 04:06:16 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:16 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+control 1 51 ok OTHER FP32_SIMT_OR_OTHER 4.65
+USDT:2026-11-01 04:06:18 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:19 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+control 1 84 ok OTHER FP32_SIMT_OR_OTHER 2.5
+USDT:2026-11-01 04:06:20 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:20 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+control 1 98 ok OTHER FP32_SIMT_OR_OTHER 1.56
+USDT:2026-11-01 04:06:20 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:20 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+control 2 30 ok FP32_SIMT FP32_SIMT_OR_OTHER 0.27
+USDT:2026-11-01 04:06:20 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:21 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+control 2 50 ok FP64 FP32_SIMT_OR_OTHER 0.13
+USDT:2026-11-01 04:06:21 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:22 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 63 ok TF32_TENSOROP TF32_TENSOROP 1.32
+USDT:2026-11-01 04:06:25 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:26 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+control 1 21 ok OTHER FP32_SIMT_OR_OTHER 3.85
+USDT:2026-11-01 04:06:28 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:28 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+control 1 33 ok OTHER FP32_SIMT_OR_OTHER 2.58
+USDT:2026-11-01 04:06:30 283514:283514 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 04:06:31 283514:283514 SyncActivityProfilerHandler.cpp:46] profiler_stop
+exceed 1 87 ok TF32_TENSOROP TF32_TENSOROP 2.69
+{
+ "prereg": "docstring of this file, frozen pre-run",
+ "population_attempted": 62,
+ "rows_written": 62,
+ "ok": 62,
+ "exceed_ok": 54,
+ "control_ok": 8,
+ "excluded": [],
+ "label_coverage": 1.0,
+ "K1_fired": false,
+ "class_counts_primary_exceed": {
+  "TF32_TENSOROP": 47,
+  "FP32_SIMT": 1,
+  "OTHER": 6
+ },
+ "class_counts_refined_exceed": {
+  "TF32_TENSOROP": 47,
+  "FP32_SIMT_OR_OTHER": 7
+ },
+ "class_counts_primary_control": {
+  "OTHER": 6,
+  "FP32_SIMT": 1,
+  "FP64": 1
+ },
+ "class_counts_refined_control": {
+  "FP32_SIMT_OR_OTHER": 8
+ },
+ "distinct_top1_names_exceed": 19,
+ "date": "2026-11-01T09:06:31Z",
+ "wall_s": 46.6,
+ "distinct_top1_names_control": 3
+}
