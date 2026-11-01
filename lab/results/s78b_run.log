@@ -1,0 +1,60 @@
+W1101 12:33:50.329000 1041669 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{
+ "problem_id": 76,
+ "name": "76_conv_standard_1D_dilated_strided__.py",
+ "output_shape": [
+  64,
+  128,
+  174758
+ ],
+ "s76_reported_A_vs_anchor": 263654458,
+ "s76_tieout_s71_strict": 263654070,
+ "prereg_sha256": "b0047d4c56d3e8fb999300d5f9c6ea09a7e1149248ef86205f341a75606d9237",
+ "compile_ok": true,
+ "three_c1_compile": {
+  "ax_by_A": 263654470,
+  "ax_by_X": 263654458,
+  "ax_by_C": 263654470,
+  "ca_by_C": 0,
+  "cx_by_C": 263654470,
+  "ca_by_C_1e-2": 0,
+  "cx_by_C_1e-2": 0,
+  "refover_by_C": 263654470,
+  "ref_induced": 0,
+  "cand_induced": 0,
+  "maxabs_ca": 0.0,
+  "maxabs_ax": 0.0005488093488392742,
+  "bit_identical_ca": true,
+  "total": 1431617536,
+  "verdict_default": "pass",
+  "verdict_anchor": "fail",
+  "ref_share_of_fails": null
+ },
+ "three_c2_tf32off": {
+  "ax_by_A": 263654470,
+  "ax_by_X": 263654458,
+  "ax_by_C": 263654457,
+  "ca_by_C": 263654070,
+  "cx_by_C": 0,
+  "ca_by_C_1e-2": 0,
+  "cx_by_C_1e-2": 0,
+  "refover_by_C": 263654457,
+  "ref_induced": 263525162,
+  "cand_induced": 128908,
+  "maxabs_ca": 0.0005491375923156738,
+  "maxabs_ax": 0.0005488093488392742,
+  "bit_identical_ca": false,
+  "total": 1431617536,
+  "verdict_default": "fail",
+  "verdict_anchor": "pass",
+  "ref_share_of_fails": 0.9995110714581421
+ },
+ "tie_out_ok": true,
+ "kills": {
+  "K1_vacuous": false,
+  "K2_ref_not_material": false,
+  "K5_harness": false
+ },
+ "wall_s": 19.6,
+ "torch": "2.14.1+cu130"
+}
