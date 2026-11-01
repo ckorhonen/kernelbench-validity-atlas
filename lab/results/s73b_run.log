@@ -1,0 +1,193 @@
+population 4 [(1, 63, True), (1, 21, False), (1, 33, False), (1, 87, True)]
+W1101 01:55:37.274000 8982 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"pid": 63, "st": "ok", "t": 24.52, "tie": true, "c1_compile": {"v": "pass", "n": 0, "rs": null}, "c2_tf32off": {"v": "fail", "n": 436010633, "rs": 0.9996138993243314}}
+{"pid": 21, "st": "ok", "t": 18.88, "tie": true, "c1_compile": {"v": "pass", "n": 0, "rs": null}, "c2_tf32off": {"v": "pass", "n": 0, "rs": null}}
+{"pid": 33, "st": "ok", "t": 12.68, "tie": true, "c1_compile": {"v": "pass", "n": 0, "rs": null}, "c2_tf32off": {"v": "pass", "n": 0, "rs": null}}
+{"pid": 87, "st": "ok", "t": 21.8, "tie": true, "c1_compile": {"v": "pass", "n": 0, "rs": null}, "c2_tf32off": {"v": "fail", "n": 338235919, "rs": 0.9996960849093026}}
+{
+ "prereg": "docstring of this file, frozen pre-run (streaming memory deviation declared)",
+ "prereg_sha256": "8c0cb2464cbb194500dc4ca8631b94278a0a17cb47d53100e2227cc49c805fb5",
+ "population": {
+  "target_ids": [
+   21,
+   33,
+   63,
+   87
+  ],
+  "attempted": 4,
+  "ok": 4,
+  "ok_ids": [
+   21,
+   33,
+   63,
+   87
+  ],
+  "failed": []
+ },
+ "new_rows": {
+  "c1_compile": {
+   "1e-4": {
+    "tasks": 4,
+    "tasks_fail_default": 0,
+    "tasks_fail_anchor": 2,
+    "verdict_flips_ref_swap": 2,
+    "failing_elements_default": 0,
+    "ref_induced_elements": 0,
+    "cand_induced_elements": 0,
+    "pooled_ref_share_of_fails": null,
+    "pooled_cand_share_of_fails": null,
+    "median_of_task_ratio_ref_median": 0.3795176544773081,
+    "median_of_task_ratio_ref_q90": 0.9294752449236026,
+    "median_of_task_ratio_ref_q99": 1.4917953361647291,
+    "max_ratio_ref": 5.87339025014112,
+    "tasks_with_ref_over_budget": 2,
+    "tasks_bit_identical": 3
+   },
+   "1e-2": {
+    "tasks": 4,
+    "tasks_fail_default": 0,
+    "tasks_fail_anchor": 0,
+    "verdict_flips_ref_swap": 0,
+    "failing_elements_default": 0,
+    "ref_induced_elements": 0,
+    "cand_induced_elements": 0,
+    "pooled_ref_share_of_fails": null,
+    "pooled_cand_share_of_fails": null,
+    "median_of_task_ratio_ref_median": 0.0037951765447730816,
+    "median_of_task_ratio_ref_q90": 0.009294752449236025,
+    "median_of_task_ratio_ref_q99": 0.014917953361647293,
+    "max_ratio_ref": 0.0587339025014112,
+    "tasks_with_ref_over_budget": 0,
+    "tasks_bit_identical": 3
+   }
+  },
+  "c2_tf32off": {
+   "1e-4": {
+    "tasks": 4,
+    "tasks_fail_default": 2,
+    "tasks_fail_anchor": 0,
+    "verdict_flips_ref_swap": 2,
+    "failing_elements_default": 774246552,
+    "ref_induced_elements": 773975413,
+    "cand_induced_elements": 271139,
+    "pooled_ref_share_of_fails": 0.9996498027672198,
+    "pooled_cand_share_of_fails": 0.0003501972327801855,
+    "median_of_task_ratio_ref_median": 0.3795268025074896,
+    "median_of_task_ratio_ref_q90": 0.9294197638559458,
+    "median_of_task_ratio_ref_q99": 1.4915958019835918,
+    "max_ratio_ref": 5.876841941251091,
+    "tasks_with_ref_over_budget": 2,
+    "tasks_bit_identical": 2
+   },
+   "1e-2": {
+    "tasks": 4,
+    "tasks_fail_default": 0,
+    "tasks_fail_anchor": 0,
+    "verdict_flips_ref_swap": 0,
+    "failing_elements_default": 0,
+    "ref_induced_elements": 0,
+    "cand_induced_elements": 0,
+    "pooled_ref_share_of_fails": null,
+    "pooled_cand_share_of_fails": null,
+    "median_of_task_ratio_ref_median": 0.0037952680250748962,
+    "median_of_task_ratio_ref_q90": 0.00929419763855946,
+    "median_of_task_ratio_ref_q99": 0.014915958019835916,
+    "max_ratio_ref": 0.05876841941251092,
+    "tasks_with_ref_over_budget": 0,
+    "tasks_bit_identical": 2
+   }
+  }
+ },
+ "merged_full": {
+  "n_rows": 62,
+  "n_exceed": 54,
+  "n_control": 8,
+  "c1_compile": {
+   "1e-4": {
+    "tasks": 54,
+    "tasks_fail_default": 0,
+    "tasks_fail_anchor": 54,
+    "verdict_flips_ref_swap": 54,
+    "failing_elements_default": 0,
+    "ref_induced_elements": 0,
+    "cand_induced_elements": 0,
+    "pooled_ref_share_of_fails": null,
+    "pooled_cand_share_of_fails": null,
+    "median_of_task_ratio_ref_median": 0.3364836699138963,
+    "median_of_task_ratio_ref_q90": 0.8618265074912917,
+    "median_of_task_ratio_ref_q99": 1.3488634258590197,
+    "max_ratio_ref": 23.6271846570784,
+    "tasks_with_ref_over_budget": 54,
+    "tasks_bit_identical": 27
+   },
+   "1e-2": {
+    "tasks": 54,
+    "tasks_fail_default": 0,
+    "tasks_fail_anchor": 0,
+    "verdict_flips_ref_swap": 0,
+    "failing_elements_default": 0,
+    "ref_induced_elements": 0,
+    "cand_induced_elements": 0,
+    "pooled_ref_share_of_fails": null,
+    "pooled_cand_share_of_fails": null,
+    "median_of_task_ratio_ref_median": 0.0033648366991389624,
+    "median_of_task_ratio_ref_q90": 0.008618265074912918,
+    "median_of_task_ratio_ref_q99": 0.013488634258590197,
+    "max_ratio_ref": 0.23627184657078398,
+    "tasks_with_ref_over_budget": 0,
+    "tasks_bit_identical": 27
+   }
+  },
+  "c2_tf32off": {
+   "1e-4": {
+    "tasks": 54,
+    "tasks_fail_default": 53,
+    "tasks_fail_anchor": 2,
+    "verdict_flips_ref_swap": 53,
+    "failing_elements_default": 2182959627,
+    "ref_induced_elements": 2178740305,
+    "cand_induced_elements": 4219322,
+    "pooled_ref_share_of_fails": 0.9980671552749701,
+    "pooled_cand_share_of_fails": 0.001932844725029814,
+    "median_of_task_ratio_ref_median": 0.3364949789444624,
+    "median_of_task_ratio_ref_q90": 0.8617522862490906,
+    "median_of_task_ratio_ref_q99": 1.3490453784454965,
+    "max_ratio_ref": 23.683145531330933,
+    "tasks_with_ref_over_budget": 54,
+    "tasks_bit_identical": 1
+   },
+   "1e-2": {
+    "tasks": 54,
+    "tasks_fail_default": 1,
+    "tasks_fail_anchor": 1,
+    "verdict_flips_ref_swap": 0,
+    "failing_elements_default": 226,
+    "ref_induced_elements": 0,
+    "cand_induced_elements": 226,
+    "pooled_ref_share_of_fails": 0.0,
+    "pooled_cand_share_of_fails": 1.0,
+    "median_of_task_ratio_ref_median": 0.003364949789444624,
+    "median_of_task_ratio_ref_q90": 0.008617522862490906,
+    "median_of_task_ratio_ref_q99": 0.013490453784454967,
+    "max_ratio_ref": 0.23683145531330935,
+    "tasks_with_ref_over_budget": 0,
+    "tasks_bit_identical": 1
+   }
+  }
+ },
+ "merged_controls": {
+  "n": 8,
+  "max_ref_over_budget_frac": 0.0
+ },
+ "tie_out": {
+  "n_ok": 4,
+  "n_rows": 4
+ },
+ "wall_s": 77.9,
+ "torch": "2.14.1+cu130",
+ "kills": {
+  "K1_vacuous": false,
+  "K2_ref_not_material": false,
+  "K3_compile_coverage": false
+ }
+}
