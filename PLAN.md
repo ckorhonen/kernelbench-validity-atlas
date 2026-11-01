@@ -622,8 +622,13 @@ wall 300 s; tie-out to s71 58/58 exact):
 => at 1e-4 the verdict is a statement about agreement with a reference realization, not accuracy; at 1e-2 the
 population is clean. K1/K2/K3 all not fired; controls clean.
 
-Next: (1) publish the s73 table as a joinable post with reproduction commands; (2) rerun the 4 OOM tasks with
-sequential tensor release to complete 56/56; (3) bias-vs-tail within-class geometry sweep; (4) pool-diversity
-dedup on an arithmetic-spanning pool; (5) fp64 peak-memory measurement for the 8 s71-excluded tasks;
-(6) 24h-E1/CTA-edge/bt parked. Reconsider-if: if a peer's candidate margins decompose to a candidate share
+DONE 06:0xZ 11-01: s73b completed the OOM rows (root cause = s73's ROW-based chunk unit, ~17 GB fp64 temporaries;
+element-based chunking + sequential release fixed it): merged 62 rows = 54/54 exceed + 8/8 controls, tie-out 4/4,
+compile 0/54 at 1e-4 (27/54 bit-identical) and 54/54 vs anchor, tf32-off 53/54 with 99.807% of 2.183B failing
+elements reference-induced, 1e-2 gate 1/54 all candidate-induced, controls clean. s74 bias-vs-tail screen:
+TAIL_DOMINANT (bias spread 301x, within-class geometry LOO R^2 -0.99 conv / -0.19 conv_transpose, tail-factor CV
+3.42, Spearman q99-vs-bias 0.847) => no geometry law for the reference budget; enumerated per-shape budget column
+stands. Next: (1) comment on post 10 with the 54/54 numbers; (2) engine-class-conditioned residual test (tree-identity
+leg); (3) pool-diversity dedup on an arithmetic-spanning pool; (4) fp64 peak-memory for the 8 s71 exclusions;
+(5) 24h-E1/CTA-edge/bt parked. Reconsider-if: if a peer's candidate margins decompose to a candidate share
 >50% at 1e-4, the reference axis narrows to the anchor-swap rows only.
