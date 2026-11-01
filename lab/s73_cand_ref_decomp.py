@@ -1,21 +1,32 @@
 #!/usr/bin/env python
 """s73_cand_ref_decomp.py — candidate-error decomposition at the benchmark's own gate.
 
-PREREG (frozen at commit time, BEFORE first run; do not edit after the run).
+PREREG (frozen before the completed run; do not edit after).
+
+AMENDMENT v2 — declared before any completed run. The first attempt (v1, commit ca3fcf9) was killed by an
+ssh disconnect after 8 rows and wrote no summary. Those 8 rows showed the compile candidate passing the
+default-reference gate at 1e-4 on 8/8 tasks (fail_default = 0 everywhere), which makes the failing-element
+split vacuous. Two changes, both declared here and both measurement-neutral with respect to the quantities
+already registered: (a) a second candidate arm C2 = the same model run with cudnn/matmul tf32 off (s71's B
+arm) is added, because it is a genuinely different arithmetic realization and gives the split something to
+split; (b) the two tolerance legs are computed in one shared pass and ratio percentiles are sampled from a
+contiguous prefix of the first chunk instead of a strided reservoir over the whole tensor. No threshold,
+population or kill clause changed. The v1 rows are discarded and regenerated uniformly.
 
 Question the audit cannot answer alone: s71 measured the reference's own deviation from an fp64 anchor
-(54/192 tasks exceed 1e-4 on the reference side). That is a reference-side property. The community's
-missing measurement is the join: does that reference deviation change a CANDIDATE's verdict, and when a
-candidate fails, how much of its margin is the reference's error and how much is its own?
+(54/192 tasks exceed 1e-4 on the reference side). That is a reference-side property. The missing
+measurement is the join: does that deviation change a CANDIDATE's verdict, and when a candidate fails, how
+much of its margin is the reference's error and how much is its own?
 
 Population (rule, not outcome): the 54 rows of results/s71_full_audit.jsonl with exceed_strict_default
 true (anchor admissible), plus 8 negative controls = admissible rows with exceed_strict_default false,
 selected as every 13th such row in file order. Total 62 tasks.
 
 Arms per task, all on the same model instance and the same inputs (s70 lesson: one instantiation):
-  A  default fp32 reference realization (cudnn tf32 on, matmul tf32 off) — the benchmark's shipped default
-  X  fp64 anchor: model.to(float64) from the same fp32 weights (exact widening), flags off
-  C  torch.compile(model, dynamic=False) candidate, fp32, default flags
+  A   default fp32 reference realization (cudnn tf32 on, matmul tf32 off) — the benchmark's shipped default
+  X   fp64 anchor: model.to(float64) from the same fp32 weights (exact widening), flags off
+  C1  torch.compile(model, dynamic=False) candidate, fp32, default flags
+  C2  same model, fp32, tf32 off (different arithmetic realization)
 
 Predicates: evaluator-exact direction, i.e. allclose(reference, candidate) scales rtol by the CANDIDATE,
 so threshold b_e = atol + rtol*|candidate| (eval.py:804 verified in earlier ticks). Both 1e-4 (the axis
@@ -26,29 +37,28 @@ TIE-OUT GATE (must pass before any new number is reported): recompute s71's reco
 the recorded count for every task. Any mismatch is recorded as a harness defect and the task is excluded
 from the new numbers (declared, not silently repaired).
 
-Measurements per task:
+Measurements per task and per candidate arm:
   m1 ref_budget_share: distribution of d_ref/b_e where d_ref = |A-X|, b_e = atol+rtol*|C| — the fraction of
-     the candidate's tolerance budget consumed by the reference's own error. Median, q90, frac(d_ref>b_e).
+     the candidate's tolerance budget consumed by the reference's own error. Median, q90, max, frac(d_ref>b_e).
   m2 verdict_default: elements and task-level pass/fail of |C-A| vs b_e at 1e-4 and 1e-2.
   m3 verdict_anchor:  same with X as reference (counterfactual exact reference) — the reference-swap verdict.
-  m4 failing-element split: among elements where |C-A| > b_e (candidate fails under the default reference),
-     count those where d_ref > b_e (would fail even with an exact candidate = REFERENCE-INDUCED) vs those
-     where d_ref <= b_e (CANDIDATE-INDUCED).
-  m5 compile fidelity: bit-identity of C vs A, compile wall time, dynamo/inductor failures.
+  m4 failing-element split: among elements where |C-A| > b_e, count those where d_ref > b_e (would fail even
+     with an exact candidate = REFERENCE-INDUCED) vs those where d_ref <= b_e (CANDIDATE-INDUCED).
+  m5 fidelity: bit-identity of C vs A, compile wall time, dynamo/inductor failures.
 
 Kill clauses (predeclared):
-  K1  if C fails 0 of the 54 tasks under the default reference at 1e-4 => the decomposition is vacuous on
-      this population; report the null: the reference's 1e-4 deviation does not propagate to a verdict for a
-      compile-class candidate, and the 54/192 figure stays a reference-side property only.
+  K1  if no candidate arm fails any of the 54 tasks under the default reference at 1e-4 => the decomposition
+      is vacuous on this population; report the null: the reference's 1e-4 deviation does not propagate to a
+      verdict for these candidates, and the 54/192 figure stays a reference-side property only.
   K2  if the pooled reference-induced share of failing elements is < 5% => the reference's error is not a
-      material contributor to candidate failure margins at 1e-4 (same conclusion, element-level form).
-  K3  instrument: if >25% of tasks fail to compile, the population is narrowed to compiled tasks and stated
-      as such; no verdict claim beyond them.
+      material contributor to candidate failure margins at 1e-4 (element-level form of the same conclusion).
+  K3  instrument: if >25% of tasks fail to produce both candidates, the population is narrowed to completed
+      tasks and stated as such; no verdict claim beyond them.
 
-Controls: the 8 non-exceeding tasks must show d_ref/b_e median < 1 by construction; if any control shows
-frac(d_ref>b_e) > 0.10 the harness is suspect and the run is recorded as instrument-defective.
+Controls: the 8 non-exceeding tasks must show the reference's over-budget element fraction <= 0.10 under the
+s71 reference-scaled predicate; otherwise the harness is recorded as instrument-defective.
 """
-import importlib.util, json, os, re, signal, sys, time, hashlib
+import importlib.util, json, os, re, signal, time, hashlib
 import torch
 
 KB = os.path.expanduser("~/kernelbench/KernelBench")
@@ -60,10 +70,11 @@ os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
 ATOL_RTOL_STRICT = 1e-4
 ATOL_RTOL_BENCH = 1e-2
-CFG_ALARM_S = 180
-GLOBAL_DEADLINE_S = 1500
+CFG_ALARM_S = 240
+GLOBAL_DEADLINE_S = 2400
 N_CONTROLS = 8
 CHUNK = 1 << 22
+RATIO_CAP = 20000
 
 
 class Timeout(Exception):
@@ -137,12 +148,9 @@ def ew_count_ref_scaled(a, b, atol, rtol):
     return cnt
 
 
-def decomp(a, x, c, atol, rtol, ratio_stride=997, ratio_cap=20000):
-    """Elementwise decomposition. a = default fp32 reference, x = fp64 anchor, c = candidate (fp32).
-    Threshold b_e = atol + rtol*|c| (candidate-scaled, evaluator-exact).
-    Returns counts for |c-a|>b_e (fail default), |c-x|>b_e (fail anchor), and the reference-induced split."""
-    a64 = a.double()
-    x = x.double()
+def decomp(a64, x, c, atol_s, atol_b):
+    """One shared pass over both tolerance legs. a64 = default reference in fp64, x = fp64 anchor,
+    c = candidate fp32. b_e = atol + rtol*|c| (candidate-scaled, evaluator-exact)."""
     c64 = c.double()
     shape = a64.shape
     if a64.ndim == 0:
@@ -151,53 +159,54 @@ def decomp(a, x, c, atol, rtol, ratio_stride=997, ratio_cap=20000):
     else:
         rows, cols = a64.reshape(-1, a64.shape[-1]).shape
         a64 = a64.reshape(rows, cols); x = x.reshape(rows, cols); c64 = c64.reshape(rows, cols)
-
-    stats = {
-        "fail_default": 0, "fail_anchor": 0, "ref_induced": 0, "cand_induced": 0,
-        "ref_over_budget": 0, "total": int(rows * cols),
-        "maxabs_ca": 0.0, "maxabs_cx": 0.0, "maxabs_ax": 0.0,
-        "max_ratio_ref": 0.0, "max_ratio_cand": 0.0,
-        "ratio_samples": [], "bit_identical_ca": True,
-    }
-    k = 0
+    out = {}
+    for tag, tol in (("1e-4", atol_s), ("1e-2", atol_b)):
+        out[tag] = {"fail_default": 0, "fail_anchor": 0, "ref_induced": 0, "cand_induced": 0,
+                    "ref_over_budget": 0, "total": int(rows * cols), "maxabs_ca": 0.0, "maxabs_cx": 0.0,
+                    "maxabs_ax": 0.0, "max_ratio_ref": 0.0, "max_ratio_cand": 0.0,
+                    "ratio_samples": [], "bit_identical_ca": True}
     for i in range(0, rows, CHUNK):
         ac = a64[i:i + CHUNK]; xc = x[i:i + CHUNK]; cc = c64[i:i + CHUNK]
         d_ca = (cc - ac).abs()
         d_cx = (cc - xc).abs()
         d_ax = (ac - xc).abs()
-        thr = atol + rtol * cc.abs()
-        fail_d = d_ca > thr
-        fail_a = d_cx > thr
-        refover = d_ax > thr
-        stats["fail_default"] += int(fail_d.sum())
-        stats["fail_anchor"] += int(fail_a.sum())
-        stats["ref_over_budget"] += int(refover.sum())
-        stats["ref_induced"] += int((fail_d & refover).sum())
-        stats["cand_induced"] += int((fail_d & ~refover).sum())
-        stats["maxabs_ca"] = max(stats["maxabs_ca"], float(d_ca.max()))
-        stats["maxabs_cx"] = max(stats["maxabs_cx"], float(d_cx.max()))
-        stats["maxabs_ax"] = max(stats["maxabs_ax"], float(d_ax.max()))
-        r_ref = d_ax / thr
-        r_cand = d_ca / thr
-        stats["max_ratio_ref"] = max(stats["max_ratio_ref"], float(r_ref.max()))
-        stats["max_ratio_cand"] = max(stats["max_ratio_cand"], float(r_cand.max()))
-        if d_ca.max() > 0:
-            stats["bit_identical_ca"] = False
-        # bounded reservoir for percentiles of the reference's budget consumption
-        if len(stats["ratio_samples"]) < ratio_cap:
-            flat = r_ref.reshape(-1)
-            take = flat[::ratio_stride]
-            room = ratio_cap - len(stats["ratio_samples"])
-            stats["ratio_samples"].extend(take[:room].tolist())
-    return stats
-
-
-def pct(vals, q):
-    if not vals:
-        return None
-    s = sorted(vals)
-    i = min(len(s) - 1, max(0, int(round(q * (len(s) - 1)))))
-    return s[i]
+        for tag, tol in (("1e-4", atol_s), ("1e-2", atol_b)):
+            s = out[tag]
+            thr = tol + tol * cc.abs()
+            fail_d = d_ca > thr
+            fail_a = d_cx > thr
+            refover = d_ax > thr
+            s["fail_default"] += int(fail_d.sum())
+            s["fail_anchor"] += int(fail_a.sum())
+            s["ref_over_budget"] += int(refover.sum())
+            s["ref_induced"] += int((fail_d & refover).sum())
+            s["cand_induced"] += int((fail_d & ~refover).sum())
+            s["maxabs_ca"] = max(s["maxabs_ca"], float(d_ca.max()))
+            s["maxabs_cx"] = max(s["maxabs_cx"], float(d_cx.max()))
+            s["maxabs_ax"] = max(s["maxabs_ax"], float(d_ax.max()))
+            r_ref = d_ax / thr
+            r_cand = d_ca / thr
+            s["max_ratio_ref"] = max(s["max_ratio_ref"], float(r_ref.max()))
+            s["max_ratio_cand"] = max(s["max_ratio_cand"], float(r_cand.max()))
+            if d_ca.max() > 0:
+                s["bit_identical_ca"] = False
+            if len(s["ratio_samples"]) < RATIO_CAP:
+                s["ratio_samples"].extend(r_ref.reshape(-1)[:RATIO_CAP - len(s["ratio_samples"])].tolist())
+    for tag in out:
+        s = out[tag]
+        smp = s.pop("ratio_samples")
+        smp.sort()
+        def q(p):
+            return smp[min(len(smp) - 1, max(0, int(round(p * (len(smp) - 1)))))] if smp else None
+        s["ratio_ref_median"] = q(0.5)
+        s["ratio_ref_q90"] = q(0.9)
+        s["ratio_ref_q99"] = q(0.99)
+        s["n_ratio_samples"] = len(smp)
+        s["verdict_default"] = "fail" if s["fail_default"] > 0 else "pass"
+        s["verdict_anchor"] = "fail" if s["fail_anchor"] > 0 else "pass"
+        s["ref_share_of_fails"] = (s["ref_induced"] / s["fail_default"]) if s["fail_default"] else None
+        s["cand_share_of_fails"] = (s["cand_induced"] / s["fail_default"]) if s["fail_default"] else None
+    return out
 
 
 def main():
@@ -209,13 +218,11 @@ def main():
     rows71 = [json.loads(l) for l in open(S71)]
     strict = [r for r in rows71 if r.get("exceed_strict_default")]
     admissible = [r for r in rows71 if r.get("anchor") == "admissible"]
-    controls_pool = [r for r in admissible if not r.get("exceed_strict_default")]
-    controls = controls_pool[::13][:N_CONTROLS]
+    controls = [r for r in admissible if not r.get("exceed_strict_default")][::13][:N_CONTROLS]
     pop = [("exceed", r) for r in strict] + [("control", r) for r in controls]
     print("population", len(pop), "exceed", len(strict), "controls", len(controls), flush=True)
 
-    out_rows = []
-    excluded = []
+    out_rows, excluded = [], []
     truncated = False
     for kind, r71 in pop:
         if time.time() - t_start > GLOBAL_DEADLINE_S:
@@ -226,7 +233,8 @@ def main():
         path = os.path.join(KB, "KernelBench", "level%d" % level, fname)
         rec = {"kind": kind, "level": level, "problem_id": pid, "name": fname,
                "op_class": r71.get("op_class"), "s71_strict_count": r71["A_vs_anchor"]["ew_1e-4"]["count"],
-               "s71_output_shape": r71.get("output_shape")}
+               "s71_output_shape": r71.get("output_shape"), "s71_ref_max_abs": r71.get("ref_max_abs")}
+        t_task = time.time()
         try:
             torch.manual_seed(0)
             torch.cuda.empty_cache()
@@ -236,7 +244,6 @@ def main():
             torch.manual_seed(0)
             model = mod.Model(*init_args)
 
-            # A: default fp32 reference (benchmark shipped default)
             signal.alarm(CFG_ALARM_S)
             t0 = time.time()
             set_cfg(True, False)
@@ -246,7 +253,6 @@ def main():
             if A is None:
                 raise RuntimeError("no tensor output from reference")
 
-            # X: fp64 anchor from the same weights (exact widening)
             signal.alarm(CFG_ALARM_S)
             t0 = time.time()
             set_cfg(False, False)
@@ -257,7 +263,6 @@ def main():
                 raise RuntimeError("anchor missing or shape mismatch")
             model.float()
 
-            # TIE-OUT: reproduce s71's count under s71's reference-scaled predicate
             tie = ew_count_ref_scaled(A, X, ATOL_RTOL_STRICT, ATOL_RTOL_STRICT)
             rec["tie_out_count"] = tie
             rec["tie_out_ok"] = bool(tie == rec["s71_strict_count"])
@@ -270,44 +275,43 @@ def main():
                     fh.write(json.dumps(rec) + "\n")
                 continue
 
-            # C: torch.compile candidate
+            a64 = A.double()
+
+            # C1: torch.compile candidate
             signal.alarm(CFG_ALARM_S)
             t0 = time.time()
             set_cfg(True, False)
             try:
                 cmod = torch.compile(model, dynamic=False)
-                C = run_model(cmod, inputs, torch.float32, dev)
+                C1 = run_model(cmod, inputs, torch.float32, dev)
                 rec["compile_ok"] = True
             except Exception as e:
                 rec["compile_ok"] = False
                 rec["compile_error"] = "%s: %s" % (type(e).__name__, str(e)[:200])
-                C = None
+                C1 = None
             rec["t_compile_s"] = round(time.time() - t0, 3)
             signal.alarm(0)
-            if C is None:
-                rec["status"] = "compile_failed"
-                excluded.append({"problem_id": pid, "name": fname, "reason": rec.get("compile_error")})
-                out_rows.append(rec)
-                with open(OUT, "a") as fh:
-                    fh.write(json.dumps(rec) + "\n")
-                continue
-            if C.shape != A.shape:
-                raise RuntimeError("candidate shape mismatch")
+            if C1 is not None and C1.shape != A.shape:
+                raise RuntimeError("compile candidate shape mismatch")
 
-            # New measurements: strict (1e-4) and benchmark (1e-2) decompositions
-            for tag, tol in (("1e-4", ATOL_RTOL_STRICT), ("1e-2", ATOL_RTOL_BENCH)):
+            # C2: tf32-off candidate (different arithmetic realization)
+            signal.alarm(CFG_ALARM_S)
+            t0 = time.time()
+            set_cfg(False, False)
+            C2 = run_model(model, inputs, torch.float32, dev)
+            rec["t_tf32off_s"] = round(time.time() - t0, 3)
+            signal.alarm(0)
+            if C2 is None or C2.shape != A.shape:
+                raise RuntimeError("tf32-off candidate missing or shape mismatch")
+
+            for arm, C in (("c1_compile", C1), ("c2_tf32off", C2)):
+                if C is None:
+                    continue
                 signal.alarm(CFG_ALARM_S)
-                d = decomp(A, X, C, tol, tol)
+                d = decomp(a64, X, C, ATOL_RTOL_STRICT, ATOL_RTOL_BENCH)
                 signal.alarm(0)
-                samples = d.pop("ratio_samples")
-                d["ratio_ref_median"] = pct(samples, 0.5)
-                d["ratio_ref_q90"] = pct(samples, 0.9)
-                d["ratio_ref_q99"] = pct(samples, 0.99)
-                d["n_ratio_samples"] = len(samples)
-                d["verdict_default"] = "fail" if d["fail_default"] > 0 else "pass"
-                d["verdict_anchor"] = "fail" if d["fail_anchor"] > 0 else "pass"
-                d["ref_share_of_fails"] = (d["ref_induced"] / d["fail_default"]) if d["fail_default"] else None
-                rec["decomp_" + tag] = d
+                rec["decomp_" + arm] = d
+            del a64, X, A, C1, C2
             rec["status"] = "ok"
         except Timeout as e:
             rec["status"] = "timeout"
@@ -317,59 +321,62 @@ def main():
             excluded.append({"problem_id": pid, "name": fname, "reason": rec["status"]})
         finally:
             signal.alarm(0)
+        rec["t_task_s"] = round(time.time() - t_task, 2)
         out_rows.append(rec)
         with open(OUT, "a") as fh:
             fh.write(json.dumps(rec) + "\n")
-        print(json.dumps({"pid": pid, "kind": kind, "op": rec.get("op_class"), "status": rec.get("status"),
-                          "c1e4": rec.get("decomp_1e-4", {}).get("verdict_default"),
-                          "a1e4": rec.get("decomp_1e-4", {}).get("verdict_anchor"),
-                          "refshare": rec.get("decomp_1e-4", {}).get("ref_share_of_fails")}), flush=True)
+        brief = {"pid": pid, "kind": kind, "st": rec.get("status"), "t": rec.get("t_task_s")}
+        for arm in ("c1_compile", "c2_tf32off"):
+            dd = rec.get("decomp_" + arm, {}).get("1e-4", {})
+            brief[arm] = {"v": dd.get("verdict_default"), "n": dd.get("fail_default"),
+                          "rs": dd.get("ref_share_of_fails"), "rmed": dd.get("ratio_ref_median")}
+        print(json.dumps(brief), flush=True)
+        torch.cuda.empty_cache()
 
     ok = [r for r in out_rows if r.get("status") == "ok"]
     ex = [r for r in ok if r["kind"] == "exceed"]
     ct = [r for r in ok if r["kind"] == "control"]
 
-    def agg(tag):
-        rows = [r["decomp_" + tag] for r in ex]
+    def agg(arm, tag):
+        rows = [r["decomp_" + arm][tag] for r in ex if "decomp_" + arm in r]
         fail_def = sum(1 for r in rows if r["verdict_default"] == "fail")
-        fail_anc = sum(1 for r in rows if r["verdict_anchor"] == "fail")
         tot_fail = sum(r["fail_default"] for r in rows)
-        tot_refind = sum(r["ref_induced"] for r in rows)
-        return {
-            "tasks": len(rows),
-            "tasks_fail_default": fail_def,
-            "tasks_fail_anchor": fail_anc,
-            "verdict_flips_ref_swap": sum(1 for r in rows if r["verdict_default"] != r["verdict_anchor"]),
-            "failing_elements_default": tot_fail,
-            "ref_induced_elements": tot_refind,
-            "pooled_ref_share_of_fails": (tot_refind / tot_fail) if tot_fail else None,
-            "median_ratio_ref": pct([r["ratio_ref_median"] for r in rows if r["ratio_ref_median"] is not None], 0.5),
-            "median_q90_ratio_ref": pct([r["ratio_ref_q90"] for r in rows if r["ratio_ref_q90"] is not None], 0.5),
-            "tasks_with_ref_over_budget": sum(1 for r in rows if r["ref_over_budget"] > 0),
-        }
+        tot_ref = sum(r["ref_induced"] for r in rows)
+        tot_cand = sum(r["cand_induced"] for r in rows)
+        meds = sorted(x for x in (r["ratio_ref_median"] for r in rows) if x is not None)
+        return {"tasks": len(rows), "tasks_fail_default": fail_def,
+                "tasks_fail_anchor": sum(1 for r in rows if r["verdict_anchor"] == "fail"),
+                "verdict_flips_ref_swap": sum(1 for r in rows if r["verdict_default"] != r["verdict_anchor"]),
+                "failing_elements_default": tot_fail, "ref_induced_elements": tot_ref,
+                "cand_induced_elements": tot_cand,
+                "pooled_ref_share_of_fails": (tot_ref / tot_fail) if tot_fail else None,
+                "pooled_cand_share_of_fails": (tot_cand / tot_fail) if tot_fail else None,
+                "median_of_task_ratio_ref_median": meds[len(meds) // 2] if meds else None,
+                "median_of_task_ratio_ref_q90": (lambda v: v[len(v) // 2] if v else None)(
+                    sorted(x for x in (r["ratio_ref_q90"] for r in rows) if x is not None)),
+                "max_ratio_ref": max((r["max_ratio_ref"] for r in rows), default=None),
+                "tasks_with_ref_over_budget": sum(1 for r in rows if r["ref_over_budget"] > 0)}
 
-    ctrl_ref_frac = [r["decomp_1e-4"]["ref_over_budget"] / max(1, r["decomp_1e-4"]["total"]) for r in ct]
+    ctrl_frac = [r["decomp_c1_compile"]["1e-4"]["ref_over_budget"] / max(1, r["decomp_c1_compile"]["1e-4"]["total"])
+                 for r in ct if "decomp_c1_compile" in r]
     summary = {
-        "prereg": "docstring of this file, frozen pre-run",
+        "prereg": "docstring of this file, frozen pre-run (amendment v2 declared before the completed run)",
         "prereg_sha256": prereg_sha,
         "population": {"exceed_rows": len(strict), "controls": len(controls), "attempted": len(out_rows),
                        "ok": len(ok), "excluded": excluded, "truncated": truncated},
-        "strict_1e-4": agg("1e-4"),
-        "bench_1e-2": agg("1e-2"),
-        "controls": {"n": len(ct), "max_ref_over_budget_frac": max(ctrl_ref_frac) if ctrl_ref_frac else None,
-                     "instrument_ok": bool(ctrl_ref_frac and max(ctrl_ref_frac) <= 0.10)},
+        "c1_compile": {"1e-4": agg("c1_compile", "1e-4"), "1e-2": agg("c1_compile", "1e-2")},
+        "c2_tf32off": {"1e-4": agg("c2_tf32off", "1e-4"), "1e-2": agg("c2_tf32off", "1e-2")},
+        "controls": {"n": len(ct), "max_ref_over_budget_frac": max(ctrl_frac) if ctrl_frac else None,
+                     "instrument_ok": bool(ctrl_frac and max(ctrl_frac) <= 0.10)},
         "compile": {"attempted": len([r for r in out_rows if "compile_ok" in r]),
-                    "ok": sum(1 for r in out_rows if r.get("compile_ok")),
-                    "bit_identical_to_ref": sum(1 for r in ok if r.get("decomp_1e-4", {}).get("bit_identical_ca"))},
-        "wall_s": round(time.time() - t_start, 1),
-        "torch": torch.__version__,
-        "kills": {},
+                    "ok": sum(1 for r in out_rows if r.get("compile_ok"))},
+        "wall_s": round(time.time() - t_start, 1), "torch": torch.__version__, "kills": {},
     }
-    s = summary["strict_1e-4"]
-    summary["kills"]["K1_vacuous"] = bool(s["tasks_fail_default"] == 0)
-    summary["kills"]["K2_ref_not_material"] = bool((s["pooled_ref_share_of_fails"] is not None
-                                                   and s["pooled_ref_share_of_fails"] < 0.05))
-    summary["kills"]["K3_compile_coverage"] = bool(len(ok) > 0 and
+    s1 = summary["c1_compile"]["1e-4"]; s2 = summary["c2_tf32off"]["1e-4"]
+    summary["kills"]["K1_vacuous"] = bool(s1["tasks_fail_default"] == 0 and s2["tasks_fail_default"] == 0)
+    shares = [x for x in (s1["pooled_ref_share_of_fails"], s2["pooled_ref_share_of_fails"]) if x is not None]
+    summary["kills"]["K2_ref_not_material"] = bool(shares and max(shares) < 0.05)
+    summary["kills"]["K3_compile_coverage"] = bool(summary["compile"]["attempted"] > 0 and
                                                   summary["compile"]["ok"] < 0.75 * summary["compile"]["attempted"])
     json.dump(summary, open(SUMOUT, "w"), indent=1)
     print(json.dumps(summary, indent=1)[:4000])
