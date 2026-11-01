@@ -55,7 +55,14 @@ ATOL_RTOL_STRICT = 1e-4
 ATOL_RTOL_BENCH = 1e-2
 CFG_ALARM_S = 300
 GLOBAL_DEADLINE_S = 2100
-CHUNK = 1 << 22
+CHUNK_ELEMS = 1 << 22
+
+
+def chunk_rows(cols):
+    """s73b lesson: chunk on ELEMENTS, not rows. s73's CHUNK was a row unit and materialised ~17 GB
+    fp64 temporaries on 2.14B-element outputs. We size row chunks so each temporary stays ~2^22 elements."""
+    return max(1, CHUNK_ELEMS // max(1, cols))
+
 
 
 def load_s73():
@@ -75,11 +82,13 @@ def ref_scaled_count(A, X, atol, rtol):
     x64 = X.double()
     fa = a64.reshape(-1, a64.shape[-1])
     fx = x64.reshape(-1, x64.shape[-1])
+    cr = chunk_rows(fa.shape[1])
     cnt = 0
-    for i in range(0, fa.shape[0], CHUNK):
-        d = (fa[i:i + CHUNK] - fx[i:i + CHUNK]).abs()
-        thr = atol + rtol * fx[i:i + CHUNK].abs()
+    for i in range(0, fa.shape[0], cr):
+        d = (fa[i:i + cr] - fx[i:i + cr]).abs()
+        thr = atol + rtol * fx[i:i + cr].abs()
         cnt += int((d > thr).sum())
+        del d, thr
     del a64, x64
     return cnt
 
@@ -182,7 +191,9 @@ def main():
                 if C is None:
                     continue
                 signal.alarm(CFG_ALARM_S)
+                S73.CHUNK = chunk_rows(C.shape[-1])
                 rec["decomp_" + arm] = S73.decomp(a64, X, C, ATOL_RTOL_STRICT, ATOL_RTOL_BENCH)
+                rec["chunk_rows_" + arm] = S73.CHUNK
                 signal.alarm(0)
             del a64, X, C1, C2
             rec["status"] = "ok"
