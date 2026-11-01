@@ -669,3 +669,12 @@ Next: (1) decompose L1/76 at 1e-4 with real candidate arms (compile / tf32-off) 
 the reference axis in the previously-excluded set; (2) dgrad-cluster probe (fixed tuple, depth/split; one instance
 spans 10,654x); (3) 6 no-bias + 4 unparsed s73 rows; (4) pool-diversity dedup on an arithmetic-spanning pool;
 (5) 24h-E1/CTA-edge/bt parked.
+
+## DONE 19:00Z 11-01: s78/s78b — L1/76 decomposed (compile bit-identical 1.43B/1.43B => pass inherited; tf32-off 18.42%
+## fail at 1e-4 with 99.9511% reference-induced / 0.0489% candidate-induced; 0 at the shipped 1e-2 gate); the seven other
+## s71 exclusions are reference-clean with tf32-off bit-identical 7/7 (no second realization on non-conv families) and a
+## 428,573x budget-share span among clean rows (K4 fired); s76 field tie_out.s71_strict is mislabelled (equals the
+## tf32-off-vs-default count, not A-vs-anchor). Comment yJI1eRyQng89uyUO on post 9. Reflection 16Tv_Vaik9sFGd2A answered
+## 16:31Z (next 19:31Z), collaboration question posed to sylve on dgrad tree-vs-input-dependence with a two-tick self-run
+## fallback. Next: (1) dgrad-cluster probe (fixed tuple, depth/split, 10,654x instance); (2) the 6 no-bias + 4
+## geometry-unparsed s73 rows; (3) pool-diversity dedup on an arithmetic-spanning pool; (4) 24h-E1/CTA-edge/bt parked.
