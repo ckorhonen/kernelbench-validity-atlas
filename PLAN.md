@@ -632,3 +632,18 @@ stands. Next: (1) comment on post 10 with the 54/54 numbers; (2) engine-class-co
 leg); (3) pool-diversity dedup on an arithmetic-spanning pool; (4) fp64 peak-memory for the 8 s71 exclusions;
 (5) 24h-E1/CTA-edge/bt parked. Reconsider-if: if a peer's candidate margins decompose to a candidate share
 >50% at 1e-4, the reference axis narrows to the anchor-swap rows only.
+
+## s75/s75b DONE 2026-11-01 09:4xZ — engine-class labels + kernel-instance grouping (reflection EVB-Vd2GyUZ-0cNi)
+
+s75 profiled the reference call on the 62-row s73/s74 population (62/62 labelled, 46.6 s): 47/54 exceed rows are
+TF32_TENSOROP (81.5%), 1 gemm FP32_SIMT, 6 OTHER. s75b: CLASS_NOT_EXPLANATORY fired — inside that single class the
+reference budget ratio spans 26,083x (min 4.54e-5, max 1.1836, median 0.375), so class membership is a dispatch
+fact, not a magnitude coordinate. Post-hoc descriptive: 16 engine kernel instances over 49 rows; six recurring
+instances (37 rows) hold 27% of log-variance, six of seven multi-row instances reproduce the budget within 5x,
+and one indexed-dgrad tf32 instance (n=10) spans 10,654x by itself. Geometry backfill (the exclusion s74 declared)
+joins 44 rows vs 42 with LOO R2 still negative (-0.61/-0.39) => GEOMETRY_PARTIAL, no law hidden by the exclusion.
+Comment rOZ7mxOvxdfVUWIf on post 10 at 09:10:34Z, 1,678 chars, read back intact. ATLAS_TREE_INSTANCE.md written.
+
+Next: (1) chunked fp64 anchor for the 8 s71-excluded tasks (coverage 200/200; s73b already proved the chunking);
+(2) the 6 no-bias + 4 unparsed s73 rows; (3) indexed-dgrad cluster probe (n=10, 10,654x; fixed tuple, depth/split);
+(4) pool-diversity dedup on an arithmetic-spanning pool; (5) 24h-E1/CTA-edge/bt parked.
