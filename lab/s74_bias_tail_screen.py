@@ -22,9 +22,21 @@ reference-dominated, so the reference's own error is what is being described):
   tail   = ratio_ref_q99 / ratio_ref_median  (tail-to-bias factor)
   exceed = ref_over_budget / total           (element exceedance fraction)
 
-Geometry parse: for op_class conv / conv_transpose, the 4-D input tensor with the largest element count is
-(N, C_in, H, W) and the 4-D tensor with the smallest spatial dims is the weight (C_out, C_in, k, k); features
-are log10 of N, C_in, C_out, H, W, k. For gemm, features are log10 of M, N, K from the two input shapes.
+AMENDMENT v3 (declared after v2's run, whose numbers are discarded): v2 joined s73 rows to s71 by problem_id
+alone, but problem_id collides across level1 and level2, so rows were paired with the wrong task's geometry
+(and 37/52 joined, including impossible matches). The join is now keyed on (level, problem_id). No threshold,
+population, test or read changed; v2's output is kept only as the record of the defect.
+
+AMENDMENT v2 (declared before any number was used): the first execution of this screen joined 0 rows because
+s71 recorded only the ACTIVATION input shape per task, not the weight tensor. The v1 run therefore produced
+only K0 (INCONCLUSIVE) and no measurement. The parser below is corrected to the shapes s71 actually stores:
+a single 4-D (N, C, H, W) or 5-D (N, C, D, H, W) activation for conv / conv_transpose, plus the recorded
+n_params as the weight-count proxy, and two 2-D operands for gemm. No threshold, population, test or read
+changed.
+
+Geometry parse: for op_class conv / conv_transpose, the activation shape gives (N, C_in, H, W) or
+(N, C_in, D, H, W); features are log10 N, C_in, H, W (or D), and log10(n_params). For gemm, features are
+log10 of M, N, K from the two input shapes.
 
 Predeclared tests and reads (no post-hoc thresholds):
   T1 bias spread: max/min of per-task bias. >=10 => bias varies strongly across tasks; <=2 => near-constant.
@@ -56,17 +68,22 @@ def log10(x):
 
 def parse_geometry(rec71, op_class):
     shapes = rec71.get("input_shapes") or []
-    t4 = [s for s in shapes if isinstance(s, list) and len(s) == 4]
     if op_class in ("conv", "conv_transpose"):
-        if len(t4) < 2:
+        act = None
+        for s in shapes:
+            if isinstance(s, list) and len(s) in (4, 5):
+                act = s
+                break
+        if act is None:
             return None
-        act = max(t4, key=lambda s: s[0] * s[1] * s[2] * s[3])
-        w = min(t4, key=lambda s: s[2] * s[3])
-        N, Cin, H, W = act[0], act[1], act[2], act[3]
-        Cout, _, kh, kw = w[0], w[1], w[2], w[3]
-        k = max(kh, kw)
-        feats = {"logN": log10(N), "logCin": log10(Cin), "logCout": log10(Cout),
-                 "logH": log10(H), "logW": log10(W), "logK": log10(k)}
+        if len(act) == 4:
+            N, Cin, H, W = act
+            sp = H * W
+        else:
+            N, Cin, D, H, W = act
+            sp = D * H * W
+        feats = {"logN": log10(N), "logCin": log10(Cin), "logSpatial": log10(sp),
+                 "logParams": log10(rec71.get("n_params") or 0)}
         return feats
     if op_class == "gemm":
         t2 = [s for s in shapes if isinstance(s, list) and len(s) == 2]
@@ -142,11 +159,11 @@ def spearman(a, b):
 
 def main():
     rows73 = [json.loads(l) for l in open(S73)]
-    rows71 = {r["problem_id"]: r for r in (json.loads(l) for l in open(S71))}
+    rows71 = {(r["level"], r["problem_id"]): r for r in (json.loads(l) for l in open(S71))}
     pop = [r for r in rows73 if r.get("status") == "ok" and r.get("kind") == "exceed"]
     joined, excluded = [], []
     for r in pop:
-        r71 = rows71.get(r["problem_id"])
+        r71 = rows71.get((r["level"], r["problem_id"]))
         d = r.get("decomp_c2_tf32off", {}).get("1e-4", {})
         if r71 is None or not d.get("ratio_ref_median"):
             excluded.append({"problem_id": r["problem_id"], "reason": "no geometry or no ratio"})

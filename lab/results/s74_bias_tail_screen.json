@@ -1,0 +1,90 @@
+{
+ "prereg": "docstring of this file, frozen pre-run",
+ "population": {
+  "s73_exceed_rows": 52,
+  "joined": 42,
+  "excluded": [
+   {
+    "problem_id": 64,
+    "reason": "geometry unparsed"
+   },
+   {
+    "problem_id": 67,
+    "reason": "geometry unparsed"
+   },
+   {
+    "problem_id": 74,
+    "reason": "geometry unparsed"
+   },
+   {
+    "problem_id": 79,
+    "reason": "geometry unparsed"
+   },
+   {
+    "problem_id": 81,
+    "reason": "no geometry or no ratio"
+   },
+   {
+    "problem_id": 14,
+    "reason": "geometry unparsed"
+   },
+   {
+    "problem_id": 1,
+    "reason": "no geometry or no ratio"
+   },
+   {
+    "problem_id": 2,
+    "reason": "no geometry or no ratio"
+   },
+   {
+    "problem_id": 79,
+    "reason": "no geometry or no ratio"
+   },
+   {
+    "problem_id": 93,
+    "reason": "no geometry or no ratio"
+   }
+  ]
+ },
+ "T1_bias_spread_max_over_min": 300.7692976477622,
+ "T1_bias_min": 0.003935259518960261,
+ "T1_bias_max": 1.183605241579348,
+ "T2_best_within_class_loo_r2": -0.1930684648351335,
+ "T2_per_class": {
+  "conv": {
+   "n": 20,
+   "features": [
+    "logCin",
+    "logN",
+    "logParams",
+    "logSpatial"
+   ],
+   "loo_r2": -0.9908596720091272,
+   "bias_min": 0.012358379085636723,
+   "bias_max": 1.0497144288178697,
+   "median_bias": 0.3634519456105495
+  },
+  "conv_transpose": {
+   "n": 22,
+   "features": [
+    "logCin",
+    "logN",
+    "logParams",
+    "logSpatial"
+   ],
+   "loo_r2": -0.1930684648351335,
+   "bias_min": 0.003935259518960261,
+   "bias_max": 1.183605241579348,
+   "median_bias": 0.3141018648524482
+  },
+  "gemm": {
+   "n": 0,
+   "skipped": true
+  }
+ },
+ "T3_tail_factor_mean": 10.248991367849733,
+ "T3_tail_factor_cv": 3.4231415090593016,
+ "T4_spearman_q99_vs_bias": 0.8465278340491046,
+ "n": 42,
+ "verdict": "TAIL_DOMINANT"
+}

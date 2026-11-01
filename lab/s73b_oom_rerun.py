@@ -3,6 +3,14 @@
 
 PREREG (frozen before the run; do not edit after).
 
+AMENDMENT v2 (declared before any completed run; the v1 launch is recorded as evidence). v1 ran with the
+same arms and the same streaming design but kept s73's chunk unit of ROWS, so a chunk of CHUNK=4M rows on a
+2.14B-element output materialized ~17 GB fp64 temporaries and task 63 OOM'd again at 103.8 GiB in use. v1
+also selected the population by problem_id alone, which collides across level1 and level2, so it attempted
+only 2 rows. Both defects are in the harness, not the measurement: chunking is now by ELEMENTS
+(ELEM_CHUNK), and rows are selected by (level, problem_id). No arm, predicate, tolerance leg, quantity or
+kill clause changed.
+
 Deviation from s73 declared here, measurement-neutral: s73 held the default reference, the fp64 anchor and
 both candidate outputs simultaneously and materialized full-size fp64 copies (a64, c64) inside decomp(),
 which exceeded the 121 GB unified pool on four tasks (level1/63, level2/87, level1/21, level1/33). This
@@ -54,7 +62,7 @@ ATOL_RTOL_STRICT = 1e-4
 ATOL_RTOL_BENCH = 1e-2
 CFG_ALARM_S = 600
 GLOBAL_DEADLINE_S = 1800
-CHUNK = 1 << 22
+ELEM_CHUNK = 1 << 22
 RATIO_CAP = 20000
 
 
@@ -125,9 +133,10 @@ def ew_count_ref_scaled_chunked(a, b, atol, rtol):
     af = a.reshape(rows, cols) if a.ndim else a.reshape(1, 1)
     bf = b.reshape(rows, cols) if b.ndim else b.reshape(1, 1)
     cnt = 0
-    for i in range(0, rows, CHUNK):
-        ac = af[i:i + CHUNK].double()
-        bc = bf[i:i + CHUNK]
+    step = max(1, ELEM_CHUNK // max(1, cols))
+    for i in range(0, rows, step):
+        ac = af[i:i + step].double()
+        bc = bf[i:i + step]
         d = (ac - bc).abs()
         thr = atol + rtol * bc.abs()
         cnt += int((d > thr).sum())
@@ -146,10 +155,11 @@ def decomp_stream(a, x, c, atol_s, atol_b):
                     "ref_over_budget": 0, "total": int(rows * cols), "maxabs_ca": 0.0,
                     "maxabs_cx": 0.0, "maxabs_ax": 0.0, "max_ratio_ref": 0.0, "max_ratio_cand": 0.0,
                     "ratio_samples": [], "bit_identical_ca": True}
-    for i in range(0, rows, CHUNK):
-        ac = af[i:i + CHUNK].double()
-        xc = xf[i:i + CHUNK]
-        cc = cf[i:i + CHUNK].double()
+    step = max(1, ELEM_CHUNK // max(1, cols))
+    for i in range(0, rows, step):
+        ac = af[i:i + step].double()
+        xc = xf[i:i + step]
+        cc = cf[i:i + step].double()
         d_ca = (cc - ac).abs()
         d_cx = (cc - xc).abs()
         d_ax = (ac - xc).abs()
@@ -201,16 +211,27 @@ def main():
 
     s73 = json.load(open(S73SUM))
     excluded = s73["population"]["excluded"]
-    ids = {e["problem_id"] for e in excluded}
+    targets = {(e["problem_id"], e.get("name")) for e in excluded}
     rows71 = [json.loads(l) for l in open(S71)]
-    pop = [r for r in rows71 if r["problem_id"] in ids and r.get("exceed_strict_default")]
-    print("population", len(pop), sorted(ids), flush=True)
+    by_name = {}
+    for r in rows71:
+        by_name.setdefault(r["name"], []).append(r)
+    pop = []
+    for pid, nm in targets:
+        cands = [r for r in by_name.get(nm, []) if r["problem_id"] == pid]
+        if len(cands) != 1:
+            print("WARN unresolved target", pid, nm, len(cands), flush=True)
+            continue
+        pop.append(cands[0])
+    print("population", len(pop), [(r["level"], r["problem_id"], bool(r.get("exceed_strict_default")))
+                                   for r in pop], flush=True)
 
     out_rows = []
     for r71 in pop:
         level, pid, fname = r71["level"], r71["problem_id"], r71["name"]
         path = os.path.join(KB, "KernelBench", "level%d" % level, fname)
-        rec = {"kind": "exceed", "level": level, "problem_id": pid, "name": fname,
+        kind = "exceed" if r71.get("exceed_strict_default") else "control"
+        rec = {"kind": kind, "level": level, "problem_id": pid, "name": fname,
                "op_class": r71.get("op_class"), "s71_strict_count": r71["A_vs_anchor"]["ew_1e-4"]["count"],
                "s71_output_shape": r71.get("output_shape"), "s71_ref_max_abs": r71.get("ref_max_abs"),
                "producer": "s73b_oom_rerun (streaming decomp, sequential release)"}
@@ -319,11 +340,13 @@ def main():
 
     # merged table: s73's completed exceed rows + these
     merged = [json.loads(l) for l in open(S73ROWS)]
-    merged = [r for r in merged if r.get("status") == "ok" and r["kind"] == "exceed"]
+    merged = [r for r in merged if r.get("status") == "ok"]
     merged += [r for r in ok]
     with open(os.path.join(LAB, "results", "s73c_merged_56.jsonl"), "w") as fh:
         for r in merged:
             fh.write(json.dumps(r) + "\n")
+
+    exceed_merged = [r for r in merged if r["kind"] == "exceed"]
 
     def agg(rows, arm, tag):
         sel = [r["decomp_" + arm][tag] for r in rows if "decomp_" + arm in r]
@@ -347,25 +370,34 @@ def main():
                 "tasks_with_ref_over_budget": sum(1 for r in sel if r["ref_over_budget"] > 0),
                 "tasks_bit_identical": sum(1 for r in sel if r.get("bit_identical_ca"))}
 
+    exceed_merged = [r for r in merged if r["kind"] == "exceed"]
     summary = {
         "prereg": "docstring of this file, frozen pre-run (streaming memory deviation declared)",
         "prereg_sha256": prereg_sha,
-        "population": {"target_ids": sorted(ids), "attempted": len(out_rows), "ok": len(ok),
+        "population": {"target_ids": sorted(t[0] for t in targets), "attempted": len(out_rows), "ok": len(ok),
                        "ok_ids": sorted(new_ids),
                        "failed": [{"problem_id": r["problem_id"], "status": r.get("status")}
                                   for r in out_rows if r.get("status") != "ok"]},
         "new_rows": {"c1_compile": {"1e-4": agg(ok, "c1_compile", "1e-4"), "1e-2": agg(ok, "c1_compile", "1e-2")},
                      "c2_tf32off": {"1e-4": agg(ok, "c2_tf32off", "1e-4"), "1e-2": agg(ok, "c2_tf32off", "1e-2")}},
-        "merged_56": {"n_exceed": len(merged),
-                      "c1_compile": {"1e-4": agg(merged, "c1_compile", "1e-4"),
-                                     "1e-2": agg(merged, "c1_compile", "1e-2")},
-                      "c2_tf32off": {"1e-4": agg(merged, "c2_tf32off", "1e-4"),
-                                     "1e-2": agg(merged, "c2_tf32off", "1e-2")}},
+        "merged_full": {"n_rows": len(merged),
+                      "n_exceed": len([r for r in merged if r["kind"] == "exceed"]),
+                      "n_control": len([r for r in merged if r["kind"] == "control"]),
+                      "c1_compile": {"1e-4": agg(exceed_merged, "c1_compile", "1e-4"),
+                                     "1e-2": agg(exceed_merged, "c1_compile", "1e-2")},
+                      "c2_tf32off": {"1e-4": agg(exceed_merged, "c2_tf32off", "1e-4"),
+                                     "1e-2": agg(exceed_merged, "c2_tf32off", "1e-2")}},
+        "merged_controls": {"n": len([r for r in merged if r["kind"] == "control"]),
+                            "max_ref_over_budget_frac": max(
+                                [r["decomp_c1_compile"]["1e-4"]["ref_over_budget"] /
+                                 max(1, r["decomp_c1_compile"]["1e-4"]["total"])
+                                 for r in merged if r["kind"] == "control" and "decomp_c1_compile" in r],
+                                default=None)},
         "tie_out": {"n_ok": sum(1 for r in ok if r.get("tie_out_ok")), "n_rows": len(ok)},
         "wall_s": round(time.time() - t_start, 1), "torch": torch.__version__, "kills": {},
     }
-    s1 = summary["merged_56"]["c1_compile"]["1e-4"]
-    s2 = summary["merged_56"]["c2_tf32off"]["1e-4"]
+    s1 = summary["merged_full"]["c1_compile"]["1e-4"]
+    s2 = summary["merged_full"]["c2_tf32off"]["1e-4"]
     summary["kills"]["K1_vacuous"] = bool(s1["tasks_fail_default"] == 0 and s2["tasks_fail_default"] == 0)
     shares = [x for x in (s1["pooled_ref_share_of_fails"], s2["pooled_ref_share_of_fails"]) if x is not None]
     summary["kills"]["K2_ref_not_material"] = bool(shares and max(shares) < 0.05)
