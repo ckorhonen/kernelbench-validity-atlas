@@ -1,0 +1,701 @@
+{
+ "prereg": "docstring of this file, frozen pre-run",
+ "population_attempted": 54,
+ "rows_written": 54,
+ "ok": 54,
+ "excluded": [],
+ "coverage": 1.0,
+ "K1_fired": false,
+ "date": "2026-11-02T05:47:38Z",
+ "wall_s": 28.9,
+ "P1_recorded_equals_R0": 51,
+ "P1_frac": 0.9444444444444444,
+ "P2_recorded_differs_from_R1": 13,
+ "P2_frac_differs": 0.24074074074074073,
+ "P2_recorded_is_memcpy_or_memset": 11,
+ "P2_moved_rows": [
+  {
+   "level": 1,
+   "problem_id": 57,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)"
+  },
+  {
+   "level": 1,
+   "problem_id": 64,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)"
+  },
+  {
+   "level": 1,
+   "problem_id": 65,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)"
+  },
+  {
+   "level": 1,
+   "problem_id": 67,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn"
+  },
+  {
+   "level": 1,
+   "problem_id": 71,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)"
+  },
+  {
+   "level": 1,
+   "problem_id": 86,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)"
+  },
+  {
+   "level": 2,
+   "problem_id": 10,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)"
+  },
+  {
+   "level": 2,
+   "problem_id": 19,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)"
+  },
+  {
+   "level": 2,
+   "problem_id": 25,
+   "recorded": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+   "r1": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn"
+  },
+  {
+   "level": 2,
+   "problem_id": 26,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<float>, std::array<char*, 3ul>, false>(int, at::native::CUDAFunctor_add<float>, std::array<char*, 3ul>)"
+  },
+  {
+   "level": 2,
+   "problem_id": 3,
+   "recorded": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+   "r1": "void at::native::(anonymous namespace)::vectorized_layer_norm_kernel<float, float, false>(int, float, float const*, float const*, float const*, float*, float*, float*)"
+  },
+  {
+   "level": 2,
+   "problem_id": 54,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)"
+  },
+  {
+   "level": 1,
+   "problem_id": 87,
+   "recorded": "Memcpy HtoD (Pageable -> Device)",
+   "r1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)"
+  }
+ ],
+ "P3": {
+  "instances_total": 21,
+  "multi_row_instances": 12,
+  "multi_within_5x": 8,
+  "frac_within_5x": 0.6666666666666666,
+  "largest_multi_span": 19439.945680023797,
+  "verdict": "COMPRESSION_WEAK",
+  "table": [
+   {
+    "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+    "n": 11,
+    "span": 19439.945680023797,
+    "median": 0.3752590143848342,
+    "rows": [
+     {
+      "level": 1,
+      "problem_id": 54,
+      "op_class": "conv",
+      "bias": 0.5998686213482104
+     },
+     {
+      "level": 1,
+      "problem_id": 60,
+      "op_class": "conv",
+      "bias": 0.3299746892501035
+     },
+     {
+      "level": 1,
+      "problem_id": 64,
+      "op_class": "conv_transpose",
+      "bias": 0.7202886346410684
+     },
+     {
+      "level": 1,
+      "problem_id": 66,
+      "op_class": "conv",
+      "bias": 0.3364949789444624
+     },
+     {
+      "level": 1,
+      "problem_id": 74,
+      "op_class": "conv_transpose",
+      "bias": 0.3752590143848342
+     },
+     {
+      "level": 1,
+      "problem_id": 79,
+      "op_class": "conv_transpose",
+      "bias": 4.5378258822426624e-05
+     },
+     {
+      "level": 1,
+      "problem_id": 81,
+      "op_class": "conv_transpose",
+      "bias": 0.0
+     },
+     {
+      "level": 2,
+      "problem_id": 10,
+      "op_class": "conv_transpose",
+      "bias": 0.2280082665370091
+     },
+     {
+      "level": 2,
+      "problem_id": 27,
+      "op_class": "conv",
+      "bias": 0.8821508865620341
+     },
+     {
+      "level": 2,
+      "problem_id": 93,
+      "op_class": "conv_transpose",
+      "bias": 0.0
+     },
+     {
+      "level": 1,
+      "problem_id": 63,
+      "op_class": "conv",
+      "bias": 0.5414925209398944
+     }
+    ]
+   },
+   {
+    "name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+    "n": 6,
+    "span": 15.220316004573435,
+    "median": 0.38787476201895704,
+    "rows": [
+     {
+      "level": 1,
+      "problem_id": 55,
+      "op_class": "conv",
+      "bias": 0.6148397886431564
+     },
+     {
+      "level": 1,
+      "problem_id": 67,
+      "op_class": "conv",
+      "bias": 0.812396104471218
+     },
+     {
+      "level": 2,
+      "problem_id": 25,
+      "op_class": "conv",
+      "bias": 0.053375771188134816
+     },
+     {
+      "level": 2,
+      "problem_id": 32,
+      "op_class": "conv",
+      "bias": 0.38787476201895704
+     },
+     {
+      "level": 2,
+      "problem_id": 35,
+      "op_class": "conv",
+      "bias": 0.08824698431709575
+     },
+     {
+      "level": 2,
+      "problem_id": 47,
+      "op_class": "conv",
+      "bias": 0.3634519456105495
+     }
+    ]
+   },
+   {
+    "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+    "n": 5,
+    "span": 3.6612288536545914,
+    "median": 0.24742707338743908,
+    "rows": [
+     {
+      "level": 1,
+      "problem_id": 58,
+      "op_class": "conv_transpose",
+      "bias": 0.4834796752991545
+     },
+     {
+      "level": 1,
+      "problem_id": 68,
+      "op_class": "conv_transpose",
+      "bias": 0.24742707338743908
+     },
+     {
+      "level": 1,
+      "problem_id": 73,
+      "op_class": "conv_transpose",
+      "bias": 0.13205393451888464
+     },
+     {
+      "level": 2,
+      "problem_id": 16,
+      "op_class": "conv_transpose",
+      "bias": 0.18857315369958755
+     },
+     {
+      "level": 2,
+      "problem_id": 77,
+      "op_class": "conv_transpose",
+      "bias": 0.2682191725187886
+     }
+    ]
+   },
+   {
+    "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+    "n": 4,
+    "span": 10.001570173890453,
+    "median": 0.09763139267925877,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 15,
+      "op_class": "conv_transpose",
+      "bias": 0.09763139267925877
+     },
+     {
+      "level": 2,
+      "problem_id": 1,
+      "op_class": "conv",
+      "bias": 0.0
+     },
+     {
+      "level": 2,
+      "problem_id": 31,
+      "op_class": "conv",
+      "bias": 0.5143400116669579
+     },
+     {
+      "level": 2,
+      "problem_id": 5,
+      "op_class": "conv_transpose",
+      "bias": 0.05142592640200291
+     }
+    ]
+   },
+   {
+    "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+    "n": 3,
+    "span": 1.8405900357937242,
+    "median": 0.4500011327950153,
+    "rows": [
+     {
+      "level": 1,
+      "problem_id": 57,
+      "op_class": "conv_transpose",
+      "bias": 0.4500011327950153
+     },
+     {
+      "level": 1,
+      "problem_id": 65,
+      "op_class": "conv_transpose",
+      "bias": 0.41894439221743973
+     },
+     {
+      "level": 2,
+      "problem_id": 19,
+      "op_class": "conv_transpose",
+      "bias": 0.7711048738670774
+     }
+    ]
+   },
+   {
+    "name": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+    "n": 3,
+    "span": 1.3444965927813506,
+    "median": 0.45021901513912993,
+    "rows": [
+     {
+      "level": 1,
+      "problem_id": 61,
+      "op_class": "conv_transpose",
+      "bias": 0.45380966456073973
+     },
+     {
+      "level": 1,
+      "problem_id": 70,
+      "op_class": "conv_transpose",
+      "bias": 0.45021901513912993
+     },
+     {
+      "level": 2,
+      "problem_id": 61,
+      "op_class": "conv_transpose",
+      "bias": 0.3375312864288833
+     }
+    ]
+   },
+   {
+    "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+    "n": 3,
+    "span": 3.768220994597902,
+    "median": 0.5846257080152814,
+    "rows": [
+     {
+      "level": 1,
+      "problem_id": 69,
+      "op_class": "conv_transpose",
+      "bias": 0.3141018648524482
+     },
+     {
+      "level": 1,
+      "problem_id": 71,
+      "op_class": "conv_transpose",
+      "bias": 0.5846257080152814
+     },
+     {
+      "level": 2,
+      "problem_id": 11,
+      "op_class": "conv_transpose",
+      "bias": 1.183605241579348
+     }
+    ]
+   },
+   {
+    "name": "sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x16x32_stage1_warpsize4x1x1_g1_tensor16x8x8_aligna4_alignc4_execute_kernel__5x_cudnn",
+    "n": 2,
+    "span": 1.0015757436101362,
+    "median": 0.5481159015485755,
+    "rows": [
+     {
+      "level": 1,
+      "problem_id": 62,
+      "op_class": "conv",
+      "bias": 0.5481159015485755
+     },
+     {
+      "level": 1,
+      "problem_id": 80,
+      "op_class": "conv",
+      "bias": 0.5472535702321579
+     }
+    ]
+   },
+   {
+    "name": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)",
+    "n": 2,
+    "span": 1.2968710901833098,
+    "median": 0.3795268025074896,
+    "rows": [
+     {
+      "level": 1,
+      "problem_id": 86,
+      "op_class": "conv",
+      "bias": 0.2926480552927156
+     },
+     {
+      "level": 1,
+      "problem_id": 87,
+      "op_class": "conv",
+      "bias": 0.3795268025074896
+     }
+    ]
+   },
+   {
+    "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<float>, std::array<char*, 3ul>, false>(int, at::native::CUDAFunctor_add<float>, std::array<char*, 3ul>)",
+    "n": 2,
+    "span": 1.840554797642631,
+    "median": 0.0974531674852779,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 20,
+      "op_class": "conv_transpose",
+      "bias": 0.0974531674852779
+     },
+     {
+      "level": 2,
+      "problem_id": 26,
+      "op_class": "conv_transpose",
+      "bias": 0.052947713162409066
+     }
+    ]
+   },
+   {
+    "name": "void at::native::(anonymous namespace)::vectorized_layer_norm_kernel<float, float, false>(int, float, float const*, float const*, float const*, float*, float*, float*)",
+    "n": 2,
+    "span": 1.7695925727138784,
+    "median": 0.5234726635283098,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 34,
+      "op_class": "conv_transpose",
+      "bias": 0.5234726635283098
+     },
+     {
+      "level": 2,
+      "problem_id": 3,
+      "op_class": "conv_transpose",
+      "bias": 0.2958153597613166
+     }
+    ]
+   },
+   {
+    "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+    "n": 2,
+    "span": null,
+    "median": 0.019389549028131486,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 48,
+      "op_class": "conv",
+      "bias": 0.019389549028131486
+     },
+     {
+      "level": 2,
+      "problem_id": 79,
+      "op_class": "conv",
+      "bias": 0.0
+     }
+    ]
+   },
+   {
+    "name": "sm80_xmma_fprop_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+    "n": 1,
+    "span": null,
+    "median": 0.44230799335750304,
+    "rows": [
+     {
+      "level": 1,
+      "problem_id": 56,
+      "op_class": "conv",
+      "bias": 0.44230799335750304
+     }
+    ]
+   },
+   {
+    "name": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+    "n": 1,
+    "span": null,
+    "median": 0.007459709589309297,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 14,
+      "op_class": "gemm",
+      "bias": 0.007459709589309297
+     }
+    ]
+   },
+   {
+    "name": "void at::native::batch_norm_transform_input_kernel<float, float, float, true, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 2ul, torch::headeronly::RestrictPtrTraits, int>, at::detail::IndexBoundsCheck<3ul, int>, float const, 3ul, torch::headeronly::RestrictPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 2ul, torch::headeronly::RestrictPtrTraits, int>, at::detail::IndexBoundsCheck<3ul, int>, float, 3ul, torch::headeronly::RestrictPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, std::conditional<true, float, float>::type, 0ul, torch::headeronly::RestrictPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, std::conditional<true, float, float>::type, 1ul, torch::headeronly::RestrictPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, std::conditional<true, float, float>::type, 0ul, torch::headeronly::RestrictPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, std::conditional<true, float, float>::type, 1ul, torch::headeronly::RestrictPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::RestrictPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::RestrictPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::RestrictPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::RestrictPtrTraits, int>, float)",
+    "n": 1,
+    "span": null,
+    "median": 1.0497144288178697,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 17,
+      "op_class": "conv",
+      "bias": 1.0497144288178697
+     }
+    ]
+   },
+   {
+    "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+    "n": 1,
+    "span": null,
+    "median": null,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 2,
+      "op_class": "conv_transpose",
+      "bias": 0.0
+     }
+    ]
+   },
+   {
+    "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<float>, std::array<char*, 2ul>, false>(int, at::native::CUDAFunctorOnSelf_add<float>, std::array<char*, 2ul>)",
+    "n": 1,
+    "span": null,
+    "median": 0.18495968973593066,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 46,
+      "op_class": "conv",
+      "bias": 0.18495968973593066
+     }
+    ]
+   },
+   {
+    "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::mish_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::mish_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+    "n": 1,
+    "span": null,
+    "median": 0.20319699127794008,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 4,
+      "op_class": "conv",
+      "bias": 0.20319699127794008
+     }
+    ]
+   },
+   {
+    "name": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>, false>(int, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>)",
+    "n": 1,
+    "span": null,
+    "median": 0.3380420389521437,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 52,
+      "op_class": "conv",
+      "bias": 0.3380420389521437
+     }
+    ]
+   },
+   {
+    "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+    "n": 1,
+    "span": null,
+    "median": 0.012358379085636723,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 54,
+      "op_class": "conv",
+      "bias": 0.012358379085636723
+     }
+    ]
+   },
+   {
+    "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::leaky_relu_kernel(at::TensorIteratorBase&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::leaky_relu_kernel(at::TensorIteratorBase&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+    "n": 1,
+    "span": null,
+    "median": 0.003935259518960261,
+    "rows": [
+     {
+      "level": 2,
+      "problem_id": 74,
+      "op_class": "conv_transpose",
+      "bias": 0.003935259518960261
+     }
+    ]
+   }
+  ]
+ },
+ "P4": {
+  "n": 14,
+  "span": 8.963044122021856,
+  "tuples": [
+   [
+    1,
+    57
+   ],
+   [
+    1,
+    58
+   ],
+   [
+    1,
+    61
+   ],
+   [
+    1,
+    65
+   ],
+   [
+    1,
+    68
+   ],
+   [
+    1,
+    69
+   ],
+   [
+    1,
+    70
+   ],
+   [
+    1,
+    71
+   ],
+   [
+    1,
+    73
+   ],
+   [
+    2,
+    11
+   ],
+   [
+    2,
+    16
+   ],
+   [
+    2,
+    19
+   ],
+   [
+    2,
+    61
+   ],
+   [
+    2,
+    77
+   ]
+  ],
+  "added_vs_s79c": [
+   [
+    1,
+    57
+   ],
+   [
+    1,
+    61
+   ],
+   [
+    1,
+    65
+   ],
+   [
+    1,
+    69
+   ],
+   [
+    1,
+    70
+   ],
+   [
+    1,
+    71
+   ],
+   [
+    2,
+    11
+   ],
+   [
+    2,
+    19
+   ],
+   [
+    2,
+    61
+   ]
+  ],
+  "removed_vs_s79c": [],
+  "flag": "DRAW_RERUN_NEEDED"
+ },
+ "K2_fired": false
+}
