@@ -732,3 +732,15 @@ spans 10,654x); (3) 6 no-bias + 4 unparsed s73 rows; (4) pool-diversity dedup on
 ## and has failing elements; prereg kill: winograd-class share < 0.95 => constant is class-scoped and the column
 ## must carry per-class shares; (2) peer-margin application when a peer posts failing margins; (3) 24h-E1/CTA-edge/
 ## bt parked.
+
+## DONE 23:1xZ 11-02: s88/s88b — the winograd population rule is falsified (19/19 r1 WINOGRAD tuples are
+## reference-clean, frac_over exactly 0.0, rho 0.047-0.300; TF32 controls reproduce s84 764/764 CI low 0.995);
+## A7's winograd rho 10.195 does not replicate on a fresh draw (0.149, near-zero-anchor extremum). NEW: compile
+## fails 4/19 smallest winograd tuples with 100% candidate-induced error and TF32 dispatch => pass inheritance is
+## extent-conditional, not universal; tf32-off stays winograd-class 19/19 and passes 19/19. Strategic reflection
+## 6potFhY11g6fkAJs answered (plan lab/understand_2026-11-02/plan_2026-11-02.md; next 02:10:56Z 11-03). Comment
+## zLPtwm96FEvyhSpt verified on post 10.
+## Next: (1) s89 = class-conditional attribution on the tf32-off-EXCEEDING rows (s71: 2/192 at 1e-4, one is
+## L2/11 rho 58.66 where disabling TF32 installs a worse engine) — the only non-TF32-class exceedance in my
+## records, same two-arm design and kills; (2) fold the extent-conditional compile caveat into §4.5/§4.6 prose;
+## (3) reference-configuration certificate at the shipped 1e-2 gate (plan milestone 2); (4) 24h-E1/CTA-edge/bt parked.
