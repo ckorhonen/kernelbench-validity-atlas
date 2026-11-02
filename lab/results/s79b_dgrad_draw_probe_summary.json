@@ -1,0 +1,53 @@
+{
+ "prereg_sha": "baaa9d9ad093c7df96eac20fb29f26a02484765634cd72320e50883637ad63df",
+ "n_draws": 12,
+ "targets": [
+  [
+   1,
+   58
+  ],
+  [
+   1,
+   79
+  ]
+ ],
+ "wall_s": 17.2,
+ "per_tuple": {
+  "L1/58": {
+   "n_ok": 12,
+   "engine_in_instance": true,
+   "rho_min": 5.764505821899733,
+   "rho_max": 6.440869396554823,
+   "rho_median": 5.916848279600962,
+   "draw_spread_max_over_min": 1.1173324471432644,
+   "rho_cv": 0.03519609937578151,
+   "frac_over_1e-4_min": 0.2124181892085538,
+   "frac_over_1e-4_max": 0.2127076271770282,
+   "frac_over_1e-2_max": 0.0,
+   "maxabs_min": 0.0006196303833206906,
+   "maxabs_max": 0.0007363814870194885
+  },
+  "L1/79": {
+   "n_ok": 12,
+   "engine_in_instance": false,
+   "rho_min": 3.2217039319734564,
+   "rho_max": 3.6128649748163943,
+   "rho_median": 3.2669043287139217,
+   "draw_spread_max_over_min": 1.1214143357373414,
+   "rho_cv": 0.03460996513642906,
+   "frac_over_1e-4_min": 0.03817760536868908,
+   "frac_over_1e-4_max": 0.038223396462358616,
+   "frac_over_1e-2_max": 0.0,
+   "maxabs_min": 0.0003565063455484019,
+   "maxabs_max": 0.0003973593968024103
+  }
+ },
+ "verdict": "DRAW_STABLE",
+ "across_shape_span_s79a": 10654.43425652576,
+ "limits": [
+  "two tuples",
+  "seeds 100..111 only",
+  "GB10 sm_120 torch 2.14.1+cu130",
+  "DRAW_STABLE does not prove shape attribution for the other ten rows"
+ ]
+}

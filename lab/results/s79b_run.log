@@ -1,0 +1,63 @@
+tuple L1/58 58_conv_transposed_3D__asymmetric_input__asymmetric_kernel.py
+USDT:2026-11-01 21:28:47 1772523:1772523 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 21:28:47 1772523:1772523 SyncActivityProfilerHandler.cpp:46] profiler_stop
+  engine_in_instance=True top=sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16
+  draw 100 rho=6.286100495678265 frac1e-4=0.21243747933201057 wall=1.4s
+  draw 101 rho=5.833147349479741 frac1e-4=0.2126537181712963 wall=1.8s
+  draw 102 rho=6.440869396554823 frac1e-4=0.2124456604111552 wall=2.2s
+  draw 103 rho=5.902931287052366 frac1e-4=0.21244040729717814 wall=2.7s
+  draw 104 rho=5.764505821899733 frac1e-4=0.2127076271770282 wall=3.1s
+  draw 105 rho=6.257959904078438 frac1e-4=0.2124181892085538 wall=3.5s
+  draw 106 rho=5.8971921257149225 frac1e-4=0.21245590828924163 wall=3.9s
+  draw 107 rho=5.859590095770912 frac1e-4=0.2126076457782187 wall=4.3s
+  draw 108 rho=6.09360957448938 frac1e-4=0.21258404982363316 wall=4.8s
+  draw 109 rho=6.010632298209451 frac1e-4=0.21251911789021163 wall=5.2s
+  draw 110 rho=5.767350661043821 frac1e-4=0.2125667403824956 wall=5.6s
+  draw 111 rho=5.916848279600962 frac1e-4=0.21260781801146383 wall=6.0s
+tuple L1/79 79_conv_transposed_1D_asymmetric_input_square_kernel___padded____strided____dilated__.py
+USDT:2026-11-01 21:28:52 1772523:1772523 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 21:28:52 1772523:1772523 SyncActivityProfilerHandler.cpp:46] profiler_stop
+  engine_in_instance=False top=void cudnn::detail::dgrad_engine<float, 128, 6, 8, 3, 3, 5, false>(int, int, int, float co
+  draw 100 rho=3.2217039319734564 frac1e-4=0.03820772795113391 wall=7.2s
+  draw 101 rho=3.248366527175928 frac1e-4=0.03820043758583036 wall=8.1s
+  draw 102 rho=3.3549569297453994 frac1e-4=0.0382174546469988 wall=9.0s
+  draw 103 rho=3.6128649748163943 frac1e-4=0.038191686912300446 wall=9.9s
+  draw 104 rho=3.3932029109217248 frac1e-4=0.038187894581243206 wall=10.8s
+  draw 105 rho=3.2462914410208445 frac1e-4=0.038214593634963476 wall=11.7s
+  draw 106 rho=3.2467838517840972 frac1e-4=0.03821056288623662 wall=12.6s
+  draw 107 rho=3.2432747989737623 frac1e-4=0.03821919435093173 wall=13.5s
+  draw 108 rho=3.2669043287139217 frac1e-4=0.038223396462358616 wall=14.5s
+  draw 109 rho=3.384318533926392 frac1e-4=0.03821341644771977 wall=15.4s
+  draw 110 rho=3.4684673901345677 frac1e-4=0.03817760536868908 wall=16.3s
+  draw 111 rho=3.237074400812442 frac1e-4=0.038215226931898376 wall=17.2s
+VERDICT DRAW_STABLE {
+ "L1/58": {
+  "n_ok": 12,
+  "engine_in_instance": true,
+  "rho_min": 5.764505821899733,
+  "rho_max": 6.440869396554823,
+  "rho_median": 5.916848279600962,
+  "draw_spread_max_over_min": 1.1173324471432644,
+  "rho_cv": 0.03519609937578151,
+  "frac_over_1e-4_min": 0.2124181892085538,
+  "frac_over_1e-4_max": 0.2127076271770282,
+  "frac_over_1e-2_max": 0.0,
+  "maxabs_min": 0.0006196303833206906,
+  "maxabs_max": 0.0007363814870194885
+ },
+ "L1/79": {
+  "n_ok": 12,
+  "engine_in_instance": false,
+  "rho_min": 3.2217039319734564,
+  "rho_max": 3.6128649748163943,
+  "rho_median": 3.2669043287139217,
+  "draw_spread_max_over_min": 1.1214143357373414,
+  "rho_cv": 0.03460996513642906,
+  "frac_over_1e-4_min": 0.03817760536868908,
+  "frac_over_1e-4_max": 0.038223396462358616,
+  "frac_over_1e-2_max": 0.0,
+  "maxabs_min": 0.0003565063455484019,
+  "maxabs_max": 0.0003973593968024103
+ }
+}
+wrote /home/ckorhonen/kb-lab/results/s79b_dgrad_draw_probe.jsonl /home/ckorhonen/kb-lab/results/s79b_dgrad_draw_probe_summary.json

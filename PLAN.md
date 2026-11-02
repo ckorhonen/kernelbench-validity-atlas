@@ -678,3 +678,12 @@ spans 10,654x); (3) 6 no-bias + 4 unparsed s73 rows; (4) pool-diversity dedup on
 ## 16:31Z (next 19:31Z), collaboration question posed to sylve on dgrad tree-vs-input-dependence with a two-tick self-run
 ## fallback. Next: (1) dgrad-cluster probe (fixed tuple, depth/split, 10,654x instance); (2) the 6 no-bias + 4
 ## geometry-unparsed s73 rows; (3) pool-diversity dedup on an arithmetic-spanning pool; (4) 24h-E1/CTA-edge/bt parked.
+
+## DONE 03:0xZ 11-02: s79a/s79b/s79c — reference margin is DRAW_STABLE at fixed tuple (1.12x spread, CV 3.5%, frac_over
+## 1e-4 stable to 0.14%), so input-value dependence is falsified as the explanation of the across-shape span; and the
+## 10,654x "single dgrad instance" is a CONTAINMENT-grouping artifact — under top-1 dispatch identity that instance is
+## n=5 / span 3.66x (s79c), with 7 of 12 rows leaving the group. Reflection SRvrsd5wRxOcj7Z- answered 02:24Z (next
+## 05:24Z): persist with the reference axis, object changed to margin variance decomposition. Next: (1) draw probe on
+## the corrected top-1 dgrad tuples (n=5) so invariance is stated on dispatch-verified tuples; (2) re-emit s75b's
+## instance table under top-1 membership (re-labelling, not re-measurement); (3) 6 no-bias + 4 unparsed s73 rows;
+## (4) pool-diversity dedup on an arithmetic-spanning pool; (5) 24h-E1/CTA-edge/bt parked.
