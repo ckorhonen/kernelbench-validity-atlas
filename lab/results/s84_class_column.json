@@ -1,0 +1,221 @@
+{
+ "artifact": "s84_class_column",
+ "date": "2026-11-02T15:50:00Z",
+ "prereg": "docstring of lab/s84_class_column.py, frozen pre-run",
+ "population": {
+  "exceed_rows": 54,
+  "controls": 8,
+  "op_class": {
+   "conv": 25,
+   "conv_transpose": 28,
+   "gemm": 1
+  }
+ },
+ "Q1_share": {
+  "verdict": "SHARE_REFERENCE_DOMINATED",
+  "pooled": {
+   "n_rows_with_share": 53,
+   "arms": [
+    "C2_tf32off"
+   ],
+   "ref_share_median": 0.9992958458272969,
+   "ref_share_min": 0.7769470472979523,
+   "ref_share_max": 1.0,
+   "cand_share_median": 0.000704154172703076,
+   "cand_share_max": 0.2230529527020477,
+   "fail_default_total": 2182959627,
+   "ref_induced_total": 2178740305,
+   "cand_induced_total": 4219322
+  },
+  "cells": [
+   {
+    "engine_class": "FP32_SIMT_OR_OTHER",
+    "op_class": "conv_transpose",
+    "arm": "C2_tf32off",
+    "n": 4,
+    "ref_share_median": 0.9997104513558664,
+    "min": 0.9981903038384609,
+    "max": 1.0
+   },
+   {
+    "engine_class": "TF32_TENSOROP",
+    "op_class": "conv",
+    "arm": "C2_tf32off",
+    "n": 23,
+    "ref_share_median": 0.9988307928866916,
+    "min": 0.9961318273247718,
+    "max": 1.0
+   },
+   {
+    "engine_class": "TF32_TENSOROP",
+    "op_class": "conv_transpose",
+    "arm": "C2_tf32off",
+    "n": 24,
+    "ref_share_median": 0.9993691995582774,
+    "min": 0.7769470472979523,
+    "max": 1.0
+   }
+  ],
+  "bars": {
+   "pooled_median": 0.95,
+   "cell_median": 0.9
+  }
+ },
+ "Q2_tail": {
+  "verdict": "TAIL_PER_SHAPE",
+  "cells": [
+   {
+    "engine_class": "TF32_TENSOROP",
+    "op_class": "conv",
+    "n": 23,
+    "tail_min": 1.1413473774913916,
+    "tail_max": 12.78319795406079,
+    "cell_tail_spread": 11.200094034611478,
+    "frac_over_ref_median": 0.16147083003829488
+   },
+   {
+    "engine_class": "TF32_TENSOROP",
+    "op_class": "conv_transpose",
+    "n": 24,
+    "tail_min": 1.1915697611586664,
+    "tail_max": 23.683145531330933,
+    "cell_tail_spread": 19.875584546809716,
+    "frac_over_ref_median": 0.06887009051777201
+   }
+  ],
+  "offending": [
+   {
+    "engine_class": "TF32_TENSOROP",
+    "op_class": "conv",
+    "n": 23,
+    "tail_min": 1.1413473774913916,
+    "tail_max": 12.78319795406079,
+    "cell_tail_spread": 11.200094034611478,
+    "frac_over_ref_median": 0.16147083003829488
+   },
+   {
+    "engine_class": "TF32_TENSOROP",
+    "op_class": "conv_transpose",
+    "n": 24,
+    "tail_min": 1.1915697611586664,
+    "tail_max": 23.683145531330933,
+    "cell_tail_spread": 19.875584546809716,
+    "frac_over_ref_median": 0.06887009051777201
+   }
+  ],
+  "bar_spread": 10.0,
+  "min_cell_n": 5
+ },
+ "Q3_draw": {
+  "verdict": "DRAW_NOISE_BELOW_CELL_SPREAD",
+  "n_probed_rows": 28,
+  "median_draw_spread": 1.0768442741490791,
+  "smallest_cell_tail_spread": 11.200094034611478,
+  "probed_tasks": [
+   "1/57",
+   "1/58",
+   "1/61",
+   "1/65",
+   "1/68",
+   "1/69",
+   "1/70",
+   "1/71",
+   "1/73",
+   "2/11",
+   "2/16",
+   "2/19",
+   "2/61",
+   "2/77"
+  ]
+ },
+ "Q4_verdict_class": {
+  "n_tasks": 54,
+  "c1_pass_c2_fail_1e4": 53,
+  "c1_bit_identical": 27,
+  "both_pass_1e4": 1,
+  "both_fail_1e4": 0,
+  "c1_pass_1e2": 54,
+  "c2_pass_1e2": 53
+ },
+ "Q5_control": {
+  "verdict": "CONTROL_GATE_PASS",
+  "rows": [
+   {
+    "level": 1,
+    "problem_id": 100,
+    "ref_over_budget_frac": 0.0,
+    "ok": true
+   },
+   {
+    "level": 1,
+    "problem_id": 51,
+    "ref_over_budget_frac": 0.0,
+    "ok": true
+   },
+   {
+    "level": 1,
+    "problem_id": 84,
+    "ref_over_budget_frac": 0.0,
+    "ok": true
+   },
+   {
+    "level": 1,
+    "problem_id": 98,
+    "ref_over_budget_frac": 0.0,
+    "ok": true
+   },
+   {
+    "level": 2,
+    "problem_id": 30,
+    "ref_over_budget_frac": 0.0,
+    "ok": true
+   },
+   {
+    "level": 2,
+    "problem_id": 50,
+    "ref_over_budget_frac": 0.0,
+    "ok": true
+   },
+   {
+    "level": 1,
+    "problem_id": 21,
+    "ref_over_budget_frac": 0.0,
+    "ok": true
+   },
+   {
+    "level": 1,
+    "problem_id": 33,
+    "ref_over_budget_frac": 0.0,
+    "ok": true
+   }
+  ]
+ },
+ "schema": [
+  "level",
+  "problem_id",
+  "op_class",
+  "engine_class_refined",
+  "arm",
+  "arm_relation",
+  "verdict_default_1e4",
+  "verdict_anchor_1e4",
+  "verdict_default_1e2",
+  "fail_default_1e4",
+  "fail_anchor_1e4",
+  "total",
+  "ref_induced",
+  "cand_induced",
+  "ref_share",
+  "cand_share",
+  "frac_over_ref",
+  "max_ratio_ref",
+  "max_ratio_cand",
+  "bit_identical_ca",
+  "draw_probe",
+  "draw_spread_max_over_min",
+  "draw_frac_over_min",
+  "draw_frac_over_max"
+ ],
+ "resolution_note": "class counts in s83 were 5/3 at 5% and 4/3 at 10%; any behavioural count is quoted with its resolution",
+ "n_column_rows": 108
+}
