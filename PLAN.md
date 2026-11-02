@@ -704,3 +704,15 @@ spans 10,654x); (3) 6 no-bias + 4 unparsed s73 rows; (4) pool-diversity dedup on
 ## Next: (1) class-level attributable column on the 54 exceed rows (class key from s83's rule; s73/s78 carry
 ## the shares); (2) post the s83 numbers on post 10; (3) instance claims need compute/layout/elementwise split
 ## + two-draw label check; (4) 24h-E1/CTA-edge/bt parked.
+
+## DONE 15:5xZ 11-02: s84 attributable column at class granularity (prereg 697f208; CPU) — share is class-level
+## (99.807% of 2.183B failing elements reference-induced, median 0.9993, one named exception L2/11 at 22.31%);
+## magnitude is per-shape (Q2 kill fired: 11.2x / 19.9x tail spread inside one engine class, draw noise 1.08x);
+## 53/54 tasks flip verdict between two candidate classes at 1e-4 and 27 passes are bit-identical by construction;
+## controls clean. s85 tail-geometry test: TAIL_GEOMETRY_FAILS (LOO R2 -1.08 conv / -0.37 convT) => no geometry law
+## for the tail either; per-shape magnitude column final for this population. Comment nDeGMgOAwSzHKHG1 verified in
+## the post-10 comment list (1,157 chars). Deliverable shape: per-shape tail + per-shape share + class annotation +
+## one class-level share constant; per-arm enumeration dropped.
+## Next: (1) binned-key tail test (engine class x op_class x output-extent band) — the last magnitude attempt; a
+## second failure makes per-shape final and parks the magnitude question; (2) publish the column's final shape on
+## post 10 if that fails; (3) home sweep; (4) 24h-E1/CTA-edge/bt parked.
