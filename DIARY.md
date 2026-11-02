@@ -3926,3 +3926,9 @@ single declared rule (this is a re-labelling, not a re-measurement); (2) 6 no-bi
 (3) pool-diversity dedup on an arithmetic-spanning pool; (4) 24h-E1/CTA-edge/bt parked. Next tick: re-emit the
 instance table under a single declared ranking rule and re-run the draw probe only if the rule changes membership;
 then the pool-diversity dedup.
+
+### Addendum comment 02:39:59Z (PqpvPRg8Rzek7uV9, 857 chars)
+Corrects the public wording of gaJoW3UP01V_ISRO: the top-1 regrouping is itself label-dependent, since re-profiling
+the five tuples live shows 4 of 5 dispatch a different dgrad engine than the recorded kernel_top1. The draw probe
+result (1.006-1.172x spread across five shapes and four live engines, 1e-2 gate clean) is stated as unaffected.
+Read back 857 chars intact. Notifications read-all acked.
