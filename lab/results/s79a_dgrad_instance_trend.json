@@ -1,0 +1,226 @@
+{
+ "prereg": "s79a docstring frozen pre-run",
+ "population_rule": "s75 rows whose kernels contain sm80_xmma_dgrad_implicit_gemm_indexed_tf32, kind=exceed",
+ "n_selected": 12,
+ "n_exceed": 12,
+ "n_usable": 10,
+ "n_excluded_bias_zero": 2,
+ "excluded": [
+  {
+   "level": 1,
+   "problem_id": 81,
+   "name": "81_conv_transposed_2D_asymmetric_input_square_kernel___dilated____padded____strided__.py",
+   "bias": 0.0,
+   "K": 288.0,
+   "dim": 2,
+   "log_in_vol": 6.622659904607587,
+   "log_out_vol": 8.317547755345407,
+   "log_params": 4.265572461743118,
+   "log_spatial": 3.9133899436317554,
+   "frac": 3.831468967488811e-06,
+   "kernel_top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)"
+  },
+  {
+   "level": 2,
+   "problem_id": 2,
+   "name": "2_ConvTranspose2d_BiasAdd_Clamp_Scaling_Clamp_Divide.py",
+   "bias": 0.0,
+   "K": 578.0,
+   "dim": 2,
+   "log_in_vol": 8.127809882927492,
+   "log_out_vol": 8.729869874255455,
+   "log_params": 4.568107812404416,
+   "log_spatial": 4.214419939295737,
+   "frac": 0.003012910485267639,
+   "kernel_top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)"
+  }
+ ],
+ "rows": [
+  {
+   "level": 1,
+   "problem_id": 58,
+   "name": "58_conv_transposed_3D__asymmetric_input__asymmetric_kernel.py",
+   "bias": 0.4834796752991545,
+   "K": 3360.0,
+   "dim": 3,
+   "log_in_vol": 7.224719895935548,
+   "log_out_vol": 7.064913011196699,
+   "log_params": 4.730459260045769,
+   "log_spatial": 4.515449934959718,
+   "frac": 0.21269410686728396,
+   "kernel_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+  },
+  {
+   "level": 1,
+   "problem_id": 68,
+   "name": "68_conv_transposed_3D__square_input__asymmetric_kernel.py",
+   "bias": 0.24742707338743908,
+   "K": 2400.0,
+   "dim": 3,
+   "log_in_vol": 8.127809882927492,
+   "log_out_vol": 8.494861717594153,
+   "log_params": 5.186391215695493,
+   "log_spatial": 5.418539921951662,
+   "frac": 0.05885721810448778,
+   "kernel_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+  },
+  {
+   "level": 1,
+   "problem_id": 73,
+   "name": "73_conv_transposed_3D_asymmetric_input_square_kernel__strided_padded__grouped.py",
+   "bias": 0.13205393451888464,
+   "K": 864.0,
+   "dim": 3,
+   "log_in_vol": 7.52574989159953,
+   "log_out_vol": 8.416894420491362,
+   "log_params": 4.4416637207987995,
+   "log_spatial": 5.418539921951662,
+   "frac": 0.005939426842478023,
+   "kernel_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+  },
+  {
+   "level": 1,
+   "problem_id": 79,
+   "name": "79_conv_transposed_1D_asymmetric_input_square_kernel___padded____strided____dilated__.py",
+   "bias": 4.5378258822426624e-05,
+   "K": 96.0,
+   "dim": 1,
+   "log_in_vol": 7.826779887263511,
+   "log_out_vol": 8.428841535290287,
+   "log_params": 3.7884512070234555,
+   "log_spatial": 5.11750992628768,
+   "frac": 0.03820908767690591,
+   "kernel_top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)"
+  },
+  {
+   "level": 2,
+   "problem_id": 15,
+   "name": "15_ConvTranspose3d_BatchNorm_Subtract.py",
+   "bias": 0.09763139267925877,
+   "K": 435.0,
+   "dim": 3,
+   "log_in_vol": 6.622659904607587,
+   "log_out_vol": 7.799312753717267,
+   "log_params": 4.143639235274543,
+   "log_spatial": 4.214419939295737,
+   "frac": 0.00015786724636090996,
+   "kernel_top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})"
+  },
+  {
+   "level": 2,
+   "problem_id": 16,
+   "name": "16_ConvTranspose2d_Mish_Add_Hardtanh_Scaling.py",
+   "bias": 0.18857315369958755,
+   "K": 577.0,
+   "dim": 2,
+   "log_in_vol": 8.127809882927492,
+   "log_out_vol": 8.729869874255455,
+   "log_params": 4.567355787139618,
+   "log_spatial": 4.214419939295737,
+   "frac": 0.0019033979624509811,
+   "kernel_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+  },
+  {
+   "level": 2,
+   "problem_id": 3,
+   "name": "3_ConvTranspose3d_Sum_LayerNorm_AvgPool_GELU.py",
+   "bias": 0.2958153597613166,
+   "K": 867.015625,
+   "dim": 3,
+   "log_in_vol": 7.224719895935548,
+   "log_out_vol": 7.52574989159953,
+   "log_params": 4.744206898207656,
+   "log_spatial": 4.214419939295737,
+   "frac": 0.07713136076927185,
+   "kernel_top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})"
+  },
+  {
+   "level": 2,
+   "problem_id": 5,
+   "name": "5_ConvTranspose2d_Subtract_Tanh.py",
+   "bias": 0.05142592640200291,
+   "K": 1026.0,
+   "dim": 2,
+   "log_in_vol": 8.127809882927492,
+   "log_out_vol": 8.731564682527425,
+   "log_params": 4.8173273347596846,
+   "log_spatial": 4.816479930623699,
+   "frac": 0.002829329430423036,
+   "kernel_top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})"
+  },
+  {
+   "level": 2,
+   "problem_id": 74,
+   "name": "74_ConvTranspose3d_LeakyReLU_Multiply_LeakyReLU_Max.py",
+   "bias": 0.003935259518960261,
+   "K": 434.0,
+   "dim": 3,
+   "log_in_vol": 6.622659904607587,
+   "log_out_vol": 6.923689900271567,
+   "log_params": 4.142639707832417,
+   "log_spatial": 4.214419939295737,
+   "frac": 0.0009634494781494141,
+   "kernel_top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::leaky_relu_kernel(at::TensorIteratorBase&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::leaky_relu_kernel(at::TensorIteratorBase&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)"
+  },
+  {
+   "level": 2,
+   "problem_id": 77,
+   "name": "77_ConvTranspose3d_Scale_BatchNorm_GlobalAvgPool.py",
+   "bias": 0.2682191725187886,
+   "K": 8003.0,
+   "dim": 3,
+   "log_in_vol": 7.224719895935548,
+   "log_out_vol": 3.3113299523037933,
+   "log_params": 6.010462786541827,
+   "log_spatial": 4.214419939295737,
+   "frac": 0.0078125,
+   "kernel_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+  }
+ ],
+ "within_instance_span": 10654.43425652576,
+ "tests": {
+  "K": {
+   "rho": 0.7818181818181819,
+   "p_perm": 0.011398860113988602,
+   "n": 10
+  },
+  "dim": {
+   "rho": 0.5393598899705937,
+   "p_perm": 0.11708829117088292,
+   "n": 10
+  },
+  "log_in_vol": {
+   "rho": -0.056096819400507425,
+   "p_perm": 0.8778122187781222,
+   "n": 10
+  },
+  "log_out_vol": {
+   "rho": -0.3333333333333333,
+   "p_perm": 0.34696530346965304,
+   "n": 10
+  },
+  "log_params": {
+   "rho": 0.6606060606060606,
+   "p_perm": 0.046795320467953205,
+   "n": 10
+  },
+  "log_spatial": {
+   "rho": -0.16218728003365063,
+   "p_perm": 0.6475352464753524,
+   "n": 10
+  }
+ },
+ "hit_coordinates": [
+  "K",
+  "log_params"
+ ],
+ "best_coordinate": "K",
+ "verdict": "MONOTONE_INSIDE_INSTANCE",
+ "limits": [
+  "n=12",
+  "one dispatch name",
+  "s73 exceed population only",
+  "no GPU",
+  "log-rank test only; a monotone result is a hypothesis for s79b, not a law"
+ ]
+}
