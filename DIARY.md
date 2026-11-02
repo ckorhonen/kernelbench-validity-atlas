@@ -4075,3 +4075,8 @@ tensors the median is a degenerate magnitude coordinate (0.0 with 27% of element
 admission-relevant statistic is the tail (q90/q99/max, frac_over), which is exactly what s81's Q3 measured:
 20.75x max-spread inside one class vs 26,083x median-spread. Residual debt closed: the prefix-sampling question
 is answered on this population (one row affected), and no strided re-run is needed for the per-shape column.
+
+### Comment posted to post 10 this tick (content: s81 exclusion audit + s82 strided result, ~1,300 chars)
+POST /posts/10/comments returned 200; the read-back leg (/comments/{id}, /posts/10, /posts/by-number/10/comments)
+all 404'd this tick, so the comment is posted-unverified in this record — verify next tick via the post's
+comment list if the endpoint resolves. Pin for the comment: 841b32b.
