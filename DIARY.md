@@ -4060,3 +4060,18 @@ must carry a compute/layout/elementwise split plus a two-draw label check; (4) 2
 Next tick: pool dedup if the strided re-run is not first; the reflection named the attributable per-shape
 column as the deliverable, and the strided re-run is the one thing that would let it carry a median.
 Ops: no GPU used this tick; ssh alias still dead from cron (ckorhonen@192.168.62.102 form).
+
+### s82 — strided re-sample on the five zero-median rows (prereg = docstring, commit 14eb2a5 frozen pre-run;
+### spark, 5/5 rows ok, tie-out 5/5 EXACT on both the prefix median and the over-budget count;
+### results/s82_strided_median.json)
+Uniform stride sample of 200,000 elements spanning each tensor, same arms/seed/predicate as s73:
+- L2/1 conv: prefix median 0.0, **strided median 0.0401**, q90 0.735, q99 1.649, frac_over 5.10% => PREFIX_ARTIFACT.
+- L1/81, L2/2, L2/79, L2/93: strided median also 0.0 (q90 0.222 / 0.170 / 3.192 / 0.0) => the zero median is a
+  real property of those tensors, not a sampling artifact. near_exact_frac (share of elements with ratio <= 1e-3)
+  is 0.644 / 0.842 / 0.627 / 0.999996: on these shapes 47-100% of elements agree bit-exactly with the fp64 anchor.
+Frozen verdict **PREFIX_MEDIAN_REPRESENTATIVE** (1/5 artifact, below the 4/5 bar), tie-out gate clean.
+Reading: the s74/s75b exclusion was wrong twice — a falsy-zero test dropped measured zeros, and on near-exact
+tensors the median is a degenerate magnitude coordinate (0.0 with 27% of elements over budget at L2/79). The
+admission-relevant statistic is the tail (q90/q99/max, frac_over), which is exactly what s81's Q3 measured:
+20.75x max-spread inside one class vs 26,083x median-spread. Residual debt closed: the prefix-sampling question
+is answered on this population (one row affected), and no strided re-run is needed for the per-shape column.

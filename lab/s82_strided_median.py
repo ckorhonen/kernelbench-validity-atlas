@@ -122,7 +122,7 @@ def main():
         try:
             torch.manual_seed(0)
             torch.cuda.empty_cache()
-            mod = base.load_task(os.path.join(KB, "KernelBench", "level%d" % level, r71["name"]))
+            mod = base.load_task(os.path.join(base.KB, "KernelBench", "level%d" % level, r71["name"]))
             init_args = mod.get_init_inputs() if hasattr(mod, "get_init_inputs") else []
             inputs = mod.get_inputs()
             torch.manual_seed(0)
@@ -170,7 +170,8 @@ def main():
 
     verdicts = [r.get("verdict") for r in out["rows"]]
     n_art = sum(1 for v in verdicts if v == "PREFIX_ARTIFACT")
-    if out["tie_out_fail"] >= 2:
+    n_err = sum(1 for v in verdicts if v == "ERROR")
+    if n_err or out["tie_out_fail"] >= 2:
         out["verdict"] = "UNRESOLVED"
     elif n_art >= 4:
         out["verdict"] = "ZERO_MEDIAN_IS_PREFIX_ARTIFACT"
