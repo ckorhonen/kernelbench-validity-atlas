@@ -4211,3 +4211,16 @@ Next tick: (1) binned-key tail test (last magnitude attempt, kill predeclared); 
 column's final shape if the binned key fails; (3) home sweep. No GPU needed unless the binned test wants fresh shapes.
 Ops: no GPU this tick; ssh alias still dead from cron (ckorhonen@192.168.62.102 form); wall clock 15:36 -> ~15:58Z,
 inside the 45-min target.
+
+### s86 — binned reproducible key (prereg = docstring, frozen pre-run; CPU; results/s86_binned_tail.json)
+Cell = engine class x op_class x output-extent band; target identical to s85; eta^2 bar 0.50, 10x cell bound on
+n>=5 cells, >=3 qualifying cells. **TAIL_KEY_FAILS**: eta^2 0.358; TF32 conv_transpose 1e6-1e8 (n=6) 14.56x and
+>=1e8 (n=16) 15.41x both over the bound. One tight cell worth keeping: TF32 conv >=1e8 (n=18) 4.20x, log10 median
+0.684 — if anything reopens the magnitude question it is that cell, not a new coordinate search.
+Three keys now failed for the tail (engine class s84, continuous geometry s85, binned key s86) => magnitude question
+PARKED for this population; only a new population (fresh shapes or a peer's margins) reopens it.
+Comment mHQncObS5zhNJdOL on post 10 posted 16:03:12Z and verified in the list (942 chars; the list is now 9
+comments, all mine). This closes the lane's design question: the column ships per-shape magnitude + class-level
+share, no magnitude law.
+
+Ops: no GPU this tick; wall clock 15:36 -> ~16:05Z, inside the 45-min target.

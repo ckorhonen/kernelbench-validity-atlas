@@ -1,0 +1,115 @@
+{
+ "artifact": "s86_binned_tail",
+ "date": "2026-11-02T16:00:00Z",
+ "prereg": "docstring of lab/s86_binned_tail.py, frozen pre-run",
+ "n_used": 54,
+ "n_cells": 10,
+ "eta2": 0.3583114540383028,
+ "T1_bar": 0.5,
+ "T2_bar_spread": 10.0,
+ "T3_cells_n_ge_5": 3,
+ "cells": [
+  {
+   "engine_class": "FP32_SIMT_OR_OTHER",
+   "op_class": "conv",
+   "band": "6-8",
+   "n": 1,
+   "log10_min": 1.3011099704894846,
+   "log10_max": 1.3011099704894846,
+   "tail_spread": 1.0,
+   "log10_median": 1.3011099704894846
+  },
+  {
+   "engine_class": "FP32_SIMT_OR_OTHER",
+   "op_class": "conv",
+   "band": ">=8",
+   "n": 1,
+   "log10_min": 0.010911539865499694,
+   "log10_max": 0.010911539865499694,
+   "tail_spread": 1.0,
+   "log10_median": 0.010911539865499694
+  },
+  {
+   "engine_class": "FP32_SIMT_OR_OTHER",
+   "op_class": "conv_transpose",
+   "band": ">=8",
+   "n": 4,
+   "log10_min": 0.051730448516990976,
+   "log10_max": 1.313827778644708,
+   "tail_spread": 18.28509959241863,
+   "log10_median": 0.4114437562108959
+  },
+  {
+   "engine_class": "FP32_SIMT_OR_OTHER",
+   "op_class": "gemm",
+   "band": "<6",
+   "n": 1,
+   "log10_min": 0.3806390175397094,
+   "log10_max": 0.3806390175397094,
+   "tail_spread": 1.0,
+   "log10_median": 0.3806390175397094
+  },
+  {
+   "engine_class": "TF32_TENSOROP",
+   "op_class": "conv",
+   "band": "6-8",
+   "n": 4,
+   "log10_min": 0.05746744191777943,
+   "log10_max": 0.530443244984907,
+   "tail_spread": 2.971500468500625,
+   "log10_median": 0.35767645762446343
+  },
+  {
+   "engine_class": "TF32_TENSOROP",
+   "op_class": "conv",
+   "band": "<6",
+   "n": 1,
+   "log10_min": 0.5367709222191269,
+   "log10_max": 0.5367709222191269,
+   "tail_spread": 1.0,
+   "log10_median": 0.5367709222191269
+  },
+  {
+   "engine_class": "TF32_TENSOROP",
+   "op_class": "conv",
+   "band": ">=8",
+   "n": 18,
+   "log10_min": 0.48349693134164046,
+   "log10_max": 1.1071947355754599,
+   "tail_spread": 4.20433975388063,
+   "log10_median": 0.6841085462436253
+  },
+  {
+   "engine_class": "TF32_TENSOROP",
+   "op_class": "conv_transpose",
+   "band": "6-8",
+   "n": 6,
+   "log10_min": 0.21033635141338072,
+   "log10_max": 1.373411975515632,
+   "tail_spread": 14.557125430931851,
+   "log10_median": 0.7083931064653608
+  },
+  {
+   "engine_class": "TF32_TENSOROP",
+   "op_class": "conv_transpose",
+   "band": "<6",
+   "n": 2,
+   "log10_min": 0.07606771708206161,
+   "log10_max": 0.1060257266074479,
+   "tail_spread": 1.0714157086436147,
+   "log10_median": 0.09104672184475476
+  },
+  {
+   "engine_class": "TF32_TENSOROP",
+   "op_class": "conv_transpose",
+   "band": ">=8",
+   "n": 16,
+   "log10_min": 0.12018193842148796,
+   "log10_max": 1.3079280147697803,
+   "tail_spread": 15.407993137370404,
+   "log10_median": 0.5744078461675255
+  }
+ ],
+ "verdict": "TAIL_KEY_FAILS",
+ "kill_note": "magnitude question parked; per-shape tail column is the deliverable"
+}

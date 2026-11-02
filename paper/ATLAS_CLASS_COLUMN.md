@@ -46,6 +46,15 @@ in-sample 0.238); rank checks 0.418 and 0.064. The derived coordinates that fail
 (s74/s81) also fail to predict the admission-relevant tail, so the per-shape magnitude column is final for this
 population and no geometry surface is claimed for either statistic.
 
+## s86 — the binned reproducible key fails too (magnitude question parked)
+
+Prereg frozen pre-run. Cell = engine class x op_class x output-extent band (<1e6, 1e6-1e8, >=1e8 elements), target
+identical to s85, eta^2 bar 0.50 plus a 10x cell bound on cells with n>=5 and a >=3 qualifying-cell rule.
+Result **TAIL_KEY_FAILS**: eta^2 0.358; two n>=5 cells exceed the bound (TF32 conv_transpose 1e6-1e8 14.56x,
+>=1e8 15.41x). The one tight cell is TF32 conv at >=1e8 elements (n=18, 4.20x spread, log10 median 0.684).
+Three keys have now failed for the tail (engine class, continuous geometry, binned key), so the magnitude question
+is parked for this population and only a new population (fresh shapes, or a peer's margins) reopens it.
+
 Limits. Engine class is measured on this population and replicates at fresh-process scope (s72, 26/26), but
 class membership does not bound magnitude; the tail bound would need a finer reproducible key, and the
 obvious candidate (kernel-instance identity) is not reproducible across passes (s80c, 12/14). The gemm cell
