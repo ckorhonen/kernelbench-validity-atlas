@@ -1,0 +1,61 @@
+{
+ "artifact": "s85_tail_geometry",
+ "date": "2026-11-02T15:52:00Z",
+ "prereg": "docstring of lab/s85_tail_geometry.py, frozen pre-run",
+ "population": {
+  "n_used": 54,
+  "excluded": [],
+  "by_op": {
+   "conv": 25,
+   "conv_transpose": 28,
+   "gemm": 1
+  }
+ },
+ "features": [
+  "log10_out_elems",
+  "log10_in_elems",
+  "log10_params",
+  "log10_spatial",
+  "log10_in_channels"
+ ],
+ "bar_loo_r2": 0.5,
+ "per_family": {
+  "conv": {
+   "n": 25,
+   "loo_r2": -1.077533456156257,
+   "in_sample_r2": 0.10482015723867844,
+   "spearman_log_out_elems": 0.41846153846153844,
+   "spearman_log_spatial": 0.21769230769230768,
+   "target_log10_min": 0.010911539865499694,
+   "target_log10_max": 1.3011099704894846,
+   "target_log10_median": 0.6765560543077087,
+   "coef_standardised": {
+    "log10_out_elems": 0.10902626305525764,
+    "log10_in_elems": -0.12783396617834744,
+    "log10_params": -0.01867497635875253,
+    "log10_spatial": -0.08735719617831472,
+    "log10_in_channels": 0.09896533716191169
+   }
+  },
+  "conv_transpose": {
+   "n": 28,
+   "loo_r2": -0.3738337010194104,
+   "in_sample_r2": 0.23783510451424905,
+   "spearman_log_out_elems": 0.06403940886699508,
+   "spearman_log_spatial": 0.2868089764641489,
+   "target_log10_min": 0.051730448516990976,
+   "target_log10_max": 1.373411975515632,
+   "target_log10_median": 0.5744078461675255,
+   "coef_standardised": {
+    "log10_out_elems": 0.1300045241395034,
+    "log10_in_elems": 0.13634799132626332,
+    "log10_params": 0.17731564695605567,
+    "log10_spatial": 0.022257953880828702,
+    "log10_in_channels": -0.102752167526687
+   }
+  }
+ },
+ "verdict": "TAIL_GEOMETRY_FAILS",
+ "clearing_families": [],
+ "kill_note": "per-shape tail column stands as final for this population"
+}

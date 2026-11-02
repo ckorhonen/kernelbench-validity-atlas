@@ -37,6 +37,15 @@ engine class as an annotation, draw interval where probed, and a single class-le
 reference-dominated population. Per-arm enumeration is dropped (s83); the class key enters the share, never
 the magnitude.
 
+## s85 — the tail does not compress in geometry either
+
+Prereg frozen pre-run (`lab/s85_tail_geometry.py`). Target: log10(max_ratio_ref) for the C1 arm on all 54 rows
+(no exclusions), five declared shape-derived features, within-op LOO OLS, bar 0.50.
+Result: **TAIL_GEOMETRY_FAILS** — conv LOO R2 -1.078 (n=25, in-sample 0.105), conv_transpose -0.374 (n=28,
+in-sample 0.238); rank checks 0.418 and 0.064. The derived coordinates that failed to predict the median bias
+(s74/s81) also fail to predict the admission-relevant tail, so the per-shape magnitude column is final for this
+population and no geometry surface is claimed for either statistic.
+
 Limits. Engine class is measured on this population and replicates at fresh-process scope (s72, 26/26), but
 class membership does not bound magnitude; the tail bound would need a finer reproducible key, and the
 obvious candidate (kernel-instance identity) is not reproducible across passes (s80c, 12/14). The gemm cell
