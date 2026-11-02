@@ -1,0 +1,912 @@
+{
+ "date": "2026-11-02T23:13:37Z",
+ "n_rows": 22,
+ "population": {
+  "wino": 19,
+  "tf32_control": 3
+ },
+ "label_gate": {
+  "wino_labelled_rows": 19,
+  "tf32_control_labelled": 3
+ },
+ "pooled": {
+  "wino/C1": {
+   "n_ref_ind": 0,
+   "n_fail": 9617,
+   "share": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.00039929978682945986
+  },
+  "wino/C2": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0
+  },
+  "tf32_control/C1": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0
+  },
+  "tf32_control/C2": {
+   "n_ref_ind": 764,
+   "n_fail": 764,
+   "share": 1.0,
+   "ci_low": 0.9949968847741513,
+   "ci_high": 1.0
+  }
+ },
+ "per_row": [
+  {
+   "idx": 0,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    1,
+    4,
+    4,
+    256,
+    256
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.20839443988274883,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 1380,
+     "n_ref_ind": 0,
+     "n_cand_ind": 1380,
+     "share": 0.0,
+     "bit_identical": false,
+     "engine": "TF32_TENSOROP",
+     "max_ratio_ref": 0.20841180144489646
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.20839878279751017
+    }
+   }
+  },
+  {
+   "idx": 1,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    4,
+    4,
+    4,
+    64,
+    64
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.06910100869917912,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 1444,
+     "n_ref_ind": 0,
+     "n_cand_ind": 1444,
+     "share": 0.0,
+     "bit_identical": false,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.06910902681903344
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.06910148619741902
+    }
+   }
+  },
+  {
+   "idx": 2,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    4,
+    4,
+    4,
+    256,
+    256
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.18082475081996519,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 5623,
+     "n_ref_ind": 0,
+     "n_cand_ind": 5623,
+     "share": 0.0,
+     "bit_identical": false,
+     "engine": "TF32_TENSOROP",
+     "max_ratio_ref": 0.1808424167830993
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.18082148112003857
+    }
+   }
+  },
+  {
+   "idx": 3,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    1,
+    7,
+    7,
+    64,
+    64
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.06485449424223957,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 1170,
+     "n_ref_ind": 0,
+     "n_cand_ind": 1170,
+     "share": 0.0,
+     "bit_identical": false,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.06485371920849628
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.06485491485550979
+    }
+   }
+  },
+  {
+   "idx": 4,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    1,
+    7,
+    7,
+    256,
+    256
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.2101607255761758,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.210165142422058
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.210165142422058
+    }
+   }
+  },
+  {
+   "idx": 5,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    4,
+    7,
+    7,
+    64,
+    64
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.08422721535809545,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.08422650594168997
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.08422650594168997
+    }
+   }
+  },
+  {
+   "idx": 6,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    4,
+    7,
+    7,
+    256,
+    256
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.3003452239898829,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.3003542449861816
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.3003542449861816
+    }
+   }
+  },
+  {
+   "idx": 7,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    1,
+    10,
+    10,
+    64,
+    64
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.07204175167406156,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.07204123267640206
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.07204123267640206
+    }
+   }
+  },
+  {
+   "idx": 8,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    1,
+    10,
+    10,
+    256,
+    256
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.21910403189620867,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.2190992313437114
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.2190992313437114
+    }
+   }
+  },
+  {
+   "idx": 9,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    4,
+    10,
+    10,
+    64,
+    64
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.14228778059146696,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.14228980520152526
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.14228980520152526
+    }
+   }
+  },
+  {
+   "idx": 10,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    4,
+    10,
+    10,
+    256,
+    256
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.20117882541850307,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.2011747782079447
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.2011747782079447
+    }
+   }
+  },
+  {
+   "idx": 11,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    1,
+    14,
+    14,
+    64,
+    64
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.09062632757008678,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.090627148890655
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.090627148890655
+    }
+   }
+  },
+  {
+   "idx": 12,
+   "arm": "wino",
+   "tag": "m3m2",
+   "shape": [
+    4,
+    14,
+    14,
+    64,
+    64
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.11269935908437712,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.11270062921324518
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.11270062921324518
+    }
+   }
+  },
+  {
+   "idx": 13,
+   "arm": "wino",
+   "tag": "w4",
+   "shape": [
+    2,
+    5,
+    5,
+    32,
+    32
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.04709764945153397,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.04709742763372029
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.04709742763372029
+    }
+   }
+  },
+  {
+   "idx": 14,
+   "arm": "wino",
+   "tag": "w4",
+   "shape": [
+    2,
+    5,
+    5,
+    96,
+    96
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.07696185565673343,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.07696244797401462
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.07696244797401462
+    }
+   }
+  },
+  {
+   "idx": 15,
+   "arm": "wino",
+   "tag": "w4",
+   "shape": [
+    2,
+    8,
+    8,
+    32,
+    32
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.05566557189451574,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.05566588176183007
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.05566588176183007
+    }
+   }
+  },
+  {
+   "idx": 16,
+   "arm": "wino",
+   "tag": "a2",
+   "shape": [
+    2,
+    6,
+    6,
+    48,
+    48
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.07269352214490002,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.0726940505835576
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.0726940505835576
+    }
+   }
+  },
+  {
+   "idx": 17,
+   "arm": "wino",
+   "tag": "a2",
+   "shape": [
+    2,
+    6,
+    6,
+    128,
+    128
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.11045625636209307,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.11045747643402648
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.11045747643402648
+    }
+   }
+  },
+  {
+   "idx": 18,
+   "arm": "wino",
+   "tag": "a2",
+   "shape": [
+    2,
+    10,
+    10,
+    128,
+    128
+   ],
+   "engine_A": "WINOGRAD",
+   "engine_X": "FP64",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.13553879239127026,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.13554062949259438
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "WINOGRAD",
+     "max_ratio_ref": 0.13554062949259438
+    }
+   }
+  },
+  {
+   "idx": 19,
+   "arm": "tf32_control",
+   "tag": "m3m2",
+   "shape": [
+    1,
+    4,
+    4,
+    16,
+    16
+   ],
+   "engine_A": "TF32_TENSOROP",
+   "engine_X": "FP64",
+   "engine_C2": "FP32_SIMT",
+   "frac_over_ref": 0.30859375,
+   "rho_max": 3.603650017943577,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "TF32_TENSOROP",
+     "max_ratio_ref": 3.60494911543803
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 79,
+     "n_ref_ind": 79,
+     "n_cand_ind": 0,
+     "share": 1.0,
+     "bit_identical": false,
+     "engine": "FP32_SIMT",
+     "max_ratio_ref": 3.6036499158822504
+    }
+   }
+  },
+  {
+   "idx": 20,
+   "arm": "tf32_control",
+   "tag": "m3m2",
+   "shape": [
+    1,
+    4,
+    4,
+    64,
+    64
+   ],
+   "engine_A": "TF32_TENSOROP",
+   "engine_X": "FP64",
+   "engine_C2": "OTHER",
+   "frac_over_ref": 0.3095703125,
+   "rho_max": 5.479275477669672,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "TF32_TENSOROP",
+     "max_ratio_ref": 5.476274875806073
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 317,
+     "n_ref_ind": 317,
+     "n_cand_ind": 0,
+     "share": 1.0,
+     "bit_identical": false,
+     "engine": "OTHER",
+     "max_ratio_ref": 5.4792754290705625
+    }
+   }
+  },
+  {
+   "idx": 21,
+   "arm": "tf32_control",
+   "tag": "m3m2",
+   "shape": [
+    4,
+    4,
+    4,
+    16,
+    16
+   ],
+   "engine_A": "TF32_TENSOROP",
+   "engine_X": "FP64",
+   "engine_C2": "FP32_SIMT",
+   "frac_over_ref": 0.359375,
+   "rho_max": 4.695429568695771,
+   "cands": {
+    "C1": {
+     "ok": true,
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true,
+     "engine": "TF32_TENSOROP",
+     "max_ratio_ref": 4.693225897530588
+    },
+    "C2": {
+     "ok": true,
+     "n_fail": 368,
+     "n_ref_ind": 368,
+     "n_cand_ind": 0,
+     "share": 1.0,
+     "bit_identical": false,
+     "engine": "FP32_SIMT",
+     "max_ratio_ref": 4.695429185858672
+    }
+   }
+  }
+ ],
+ "verdict": {
+  "K1_class_scoped": true,
+  "K2_underpowered": true,
+  "K3_population_narrowed": false,
+  "K4_control_gate_failed": false,
+  "wino_share_C2": null,
+  "wino_share_C1": 0.0,
+  "control_share_C2": 1.0,
+  "reading": "UNDERPOWERED"
+ }
+}

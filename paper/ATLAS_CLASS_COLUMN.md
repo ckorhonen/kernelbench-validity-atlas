@@ -88,3 +88,37 @@ Limits. Engine class is measured on this population and replicates at fresh-proc
 class membership does not bound magnitude; the tail bound would need a finer reproducible key, and the
 obvious candidate (kernel-instance identity) is not reproducible across passes (s80c, 12/14). The gemm cell
 has n=1 and carries no cell statistic. Resolution conventions (s62, s83) apply to any behavioural count.
+
+## s88/s88b — the winograd class has no reference-side exceedance to split (population rule falsified; compile's inheritance is extent-conditional)
+
+Prereg frozen pre-run (`lab/s88_class_share.py`, commit 1477773), population rule = the 19 rows of s63's 56-row
+r1 population whose default-flags reference call s63 labelled WINOGRAD (13 m3m2, 3 w4, 3 a2, conv2d 3x3 s1 p1
+fp32), plus 3 declared TF32 controls (first in file order). Constructed replication at the same tuples; per-row
+instrument gate = the constructed conv must label WINOGRAD.
+
+**The registered population rule is falsified.** All 19 tuples label WINOGRAD (19/19 gate clean) and all 19 are
+reference-clean: frac_over_ref exactly 0.0, rho_max 0.047-0.300 (30-2000x inside the budget). There are no
+reference-induced failing elements to split, so `wino/C2` has n_fail = 0 and the share is undefined (K2
+UNDERPOWERED fires at <500 failing elements; K1's CI bound is degenerate for the same reason). The control gate
+passes: the 3 TF32 rows reproduce s84 exactly (764/764 reference-induced, share 1.0, Wilson CI low 0.995).
+
+**s88b (post-hoc, descriptive, no prereg).** A7's winograd row (2,5,5,256,256; rho 10.195, frac_over 0.0052)
+does not replicate on a fresh draw: rho 0.149, frac_over 0.0; brackets (2,6,6,256,256) 0.147 and
+(2,8,8,256,256) 0.225. A7's number was a near-zero-anchor extremum (its abs_max 0.00264 divided by a ~2.6e-4
+anchor magnitude), not a bulk exceedance. So the winograd class is bulk-clean at 4e3-1e5 elements on two
+independent populations (s87c extents, s88 r1 tuples), and the class axis still has no exceeded population to
+test. The constant remains TF32-scoped, now with a stronger non-claim: no winograd-class share exists because no
+winograd reference exceeds in bulk at these extents.
+
+**New finding, and a correction to my own §4 claim.** On 4 of the 19 winograd tuples (the smallest extents:
+1x4x4x256, 4x4x4x64, 4x4x4x256, 1x7x7x64) torch.compile's candidate FAILS the 1e-4 gate against the same
+reference — 1,170-5,623 failing elements, 100% candidate-induced (d_ref <= b_e), and compile dispatches
+TF32_TENSOROP on 2 of them, i.e. it is NOT class-sharing there. s88b reproduces the direction at larger
+small-extents (4,459-12,318 candidate-induced failures). So "compile inherits a pass" is extent-conditional:
+it holds on the 54-row exceed population (27/54 bit-identical) and fails where the inductor conv picks a
+different engine class than the winograd reference. tf32-off, by contrast, stays in the winograd class on
+19/19 and passes 19/19 (0 failing elements).
+
+Deliverable shape unchanged (per-shape magnitude, class-level share), with one added caveat: a candidate's
+verdict inheritance depends on whether it shares the reference's engine class, and the compiler arm does not
+share it at small extents.
