@@ -1,0 +1,705 @@
+{
+ "summary": {
+  "prereg": "docstring of this file, frozen pre-run",
+  "prereg_sha256": "e632d867a869822b00f4fa4b1578dc7be3e8c70e8b14876b4ab672c586d38524",
+  "population": {
+   "constructed": 17,
+   "labelled": 17,
+   "statuses": {
+    "0": "ok",
+    "1": "ok",
+    "2": "ok",
+    "3": "ok",
+    "4": "ok",
+    "5": "ok",
+    "6": "ok",
+    "7": "ok",
+    "8": "ok",
+    "9": "ok",
+    "10": "ok",
+    "11": "ok",
+    "12": "ok",
+    "13": "ok",
+    "14": "ok",
+    "15": "ok",
+    "16": "ok"
+   }
+  },
+  "class_distribution": {
+   "TF32_TENSOROP": 17
+  },
+  "class_aggregates": {
+   "TF32_TENSOROP": {
+    "n": 17,
+    "failing_elements": 153357153,
+    "ref_induced": 153126865,
+    "share": 0.9984983550131502,
+    "share_min_of_configs": 0.9957263173288141,
+    "max_cand_share": 0.00427368267118585
+   }
+  },
+  "pooled": {
+   "n": 17,
+   "failing_elements": 153357153,
+   "ref_induced": 153126865,
+   "share": 0.9984983550131502,
+   "share_min_of_configs": 0.9957263173288141,
+   "max_cand_share": 0.00427368267118585
+  },
+  "top1_names": [
+   "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+   "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+   "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)"
+  ],
+  "verdict": "CLASS_CONFINED",
+  "s87_verdict": "V1_SHARE_GENERALIZES",
+  "wall_s": 1.2,
+  "torch": "2.14.1+cu130"
+ },
+ "rows": [
+  {
+   "idx": 0,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 64,
+   "H": 56,
+   "W": 56,
+   "Cout": 64,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernel_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+     "self_us": 24.639999999999418
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 19.29599999999482
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 15.072000000000116
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 9.535000000003492
+    },
+    {
+     "name": "Memset (Device)",
+     "self_us": 2.8479999999981374
+    }
+   ],
+   "n_kernels": 5,
+   "s87_fail_default": 162303,
+   "s87_ref_induced": 161906,
+   "s87_cand_induced": 397,
+   "s87_share": 0.9975539577210526,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 1,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 16,
+   "H": 256,
+   "W": 256,
+   "Cout": 32,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x32x64_stage1_warpsize4x1x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x32x64_stage1_warpsize4x1x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernel_top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "kernels": [
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 104.92100000000028
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 83.45299999999952
+    },
+    {
+     "name": "sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x32x64_stage1_warpsize4x1x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+     "self_us": 83.29199999999992
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 52.86100000000033
+    }
+   ],
+   "n_kernels": 4,
+   "s87_fail_default": 1698614,
+   "s87_ref_induced": 1698076,
+   "s87_cand_induced": 538,
+   "s87_share": 0.9996832711846246,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 2,
+   "op_class": "conv",
+   "N": 1,
+   "Cin": 256,
+   "H": 160,
+   "W": 160,
+   "Cout": 128,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernel_top1": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernels": [
+    {
+     "name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+     "self_us": 385.2249999999999
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 256.721
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 42.33299999999963
+    }
+   ],
+   "n_kernels": 3,
+   "s87_fail_default": 1338503,
+   "s87_ref_induced": 1336772,
+   "s87_cand_induced": 1731,
+   "s87_share": 0.9987067641985113,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 3,
+   "op_class": "conv",
+   "N": 4,
+   "Cin": 128,
+   "H": 64,
+   "W": 64,
+   "Cout": 128,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "kernel_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+     "self_us": 124.54300000000012
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 53.15199999999959
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 37.152000000000044
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 30.23999999999978
+    }
+   ],
+   "n_kernels": 4,
+   "s87_fail_default": 788531,
+   "s87_ref_induced": 787762,
+   "s87_cand_induced": 769,
+   "s87_share": 0.9990247688423156,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 4,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 32,
+   "H": 224,
+   "W": 224,
+   "Cout": 64,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "kernel_top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+   "kernels": [
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 185.8209999999999
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 175.96799999999985
+    },
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+     "self_us": 163.96599999999944
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 76.34999999999945
+    }
+   ],
+   "n_kernels": 4,
+   "s87_fail_default": 2433894,
+   "s87_ref_induced": 2432674,
+   "s87_cand_induced": 1220,
+   "s87_share": 0.999498745631486,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 5,
+   "op_class": "conv",
+   "N": 8,
+   "Cin": 64,
+   "H": 112,
+   "W": 112,
+   "Cout": 128,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernel_top1": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernels": [
+    {
+     "name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+     "self_us": 530.2729999999997
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 434.7600000000002
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 240.81900000000041
+    }
+   ],
+   "n_kernels": 3,
+   "s87_fail_default": 5219892,
+   "s87_ref_induced": 5208091,
+   "s87_cand_induced": 11801,
+   "s87_share": 0.9977392252560014,
+   "s87_band": "mid_1e7_1e8"
+  },
+  {
+   "idx": 6,
+   "op_class": "conv",
+   "N": 8,
+   "Cin": 128,
+   "H": 96,
+   "W": 96,
+   "Cout": 96,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernel_top1": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernels": [
+    {
+     "name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+     "self_us": 486.91600000000017
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 371.4250000000002
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 224.64099999999962
+    }
+   ],
+   "n_kernels": 3,
+   "s87_fail_default": 2676217,
+   "s87_ref_induced": 2667193,
+   "s87_cand_induced": 9024,
+   "s87_share": 0.9966280761238718,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 7,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 64,
+   "H": 256,
+   "W": 256,
+   "Cout": 64,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "kernel_top1": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+   "kernels": [
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 321.9850000000006
+    },
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+     "self_us": 318.46500000000015
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 277.5060000000003
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 249.76100000000042
+    }
+   ],
+   "n_kernels": 4,
+   "s87_fail_default": 3415409,
+   "s87_ref_induced": 3413228,
+   "s87_cand_induced": 2181,
+   "s87_share": 0.9993614234781252,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 8,
+   "op_class": "conv",
+   "N": 8,
+   "Cin": 128,
+   "H": 128,
+   "W": 128,
+   "Cout": 128,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernel_top1": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernels": [
+    {
+     "name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+     "self_us": 1066.2419999999993
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 821.0649999999996
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 567.280999999999
+    }
+   ],
+   "n_kernels": 3,
+   "s87_fail_default": 6334007,
+   "s87_ref_induced": 6312212,
+   "s87_cand_induced": 21795,
+   "s87_share": 0.9965590502189214,
+   "s87_band": "mid_1e7_1e8"
+  },
+  {
+   "idx": 9,
+   "op_class": "conv",
+   "N": 8,
+   "Cin": 32,
+   "H": 96,
+   "W": 96,
+   "Cout": 96,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernel_top1": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernels": [
+    {
+     "name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+     "self_us": 233.01499999999987
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 175.9319999999998
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 52.414999999999736
+    }
+   ],
+   "n_kernels": 3,
+   "s87_fail_default": 2657686,
+   "s87_ref_induced": 2656347,
+   "s87_cand_induced": 1339,
+   "s87_share": 0.999496178254316,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 10,
+   "op_class": "conv",
+   "N": 8,
+   "Cin": 64,
+   "H": 224,
+   "W": 224,
+   "Cout": 256,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernel_top1": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernels": [
+    {
+     "name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+     "self_us": 3973.8950000000004
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 3355.8559999999998
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 981.2019999999975
+    }
+   ],
+   "n_kernels": 3,
+   "s87_fail_default": 41896997,
+   "s87_ref_induced": 41870314,
+   "s87_cand_induced": 26683,
+   "s87_share": 0.9993631285793586,
+   "s87_band": "large_1e8_plus"
+  },
+  {
+   "idx": 11,
+   "op_class": "conv",
+   "N": 4,
+   "Cin": 64,
+   "H": 320,
+   "W": 320,
+   "Cout": 256,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernel_top1": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "kernels": [
+    {
+     "name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+     "self_us": 3966.402000000002
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 3442.5329999999994
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 999.6729999999989
+    }
+   ],
+   "n_kernels": 3,
+   "s87_fail_default": 42930990,
+   "s87_ref_induced": 42903704,
+   "s87_cand_induced": 27286,
+   "s87_share": 0.9993644218314089,
+   "s87_band": "large_1e8_plus"
+  },
+  {
+   "idx": 12,
+   "op_class": "conv_transpose",
+   "N": 8,
+   "Cin": 64,
+   "H": 112,
+   "W": 112,
+   "Cout": 64,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "kernel_top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "kernels": [
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 245.3710000000001
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 238.65000000000055
+    },
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+     "self_us": 222.01100000000042
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 187.41899999999987
+    }
+   ],
+   "n_kernels": 4,
+   "s87_fail_default": 2622268,
+   "s87_ref_induced": 2620723,
+   "s87_cand_induced": 1545,
+   "s87_share": 0.9994108153705114,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 13,
+   "op_class": "conv_transpose",
+   "N": 2,
+   "Cin": 32,
+   "H": 224,
+   "W": 224,
+   "Cout": 16,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "kernel_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+     "self_us": 112.76099999999997
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 81.24099999999999
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 24.57400000000007
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 14.654999999999745
+    }
+   ],
+   "n_kernels": 4,
+   "s87_fail_default": 816132,
+   "s87_ref_induced": 815806,
+   "s87_cand_induced": 326,
+   "s87_share": 0.9996005548122118,
+   "s87_band": "small_lt_1e7"
+  },
+  {
+   "idx": 14,
+   "op_class": "conv_transpose",
+   "N": 8,
+   "Cin": 256,
+   "H": 96,
+   "W": 96,
+   "Cout": 256,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "kernel_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+     "self_us": 1843.1579999999994
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 759.4700000000012
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 719.9200000000001
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 619.4099999999999
+    }
+   ],
+   "n_kernels": 4,
+   "s87_fail_default": 7713488,
+   "s87_ref_induced": 7680523,
+   "s87_cand_induced": 32965,
+   "s87_share": 0.9957263173288141,
+   "s87_band": "mid_1e7_1e8"
+  },
+  {
+   "idx": 15,
+   "op_class": "conv_transpose",
+   "N": 8,
+   "Cin": 64,
+   "H": 224,
+   "W": 224,
+   "Cout": 128,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "kernel_top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "kernels": [
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 1962.9000000000015
+    },
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+     "self_us": 1810.3580000000002
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 1684.7590000000018
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 977.5930000000008
+    }
+   ],
+   "n_kernels": 4,
+   "s87_fail_default": 13285099,
+   "s87_ref_induced": 13247245,
+   "s87_cand_induced": 37854,
+   "s87_share": 0.9971506422345817,
+   "s87_band": "mid_1e7_1e8"
+  },
+  {
+   "idx": 16,
+   "op_class": "conv_transpose",
+   "N": 4,
+   "Cin": 64,
+   "H": 320,
+   "W": 320,
+   "Cout": 256,
+   "status": "ok",
+   "engine_class_primary": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "engine_class_refined": "TF32_TENSOROP",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "kernel_top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "kernels": [
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 4098.955999999998
+    },
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+     "self_us": 3468.207000000002
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 3436.4630000000034
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 984.6670000000013
+    }
+   ],
+   "n_kernels": 4,
+   "s87_fail_default": 17367123,
+   "s87_ref_induced": 17314289,
+   "s87_cand_induced": 52834,
+   "s87_share": 0.9969578150624027,
+   "s87_band": "large_1e8_plus"
+  }
+ ]
+}

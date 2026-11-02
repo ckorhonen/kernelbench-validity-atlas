@@ -1,0 +1,93 @@
+{
+ "prereg": "docstring of this file, frozen pre-run",
+ "prereg_sha256": "6377fb433d1e03912b7bb6a8f0c4c60ae31447e7d7c98e7b8fc3764811fda67f",
+ "population": {
+  "constructed": 17,
+  "attempted": 17,
+  "ok": 17,
+  "usable_fail_ge_1000": 17,
+  "failing_configs": 17,
+  "low_n_excluded": [],
+  "tuple_collisions_with_54": [],
+  "statuses": {
+   "0": "ok",
+   "1": "ok",
+   "2": "ok",
+   "3": "ok",
+   "4": "ok",
+   "5": "ok",
+   "6": "ok",
+   "7": "ok",
+   "8": "ok",
+   "9": "ok",
+   "10": "ok",
+   "11": "ok",
+   "12": "ok",
+   "13": "ok",
+   "14": "ok",
+   "15": "ok",
+   "16": "ok"
+  }
+ },
+ "pooled": {
+  "n": 17,
+  "failing_elements": 153357153,
+  "ref_induced": 153126865,
+  "cand_induced": 230288,
+  "share": 0.9984983550131502,
+  "share_min_of_shapes": 0.9957263173288141,
+  "share_max_cand_of_shapes": 0.00427368267118585,
+  "tasks_fail_default": 17,
+  "tasks_ref_over_budget": 17
+ },
+ "bands": {
+  "small_lt_1e7": {
+   "n": 10,
+   "failing_elements": 18609557,
+   "ref_induced": 18590487,
+   "cand_induced": 19070,
+   "share": 0.9989752577130128,
+   "share_min_of_shapes": 0.9966280761238718,
+   "share_max_cand_of_shapes": 0.0033719238761281316,
+   "tasks_fail_default": 10,
+   "tasks_ref_over_budget": 10
+  },
+  "mid_1e7_1e8": {
+   "n": 4,
+   "failing_elements": 32552486,
+   "ref_induced": 32448071,
+   "cand_induced": 104415,
+   "share": 0.9967924108776208,
+   "share_min_of_shapes": 0.9957263173288141,
+   "share_max_cand_of_shapes": 0.00427368267118585,
+   "tasks_fail_default": 4,
+   "tasks_ref_over_budget": 4
+  },
+  "large_1e8_plus": {
+   "n": 3,
+   "failing_elements": 102195110,
+   "ref_induced": 102088307,
+   "cand_induced": 106803,
+   "share": 0.9989549108563022,
+   "share_min_of_shapes": 0.9969578150624027,
+   "share_max_cand_of_shapes": 0.0030421849375973213,
+   "tasks_fail_default": 3,
+   "tasks_ref_over_budget": 3
+  }
+ },
+ "controls_clean_reference": {
+  "n": 0,
+  "fail_default_total": 0,
+  "cand_induced_total": 0
+ },
+ "at_1e-2": {
+  "pooled_fail": 0,
+  "pooled_share": null
+ },
+ "reference_constant_s84": 0.99807,
+ "verdict": "V1_SHARE_GENERALIZES",
+ "instrument_defects": [],
+ "instrument_ok": true,
+ "wall_s": 4.8,
+ "torch": "2.14.1+cu130"
+}

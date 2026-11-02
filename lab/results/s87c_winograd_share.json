@@ -1,0 +1,745 @@
+{
+ "summary": {
+  "prereg": "docstring of this file, frozen pre-run",
+  "prereg_sha256": "32199581b4d1549658992fde2ee3c73142e6e850ddbbf04c65d4cf77eea8a3a8",
+  "population": {
+   "constructed": 8,
+   "ok": 8,
+   "statuses": {
+    "0": "ok",
+    "1": "ok",
+    "2": "ok",
+    "3": "ok",
+    "4": "ok",
+    "5": "ok",
+    "6": "ok",
+    "7": "ok"
+   }
+  },
+  "class_distribution": {
+   "TF32_TENSOROP": 5,
+   "WINOGRAD": 3
+  },
+  "non_tf32_usable": {
+   "n": 0,
+   "failing_elements": 0,
+   "ref_induced": 0,
+   "cand_induced": 0,
+   "share": null,
+   "share_min": null,
+   "max_cand_share": null,
+   "classes": []
+  },
+  "all_ok": {
+   "n": 8,
+   "failing_elements": 692886,
+   "ref_induced": 691465,
+   "cand_induced": 1421,
+   "share": 0.9979491575814781,
+   "share_min": 0.996249366447035,
+   "max_cand_share": 0.0037506335529650277,
+   "classes": [
+    "TF32_TENSOROP",
+    "WINOGRAD"
+   ]
+  },
+  "controls": {
+   "n": 2,
+   "instrument_ok": true,
+   "classes": [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ]
+  },
+  "s87_constant": 0.9984983550131502,
+  "verdict": "NO_NON_TF32_DISPATCH",
+  "wall_s": 1.3,
+  "torch": "2.14.1+cu130"
+ },
+ "rows": [
+  {
+   "idx": 0,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 64,
+   "H": 14,
+   "W": 14,
+   "Cout": 64,
+   "out_extent": 25088,
+   "seed": 9101,
+   "declared_control": false,
+   "engine_class_primary": "WINOGRAD",
+   "engine_class_refined": "WINOGRAD",
+   "primary_matched_on": "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+   "refined_matched_on": "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+   "kernel_top1": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "kernels": [
+    {
+     "name": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+     "self_us": 19.551999999996042
+    },
+    {
+     "name": "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+     "self_us": 11.455999999976484
+    },
+    {
+     "name": "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)",
+     "self_us": 9.63200000001234
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 4.190999999991618
+    },
+    {
+     "name": "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)",
+     "self_us": 3.0720000000146683
+    }
+   ],
+   "decomp_c2_tf32off": {
+    "1e-4": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 25088,
+     "maxabs_ca": 0.0,
+     "maxabs_cx": 1.744659025976203e-05,
+     "maxabs_ax": 1.744659025976203e-05,
+     "max_ratio_ref": 0.12876815034446457,
+     "max_ratio_cand": 0.0,
+     "bit_identical_ca": true,
+     "ratio_ref_median": 0.0022598717074270285,
+     "ratio_ref_q90": 0.009588227891270935,
+     "ratio_ref_q99": 0.027905421977712754,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    },
+    "1e-2": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 25088,
+     "maxabs_ca": 0.0,
+     "maxabs_cx": 1.744659025976203e-05,
+     "maxabs_ax": 1.744659025976203e-05,
+     "max_ratio_ref": 0.0012876815034446457,
+     "max_ratio_cand": 0.0,
+     "bit_identical_ca": true,
+     "ratio_ref_median": 2.2598717074270286e-05,
+     "ratio_ref_q90": 9.588227891270936e-05,
+     "ratio_ref_q99": 0.00027905421977712753,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    }
+   },
+   "status": "ok"
+  },
+  {
+   "idx": 1,
+   "op_class": "conv",
+   "N": 4,
+   "Cin": 64,
+   "H": 14,
+   "W": 14,
+   "Cout": 128,
+   "out_extent": 100352,
+   "seed": 9102,
+   "declared_control": false,
+   "engine_class_primary": "WINOGRAD",
+   "engine_class_refined": "WINOGRAD",
+   "primary_matched_on": "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+   "refined_matched_on": "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+   "kernel_top1": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "kernels": [
+    {
+     "name": "void magma_sgemmEx_kernel<float, float, float, false, false, 6, 3, 5, 3, 3>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+     "self_us": 24.38500000000022
+    },
+    {
+     "name": "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+     "self_us": 8.576000000000022
+    },
+    {
+     "name": "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)",
+     "self_us": 5.248000000000047
+    },
+    {
+     "name": "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)",
+     "self_us": 2.912000000000262
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 1.7600000000002183
+    }
+   ],
+   "decomp_c2_tf32off": {
+    "1e-4": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 100352,
+     "maxabs_ca": 0.0,
+     "maxabs_cx": 1.706863775809142e-05,
+     "maxabs_ax": 1.706863775809142e-05,
+     "max_ratio_ref": 0.15875611599223804,
+     "max_ratio_cand": 0.0,
+     "bit_identical_ca": true,
+     "ratio_ref_median": 0.002373596845245094,
+     "ratio_ref_q90": 0.009954188832631394,
+     "ratio_ref_q99": 0.029793715046587226,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    },
+    "1e-2": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 100352,
+     "maxabs_ca": 0.0,
+     "maxabs_cx": 1.706863775809142e-05,
+     "maxabs_ax": 1.706863775809142e-05,
+     "max_ratio_ref": 0.0015875611599223806,
+     "max_ratio_cand": 0.0,
+     "bit_identical_ca": true,
+     "ratio_ref_median": 2.373596845245094e-05,
+     "ratio_ref_q90": 9.954188832631396e-05,
+     "ratio_ref_q99": 0.00029793715046587226,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    }
+   },
+   "status": "ok"
+  },
+  {
+   "idx": 2,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 128,
+   "H": 14,
+   "W": 14,
+   "Cout": 64,
+   "out_extent": 25088,
+   "seed": 9103,
+   "declared_control": false,
+   "engine_class_primary": "WINOGRAD",
+   "engine_class_refined": "WINOGRAD",
+   "primary_matched_on": "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+   "refined_matched_on": "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+   "kernel_top1": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x32_8x5_nn_align1>(cutlass_80_simt_sgemm_128x32_8x5_nn_align1::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x32_8x5_nn_align1>(cutlass_80_simt_sgemm_128x32_8x5_nn_align1::Params)",
+     "self_us": 24.223999999999933
+    },
+    {
+     "name": "void cudnn::winograd_nonfused::winogradForwardData4x4<float, float>(cudnn::winograd_nonfused::WinogradDataParams<float, float>)",
+     "self_us": 16.28800000000001
+    },
+    {
+     "name": "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)",
+     "self_us": 3.328000000000202
+    },
+    {
+     "name": "void cudnn::winograd_nonfused::winogradForwardOutput4x4<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)",
+     "self_us": 2.8479999999999563
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 1.5359999999998308
+    }
+   ],
+   "decomp_c2_tf32off": {
+    "1e-4": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 25088,
+     "maxabs_ca": 0.0,
+     "maxabs_cx": 1.5656732414770502e-05,
+     "maxabs_ax": 1.5656732414770502e-05,
+     "max_ratio_ref": 0.1411235431443664,
+     "max_ratio_cand": 0.0,
+     "bit_identical_ca": true,
+     "ratio_ref_median": 0.003133104337521197,
+     "ratio_ref_q90": 0.013305148090645987,
+     "ratio_ref_q99": 0.03985263501054272,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    },
+    "1e-2": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 25088,
+     "maxabs_ca": 0.0,
+     "maxabs_cx": 1.5656732414770502e-05,
+     "maxabs_ax": 1.5656732414770502e-05,
+     "max_ratio_ref": 0.001411235431443664,
+     "max_ratio_cand": 0.0,
+     "bit_identical_ca": true,
+     "ratio_ref_median": 3.1331043375211966e-05,
+     "ratio_ref_q90": 0.00013305148090645986,
+     "ratio_ref_q99": 0.00039852635010542725,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    }
+   },
+   "status": "ok"
+  },
+  {
+   "idx": 3,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 256,
+   "H": 14,
+   "W": 14,
+   "Cout": 256,
+   "out_extent": 100352,
+   "seed": 9104,
+   "declared_control": false,
+   "engine_class_primary": "TF32_TENSOROP",
+   "engine_class_refined": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernel_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+     "self_us": 23.679000000000087
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 21.377000000000407
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 4.702999999997701
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 1.7599999999983993
+    }
+   ],
+   "decomp_c2_tf32off": {
+    "1e-4": {
+     "fail_default": 39460,
+     "fail_anchor": 0,
+     "ref_induced": 39312,
+     "cand_induced": 148,
+     "ref_over_budget": 39496,
+     "total": 100352,
+     "maxabs_ca": 0.0007758662104606628,
+     "maxabs_cx": 2.634520491945347e-05,
+     "maxabs_ax": 0.0007764005432208121,
+     "max_ratio_ref": 7.017241546017333,
+     "max_ratio_cand": 7.012412154697792,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.7766721261219182,
+     "ratio_ref_q90": 2.0291973910426733,
+     "ratio_ref_q99": 3.422734854819246,
+     "n_ratio_samples": 20000,
+     "verdict_default": "fail",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": 0.996249366447035,
+     "cand_share_of_fails": 0.0037506335529650277,
+     "ref_over_frac": 0.39357461734693877
+    },
+    "1e-2": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 100352,
+     "maxabs_ca": 0.0007758662104606628,
+     "maxabs_cx": 2.634520491945347e-05,
+     "maxabs_ax": 0.0007764005432208121,
+     "max_ratio_ref": 0.07017241546017333,
+     "max_ratio_cand": 0.07012412154697792,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.0077667212612191824,
+     "ratio_ref_q90": 0.020291973910426735,
+     "ratio_ref_q99": 0.03422734854819247,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    }
+   },
+   "status": "ok"
+  },
+  {
+   "idx": 4,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 64,
+   "H": 28,
+   "W": 28,
+   "Cout": 64,
+   "out_extent": 100352,
+   "seed": 9105,
+   "declared_control": false,
+   "engine_class_primary": "TF32_TENSOROP",
+   "engine_class_refined": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernel_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+     "self_us": 7.839999999999918
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 3.5520000000001346
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 1.6320000000000618
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 1.5040000000001328
+    }
+   ],
+   "decomp_c2_tf32off": {
+    "1e-4": {
+     "fail_default": 40234,
+     "fail_anchor": 0,
+     "ref_induced": 40125,
+     "cand_induced": 109,
+     "ref_over_budget": 40225,
+     "total": 100352,
+     "maxabs_ca": 0.0008041858673095703,
+     "maxabs_cx": 1.9744483953587633e-05,
+     "maxabs_ax": 0.0008031620511351756,
+     "max_ratio_ref": 7.342310721374811,
+     "max_ratio_cand": 7.351670198037523,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.7903269923506824,
+     "ratio_ref_q90": 2.0605143042798177,
+     "ratio_ref_q99": 3.462459860101506,
+     "n_ratio_samples": 20000,
+     "verdict_default": "fail",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": 0.997290848536064,
+     "cand_share_of_fails": 0.0027091514639359746,
+     "ref_over_frac": 0.40083904655612246
+    },
+    "1e-2": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 100352,
+     "maxabs_ca": 0.0008041858673095703,
+     "maxabs_cx": 1.9744483953587633e-05,
+     "maxabs_ax": 0.0008031620511351756,
+     "max_ratio_ref": 0.0734231072137481,
+     "max_ratio_cand": 0.07351670198037523,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.007903269923506824,
+     "ratio_ref_q90": 0.020605143042798178,
+     "ratio_ref_q99": 0.034624598601015064,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    }
+   },
+   "status": "ok"
+  },
+  {
+   "idx": 5,
+   "op_class": "conv",
+   "N": 4,
+   "Cin": 128,
+   "H": 28,
+   "W": 28,
+   "Cout": 128,
+   "out_extent": 401408,
+   "seed": 9106,
+   "declared_control": false,
+   "engine_class_primary": "TF32_TENSOROP",
+   "engine_class_refined": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernel_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+     "self_us": 35.358999999999924
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 11.680000000000064
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 4.352000000000089
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 3.7439999999999145
+    }
+   ],
+   "decomp_c2_tf32off": {
+    "1e-4": {
+     "fail_default": 148452,
+     "fail_anchor": 0,
+     "ref_induced": 147951,
+     "cand_induced": 501,
+     "ref_over_budget": 148475,
+     "total": 401408,
+     "maxabs_ca": 0.0008970499038696289,
+     "maxabs_cx": 2.4352936006305503e-05,
+     "maxabs_ax": 0.0008968451058322113,
+     "max_ratio_ref": 6.906825782920219,
+     "max_ratio_cand": 6.850063621206208,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.7494258082509111,
+     "ratio_ref_q90": 1.915765235036413,
+     "ratio_ref_q99": 3.2185341555300258,
+     "n_ratio_samples": 20000,
+     "verdict_default": "fail",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": 0.9966251717726942,
+     "cand_share_of_fails": 0.003374828227305796,
+     "ref_over_frac": 0.36988550302933676
+    },
+    "1e-2": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 401408,
+     "maxabs_ca": 0.0008970499038696289,
+     "maxabs_cx": 2.4352936006305503e-05,
+     "maxabs_ax": 0.0008968451058322113,
+     "max_ratio_ref": 0.06906825782920219,
+     "max_ratio_cand": 0.06850063621206208,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.007494258082509111,
+     "ratio_ref_q90": 0.019157652350364127,
+     "ratio_ref_q99": 0.032185341555300256,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    }
+   },
+   "status": "ok"
+  },
+  {
+   "idx": 6,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 64,
+   "H": 56,
+   "W": 56,
+   "Cout": 64,
+   "out_extent": 401408,
+   "seed": 9107,
+   "declared_control": true,
+   "engine_class_primary": "TF32_TENSOROP",
+   "engine_class_refined": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernel_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_64x64_32x5_nhwc_align4::Params)",
+     "self_us": 20.574999999999932
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 10.849000000000046
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 4.224000000000046
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 3.616000000000099
+    }
+   ],
+   "decomp_c2_tf32off": {
+    "1e-4": {
+     "fail_default": 162671,
+     "fail_anchor": 0,
+     "ref_induced": 162289,
+     "cand_induced": 382,
+     "ref_over_budget": 162645,
+     "total": 401408,
+     "maxabs_ca": 0.0008795261383056641,
+     "maxabs_cx": 1.881039682707919e-05,
+     "maxabs_ax": 0.0008792709240315055,
+     "max_ratio_ref": 8.243973504544554,
+     "max_ratio_cand": 8.244168163336315,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.8165625771891489,
+     "ratio_ref_q90": 2.062058421128109,
+     "ratio_ref_q99": 3.418608897622994,
+     "n_ratio_samples": 20000,
+     "verdict_default": "fail",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": 0.9976517019013837,
+     "cand_share_of_fails": 0.0023482980986162254,
+     "ref_over_frac": 0.40518624441964285
+    },
+    "1e-2": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 401408,
+     "maxabs_ca": 0.0008795261383056641,
+     "maxabs_cx": 1.881039682707919e-05,
+     "maxabs_ax": 0.0008792709240315055,
+     "max_ratio_ref": 0.08243973504544555,
+     "max_ratio_cand": 0.08244168163336316,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.00816562577189149,
+     "ratio_ref_q90": 0.020620584211281094,
+     "ratio_ref_q99": 0.03418608897622994,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    }
+   },
+   "status": "ok"
+  },
+  {
+   "idx": 7,
+   "op_class": "conv",
+   "N": 2,
+   "Cin": 128,
+   "H": 56,
+   "W": 56,
+   "Cout": 128,
+   "out_extent": 802816,
+   "seed": 9108,
+   "declared_control": true,
+   "engine_class_primary": "TF32_TENSOROP",
+   "engine_class_refined": "TF32_TENSOROP",
+   "primary_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "refined_matched_on": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "kernel_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+   "kernels": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+     "self_us": 62.71900000000005
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "self_us": 15.934999999999718
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "self_us": 7.6159999999999854
+    },
+    {
+     "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<float> const&)::{lambda(int)#1})",
+     "self_us": 6.94399999999996
+    }
+   ],
+   "decomp_c2_tf32off": {
+    "1e-4": {
+     "fail_default": 302069,
+     "fail_anchor": 0,
+     "ref_induced": 301788,
+     "cand_induced": 281,
+     "ref_over_budget": 302098,
+     "total": 802816,
+     "maxabs_ca": 0.0008297562599182129,
+     "maxabs_cx": 4.218284773038761e-06,
+     "maxabs_ax": 0.0008301295377814988,
+     "max_ratio_ref": 6.8090175462234885,
+     "max_ratio_cand": 6.808008228899666,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.7588949133623131,
+     "ratio_ref_q90": 1.951042317067249,
+     "ratio_ref_q99": 3.270697311143961,
+     "n_ratio_samples": 20000,
+     "verdict_default": "fail",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": 0.9990697489646405,
+     "cand_share_of_fails": 0.0009302510353594709,
+     "ref_over_frac": 0.37629793128188777
+    },
+    "1e-2": {
+     "fail_default": 0,
+     "fail_anchor": 0,
+     "ref_induced": 0,
+     "cand_induced": 0,
+     "ref_over_budget": 0,
+     "total": 802816,
+     "maxabs_ca": 0.0008297562599182129,
+     "maxabs_cx": 4.218284773038761e-06,
+     "maxabs_ax": 0.0008301295377814988,
+     "max_ratio_ref": 0.06809017546223489,
+     "max_ratio_cand": 0.06808008228899667,
+     "bit_identical_ca": false,
+     "ratio_ref_median": 0.00758894913362313,
+     "ratio_ref_q90": 0.01951042317067249,
+     "ratio_ref_q99": 0.03270697311143961,
+     "n_ratio_samples": 20000,
+     "verdict_default": "pass",
+     "verdict_anchor": "pass",
+     "ref_share_of_fails": null,
+     "cand_share_of_fails": null,
+     "ref_over_frac": 0.0
+    }
+   },
+   "status": "ok"
+  }
+ ]
+}

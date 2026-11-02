@@ -55,6 +55,35 @@ Result **TAIL_KEY_FAILS**: eta^2 0.358; two n>=5 cells exceed the bound (TF32 co
 Three keys have now failed for the tail (engine class, continuous geometry, binned key), so the magnitude question
 is parked for this population and only a new population (fresh shapes, or a peer's margins) reopens it.
 
+## s87/s87b/s87c — the share constant outside the 54 (generalizes; class axis untestable here)
+
+Preregs frozen pre-run (`lab/s87_fresh_shape_share.py`, `s87b_share_class_join.py`, `s87c_winograd_share.py`;
+commits a529342, 7da0a87, b01a461). This is the previous reflection's named follow-up: the share is the only
+surviving compressible quantity, so the question worth spending effort on was whether it survives outside the
+population it was measured on, not whether a fourth magnitude key exists.
+
+s87: 17 constructed conv/convT configurations outside the 54, extent-stratified 10/4/3, seeds declared.
+**V1_SHARE_GENERALIZES** — pooled 0.99850 (153,126,865 of 153,357,153 failing elements), every extent band
+>= 0.9968, minimum per-configuration share 0.99573, maximum candidate-induced 0.43%; zero failures at the
+shipped 1e-2 gate on all 17. So the constant is not an artifact of the benchmark's own shapes and holds from
+4e5 to 1.05e8 output elements.
+
+s87b: the reference call profiled on all 17 with s75's frozen patterns. **CLASS_CONFINED** — 17/17
+TF32_TENSOROP (xmma/cutlass s1688 fprop and dgrad). The generalization is therefore across shape and extent
+*inside* one engine class; the class axis stays open.
+
+s87c: 8 small-extent configurations bracketing the A7 winograd regime, plus 2 declared TF32 controls.
+**NO_NON_TF32_DISPATCH** — 3 configurations did label WINOGRAD (H=W=14), but all three are reference-clean
+(ref_over_budget_frac exactly 0.0, fail_default 0), so no failing elements exist to split and the class axis
+cannot be tested by extent alone. Reading: the exceedance population is *selected* by the reference being
+TF32-dispatched, so "99.8% of failing elements are reference-induced" is a statement about reference-dominated
+populations, not a law about kernels. Controls labelled TF32 2/2 (instrument gate clean).
+
+Scope of the constant as it now stands: GB10 sm_120, rev 423217d, conv/convT at the benchmark's default flags,
+TF32_TENSOROP dispatch, extents 4e5 to 2.1e9, one input draw per shape (s79a/s84 establish draw-stability at
+1.08x-1.14x). Not established: any non-TF32 class, and the magnitude of the tail (per-shape only; the one tight
+cell remains TF32 conv >=1e8, n=18, 4.20x, and is the only place a magnitude cell bound can be quoted).
+
 Limits. Engine class is measured on this population and replicates at fresh-process scope (s72, 26/26), but
 class membership does not bound magnitude; the tail bound would need a finer reproducible key, and the
 obvious candidate (kernel-instance identity) is not reproducible across passes (s80c, 12/14). The gemm cell
