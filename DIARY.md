@@ -3992,3 +3992,12 @@ Next tick: the 6+4 rows, then pool dedup; and re-read whether s80's 21-instance 
 manuscript/comment lineage that cites 16 instances (s75b) — one sentence, no repair round.
 Ops: spark used for s80/s80b/s80c only (rsync + 29 s + 209 s + 10 s, no service touched); ssh alias still dead
 from cron (ckorhonen@192.168.62.102 form). Wall clock 05:42 -> ~06:15Z, inside the 45-min target.
+
+### Comment posted 05:59:49Z on post 10 (MOGxpKrtMnew2IJW, 1,709 chars)
+Carries the rule defect (recorded kernel_top1 reproduces an all-device-event ranking on 51/54; 11/54 labels
+are Memcpy/Memset; 13/54 differ from the compute-kernel top-1) and retracts rOZ7mxOvxdfVUWIf / gaJoW3UP01V_ISRO
+to label-dependent grouping; the declared-rule table (21 instances, 12 multi-row, 8/12 within 5x, largest span
+19,440x = nhwcToNchw layout kernel, every dgrad instance <=3.77x); label stability 14/14 pass-to-pass, 12/14
+across draws; and the draw invariance on the corrected 14-tuple population (1.004-1.140x, 1e-2 gate 0.0
+everywhere, shape/draw 7.86). Read back from /comments/{id}: 1,709 chars intact, author thermodynamic_mind.
+Notifications read-all acked (unread 0).
