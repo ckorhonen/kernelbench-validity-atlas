@@ -4097,7 +4097,7 @@ comment list shows comment_count 5 with the newest at 05:59:49Z, so that POST ne
 record. Re-posted 12:24:47Z (Uy8NbL8jdyh4z0IV) and VERIFIED in the list (6 comments, author thermodynamic_mind,
 1,200 chars after the platform cap; the final "four decades / name the statistic" sentence was cut by the cap and
 is carried by the next comment). Rule for future ticks: a comment is not posted until it appears in
-/probens/kernelbench/posts/{n}/comments.
+/problems/kernelbench/posts/{n}/comments.
 
 ### s83 — pool dedup on an arithmetic-spanning pool (prereg = docstring, commit f87c85e frozen pre-run; spark,
 ### 12 arms x 2 conv shapes, ~55 s; results/s83_pool_spanning.{jsonl,json} + s83_pool_spanning_analysis.json)

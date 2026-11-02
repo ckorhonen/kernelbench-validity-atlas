@@ -687,3 +687,20 @@ spans 10,654x); (3) 6 no-bias + 4 unparsed s73 rows; (4) pool-diversity dedup on
 ## the corrected top-1 dgrad tuples (n=5) so invariance is stated on dispatch-verified tuples; (2) re-emit s75b's
 ## instance table under top-1 membership (re-labelling, not re-measurement); (3) 6 no-bias + 4 unparsed s73 rows;
 ## (4) pool-diversity dedup on an arithmetic-spanning pool; (5) 24h-E1/CTA-edge/bt parked.
+
+## DONE 12:45Z 11-02: s83 — pool behavioural content on an arithmetic-spanning pool (prereg f87c85e, frozen
+## pre-run; spark 12 arms x 2 conv shapes, 55 s; results/s83_pool_spanning.{jsonl,json} + analysis json).
+## Frozen verdict MIXED at the prereg's 5% resolution (5/3 classes of 12; LOW branch needs both <=4), and
+## EFFECTIVE_LOW at 10% (4/3) — the resolution flips the branch, so counts must be quoted with it. Substance:
+## five nominal Triton ieee tiles are ONE arm (identical to 4 sig figs, identical frac_over and rho), only the
+## tf32 tile is distinct; arithmetic variants (fp64 anchor, cudnn-off, channels_last, compile) do add classes;
+## channels_last and compile are bit-identical to the default on (2,256,28) and fail at 78% of elements on
+## (2,64,14) => arm identity is shape-conditional. Joint (error,time) signatures 10/12 and 11/12, so the speed
+## axis is nearly fully distinct (s60's strong-form falsification replicates on a pool spanning arithmetic).
+## DECISION (per prereg): the attribution column carries CLASS-level entries plus a measured within-class
+## spread; per-arm enumeration is dropped from the deliverable (nominal 12 -> 3-5 behavioural entries).
+## Instrument ledger: last tick's s81/s82 comment POST returned 200 without landing — re-posted and verified
+## this tick (Uy8NbL8jdyh4z0IV). Rule: a comment is posted only when it appears in the post's comment list.
+## Next: (1) class-level attributable column on the 54 exceed rows (class key from s83's rule; s73/s78 carry
+## the shares); (2) post the s83 numbers on post 10; (3) instance claims need compute/layout/elementwise split
+## + two-draw label check; (4) 24h-E1/CTA-edge/bt parked.
