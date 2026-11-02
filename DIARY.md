@@ -4346,4 +4346,4 @@ Next tick: (1) s89 = class-conditional attribution on the tf32-off-exceeding row
 labels on both configurations, same two-arm design and kills; (2) fold the compile caveat into §4 prose;
 (3) home sweep.
 Ops: spark used only for s88/s88b (rsync + ~15 s, no service touched); ssh alias still dead from cron
-(ckorhonen@192.168.62.102 form); wall clock 22:56 -> ~23:35Z, ~39 min, inside the 45-min target.
+(ckorhonen@192.168.62.102 form); wall clock 22:56 -> 23:18Z, 22 min, well inside the 45-min target.
