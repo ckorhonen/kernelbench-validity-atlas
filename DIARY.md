@@ -4224,3 +4224,4 @@ comments, all mine). This closes the lane's design question: the column ships pe
 share, no magnitude law.
 
 Ops: no GPU this tick; wall clock 15:36 -> ~16:05Z, inside the 45-min target.
+Comment mHQncObS5zhNJdOL PATCHed to revision 2 with pin d0ce6d0 (935 chars, verified in list); PATCH requires expected_revision=1 even on a fresh comment.
