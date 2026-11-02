@@ -1,0 +1,92 @@
+{
+ "prereg_sha": "35ab5fa14a9a551c44ed5c3974528aeda3402435d88e5edd46c02b7b0de8d59b",
+ "n_draws": 8,
+ "targets": [
+  [
+   1,
+   58
+  ],
+  [
+   1,
+   68
+  ],
+  [
+   1,
+   73
+  ],
+  [
+   2,
+   16
+  ],
+  [
+   2,
+   77
+  ]
+ ],
+ "per_tuple": {
+  "L1/58": {
+   "n_ok": 8,
+   "engine_verified": true,
+   "rho_min": 5.409936840054516,
+   "rho_max": 6.338752428386446,
+   "rho_median": 5.972718843381917,
+   "draw_spread_max_over_min": 1.1716869560204644,
+   "frac_over_1e-4_min": 0.21246296985229277,
+   "frac_over_1e-4_max": 0.21273087866512347,
+   "frac_over_1e-2_max": 0.0
+  },
+  "L1/68": {
+   "n_ok": 8,
+   "engine_verified": false,
+   "rho_min": 3.4298674652278858,
+   "rho_max": 4.009140791929679,
+   "rho_median": 3.6341080048051078,
+   "draw_spread_max_over_min": 1.1688908777305496,
+   "frac_over_1e-4_min": 0.05882692132041654,
+   "frac_over_1e-4_max": 0.05884986790243755,
+   "frac_over_1e-2_max": 0.0
+  },
+  "L1/73": {
+   "n_ok": 8,
+   "engine_verified": false,
+   "rho_min": 2.4703023595532305,
+   "rho_max": 2.721782853486013,
+   "rho_median": 2.557574533992479,
+   "draw_spread_max_over_min": 1.1018015033504904,
+   "frac_over_1e-4_min": 0.005933315474046136,
+   "frac_over_1e-4_max": 0.005954536779716261,
+   "frac_over_1e-2_max": 0.0
+  },
+  "L2/16": {
+   "n_ok": 8,
+   "engine_verified": false,
+   "rho_min": 1.9603828343932532,
+   "rho_max": 2.130249631735481,
+   "rho_median": 2.066036404406856,
+   "draw_spread_max_over_min": 1.0866498085792524,
+   "frac_over_1e-4_min": 0.001896323636174202,
+   "frac_over_1e-4_max": 0.0019048191606998444,
+   "frac_over_1e-2_max": 0.0
+  },
+  "L2/77": {
+   "n_ok": 8,
+   "engine_verified": false,
+   "rho_min": 1.271483074713159,
+   "rho_max": 1.279074758069221,
+   "rho_median": 1.2764584084804862,
+   "draw_spread_max_over_min": 1.0059707309574488,
+   "frac_over_1e-4_min": 0.0078125,
+   "frac_over_1e-4_max": 0.0078125,
+   "frac_over_1e-2_max": 0.0
+  }
+ },
+ "verdict": "DRAW_INVARIANT",
+ "wall_s": 100.3,
+ "across_shape_span_s79c": 3.6612288536545914,
+ "limits": [
+  "8 seeds per tuple",
+  "one draw generator per task",
+  "GB10 sm_120",
+  "torch 2.14.1+cu130"
+ ]
+}

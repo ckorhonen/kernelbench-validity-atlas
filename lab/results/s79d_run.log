@@ -1,0 +1,114 @@
+targets [(1, 58), (1, 68), (1, 73), (2, 16), (2, 77)]
+USDT:2026-11-01 21:35:50 1775854:1775854 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 21:35:50 1775854:1775854 SyncActivityProfilerHandler.cpp:46] profiler_stop
+tuple L1/58 verified=True top=sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize
+  L1/58 draw 200 rho=5.972718843381917 frac=0.21248639357363316
+  L1/58 draw 201 rho=6.338752428386446 frac=0.21256329571759258
+  L1/58 draw 202 rho=5.834589972337292 frac=0.21246296985229277
+  L1/58 draw 203 rho=6.0484751585551075 frac=0.21273087866512347
+  L1/58 draw 204 rho=5.409936840054516 frac=0.21255425347222223
+  L1/58 draw 205 rho=6.003680345074236 frac=0.21254443617724866
+  L1/58 draw 206 rho=5.8675960486625645 frac=0.21268024209104938
+  L1/58 draw 207 rho=5.687676430837811 frac=0.2125096450617284
+USDT:2026-11-01 21:35:54 1775854:1775854 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 21:35:54 1775854:1775854 SyncActivityProfilerHandler.cpp:46] profiler_stop
+tuple L1/68 verified=False top=void dgrad_alg1_nd_float_engine<float, 3, 128, 6, 7, 3, 3, 5, 0, false, false>(i
+  L1/68 draw 200 rho=3.6778770471716884 frac=0.05884986790243755
+  L1/68 draw 201 rho=3.5416289823892737 frac=0.05882692132041654
+  L1/68 draw 202 rho=3.4908625558275093 frac=0.05883548108989167
+  L1/68 draw 203 rho=3.926330557249181 frac=0.05883463951255636
+  L1/68 draw 204 rho=4.009140791929679 frac=0.05884461364394103
+  L1/68 draw 205 rho=3.4298674652278858 frac=0.05884254329969789
+  L1/68 draw 206 rho=3.6341080048051078 frac=0.05883399632987804
+  L1/68 draw 207 rho=3.460288407675863 frac=0.058835292294976145
+USDT:2026-11-01 21:36:41 1775854:1775854 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 21:36:41 1775854:1775854 SyncActivityProfilerHandler.cpp:46] profiler_stop
+tuple L1/73 verified=False top=void convolveNd_dgrad_float_engine<float, 3, 128, 6, 8, 3, 3, 5, false>(int, int
+  L1/73 draw 200 rho=2.6178097813118275 frac=0.005943110511921304
+  L1/73 draw 201 rho=2.557574533992479 frac=0.0059489308628088156
+  L1/73 draw 202 rho=2.721782853486013 frac=0.005939936123180681
+  L1/73 draw 203 rho=2.6294680689797154 frac=0.005933315474046136
+  L1/73 draw 204 rho=2.5275340829043325 frac=0.005954536779716261
+  L1/73 draw 205 rho=2.4703023595532305 frac=0.005942271921892116
+  L1/73 draw 206 rho=2.516594319873085 frac=0.0059371331647269585
+  L1/73 draw 207 rho=2.5458526179255223 frac=0.005946070466681861
+USDT:2026-11-01 21:36:49 1775854:1775854 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 21:36:49 1775854:1775854 SyncActivityProfilerHandler.cpp:46] profiler_stop
+tuple L2/16 verified=False top=void cudnn::detail::dgrad_engine<float, 128, 6, 8, 3, 3, 5, false>(int, int, int
+  L2/16 draw 200 rho=2.130249631735481 frac=0.001901494339108467
+  L2/16 draw 201 rho=1.9603828343932532 frac=0.0018999986350536346
+  L2/16 draw 202 rho=2.008352985072965 frac=0.0019048191606998444
+  L2/16 draw 203 rho=2.057393174910122 frac=0.0019013751298189163
+  L2/16 draw 204 rho=2.0225304905870103 frac=0.001898767426609993
+  L2/16 draw 205 rho=2.066036404406856 frac=0.001896323636174202
+  L2/16 draw 206 rho=2.1103921419432687 frac=0.0019001848995685577
+  L2/16 draw 207 rho=2.087863203669864 frac=0.0019006803631782532
+USDT:2026-11-01 21:37:12 1775854:1775854 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-01 21:37:12 1775854:1775854 SyncActivityProfilerHandler.cpp:46] profiler_stop
+tuple L2/77 verified=False top=void convolveNd_dgrad_float_engine<float, 3, 128, 6, 8, 3, 3, 5, false>(int, int
+  L2/77 draw 200 rho=1.271483074713159 frac=0.0078125
+  L2/77 draw 201 rho=1.2741231004871683 frac=0.0078125
+  L2/77 draw 202 rho=1.278975786624352 frac=0.0078125
+  L2/77 draw 203 rho=1.2766398637124294 frac=0.0078125
+  L2/77 draw 204 rho=1.2755414438380086 frac=0.0078125
+  L2/77 draw 205 rho=1.279074758069221 frac=0.0078125
+  L2/77 draw 206 rho=1.2764584084804862 frac=0.0078125
+  L2/77 draw 207 rho=1.2718664866273903 frac=0.0078125
+VERDICT DRAW_INVARIANT {
+ "L1/58": {
+  "n_ok": 8,
+  "engine_verified": true,
+  "rho_min": 5.409936840054516,
+  "rho_max": 6.338752428386446,
+  "rho_median": 5.972718843381917,
+  "draw_spread_max_over_min": 1.1716869560204644,
+  "frac_over_1e-4_min": 0.21246296985229277,
+  "frac_over_1e-4_max": 0.21273087866512347,
+  "frac_over_1e-2_max": 0.0
+ },
+ "L1/68": {
+  "n_ok": 8,
+  "engine_verified": false,
+  "rho_min": 3.4298674652278858,
+  "rho_max": 4.009140791929679,
+  "rho_median": 3.6341080048051078,
+  "draw_spread_max_over_min": 1.1688908777305496,
+  "frac_over_1e-4_min": 0.05882692132041654,
+  "frac_over_1e-4_max": 0.05884986790243755,
+  "frac_over_1e-2_max": 0.0
+ },
+ "L1/73": {
+  "n_ok": 8,
+  "engine_verified": false,
+  "rho_min": 2.4703023595532305,
+  "rho_max": 2.721782853486013,
+  "rho_median": 2.557574533992479,
+  "draw_spread_max_over_min": 1.1018015033504904,
+  "frac_over_1e-4_min": 0.005933315474046136,
+  "frac_over_1e-4_max": 0.005954536779716261,
+  "frac_over_1e-2_max": 0.0
+ },
+ "L2/16": {
+  "n_ok": 8,
+  "engine_verified": false,
+  "rho_min": 1.9603828343932532,
+  "rho_max": 2.130249631735481,
+  "rho_median": 2.066036404406856,
+  "draw_spread_max_over_min": 1.0866498085792524,
+  "frac_over_1e-4_min": 0.001896323636174202,
+  "frac_over_1e-4_max": 0.0019048191606998444,
+  "frac_over_1e-2_max": 0.0
+ },
+ "L2/77": {
+  "n_ok": 8,
+  "engine_verified": false,
+  "rho_min": 1.271483074713159,
+  "rho_max": 1.279074758069221,
+  "rho_median": 1.2764584084804862,
+  "draw_spread_max_over_min": 1.0059707309574488,
+  "frac_over_1e-4_min": 0.0078125,
+  "frac_over_1e-4_max": 0.0078125,
+  "frac_over_1e-2_max": 0.0
+ }
+}
+wrote /home/ckorhonen/kb-lab/results/s79d_dgrad_draw_verified.jsonl /home/ckorhonen/kb-lab/results/s79d_dgrad_draw_verified_summary.json
