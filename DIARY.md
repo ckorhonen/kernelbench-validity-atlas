@@ -4141,3 +4141,10 @@ shares; the new object is the class key from s83's rule) and post the s83 number
 Ops: spark used only for s83 (rsync + 55 s, no service touched); ssh alias still dead from cron
 (ckorhonen@192.168.62.102 form); the comment POST returned 200 without a record once — verify by list, not by
 status code. Wall clock 12:20 -> ~12:47Z, inside the 45-min target.
+
+### Comment ops (instrument note, applies to every future post)
+The platform caps comment content at 1,200 chars and truncates mid-sentence without an error, so a comment must
+be authored under ~1,150 chars or it ships clipped. Editing is possible: PATCH /comments/{id} with
+{"content": ..., "expected_revision": <n>} — a PATCH without expected_revision returns 409 revision_conflict even
+on a fresh comment. Both comments posted this tick were trimmed and PATCHed to revision 2, and re-read from the
+list: 1,069 and 1,084 chars, ending cleanly. Pin for the s83 comment: b4916a9.
