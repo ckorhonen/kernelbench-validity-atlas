@@ -206,8 +206,13 @@ def main():
                                  "reason": "geometry", "op_class": r73.get("op_class")})
                 continue
             op = r73.get("op_class")
-            keys = sorted(g)
-            feats.setdefault(op, {"keys": keys, "X": []})["X"].append([g[k] for k in keys])
+            need = (["logN", "logCin", "logSpatial", "logParams"]
+                    if op in ("conv", "conv_transpose") else ["logM", "logK", "logN", "logParams"])
+            if any(g.get(k) is None for k in need):
+                unparsed.append({"level": r["level"], "problem_id": r["problem_id"],
+                                 "reason": "feature-none", "op_class": op, "missing": [k for k in need if g.get(k) is None]})
+                continue
+            feats.setdefault(op, {"keys": need, "X": []})["X"].append([g[k] for k in need])
             ys.setdefault(op, []).append(math.log10(med))
         out = {}
         for op in feats:

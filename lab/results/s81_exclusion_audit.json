@@ -1,0 +1,440 @@
+{
+ "prereg": "docstring of this file, frozen pre-run",
+ "n_exceed": 54,
+ "n_excluded_published": 10,
+ "Q1_rows": [
+  {
+   "level": 1,
+   "problem_id": 64,
+   "published_reason": "geometry",
+   "cause": "PARSER_SCOPE",
+   "op_class": "conv_transpose",
+   "input_shapes": [
+    [
+     64,
+     128,
+     65536
+    ]
+   ],
+   "output_shape": [
+    64,
+    128,
+    65538
+   ],
+   "n_params": 49152,
+   "ratio_ref_median": 0.7202886346410684,
+   "n_ratio_samples": 20000,
+   "max_ratio_ref": 4.666005273912901,
+   "ref_over_budget": 89489673,
+   "total": 536887296,
+   "s71_anchor": "admissible"
+  },
+  {
+   "level": 1,
+   "problem_id": 67,
+   "published_reason": "geometry",
+   "cause": "PARSER_SCOPE",
+   "op_class": "conv",
+   "input_shapes": [
+    [
+     32,
+     64,
+     131072
+    ]
+   ],
+   "output_shape": [
+    32,
+    128,
+    131070
+   ],
+   "n_params": 24576,
+   "ratio_ref_median": 0.812396104471218,
+   "n_ratio_samples": 20000,
+   "max_ratio_ref": 4.841070340566442,
+   "ref_over_budget": 98895446,
+   "total": 536862720,
+   "s71_anchor": "admissible"
+  },
+  {
+   "level": 1,
+   "problem_id": 74,
+   "published_reason": "geometry",
+   "cause": "PARSER_SCOPE",
+   "op_class": "conv_transpose",
+   "input_shapes": [
+    [
+     32,
+     32,
+     131072
+    ]
+   ],
+   "output_shape": [
+    32,
+    64,
+    131084
+   ],
+   "n_params": 10240,
+   "ratio_ref_median": 0.3752590143848342,
+   "n_ratio_samples": 20000,
+   "max_ratio_ref": 3.925496765761628,
+   "ref_over_budget": 21194473,
+   "total": 268460032,
+   "s71_anchor": "admissible"
+  },
+  {
+   "level": 1,
+   "problem_id": 79,
+   "published_reason": "geometry",
+   "cause": "PARSER_SCOPE",
+   "op_class": "conv_transpose",
+   "input_shapes": [
+    [
+     16,
+     32,
+     131072
+    ]
+   ],
+   "output_shape": [
+    16,
+    64,
+    262145
+   ],
+   "n_params": 6144,
+   "ratio_ref_median": 4.5378258822426624e-05,
+   "n_ratio_samples": 20000,
+   "max_ratio_ref": 3.2624440991982455,
+   "ref_over_budget": 10256713,
+   "total": 268436480,
+   "s71_anchor": "admissible"
+  },
+  {
+   "level": 1,
+   "problem_id": 81,
+   "published_reason": "no bias",
+   "cause": "FALSY_ZERO",
+   "op_class": "conv_transpose",
+   "input_shapes": [
+    [
+     16,
+     32,
+     64,
+     128
+    ]
+   ],
+   "output_shape": [
+    16,
+    64,
+    318,
+    638
+   ],
+   "n_params": 18432,
+   "ratio_ref_median": 0.0,
+   "n_ratio_samples": 20000,
+   "max_ratio_ref": 1.3189830676831722,
+   "ref_over_budget": 796,
+   "total": 207753216,
+   "s71_anchor": "admissible"
+  },
+  {
+   "level": 2,
+   "problem_id": 14,
+   "published_reason": "geometry",
+   "cause": "PARSER_SCOPE",
+   "op_class": "gemm",
+   "input_shapes": [
+    [
+     1024,
+     8192
+    ]
+   ],
+   "output_shape": [
+    1024,
+    1
+   ],
+   "n_params": 67108864,
+   "ratio_ref_median": 0.007459709589309297,
+   "n_ratio_samples": 1024,
+   "max_ratio_ref": 2.4024237914143183,
+   "ref_over_budget": 4,
+   "total": 1024,
+   "s71_anchor": "admissible"
+  },
+  {
+   "level": 2,
+   "problem_id": 1,
+   "published_reason": "no bias",
+   "cause": "FALSY_ZERO",
+   "op_class": "conv",
+   "input_shapes": [
+    [
+     128,
+     64,
+     128,
+     128
+    ]
+   ],
+   "output_shape": [
+    128,
+    128,
+    126,
+    126
+   ],
+   "n_params": 73984,
+   "ratio_ref_median": 0.0,
+   "n_ratio_samples": 20000,
+   "max_ratio_ref": 4.69677922980483,
+   "ref_over_budget": 13258081,
+   "total": 260112384,
+   "s71_anchor": "admissible"
+  },
+  {
+   "level": 2,
+   "problem_id": 2,
+   "published_reason": "no bias",
+   "cause": "FALSY_ZERO",
+   "op_class": "conv_transpose",
+   "input_shapes": [
+    [
+     128,
+     64,
+     128,
+     128
+    ]
+   ],
+   "output_shape": [
+    128,
+    64,
+    256,
+    256
+   ],
+   "n_params": 36992,
+   "ratio_ref_median": 0.0,
+   "n_ratio_samples": 20000,
+   "max_ratio_ref": 3.1416888077428484,
+   "ref_over_budget": 1617544,
+   "total": 536870912,
+   "s71_anchor": "admissible"
+  },
+  {
+   "level": 2,
+   "problem_id": 79,
+   "published_reason": "no bias",
+   "cause": "FALSY_ZERO",
+   "op_class": "conv",
+   "input_shapes": [
+    [
+     128,
+     3,
+     16,
+     32,
+     32
+    ]
+   ],
+   "output_shape": [
+    128,
+    14,
+    30,
+    30
+   ],
+   "n_params": 1328,
+   "ratio_ref_median": 0.0,
+   "n_ratio_samples": 20000,
+   "max_ratio_ref": 19.963734536159457,
+   "ref_over_budget": 433444,
+   "total": 1612800,
+   "s71_anchor": "admissible"
+  },
+  {
+   "level": 2,
+   "problem_id": 93,
+   "published_reason": "no bias",
+   "cause": "FALSY_ZERO",
+   "op_class": "conv_transpose",
+   "input_shapes": [
+    [
+     128,
+     64,
+     64,
+     64
+    ]
+   ],
+   "output_shape": [
+    128,
+    128,
+    130,
+    130
+   ],
+   "n_params": 131200,
+   "ratio_ref_median": 0.0,
+   "n_ratio_samples": 20000,
+   "max_ratio_ref": 1.1263711634055436,
+   "ref_over_budget": 2,
+   "total": 276889600,
+   "s71_anchor": "admissible"
+  }
+ ],
+ "Q1_counts": {
+  "PARSER_SCOPE": 5,
+  "FALSY_ZERO": 5
+ },
+ "Q2": {
+  "published_parser": {
+   "per_op": {
+    "conv": {
+     "n": 22,
+     "loo_r2": -0.6050835048060499,
+     "features": [
+      "logN",
+      "logCin",
+      "logSpatial",
+      "logParams"
+     ]
+    },
+    "conv_transpose": {
+     "n": 22,
+     "loo_r2": -0.39236704988511617,
+     "features": [
+      "logN",
+      "logCin",
+      "logSpatial",
+      "logParams"
+     ]
+    }
+   },
+   "n_unparsed": 5,
+   "unparsed": [
+    {
+     "level": 1,
+     "problem_id": 64,
+     "reason": "geometry",
+     "op_class": "conv_transpose"
+    },
+    {
+     "level": 1,
+     "problem_id": 67,
+     "reason": "geometry",
+     "op_class": "conv"
+    },
+    {
+     "level": 1,
+     "problem_id": 74,
+     "reason": "geometry",
+     "op_class": "conv_transpose"
+    },
+    {
+     "level": 1,
+     "problem_id": 79,
+     "reason": "geometry",
+     "op_class": "conv_transpose"
+    },
+    {
+     "level": 2,
+     "problem_id": 14,
+     "reason": "geometry",
+     "op_class": "gemm"
+    }
+   ],
+   "zero_bias_rows": 5
+  },
+  "extended_parser": {
+   "per_op": {
+    "conv": {
+     "n": 23,
+     "loo_r2": -0.5774499147812331,
+     "features": [
+      "logN",
+      "logCin",
+      "logSpatial",
+      "logParams"
+     ]
+    },
+    "conv_transpose": {
+     "n": 25,
+     "loo_r2": -0.19794351712945257,
+     "features": [
+      "logN",
+      "logCin",
+      "logSpatial",
+      "logParams"
+     ]
+    },
+    "gemm": {
+     "n": 1,
+     "loo_r2": null,
+     "features": [
+      "logM",
+      "logK",
+      "logN",
+      "logParams"
+     ]
+    }
+   },
+   "n_unparsed": 0,
+   "unparsed": [],
+   "zero_bias_rows": 5
+  },
+  "verdict": "GEOMETRY_VERDICT_UNCHANGED"
+ },
+ "Q3": {
+  "per_class": {
+   "TF32_TENSOROP": {
+    "n": 47,
+    "n_zero_median": 3,
+    "spread_median_excl_zero": 26083.09071996373,
+    "spread_max_all_rows": 20.750164234297333
+   },
+   "FP32_SIMT": {
+    "n": 1,
+    "n_zero_median": 0,
+    "spread_median_excl_zero": null,
+    "spread_max_all_rows": null
+   },
+   "OTHER": {
+    "n": 6,
+    "n_zero_median": 2,
+    "spread_median_excl_zero": 26.997670898318738,
+    "spread_max_all_rows": 20.126445647728154
+   }
+  },
+  "dominant_class": "TF32_TENSOROP",
+  "published_spread": 26083.09071996373,
+  "spread_max_all_rows_dominant": 20.750164234297333
+ },
+ "Q4": {
+  "n_tail_rows": 49,
+  "n_dropped": 5,
+  "dropped": [
+   {
+    "level": 1,
+    "problem_id": 81,
+    "bias": 0.0,
+    "q99": 0.4698421624746515
+   },
+   {
+    "level": 2,
+    "problem_id": 1,
+    "bias": 0.0,
+    "q99": 1.0313915182037612
+   },
+   {
+    "level": 2,
+    "problem_id": 2,
+    "bias": 0.0,
+    "q99": 0.0
+   },
+   {
+    "level": 2,
+    "problem_id": 79,
+    "bias": 0.0,
+    "q99": 6.86230692430296
+   },
+   {
+    "level": 2,
+    "problem_id": 93,
+    "bias": 0.0,
+    "q99": 0.0
+   }
+  ]
+ },
+ "Q1_verdict": "EXCLUSIONS_INSTRUMENT_ARTIFACT"
+}
