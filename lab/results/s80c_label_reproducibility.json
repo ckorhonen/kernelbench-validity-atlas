@@ -1,0 +1,578 @@
+{
+ "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+ "n_targets": 14,
+ "n_ok": 14,
+ "L1_pass_to_pass": 1.0,
+ "L2_agreement_with_s80": 0.8571428571428571,
+ "L3_agreement_with_s80b": 0.07142857142857142,
+ "verdict": "LABEL_UNREPRODUCIBLE",
+ "rows": [
+  {
+   "level": 1,
+   "problem_id": 57,
+   "name": "57_conv_transposed_2D__square_input__square_kernel.py",
+   "s80_r1_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "s80b_live_top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 20161.851
+    },
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+     "us": 20121.465
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 19405.539
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 20280.46
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 19694.575
+    },
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+     "us": 19612.368
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": false,
+   "a_equals_s80b": true,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 58,
+   "name": "58_conv_transposed_3D__asymmetric_input__asymmetric_kernel.py",
+   "s80_r1_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "s80b_live_top1": "void dgrad_alg1_nd_float_engine<float, 3, 128, 6, 7, 3, 3, 5, 0, false, false>(int, int, int, float const*, int, float*, float const*, kernel_gradNd_params, unsigned long long, int, float, float)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 10157.863
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 598.209
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 397.409
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 10523.187
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 593.118
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 398.081
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 61,
+   "name": "61_conv_transposed_3D__square_input__square_kernel.py",
+   "s80_r1_top1": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "s80b_live_top1": "void dgrad_alg1_nd_float_engine<float, 3, 128, 6, 7, 3, 3, 5, 0, false, false>(int, int, int, float const*, int, float*, float const*, kernel_gradNd_params, unsigned long long, int, float, float)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+     "us": 15322.702
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 3981.978
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 3741.467
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+     "us": 15007.34
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 4212.475
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 4077.307
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 65,
+   "name": "65_conv_transposed_2D__square_input__asymmetric_kernel.py",
+   "s80_r1_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "s80b_live_top1": "void cudnn::detail::dgrad_engine<float, 512, 6, 5, 3, 3, 3, false>(int, int, int, float const*, int, float const*, int, float*, kernel_grad_params, unsigned long long, int, unsigned long long, int, float, int, int, int)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+     "us": 8722.86
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 4946.019
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 4898.307
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+     "us": 8089.136
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 5091.73
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 4944.117
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 68,
+   "name": "68_conv_transposed_3D__square_input__asymmetric_kernel.py",
+   "s80_r1_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "s80b_live_top1": "void dgrad_alg1_nd_float_engine<float, 3, 128, 6, 7, 3, 3, 5, 0, false, false>(int, int, int, float const*, int, float*, float const*, kernel_gradNd_params, unsigned long long, int, float, float)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 55477.51
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 11369.03
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 4922.214
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 56344.004
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 11376.192
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 4849.944
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 69,
+   "name": "69_conv_transposed_2D__asymmetric_input__asymmetric_kernel.py",
+   "s80_r1_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "s80b_live_top1": "void cutlass::Kernel2<cutlass_100_simt_cgemm_64x32_16x4_nt_align1>(cutlass_100_simt_cgemm_64x32_16x4_nt_align1::Params)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+     "us": 14815.612
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 11401.481
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 4845.344
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+     "us": 14214.533
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 11672.87
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 4933.854
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 70,
+   "name": "70_conv_transposed_3D__asymmetric_input__square_kernel.py",
+   "s80_r1_top1": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "s80b_live_top1": "void dgrad_alg1_nd_float_engine<float, 3, 128, 6, 7, 3, 3, 5, 0, false, false>(int, int, int, float const*, int, float*, float const*, kernel_gradNd_params, unsigned long long, int, float, float)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+     "us": 49851.271
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 13359.931
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 6380.72
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+     "us": 49779.507
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 12829.859
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 6394.018
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 71,
+   "name": "71_conv_transposed_2D__asymmetric_input__square_kernel.py",
+   "s80_r1_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "s80b_live_top1": "void cudnn::detail::dgrad_alg1_engine<float, 512, 6, 5, 3, 3, 3, false, false>(int, int, int, float const*, int, float const*, int, float*, kernel_grad_params, unsigned long long, int, float, int)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+     "us": 5832.692
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 4822.951
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 4606.475
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+     "us": 5813.621
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 4846.334
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 4615.223
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 1,
+   "problem_id": 73,
+   "name": "73_conv_transposed_3D_asymmetric_input_square_kernel__strided_padded__grouped.py",
+   "s80_r1_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "s80b_live_top1": "void convolveNd_dgrad_float_engine<float, 3, 128, 6, 8, 3, 3, 5, false>(int, int, int, float const*, int, float const*, int, float*, kernel_gradNd_params, unsigned long long, int, unsigned long long, int, float, int)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 11232.352
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 9593.496
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 1159.599
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 12064.413
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 9202.732
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 1157.881
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 2,
+   "problem_id": 11,
+   "name": "11_ConvTranspose2d_BatchNorm_Tanh_MaxPool_GroupNorm.py",
+   "s80_r1_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "s80b_live_top1": "void cudnn::winograd_nonfused::winogradForwardOutput9x9_5x5<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+     "us": 5752.776
+    },
+    {
+     "name": "void cudnn::bn_fw_inf_1C11_kernel_NCHW<float, float, true, 1>(float, float, cudnnTensorStruct, float const*, cudnnTensorStruct, float*, cudnnTensorStruct, float const*, float const*, float const*, float const*, float)",
+     "us": 2681.912
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 2659.608
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+     "us": 5022.943
+    },
+    {
+     "name": "void at::native::(anonymous namespace)::max_pool_forward_nchw<float, int>(int, float const*, long, long, long, int, int, int, int, int, int, int, int, int, int, float*, long*)",
+     "us": 2688.239
+    },
+    {
+     "name": "void cudnn::bn_fw_inf_1C11_kernel_NCHW<float, float, true, 1>(float, float, cudnnTensorStruct, float const*, cudnnTensorStruct, float*, cudnnTensorStruct, float const*, float const*, float const*, float const*, float)",
+     "us": 2685.038
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 2,
+   "problem_id": 16,
+   "name": "16_ConvTranspose2d_Mish_Add_Hardtanh_Scaling.py",
+   "s80_r1_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "s80b_live_top1": "void cudnn::detail::dgrad_engine<float, 128, 6, 8, 3, 3, 5, false>(int, int, int, float const*, int, float const*, int, float*, kernel_grad_params, unsigned long long, int, unsigned long long, int, float, int, int, int)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 22920.264
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 19931.965
+    },
+    {
+     "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::mish_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::mish_kernel(at::TensorIteratorBase&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+     "us": 18124.936
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 22913.844
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 19995.298
+    },
+    {
+     "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<float>, std::array<char*, 2ul>, false>(int, at::native::CUDAFunctorOnSelf_add<float>, std::array<char*, 2ul>)",
+     "us": 18449.065
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 2,
+   "problem_id": 19,
+   "name": "19_ConvTranspose2d_GELU_GroupNorm.py",
+   "s80_r1_top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "s80b_live_top1": "void magma_sgemmEx_kernel<float, float, float, false, true, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 20406.07
+    },
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+     "us": 19716.955
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 19318.334
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 20692.505
+    },
+    {
+     "name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+     "us": 20288.059
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)",
+     "us": 19871.615
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": false,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 2,
+   "problem_id": 61,
+   "name": "61_ConvTranspose3d_ReLU_GroupNorm.py",
+   "s80_r1_top1": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "s80b_live_top1": "void convolveNd_dgrad_float_engine<float, 3, 128, 6, 8, 3, 3, 5, false>(int, int, int, float const*, int, float const*, int, float*, kernel_gradNd_params, unsigned long long, int, unsigned long long, int, float, int)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+     "us": 6090.763
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 3153.476
+    },
+    {
+     "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+     "us": 2779.208
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+     "us": 5871.87
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 3248.201
+    },
+    {
+     "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+     "us": 2791.186
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  },
+  {
+   "level": 2,
+   "problem_id": 77,
+   "name": "77_ConvTranspose3d_Scale_BatchNorm_GlobalAvgPool.py",
+   "s80_r1_top1": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "s80b_live_top1": "void convolveNd_dgrad_float_engine<float, 3, 128, 6, 8, 3, 3, 5, false>(int, int, int, float const*, int, float const*, int, float*, kernel_gradNd_params, unsigned long long, int, unsigned long long, int, float, int)",
+   "prereg_sha": "b86d6c8650d12e1f5bf1e11e2da42931281940207001f80fa0e7fb01e332c29a",
+   "pass_a": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 13021.224
+    },
+    {
+     "name": "void cudnn::bn_fw_inf_1C11_kernel_NCHW<float, float, true, 1>(float, float, cudnnTensorStruct, float const*, cudnnTensorStruct, float*, cudnnTensorStruct, float const*, float const*, float const*, float const*, float)",
+     "us": 2127.223
+    },
+    {
+     "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>, false>(int, at::native::AUnaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 2ul>)",
+     "us": 2117.495
+    }
+   ],
+   "pass_b": [
+    {
+     "name": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+     "us": 13476.128
+    },
+    {
+     "name": "void cudnn::bn_fw_inf_1C11_kernel_NCHW<float, float, true, 1>(float, float, cudnnTensorStruct, float const*, cudnnTensorStruct, float*, cudnnTensorStruct, float const*, float const*, float const*, float const*, float)",
+     "us": 2065.891
+    },
+    {
+     "name": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+     "us": 2011.141
+    }
+   ],
+   "a_equals_b": true,
+   "a_equals_s80": true,
+   "a_equals_s80b": false,
+   "status": "ok"
+  }
+ ],
+ "wall_s": 10.0,
+ "limits": [
+  "one input draw",
+  "two passes",
+  "GB10 sm_120",
+  "torch 2.14.1+cu130"
+ ]
+}
