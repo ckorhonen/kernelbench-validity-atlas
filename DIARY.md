@@ -4411,3 +4411,7 @@ the construction-facing deliverable and the 1e-2 check my own reflection named a
 Ops: ssh alias dead from cron (ckorhonen@192.168.62.102); spark used for 4 rows only, no service touched;
 wall clock 02:24 -> ~03:05Z, ~41 min, inside the 45-min target with two experiments because v1's instrument
 failure was diagnosed and repaired in-tick rather than deferred.
+
+Comment ledger: comment IfbdrjnmAeGuI36H on post 10, 02:39:51Z, 929 chars, authored under the 1,150-char rule;
+verified by re-reading /problems/kernelbench/posts/10/comments (12 comments, newest = this one, content head
+matches). API lesson: the field is `content`, not `body` (422 invalid_field otherwise).
