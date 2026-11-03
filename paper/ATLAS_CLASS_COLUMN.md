@@ -122,3 +122,38 @@ different engine class than the winograd reference. tf32-off, by contrast, stays
 Deliverable shape unchanged (per-shape magnitude, class-level share), with one added caveat: a candidate's
 verdict inheritance depends on whether it shares the reference's engine class, and the compiler arm does not
 share it at small extents.
+
+## s89/s89b — where the tf32-off reference itself exceeds: the share is a coverage ratio, not a class constant
+
+Prereg v1 `lab/s89_tf32off_exceed_attrib.py` @ d357139 (frozen pre-run); amendment v2 `lab/s89b_tf32off_attrib_v2.py`
+@ 2b22a4f (frozen before the v2 run, v1 artifacts kept). Population from `results/s71_full_audit.jsonl`:
+targets = the 2 rows with `exceed_strict_tf32off` (L2/11 convT composite, L2/14 gemm composite); controls =
+first two file-order rows with `exceed_strict_default` true and tf32-off clean (L2/54 conv3d, L2/55 conv2d).
+
+**v1 produced no attribution, and said so.** Two instrument slips were caught before any share was quoted: the
+fp64 anchor call left the model in fp64 (`run_model` mutates dtype) so every compile attempt died on a dtype
+mismatch, and the ceiling was coded over all elements instead of over failing elements. v2 fixes both; no
+threshold, population or selection rule changed.
+
+**v2 results (spark, 4 rows, ~20 s; `results/s89b_tf32off_attrib.{jsonl,summary.json}`).**
+- *Premise:* only L2/11 shows a measured class change (A TF32_TENSOROP -> B WINOGRAD). L2/14 is same-class
+  FP32_SIMT and B is bit-identical to A, so its 4/1024 exceedance is an ordering effect, not a class test.
+- *L2/11:* A is over budget on 54.95% of 18.94M elements (maxabs 1.89e-3); B on 26.36% (maxabs 2.78e-2,
+  rho 58.66). compile vs B: 11,728,917 failing (61.9%), 4,085,381 reference-induced, share 0.3483
+  (CI [0.3480, 0.3486]), ceiling 0.4256, share_ratio 0.8184. compile vs A: 0 failing elements and not
+  bit-identical. B-as-candidate vs A: 11,728,901 failing, share 0.7769, ceiling 0.8874, ratio 0.8756.
+- *Controls:* B is clean (frac_over exactly 0.0, maxabs 8.9e-7 / 2.7e-6). B-as-candidate vs A reproduces
+  s84's constant on a fresh population: 0.99968 and 0.99914 (ratios 0.99968 / 0.99914). compile vs A: 0 failing
+  (bit-identical on L2/54). compile vs B: 42.6M / 97.7M failing, 0% reference-induced.
+- *Instrument:* in-process repeat control bit-identical and count-stable on 4/4 rows, so v1's s71 tie-out
+  mismatch (19 elements of 4.99M, 3.8e-6 relative) is cross-process algorithm/allocator variability, not
+  harness instability.
+
+**Frozen verdict: BOUNDED_BY_REFERENCE_COVERAGE** (not SHARE_HOLDS, not CLASS_SCOPED). The 0.9985 figure is not
+a class property; it is the coverage ratio |fail ∩ {reference over budget}| / |fail|, and it approaches 1 only
+where the reference's exceedance set covers essentially the whole candidate failure set. The column therefore
+carries share together with ceiling and share_ratio, and the constant's scope is "references whose exceedance
+covers ~the whole failure set", not "TF32 references". Second finding: compile's pass inheritance is
+reference-conditional, not merely extent-conditional — on L2/11 compile (engine OTHER) sits within budget of the
+default reference on all 18.94M elements while differing from it, and fails 61.9% of elements against the
+tf32-off reference.

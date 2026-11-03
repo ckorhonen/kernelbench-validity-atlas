@@ -744,3 +744,21 @@ spans 10,654x); (3) 6 no-bias + 4 unparsed s73 rows; (4) pool-diversity dedup on
 ## L2/11 rho 58.66 where disabling TF32 installs a worse engine) — the only non-TF32-class exceedance in my
 ## records, same two-arm design and kills; (2) fold the extent-conditional compile caveat into §4.5/§4.6 prose;
 ## (3) reference-configuration certificate at the shipped 1e-2 gate (plan milestone 2); (4) 24h-E1/CTA-edge/bt parked.
+
+## DONE 03:0xZ 11-03: s89/s89b — attribution where the tf32-off reference itself exceeds. v1 fired
+## INSTRUMENT_FAILED (compile dtype bug from the fp64 anchor's in-place dtype mutation; ceiling coded over all
+## elements instead of failing elements; s71 tie-out off 19/4.99M) and quoted no share. v2 (amendment frozen
+## pre-run 2b22a4f) measured: only L2/11 changes class (TF32->WINOGRAD; L2/14 is same-class and B bit-identical,
+## so its 4/1024 exceedance is an ordering effect, not a class test). L2/11: compile vs B 11,728,917 failing,
+## share 0.3483 CI [0.3480,0.3486], ceiling 0.4256, ratio 0.8184; compile vs A 0 failing and not bit-identical;
+## B-as-candidate vs A share 0.7769, ceiling 0.8874. Controls reproduce s84's constant on a fresh population
+## (0.99968/0.99914, ratios 0.99968/0.99914); repeat control bit-identical 4/4 so the v1 tie-out gap is
+## cross-process algorithm variability, not harness instability. Frozen verdict BOUNDED_BY_REFERENCE_COVERAGE:
+## the 0.9985 figure is a coverage ratio |fail ∩ ref-over| / |fail|, not a class property; column ships
+## share+ceiling+ratio and the constant's scope is "reference exceedance covers ~the whole failure set".
+## Prose: ATLAS_CLASS_COLUMN.md s89 section; MANUSCRIPT §4 gains pass-inheritance-is-reference-conditional
+## (46,153 B, limitations 6->7). Comment on post 10 with the coverage result.
+## Next: (1) reference-configuration certificate at the shipped 1e-2 gate on fresh shapes (plan milestone 2;
+## also the 1e-2 falsifier my 02:26Z reflection named for the axis); (2) class axis remains untested where a
+## non-TF32 reference exceeds AND covers the failure set (L2/11's ref covers 42.6%); (3) L2/14 same-class
+## ordering exceedance unnamed mechanistically (low priority); (4) 24h-E1/CTA-edge/bt parked.

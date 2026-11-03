@@ -412,7 +412,7 @@ calibration table for magnitude plus a measured per-shape cost for admission, no
 
 # 4 — Limitations, and what a reader should not infer
 
-Six limitations, each with the inference it blocks.
+Seven limitations, each with the inference it blocks.
 
 **One architecture.** Every number is GB10/sm_120, one fp64 build, torch 2.14.1+cu130, unlocked clocks
 (clock lock denied by permission). The engine map is a statement about one vendor library's dispatch table
@@ -440,6 +440,16 @@ apply to reductions and vice versa; the one place the paper crosses families it 
 process, not that a fresh process reproduces the numbers. Fresh-process replication is named as the open
 condition and is the next measurement debt. The engine observation (§3.1) is a profiler read of one call per
 shape per flag set, so it establishes which engine ran, not that the same engine always runs.
+
+**Pass inheritance is reference-conditional, not just extent-conditional.** Where a compiled candidate lands
+inside budget of the default reference, that pass is inherited from a shared realization rather than earned:
+27 of 54 compiled rows are bit-identical to the reference, and all of them still fail against the fp64 anchor.
+The inheritance is not universal. On the smallest Winograd tuples the compiled conv picks a different engine
+class and fails the same gate with 100% candidate-induced error (1,170-5,623 elements, `results/s88b_winograd_probe.json`).
+And on the one row in the 192-task audit where disabling TF32 installs a worse engine (L2/11, `rho` 58.66), the
+compiled candidate is within budget of the default reference on all 18.94M elements while failing 61.9% of them
+against the tf32-off reference (`results/s89b_tf32off_attrib.jsonl`). A reader should not treat "the compiler
+matches the reference" as a property of the candidate; it is a property of the pair.
 
 **Timing.** Timing is interleaved with L2 flush and 12 repetitions, and the spread is carried with every
 number that depends on it (§3.5's resolution ladder exists because of it). Clocks are unlocked, so absolute

@@ -1,0 +1,261 @@
+{
+ "date": "2026-11-03T02:29:56Z",
+ "n_rows": 4,
+ "population": {
+  "targets": [
+   [
+    11,
+    "11_ConvTranspose2d_BatchNorm_Tanh_MaxPool_GroupNorm.py"
+   ],
+   [
+    14,
+    "14_Gemm_Divide_Sum_Scaling.py"
+   ]
+  ],
+  "controls": [
+   [
+    54,
+    "54_conv_standard_3D__square_input__square_kernel.py"
+   ],
+   [
+    55,
+    "55_conv_standard_2D__asymmetric_input__square_kernel.py"
+   ]
+  ]
+ },
+ "pooled": {
+  "target/C1_vs_B": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "ceiling": null
+  },
+  "target/C1_vs_A": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "ceiling": null
+  },
+  "target/C2_vs_A": {
+   "n_ref_ind": 9112735,
+   "n_fail": 11728901,
+   "share": 0.7769470472979523,
+   "ci_low": 0.7767087097920871,
+   "ci_high": 0.7771852033853832,
+   "ceiling": 0.5494880715453857
+  },
+  "control/C1_vs_B": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "ceiling": null
+  },
+  "control/C1_vs_A": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "ceiling": null
+  },
+  "control/C2_vs_A": {
+   "n_ref_ind": 140245294,
+   "n_fail": 140343307,
+   "share": 0.9993016197060256,
+   "ci_low": 0.9992972352821282,
+   "ci_high": 0.9993059767952807,
+   "ceiling": 0.18044115032065122
+  }
+ },
+ "per_row": [
+  {
+   "idx": 0,
+   "arm": "target",
+   "level": 2,
+   "problem_id": 11,
+   "name": "11_ConvTranspose2d_BatchNorm_Tanh_MaxPool_GroupNorm.py",
+   "op_class": "conv_transpose",
+   "shape": [
+    512,
+    128,
+    17,
+    17
+   ],
+   "n_elem": 18939904,
+   "date": "2026-11-03T02:29:56Z",
+   "engine_A": "TF32_TENSOROP",
+   "engine_A_name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "engine_B": "WINOGRAD",
+   "engine_B_name": "void cudnn::winograd_nonfused::winogradForwardOutput9x9_5x5<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)",
+   "engine_C1": "COMPILE_FAIL",
+   "ref_stats_A": {
+    "count": 10407791,
+    "total": 18939904,
+    "frac_over": 0.5495165656594669,
+    "maxabs": 0.0018909063587072145
+   },
+   "ref_stats_B": {
+    "count": 4991796,
+    "total": 18939904,
+    "frac_over": 0.26355973082017736,
+    "maxabs": 0.027832537566710933
+   },
+   "bit_AB": false,
+   "wall_s": 2.28
+  },
+  {
+   "idx": 1,
+   "arm": "target",
+   "level": 2,
+   "problem_id": 14,
+   "name": "14_Gemm_Divide_Sum_Scaling.py",
+   "op_class": "gemm",
+   "shape": [
+    1024,
+    1
+   ],
+   "n_elem": 1024,
+   "date": "2026-11-03T02:29:56Z",
+   "engine_A": "FP32_SIMT",
+   "engine_A_name": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+   "engine_B": "FP32_SIMT",
+   "engine_B_name": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+   "engine_C1": "COMPILE_FAIL",
+   "ref_stats_A": {
+    "count": 4,
+    "total": 1024,
+    "frac_over": 0.00390625,
+    "maxabs": 0.011018176027846494
+   },
+   "ref_stats_B": {
+    "count": 4,
+    "total": 1024,
+    "frac_over": 0.00390625,
+    "maxabs": 0.011018176027846494
+   },
+   "bit_AB": true,
+   "wall_s": 1.65
+  },
+  {
+   "idx": 2,
+   "arm": "control",
+   "level": 1,
+   "problem_id": 54,
+   "name": "54_conv_standard_3D__square_input__square_kernel.py",
+   "op_class": "conv",
+   "shape": [
+    16,
+    64,
+    62,
+    62,
+    62
+   ],
+   "n_elem": 244047872,
+   "date": "2026-11-03T02:29:56Z",
+   "engine_A": "TF32_TENSOROP",
+   "engine_A_name": "sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x32x16_stage1_warpsize4x1x1_g1_tensor16x8x8_aligna4_alignc8_execute_kernel__5x_cudnn",
+   "engine_B": "FP32_SIMT",
+   "engine_B_name": "void implicit_convolveNd_sgemm<float, 3, 1024, 5, 5, 3, 3, 3, 1, false, false, true>(int, int, int, float const*, int, float*, float const*, kernel_convNd_params, unsigned long long, int, float, float, int, float const*, float const*, bool, bool)",
+   "engine_C1": "COMPILE_FAIL",
+   "ref_stats_A": {
+    "count": 42620603,
+    "total": 244047872,
+    "frac_over": 0.1746403385971749,
+    "maxabs": 0.0005111770678859484
+   },
+   "ref_stats_B": {
+    "count": 0,
+    "total": 244047872,
+    "frac_over": 0.0,
+    "maxabs": 8.898627386066948e-07
+   },
+   "bit_AB": false,
+   "wall_s": 1.23
+  },
+  {
+   "idx": 3,
+   "arm": "control",
+   "level": 1,
+   "problem_id": 55,
+   "name": "55_conv_standard_2D__asymmetric_input__square_kernel.py",
+   "op_class": "conv",
+   "shape": [
+    8,
+    128,
+    510,
+    1022
+   ],
+   "n_elem": 533729280,
+   "date": "2026-11-03T02:29:56Z",
+   "engine_A": "TF32_TENSOROP",
+   "engine_A_name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_B": "FP32_SIMT",
+   "engine_B_name": "void implicit_convolve_sgemm<float, float, int, 512, 6, 8, 3, 3, 5, 1, false, false, true>(int, int, int, float const*, int, float*, float const*, kernel_conv_params, unsigned long long, int, float, float, int, float const*, float const*, bool, bool, int, int)",
+   "engine_C1": "COMPILE_FAIL",
+   "ref_stats_A": {
+    "count": 97727362,
+    "total": 533729280,
+    "frac_over": 0.18310286818066268,
+    "maxabs": 0.0005247876365350734
+   },
+   "ref_stats_B": {
+    "count": 0,
+    "total": 533729280,
+    "frac_over": 0.0,
+    "maxabs": 2.728149135489133e-06
+   },
+   "bit_AB": false,
+   "wall_s": 5.77
+  }
+ ],
+ "tie_out": {
+  "11": {
+   "s71_B_count": 4991815,
+   "s89_B_count": 4991796,
+   "match": false,
+   "s71_A_count": 10407775,
+   "s89_A_count": 10407791,
+   "a_match": false
+  },
+  "14": {
+   "s71_B_count": 4,
+   "s89_B_count": 4,
+   "match": true,
+   "s71_A_count": 4,
+   "s89_A_count": 4,
+   "a_match": true
+  },
+  "54": {
+   "s71_B_count": 0,
+   "s89_B_count": 0,
+   "match": true,
+   "s71_A_count": 42619207,
+   "s89_A_count": 42620603,
+   "a_match": false
+  },
+  "55": {
+   "s71_B_count": 0,
+   "s89_B_count": 0,
+   "match": true,
+   "s71_A_count": 97723794,
+   "s89_A_count": 97727362,
+   "a_match": false
+  }
+ },
+ "verdict": {
+  "K3_tie_out_failed": true,
+  "K4_premise_failed": false,
+  "K2_underpowered": true,
+  "K1_transfer": false,
+  "primary_share": null,
+  "primary_ci_low": 0.0,
+  "primary_ceiling": null,
+  "reading": "INSTRUMENT_FAILED"
+ }
+}

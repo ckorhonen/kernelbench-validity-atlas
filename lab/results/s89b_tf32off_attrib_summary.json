@@ -1,0 +1,493 @@
+{
+ "date": "2026-11-03T02:33:20Z",
+ "n_rows": 4,
+ "population": {
+  "targets": [
+   [
+    11,
+    "11_ConvTranspose2d_BatchNorm_Tanh_MaxPool_GroupNorm.py"
+   ],
+   [
+    14,
+    "14_Gemm_Divide_Sum_Scaling.py"
+   ]
+  ],
+  "controls": [
+   [
+    54,
+    "54_conv_standard_3D__square_input__square_kernel.py"
+   ],
+   [
+    55,
+    "55_conv_standard_2D__asymmetric_input__square_kernel.py"
+   ]
+  ]
+ },
+ "pooled": {
+  "target/C1_vs_B": {
+   "n_ref_ind": 4085381,
+   "n_fail": 11728917,
+   "share": 0.3483169844240521,
+   "ci_low": 0.34804436710629294,
+   "ci_high": 0.34858970110397436,
+   "n_ceil": 4991811,
+   "ceiling": 0.4255986294386771,
+   "share_ratio": 0.8184166027119216
+  },
+  "target/C1_vs_A": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n_ceil": 10407794,
+   "ceiling": null,
+   "share_ratio": 0.0
+  },
+  "target/C2_vs_A": {
+   "n_ref_ind": 9112735,
+   "n_fail": 11728901,
+   "share": 0.7769470472979523,
+   "ci_low": 0.7767087097920871,
+   "ci_high": 0.7771852033853832,
+   "n_ceil": 10407814,
+   "ceiling": 0.8873648093713128,
+   "share_ratio": 0.8755666655841466
+  },
+  "control/C1_vs_B": {
+   "n_ref_ind": 0,
+   "n_fail": 140334654,
+   "share": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 2.7374563483356554e-08,
+   "n_ceil": 0,
+   "ceiling": 0.0,
+   "share_ratio": null
+  },
+  "control/C1_vs_A": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n_ceil": 140347964,
+   "ceiling": null,
+   "share_ratio": 0.0
+  },
+  "control/C2_vs_A": {
+   "n_ref_ind": 140245294,
+   "n_fail": 140343307,
+   "share": 0.9993016197060256,
+   "ci_low": 0.9992972352821282,
+   "ci_high": 0.9993059767952807,
+   "n_ceil": 140343004,
+   "ceiling": 0.9999978410085492,
+   "share_ratio": 0.9993037771943374
+  }
+ },
+ "pooled_class_change_only": {
+  "target/C1_vs_B": {
+   "n_ref_ind": 4085381,
+   "n_fail": 11728917,
+   "share": 0.3483169844240521,
+   "ci_low": 0.34804436710629294,
+   "ci_high": 0.34858970110397436,
+   "n_ceil": 4991807,
+   "ceiling": 0.4255982884012224,
+   "share_ratio": 0.8184172585198105
+  },
+  "target/C1_vs_A": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n_ceil": 10407790,
+   "ceiling": null,
+   "share_ratio": 0.0
+  },
+  "target/C2_vs_A": {
+   "n_ref_ind": 9112735,
+   "n_fail": 11728901,
+   "share": 0.7769470472979523,
+   "ci_low": 0.7767087097920871,
+   "ci_high": 0.7771852033853832,
+   "n_ceil": 10407810,
+   "ceiling": 0.8873644683333929,
+   "share_ratio": 0.8755670020878552
+  },
+  "control/C1_vs_B": {
+   "n_ref_ind": 0,
+   "n_fail": 140334654,
+   "share": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 2.7374563483356554e-08,
+   "n_ceil": 0,
+   "ceiling": 0.0,
+   "share_ratio": null
+  },
+  "control/C1_vs_A": {
+   "n_ref_ind": 0,
+   "n_fail": 0,
+   "share": null,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "n_ceil": 140347964,
+   "ceiling": null,
+   "share_ratio": 0.0
+  },
+  "control/C2_vs_A": {
+   "n_ref_ind": 140245294,
+   "n_fail": 140343307,
+   "share": 0.9993016197060256,
+   "ci_low": 0.9992972352821282,
+   "ci_high": 0.9993059767952807,
+   "n_ceil": 140343004,
+   "ceiling": 0.9999978410085492,
+   "share_ratio": 0.9993037771943374
+  }
+ },
+ "per_row": [
+  {
+   "idx": 0,
+   "arm": "target",
+   "level": 2,
+   "problem_id": 11,
+   "name": "11_ConvTranspose2d_BatchNorm_Tanh_MaxPool_GroupNorm.py",
+   "op_class": "conv_transpose",
+   "shape": [
+    512,
+    128,
+    17,
+    17
+   ],
+   "n_elem": 18939904,
+   "date": "2026-11-03T02:33:20Z",
+   "engine_A": "TF32_TENSOROP",
+   "engine_A_name": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "engine_B": "WINOGRAD",
+   "engine_B_name": "void cudnn::winograd_nonfused::winogradForwardOutput9x9_5x5<float, float>(cudnn::winograd_nonfused::WinogradOutputParams<float, float>)",
+   "engine_C1": "OTHER",
+   "class_change": true,
+   "ref_stats_A": {
+    "count": 10407791,
+    "total": 18939904,
+    "frac_over": 0.5495165656594669,
+    "maxabs": 0.0018909063587071173
+   },
+   "ref_stats_B": {
+    "count": 4991796,
+    "total": 18939904,
+    "frac_over": 0.26355973082017736,
+    "maxabs": 0.027832537566711085
+   },
+   "bit_AB": false,
+   "repeat": {
+    "A_bit": true,
+    "B_bit": true,
+    "A_count_delta": 0,
+    "B_count_delta": 0
+   },
+   "wall_s": 6.41,
+   "cands": {
+    "C1_vs_B": {
+     "n_fail": 11728917,
+     "n_ref_ind": 4085381,
+     "n_cand_ind": 7643536,
+     "share": 0.3483169844240521,
+     "n_ceil": 4991807,
+     "ceiling": 0.4255982884012224,
+     "share_ratio": 0.8184172585198105,
+     "maxabs": 0.026965361088514328,
+     "total": 18939904,
+     "ok": true,
+     "bit_identical": false
+    },
+    "C1_vs_A": {
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "n_ceil": 10407790,
+     "ceiling": null,
+     "share_ratio": 0.0,
+     "maxabs": 9.5367431640625e-07,
+     "total": 18939904,
+     "ok": true,
+     "bit_identical": false
+    },
+    "C2_vs_A": {
+     "n_fail": 11728901,
+     "n_ref_ind": 9112735,
+     "n_cand_ind": 2616166,
+     "share": 0.7769470472979523,
+     "n_ceil": 10407810,
+     "ceiling": 0.8873644683333929,
+     "share_ratio": 0.8755670020878552,
+     "maxabs": 0.026965443044900894,
+     "total": 18939904,
+     "ok": true,
+     "bit_identical": false
+    }
+   }
+  },
+  {
+   "idx": 1,
+   "arm": "target",
+   "level": 2,
+   "problem_id": 14,
+   "name": "14_Gemm_Divide_Sum_Scaling.py",
+   "op_class": "gemm",
+   "shape": [
+    1024,
+    1
+   ],
+   "n_elem": 1024,
+   "date": "2026-11-03T02:33:20Z",
+   "engine_A": "FP32_SIMT",
+   "engine_A_name": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+   "engine_B": "FP32_SIMT",
+   "engine_B_name": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+   "engine_C1": "FP32_SIMT",
+   "class_change": false,
+   "ref_stats_A": {
+    "count": 4,
+    "total": 1024,
+    "frac_over": 0.00390625,
+    "maxabs": 0.011018176027846494
+   },
+   "ref_stats_B": {
+    "count": 4,
+    "total": 1024,
+    "frac_over": 0.00390625,
+    "maxabs": 0.011018176027846494
+   },
+   "bit_AB": true,
+   "repeat": {
+    "A_bit": true,
+    "B_bit": true,
+    "A_count_delta": 0,
+    "B_count_delta": 0
+   },
+   "wall_s": 1.17,
+   "cands": {
+    "C1_vs_B": {
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "n_ceil": 4,
+     "ceiling": null,
+     "share_ratio": 0.0,
+     "maxabs": 0.001953125,
+     "total": 1024,
+     "ok": true,
+     "bit_identical": false
+    },
+    "C1_vs_A": {
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "n_ceil": 4,
+     "ceiling": null,
+     "share_ratio": 0.0,
+     "maxabs": 0.001953125,
+     "total": 1024,
+     "ok": true,
+     "bit_identical": false
+    },
+    "C2_vs_A": {
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "n_ceil": 4,
+     "ceiling": null,
+     "share_ratio": 0.0,
+     "maxabs": 0.0,
+     "total": 1024,
+     "ok": true,
+     "bit_identical": true
+    }
+   }
+  },
+  {
+   "idx": 2,
+   "arm": "control",
+   "level": 1,
+   "problem_id": 54,
+   "name": "54_conv_standard_3D__square_input__square_kernel.py",
+   "op_class": "conv",
+   "shape": [
+    16,
+    64,
+    62,
+    62,
+    62
+   ],
+   "n_elem": 244047872,
+   "date": "2026-11-03T02:33:20Z",
+   "engine_A": "TF32_TENSOROP",
+   "engine_A_name": "sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x32x16_stage1_warpsize4x1x1_g1_tensor16x8x8_aligna4_alignc8_execute_kernel__5x_cudnn",
+   "engine_B": "FP32_SIMT",
+   "engine_B_name": "void implicit_convolveNd_sgemm<float, 3, 1024, 5, 5, 3, 3, 3, 1, false, false, true>(int, int, int, float const*, int, float*, float const*, kernel_convNd_params, unsigned long long, int, float, float, int, float const*, float const*, bool, bool)",
+   "engine_C1": "TF32_TENSOROP",
+   "class_change": true,
+   "ref_stats_A": {
+    "count": 42620603,
+    "total": 244047872,
+    "frac_over": 0.1746403385971749,
+    "maxabs": 0.0005111770678859484
+   },
+   "ref_stats_B": {
+    "count": 0,
+    "total": 244047872,
+    "frac_over": 0.0,
+    "maxabs": 8.898627386066948e-07
+   },
+   "bit_AB": false,
+   "repeat": {
+    "A_bit": true,
+    "B_bit": true,
+    "A_count_delta": 0,
+    "B_count_delta": 0
+   },
+   "wall_s": 2.62,
+   "cands": {
+    "C1_vs_B": {
+     "n_fail": 42620670,
+     "n_ref_ind": 0,
+     "n_cand_ind": 42620670,
+     "share": 0.0,
+     "n_ceil": 0,
+     "ceiling": 0.0,
+     "share_ratio": null,
+     "maxabs": 0.00051116943359375,
+     "total": 244047872,
+     "ok": true,
+     "bit_identical": false
+    },
+    "C1_vs_A": {
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "n_ceil": 42620603,
+     "ceiling": null,
+     "share_ratio": 0.0,
+     "maxabs": 0.0,
+     "total": 244047872,
+     "ok": true,
+     "bit_identical": true
+    },
+    "C2_vs_A": {
+     "n_fail": 42619249,
+     "n_ref_ind": 42605505,
+     "n_cand_ind": 13744,
+     "share": 0.999677516607578,
+     "n_ceil": 42619209,
+     "ceiling": 0.9999990614569487,
+     "share_ratio": 0.9996784548488453,
+     "maxabs": 0.00051116943359375,
+     "total": 244047872,
+     "ok": true,
+     "bit_identical": false
+    }
+   }
+  },
+  {
+   "idx": 3,
+   "arm": "control",
+   "level": 1,
+   "problem_id": 55,
+   "name": "55_conv_standard_2D__asymmetric_input__square_kernel.py",
+   "op_class": "conv",
+   "shape": [
+    8,
+    128,
+    510,
+    1022
+   ],
+   "n_elem": 533729280,
+   "date": "2026-11-03T02:33:20Z",
+   "engine_A": "TF32_TENSOROP",
+   "engine_A_name": "sm80_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nchw_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_alignc4_execute_kernel__5x_cudnn",
+   "engine_B": "FP32_SIMT",
+   "engine_B_name": "void implicit_convolve_sgemm<float, float, int, 512, 6, 8, 3, 3, 5, 1, false, false, true>(int, int, int, float const*, int, float*, float const*, kernel_conv_params, unsigned long long, int, float, float, int, float const*, float const*, bool, bool, int, int)",
+   "engine_C1": "TF32_TENSOROP",
+   "class_change": true,
+   "ref_stats_A": {
+    "count": 97727362,
+    "total": 533729280,
+    "frac_over": 0.18310286818066268,
+    "maxabs": 0.0005247876365350734
+   },
+   "ref_stats_B": {
+    "count": 0,
+    "total": 533729280,
+    "frac_over": 0.0,
+    "maxabs": 2.728149135489133e-06
+   },
+   "bit_AB": false,
+   "repeat": {
+    "A_bit": true,
+    "B_bit": true,
+    "A_count_delta": 0,
+    "B_count_delta": 0
+   },
+   "wall_s": 9.1,
+   "cands": {
+    "C1_vs_B": {
+     "n_fail": 97713984,
+     "n_ref_ind": 0,
+     "n_cand_ind": 97713984,
+     "share": 0.0,
+     "n_ceil": 0,
+     "ceiling": 0.0,
+     "share_ratio": null,
+     "maxabs": 0.0005248188972473145,
+     "total": 533729280,
+     "ok": true,
+     "bit_identical": false
+    },
+    "C1_vs_A": {
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "n_ceil": 97727361,
+     "ceiling": null,
+     "share_ratio": 0.0,
+     "maxabs": 1.430511474609375e-06,
+     "total": 533729280,
+     "ok": true,
+     "bit_identical": false
+    },
+    "C2_vs_A": {
+     "n_fail": 97724058,
+     "n_ref_ind": 97639789,
+     "n_cand_ind": 84269,
+     "share": 0.9991376841923613,
+     "n_ceil": 97723795,
+     "ceiling": 0.9999973087486809,
+     "share_ratio": 0.9991403731302084,
+     "maxabs": 0.0005247592926025391,
+     "total": 533729280,
+     "ok": true,
+     "bit_identical": false
+    }
+   }
+  }
+ ],
+ "verdict": {
+  "premise_class_change_present": true,
+  "underpowered": false,
+  "instrument_unstable": false,
+  "primary_share": 0.3483169844240521,
+  "primary_ci_low": 0.34804436710629294,
+  "primary_ceiling": 0.4255982884012224,
+  "primary_share_ratio": 0.8184172585198105,
+  "reading": "BOUNDED_BY_REFERENCE_COVERAGE"
+ }
+}
