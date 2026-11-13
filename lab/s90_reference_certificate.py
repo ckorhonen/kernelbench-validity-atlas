@@ -63,6 +63,15 @@ B/X. n_reps recorded; if the repeat control is not bit-identical on >2 configs t
 stable at fixed tuple and the certificate carries that caveat (s79a DRAW_STABLE is the prior, this is the
 1e-2 check).
 
+AMENDMENT v2 (declared before any completed run). v1 (commit 4d42dc2) ran 26/26 configs and fired the frozen
+INSTRUMENT_FAILED because the control gate broke: the two s87-regime controls that s87 measured reference-clean
+showed rho_1e-4 5.02e5 / 7.66e5 and frac_over 0.9999. Root cause, found before any verdict was quoted: the
+anchor arm rebuilt its inputs from the live RNG state (build() draws random tensors), so A and X were evaluated
+on DIFFERENT draws. Fix: inputs are instantiated once under the config seed in fp32 and the anchor consumes the
+exact widening of those tensors (t.double()); the predicate denominator is the candidate's magnitude
+(evaluator-exact direction) rather than the reference's. No threshold, population, control gate or branch clause
+changes. v1 rows are preserved as s90_certificate_v1.jsonl and are not used for any number.
+
 Declared limits: GB10 sm_120 only; fp64 anchor is a proxy for exact arithmetic, not exact arithmetic; the
 configs are synthetic conv/gemm/norm/reduction shapes, not the benchmark's own task list; engine class is a
 profiler label on this stack version.
@@ -237,7 +246,7 @@ def chunked_compare(a, x, atol, rtol):
     while i < n:
         j = min(n, i + CHUNK_ELEMS)
         d = (af[i:j] - xf[i:j]).abs()
-        b = atol + rtol * af[i:j].abs()
+        b = atol + rtol * xf[i:j].abs()   # evaluator-exact: rtol scales by the CANDIDATE (here the anchor)
         r = d / b
         n_fail += int((r > 1).sum().item())
         mr = float(r.max().item())
@@ -289,12 +298,11 @@ def main():
             # --- B: tf32 fully off
             set_cfg(False, False)
             b = run_arm(fn, ins32, torch.float32)
-            del ins32
 
-            # --- X: fp64 anchor, element-chunked by the caller-side builder
+            # --- X: fp64 anchor on the EXACT WIDENING of the same fp32 inputs (amendment v2)
             set_cfg(False, False)
-            fn64, ins64 = c["build"](torch.float64)
-            x = run_arm(fn64, ins64, torch.float64)
+            x = run_arm(fn, ins32, torch.float64)
+            del ins32
 
             # shape agreement gate
             if a.shape != x.shape:
@@ -308,7 +316,7 @@ def main():
                 rec["tf32off_vs_anchor_" + tag] = dict(n_fail=nf_b, rho=mr_b, frac_over=nf_b / nt)
             rec["n_elems"] = int(a.numel())
             rec["t_cfg_s"] = round(time.time() - t_cfg, 2)
-            del a, b, x, fn64, ins64
+            del a, b, x
             torch.cuda.empty_cache()
         except Timeout:
             rec["status"] = "timeout"
