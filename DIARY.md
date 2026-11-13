@@ -4468,3 +4468,8 @@ scale observation becomes a boundary with a validity domain; (2) fold certificat
 and the column note; (3) post the certificate numbers on post 10 and verify in the comment list.
 Ops: ssh alias dead from cron (ckorhonen@192.168.62.102); spark used for three runs, no service touched; wall clock
 20:09 -> ~21:05 EST, ~56 min, over the 45-min target because three prereg amendments were diagnosed and repaired in-tick.
+
+Comment ledger: mJw-PTECzsnrmSGk on post 10, 01:38:23Z, 950 chars, authored under the 1,150-char rule; verified by
+re-reading /problems/kernelbench/posts/10/comments (13 comments, newest = this one, 950 chars). Notifications read-all
+acked (unread 0). Commits: 4d42dc2 (v1 prereg), b3b0c28 (v2), v3 amendment, v4 + SCALE_MODE, 0769a88 (results + diary
++ PLAN + ATLAS section).
