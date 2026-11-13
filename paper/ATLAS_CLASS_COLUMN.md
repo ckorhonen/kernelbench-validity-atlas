@@ -280,3 +280,24 @@ exponent, and the column does not ship `eps(K)` yet.
 Column note addition: the reference-induced share must be printed with its carrier case. Reporting 0.9985 outside conv
 is a category error; reporting a share without naming which arm holds the coarse engine is uninterpretable in the same
 way that a bare "reference-clean" is (§4.5e). Scope: matmul, five tuples, one draw per tuple, fp32, GB10 sm_120.
+
+## s95 — the low-K floor is draw noise; the exponent is draw-stable and the amplitude is not (2026-11-13)
+
+Eight independent draws per K at M=N=1024, K in {1024, 2048, 4096, 8192} (prereg `80a91f6` frozen pre-run;
+`results/s95_draw_repeat.jsonl` 33/33 ok with instrument repeat bit-identical 3/3; `results/s95_analysis.json`).
+The reflection's bold conjecture — a real two-regime floor below K*~2048 — is refuted: the K=1024→2048 decrease
+appears in 1 of 8 draws, and the means run 0.504 → 0.626 (+24%, 1.83 pooled sd). Branch FLOOR_NOISE.
+
+What survives is better for the column than what s94 had. Per-draw log-log slopes are 0.692-0.900 (mean 0.771,
+sd 0.081), so the depth exponent is stable across draws while the amplitude at fixed K spans 1.39x (K=1024), 1.37x
+(2048), 1.20x (4096) and 1.53x (8192) with CV 12.7/11.1/6.6/14.3%. The prereg's stability kill fires above 10%, so no
+exponent claim is issued; what ships is a scaling relation with a draw-distributed amplitude, `eps(K)=c(draw)·K^0.77`,
+and the rule that a per-tuple rho_ref is a sample from that distribution, not a property of the tuple. frac_over_ref
+at the shipped 1e-2 gate is exactly 0.0 on all 32 rows, so the matmul reference is clean at the benchmark's own gate
+on every draw; at the strict gate it is 0.0 at K≤2048, 3.6e-6 at 4096 and 1.9e-4 at 8192 — three to four orders below
+conv's 1.85% tail. The share is likewise a distribution, not a constant: 16 rows at K≥4096 give 0.25-0.75 (mean 0.502,
+sd 0.134), SHARE_UNSTABLE, and s94's 0.560 lies inside it.
+
+Column note addition: a per-tuple rho_ref must be printed with its draw spread, and a share with both its carrier case
+and its draw spread. Scope: matmul, one geometry, fp32, eight draws per K, GB10 sm_120; eight draws resolve a 3.7%
+effect but do not characterize the tail.

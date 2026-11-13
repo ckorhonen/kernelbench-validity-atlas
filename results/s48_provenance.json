@@ -1,7 +1,7 @@
 {
- "date": "2026-11-13T13:44:06Z",
- "n_cited": 66,
- "n_found": 66,
+ "date": "2026-11-13T16:55:46Z",
+ "n_cited": 67,
+ "n_found": 67,
  "missing": [],
  "entries": [
   {
@@ -1311,7 +1311,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-11-13T13:43:58Z",
+   "mtime_utc": "2026-11-13T16:55:38Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1342,9 +1342,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "25c878629bd9eea3b5ed76a2f097b7663fa066ecdc9730f22ab15c71dd72f8e8",
-   "bytes": 5255,
-   "mtime_utc": "2026-11-13T13:43:58Z",
+   "sha256": "37fb838d6f8a8fdaaff6f38c6146ae05c87874a27d937d360b9de2e04a639f93",
+   "bytes": 7358,
+   "mtime_utc": "2026-11-13T16:55:34Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1369,7 +1369,7 @@
    ],
    "sha256": "9fbcd0b3b68e5308b37c3844f1fa35dd6a046a13b9527bab7c82de86b2f02e6e",
    "bytes": 1764,
-   "mtime_utc": "2026-11-13T10:24:26Z",
+   "mtime_utc": "2026-11-13T16:55:43Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1929,6 +1929,35 @@
      "prereg",
      "sha_rows",
      "verdicts"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s95_analysis.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md"
+   ],
+   "sha256": "7eaf433ca530726cf5e7183e66fa825c95313baf55ea6d739407eb2c52d0ab66",
+   "bytes": 2167,
+   "mtime_utc": "2026-11-13T16:52:14Z",
+   "producers": [
+    "lab/s95_analysis.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "cv_max",
+     "dip",
+     "instrument",
+     "instrument_pass",
+     "k2_fired",
+     "law_claim_permitted",
+     "per_k",
+     "share",
+     "share_branch",
+     "slope_descriptive"
     ]
    },
    "compressed": false

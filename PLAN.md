@@ -834,3 +834,15 @@ statement is two-sided; (2) cancellation-term probe at the four crossings; (3) h
 ## Next: (1) draw-repeat at K=1024/2048 to decide whether the low-K floor is noise (prereg first) — the only obstacle between
 ## the piecewise reading and a two-regime law; (2) extend s51 to §4.5e numbers; (3) home sweep + sylve novelty; (4) reflection
 ## 16:29Z; (5) 24h-E1/CTA-edge/bt parked.
+
+## DONE 12:0xZ EST 11-13: s95 — draw-repeat refutes the low-K floor (1/8 draws, means .504->.626) and separates the depth
+## reading: per-draw slopes .692-.900 (mean .771 sd .081) are draw-stable while the amplitude at fixed K spans 1.20-1.53x
+## (CV 6.6-14.3%), so K2 fires and eps(K)=c(draw)*K^.77 ships as a scaling relation with a draw-distributed amplitude,
+## not an exponent and not a floor. Reference clean at the shipped 1e-2 gate on 32/32 rows; strict-gate frac 0/3.6e-6/1.9e-4
+## at K<=2048/4096/8192. Share 0.25-0.75 (mean .502 sd .134) over 16 rows => SHARE_UNSTABLE, s94's .560 was one draw.
+## Prose §4.5f + §4.5e patched in two places + MANUSCRIPT 2.4 + column note; s51 extended 31->38 (C32-C38 audit s94/s95),
+## s50 19/19, s52/s53/s54 green, provenance 67/67/0; comment J3gm4NJQzdHR6iL9 verified (20 comments, newest).
+## Next: (1) amplitude mechanism — sigma_max(a) + condition proxy into the s95 harness, 32 draws at K=4096 (prereg first,
+## kill |rho|<0.4 => amplitude stays a lottery and the column ships the spread without a predictor); (2) 32 draws at
+## K=1024 for the amplitude distribution if room; (3) repack the package to ship s93/s94/s95 producers+artifacts when a
+## submission reopens; (4) home sweep; reflection 19:50Z; (5) 24h-E1/CTA-edge/bt parked.

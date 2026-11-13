@@ -1,0 +1,15 @@
+{
+ "rows": 32,
+ "ndraws": 8,
+ "ks": [
+  1024,
+  2048,
+  4096,
+  8192
+ ],
+ "instrument": {
+  "repeat_rho_identical": true,
+  "repeat_rho_cand_identical": true,
+  "repeat_frac_identical": true
+ }
+}

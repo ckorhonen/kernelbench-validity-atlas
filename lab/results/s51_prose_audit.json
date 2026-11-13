@@ -1,8 +1,8 @@
 {
  "prereg": "docstring of lab/s51_prose_audit.py, frozen before run",
  "date": "2026-10-24",
- "n_checks": 31,
- "n_pass": 31,
+ "n_checks": 38,
+ "n_pass": 38,
  "n_fail": 0,
  "checks": [
   {
@@ -334,6 +334,126 @@
     "s6_selector.md": true,
     "s7_threats.md": true,
     "s8_reproduction.md": true
+   }
+  },
+  {
+   "id": "C32",
+   "ok": true,
+   "detail": {
+    "n": 5,
+    "tids": [
+     "T1",
+     "T2",
+     "T3",
+     "T4",
+     "T5"
+    ],
+    "status": [
+     "ok"
+    ]
+   }
+  },
+  {
+   "id": "C33",
+   "ok": true,
+   "detail": {
+    "pooled": {
+     "n_fail": 300,
+     "n_ref_induced": 168,
+     "n_cand_induced": 132,
+     "share_ref_induced": 0.56
+    },
+    "per_tuple": {
+     "T1": null,
+     "T2": null,
+     "T3": 0.6,
+     "T4": 0.562015503875969,
+     "T5": 0.5405405405405406
+    },
+    "spread": 0.05945945945945941
+   }
+  },
+  {
+   "id": "C34",
+   "ok": true,
+   "detail": {
+    "rho": {
+     "T1": 0.5798813114391407,
+     "T2": 0.5585034175067228,
+     "T3": 1.2346484213295181,
+     "T4": 2.449441385699855,
+     "T5": 1.6524742737102525
+    },
+    "slope": 0.7380331925187715,
+    "resid": 0.321516695619999
+   }
+  },
+  {
+   "id": "C35",
+   "ok": true,
+   "detail": {
+    "c3_bit_identical": [
+     true
+    ],
+    "ratios": {
+     "T1": 1.009449598816413,
+     "T2": 1.1080781174169432,
+     "T3": 0.9561703800873281,
+     "T4": 0.9858347803504247,
+     "T5": 1.148717664180466
+    }
+   }
+  },
+  {
+   "id": "C36",
+   "ok": true,
+   "detail": {
+    "n": 33,
+    "status": [
+     "ok"
+    ],
+    "instrument": {
+     "repeat_rho_identical": true,
+     "repeat_rho_cand_identical": true,
+     "repeat_frac_identical": true
+    }
+   }
+  },
+  {
+   "id": "C37",
+   "ok": true,
+   "detail": {
+    "dip": {
+     "n_draws_with_dip": 1,
+     "n_draws": 8,
+     "mean_1024": 0.5042261951375578,
+     "mean_2048": 0.6263878155027611,
+     "pooled_sd": 0.06677777117432436,
+     "mean_diff": -0.12216162036520328,
+     "abs_diff_over_pooled_sd": 1.8293755274685428,
+     "branch": "FLOOR_NOISE"
+    },
+    "cv_1024": 0.12702075847137118,
+    "cv_8192": 0.14305243267233525,
+    "k2": true
+   }
+  },
+  {
+   "id": "C38",
+   "ok": true,
+   "detail": {
+    "slope": [
+     0.7713786472806671,
+     0.08076628792149573
+    ],
+    "share": {
+     "n": 16,
+     "mean": 0.5024039188035422,
+     "sd": 0.13447622897245026,
+     "min": 0.25,
+     "max": 0.75
+    },
+    "branch": "SHARE_UNSTABLE"
    }
   }
  ]

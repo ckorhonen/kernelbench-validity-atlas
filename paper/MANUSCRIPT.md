@@ -236,10 +236,12 @@ the earlier K sweeps: the reference's extremum crosses 1e-4 between K=2048 and K
 candidate-induced elements (share 0.560, per-tuple 0.541-0.600). The conv constant is therefore not a property of
 candidate-versus-reference comparison; what sets the share is which arm carries the coarse engine — 0.9985 when the
 reference carries TF32, 0.56 when both arms are fp32 with comparable extremum error (rho_cand/rho_ref 0.96-1.15), and
-7.0e-5 when the candidate carries TF32 (§4.5e, `results/s94_nonconv_decomp_summary.json`). The proposed replacement
-of the class constant by an accumulation-depth law does not survive as a power law: the fit gives slope 0.738 with a
-0.32 log residual and a non-monotone step at the bottom, so the depth effect is carried as a piecewise statement
-rather than an exponent.
+7.0e-5 when the candidate carries TF32 (§4.5e, `results/s94_nonconv_decomp_summary.json`). An eight-draw repeat at
+fixed geometry then separates the depth readings: the non-monotone step appears in 1 of 8 draws and is retired as draw
+noise, while the per-draw depth slope is stable at 0.771 ± 0.081 across draws even though the amplitude at fixed K
+varies up to 1.53x (CV 6.6-14.3%), so the depth effect is carried as a scaling law with a draw-distributed amplitude
+rather than a piecewise floor, and a per-tuple $\rho_{ref}$ is a sample rather than a property of the tuple
+(§4.5f, `results/s95_analysis.json`). On this family the reference is clean at the shipped 1e-2 gate on every draw.
 
 ## 2.5 Figure 1 — the configuration-to-verdict chain
 
