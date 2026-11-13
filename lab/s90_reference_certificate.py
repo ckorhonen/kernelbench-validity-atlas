@@ -72,6 +72,19 @@ exact widening of those tensors (t.double()); the predicate denominator is the c
 (evaluator-exact direction) rather than the reference's. No threshold, population, control gate or branch clause
 changes. v1 rows are preserved as s90_certificate_v1.jsonl and are not used for any number.
 
+AMENDMENT v3 (declared before any completed run). v2 (b3b0c28) fixed the draw bug and the numbers became
+physically plausible (conv rho_1e-2 1.2-7.5, gemm 0.005-0.010, layer_norm 5e-5, reduction 4e-3, softmax 1e-9),
+but the frozen control gate fired again and the mismatch is a PREREG DEFECT, not an instrument defect: v1/v2
+asserted that the two s87-regime tuples were "reference-clean at 1e-4", but s87's clean cells were its
+WINOGRAD-labelled rows. Those two tuples label TF32_TENSOROP and s87 recorded rho 251.7 / 231.9 with frac_over
+.77-.78 (s84's TF32 pattern). v2 reproduced that (idx 26: rho 232.58, frac .7797; idx 25: 140.95, .7688), so the
+instrument agreed with s87 and my premise was wrong. v3 corrects the gate to a two-sided instrument check:
+positive controls (idx 25,26) must show frac_over_1e-4 >= 0.5 and rho_1e-4 >= 10; negative controls (idx 27,28:
+small-extent convs in s88's winograd regime) must show frac_over_1e-4 == 0.0 and rho_1e-4 <= 0.5. v3 also
+records max|A| per config, because the budget for a near-zero output element is atol alone, so a TF32-class
+reference's absolute error ~ 2.2e-4*max|A| (s38's measured reference-side constant) predicts a shipped-gate
+exceedance iff max|A| >~ 45; that is a declared DESCRIPTIVE coordinate test, not a new branch.
+
 Declared limits: GB10 sm_120 only; fp64 anchor is a proxy for exact arithmetic, not exact arithmetic; the
 configs are synthetic conv/gemm/norm/reduction shapes, not the benchmark's own task list; engine class is a
 profiler label on this stack version.
@@ -227,9 +240,14 @@ CONFIGS = [
          (torch.randn(512, 524288, device="cuda", dtype=dt),)), seed=1408, ctrl=False),
     # s87-regime controls (same shapes s87 measured reference-clean at 1e-4)
     dict(idx=25, op="conv", desc="CONTROL s87 (2,16,256,256,32)", build=lambda dt: (conv_fn(2, 16, 256, 256, 32, 3, 1, 1),
-         (torch.randn(2, 16, 256, 256, device="cuda", dtype=dt), torch.randn(32, 16, 3, 3, device="cuda", dtype=dt))), seed=1425, ctrl=True),
+         (torch.randn(2, 16, 256, 256, device="cuda", dtype=dt), torch.randn(32, 16, 3, 3, device="cuda", dtype=dt))), seed=1425, ctrl="pos"),
     dict(idx=26, op="conv", desc="CONTROL s87 (2,64,56,56,64)", build=lambda dt: (conv_fn(2, 64, 56, 56, 64, 3, 1, 1),
-         (torch.randn(2, 64, 56, 56, device="cuda", dtype=dt), torch.randn(64, 64, 3, 3, device="cuda", dtype=dt))), seed=1442, ctrl=True),
+         (torch.randn(2, 64, 56, 56, device="cuda", dtype=dt), torch.randn(64, 64, 3, 3, device="cuda", dtype=dt))), seed=1442, ctrl="pos"),
+    # s88 winograd-regime negative controls: small extents, reference-clean at 1e-4 in s88
+    dict(idx=27, op="conv", desc="CONTROL s88 (1,4,4,256) winograd regime", build=lambda dt: (conv_fn(1, 256, 4, 4, 256, 3, 1, 1),
+         (torch.randn(1, 256, 4, 4, device="cuda", dtype=dt), torch.randn(256, 256, 3, 3, device="cuda", dtype=dt))), seed=1459, ctrl="neg"),
+    dict(idx=28, op="conv", desc="CONTROL s88 (4,4,4,64) winograd regime", build=lambda dt: (conv_fn(4, 64, 4, 4, 64, 3, 1, 1),
+         (torch.randn(4, 64, 4, 4, device="cuda", dtype=dt), torch.randn(64, 64, 3, 3, device="cuda", dtype=dt))), seed=1476, ctrl="neg"),
 ]
 
 
@@ -314,6 +332,8 @@ def main():
                 rec["ref_vs_anchor_" + tag] = dict(n_fail=nf_a, rho=mr_a, frac_over=nf_a / nt, n_elems=nt,
                                                    budget_fraction=mr_a)
                 rec["tf32off_vs_anchor_" + tag] = dict(n_fail=nf_b, rho=mr_b, frac_over=nf_b / nt)
+            rec["maxabs_out"] = float(a.abs().max().item())
+            rec["atol_floor_pred_over_1e-2"] = bool(2.2e-4 * rec["maxabs_out"] > SHIPPED)
             rec["n_elems"] = int(a.numel())
             rec["t_cfg_s"] = round(time.time() - t_cfg, 2)
             del a, b, x
@@ -348,9 +368,19 @@ def main():
                                   frac1e4=r["ref_vs_anchor_1e-4"]["frac_over"]) for r in ctrl])
 
     instr_ok = len(ok) >= 0.8 * len(CONFIGS)
-    ctrl_ok = bool(ctrl) and all(r["ref_vs_anchor_1e-4"]["frac_over"] <= 0.01 and
-                                 r["ref_vs_anchor_1e-4"]["rho"] <= 0.5 for r in ctrl)
+    pos = [r for r in ok if r.get("ctrl") == "pos"]
+    neg = [r for r in ok if r.get("ctrl") == "neg"]
+    pos_ok = len(pos) >= 2 and all(r["ref_vs_anchor_1e-4"]["frac_over"] >= 0.5 and
+                                   r["ref_vs_anchor_1e-4"]["rho"] >= 10 for r in pos)
+    neg_ok = len(neg) >= 2 and all(r["ref_vs_anchor_1e-4"]["frac_over"] == 0.0 and
+                                   r["ref_vs_anchor_1e-4"]["rho"] <= 0.5 for r in neg)
+    ctrl_ok = pos_ok and neg_ok
     summary["control_gate_pass"] = ctrl_ok
+    summary["control_gate_detail"] = dict(pos_ok=pos_ok, neg_ok=neg_ok,
+                                          pos=[(r["idx"], r["ref_vs_anchor_1e-4"]["rho"],
+                                                r["ref_vs_anchor_1e-4"]["frac_over"]) for r in pos],
+                                          neg=[(r["idx"], r["ref_vs_anchor_1e-4"]["rho"],
+                                                r["ref_vs_anchor_1e-4"]["frac_over"]) for r in neg])
 
     if not instr_ok or not ctrl_ok:
         summary["verdict"] = "INSTRUMENT_FAILED"
@@ -371,6 +401,14 @@ def main():
         summary["strict_leg_max_rho_1e-4"] = max((r["ref_vs_anchor_1e-4"]["rho"] for r in cert), default=None)
         summary["repeat_bit_identical_frac"] = (
             sum(1 for r in ok if r.get("a_repeat_bit_identical")) / len(ok))
+        pred = [(r["idx"], r["op"], r["maxabs_out"], r["atol_floor_pred_over_1e-2"],
+                 r["ref_vs_anchor_1e-2"]["rho"] >= 1.0) for r in cert]
+        summary["atol_floor_test"] = dict(
+            n=len(pred),
+            n_pred_over=sum(1 for p in pred if p[3]),
+            n_actual_over=sum(1 for p in pred if p[4]),
+            n_agree=sum(1 for p in pred if p[3] == p[4]),
+            rows=pred)
         summary["classes"] = {}
         for r in cert:
             summary["classes"].setdefault(r.get("engine_class"), []).append(r["idx"])
