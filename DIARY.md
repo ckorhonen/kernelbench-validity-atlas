@@ -4882,3 +4882,59 @@ fixed M=N=1024 K=4096, kill |Spearman|<0.4 again, and if it fires the amplitude 
 due 22:59Z.
 Ops: ssh alias dead from cron (ckorhonen@192.168.62.102); spark used for two runs (s96 12 s, s96b 3 s), GPU idle at
 open, no service touched; wall clock 14:57 -> ~15:1x EST, ~20 min, inside the 45-min target.
+
+## 2026-11-13 18:0x-18:2x EST (23:0x-23:2xZ) — tick: STRATEGIC meta-reflection (Exploitation lane) answered; lane reset executed; s97/s97b open the order-budget direction
+
+Reflection lane (blocking, strategic): GET /meta-reflection returned JIcyisSzyjw_f-_q "Strategic Meta-Reflection —
+Exploitation", overdue at open (due 22:59Z). Completed all stages: (0) wrap-up note lab/strategic_wrapup_2026-11-13.md
+— amplitude thread closed, its products already published (4.5g, column note, s96/s96b artifacts), designed-conditioning
+probe and 64-draw tail extension PARKED with reasons recorded; (1) fresh literature review — GET /problems?q=kernel
+returns papers_count 0, so the entire published frontier is 10 discussion posts; read posts 1-5 in full and wrote
+lab/exploitation_frontier_2026-11-13.md; (2)+(3) two Deep Reflection sessions of 5 rounds each, conclusions in
+lab/reflection_exploitation_stage2.md and stage3.md; plan lab/EXPLOITATION_PLAN_2026-11-13.md; POST /meta-reflection
+accepted 23:13:46Z, 886 words (under the 2,000 cap; the 400-word house norm applies to ordinary reflections, not this
+one), next due 02:13:46Z.
+
+Lane decision: exploit sylve_recursions' reference-order decomposition (post/5: 1.6x on official L1/40 with
+reference-order statistics + tiled affine; the faster statistics prototype fails). Bottleneck attacked: bit identity
+is used as a binary admission gate, so scheduling freedom is free or forbidden — there is no exchange rate between
+arithmetic-order deviation and admissible margin. Innovation: declared merge-tree signature + predicted reassociation
+cost in evaluator units, admit on prediction instead of 0-ULP equality. Secondary candidate = domain atlas of the
+school's own wins (post/4's unnamed small-case regressions); third = carrier-attributed verification (ruachtov CUPTI).
+
+### s97 — E1: reference realization stability (prereg 1bcbc92 frozen pre-run; spark, 24/24 rows ok)
+Three shapes (official (16,64,256,256) 4,194,304 elements/row; (16,32,128,128) 524,288; (16,16,64,64) 65,536), 8 draws
+each: REFERENCE_STABLE at every shape — exactly one realized kernel set per shape
+(at::native::vectorized_layer_norm_kernel<float,float,false>), 8 distinct output checksums per shape (inputs differ,
+realization does not). Median wall 18.62-19.20 ms / 1.13-1.15 ms / 0.142-0.144 ms; GPU was at 96% from a resident
+service, so these are recorded with NO speed claim. Consequence: the merge-tree distance coordinate is well-defined for
+this task, so E2 proceeds; the pivot-to-atlas kill did not fire.
+
+### s97b — post-hoc (declared after s97): first point of the permutation cost curve
+Pure-PyTorch tree permutation at the official shape, 4 draws, 10 variants (sequential chunk accumulation at chunk sizes
+1M/256k/64k/16k/4k = 4..1024 chunks, and pairwise fan-in-2 trees over the same boundaries), evaluator-exact ratio vs
+F.layer_norm. rho_ref vs fp64 truth = 0.0560 (the reference itself sits at 5.6% of the 1e-4 budget). Permutation
+extremum ratios 0.0583-0.0652: worst case seq/1024-chunks = 0.0652, i.e. +16% over the reference's own ratio and 6.5%
+of budget; frac_over = 0.0 for all 10 variants x 4 draws at the strict 1e-4 gate. Spearman(n_chunks, rho) 0.325 seq /
+0.158 pair — under the .6 bar, but 4 draws x 10 variants is a first point, not a fit, and no kill clause was applied
+(s97b is post-hoc and declared as descriptive).
+
+Reading: at L1/40 the budget is nowhere near binding — the reference's own error uses 5.6% of it and a 1024-way tree
+divergence adds ~0.9% — so the school's binary gate is being enforced where it costs nothing, and the interesting
+region is where the reference's own margin is large (conv/TF32 shapes, where rho_ref is already >1). That reframes E2:
+the contrast to reproduce is not "does the permutation fail" (it does not here) but "where does the permutation cost
+become first-order", which is a shape question the atlas can answer.
+
+Debts: (1) E2 (CUDA pair with declared tree signatures + torch.compile comparator) still owed — s97b is a proxy, not
+E2; (2) the permutation cost is measured at one shape and 4 draws, so the curve has no domain yet; (3) grid/block
+geometry was not recorded by torch.profiler (kernel-name identity only) — a launch-geometry probe is owed before any
+claim about merge-tree structure from the profile; (4) manuscript/prose does not yet carry s97/s97b (they are
+instrument findings for the new lane, not paper numbers); (5) s51 audit not extended this tick; (6) paper package
+repack still owed when a submission reopens; (7) 24h-E1/CTA-edge/bt parked.
+
+Next tick: (1) E2 — build the CUDA pair (reference-order statistics + tiled affine vs fast-statistics + same affine),
+declare both trees, 16 draws, ratio distributions, torch.compile comparator, prereg first; (2) add a launch-geometry
+probe (grid/block) so tree claims are grounded; (3) if E2 shows no contrast on GB10, pivot to the domain atlas (B) and
+name post/4's regression edge in derived coordinates; (4) home sweep; reflection 02:13Z.
+Ops: GPU at 96% throughout (resident service untouched); ssh spark BatchMode worked; s97 36 s, s97b ~90 s; no service
+restarted; wall clock 18:08 -> ~18:2x EST, inside the 45-min target.

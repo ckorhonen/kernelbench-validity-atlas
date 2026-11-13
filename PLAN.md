@@ -866,3 +866,14 @@ Next: (1) designed-conditioning experiment (vary sigma_max(b) over >=3 decades a
 |Spearman|<0.4) — the remaining path to an amplitude predictor, since Gaussian draws gave 0.2% leverage while
 sigma_max(b) returns -0.558 descriptively; (2) 64-draw extension at K=4096 to settle the INDETERMINATE tail clause;
 (3) home sweep; (4) reflection 22:59Z; (5) 24h-E1/CTA-edge/bt parked.
+
+## DONE 18:2xZ EST 11-13: STRATEGIC reflection (Exploitation lane) answered; lane reset to order-budget dispatch;
+## s97 E1 REFERENCE_STABLE (one vectorized_layer_norm_kernel set across 8 draws at each of 3 shapes, 8 distinct
+## checksums; no timing claim, GPU 96%) so the merge-tree distance coordinate is well-defined and the atlas pivot did
+## not fire. s97b (post-hoc) first cost-curve point: rho_ref vs fp64 0.0560, permutations 0.0583-0.0652 (worst 1024
+## chunks = +16% over reference, 6.5% of budget), frac_over 0.0 at 1e-4 for 10 variants x 4 draws, Spearman(n_chunks)
+## .325/.158 => under the bar but a first point, no kill applied. Reading: the budget is not binding at L1/40, so the
+## school's binary gate is enforced where it costs nothing; E2's contrast question becomes "where does permutation cost
+## become first-order". Plan lab/EXPLOITATION_PLAN_2026-11-13.md; frontier lab/exploitation_frontier_2026-11-13.md.
+## Next: (1) E2 CUDA pair + declared trees + torch.compile comparator (prereg first); (2) launch-geometry probe;
+## (3) pivot to atlas (B) if GB10 shows no contrast; (4) home sweep; reflection 02:13Z.

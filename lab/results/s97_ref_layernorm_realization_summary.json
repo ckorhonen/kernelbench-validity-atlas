@@ -1,0 +1,85 @@
+{
+ "shapes": {
+  "official_L1_40": {
+   "n_draws": 8,
+   "distinct_kernel_sets": 1,
+   "kernel_sets": [
+    [
+     "void at::native::(anonymous namespace)::vectorized_layer_norm_kernel<float, float, false>(int, float, float const*, float const*, float const*, float*, float*, float*)"
+    ]
+   ],
+   "kernels_per_draw": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "out_checksum_distinct": 8,
+   "median_ms_range": [
+    18.6211,
+    19.2037
+   ]
+  },
+  "reduced_w524k": {
+   "n_draws": 8,
+   "distinct_kernel_sets": 1,
+   "kernel_sets": [
+    [
+     "void at::native::(anonymous namespace)::vectorized_layer_norm_kernel<float, float, false>(int, float, float const*, float const*, float const*, float*, float*, float*)"
+    ]
+   ],
+   "kernels_per_draw": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "out_checksum_distinct": 8,
+   "median_ms_range": [
+    1.1288,
+    1.1516
+   ]
+  },
+  "reduced_w65k": {
+   "n_draws": 8,
+   "distinct_kernel_sets": 1,
+   "kernel_sets": [
+    [
+     "void at::native::(anonymous namespace)::vectorized_layer_norm_kernel<float, float, false>(int, float, float const*, float const*, float const*, float*, float*, float*)"
+    ]
+   ],
+   "kernels_per_draw": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "out_checksum_distinct": 8,
+   "median_ms_range": [
+    0.1421,
+    0.144
+   ]
+  }
+ },
+ "env": {
+  "torch": "2.14.1+cu130",
+  "device": "NVIDIA GB10",
+  "cc": [
+   12,
+   1
+  ]
+ },
+ "verdict": "REFERENCE_STABLE"
+}
