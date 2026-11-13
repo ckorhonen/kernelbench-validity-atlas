@@ -257,3 +257,26 @@ Column note, replacing s92's ceiling-only wording: the usability column now ship
 1.85-1.87% for |A|max >~ 2e4 (u >~ 4e2), approached from below (1.78% at 4.9e3), suppressed by the gate's own atol
 floor by a factor of ~70 below |A|max 80. Admission stays extremum-governed at u*~0.87. Scope: conv/convT, three
 tuples, one draw per point, GB10 sm_120.
+
+## s94 — the share does not transfer outside conv, and the depth law is not a power law (2026-11-13)
+
+The decomposition deferred across four ticks ran on fp32 matmul (population declared by rule from A6b/A6d/A6f; prereg
+in `lab/s94_nonconv_decomp.py` committed pre-run; `results/s94_nonconv_decomp.jsonl` 5/5 ok, `results/s94_analysis.json`
+post-hoc). Three findings for the column:
+
+- **The compile candidate is bit-identical to the reference on this family (5/5)**, so the decomposition is carried by
+  a chunked-accumulation candidate declared in the prereg, not by Inductor.
+- **Share 0.560, not 0.9985.** 300 failing elements at 1e-4 split 168 reference-induced / 132 candidate-induced;
+  per-tuple 0.600 / 0.562 / 0.541 (spread 0.059). The conv constant is a property of a population where the reference
+  carries a coarse engine, not of the comparison itself.
+- **Carrier rule, measured on three cases:** reference carries TF32 → 0.9985 (s84/s87); both arms fp32 with comparable
+  error (rho_cand/rho_ref 0.96-1.15) → 0.56; candidate carries TF32 → 7.0e-5 (3.50M failing elements, all its own).
+
+Depth: rho_ref 0.580 / 0.559 / 1.235 / 2.449 at K=1024/2048/4096/8192, crossing bracketed 2048 < K < 4096 (A6d's
+3608/3632 replicated on a fresh draw); fresh geometry M=N=512 K=8192 gives 1.652. The log-log fit is slope 0.738 with
+0.32 max log residual and a −3.7% step at the bottom, so DEPTH_LAW_INTERMEDIATE: the depth effect is piecewise, not an
+exponent, and the column does not ship `eps(K)` yet.
+
+Column note addition: the reference-induced share must be printed with its carrier case. Reporting 0.9985 outside conv
+is a category error; reporting a share without naming which arm holds the coarse engine is uninterpretable in the same
+way that a bare "reference-clean" is (§4.5e). Scope: matmul, five tuples, one draw per tuple, fp32, GB10 sm_120.

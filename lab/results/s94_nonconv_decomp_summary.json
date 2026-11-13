@@ -1,0 +1,44 @@
+{
+ "prereg": "lab/s94_nonconv_decomp.py (this docstring)",
+ "n_rows": 5,
+ "n_ok": 5,
+ "sha_rows": "78fbb6f8b0f1a9e8",
+ "instrument_fail_tids": [],
+ "depth_fit": {
+  "slope": 0.7380331925187715,
+  "max_log_resid": 0.321516695619999,
+  "points": [
+   [
+    1024,
+    0.5798813114391407
+   ],
+   [
+    2048,
+    0.5585034175067228
+   ],
+   [
+    4096,
+    1.2346484213295181
+   ],
+   [
+    8192,
+    2.449441385699855
+   ]
+  ]
+ },
+ "C1_pooled": {
+  "n_fail": 300,
+  "n_ref_induced": 168,
+  "n_cand_induced": 132,
+  "share_ref_induced": 0.56
+ },
+ "C2_pooled": {
+  "n_fail": 3504023,
+  "n_ref_induced": 247,
+  "share_ref_induced": 7.049040488604099e-05
+ },
+ "verdicts": [
+  "DEPTH_LAW_INTERMEDIATE",
+  "REF_SHARE_PARTIAL"
+ ]
+}

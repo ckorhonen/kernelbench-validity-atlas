@@ -229,6 +229,18 @@ reconstructs the measured failing fraction to 0.0 absolute on 8/8 points (`resul
 So the gate's own atol term can hide 98.5% of the reference's tail at small scales, and the population statistic is
 a shape-independent TF32 tail constant wherever that floor is negligible (§4.5d).
 
+The reference-induced share does not transfer outside conv, and that is now measured rather than assumed. s94 runs
+the deferred non-conv decomposition on fp32 matmul at the benchmark's own flags, with the population declared from
+the earlier K sweeps: the reference's extremum crosses 1e-4 between K=2048 and K=4096, bracketing A6d's bisected
+3608/3632 on a fresh draw, and across the three tuples that fail the split is 168 reference-induced against 132
+candidate-induced elements (share 0.560, per-tuple 0.541-0.600). The conv constant is therefore not a property of
+candidate-versus-reference comparison; what sets the share is which arm carries the coarse engine — 0.9985 when the
+reference carries TF32, 0.56 when both arms are fp32 with comparable extremum error (rho_cand/rho_ref 0.96-1.15), and
+7.0e-5 when the candidate carries TF32 (§4.5e, `results/s94_nonconv_decomp_summary.json`). The proposed replacement
+of the class constant by an accumulation-depth law does not survive as a power law: the fit gives slope 0.738 with a
+0.32 log residual and a non-monotone step at the bottom, so the depth effect is carried as a piecewise statement
+rather than an exponent.
+
 ## 2.5 Figure 1 — the configuration-to-verdict chain
 
 Figure 1 is a measured chain, not a diagram of a hypothesis. Each row is a configuration that was actually

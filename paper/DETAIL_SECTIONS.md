@@ -1029,6 +1029,57 @@ is governed by the extremum at u*≈0.87, usability by a shape-independent tail 
 absolute floor can suppress by a factor of 70 at small scales. Scoped to conv/convT, three tuples, one draw per
 point, GB10 only.
 
+## 4.5e The reference-induced share outside conv is not a family constant, and the depth law does not survive as a power law (s94, 2026-11-13)
+
+Two debts are closed here. The first is the decomposition that had been deferred four ticks: whether the 0.9985
+reference-induced share measured on the TF32 conv population (s84/s87) transfers to a family whose reference error
+is driven by accumulation depth rather than by an engine-class constant. The second is whether that depth can be
+written as a law, `eps(K)`, which is what would turn s91's class constant into a coordinate rather than a label.
+
+Population declared by rule before the run from A6b/A6d/A6f, not selected by this run's outcome: fp32 matmul at the
+benchmark's own flags (matmul tf32 off, precision highest), M=N=1024 with K in {1024, 2048, 4096, 8192}, plus a fresh
+geometry M=N=512 at K=8192. Prereg frozen pre-run (`lab/s94_nonconv_decomp.py` docstring, committed before execution);
+artifacts `results/s94_nonconv_decomp.jsonl` (5/5 ok), `results/s94_nonconv_decomp_summary.json`, and the post-hoc
+`results/s94_analysis.json`. Instrument controls: A-arm repeat bit-identical 5/5, fp64-anchor repeat bit-identical 5/5,
+no kill fired.
+
+- **The compile candidate is bit-identical to the reference on this family (5/5).** That is the reason s73's design
+  could not decompose anything here: Inductor emits the same cuBLAS call, so |C−A| = 0. The decomposition is carried
+  instead by a chunked-accumulation candidate (K split into eight contiguous chunks, each a fp32 matmul, summed in
+  fp32 in fixed order), declared in the prereg as a different accumulation tree and the hand-kernel analog.
+- **The reference's extremum crosses the 1e-4 budget between K=2048 and K=4096.** rho_ref is 0.580 at K=1024, 0.559
+  at 2048, 1.235 at 4096 and 2.449 at 8192, so the crossing is bracketed by the grid and lands in the same interval
+  as A6d's bisected 3608/3632 on a different draw. The fresh geometry gives 1.652 at K=8192 (M=N=512), so the
+  geometry term reproduces in direction (ratio 0.67 against the 1024-wide tuple) and the depth effect is not an
+  artifact of one output extent.
+- **The share does not transfer: it is 0.56, not 0.9985.** Across the three tuples with failures the decomposition
+  is 300 failing elements, 168 reference-induced and 132 candidate-induced (pooled share 0.560), per-tuple 0.600 /
+  0.562 / 0.541 (spread 0.059). Verdict REF_SHARE_PARTIAL. The conv constant is therefore a statement about a
+  population in which the reference carries a coarse engine, not a property of reference-versus-candidate
+  comparison as such.
+- **What sets the share is which arm carries the coarse engine.** The tf32-on candidate arm fails 3.50M elements at
+  1e-4 with a reference-induced share of 7.0e-5, i.e. essentially all of its failure is its own. So the three
+  measured cases line up as a carrier rule: reference carries TF32 → 0.9985 (conv, s84/s87); both arms fp32 with
+  comparable error → 0.56 (this run); candidate carries TF32 → ~0 (this run).
+- **Mechanism candidate, not a law.** The two fp32 arms have comparable extremum error (rho_cand/rho_ref 1.009 /
+  1.108 / 0.956 / 0.986 / 1.149), so a crude equal-carrier model rho_cand/(rho_cand+rho_ref) predicts 0.489 / 0.496
+  / 0.535 against the measured 0.600 / 0.562 / 0.541 — max deviation 0.111, i.e. the right order and the right
+  insensitivity to K, but not exact. It is recorded as a mechanism candidate because it survives its own comparison
+  without a fitted parameter.
+- **The depth law is intermediate, not a power law.** The log-log fit of rho_ref against K over the four fixed-geometry
+  points gives slope 0.738 with a maximum log residual of 0.32, and it is not even monotone at the bottom: 0.580 →
+  0.559 is a −3.7% step from K=1024 to 2048, while the segment slopes are −0.054 (1024→2048), 1.144 (2048→4096) and
+  0.988 (4096→8192). Verdict DEPTH_LAW_INTERMEDIATE. So the reflection's proposed replacement of a class constant by
+  `eps(K)` is NOT established: the crossing location replicates, the exponent does not. What the data support is a
+  piecewise statement (a noise-floor regime below K≈2048, then a near-linear rise above it), which is what §2.4
+  carries rather than a single exponent.
+
+Validity-domain statement: at the strict 1e-4 gate on GB10 sm_120, a default fp32 matmul reference exceeds the budget
+at K ≥ ~3.6k (measured crossing bracketed 2048 < K < 4096, replicating A6d), and a candidate failure in that regime is
+roughly half reference-induced — the split is set by which arm carries the coarse engine (measured 0.9985 / 0.56 / ~0
+for reference-carried, equal-carried and candidate-carried cases). Scoped to matmul, five tuples, one draw per tuple,
+fp32 only; the depth exponent is not established.
+
 ## 4.6 Candidate admission: a class baseline plus a measured within-class threshold
 
 The result here is narrower than a predictive certificate and is stated that way. Admission is the

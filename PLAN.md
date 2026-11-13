@@ -824,3 +824,13 @@ statement is two-sided; (2) cancellation-term probe at the four crossings; (3) h
 ## reflection named), a non-conv shape where an arm fails, reference-induced vs candidate-induced share at 1e-4;
 ## (2) if it lands early, bisect the scale where frac_over crosses 1% between g=16 and 1024 (monotonicity first) so
 ## the two-domain statement carries a crossing; (3) home sweep; (4) 24h-E1/CTA-edge/bt parked.
+
+## DONE 08:5xZ EST 11-13: s94 — non-conv (matmul) decomposition executed (debt closed after four deferrals): share 0.560
+## (168 ref / 132 cand of 300 failing at 1e-4, per-tuple .600/.562/.541), so the conv 0.9985 does NOT transfer; carrier rule
+## measured (reference-carried .9985 / equal-carried .56 / candidate-carried 7e-5); C3 compile bit-identical 5/5; rho_ref
+## crossing bracketed 2048<K<4096 (A6d 3608/3632 replicated); depth slope .738 with 32% residual and -3.7% non-monotone step
+## => DEPTH_LAW_INTERMEDIATE, eps(K) not shipped. Prose §4.5e + MANUSCRIPT §2.4 + ATLAS column s94; audits 66/66/0 + s50-s54;
+## comment eELHCRb6ZlurxVvD verified (19 comments, newest, 1,107 chars). Reflection xAkqacgg3LshDmG7 answered 13:29:54Z (next 16:29:54Z).
+## Next: (1) draw-repeat at K=1024/2048 to decide whether the low-K floor is noise (prereg first) — the only obstacle between
+## the piecewise reading and a two-regime law; (2) extend s51 to §4.5e numbers; (3) home sweep + sylve novelty; (4) reflection
+## 16:29Z; (5) 24h-E1/CTA-edge/bt parked.

@@ -1,0 +1,165 @@
+{
+ "prereg": "lab/s94_nonconv_decomp.py docstring",
+ "date": "2026-11-13",
+ "table": [
+  {
+   "tid": "T1",
+   "M": 1024,
+   "K": 1024,
+   "rho_ref_1e4": 0.5798813114391407,
+   "frac_over_ref_1e4": 0.0,
+   "rho_cand_1e4": 0.585360957193376,
+   "ratio_cand_over_ref": 1.009449598816413,
+   "nfail_1e4": 0,
+   "n_ref_induced": 0,
+   "n_cand_induced": 0,
+   "share_ref_induced": null,
+   "tf32_cand_share_ref_induced": 0.0,
+   "tf32_cand_rho": 340.04177859366996,
+   "tf32_cand_frac": 0.7831058502197266
+  },
+  {
+   "tid": "T2",
+   "M": 1024,
+   "K": 2048,
+   "rho_ref_1e4": 0.5585034175067228,
+   "frac_over_ref_1e4": 0.0,
+   "rho_cand_1e4": 0.6188654154417784,
+   "ratio_cand_over_ref": 1.1080781174169432,
+   "nfail_1e4": 0,
+   "n_ref_induced": 0,
+   "n_cand_induced": 0,
+   "share_ref_induced": null,
+   "tf32_cand_share_ref_induced": 0.0,
+   "tf32_cand_rho": 445.0009372071228,
+   "tf32_cand_frac": 0.7859983444213867
+  },
+  {
+   "tid": "T3",
+   "M": 1024,
+   "K": 4096,
+   "rho_ref_1e4": 1.2346484213295181,
+   "frac_over_ref_1e4": 2.86102294921875e-06,
+   "rho_cand_1e4": 1.180534250296865,
+   "ratio_cand_over_ref": 0.9561703800873281,
+   "nfail_1e4": 5,
+   "n_ref_induced": 3,
+   "n_cand_induced": 2,
+   "share_ref_induced": 0.6,
+   "tf32_cand_share_ref_induced": 6.060921963205355e-06,
+   "tf32_cand_rho": 627.4020165870708,
+   "tf32_cand_frac": 0.7867403030395508
+  },
+  {
+   "tid": "T4",
+   "M": 1024,
+   "K": 8192,
+   "rho_ref_1e4": 2.449441385699855,
+   "frac_over_ref_1e4": 0.000213623046875,
+   "rho_cand_1e4": 2.4147445104526564,
+   "ratio_cand_over_ref": 0.9858347803504247,
+   "nfail_1e4": 258,
+   "n_ref_induced": 145,
+   "n_cand_induced": 113,
+   "share_ref_induced": 0.562015503875969,
+   "tf32_cand_share_ref_induced": 0.0002648452408882353,
+   "tf32_cand_rho": 992.086647255233,
+   "tf32_cand_frac": 0.7885913848876953
+  },
+  {
+   "tid": "T5",
+   "M": 512,
+   "K": 8192,
+   "rho_ref_1e4": 1.6524742737102525,
+   "frac_over_ref_1e4": 8.7738037109375e-05,
+   "rho_cand_1e4": 1.8982263878147532,
+   "ratio_cand_over_ref": 1.148717664180466,
+   "nfail_1e4": 37,
+   "n_ref_induced": 20,
+   "n_cand_induced": 17,
+   "share_ref_induced": 0.5405405405405406,
+   "tf32_cand_share_ref_induced": 0.0001111954477550606,
+   "tf32_cand_rho": 718.0620431934624,
+   "tf32_cand_frac": 0.7890434265136719
+  }
+ ],
+ "pooled": {
+  "n_fail": 300,
+  "n_ref_induced": 168,
+  "n_cand_induced": 132,
+  "share_ref_induced": 0.56
+ },
+ "share_stability": {
+  "min": 0.5405405405405406,
+  "max": 0.6,
+  "spread": 0.05945945945945941,
+  "n": 3
+ },
+ "depth_fit": {
+  "slope": 0.7380331925187715,
+  "max_log_resid": 0.321516695619999,
+  "segment_slopes": {
+   "k2048_4096": 1.1444622644725213,
+   "k4096_8192": 0.9883524905971464,
+   "k1024_2048": -0.05419153483127048
+  },
+  "monotonicity_violations": [
+   [
+    "T1",
+    "T2"
+   ]
+  ],
+  "crossing_bracket": {
+   "below": [
+    1024,
+    2048
+   ],
+   "above": [
+    4096,
+    8192
+   ]
+  },
+  "a6d_reference": {
+   "K_measured": [
+    3608,
+    3632
+   ]
+  }
+ },
+ "tf32_candidate": {
+  "share_ref_induced": 0.0,
+  "note": "pooled C2 share is in the run summary; per-tuple shares are ~1e-5"
+ },
+ "mechanism_candidate": {
+  "model": "rho_cand/(rho_cand+rho_ref)",
+  "rows": [
+   {
+    "tid": "T3",
+    "predicted_ref_share": 0.48879708527466936,
+    "measured": 0.6,
+    "delta": 0.11120291472533061
+   },
+   {
+    "tid": "T4",
+    "predicted_ref_share": 0.49643343449572486,
+    "measured": 0.562015503875969,
+    "delta": 0.06558206938024413
+   },
+   {
+    "tid": "T5",
+    "predicted_ref_share": 0.5346061436222213,
+    "measured": 0.5405405405405406,
+    "delta": 0.005934396918319318
+   }
+  ],
+  "max_abs_delta": 0.11120291472533061
+ },
+ "verdicts": [
+  "DEPTH_LAW_INTERMEDIATE",
+  "REF_SHARE_PARTIAL"
+ ],
+ "readings": {
+  "conv_contrast": "conv/TF32 population share 0.9985 (s84/s87); non-conv fp32 matmul share 0.56",
+  "carrier_rule": "the share tracks which arm carries the coarse engine: TF32-candidate arm share ~7e-5"
+ }
+}
