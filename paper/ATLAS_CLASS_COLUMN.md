@@ -176,3 +176,30 @@ anchor, evaluator-exact direction:
 Validity domain of the certificate: GB10 sm_120, fp32, default cudnn-TF32 reference, conv/convT with benchmark-style
 weight normalization. Scope claim: the benchmark's 0/200 at 1e-2 is conditional on its own weight normalization; the
 reference axis is a strict-gate diagnostic at benchmark scale. Non-claim: no shape law; magnitude stays enumerated.
+
+## s91 — the scale coordinate becomes a boundary, and the boundary is gate-specific (2026-11-12)
+
+s90's scale finding was a two-point comparison, so it had a scope but no boundary. s91 swept the weight scale g over
+{0.0625..64} on two fixed conv tuples from s90's population (2.92M and 14.25M output elements; 4.88x apart), with the
+benchmark-realistic normalization multiplied by g, same seed and evaluator-exact predicate. Prereg `e390322` committed
+pre-run; one declared post-hoc amendment extends the grid downward because its floor sat above one tuple's strict-gate
+crossing (grid-layout defect, not outcome-driven). 62 rows, all ok; tie-out to s90's norm-arm rho at g=1 within 1.8e-4
+and 2.7e-4 relative; repeat bit-identical 62/62; zero kill clauses fired.
+
+- **Monotone:** log-log slope of rho vs g is 0.965 / 0.948, max log residual 4.5% / 4.1%, no monotonicity violation.
+- **Crossing rho=1, 1e-4:** T1 g=0.0639 |A|max 0.308 u=0.678; T2 g=0.0599 |A|max 0.314 u=0.690 (cross-tuple 1.017).
+- **Crossing rho=1, 1e-2 (shipped):** T1 g=8.354 |A|max 40.33 u=0.887; T2 g=7.336 |A|max 38.38 u=0.844 (1.051).
+- **Gate shift:** per-tuple cross-gate ratio 1.308 / 1.224 => the boundary collapses across tuples at a FIXED gate but
+  is gate-specific; governing verdict BRANCH_GATE_ONLY (the frozen summary printed BRANCH_COLLAPSE_ATOL through a
+  min/max pairing across gates — coding slip recorded, no threshold changed). The atol-floor predictor u=1 survives
+  only as an upper bound, over-predicting by 12-47%.
+- **Mechanism falsified:** the argmax element is not near-zero. |x|/atol is 5.6 / 17.2 / 6.9 / 1.3 with relative error
+  16.5% / 5.8% / 15.4% / 74.7% — a cancelled output whose absolute error comes from the accumulation-term scale.
+- **Class/population:** tf32-off clean at every crossing (rho <=3.2e-3); every crossing tuple TF32_TENSOROP. frac_over
+  is exactly 0.0 at all four crossings; at 1e-2 it stays below 0.01 up to |A|max 309, while allclose fails the tensor
+  on one element. Extremum and population boundaries are an order of magnitude apart in scale.
+
+Column note for the deliverable: the reference-conditional column now carries a boundary, not just a diagnostic —
+"reference-clean" must name the statistic (allclose vs population fraction) and the gate; at the shipped gate the
+reference fails on a single element once |A|max exceeds ~38-40, and benchmark-normalized conv outputs sit at 4.8-5.2,
+i.e. 7.7-8.4x inside that boundary. Scope: conv/convT, GB10 sm_120, one draw per point, two tuples.

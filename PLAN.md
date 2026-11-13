@@ -773,3 +773,27 @@ spans 10,654x); (3) 6 no-bias + 4 unparsed s73 rows; (4) pool-diversity dedup on
 ## Next: (1) bisect the scale boundary on one fixed conv tuple (|A|max where rho_1e-2 crosses 1), monotonicity first;
 ## (2) fold certificate + scale coordinate into §4.5/§5 prose and the column note; (3) post the numbers on post 10 and
 ## verify in the list; (4) L2/14 ordering mechanism; (5) 24h-E1/CTA-edge/bt parked.
+
+## DONE 23:1xZ EST 11-12: s91 — the reference's shipped-gate validity boundary is measured in |A|max (closes s90 debt 1)
+
+Prereg e390322 frozen pre-run; s91b (grid-floor extension) declared post-hoc; s91c bisected the bracket the frozen
+grid missed. Artifacts results/s91_scale_boundary.jsonl (62/62 ok), s91_scale_boundary_summary.json,
+s91b_extension.jsonl, s91c_t2_cross_summary.json, s91_analysis.json; scripts lab/s91_scale_boundary.py,
+s91b_extension.py, s91c_t2_cross.py, s91_analysis.py.
+Monotone first: log-log slope .965/.948, max residual 4.5%/4.1%, 0 violations. Crossings rho=1: 1e-4 |A|max
+0.308/0.314 (cross-tuple 1.017), shipped 1e-2 40.33/38.38 (1.051) across a 4.88x element-count difference => the
+boundary collapses in u=2.2e-4*|A|max/atol across tuples at a FIXED gate; cross-gate 1.308/1.224 => BRANCH_GATE_ONLY
+(gate-specific constant, not a universal coordinate; the frozen summary's BRANCH_COLLAPSE_ATOL was a min/max pairing
+slip, recorded not threshold-repaired). s90's declared atol-floor MECHANISM is falsified: argmax |x|/atol 1.3-17.2 and
+relative error 5.8-74.7% => the worst element is a cancelled output whose absolute error tracks the accumulation-term
+scale. tf32-off clean at every crossing; frac_over exactly 0.0 at all four crossings, and at 1e-2 it stays <0.01 up to
+|A|max 309, so the extremum boundary governs allclose admission while the population boundary is far above.
+Prose: DETAIL_SECTIONS §4.5b + §5.1 paragraph, MANUSCRIPT §2.4 scale scope, ATLAS_CLASS_COLUMN s91 section.
+Audits s50 exit 0, s51 31/31, s52 16/16, s53 15/15, s54 6/6; provenance 61/61/0. Instrument debt closed:
+results/s88b_winograd_probe.json (cited by MANUSCRIPT.md:455 since 11-02) had never been copied back from spark —
+recovered, which is what had made s51 read 30/31 and provenance hard-fail.
+Comment 4V9Qc5m6WPyVZUpu at 04:03:45Z, 1,185 chars, verified newest in the list; platform cap is 1,200 with silent
+truncation and no PATCH/DELETE (405), so author to <=1,150.
+Next: (1) locate the shipped-gate frac_over boundary by extending g upward (prereg first) so the "which statistic"
+statement is two-sided; (2) cancellation-term probe at the four crossings; (3) home sweep + sylver novelty check;
+(4) class axis where a non-TF32 reference exceeds AND covers; (5) L2/14 ordering; (6) 24h-E1/CTA-edge/bt parked.

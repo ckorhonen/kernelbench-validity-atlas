@@ -1,7 +1,7 @@
 {
- "date": "2026-10-31T03:17:33Z",
- "n_cited": 58,
- "n_found": 58,
+ "date": "2026-11-13T04:04:37Z",
+ "n_cited": 61,
+ "n_found": 61,
  "missing": [],
  "entries": [
   {
@@ -260,7 +260,9 @@
     "lab/s51_prose_audit.py",
     "lab/s52_supplement_build.py",
     "lab/s57_supplement_build_v7.py",
-    "lab/s57_supplement_build_v9.py"
+    "lab/s57_supplement_build_v9.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py"
    ],
    "content": {
     "kind": "json",
@@ -363,7 +365,9 @@
     "lab/s51_prose_audit.py",
     "lab/s52_supplement_build.py",
     "lab/s57_supplement_build_v7.py",
-    "lab/s57_supplement_build_v9.py"
+    "lab/s57_supplement_build_v9.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py"
    ],
    "content": {
     "kind": "json",
@@ -590,7 +594,9 @@
     "lab/e1_analyze_v3.py",
     "lab/s52_supplement_build.py",
     "lab/s57_supplement_build_v7.py",
-    "lab/s57_supplement_build_v9.py"
+    "lab/s57_supplement_build_v9.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py"
    ],
    "content": {
     "kind": "json",
@@ -660,7 +666,9 @@
     "lab/e1b_order.py",
     "lab/s52_supplement_build.py",
     "lab/s57_supplement_build_v7.py",
-    "lab/s57_supplement_build_v9.py"
+    "lab/s57_supplement_build_v9.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py"
    ],
    "content": {
     "kind": "json",
@@ -708,6 +716,8 @@
     "lab/s52_supplement_build.py",
     "lab/s57_supplement_build_v7.py",
     "lab/s57_supplement_build_v9.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py",
     "lab/w4_dispatcher_v1.py"
    ],
    "content": {
@@ -783,7 +793,9 @@
     "lab/s60_pool_diversity.py",
     "lab/s61_round17_verify.py",
     "lab/s62_resolution.py",
-    "lab/s63_round17_prose.py"
+    "lab/s63_round17_prose.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py"
    ],
    "content": {
     "kind": "jsonl",
@@ -816,7 +828,9 @@
    "producers": [
     "lab/e59c_epsilon_analysis.py",
     "lab/s52_supplement_build.py",
-    "lab/s57_supplement_build_v9.py"
+    "lab/s57_supplement_build_v9.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py"
    ],
    "content": {
     "kind": "json",
@@ -887,7 +901,13 @@
     "lab/s52_supplement_build.py",
     "lab/s57_supplement_build_v7.py",
     "lab/s57_supplement_build_v9.py",
-    "lab/s63_round17_prose.py"
+    "lab/s63_round17_prose.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py",
+    "lab/s66_foreign_warm.py",
+    "lab/s67_round19_verify.py",
+    "lab/s68_verdict_table.py",
+    "lab/s72_fresh_process.py"
    ],
    "content": {
     "kind": "jsonl",
@@ -1041,7 +1061,11 @@
     "lab/s48_provenance.py",
     "lab/s52_supplement_build.py",
     "lab/s57_supplement_build_v7.py",
-    "lab/s57_supplement_build_v9.py"
+    "lab/s57_supplement_build_v9.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py",
+    "lab/s67_round19_verify.py",
+    "lab/s68_verdict_table.py"
    ],
    "content": {
     "kind": "json",
@@ -1287,7 +1311,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-10-31T03:17:15Z",
+   "mtime_utc": "2026-11-13T04:04:24Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1318,9 +1342,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "4531068406bddaa3ba9eb1a79d57843d7861724e767a397a4647f4ff24a401ea",
-   "bytes": 5255,
-   "mtime_utc": "2026-10-31T03:17:15Z",
+   "sha256": "49744fc17bb37715091bf41f760ab65d4f09a626054c60752e204220d306a568",
+   "bytes": 5293,
+   "mtime_utc": "2026-11-13T04:04:24Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1406,7 +1430,9 @@
     "lab/s56_heldout_contract.py",
     "lab/s57_supplement_build_v7.py",
     "lab/s57_supplement_build_v9.py",
-    "lab/s58_review_verify.py"
+    "lab/s58_review_verify.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py"
    ],
    "content": {
     "kind": "json",
@@ -1661,6 +1687,98 @@
    "compressed": false
   },
   {
+   "artifact": "results/s88b_winograd_probe.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md"
+   ],
+   "sha256": "6b08dbdfaaf7856bbc1d4ab1b75614359acc04e94bf713d3be0c3de265365986",
+   "bytes": 2202,
+   "mtime_utc": "2026-11-13T04:04:37Z",
+   "producers": [
+    "lab/s88b_winograd_probe.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "note",
+     "post_hoc",
+     "rows"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s89b_tf32off_attrib.jsonl",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md"
+   ],
+   "sha256": "5e8156a5e9e8f3476d46784a59887b46aba0bcad2a9fb34d266740ad5b54757f",
+   "bytes": 7040,
+   "mtime_utc": "2026-11-03T02:33:39Z",
+   "producers": [
+    "lab/s89b_tf32off_attrib_v2.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 4,
+    "row_keys": [
+     "arm",
+     "bit_AB",
+     "cands",
+     "class_change",
+     "date",
+     "engine_A",
+     "engine_A_name",
+     "engine_B",
+     "engine_B_name",
+     "engine_C1",
+     "idx",
+     "level",
+     "n_elem",
+     "name",
+     "op_class",
+     "problem_id",
+     "ref_stats_A",
+     "ref_stats_B",
+     "repeat",
+     "shape",
+     "wall_s"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s91_analysis.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md"
+   ],
+   "sha256": "244d272044c378fe0e27f3f09c846b48d04d9bc3bd794dc25f5690d04c6742e5",
+   "bytes": 7373,
+   "mtime_utc": "2026-11-13T04:00:49Z",
+   "producers": [
+    "lab/s91_analysis.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "collapse_arithmetic",
+     "crossings",
+     "frozen_summary_verdict",
+     "instrument",
+     "monotonicity",
+     "n_ok",
+     "n_rows",
+     "population_thresholds",
+     "verdict",
+     "verdict_note"
+    ]
+   },
+   "compressed": false
+  },
+  {
    "artifact": "results/tuple_surface.json",
    "sha256_note": null,
    "cited_in": [
@@ -1719,6 +1837,8 @@
     "lab/s52_supplement_build.py",
     "lab/s57_supplement_build_v7.py",
     "lab/s57_supplement_build_v9.py",
+    "lab/s64_supplement_build_v18.py",
+    "lab/s65_supplement_build_v19.py",
     "lab/w4_dispatcher_v1.py"
    ],
    "content": {

@@ -1,0 +1,99 @@
+{
+ "post_hoc": true,
+ "note": "descriptive probe; no prereg, no kill",
+ "rows": [
+  {
+   "date": "2026-11-02T23:15:58Z",
+   "N": 2,
+   "H": 5,
+   "W": 5,
+   "C": 256,
+   "CO": 256,
+   "n_elem": 12800,
+   "engine_A": "WINOGRAD",
+   "engine_A_name": "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)",
+   "engine_C1": "TF32_TENSOROP",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.14880858633082558,
+   "cands": {
+    "C1": {
+     "n_fail": 4459,
+     "n_ref_ind": 0,
+     "n_cand_ind": 4459,
+     "share": 0.0,
+     "bit_identical": false
+    },
+    "C2": {
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true
+    }
+   }
+  },
+  {
+   "date": "2026-11-02T23:15:58Z",
+   "N": 2,
+   "H": 6,
+   "W": 6,
+   "C": 256,
+   "CO": 256,
+   "n_elem": 18432,
+   "engine_A": "WINOGRAD",
+   "engine_A_name": "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)",
+   "engine_C1": "TF32_TENSOROP",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.14696833464216932,
+   "cands": {
+    "C1": {
+     "n_fail": 6636,
+     "n_ref_ind": 0,
+     "n_cand_ind": 6636,
+     "share": 0.0,
+     "bit_identical": false
+    },
+    "C2": {
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true
+    }
+   }
+  },
+  {
+   "date": "2026-11-02T23:15:58Z",
+   "N": 2,
+   "H": 8,
+   "W": 8,
+   "C": 256,
+   "CO": 256,
+   "n_elem": 32768,
+   "engine_A": "WINOGRAD",
+   "engine_A_name": "void cudnn::winograd_nonfused::winogradForwardFilter4x4<float, float>(cudnn::winograd_nonfused::WinogradFilterParams<float, float>)",
+   "engine_C1": "TF32_TENSOROP",
+   "engine_C2": "WINOGRAD",
+   "frac_over_ref": 0.0,
+   "rho_max": 0.22501884019268173,
+   "cands": {
+    "C1": {
+     "n_fail": 12318,
+     "n_ref_ind": 0,
+     "n_cand_ind": 12318,
+     "share": 0.0,
+     "bit_identical": false
+    },
+    "C2": {
+     "n_fail": 0,
+     "n_ref_ind": 0,
+     "n_cand_ind": 0,
+     "share": null,
+     "bit_identical": true
+    }
+   }
+  }
+ ]
+}

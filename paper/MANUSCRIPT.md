@@ -203,6 +203,13 @@ The scope of that certificate is exactly the population and revision it was comp
 torch build, these 56 shapes, this arm pool. It is not a general claim that any tolerance formulation agrees
 with any other.
 
+The scale scope is now measured rather than assumed. s91 locates where the default conv reference's worst
+element crosses the bar as a function of output magnitude: |A|max ~0.31 at 1e-4 and ~38-40 at the shipped 1e-2,
+agreeing to 1.7% and 5.1% across two tuples 4.88x apart in element count (§4.5b,
+`results/s91_analysis.json`). Benchmark-normalized conv outputs sit at |A|max 4.8-5.2, so the 0/24 result at
+1e-2 is a statement about that weight convention and about the extremum statistic allclose uses, not a general
+claim that the reference is accurate.
+
 ## 2.5 Figure 1 — the configuration-to-verdict chain
 
 Figure 1 is a measured chain, not a diagram of a hypothesis. Each row is a configuration that was actually

@@ -899,6 +899,55 @@ survives, but the class is a dispatch decision over (C, output extent), not a fu
 parameters. This is the fourth retraction recorded in this program and the second that is mine rather than
 one found in review.
 
+## 4.5b The certificate's validity boundary in the |A|max coordinate (s91, 2026-11-12)
+
+s90 left the scale coordinate as a two-point comparison (benchmark-normalized weights vs raw randn), so the
+certificate had a scope but no boundary. s91 turns it into a boundary and locates it. Prereg `e390322` was
+committed before the run; one declared post-hoc amendment (`lab/s91b_extension.py`, grid floor) extends the sweep
+downward because the frozen grid's lowest point sat above one tuple's strict-gate crossing — a grid-layout defect,
+not an outcome-driven choice. Artifacts: `results/s91_scale_boundary.jsonl` (62 rows, all ok),
+`results/s91_scale_boundary_summary.json`, `results/s91b_extension.jsonl`, `results/s91c_t2_cross_summary.json`,
+`results/s91_analysis.json`.
+
+Two fixed conv tuples from s90's population (T1: 3x3 s1 151x151 C64->64, 2.92M output elements; T2: 1x1 211x211
+C192->160, 14.25M elements; 4.88x element-count difference), benchmark-realistic weight normalization multiplied by
+a swept scale g in {0.0625..64}, same seed and predicate as s90. Instrument: tie-out to s90's norm-arm rho at g=1
+within 1.8e-4 and 2.7e-4 relative; A-arm repeat bit-identical on 62/62 rows; no kill clause fired.
+
+- **Monotone, near-linear.** rho grows with g at log-log slope 0.965 (T1) and 0.948 (T2), maximum log residual
+  4.5% / 4.1%, zero monotonicity violations at the frozen 0.90 rule. Bisection is therefore admissible, and the
+  four crossings below are measured points inside a final bracket, not interpolations.
+- **The boundary is a surface across tuples at a fixed gate.** Crossing rho=1 at the strict 1e-4 gate:
+  T1 g=0.0639, |A|max 0.308, u=0.678; T2 g=0.0599, |A|max 0.314, u=0.690 — a cross-tuple ratio of **1.017**. At
+  the shipped 1e-2 gate: T1 g=8.354, |A|max 40.33, u=0.887; T2 g=7.336, |A|max 38.38, u=0.844 — ratio **1.051**.
+  A 4.88x difference in element count moves the crossing by 1.7% and 5.1%, so the boundary is not an
+  element-count extremum artifact; it collapses in the coordinate u = 2.2e-4·|A|max/atol.
+- **It does not collapse across gates.** Per-tuple cross-gate ratio is 1.308 (T1) and 1.224 (T2): u* is 0.68-0.69
+  at 1e-4 and 0.84-0.89 at 1e-2, i.e. tolerance enters as a 22-31% shift of the coordinate rather than as a new
+  shape term. Governing verdict per the prereg's natural per-tuple reading is **BRANCH_GATE_ONLY**; the frozen
+  summary printed BRANCH_COLLAPSE_ATOL through a min/max pairing across gates, and that coding slip is recorded
+  here rather than repaired by changing a threshold. The declared atol-floor predictor (u=1) survives as an upper
+  bound and over-predicts the crossing by 12-47%.
+- **The declared mechanism is falsified.** s90's descriptive claim was that the worst-ratio element sits at a
+  near-zero output where the budget is atol alone. Measured at the four crossings, |x|/atol at the argmax element
+  is 5.6, 17.2, 6.9 and 1.3, and the relative error there is 16.5%, 5.8%, 15.4% and 74.7% — the worst element is a
+  *cancelled* output, small relative to the accumulation-term scale, not a near-zero one. The coordinate survives;
+  the mechanism sentence attached to it does not.
+- **Class and population.** The tf32-off arm stays clean at every crossing scale (rho 8.4e-4 to 3.2e-3), and every
+  crossing tuple labels TF32_TENSOROP, so the boundary is TF32-class. frac_over is exactly 0.0 at all four
+  crossings: at the extremum boundary not one element is over budget yet. On the strict gate frac_over first
+  reaches 0.01 at g=0.25 and 0.5 at g=1.0; on the shipped gate it stays below 0.01 even at g=64 (|A|max 309). The
+  operative predicate is allclose, which fails a tensor on any single element, so the extremum boundary is the
+  one that governs admission while the population fraction describes usability.
+
+Reconciliation of s90's two arms, without a shape term: benchmark-normalized weights put |A|max at 4.8-5.2, which
+is 7.7-8.4x below the shipped-gate boundary (38-40); raw randn weights put |A|max at 70-330, which is 1.8-8.2x
+above it. That is the 0/24 vs 11/24 split s90 measured, now with a crossing rather than an observation. Validity
+domain statement: on GB10 sm_120 with a default cudnn-TF32 conv reference, an exact candidate fails the shipped
+1e-2 allclose iff |A|max exceeds ~38-40 (u*=0.84-0.89), and fails the strict 1e-4 gate iff |A|max exceeds ~0.31
+(u*=0.68-0.69); both bounds are measured on two tuples 4.88x apart in element count and are scoped to conv/convT
+at these shapes, one draw per point.
+
 ## 4.6 Candidate admission: a class baseline plus a measured within-class threshold
 
 The result here is narrower than a predictive certificate and is stated that way. Admission is the
@@ -992,6 +1041,18 @@ margin ≥800×). What decides a flip is the distance from the bar in units of t
 or the arm. The cf3 comparison is a tolerance sweep over the observed profiles, not a controlled sweep of every
 coordinate, so the law is scoped to those profiles. This is why §4's certificate carries a regret basis rather
 than a regret number.
+
+**The reference's own crossing of the bar is a scale, and it is gate-specific.** s91 measured where the default
+cudnn-TF32 conv reference's worst element crosses rho=1 on two fixed tuples whose element counts differ by 4.88x
+(`results/s91_analysis.json`; prereg `e390322`). At 1e-4 the crossing sits at |A|max 0.308 and 0.314 — 1.7% apart
+across the two tuples; at 1e-2 it sits at 40.33 and 38.38 — 5.1% apart. So the boundary is a surface across shape
+and element count at a fixed tolerance, and it moves by 22-31% when the tolerance moves from 1e-4 to 1e-2, which is
+why the certificate's operating threshold stays a per-gate measured constant rather than a universal coordinate.
+The worst element at the crossing is a cancelled output, not a near-zero one (|x|/atol 1.3-17.2, relative error
+5.8-74.7%), and frac_over is exactly 0.0 there: at 1e-2 the reference first fails a tensor on a single element at
+|A|max ~38-40 while fewer than 1% of elements are over budget even at |A|max 309. Any claim that "the reference is
+clean" therefore has to name which statistic it means — allclose, which fails on one element, or a population
+fraction, which stays small far longer.
 
 ## 5.2 Propagation through composed graphs
 

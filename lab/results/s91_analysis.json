@@ -1,0 +1,433 @@
+{
+ "n_rows": 62,
+ "n_ok": 62,
+ "instrument": {
+  "tieout": {
+   "T1": {
+    "rho_got": 0.13952469033268983,
+    "s90_norm_rho": 0.1395,
+    "rel": 0.00017699163218504673,
+    "pass_": true
+   },
+   "T2": {
+    "rho_got": 0.14734033790102077,
+    "s90_norm_rho": 0.1473,
+    "rel": 0.0002738486152124044,
+    "pass_": true
+   }
+  },
+  "repeat_bit_identical_frac": 1.0,
+  "repeat_fail": 0
+ },
+ "monotonicity": {
+  "T1_1e-4": {
+   "n_points": 11,
+   "violations": [],
+   "loglog_slope": 0.9647,
+   "max_abs_log_resid": 0.0449,
+   "rho_series": [
+    [
+     0.0625,
+     0.91862,
+     0.0
+    ],
+    [
+     0.125,
+     1.82797,
+     0.00328
+    ],
+    [
+     0.25,
+     3.63098,
+     0.106608
+    ],
+    [
+     0.5,
+     7.16415,
+     0.346639
+    ],
+    [
+     1.0,
+     13.95247,
+     0.546249
+    ],
+    [
+     2.0,
+     26.51399,
+     0.664122
+    ],
+    [
+     4.0,
+     49.54569,
+     0.726436
+    ],
+    [
+     8.0,
+     98.83896,
+     0.75836
+    ],
+    [
+     16.0,
+     196.67595,
+     0.774498
+    ],
+    [
+     32.0,
+     389.4043,
+     0.782573
+    ],
+    [
+     64.0,
+     763.48428,
+     0.78661
+    ]
+   ]
+  },
+  "T1_1e-2": {
+   "n_points": 11,
+   "violations": [],
+   "loglog_slope": 0.9647,
+   "max_abs_log_resid": 0.0449,
+   "rho_series": [
+    [
+     0.0625,
+     0.00919,
+     0.0
+    ],
+    [
+     0.125,
+     0.01828,
+     0.0
+    ],
+    [
+     0.25,
+     0.03631,
+     0.0
+    ],
+    [
+     0.5,
+     0.07164,
+     0.0
+    ],
+    [
+     1.0,
+     0.13952,
+     0.0
+    ],
+    [
+     2.0,
+     0.26514,
+     0.0
+    ],
+    [
+     4.0,
+     0.49546,
+     0.0
+    ],
+    [
+     8.0,
+     0.98839,
+     0.0
+    ],
+    [
+     16.0,
+     1.96676,
+     0.000271
+    ],
+    [
+     32.0,
+     3.89404,
+     0.003365
+    ],
+    [
+     64.0,
+     7.63484,
+     0.008665
+    ]
+   ]
+  },
+  "T2_1e-4": {
+   "n_points": 11,
+   "violations": [],
+   "loglog_slope": 0.9481,
+   "max_abs_log_resid": 0.0405,
+   "rho_series": [
+    [
+     0.0625,
+     1.04414,
+     0.0
+    ],
+    [
+     0.125,
+     2.03568,
+     0.003446
+    ],
+    [
+     0.25,
+     3.87614,
+     0.10428
+    ],
+    [
+     0.5,
+     7.45457,
+     0.342578
+    ],
+    [
+     1.0,
+     14.73403,
+     0.543316
+    ],
+    [
+     2.0,
+     29.09652,
+     0.662263
+    ],
+    [
+     4.0,
+     56.76169,
+     0.725478
+    ],
+    [
+     8.0,
+     108.20066,
+     0.757819
+    ],
+    [
+     16.0,
+     199.9871,
+     0.774155
+    ],
+    [
+     32.0,
+     382.51807,
+     0.782346
+    ],
+    [
+     64.0,
+     740.02518,
+     0.786462
+    ]
+   ]
+  },
+  "T2_1e-2": {
+   "n_points": 11,
+   "violations": [],
+   "loglog_slope": 0.9481,
+   "max_abs_log_resid": 0.0405,
+   "rho_series": [
+    [
+     0.0625,
+     0.01044,
+     0.0
+    ],
+    [
+     0.125,
+     0.02036,
+     0.0
+    ],
+    [
+     0.25,
+     0.03876,
+     0.0
+    ],
+    [
+     0.5,
+     0.07455,
+     0.0
+    ],
+    [
+     1.0,
+     0.14734,
+     0.0
+    ],
+    [
+     2.0,
+     0.29097,
+     0.0
+    ],
+    [
+     4.0,
+     0.56762,
+     0.0
+    ],
+    [
+     8.0,
+     1.08201,
+     0.0
+    ],
+    [
+     16.0,
+     1.99987,
+     0.000275
+    ],
+    [
+     32.0,
+     3.82518,
+     0.003301
+    ],
+    [
+     64.0,
+     7.40025,
+     0.008544
+    ]
+   ]
+  }
+ },
+ "crossings": {
+  "T1_1e-4": {
+   "status": "CROSSING",
+   "bracket": [
+    0.06386857179088229,
+    0.06526711140171336
+   ],
+   "g_star_geom": 0.06456405493882678,
+   "gate": "1e-4",
+   "atol": 0.0001,
+   "g_measured": 0.06386857179088229,
+   "maxabs_out": 0.3083021342754364,
+   "rho": 0.9216665098973674,
+   "frac_over": 0.0,
+   "u": 0.67826469540596,
+   "argmax": {
+    "ratio": 0.9216665098973674,
+    "a": -0.0006515537388622761,
+    "x": -0.0005593355357894261,
+    "d": 9.221820307285002e-05
+   },
+   "B_rho": 0.0032219802334106165,
+   "B_frac": 0.0,
+   "engine_class": "TF32_TENSOROP",
+   "argmax_abs_x_over_atol": 5.593,
+   "argmax_rel_error": 0.164871,
+   "atol_floor_predictor_u_eq_1": true
+  },
+  "T1_1e-2": {
+   "status": "CROSSING",
+   "bracket": [
+    8.35419025941931,
+    8.537123205414588
+   ],
+   "g_star_geom": 8.445161426884455,
+   "gate": "1e-2",
+   "atol": 0.01,
+   "g_measured": 8.35419025941931,
+   "maxabs_out": 40.33119201660156,
+   "rho": 0.9861332474940671,
+   "frac_over": 0.0,
+   "u": 0.8872862243652343,
+   "argmax": {
+    "ratio": 0.9861332474940671,
+    "a": 0.058044325560331345,
+    "x": 0.06858196761975605,
+    "d": 0.010537642059424701
+   },
+   "B_rho": 0.0013638281763263362,
+   "B_frac": 0.0,
+   "engine_class": "TF32_TENSOROP",
+   "argmax_abs_x_over_atol": 6.858,
+   "argmax_rel_error": 0.15365,
+   "atol_floor_predictor_u_eq_1": true
+  },
+  "T2_1e-2": {
+   "status": "CROSSING",
+   "bracket": [
+    7.33603234563737,
+    7.4966705364412
+   ],
+   "g_star_geom": 7.415916500333542,
+   "gate": "1e-2",
+   "atol": 0.01,
+   "g_measured": 7.33603234563737,
+   "maxabs_out": 38.38407516479492,
+   "rho": 0.9486686674759549,
+   "frac_over": 0.0,
+   "u": 0.8444496536254883,
+   "argmax": {
+    "ratio": 0.9486686674759549,
+    "a": -0.0032509788870811462,
+    "x": -0.012859661137798573,
+    "d": 0.009608682250717426
+   },
+   "B_rho": 0.0008366431673508159,
+   "B_frac": 0.0,
+   "engine_class": "TF32_TENSOROP",
+   "argmax_abs_x_over_atol": 1.286,
+   "argmax_rel_error": 0.747196,
+   "atol_floor_predictor_u_eq_1": true
+  },
+  "T2_1e-4": {
+   "status": "CROSSING",
+   "bracket": [
+    0.05993898576278751,
+    0.06078077952912957
+   ],
+   "gate": "1e-4",
+   "atol": 0.0001,
+   "g_measured": 0.05993898576278751,
+   "maxabs_out": 0.3136195242404938,
+   "rho": 0.9878481652665668,
+   "frac_over": 0.0,
+   "u": 0.6899629533290863,
+   "argmax": {
+    "ratio": 0.9878481652665668,
+    "a": 0.001618808601051569,
+    "x": 0.0017177631064915367,
+    "d": 9.895450543996771e-05
+   },
+   "B_rho": 0.0021253054608116884,
+   "engine_class": "TF32_TENSOROP",
+   "source": "s91c",
+   "argmax_abs_x_over_atol": 17.178,
+   "argmax_rel_error": 0.057607,
+   "atol_floor_predictor_u_eq_1": true
+  }
+ },
+ "collapse_arithmetic": {
+  "T1_cross_gate": {
+   "u_strict": 0.67826469540596,
+   "u_shipped": 0.8872862243652343,
+   "ratio": 1.3082
+  },
+  "T2_cross_gate": {
+   "u_strict": 0.6899629533290863,
+   "u_shipped": 0.8444496536254883,
+   "ratio": 1.2239
+  },
+  "1e-4_cross_tuple": {
+   "u": [
+    0.67826469540596,
+    0.6899629533290863
+   ],
+   "ratio": 1.0172
+  },
+  "1e-2_cross_tuple": {
+   "u": [
+    0.8872862243652343,
+    0.8444496536254883
+   ],
+   "ratio": 1.0507
+  },
+  "element_count_ratio": 4.8814744967326
+ },
+ "population_thresholds": {
+  "T1_1e-4": {
+   "first_g_frac_ge_0.01": 0.25,
+   "first_g_frac_ge_0.5": 1.0
+  },
+  "T1_1e-2": {
+   "first_g_frac_ge_0.01": null,
+   "first_g_frac_ge_0.5": null
+  },
+  "T2_1e-4": {
+   "first_g_frac_ge_0.01": 0.25,
+   "first_g_frac_ge_0.5": 1.0
+  },
+  "T2_1e-2": {
+   "first_g_frac_ge_0.01": null,
+   "first_g_frac_ge_0.5": null
+  }
+ },
+ "frozen_summary_verdict": "BRANCH_COLLAPSE_ATOL",
+ "verdict": "BRANCH_GATE_ONLY",
+ "verdict_note": "Same-gate cross-tuple agreement: 1e-4_cross_tuple ratio 1.0172, 1e-2_cross_tuple ratio 1.0507. Per-tuple cross-gate ratio: T1_cross_gate 1.3082, T2_cross_gate 1.2239. The frozen summary printed BRANCH_COLLAPSE_ATOL from a min/max pairing across gates (coding slip); the prereg's BRANCH_COLLAPSE_ATOL clause read per tuple is not met (max 1.31 > 1.25), so the governing branch is BRANCH_GATE_ONLY: the crossing collapses across tuples at a FIXED gate and shifts with the gate."
+}
