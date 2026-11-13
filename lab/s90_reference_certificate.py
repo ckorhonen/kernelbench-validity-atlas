@@ -85,6 +85,16 @@ records max|A| per config, because the budget for a near-zero output element is 
 reference's absolute error ~ 2.2e-4*max|A| (s38's measured reference-side constant) predicts a shipped-gate
 exceedance iff max|A| >~ 45; that is a declared DESCRIPTIVE coordinate test, not a new branch.
 
+AMENDMENT v4 (declared before any completed run). v3 fired INSTRUMENT_FAILED on its NEGATIVE controls (idx 27
+rho 6.06 frac .0066; idx 28 rho 2.52 frac .0015 at 1e-4) where s88 recorded exactly 0.0. Root cause is measured,
+not asserted: v3's conv weights were raw randn, so |A|max ~ sqrt(fan_in) (up to ~70) while the budget for a
+near-zero output element is atol alone; the TF32-class absolute error then scales with |A|max. s88's clean cells
+were built with normalized weights. v4 therefore declares the benchmark-realistic convention for conv and
+conv_transpose: weight /= sqrt(fan_in) (output O(1)), applied to ALL configs, with the scale recorded per row.
+The unit-scale conv rows from v3 are kept as the declared scale-axis observation (they are not discarded: they
+are the measurement that shows the certificate is scale-dependent, which v4 then pins by using the convention the
+benchmark's own tasks use). No threshold, population, branch or kill clause changes.
+
 Declared limits: GB10 sm_120 only; fp64 anchor is a proxy for exact arithmetic, not exact arithmetic; the
 configs are synthetic conv/gemm/norm/reduction shapes, not the benchmark's own task list; engine class is a
 profiler label on this stack version.
@@ -303,6 +313,11 @@ def main():
             set_cfg(True, False)
             torch.manual_seed(c["seed"])
             fn, ins32 = c["build"](torch.float32)
+            # amendment v4: benchmark-realistic weight scale for conv/convT (output O(1))
+            if c["op"] in ("conv", "conv_transpose") and len(ins32) == 2:
+                fan_in = ins32[1].numel() // ins32[1].shape[0]
+                ins32[1].div_(fan_in ** 0.5)
+                rec["weight_scale"] = "1/sqrt(fan_in)"
             a1 = run_arm(fn, ins32, torch.float32)
             prof = profile_call(lambda: run_arm(fn, ins32, torch.float32))
             a2 = run_arm(fn, ins32, torch.float32)
