@@ -1118,6 +1118,54 @@ extremum is a draw-distributed quantity whose log-log depth slope is stable acro
 amplitude varies up to 1.53x at fixed K, and the reference is clean at the shipped 1e-2 gate on every draw. Scoped to
 matmul, one geometry, fp32, eight draws per K; eight draws resolve a 3.7% effect but do not characterize the tail.
 
+## 4.5g The amplitude has no input driver, no engine driver, and no location driver: it is a rounding-magnitude lottery (s96/s96b, 2026-11-13)
+
+§4.5f left the amplitude unexplained: at fixed geometry rho_ref varied up to 1.53x across draws and no recorded
+covariate tracked it. s96 tests four named explanations at one geometry — M=N=1024, K=4096 — with 32 independent
+draws, the benchmark's fp32 flags, spectral covariates of both operands, an engine-identity profiler pass on a
+declared subset of eight draws, and a tail-quantile ladder (prereg `cb23e44` frozen pre-run; artifacts
+`results/s96_amplitude_mechanism.jsonl` 33/33 rows ok including the instrument repeat, `results/s96_analysis.json`).
+
+- **No predeclared covariate predicts the amplitude.** rho_ref spans 1.046-1.474 (1.41x, mean 1.226, CV 9.04%).
+  sigma_max(a) spans 95.40-96.27 (CV 0.20%), the condition proxy sigma_max/sigma_min spans 2.951-3.014 (CV 0.51%),
+  median |X| has CV 0.125% and max |X| CV 4.4%. Spearman against rho_ref: −0.192 (sigma_max(a)), −0.126 (kappa),
+  −0.008 (median |X|), −0.217 (max |X|), −0.005 (max absolute error), +0.050 (extremum cancellation depth). Every
+  predeclared arm is below the 0.40 bar, so the coded verdict is AMPLITUDE_LOTTERY: no predictor ships and the
+  column carries the measured spread.
+- **The predictor arms had almost no leverage, and that is a design fact worth stating.** Gaussian draws put
+  sigma_max(a) inside 0.2% by the Marchenko-Pastur law, so the spectral hypothesis is not falsified in general — it
+  is untested where conditioning actually varies. sigma_max(b) was recorded but not a predeclared verdict arm and
+  returns −0.558; at 0.22% predictor variance that is a candidate for a designed-conditioning test, not a finding.
+- **The engine is not the source.** Eight profiled draws plus the instrument repeat all show one kernel set,
+  `cutlass_80_simt_sgemm_256x128_8x4_nn_align1` (plus a device memset), so ENGINE_STABLE and the engine-lottery
+  explanation is rejected: the reference realization is reproducible at fixed shape.
+- **The bulk tail is nearly stable while the maximum is not.** CV across the ladder is 0.75% at p99, 1.11% at
+  p99.9, 2.02% at p99.99, 3.15% at p99.999, against 9.04% for the maximum itself (ratio 0.223 at p99.99). The prereg's
+  tail clause required CV(rho_ref) > 0.10 and measured 0.0904, so it fires TAIL_INDETERMINATE verbatim; the ladder's
+  monotone rise with tail depth is the shape extreme-value sampling predicts, and it is reported as such rather than
+  promoted to a mechanism.
+
+**s96b, declared post-hoc, locates the variance inside the ratio.** s96 recorded the argmax of the absolute error,
+which is a different element from the argmax of the evaluator ratio. s96b re-runs the 32 draws and records the
+ratio-argmax element (`results/s96b_ratio_argmax.jsonl`, 32/32 ok): |X| at that element spans 5.9e-4 to 0.41, i.e.
+cancellation depth 1.4e-5 to 9.5e-3 of the median output magnitude, so every worst element is deep cancellation. The
+identity log rho = log e − log(1e-4·(1+|X_e|)) holds to 8e-7, and inside it the absolute error spans
+1.075e-4-1.738e-4 (1.62x, CV 12.8%) with Spearman(rho, e) = 0.661 while Spearman(rho, depth) = −0.021. The amplitude
+is therefore an error-magnitude lottery at the worst-cancelled element, not a location lottery and not a threshold
+effect: the atol term varies only 1.006-1.41x across these draws.
+
+**Consequence for the certificate.** All 32 draws exceed rho_ref = 1 at K=4096 (minimum 1.046), so the upper end of
+s94's 2048 < K < 4096 crossing bracket is draw-robust even though its magnitude is a sample. The rule this supports
+is that a per-shape rho_ref is quoted with its draw distribution — not as a property of the shape — and that a
+reference-clean verdict at the shipped gate is the statistic to rely on, since the population tail moves by 2% while
+the extremum moves by 41%.
+
+Validity-domain statement: on GB10 sm_120, fp32 matmul, M=N=1024, K=4096, the reference's extremum-to-budget ratio is
+a draw-distributed quantity (1.05-1.47 over 32 draws) whose variance is carried by the absolute rounding error at the
+worst-cancelled output element, with no dependence on operand conditioning at Gaussian inputs, no dependence on
+dispatch (one cutlass SIMT kernel across nine profiled draws), and no dependence on cancellation depth. Scoped to one
+geometry, fp32, 32 draws; the spectral hypothesis remains untested where sigma_max actually varies.
+
 ## 4.6 Candidate admission: a class baseline plus a measured within-class threshold
 
 The result here is narrower than a predictive certificate and is stated that way. Admission is the

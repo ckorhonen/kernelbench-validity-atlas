@@ -243,6 +243,15 @@ varies up to 1.53x (CV 6.6-14.3%), so the depth effect is carried as a scaling l
 rather than a piecewise floor, and a per-tuple $\rho_{ref}$ is a sample rather than a property of the tuple
 (§4.5f, `results/s95_analysis.json`). On this family the reference is clean at the shipped 1e-2 gate on every draw.
 
+A 32-draw probe at the same geometry then closes the "why" behind that amplitude and returns a negative result worth
+having. The extremum-to-budget ratio spans 1.05-1.47 at K=4096 (CV 9.0%), while operand conditioning moves by 0.2%
+(sigma_max), the output scale by 0.125% (median |X|), and the dispatch not at all — eight profiled draws return the same
+cutlass SIMT kernel (§4.5g, `results/s96_analysis.json`). Decomposing the ratio at its own argmax shows the variance is
+carried by the absolute rounding error at the worst-cancelled element (1.075e-4-1.738e-4, 1.62x, correlation 0.661 with
+the ratio) and not by cancellation depth (−0.021). The consequence for certification is a rule rather than a formula: a
+per-shape reference margin is quoted with its draw distribution, and the statistic to rely on is the reference-clean
+verdict at the shipped gate, whose population tail moves 2% where the extremum moves 41%.
+
 ## 2.5 Figure 1 — the configuration-to-verdict chain
 
 Figure 1 is a measured chain, not a diagram of a hypothesis. Each row is a configuration that was actually

@@ -301,3 +301,33 @@ sd 0.134), SHARE_UNSTABLE, and s94's 0.560 lies inside it.
 Column note addition: a per-tuple rho_ref must be printed with its draw spread, and a share with both its carrier case
 and its draw spread. Scope: matmul, one geometry, fp32, eight draws per K, GB10 sm_120; eight draws resolve a 3.7%
 effect but do not characterize the tail.
+
+## s96/s96b — the amplitude has no input, engine, or location driver: it is a rounding-magnitude lottery (2026-11-13)
+
+32 independent draws at M=N=1024, K=4096, benchmark fp32 flags (prereg `cb23e44` frozen pre-run;
+`results/s96_amplitude_mechanism.jsonl` 33/33 ok with instrument repeat bit-identical on rho and frac_over;
+`results/s96_analysis.json`; s96b post-hoc declared, `results/s96b_ratio_argmax.jsonl` 32/32 ok). Kills clean:
+K1 instrument ok, K2 vacuous not fired, K3 degenerate not fired.
+
+rho_ref spans 1.046-1.474 (1.41x, mean 1.226, CV 9.04%) while every predeclared covariate is nearly constant:
+sigma_max(a) CV 0.20%, kappa proxy CV 0.51%, median |X| CV 0.125%, max |X| CV 4.4%. Spearman against rho_ref:
+−0.192 sigma_max(a), −0.126 kappa, −0.008 median |X|, −0.217 max |X|, −0.005 max abs error, +0.050 cancellation
+depth — all below the 0.40 bar, so **AMPLITUDE_LOTTERY** fires and no predictor ships. Two caveats stated rather
+than smoothed: Gaussian draws leave sigma_max(a) inside 0.2% by Marchenko-Pastur, so the spectral hypothesis is
+untested where conditioning actually varies; sigma_max(b) was recorded but not a predeclared verdict arm and returns
+−0.558, which is a candidate for a designed-conditioning test, not a finding.
+
+Engine identity is stable: eight profiled draws plus the instrument repeat all return one kernel set
+(`cutlass_80_simt_sgemm_256x128_8x4_nn_align1` plus a device memset), so the engine-lottery explanation is rejected.
+The tail ladder is 0.75% CV at p99, 1.07% at p99.9, 2.02% at p99.99, 3.15% at p99.999 against 9.04% for the maximum
+(ratio 0.223 at p99.99); the prereg's tail clause needed CV(rho_ref) > 0.10 and measured 0.0904, so it fires
+**TAIL_INDETERMINATE** verbatim and the ladder is reported as extreme-value-shaped, not as a mechanism.
+
+s96b locates the variance inside the ratio: the ratio-argmax element always sits in deep cancellation (|X| 5.9e-4 to
+0.41, depth 1.4e-5 to 9.5e-3 of median), the identity log rho = log e − log(1e-4(1+|X_e|)) holds to 8e-7, and the
+absolute error there spans 1.075e-4-1.738e-4 (1.62x, CV 12.8%, Spearman with rho 0.661) while depth does not predict
+it (−0.021). So the amplitude is an error-magnitude lottery at the worst-cancelled element.
+
+Column note addition: a per-shape rho_ref ships with its draw distribution and never as a shape property; at K=4096
+all 32 draws exceed rho_ref=1 (min 1.046), so the upper end of the 2048<K<4096 crossing is draw-robust while its
+magnitude is a sample. Scope: matmul, one geometry, fp32, 32 draws, GB10 sm_120.

@@ -1,7 +1,7 @@
 {
- "date": "2026-11-13T16:55:46Z",
- "n_cited": 67,
- "n_found": 67,
+ "date": "2026-11-13T20:06:22Z",
+ "n_cited": 68,
+ "n_found": 68,
  "missing": [],
  "entries": [
   {
@@ -1311,7 +1311,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-11-13T16:55:38Z",
+   "mtime_utc": "2026-11-13T20:06:17Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1342,9 +1342,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "37fb838d6f8a8fdaaff6f38c6146ae05c87874a27d937d360b9de2e04a639f93",
-   "bytes": 7358,
-   "mtime_utc": "2026-11-13T16:55:34Z",
+   "sha256": "51def26ad3c8684c9bf1d079ef0498051a01b492ec806d013de806add52ce4da",
+   "bytes": 9136,
+   "mtime_utc": "2026-11-13T20:06:09Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1369,7 +1369,7 @@
    ],
    "sha256": "9fbcd0b3b68e5308b37c3844f1fa35dd6a046a13b9527bab7c82de86b2f02e6e",
    "bytes": 1764,
-   "mtime_utc": "2026-11-13T16:55:43Z",
+   "mtime_utc": "2026-11-13T20:06:17Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1958,6 +1958,36 @@
      "share",
      "share_branch",
      "slope_descriptive"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s96_analysis.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md"
+   ],
+   "sha256": "7892f216144dd7bdd9cb2c9cbbee5c292fb5faba45888bfb235f3f34952cef52",
+   "bytes": 3152,
+   "mtime_utc": "2026-11-13T20:02:39Z",
+   "producers": [
+    "lab/s96_analysis.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "covariates",
+     "engine",
+     "engine_clause",
+     "instrument",
+     "kills",
+     "n_main",
+     "rho_ref",
+     "rows_total",
+     "tail_clause",
+     "tail_ladder",
+     "verdict"
     ]
    },
    "compressed": false

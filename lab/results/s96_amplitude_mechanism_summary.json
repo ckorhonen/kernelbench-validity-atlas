@@ -1,0 +1,14 @@
+{
+ "rows": 32,
+ "ndraws": 32,
+ "geometry": {
+  "M": 1024,
+  "N": 1024,
+  "K": 4096
+ },
+ "profile_draws": 8,
+ "instrument": {
+  "repeat_rho_identical": true,
+  "repeat_frac_identical": true
+ }
+}

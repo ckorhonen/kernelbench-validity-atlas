@@ -846,3 +846,23 @@ statement is two-sided; (2) cancellation-term probe at the four crossings; (3) h
 ## kill |rho|<0.4 => amplitude stays a lottery and the column ships the spread without a predictor); (2) 32 draws at
 ## K=1024 for the amplitude distribution if room; (3) repack the package to ship s93/s94/s95 producers+artifacts when a
 ## submission reopens; (4) home sweep; reflection 19:50Z; (5) 24h-E1/CTA-edge/bt parked.
+
+## DONE 15:1xZ EST 11-13: s96/s96b — the amplitude is a rounding-magnitude lottery; no input, engine, or location driver
+
+Prereg cb23e44 frozen pre-run; s96b declared post-hoc. Artifacts results/s96_amplitude_mechanism.jsonl (33/33 ok incl.
+instrument repeat), s96_analysis.json, s96b_ratio_argmax.jsonl (32/32 ok), s96b_analysis.json; scripts lab/
+s96_amplitude_mechanism.py, s96_analysis.py, s96b_ratio_argmax.py, s96b_analysis.py.
+32 draws at M=N=1024 K=4096: rho_ref 1.046-1.474 (1.41x, CV 9.04%); sigma_max(a) CV 0.20%, kappa 0.51%, median |X|
+0.125%; Spearman arms -0.192/-0.126/-0.008/-0.217/-0.005/+0.050 => AMPLITUDE_LOTTERY (no predictor ships).
+ENGINE_STABLE: one cutlass_80_simt_sgemm_256x128_8x4_nn_align1 set across eight profiled draws plus the repeat => H3
+rejected. Tail CV 0.75/1.07/2.02/3.15% p99-p99.999 vs 9.04% max; prereg bar CV>0.10 measured 0.0904 =>
+TAIL_INDETERMINATE fired verbatim. s96b: ratio-argmax always deep cancellation (|X| 5.9e-4-0.41); identity
+log rho = log e - log(atol(1+|X|)) to 8.2e-7; e 1.075e-4-1.738e-4 (1.62x, Spearman .661) while depth -.021 =>
+error-magnitude lottery, not location or threshold. All 32 draws exceed rho=1 at K=4096 (min 1.046) => s94's crossing
+upper end is draw-robust, its magnitude a sample. Prose §4.5g + MANUSCRIPT §2.4 + ATLAS column s96/s96b; s51 extended
+38->43 auditing §4.5g; s50 19/19, s52 16/16, s53 15/15, s54 6/6, provenance 68/68/0; comment edkEeAiWEJaJAegF verified
+(21 comments, newest, 1,096 chars).
+Next: (1) designed-conditioning experiment (vary sigma_max(b) over >=3 decades at fixed geometry, prereg first, kill
+|Spearman|<0.4) — the remaining path to an amplitude predictor, since Gaussian draws gave 0.2% leverage while
+sigma_max(b) returns -0.558 descriptively; (2) 64-draw extension at K=4096 to settle the INDETERMINATE tail clause;
+(3) home sweep; (4) reflection 22:59Z; (5) 24h-E1/CTA-edge/bt parked.
