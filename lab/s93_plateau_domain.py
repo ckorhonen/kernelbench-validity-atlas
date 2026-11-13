@@ -67,11 +67,14 @@ import hashlib
 import json
 import os
 import signal
+import sys
 import time
 
-import torch
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import s91_scale_boundary as s91  # harness reuse: build, conv_fwd, set_cfg, profile_call, classify, TUPLE_DEFS
 
-import s91
+import torch
 
 LAB = os.path.expanduser("~/kb-lab")
 OUT = os.path.join(LAB, "results", "s93_plateau_domain.jsonl")
