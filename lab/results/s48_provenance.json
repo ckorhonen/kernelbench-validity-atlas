@@ -1,7 +1,7 @@
 {
- "date": "2026-11-13T04:04:37Z",
- "n_cited": 61,
- "n_found": 61,
+ "date": "2026-11-13T07:14:14Z",
+ "n_cited": 63,
+ "n_found": 63,
  "missing": [],
  "entries": [
   {
@@ -1311,7 +1311,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-11-13T04:04:24Z",
+   "mtime_utc": "2026-11-13T07:14:08Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1342,9 +1342,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "49744fc17bb37715091bf41f760ab65d4f09a626054c60752e204220d306a568",
-   "bytes": 5293,
-   "mtime_utc": "2026-11-13T04:04:24Z",
+   "sha256": "43489e9376450646278805fc5db6daf1e1a9b119833bff07036df0424de2e6fc",
+   "bytes": 5255,
+   "mtime_utc": "2026-11-13T07:14:08Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1367,9 +1367,9 @@
    "cited_in": [
     "paper/sections/s1_introduction.md"
    ],
-   "sha256": "2320e0d64f0d1c59fea9e04eda5c65248a8f9c4c20ba7d36a6debc6f45d0377c",
+   "sha256": "9fbcd0b3b68e5308b37c3844f1fa35dd6a046a13b9527bab7c82de86b2f02e6e",
    "bytes": 1764,
-   "mtime_utc": "2026-10-31T03:17:15Z",
+   "mtime_utc": "2026-11-13T07:14:08Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],
@@ -1774,6 +1774,54 @@
      "population_thresholds",
      "verdict",
      "verdict_note"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s92_analysis.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md"
+   ],
+   "sha256": "8ae13c58f5a0ef44a4d1d86bcf38f26465e46a4942c2a44a646d9ca4474cbf6d",
+   "bytes": 1640,
+   "mtime_utc": "2026-11-13T07:12:04Z",
+   "producers": [
+    "lab/s92_analysis.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "cross_tuple",
+     "frac001_crossing",
+     "gap_over_s91_rho1",
+     "n_ok",
+     "n_rows",
+     "plateau",
+     "posthoc_note"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s92b_mechanism.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md"
+   ],
+   "sha256": "550d154898b8665b637ab9e69acf4c9399146acde540a07ec4a83ad70a55c11e",
+   "bytes": 1214,
+   "mtime_utc": "2026-11-13T07:12:46Z",
+   "producers": [
+    "lab/s92b_mechanism.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "g",
+     "prereg",
+     "rows"
     ]
    },
    "compressed": false

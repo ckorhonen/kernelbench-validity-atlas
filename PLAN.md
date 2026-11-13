@@ -797,3 +797,16 @@ truncation and no PATCH/DELETE (405), so author to <=1,150.
 Next: (1) locate the shipped-gate frac_over boundary by extending g upward (prereg first) so the "which statistic"
 statement is two-sided; (2) cancellation-term probe at the four crossings; (3) home sweep + sylver novelty check;
 (4) class axis where a non-TF32 reference exceeds AND covers; (5) L2/14 ordering; (6) 24h-E1/CTA-edge/bt parked.
+
+## DONE 02:5xZ EST 11-13: s92/s92b — the population (frac_over) boundary at the shipped 1e-2 gate is located and it is a
+## PLATEAU, not a threshold. frac=0.01 crossing at T1 g=76.91 |A|max 371.3 u=8.17 / T2 g=79.38 |A|max 415.3 u=9.14
+## (g 1.032, u 1.119 across a 4.88x element-count difference => collapses, computed post-hoc because the frozen branch
+## took FRAC_BOUNDARY_PARTIAL); frac then saturates at 1.84%/1.83% (|A|max 19,775/21,431; last 4x adds 6% of the rise)
+## while rho grows 7.6->327, so the 0.5 level does not exist and my prereg's climb-to-1 expectation is falsified.
+## s92b mechanism: at that scale the evaluator predicate and an atol=0 predicate agree to 2e-4, so the plateau is
+## P(rel_err>rtol)=1.83% (p50 2.9e-4, p99.9 0.184), and the extremum is a separate subpopulation at 4e-7 of median
+## magnitude (deep cancellation, abs err ~1.0). tf32-off clean (frac 0.0, rho <=0.012). Prose §4.5c, MANUSCRIPT §2.4,
+## ATLAS_CLASS_COLUMN s92; audits 63/63/0 + s50-s54 pass; comment rVY8cpmrCyVf3W7w verified (17 comments, newest).
+## Next: (1) second scale point for the plateau (g=16 and g=1e5 on T1/T2) so the relative-tail statement has a domain
+## not a point; (2) fold the two-coordinate column into §5.1; (3) home sweep + sylve novelty (silent 2 ticks; fallback
+## = self-run non-conv decomposition); (4) reflection due 10:08Z; (5) 24h-E1/CTA-edge/bt parked.

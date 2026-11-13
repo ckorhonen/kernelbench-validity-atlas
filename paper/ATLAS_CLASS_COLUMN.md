@@ -203,3 +203,29 @@ Column note for the deliverable: the reference-conditional column now carries a 
 "reference-clean" must name the statistic (allclose vs population fraction) and the gate; at the shipped gate the
 reference fails on a single element once |A|max exceeds ~38-40, and benchmark-normalized conv outputs sit at 4.8-5.2,
 i.e. 7.7-8.4x inside that boundary. Scope: conv/convT, GB10 sm_120, one draw per point, two tuples.
+
+## s92 — the population boundary is a plateau, and admission/usability are separate surfaces (2026-11-13)
+
+s91 measured the extremum boundary but left frac_over below 0.01 at the top of its sweep. s92 extends the same sweep
+upward on the same two tuples (prereg committed pre-run, sha 2a4b06e1c5aa; harness imported from s91 verbatim, so the
+tie-out is bit-level: 5.6e-6 / 6.5e-6 relative on rho and 1.5e-8 / 2.1e-7 absolute on frac_over at g=64; repeat
+bit-identical 22/22; frac_over monotone with zero violations).
+
+- **1% population boundary located, and it collapses across tuples:** T1 g=76.91, |A|max 371.3, u=8.17; T2 g=79.38,
+  |A|max 415.3, u=9.14 (ratios 1.032 / 1.119 across a 4.88x element-count difference). The frozen summary took its
+  FRAC_BOUNDARY_PARTIAL branch because the 0.5 level never occurred, so the collapse clause was computed post-hoc
+  from committed rows in `results/s92_analysis.json` and labelled as such.
+- **The boundary is a plateau, not a threshold:** frac_over rises from 0.0087 at g=64 to 0.0184 / 0.0183 at
+  g=4096 (|A|max 19,775 / 21,431); the last 4x in g adds 6.1% / 6.0% of the total rise while rho grows 7.6 -> 327
+  (log-log slope 0.904 / 0.924). The 0.5 level does not exist in range — the prereg's implicit expectation that the
+  fraction would climb toward 1 is falsified by its own grid.
+- **Mechanism measured:** at g=4096 the evaluator predicate and a pure-relative predicate agree (0.01842 vs 0.01861
+  T1; 0.01831 vs 0.01851 T2), so atol is irrelevant there and the plateau is the reference's relative-error tail
+  P(rel_err > 1e-2) = 1.83-1.84% (p50 2.9e-4, p99 1.86e-2, p99.9 0.184). The extremum is a different subpopulation:
+  the argmax element sits at 4.2e-7 / 4.6e-7 of the median magnitude with absolute error ~1.15 / 0.66, i.e. deep
+  cancellation against the accumulation-term scale.
+- **Class control:** tf32-off frac_over exactly 0.0 and rho <=0.012 at both crossings; both tuples TF32_TENSOROP.
+
+Column note: the column now carries two statistic-specific coordinates at the shipped gate — admission (allclose,
+u*~0.87) and usability (1% population, u*~9) — and a measured ceiling of ~1.85% for the failing fraction. Scope:
+conv/convT, GB10 sm_120, one draw per point, two tuples.

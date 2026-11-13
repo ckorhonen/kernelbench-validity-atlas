@@ -948,6 +948,44 @@ domain statement: on GB10 sm_120 with a default cudnn-TF32 conv reference, an ex
 (u*=0.68-0.69); both bounds are measured on two tuples 4.88x apart in element count and are scoped to conv/convT
 at these shapes, one draw per point.
 
+## 4.5c The population boundary is a plateau, and it is a separate surface from admission (s92, 2026-11-13)
+
+s91 left the "which statistic" statement one-sided: the extremum boundary was measured, but frac_over was still
+below 0.01 at the top of its sweep, so the fraction that says how much of the output is unusable had no boundary.
+s92 extends the same sweep upward on the same two tuples and bisects the scale at which frac_over crosses 0.01.
+Prereg committed before the run (`lab/s92_frac_boundary.py`, sha 2a4b06e1c5aa); the harness is s91's, imported
+verbatim, so the tie-out is bit-level. 22 grid rows, all ok; tie-out to s91's g=64 values within 5.6e-6 and 6.5e-6
+relative on rho and 1.5e-8 / 2.1e-7 absolute on frac_over; A-arm repeat bit-identical 22/22; frac_over monotone in
+g with zero violations. Artifacts: `results/s92_frac_boundary.jsonl`, `results/s92_frac_boundary_summary.json`,
+`results/s92_analysis.json`, `results/s92b_mechanism.json`.
+
+- **The 1% population boundary is measured and it collapses across tuples.** frac_over reaches 0.01 at T1 g=76.91
+  (|A|max 371.3, u=8.17) and T2 g=79.38 (|A|max 415.3, u=9.14): cross-tuple ratio 1.032 in g and 1.119 in u across
+  the same 4.88x element-count difference. The frozen summary took its FRAC_BOUNDARY_PARTIAL branch (the 0.5 level
+  was never reached), so the collapse clause was not evaluated by the frozen code; `s92_analysis.py` computes it
+  from the committed rows and labels it post-hoc. Within the prereg's 25% bar it collapses, and the coordinate is
+  statistic-specific: u*≈8-9 for the 1% population boundary against u*≈0.84-0.89 for the extremum boundary.
+- **The population boundary is a plateau, not a crossing at 0.5.** frac_over rises from 0.0087 at g=64 to 0.0184 at
+  g=4096 (|A|max 19,775) and 0.0183 at 21,431; the last 4x in g contributes 6.1% / 6.0% of the total rise, and rho
+  in the same interval grows from 7.6 to 327 (log-log slope 0.904 / 0.924). So the extremum diverges while the
+  fraction saturates: the 0.5 level does not exist in range, and the prereg's implicit expectation that frac_over
+  would climb toward 1 was falsified by its own grid.
+- **Mechanism measured, not asserted.** At g=4096 the evaluator predicate and a pure-relative predicate (atol=0)
+  give the same failing fraction (0.01842 vs 0.01861 on T1; 0.01831 vs 0.01851 on T2), so at this scale atol is
+  irrelevant and the plateau is exactly the reference's relative-error tail: P(rel_err > rtol=1e-2) = 1.83-1.84%,
+  with rel_err p50 2.9e-4 (consistent with s38's 2.2e-4 constant), p99 1.86e-2, p99.9 0.184. The extremum comes
+  from a different subpopulation: the argmax element has |x| = 1.15e-3 / 1.25e-3 against a median |x| of 2,744 /
+  2,720, i.e. 4.2e-7 / 4.6e-7 of the median — catastrophic cancellation, with absolute error ~1.15 / 0.66, the
+  accumulation-term scale. That is why rho grows without bound while the bulk fraction converges.
+- **Class control holds.** The tf32-off arm has frac_over exactly 0.0 and rho ≤0.012 at both crossings, and both
+  crossing tuples label TF32_TENSOROP, so the population boundary is TF32-class like the extremum one.
+
+Validity-domain update: at the shipped 1e-2 gate, on GB10 sm_120 with a default cudnn-TF32 conv reference, an exact
+candidate fails allclose once |A|max exceeds ~38-40 (u*≈0.87), and the reference's failing fraction first exceeds
+1% once |A|max exceeds ~371-415 (u*≈9); above that the fraction converges to ~1.85% and never reaches half the
+output, so admission and usability are separate surfaces with separate coordinates. Scoped to conv/convT at these
+shapes, one draw per point, two tuples.
+
 ## 4.6 Candidate admission: a class baseline plus a measured within-class threshold
 
 The result here is narrower than a predictive certificate and is stated that way. Admission is the

@@ -210,6 +210,15 @@ agreeing to 1.7% and 5.1% across two tuples 4.88x apart in element count (§4.5b
 1e-2 is a statement about that weight convention and about the extremum statistic allclose uses, not a general
 claim that the reference is accurate.
 
+The second statistic has its own boundary, and it is a plateau rather than a threshold. s92 extends the same sweep
+upward: the reference's failing fraction reaches 1% at |A|max ~371-415 (agreeing to 11.9% across the same two tuples,
+`results/s92_analysis.json`), then converges to ~1.85% and never reaches half the output even at |A|max 19,775.
+At that scale the predicate is effectively relative — the atol term contributes under 1% of the failing set — so the
+plateau is the reference's own relative-error tail, P(rel_err > 1e-2) = 1.83%, measured directly in
+`results/s92b_mechanism.json`. Admission (one element fails a tensor) and usability (how much of the output fails)
+are therefore separate surfaces with separate coordinates, and a bare "reference-clean" verdict that names neither
+statistic nor gate is not interpretable (§4.5c).
+
 ## 2.5 Figure 1 — the configuration-to-verdict chain
 
 Figure 1 is a measured chain, not a diagram of a hypothesis. Each row is a configuration that was actually
