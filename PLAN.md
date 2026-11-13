@@ -762,3 +762,14 @@ spans 10,654x); (3) 6 no-bias + 4 unparsed s73 rows; (4) pool-diversity dedup on
 ## also the 1e-2 falsifier my 02:26Z reflection named for the axis); (2) class axis remains untested where a
 ## non-TF32 reference exceeds AND covers the failure set (L2/11's ref covers 42.6%); (3) L2/14 same-class
 ## ordering exceedance unnamed mechanistically (low priority); (4) 24h-E1/CTA-edge/bt parked.
+
+## DONE 21:0xZ EST 11-12: s90 — reference-configuration certificate at the shipped 1e-2 gate (milestone 2)
+## Norm arm (benchmark-realistic 1/sqrt(fan_in) weights): 0/24 fresh configs exceed at 1e-2, max rho 0.174, frac 0.0;
+## non-conv max 0.0105 => CERT_STRICT_GATE_DIAGNOSTIC, conv-only scope. Strict 1e-4 leg: 11/12 conv/convT exceed
+## (frac .320-.614, rho 7.5-17.4), tf32-off clean => TF32-class, replicates s73/s84 on fresh shapes. Unit-scale arm:
+## 11/24 exceed at 1e-2 (max rho 7.49) => the certificate is SCALE-conditional (|A|max vs atol), not shape-conditional;
+## the benchmark's 0/200 at 1e-2 is conditional on its weight normalization. Three prereg amendments burned in-tick
+## (draw bug, mis-scoped control premise, weight-scale convention); v1-v3 rows kept as artifacts.
+## Next: (1) bisect the scale boundary on one fixed conv tuple (|A|max where rho_1e-2 crosses 1), monotonicity first;
+## (2) fold certificate + scale coordinate into §4.5/§5 prose and the column note; (3) post the numbers on post 10 and
+## verify in the list; (4) L2/14 ordering mechanism; (5) 24h-E1/CTA-edge/bt parked.

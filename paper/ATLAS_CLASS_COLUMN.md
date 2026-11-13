@@ -157,3 +157,22 @@ covers ~the whole failure set", not "TF32 references". Second finding: compile's
 reference-conditional, not merely extent-conditional — on L2/11 compile (engine OTHER) sits within budget of the
 default reference on all 18.94M elements while differing from it, and fails 61.9% of elements against the
 tf32-off reference.
+
+## s90 — reference-configuration certificate at the SHIPPED gate (2026-11-12)
+
+Question: every reference-axis number I own is at 1e-4. The benchmark ships 1e-2. On 24 fresh shapes (conv, convT, gemm,
+layer_norm, reduction, softmax; disjoint from the 54-task population and s87's 17 configs), default reference vs an fp64
+anchor, evaluator-exact direction:
+
+- Shipped 1e-2, benchmark-realistic weight scale (1/sqrt(fan_in)): **0/24 exceed**. Max budget fraction 0.174 (convT
+  3x3 s1 89x89), frac_over 0.0 everywhere, exact candidate fails nowhere. Non-conv max 0.0105 (gemm), 5.7e-4 (LN),
+  4.3e-3 (reduction), 7e-8 (softmax). Verdict CERT_STRICT_GATE_DIAGNOSTIC, conv-only scope.
+- Strict 1e-4, same population: 11/12 conv+convT configs exceed (frac .320-.614, rho 7.5-17.4) and one gemm at 1.7e-6;
+  tf32-off arm clean (max frac 1.7e-6). The exceedance is TF32-class and replicates s73/s84 on fresh shapes.
+- Scale arm (same shapes/seeds, raw randn weights): 11/24 conv/convT exceed at 1e-2, max rho 7.49, frac up to 0.0091;
+  non-conv unchanged. So shipped-gate safety is governed by |A|max against atol (2.2e-4*|A|max vs 1e-2), a scale
+  coordinate, not geometry. The declared test agreed 18/24 (over-predicts for FP32_SIMT gemm).
+
+Validity domain of the certificate: GB10 sm_120, fp32, default cudnn-TF32 reference, conv/convT with benchmark-style
+weight normalization. Scope claim: the benchmark's 0/200 at 1e-2 is conditional on its own weight normalization; the
+reference axis is a strict-gate diagnostic at benchmark scale. Non-claim: no shape law; magnitude stays enumerated.
