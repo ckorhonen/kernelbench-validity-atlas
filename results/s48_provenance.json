@@ -1,7 +1,7 @@
 {
- "date": "2026-11-13T07:14:14Z",
- "n_cited": 63,
- "n_found": 63,
+ "date": "2026-11-13T10:24:26Z",
+ "n_cited": 65,
+ "n_found": 65,
  "missing": [],
  "entries": [
   {
@@ -1311,7 +1311,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-11-13T07:14:08Z",
+   "mtime_utc": "2026-11-13T07:14:14Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1822,6 +1822,85 @@
      "g",
      "prereg",
      "rows"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s93_plateau_domain.jsonl",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md"
+   ],
+   "sha256": "2571740a51bbdff6001b3a98a87f697d9c96c3205a1ea8488f8a8b372ed4c2ac",
+   "bytes": 15255,
+   "mtime_utc": "2026-11-13T10:21:18Z",
+   "producers": [
+    "lab/s93_plateau_domain.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 10,
+    "row_keys": [
+     "A_1e-2",
+     "B_1e-2",
+     "a_repeat_bit_identical",
+     "atol_floor_share",
+     "desc",
+     "engine_class",
+     "engine_top1",
+     "engine_top5",
+     "fan_in",
+     "frac_atol0",
+     "g",
+     "kind",
+     "maxabs_out",
+     "n_elems",
+     "rel_frac_gt_rtol",
+     "rel_n",
+     "rel_quantiles",
+     "rho_atol0",
+     "s90_idx",
+     "seed",
+     "status",
+     "t_s",
+     "tid",
+     "u_1e-2"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s93b_threshold_model.jsonl",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/MANUSCRIPT.md"
+   ],
+   "sha256": "746ffdf505c00ae0d6491cc1fb572c1bd782fe6721b0d5b4aa15d8a69dab2fb2",
+   "bytes": 3471,
+   "mtime_utc": "2026-11-13T10:23:06Z",
+   "producers": [
+    "lab/s93b_threshold_model.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 8,
+    "row_keys": [
+     "abs_delta",
+     "absorbed_mass",
+     "frac_model",
+     "frac_over",
+     "g",
+     "maxabs_out",
+     "n_elems",
+     "n_fail_meas",
+     "n_fail_model",
+     "n_zero_x",
+     "status",
+     "t_s",
+     "thr_at_median_x",
+     "tid",
+     "x_quantiles"
     ]
    },
    "compressed": false

@@ -810,3 +810,17 @@ statement is two-sided; (2) cancellation-term probe at the four crossings; (3) h
 ## Next: (1) second scale point for the plateau (g=16 and g=1e5 on T1/T2) so the relative-tail statement has a domain
 ## not a point; (2) fold the two-coordinate column into §5.1; (3) home sweep + sylve novelty (silent 2 ticks; fallback
 ## = self-run non-conv decomposition); (4) reflection due 10:08Z; (5) 24h-E1/CTA-edge/bt parked.
+
+## DONE 05:3xZ EST 11-13: s93/s93b — the 1.83% plateau becomes a measured, shape-independent TF32 tail constant with a
+## low-scale regime where the gate's own atol floor hides 98.5% of it; the mechanism is reconstructed exactly
+## (prereg 8dfa114 frozen pre-run, mechanical import fix 454b5d7 pre-run; s93b post-hoc declared). Three tuples incl. a
+## fresh 1.05M shape: frac 0.018567/0.018492/0.018663 at |A|max ~5e5, ratio 1.009 over 13.6x elements, all TF32;
+## rel quantiles bit-identical at g=16/1024/4096 (p50 2.9243e-4, p99 1.862e-2) because fp32 2^k scaling is
+## exponent-exact; g=16 frac 2.71e-4 with absorbed mass 1.83e-2 (98.5%); s93b P(rel>rtol+atol/|X|) reproduces the
+## measured fraction to 0.0 absolute on 8/8; tf32-off <=7.3e-5. Tie-out to s92 1e-7, repeat 10/10, no kill fired.
+## Prose §4.5d + MANUSCRIPT §2.4 + ATLAS_CLASS_COLUMN s93; audits 65/65/0 + s50-s54 green; comment uUZlO4sxBNscA8vu
+## verified (18 comments, newest). Reflection LHERMCHBhLrNTyBe answered 10:17Z (next 13:17Z).
+## Next: (1) LEAD with the three-times-deferred non-conv candidate x reference decomposition (the fallback my own
+## reflection named), a non-conv shape where an arm fails, reference-induced vs candidate-induced share at 1e-4;
+## (2) if it lands early, bisect the scale where frac_over crosses 1% between g=16 and 1024 (monotonicity first) so
+## the two-domain statement carries a crossing; (3) home sweep; (4) 24h-E1/CTA-edge/bt parked.

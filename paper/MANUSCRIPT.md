@@ -219,6 +219,16 @@ plateau is the reference's own relative-error tail, P(rel_err > 1e-2) = 1.83%, m
 are therefore separate surfaces with separate coordinates, and a bare "reference-clean" verdict that names neither
 statistic nor gate is not interpretable (§4.5c).
 
+That plateau now has a domain rather than a point. s93 measures it two decades higher and one decade lower on the
+same two tuples plus a fresh third shape: frac_over is 1.85-1.87% at |A|max ~4.8-5.2e5, agreeing to 0.9% across a
+13.6x element-count spread and two kernel sizes (`results/s93_plateau_domain.jsonl`), and the underlying relative
+error distribution is bit-identical under power-of-two rescaling (p50 2.9243e-4, p99 1.862e-2) because fp32 scaling
+is exponent-exact. Below |A|max ~80 the same reference fails only 0.03% of elements, and s93b shows why with no free
+parameter: the evaluator's absolute floor raises the effective relative threshold to rtol + atol/|X|, which
+reconstructs the measured failing fraction to 0.0 absolute on 8/8 points (`results/s93b_threshold_model.jsonl`).
+So the gate's own atol term can hide 98.5% of the reference's tail at small scales, and the population statistic is
+a shape-independent TF32 tail constant wherever that floor is negligible (§4.5d).
+
 ## 2.5 Figure 1 — the configuration-to-verdict chain
 
 Figure 1 is a measured chain, not a diagram of a hypothesis. Each row is a configuration that was actually

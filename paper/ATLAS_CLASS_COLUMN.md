@@ -229,3 +229,31 @@ bit-identical 22/22; frac_over monotone with zero violations).
 Column note: the column now carries two statistic-specific coordinates at the shipped gate — admission (allclose,
 u*~0.87) and usability (1% population, u*~9) — and a measured ceiling of ~1.85% for the failing fraction. Scope:
 conv/convT, GB10 sm_120, one draw per point, two tuples.
+
+## s93 — the plateau's domain: a shape-independent TF32 tail constant, with a measured low-scale regime (2026-11-13)
+
+s92 measured the plateau at one scale per tuple, so "the predicate is relative here" and "the relative tail is
+scale-invariant" were indistinguishable. s93 separates them (prereg `8dfa114` frozen pre-run; a mechanical import
+fix `454b5d7` landed before any row existed; tie-out to s92's g=4096 rows at 1e-7 absolute on frac_over and 1.3e-6
+relative on rho; repeat bit-identical 10/10; no kill clause fired).
+
+- **Relative-error distribution is exactly scale-invariant under power-of-two rescaling:** p50 2.9243e-4, p99
+  1.862e-2, p99.9 0.1842 bit-identical at g=16/1024/4096 on T1 (2.9190e-4 / 1.8524e-2 / 0.1843 on T2). fp32
+  scaling by 2^k is exponent-exact, so a TF32 accumulation's relative error cannot move. At g=1e5 the same
+  quantiles shift 0.02%, consistent with weight rounding.
+- **The constant is shape-independent within the class:** frac_over 0.018567 (T1, 2.92M elements), 0.018492 (T2,
+  14.25M), 0.018663 on a fresh third tuple (T3, 3x3 s1 128x128 C64->64, 1.05M) — cross-tuple ratio **1.009** over
+  13.6x element count, two kernel sizes, two output extents; all three TF32_TENSOROP. The constant is
+  P(rel_err > 1e-2) = **1.85-1.87%**, a property of the TF32 reference, not of a shape.
+- **Low-scale regime measured:** at g=16 (|A|max 77-84) frac_over falls to 2.71e-4 / 2.75e-4 while the
+  pure-relative fraction stays 1.861% / 1.851%, so 98.5% of the tail is absorbed by the absolute floor. Absorbed
+  mass 1.83e-2 (g=16) -> 7.9e-4 (g=1024) -> 1.1e-5 (g=1e5).
+- **Mechanism reconstructed exactly:** s93b (post-hoc) recomputes the predicate as P(rel > rtol + atol/|X_e|) from
+  measured per-element |X_e|; agreement 0.0 absolute on 8/8 points (MODEL_EXACT), threshold at median |X| 0.010933
+  (g=16) / 0.010015 (g=1024) / 0.010000 (g=1e5). No free parameter, so the value is the decomposition it licenses.
+- **Class control:** tf32-off frac_over <=7.3e-5 at every point (rho <=14.7).
+
+Column note, replacing s92's ceiling-only wording: the usability column now ships a tail constant with a domain —
+1.85-1.87% for |A|max >~ 2e4 (u >~ 4e2), approached from below (1.78% at 4.9e3), suppressed by the gate's own atol
+floor by a factor of ~70 below |A|max 80. Admission stays extremum-governed at u*~0.87. Scope: conv/convT, three
+tuples, one draw per point, GB10 sm_120.

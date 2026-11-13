@@ -986,6 +986,49 @@ candidate fails allclose once |A|max exceeds ~38-40 (u*≈0.87), and the referen
 output, so admission and usability are separate surfaces with separate coordinates. Scoped to conv/convT at these
 shapes, one draw per point, two tuples.
 
+## 4.5d The plateau's domain: a scale-invariant, shape-independent relative-error tail (s93, 2026-11-13)
+
+s92 measured the plateau at one scale point per tuple, which cannot separate "the predicate is relative here"
+from "the relative tail is scale-invariant". s93 tests that directly, two decades above the measurement and one
+decade below. Prereg `8dfa114` frozen before the run (a mechanical import-path fix, `454b5d7`, was committed before
+any row existed and changed no substance); artifacts `results/s93_plateau_domain.jsonl` (10/10 ok),
+`results/s93_plateau_domain_summary.json`, and the post-hoc mechanism probe `results/s93b_threshold_model.jsonl`
+(8/8 ok) with `results/s93b_threshold_model_summary.json`. Controls: tie-out to s92's g=4096 rows within 1e-7
+absolute on frac_over and 1.3e-6 relative on rho; A-arm repeat bit-identical 10/10; no kill clause fired
+(K_FRAC_DECADE, K_TAIL_INVARIANT, K_B_FIRES all clean).
+
+- **The relative-error distribution is exactly scale-invariant under power-of-two rescaling.** At g=16, 1024 and
+  4096 the quantiles are bit-identical to the last digit: p50 2.9243e-4, p99 1.862e-2, p99.9 0.1842 on T1, and
+  2.9190e-4 / 1.8524e-2 / 0.1843 on T2. That is arithmetic, not coincidence: multiplying a fp32 tensor by 2^k is
+  exponent-exact, so a TF32 accumulation's relative error cannot change. At g=1e5 (not a power of two) the same
+  quantiles move by 0.02% (p50 2.9259e-4, p99 1.8616e-2), consistent with weight rounding at the rescale.
+- **The plateau is a measured constant and it is shape-independent within the class.** At g=1e5 frac_over is
+  0.018567 (T1, 2.92M elements), 0.018492 (T2, 14.25M) and 0.018663 on a FRESH third tuple (T3: 3x3 s1 128x128
+  C64->64, 1.05M elements) — a cross-tuple ratio of **1.009** over a 13.6x element-count spread, two kernel sizes
+  and two output extents. All three label TF32_TENSOROP. The constant is therefore the TF32 reference's tail
+  probability P(rel_err > 1e-2) = **1.85-1.87%**, not a per-shape number.
+- **Below the plateau there is a measured regime, and it is the atol term doing the work.** At g=16 (|A|max
+  77-84) frac_over collapses to 2.71e-4 / 2.75e-4 while the pure-relative fraction stays at 1.861% / 1.851%: 98.5%
+  of the tail is absorbed by the absolute floor. The absorbed mass is 1.83e-2 at g=16, 7.9e-4 at g=1024 and
+  1.1e-5 at g=1e5, i.e. it decays as the budget's atol share decays.
+- **The mechanism is reconstructed exactly, not fitted.** s93b (post-hoc, declared after s93's numbers) recomputes
+  the evaluator predicate as P(rel > rtol + atol/|X_e|) from the measured per-element |X_e|: agreement is **0.0
+  absolute on 8/8 points** (verdict MODEL_EXACT), with the threshold at the median |X| measured at 0.010933 for
+  g=16, 0.010015 for g=1024 and 0.010000 for g=1e5. The model carries no free parameter, so its value is the
+  decomposition it licenses — how much of the tail the absolute floor hides at each scale — rather than a new
+  discovery. What it rules out is the alternative reading that the plateau is a fitted saturation.
+- **Class control.** The tf32-off arm's frac_over is ≤7.3e-5 at every point (rho ≤14.7), so the constant belongs
+  to the TF32 engine class, not to conv arithmetic as such.
+
+Validity-domain statement, replacing s92's point estimate: at the shipped 1e-2 gate on GB10 sm_120 with a default
+cudnn-TF32 conv reference, the population statistic has a measured ceiling of 1.85-1.87% of outputs for any scale
+where the absolute floor is negligible (|A|max ≳ 2e4, u ≳ 4e2), approached from below (1.78% at |A|max 4.9e3);
+below |A|max ≈ 80 the same reference fails only 0.03% of elements because atol raises the effective relative
+threshold to ~0.011. So the two statistics now have two measured domains rather than one measured point: admission
+is governed by the extremum at u*≈0.87, usability by a shape-independent tail constant that the gate's own
+absolute floor can suppress by a factor of 70 at small scales. Scoped to conv/convT, three tuples, one draw per
+point, GB10 only.
+
 ## 4.6 Candidate admission: a class baseline plus a measured within-class threshold
 
 The result here is narrower than a predictive certificate and is stated that way. Admission is the

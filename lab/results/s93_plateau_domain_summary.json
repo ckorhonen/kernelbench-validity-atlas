@@ -1,0 +1,110 @@
+{
+ "prereg_sha": "fc6d9076983f2615b3f3d85caa5b5028318c5a486e603383fdc900f9963c2824",
+ "n_attempted": 10,
+ "n_ok": 10,
+ "grid_t12": [
+  16.0,
+  1024.0,
+  4096.0,
+  100000.0
+ ],
+ "grid_t3": [
+  1024.0,
+  100000.0
+ ],
+ "tuples": [
+  "T1",
+  "T2",
+  "T3"
+ ],
+ "tieout": {
+  "T1": {
+   "frac_got": 0.018419902087627737,
+   "frac_s92": 0.01842,
+   "frac_abs_delta": 9.791237226206007e-08,
+   "rho_got": 327.44072688543497,
+   "rho_s92": 327.441,
+   "rho_rel": 8.34087866224944e-07,
+   "pass_": true
+  },
+  "T2": {
+   "frac_got": 0.018308284292805642,
+   "frac_s92": 0.018308,
+   "frac_abs_delta": 2.842928056405458e-07,
+   "rho_got": 345.8445607699283,
+   "rho_s92": 345.845,
+   "rho_rel": 1.2700200139368097e-06,
+   "pass_": true
+  }
+ },
+ "n_repeat_fail": 0,
+ "repeat_bit_identical_frac": 1.0,
+ "instrument_ok": true,
+ "decade": {
+  "T1": {
+   "frac_1024": 0.01782405376957151,
+   "frac_1e5": 0.018566551357396606,
+   "frac_rel_change": 0.04165705497885431,
+   "p99_1024": 0.018612341175685356,
+   "p99_1e5": 0.01861609260710242,
+   "p99_rel_change": 0.00020155612782156532,
+   "frac_atol0_1e5": 0.018577515788781192,
+   "atol0_vs_eval_rel": 0.0005905475483048418,
+   "atol_floor_share_1e5": 0.0,
+   "engine_class_1024": "TF32_TENSOROP",
+   "engine_class_1e5": "TF32_TENSOROP",
+   "u_1e5": 10619.431625,
+   "B_frac_1e5": 8.565962019209684e-06,
+   "B_rho_1e5": 4.285746870244657
+  },
+  "T2": {
+   "frac_1024": 0.01771902585296826,
+   "frac_1e5": 0.018491765122077224,
+   "frac_rel_change": 0.04361070837195682,
+   "p99_1024": 0.018523988237880946,
+   "p99_1e5": 0.01848522318898837,
+   "p99_rel_change": -0.0020926945318019514,
+   "frac_atol0_1e5": 0.018501100604209248,
+   "atol0_vs_eval_rel": 0.0005048453768688039,
+   "atol_floor_share_1e5": 0.0,
+   "engine_class_1024": "TF32_TENSOROP",
+   "engine_class_1e5": "TF32_TENSOROP",
+   "u_1e5": 11509.477375,
+   "B_frac_1e5": 2.877855394083691e-06,
+   "B_rho_1e5": 5.076534069687921
+  },
+  "T3": {
+   "frac_1024": 0.018050193786621094,
+   "frac_1e5": 0.018663406372070312,
+   "frac_rel_change": 0.03397263169017805,
+   "p99_1024": 0.01885588728566697,
+   "p99_1e5": 0.018684975937699463,
+   "p99_rel_change": -0.009064084090989664,
+   "frac_atol0_1e5": 0.01867198944091797,
+   "atol0_vs_eval_rel": 0.00045988758303525806,
+   "atol_floor_share_1e5": 0.0,
+   "engine_class_1024": "TF32_TENSOROP",
+   "engine_class_1e5": "TF32_TENSOROP",
+   "u_1e5": 11661.222375,
+   "B_frac_1e5": 7.343292236328125e-05,
+   "B_rho_1e5": 14.66873563097171
+  }
+ },
+ "b_arm_fires": [],
+ "kill_fired": [],
+ "shape_independence": {
+  "frac_1e5": {
+   "T1": 0.018566551357396606,
+   "T2": 0.018491765122077224,
+   "T3": 0.018663406372070312
+  },
+  "cross_tuple_ratio": 1.0092820371046227,
+  "classes": {
+   "T1": "TF32_TENSOROP",
+   "T2": "TF32_TENSOROP",
+   "T3": "TF32_TENSOROP"
+  },
+  "tf32_all": true
+ },
+ "verdict": "PLATEAU_TAIL_SCALE_INVARIANT+SHAPE_INDEPENDENT_TF32"
+}
