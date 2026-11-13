@@ -1,0 +1,59 @@
+{
+ "n_rows": 34,
+ "n_ok": 34,
+ "frac001_crossing": {
+  "T1": {
+   "g": 76.9079660190609,
+   "maxabs": 371.2688903808594,
+   "rho": 7.4050248571749,
+   "frac": 0.01004341914828297,
+   "u": 8.167915588378905,
+   "B_frac": 0.0,
+   "B_rho": 0.0120513745335113,
+   "engine_class": "TF32_TENSOROP"
+  },
+  "T2": {
+   "g": 79.38317325409561,
+   "maxabs": 415.3088684082031,
+   "rho": 9.524594825412398,
+   "frac": 0.010062737247591024,
+   "u": 9.136795104980468,
+   "B_frac": 0.0,
+   "B_rho": 0.008668218078307529,
+   "engine_class": "TF32_TENSOROP"
+  }
+ },
+ "cross_tuple": {
+  "g_ratio": 1.0321840163400142,
+  "maxabs_ratio": 1.1186201676692225,
+  "u_ratio": 1.1186201676692227,
+  "within_25": true
+ },
+ "plateau": {
+  "T1": {
+   "frac_at_g64": 0.008664984540151749,
+   "frac_at_g4096": 0.018419902087627737,
+   "total_rise": 0.009754917547475988,
+   "rise_last_4x": 0.0005958483180562267,
+   "share_last_4x": 0.06108184053389544,
+   "rho_at_g64": 7.634842759629906,
+   "rho_at_g4096": 327.44072688543497,
+   "rho_loglog_slope": 0.9037485865723209
+  },
+  "T2": {
+   "frac_at_g64": 0.008544212281844522,
+   "frac_at_g4096": 0.018308284292805642,
+   "total_rise": 0.00976407201096112,
+   "rise_last_4x": 0.0005892584398373805,
+   "share_last_4x": 0.06034966140928505,
+   "rho_at_g64": 7.4002517772879495,
+   "rho_at_g4096": 345.8445607699283,
+   "rho_loglog_slope": 0.9244009334092256
+  }
+ },
+ "gap_over_s91_rho1": {
+  "T1": 9.206,
+  "T2": 10.821
+ },
+ "posthoc_note": "cross_tuple and plateau are post-hoc computations from committed rows; the frozen branch clauses only evaluated the frac=0.01 level because the 0.5 level does not exist in range"
+}
