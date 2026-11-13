@@ -104,8 +104,10 @@ import torch
 
 KB = os.path.expanduser("~/kernelbench/KernelBench")
 LAB = os.path.expanduser("~/kb-lab")
-OUT = os.path.join(LAB, "results", "s90_certificate.jsonl")
-SUMOUT = os.path.join(LAB, "results", "s90_certificate_summary.json")
+SCALE_MODE = os.environ.get("S90_SCALE", "norm")   # norm = amendment v4 (benchmark-realistic); unit = raw randn weights
+SUF = "" if SCALE_MODE == "norm" else "_" + SCALE_MODE
+OUT = os.path.join(LAB, "results", "s90_certificate%s.jsonl" % SUF)
+SUMOUT = os.path.join(LAB, "results", "s90_certificate_summary%s.json" % SUF)
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
 CFG_ALARM_S = 300
@@ -314,7 +316,7 @@ def main():
             torch.manual_seed(c["seed"])
             fn, ins32 = c["build"](torch.float32)
             # amendment v4: benchmark-realistic weight scale for conv/convT (output O(1))
-            if c["op"] in ("conv", "conv_transpose") and len(ins32) == 2:
+            if SCALE_MODE == "norm" and c["op"] in ("conv", "conv_transpose") and len(ins32) == 2:
                 fan_in = ins32[1].numel() // ins32[1].shape[0]
                 ins32[1].div_(fan_in ** 0.5)
                 rec["weight_scale"] = "1/sqrt(fan_in)"
