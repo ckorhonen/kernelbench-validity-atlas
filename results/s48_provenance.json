@@ -1,5 +1,5 @@
 {
- "date": "2026-11-14T18:48:59Z",
+ "date": "2026-11-14T22:28:16Z",
  "n_cited": 85,
  "n_found": 85,
  "missing": [],
@@ -1311,7 +1311,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-11-14T18:48:59Z",
+   "mtime_utc": "2026-11-14T18:49:17Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],

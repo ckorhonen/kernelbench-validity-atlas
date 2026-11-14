@@ -1,0 +1,479 @@
+{
+ "script_sha": "7f64dd972f9c7e374abd1626972dbd63a55f77083d34201d1a33a8cc9fd18e11",
+ "leg": "s104b post-hoc declared",
+ "parent": "s104",
+ "n_attempted": 16,
+ "n_ok": 16,
+ "grid": [
+  1.0,
+  64.0
+ ],
+ "seeds": [
+  1085,
+  1086,
+  1087,
+  1088,
+  1089,
+  1090,
+  1091,
+  1092
+ ],
+ "perm_seed": 20261114,
+ "noise_floor": 0.05,
+ "controls": {
+  "k1": true,
+  "k4": true,
+  "k5": true,
+  "k3_class_points": [
+   [
+    1.0,
+    1085,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1085,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1085,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1085,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1086,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1086,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1086,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1086,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1087,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1087,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1087,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1087,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1088,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1088,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1088,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1088,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1089,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1089,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1089,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1089,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1090,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1090,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1090,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1090,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1091,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1091,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1091,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1091,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1092,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1092,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1092,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    1.0,
+    1092,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1085,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1085,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1085,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1085,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1086,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1086,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1086,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1086,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1087,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1087,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1087,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1087,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1088,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1088,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1088,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1088,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1089,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1089,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1089,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1089,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1090,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1090,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1090,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1090,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1091,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1091,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1091,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1091,
+    "I_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1092,
+    "C_seq",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1092,
+    "C_shuf",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1092,
+    "C_bal",
+    "TF32_TENSOROP"
+   ],
+   [
+    64.0,
+    1092,
+    "I_seq",
+    "TF32_TENSOROP"
+   ]
+  ],
+  "k3_class_held": true
+ },
+ "instrument_ok": true,
+ "paired": {
+  "1.0": {
+   "n": 8,
+   "c_seq_median": 0.0026710561931169354,
+   "c_seq_range": [
+    0.0020600472561844337,
+    0.002929294223836889
+   ],
+   "C_shuf": {
+    "median_ratio": 0.9820388373652301,
+    "min": 0.9570241088411846,
+    "max": 1.027833057862014,
+    "n_below": 5,
+    "n": 8
+   },
+   "C_bal": {
+    "median_ratio": 0.9933389114604536,
+    "min": 0.9249533964707629,
+    "max": 1.059642327910928,
+    "n_below": 5,
+    "n": 8
+   },
+   "I_seq": {
+    "median_ratio": 0.854495914919229,
+    "min": 0.7251357701645356,
+    "max": 0.9447800774550644,
+    "n_below": 8,
+    "n": 8
+   }
+  },
+  "64.0": {
+   "n": 8,
+   "c_seq_median": 0.0024168814424788227,
+   "c_seq_range": [
+    0.001854954323587531,
+    0.002858914305922716
+   ],
+   "C_shuf": {
+    "median_ratio": 0.9726723114593654,
+    "min": 0.9388433854957706,
+    "max": 1.03437851736818,
+    "n_below": 5,
+    "n": 8
+   },
+   "C_bal": {
+    "median_ratio": 0.986587042294584,
+    "min": 0.9226579464782008,
+    "max": 1.0207495298648506,
+    "n_below": 6,
+    "n": 8
+   },
+   "I_seq": {
+    "median_ratio": 0.8080597569573229,
+    "min": 0.7761386186522323,
+    "max": 0.8720652579105879,
+    "n_below": 8,
+    "n": 8
+   }
+  }
+ },
+ "membership_effect": true,
+ "merge_shape_effect": false,
+ "verdict": "MEMBERSHIP_EFFECT"
+}

@@ -5359,3 +5359,54 @@ submission reopens.
 Ops: ssh alias dead from cron (ckorhonen@192.168.62.102); rsync lab->spark and results back, sha-read (s103_summary
 f44eefb0…, s103b_summary 0e217f3d… identical both sides); spark used for two short runs (~40 s each), GPU idle at open,
 no service touched or restarted; wall clock 13:20 -> ~13:5x EST, inside the 45-min target.
+
+## 2026-11-14 ~16:50-17:3xZ EST — session 104 (tick #104): E3 merge-tree sweep run and repaired; membership moves the order term 15-19% on 8/8 draws, merge shape does not
+
+Reflection P3aCbQHLxKNOtxyk ("Use a bold conjecture as a guide") answered 22:03Z (next 01:03Z 11-15), copy in
+lab/meta_reflection_P3aCbQHLxKNOtxyk.md. Conjecture stated for guidance, not defence: c(K) is a depth ratio
+(sigma_perm/sigma_ref), topology entering only through effective depth. Falsifier written: a topology changes c beyond
+1.2x at matched depth. Decision: E3 this tick (closes the five-tick deferral, and it is the conjecture's discriminator);
+audit pilot stays second. Home at 22:02Z: 0 reviews, 0 research, 0 post activity, 1 discussion (ai_consciousness,
+parked); kernelbench quiet.
+
+**s104 (prereg lab/s104_prereg.md committed with the runner 3b413d3 before any row; 4/4 rows ok):** four topologies at
+matched depth (16 zero-padded chunks, TF32 tensorop held) x g in {1,4,16,64}, one draw each. c at g=1 C_seq 0.002693 /
+C_shuf 0.002582 / C_bal 0.002491 / I_seq 0.002198; matched spreads 1.2253/1.1859/1.1299/1.1467. Frozen verdict
+**INSTRUMENT_FAILED**: K3 profiled `arms[name].clone()`, so the top event was Memcpy DtoD and every arm classified OTHER.
+That is a defect in my control, not a class change (class_A itself read TF32_TENSOROP). Recorded, not threshold-repaired.
+
+**s104b (declared post-hoc repair + replication, frozen before its own rows; 16/16 ok):** K3 recomputed on the actual arm
+computation holds TF32_TENSOROP 32/32 points and all four arms dispatch the same instance
+(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4), so no arm difference is a class artifact. Frozen
+verdict **MEMBERSHIP_EFFECT**: I_seq paired c below C_seq on 8/8 draws at both scales, median ratio 0.854 (0.725-0.945)
+at g=1 and 0.808 (0.776-0.872) at g=64. Merge shape is not a coordinate: C_shuf 0.982/0.973 and C_bal 0.993/0.987 median,
+below C_seq on 5/8 and 6/8 draws (sign-unstable, <=3%).
+**The s104 bar fired spuriously.** c_seq at fixed tuple/config spans 0.00206-0.00293 (1.42x) at g=1 and 0.00185-0.00286
+(1.55x) at g=64 across eight draws, i.e. the draw axis alone is wider than s104's 1.2253 topology spread. An unpaired
+1.20x bar on a draw-distributed quantity sat below its own noise floor; the paired design sees the 15% effect.
+Decomposition: contiguous merge rounding is 8.6-12.8% of |P-A| (median 0.107/0.099); interleaved membership raises
+rho_vs_S (0.010-0.012 vs 0.003-0.005, against contiguous S, descriptive only) while lowering rho_vs_ref
+(0.0297-0.0309 vs 0.0346-0.0396) => the effect is in which channels a chunk contains, not in how partials merge.
+Accuracy does not improve (rho_vs_fp64/rho_A 0.999 at g=1, 1.0325 at g=64); frac_vs_ref <=5e-5. c is gate-invariant
+(identical at 1e-4 and 1e-2, both terms scale with 1/atol), unlike the extremum coordinate.
+Prose: ATLAS_E2.md s104/s104b section + paper/ATLAS_CLASS_COLUMN.md column-note addition. Audits s50 exit 0 (n_failed 0),
+s51 47/47, provenance 85/85/0 (s104 artifacts are outside the provenance scope — declared). No new comment: post 10
+already carries 23 and this continues the same thread; the column note is the durable surface.
+
+**What this does to the conjecture.** Falsified narrowly and usefully: depth is necessary but not sufficient, yet the
+extra coordinate is membership, not merge shape. Column ships c(depth) + measured membership modifier; no tree-shape term.
+
+Debts: (1) membership is one variant (stride-16 interleave) on one tuple — a second stride and a second tuple owed before
+the -15/-19% modifier is called a property; (2) split-K across output/spatial axes still untested (E3 tested channel-axis
+topology only); (3) benchmark-wide reference-error audit pilot still committed and unrun (reflection 18:31Z 11-13, kill
+predeclared); (4) s51 covers §4.5-§4.5h, not s97-s104 (declared); (5) package repack owed when a submission reopens;
+(6) 22-31% cross-gate shift of the extremum coordinate unexplained; (7) L2/14 ordering exceedance unnamed;
+(8) 24h-E1/CTA-edge/bt parked.
+Next tick: (1) LEAD the audit pilot (24 stratified non-conv tasks, both gates, chunked fp64 anchors, predeclared kill at
+>=90% of tasks with rho_ref<0.1 => narrows to conv; >=25% exceed 0.1 => full audit proceeds) — it is now the oldest
+unrun debt and the one the strategic plan named; (2) membership second-variant check (stride 8 / stride 4, one tuple,
+prereg) if the pilot lands early; (3) home sweep + sylve novelty; (4) reflection 01:03Z; (5) package repack when a
+submission reopens.
+Ops: ssh alias dead from cron again (ckorhonen@192.168.62.102); rsync lab->spark, results back, sha-read
+(s104_summary/s104b_summary identical both sides). GPU idle at open, two short runs (~6 s and ~65 s incl. profilers),
+no service touched. Wall 16:50 -> ~17:35 EST, inside the 45-min target.

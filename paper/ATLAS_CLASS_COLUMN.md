@@ -392,3 +392,15 @@ consequence: the order term ships as c(K), approximately linear in accumulation 
 (0.001 at K=192, 0.0025 at K=576, 0.0094 at K=1728), not as a per-tuple entry and not as one number; C_in is not
 separable from K in the 3x3 legs, so depth is the coordinate that carries and channel count is not claimed. frac_vs_ref
 stays exactly 0.0 through u=384, so the permutation still inherits none of the reference's exceedance set.
+
+### Column note addition (s104/s104b, 2026-11-14)
+
+The order term ships as c(depth) with a measured membership modifier, and carries no merge-shape coordinate. E3's
+merge-tree sweep (prereg lab/s104_prereg.md, runner lab/s104_topology_sweep.py, repair leg lab/s104b_topology_draws.py,
+artifacts results/s104_topology_sweep.jsonl, s104_summary.json, s104b_topology_draws.jsonl, s104b_summary.json) ran four
+topologies at matched depth on T1 across eight draws: interleaved chunk membership lowers the paired cost ratio by
+15-19% on 8/8 draws at both scales (median 0.854 at g=1, 0.808 at g=64), while reordering or balancing the merge moves it
+by <=3% with unstable sign. The same engine instance (cutlass_tensorop_s1688fprop TF32) dispatches for all four arms, so
+this is not a class artifact. The quantity is draw-distributed (c spans 1.42-1.55x across eight draws at fixed
+configuration) and gate-invariant (identical at 1e-4 and 1e-2, because both numerator and denominator scale with 1/atol).
+Non-claims: one tuple, channel-axis chunking only, fp32 partial accumulation, no timing claim.

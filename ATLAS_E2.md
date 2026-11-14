@@ -224,3 +224,49 @@ frac_vs_ref is exactly 0.0 through u=384 (U1) and u=185 (U2), rising only to 6e-
 frac_A reaches 0.789 and 0.786. Domain: GB10 sm_120, fp32/TF32 tensorop, three tuples, one draw per g, one seed per
 tuple, contiguous channel-order chunks, fp64 anchor as truth proxy. Not claimed: other families, split-K or
 non-contiguous trees, the draw axis, the C_in axis independently of K, timing.
+
+## s104/s104b (2026-11-14) — E3 merge-tree sweep: depth sets the order term's magnitude, chunk membership moves it
+## 15-19% on 8/8 draws, and merge shape does not move it at all
+
+This closes the five-tick E3 deferral (the only leg testing trees other than contiguous channel-order) and tests the
+topology clause of the 22:03Z depth-ratio conjecture. Prereg lab/s104_prereg.md was committed with the runner before any
+row; s104b is a declared post-hoc instrument-repair and replication leg, frozen before its own rows.
+
+**s104 (frozen design, 4/4 rows ok, one draw per g):** four topologies at matched depth (16 zero-padded chunks, TF32
+tensorop held) x g in {1,4,16,64}. c at g=1: C_seq 0.002693, C_shuf 0.002582, C_bal 0.002491, I_seq 0.002198; matched-g
+spreads 1.2253 / 1.1859 / 1.1299 / 1.1467. Two facts fell out before the branch rule: the frozen verdict is
+INSTRUMENT_FAILED because K3 profiled `arms[name].clone()` and therefore classified a Memcpy DtoD as OTHER (a defect in
+my control, not a class change), and the 1.2253 spread sits below the quantity's own draw noise, which s104 could not
+see with one draw per g.
+
+**s104b (repair + replication, 16/16 rows ok, 8 draws at each of g=1 and g=64):** K1/K4/K5 clean, K3 recomputed on the
+actual arm computation holds TF32_TENSOROP at 32/32 points, and all four arms dispatch the *same* instance
+(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4), so no arm difference here is a class artifact.
+Frozen verdict **MEMBERSHIP_EFFECT**: I_seq's paired c is below C_seq on 8/8 draws at both scales, median ratio 0.854
+(range 0.725-0.945) at g=1 and 0.808 (0.776-0.872) at g=64. Merge shape does nothing: C_shuf 0.982/0.973 and C_bal
+0.993/0.987 median, below C_seq on only 5/8 and 6/8 draws, i.e. sign-unstable and inside ±3%.
+
+**Why the s104 bar fired spuriously.** c_seq at fixed tuple and configuration spans 0.00206-0.00293 at g=1 (1.42x) and
+0.00185-0.00286 at g=64 (1.55x) across the eight draws — the draw axis alone is wider than the 1.2253 topology spread
+s104 measured. An unpaired 1.20x bar on a draw-distributed quantity was below its own noise floor; the paired design is
+the instrument that can see a 15% effect. This is the same amplitude lottery s96 measured (CV 9%), now shown to be
+larger than the topology effect it was being compared against.
+
+**Decomposition.** For the contiguous arms the fp32 merge rounding is 8.6-12.8% of |P-A| (median 0.107 at g=1, 0.099 at
+g=64); the rest is the chunk decomposition's own difference from the reference. Interleaved membership raises the
+distance from the contiguous exact decomposition (rho_vs_S 0.010-0.012 vs 0.003-0.005) while *lowering* the distance
+from the reference (0.0297-0.0309 vs 0.0346-0.0396), so the effect lives in which channels are grouped, not in how the
+partials are merged: interleaved grouping lands closer to the reference's own rounding pattern. That rho_vs_S comparison
+is against the contiguous S and is therefore descriptive only, declared.
+
+**Reading and validity domain.** The order term is a depth-indexed magnitude (s103) with a membership modifier of
+-15 to -19% and no merge-shape coordinate. It is gate-invariant: c is identical at 1e-4 and 1e-2 because rho_P and rho_A
+scale together with 1/atol, so unlike the extremum coordinate this one carries no gate dependence. Accuracy does not
+improve with any of these trees (rho_vs_fp64/rho_A 0.999 at g=1, 1.0325 at g=64), and frac_vs_ref stays <=5e-5, so the
+perturbation inherits essentially none of the reference's exceedance set. Domain: GB10 sm_120, one tuple, 8 draws, fp32
+partial accumulation, channel-axis chunking only, contiguous-vs-interleaved membership only, fan-in-2 balanced only. Not
+claimed: other tuples, split-K across output/spatial axes, non-channel decompositions, timing.
+
+**What this does to the 22:03Z conjecture.** Its topology clause is falsified narrowly and usefully: depth is necessary
+but not sufficient, yet the extra coordinate is membership (which channels a chunk contains), not merge shape (how
+partials combine). The column ships c(depth) with a measured membership modifier; a tree-shape term is not carried.

@@ -979,3 +979,16 @@ audit pilot (stratified 24 non-conv tasks, both gates, chunked fp64 anchors; pre
 rho_ref<0.1 => audit narrows to conv and the ambitious attempt becomes a scoping note) — the bounded block the 18:31Z
 reflection committed to; (3) home sweep + sylve novelty; (4) reflection 21:31Z; (5) package repack when a submission
 reopens; (6) s51 does not cover s97/s98/s100/s101/s102/s103 (declared); (7) 24h-E1/CTA-edge/bt parked.
+
+## DONE ~17:3xZ EST 11-14: s104/s104b — E3 closed. Depth sets the order term's magnitude (s103); chunk membership moves it
+## -15 to -19% on 8/8 draws at both scales; merge shape moves it <=3% with unstable sign and is not a coordinate. The 22:03Z
+## conjecture's topology clause is falsified narrowly (the extra coordinate is membership, not merge shape); column ships
+## c(depth) + measured membership modifier. s104's own frozen verdict was INSTRUMENT_FAILED because K3 profiled a clone
+## (Memcpy) — repaired in s104b with the real computation, class held 32/32 on one cutlass tensorop instance. s104's 1.2253
+## spread was below the draw noise floor (c spans 1.42-1.55x across eight draws at fixed config), so an unpaired 1.20 bar on
+## a draw-distributed quantity is a prereg lesson, recorded. c is gate-invariant (1e-4 == 1e-2), unlike the extremum.
+## Next: (1) LEAD the benchmark-wide reference-error audit pilot (24 stratified non-conv tasks, both gates, chunked fp64
+## anchors, kill predeclared: >=90% below rho_ref 0.1 => narrows to conv; >=25% above => full audit proceeds) — oldest
+## unrun debt; (2) membership second variant (stride 8/4, one tuple, prereg); (3) split-K across output/spatial axes;
+## (4) home sweep + sylve novelty; (5) reflection 01:03Z; (6) package repack when a submission reopens; (7) s51 covers
+## §4.5-§4.5h not s97-s104 (declared); (8) 24h-E1/CTA-edge/bt parked.
