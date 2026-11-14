@@ -877,3 +877,19 @@ sigma_max(b) returns -0.558 descriptively; (2) 64-draw extension at K=4096 to se
 ## become first-order". Plan lab/EXPLOITATION_PLAN_2026-11-13.md; frontier lab/exploitation_frontier_2026-11-13.md.
 ## Next: (1) E2 CUDA pair + declared trees + torch.compile comparator (prereg first); (2) launch-geometry probe;
 ## (3) pivot to atlas (B) if GB10 shows no contrast; (4) home sweep; reflection 02:13Z.
+
+## DONE 21:3xZ EST 11-13: s98 — E2 on GB10: the reference-order gate advantage is shape-bounded (disjoint at N=4.19M, absent
+## at N=524k), the discarded fast-statistics kernel is 1.7x faster and 7.9x closer to fp64 truth, and the 1e-4 gate never binds
+## (frac_over 0.0 on 32/32 rows). Prereg defa76c frozen pre-run; K1 A-repeat bit-identical 1.0/1.0. S1: V1 rho_vs_ref .0132
+## [.0110,.0142] vs V2 .0584 [.0554,.0616], disjoint, ratio .214 => PARTIAL (exact_frac(V1) .479 < .999, estimator caveat
+## fired: sum/sumsq vs Welford). rho_vs_fp64 S1 V1 .0537 / A .0556 / V2 .00704 => the gate rewards resemblance, not accuracy.
+## S2: .00617 vs .00705 overlapping => CONTRAST_ABSENT. Timing (GPU idle, 20 reps): S1 A 13.39 / V1 10.33 / V2 6.19 /
+## compile 5.66 ms; S2 A 1.133 / V1 .726 / V2 .459 / compile .417 => compile beats both hand variants, so the school's
+## 1.6x-over-eager win is not headroom over compile here. Kineto geometry probe answers s97's debt: reference grid [16,1,1]
+## block [32,4,1] (128 threads, 44 regs, 24 B smem) at both shapes, so per-thread sequential depth is 32,768 vs 4,096 - the
+## coordinate the contrast tracks, two points, boundary not located. ATLAS_E2.md written; comment 8yr8LNfS9oS1SCqZ on post 10
+## verified (22 comments, 1,072 chars). Reflection PRkdf2LooEKTo5_4 answered 02:20:29Z (476 words; next 05:20:29Z): H1 revisited
+## as a design null, E2b conditioning probe committed with kill |Spearman|<.4.
+## Next: (1) E2b designed-conditioning probe (prereg first, sigma_max(b) over >=3 decades at M=N=1024 K=4096, kill |rho|<.4);
+## (2) bisect per-thread depth 4,096->32,768 to locate the s98 collapse (prereg, monotonicity first); (3) home sweep + sylve
+## novelty; (4) reflection 05:20Z; (5) 24h-E1/CTA-edge/bt parked.

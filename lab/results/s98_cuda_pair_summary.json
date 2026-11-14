@@ -1,0 +1,155 @@
+{
+ "env": {
+  "torch": "2.14.1+cu130",
+  "device": "NVIDIA GB10",
+  "cc": [
+   12,
+   1
+  ]
+ },
+ "segs": 32,
+ "shapes": {
+  "S1_official": {
+   "n_draws": 16,
+   "V1_rho": {
+    "median": 0.013191385929705271,
+    "q25": 0.011049065934782814,
+    "q75": 0.01422545436821581,
+    "min": 0.009921460495523674,
+    "max": 0.016970461857554086
+   },
+   "V2_rho": {
+    "median": 0.05844651878971101,
+    "q25": 0.05540331200330659,
+    "q75": 0.061617221058507476,
+    "min": 0.052055812270871506,
+    "max": 0.06930391969975336
+   },
+   "V1_exact_median": 0.4787004739046097,
+   "V2_exact_median": 0.07293567061424255,
+   "A_rho_fp64_median": 0.05560117962405525,
+   "frac_over_1e4_median": {
+    "V1": 0.0,
+    "V2": 0.0
+   },
+   "timing_draw0": {
+    "A": [
+     13.387872219085693,
+     9.01375961303711,
+     15.402303695678711
+    ],
+    "V1": [
+     10.331120014190674,
+     10.20956802368164,
+     10.49129581451416
+    ],
+    "V2": [
+     6.194672107696533,
+     6.126527786254883,
+     6.2259840965271
+    ]
+   },
+   "verdict": "E2_CONTRAST_PARTIAL",
+   "kill_gate_binding": false,
+   "estimator_caveat_fired": true
+  },
+  "S2_reduced": {
+   "n_draws": 16,
+   "V1_rho": {
+    "median": 0.006174472097784424,
+    "q25": 0.005963206992904094,
+    "q75": 0.007345410949865778,
+    "min": 0.0054568490791685,
+    "max": 0.009190648859389224
+   },
+   "V2_rho": {
+    "median": 0.007049409130530755,
+    "q25": 0.006149331895988104,
+    "q75": 0.008563655364901085,
+    "min": 0.005843925486415528,
+    "max": 0.010000841607894948
+   },
+   "V1_exact_median": 0.704436719417572,
+   "V2_exact_median": 0.6409177780151367,
+   "A_rho_fp64_median": 0.0053272126415241875,
+   "frac_over_1e4_median": {
+    "V1": 0.0,
+    "V2": 0.0
+   },
+   "timing_draw0": {
+    "A": [
+     1.133471965789795,
+     1.1301759481430054,
+     1.141983985900879
+    ],
+    "V1": [
+     0.7257919907569885,
+     0.7207040190696716,
+     0.7382720112800598
+    ],
+    "V2": [
+     0.45872001349925995,
+     0.45555201172828674,
+     0.46300798654556274
+    ]
+   },
+   "verdict": "E2_CONTRAST_ABSENT",
+   "kill_gate_binding": false,
+   "estimator_caveat_fired": true
+  }
+ },
+ "compile_comparator": [
+  {
+   "shape_name": "S1_official",
+   "compile_med_ms": 5.658879995346069,
+   "compile_min_ms": 5.640639781951904,
+   "compile_max_ms": 5.672704219818115,
+   "compile_exact_frac_vs_A": 0.07239033281803131,
+   "compile_rho_vs_A": 0.052055812270871506
+  },
+  {
+   "shape_name": "S2_reduced",
+   "compile_med_ms": 0.4168799966573715,
+   "compile_min_ms": 0.41385599970817566,
+   "compile_max_ms": 0.42656001448631287,
+   "compile_exact_frac_vs_A": 0.5670044422149658,
+   "compile_rho_vs_A": 0.005977350843907798
+  }
+ ],
+ "launch_geometry_A": {
+  "S1_official": [
+   {
+    "name": "void at::native::(anonymous namespace)::vectorized_layer_norm_kernel<float, float, false>(int, float, float const*, float const*, float const*, float*, float*, float*)",
+    "grid": [
+     16,
+     1,
+     1
+    ],
+    "block": [
+     32,
+     4,
+     1
+    ],
+    "regs": 44,
+    "smem": 24
+   }
+  ],
+  "S2_reduced": [
+   {
+    "name": "void at::native::(anonymous namespace)::vectorized_layer_norm_kernel<float, float, false>(int, float, float const*, float const*, float const*, float*, float*, float*)",
+    "grid": [
+     16,
+     1,
+     1
+    ],
+    "block": [
+     32,
+     4,
+     1
+    ],
+    "regs": 44,
+    "smem": 24
+   }
+  ]
+ }
+}
