@@ -909,3 +909,25 @@ sigma_max(b) returns -0.558 descriptively; (2) 64-draw extension at K=4096 to se
 ## Next: (1) LEAD depth bisection 4,096->32,768 at fixed shape (prereg, monotonicity first) to locate s98's collapse;
 ## (2) Welford V1 arm (tree vs estimator separator); (3) E3 merge-tree sweep; (4) home sweep + sylve novelty;
 ## (5) reflection 08:33Z; (6) package repack when a submission reopens; (7) 24h-E1/CTA-edge/bt parked.
+
+## DONE 04:0xZ EST 11-14: s100/s100b/s100c — the arithmetic-order axis is located, monotone and priced on the slack side
+## of the budget; the estimator is not what blocks bit identity
+
+Prereg e9c8301 frozen pre-run; s100c post-hoc declared. Fixed S1 (16,64,256,256), 16 draws/level, tree width T
+128..1024 => per-thread depth 32768..4096: rho_vs_ref 0.01319/0.04009/0.05053/0.05294/0.05557 (same-run V2 0.05845),
+frac_over exactly 0.0 on 80/80, exact_frac 0.479/0.103/0.081/0.078/0.076, rho_vs_fp64 0.0537/0.0209/0.0086/0.0067/
+0.0054, timing 8.21/6.50/5.88/5.80/5.75 ms => 4.2x ratio for 1.43x time. K1 tie-out to s98 exact (max |Δrho| 0.0),
+K2 one kernel set per level, K3 mean dev <= 6.3e-6. PREREG DIRECTION SLIP recorded (coded rule printed
+DEPTH_NONMONOTONE because the text said "increasing in D"; measured is strictly decreasing in D with Spearman -0.855
+and no inversions) => substantive MONOTONE_DECREASING_IN_D, D*=32768, crossing between D=32768 and D=16384; the
+reconsider-if (s99 P2 + non-monotone => atlas pivot) did NOT fire. s100c: 144/160/192/224 give 0.0148/0.0172/0.0245/
+0.0312 => smooth coordinate, my "cliff at 128" post-hoc reading refuted by its own refinement. s100b Welford on the
+identical tree: exact 0.520 vs 0.479, rho 0.01325 vs 0.01319 at 2.3x time => TREE_OWNS (bit identity is an order
+property, not an estimator property). Prose: ATLAS_E2.md section + column-note addition; no §4.5/manuscript change
+(lane-level). Comment gpyK21EMqo22C1n1 verified (23 comments, newest, 1,032 chars).
+## Next: (1) LEAD s101 — the reflection's named missing connection: a declared tree permutation (chunked sequential
+## 4..1024 chunks + fan-in-2 over the same boundaries) on one conv/TF32 tuple from s91's crossing population, both
+## sides of rho=1 (|A|max ~0.31 at 1e-4, ~40 at 1e-2), prereg first; kill: permutation cost scale-invariant in u within
+## 10% => coordinates compose into one exchange rate, else it is a surface and the column carries (u, depth); (2) E3
+## merge-tree sweep; (3) home sweep + sylve novelty; (4) reflection 11:43Z; (5) package repack when a submission
+## reopens; (6) s51 does not cover s97/s98/s100 (declared); (7) 24h-E1/CTA-edge/bt parked.

@@ -355,3 +355,12 @@ Strict-gate population fraction 3-5e-6, shipped 1e-2 fraction exactly 0.0 on all
 Column note addition: the amplitude lottery is now a statement that survives a designed intervention, not just a
 sampled null — a per-shape rho_ref ships with its draw distribution even when conditioning is fixed. Scope: matmul,
 M=N=1024 K=4096, fp32, GB10 sm_120, five draws per level.
+
+s100/s100b/s100c (LN family, GB10): the arithmetic-order axis is now priced at the official L1/40 shape. Tree width
+128 (the reference's realized block) gives rho_vs_ref 0.0132 at 8.21 ms; width 1024 gives 0.0556 at 5.75 ms, with
+144/160/192/224 interpolating smoothly (0.0148/0.0172/0.0245/0.0312) — so the coordinate is continuous in tree
+width, not a cliff. frac_over stays exactly 0.0 on all 88 rows, i.e. the whole axis spans 1.3%-5.6% of the 1e-4
+budget and never approaches it. A Welford estimator on the identical tree moves exact_frac 0.479->0.520 and the
+ratio not at all (0.01319->0.01325) at 2.3x the time, so bit identity is a tree/order property, not an estimator
+property. Column consequence: where the reference margin is slack the admission rule can ignore arithmetic order
+entirely; where it binds (conv/TF32 rows) the order term still has to be priced, which is the s101 leg.

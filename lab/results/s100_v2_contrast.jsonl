@@ -1,0 +1,16 @@
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 0, "seed": 9800, "rho_vs_ref": 0.052055812270871506, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07162989675998688}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 1, "seed": 9801, "rho_vs_ref": 0.05429283581352879, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07470975816249847}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 2, "seed": 9802, "rho_vs_ref": 0.061116155437450845, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07434624433517456}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 3, "seed": 9803, "rho_vs_ref": 0.05547761834832783, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07433199882507324}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 4, "seed": 9804, "rho_vs_ref": 0.06780229176209629, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07062985002994537}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 5, "seed": 9805, "rho_vs_ref": 0.06312041792167737, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07503005862236023}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 6, "seed": 9806, "rho_vs_ref": 0.053922155824553224, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07598227262496948}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 7, "seed": 9807, "rho_vs_ref": 0.05518039296824286, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07284589111804962}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 8, "seed": 9808, "rho_vs_ref": 0.06002362211056774, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07062932848930359}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 9, "seed": 9809, "rho_vs_ref": 0.05860072531142573, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07337820529937744}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 10, "seed": 9810, "rho_vs_ref": 0.056285969813971964, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07171401381492615}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 11, "seed": 9811, "rho_vs_ref": 0.05992714582462768, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.0722581297159195}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 12, "seed": 9812, "rho_vs_ref": 0.05670731094049239, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07338376343250275}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 13, "seed": 9813, "rho_vs_ref": 0.06326218280589502, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07097791135311127}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 14, "seed": 9814, "rho_vs_ref": 0.05829231226799628, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.07302545011043549}
+{"exp": "s100_v2", "shape": [16, 64, 256, 256], "draw": 15, "seed": 9815, "rho_vs_ref": 0.06930391969975336, "frac_over_1e4": 0.0, "exact_frac_vs_A": 0.0713186264038086}

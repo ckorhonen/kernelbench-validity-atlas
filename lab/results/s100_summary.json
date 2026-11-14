@@ -1,0 +1,269 @@
+{
+ "env": {
+  "torch": "2.14.1+cu130",
+  "device": "NVIDIA GB10",
+  "cc": [
+   12,
+   1
+  ],
+  "segs": 32,
+  "eps": 1e-05
+ },
+ "prereg": "lab/s100_prereg.md commit e9c8301",
+ "s100": {
+  "levels": {
+   "128": {
+    "T": 128,
+    "D": 32768,
+    "n": 16,
+    "rho_median": 0.013191385929705271,
+    "rho_q25": 0.011049065934782814,
+    "rho_q75": 0.01422545436821581,
+    "rho_min": 0.009921460495523674,
+    "rho_max": 0.016970461857554086,
+    "frac_over_1e4_median": 0.0,
+    "exact_frac_median": 0.4787004739046097,
+    "rho_vs_fp64_median": 0.05371683817635428,
+    "mean_dev_rel_max": 6.333233973024465e-06,
+    "timing_ms_draw0": 8.21065616607666
+   },
+   "256": {
+    "T": 256,
+    "D": 16384,
+    "n": 16,
+    "rho_median": 0.04008836287141215,
+    "rho_q25": 0.038309641184320994,
+    "rho_q75": 0.04292876103969128,
+    "rho_min": 0.036966241144836716,
+    "rho_max": 0.04621454562623016,
+    "frac_over_1e4_median": 0.0,
+    "exact_frac_median": 0.10338383167982101,
+    "rho_vs_fp64_median": 0.020867658168910314,
+    "mean_dev_rel_max": 4.435728074491843e-06,
+    "timing_ms_draw0": 6.504863977432251
+   },
+   "512": {
+    "T": 512,
+    "D": 8192,
+    "n": 16,
+    "rho_median": 0.05053350947153551,
+    "rho_q25": 0.04766319451265201,
+    "rho_q75": 0.05552367166699664,
+    "rho_min": 0.046118654741257724,
+    "rho_max": 0.058542598175342624,
+    "frac_over_1e4_median": 0.0,
+    "exact_frac_median": 0.08058425784111023,
+    "rho_vs_fp64_median": 0.008594204770448328,
+    "mean_dev_rel_max": 2.596226077095096e-06,
+    "timing_ms_draw0": 5.882784128189087
+   },
+   "768": {
+    "T": 768,
+    "D": 5461,
+    "n": 16,
+    "rho_median": 0.05293819711935349,
+    "rho_q25": 0.05019604204403751,
+    "rho_q75": 0.056361242933646354,
+    "rho_min": 0.04758233181876296,
+    "rho_max": 0.062382359348511794,
+    "frac_over_1e4_median": 0.0,
+    "exact_frac_median": 0.07777469605207443,
+    "rho_vs_fp64_median": 0.006735027305438459,
+    "mean_dev_rel_max": 2.168578169751568e-06,
+    "timing_ms_draw0": 5.799615859985352
+   },
+   "1024": {
+    "T": 1024,
+    "D": 4096,
+    "n": 16,
+    "rho_median": 0.05556652344459955,
+    "rho_q25": 0.05176429075874823,
+    "rho_q75": 0.0581611089543824,
+    "rho_min": 0.05003248785784801,
+    "rho_max": 0.062382359348511794,
+    "frac_over_1e4_median": 0.0,
+    "exact_frac_median": 0.07571850717067719,
+    "rho_vs_fp64_median": 0.005432647593947605,
+    "mean_dev_rel_max": 1.9714346997741526e-06,
+    "timing_ms_draw0": 5.749104022979736
+   }
+  },
+  "v2_rho_median": 0.05844651878971101,
+  "v2_exact_median": 0.07293567061424255,
+  "launch_geometry_kernels": {
+   "128": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 2,
+    "depth_stats(float const*, float*, float*, long, float)": 1,
+    "cudaDeviceSynchronize": 2,
+    "affine_kernel(float const*, float const*, float const*, float const*, float const*, float*, long, long)": 1
+   },
+   "256": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 2,
+    "depth_stats(float const*, float*, float*, long, float)": 1,
+    "cudaDeviceSynchronize": 2,
+    "affine_kernel(float const*, float const*, float const*, float const*, float const*, float*, long, long)": 1
+   },
+   "512": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 2,
+    "depth_stats(float const*, float*, float*, long, float)": 1,
+    "cudaDeviceSynchronize": 2,
+    "affine_kernel(float const*, float const*, float const*, float const*, float const*, float*, long, long)": 1
+   },
+   "768": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 2,
+    "depth_stats(float const*, float*, float*, long, float)": 1,
+    "cudaDeviceSynchronize": 2,
+    "affine_kernel(float const*, float const*, float const*, float const*, float const*, float*, long, long)": 1
+   },
+   "1024": {
+    "Activity Buffer Request": 1,
+    "cudaLaunchKernel": 2,
+    "depth_stats(float const*, float*, float*, long, float)": 1,
+    "cudaDeviceSynchronize": 2,
+    "affine_kernel(float const*, float const*, float const*, float const*, float const*, float*, long, long)": 1
+   }
+  },
+  "monotonicity": {
+   "level_medians_by_D_desc": {
+    "32768": 0.013191385929705271,
+    "16384": 0.04008836287141215,
+    "8192": 0.05053350947153551,
+    "5461": 0.05293819711935349,
+    "4096": 0.05556652344459955
+   },
+   "spearman_level_medians": -1.0,
+   "spearman_rows": -0.8547892100912688,
+   "strictly_increasing_in_D": true
+  },
+  "M1": "DEPTH_NONMONOTONE",
+  "D_star": 32768,
+  "D_star_branch": "BOUNDARY_LOCATED",
+  "K1_s98_tieout": {
+   "max_abs_rho_diff": 0.0,
+   "n": 16
+  },
+  "K2_engine_sets": {
+   "128": [
+    [
+     "cudaLaunchKernel",
+     2
+    ],
+    [
+     "cudaDeviceSynchronize",
+     2
+    ],
+    [
+     "Activity Buffer Request",
+     1
+    ],
+    [
+     "depth_stats(float const*, float*, float*, long, float)",
+     1
+    ]
+   ],
+   "256": [
+    [
+     "cudaLaunchKernel",
+     2
+    ],
+    [
+     "cudaDeviceSynchronize",
+     2
+    ],
+    [
+     "Activity Buffer Request",
+     1
+    ],
+    [
+     "depth_stats(float const*, float*, float*, long, float)",
+     1
+    ]
+   ],
+   "512": [
+    [
+     "cudaLaunchKernel",
+     2
+    ],
+    [
+     "cudaDeviceSynchronize",
+     2
+    ],
+    [
+     "Activity Buffer Request",
+     1
+    ],
+    [
+     "depth_stats(float const*, float*, float*, long, float)",
+     1
+    ]
+   ],
+   "768": [
+    [
+     "cudaLaunchKernel",
+     2
+    ],
+    [
+     "cudaDeviceSynchronize",
+     2
+    ],
+    [
+     "Activity Buffer Request",
+     1
+    ],
+    [
+     "depth_stats(float const*, float*, float*, long, float)",
+     1
+    ]
+   ],
+   "1024": [
+    [
+     "cudaLaunchKernel",
+     2
+    ],
+    [
+     "cudaDeviceSynchronize",
+     2
+    ],
+    [
+     "Activity Buffer Request",
+     1
+    ],
+    [
+     "depth_stats(float const*, float*, float*, long, float)",
+     1
+    ]
+   ]
+  },
+  "K3_mean_dev_rel_max": 6.333233973024465e-06
+ },
+ "s100b": {
+  "S1_official": {
+   "n": 16,
+   "exact_frac_median": 0.5199421048164368,
+   "rho_vs_ref_median": 0.013249982232907596,
+   "rho_vs_ref_q25": 0.012181569501664472,
+   "rho_vs_ref_q75": 0.014388782770165592,
+   "rho_vs_fp64_median": 0.0542041503365295,
+   "frac_over_1e4_median": 0.0,
+   "welford_var_vs_fp64_rel_max": 3.0597544807338558e-06,
+   "band": "TREE_OWNS",
+   "timing_ms_draw0": 18.823232650756836
+  },
+  "S2_reduced": {
+   "n": 16,
+   "exact_frac_median": 0.6958802938461304,
+   "rho_vs_ref_median": 0.006742103911451437,
+   "rho_vs_ref_q25": 0.006170985163732013,
+   "rho_vs_ref_q75": 0.00713546121114793,
+   "rho_vs_fp64_median": 0.005875074466381925,
+   "frac_over_1e4_median": 0.0,
+   "welford_var_vs_fp64_rel_max": 4.3616304570222376e-07,
+   "band": "PARTIAL",
+   "timing_ms_draw0": 2.0548479557037354
+  }
+ }
+}

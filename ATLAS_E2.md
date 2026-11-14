@@ -48,3 +48,53 @@ not a faithful replica of the reference tree — a Welford version would separat
 (3) timing is one draw per shape (medians of 20 reps, GPU idle, no contention control); (4) s51 audit does not
 cover s97/s98 numbers (lane-level, not §4.5 numbers); (5) E3 merge-tree sweep not started; (6) paper package
 repack still owed when a submission reopens; (7) 24h-E1/CTA-edge/bt parked.
+
+## s100 / s100b / s100c — the depth coordinate is located and monotone, the estimator is not the separator,
+## and the whole arithmetic-order axis sits inside 4.3 percentage points of the 1e-4 budget
+
+Prereg lab/s100_prereg.md (commit e9c8301) frozen before any row. Spark GB10, torch 2.14.1+cu130, GPU idle at
+open. s100: fixed shape S1 (16,64,256,256), N=4,194,304 per row, 16 draws (seeds 9800+d, s98's seeds), five tree
+widths T in {128,256,512,768,1024} => per-thread sequential depth D in {32768,16384,8192,5461,4096}, one block
+per row, declared fan-in-2 shared reduction, sum/sumsq estimator, s98's affine verbatim. Artifacts
+results/s100_depth_ladder.jsonl (80 rows), s100_v2_contrast.jsonl (16), s100_summary.json.
+
+Kills: K1 the T=128 arm reproduces s98's S1 V1 rows exactly (max |Δrho| 0.0 over 16 rows) — the new
+parameterised kernel is arithmetically the s98 kernel at power-of-2 widths; K2 one kernel set per level
+(depth_stats + affine) under torch.profiler, so the ladder is not an engine test; K3 mean deviation from the
+analytic mean <= 6.3e-6 relative.
+
+Measured (medians over 16 draws; same-run V2 fast-statistics denominator 0.05845):
+- rho_vs_ref: 0.01319 (T128/D32768), 0.04009 (T256/D16384), 0.05053 (T512/D8192), 0.05294 (T768/D5461), 0.05557
+  (T1024/D4096). frac_over at 1e-4 exactly 0.0 on all 80 rows.
+- exact_frac_vs_A: 0.479, 0.103, 0.081, 0.078, 0.076 — bit identity collapses as soon as the tree width differs
+  from the reference's realized 128 lanes.
+- rho_vs_fp64: 0.0537, 0.0209, 0.0086, 0.0067, 0.0054 against a reference that sits at 0.0556 from fp64 truth.
+  Resembling the reference costs accuracy: the widest tree is 10x closer to truth and 4.2x further from the
+  reference's verdict.
+- timing (10 reps, median): 8.21, 6.50, 5.88, 5.80, 5.75 ms. So the 4.2x ratio reduction from T1024 to T128 is
+  bought with 1.43x wall time.
+
+Monotonicity: level medians are strictly ordered in T with no inversion anywhere (Spearman over the 80 rows
+-0.855 against D). The coded rule printed DEPTH_NONMONOTONE because the prereg text wrote "strictly increasing
+in D" while the measured relation is strictly DECREASING in D — a pre-registration direction slip of the same
+class as the 10-17 e2b slip, recorded and not repaired; the substantive verdict is MONOTONE_DECREASING_IN_D.
+Boundary: the prereg's 0.25x-V2 contrast criterion (<=0.01461) is met only at D=32768, so D*=32768 and the
+crossing lies between D=32768 and D=16384, where the ratio jumps 3.0x.
+
+s100c (post-hoc, declared after these numbers, no threshold changed; results/s100c_refine.jsonl,
+s100c_refine_summary.json): intermediate widths 144/160/192/224 give 0.0148/0.0172/0.0245/0.0312, so the ratio is
+a smooth monotone function of tree width — the "cliff at 128" reading I formed from s100 alone is refuted by its
+own refinement. Only exact_frac moves steeply (0.46 -> 0.33 -> 0.19 -> 0.13 across the same widths).
+
+s100b (Welford estimator on the identical tree, T=128, 32 rows, results/s100b_welford.jsonl): S1 exact_frac
+median 0.520 vs sum/sumsq 0.479 and rho_vs_ref 0.01325 vs 0.01319 — the 52% bit-identity residual is the
+tree/order, not the estimator (frozen band TREE_OWNS). Welford costs 18.82 ms against 8.21 ms (2.3x) and buys
+nothing on the verdict-relevant ratio. S2 reduced: exact 0.696 (PARTIAL), rho 0.00674 vs s98 V1 0.00617.
+
+Reading and validity domain. At the official L1/40 shape the entire arithmetic-order axis — from a
+reference-imitating kernel to the widest tree — moves the evaluator ratio between 0.0132 and 0.0556, i.e. 1.3% to
+5.6% of the 1e-4 budget. Nothing on this axis approaches 1, so the school's binary gate is enforced where it costs
+nothing; the exchange rate is nonetheless now measured: 4.24 percentage points of budget for 1.43x wall time, with
+accuracy moving the opposite way. Domain: GB10 sm_120, fp32, LN family, unit-scale Gaussian inputs, eps 1e-5, one
+shape for the ladder, sum/sumsq and Welford estimators only, 16 draws. Not claimed: conv, scale, other arches,
+other families.
