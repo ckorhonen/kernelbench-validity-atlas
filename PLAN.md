@@ -957,3 +957,25 @@ property, not an estimator property). Prose: ATLAS_E2.md section + column-note a
 ## identity; (2) E3 merge-tree sweep (third deferral); (3) home sweep + sylve novelty; (4) reflection 18:08Z;
 ## (5) package repack when a submission reopens; (6) s51 does not cover s97/s98/s100/s101/s102 (declared);
 ## (7) 24h-E1/CTA-edge/bt parked.
+
+
+## DONE ~13:3xZ EST 11-14: s103/s103b — the order-term magnitude is owned by accumulation depth, not the engine instance
+
+U1 (1x1, C_in=576 = T1's K; reference dispatched the SAME cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1 that
+s102 recorded for T2's C_in=192, unchanged across the 192/384/576/768 probe; 7/7 rows; K1 7/7 bit-identical, K2 fp64
+anchor self-check bit-identical rel 0.0, K3/K4 class held): c above u=10 is 0.00220-0.00275 against T2's
+0.00097-0.00130 — 9 matched-u ratios 2.10-2.72, median 2.44, every point outside the prereg's 1.5x band, frozen
+BRANCH_DEPTH_OWNS_MAGNITUDE — and within 1.2x of T1's recorded 0.00219-0.00233. s103b (declared post-hoc secondary leg:
+3x3, C_in=192, K=1728, cudnn fprop instance, 6/6 rows, K1 clean): 0.00663-0.00968, 2.88-4.13x T1 (median 3.60); log-log
+steps 0.83 then 1.19, overall 1.01 => c is approximately linear in the reference's accumulation depth across three tuples
+and two engine instances (0.001 at K=192, 0.0025 at K=576, 0.0094 at K=1728). s102's "tuple-specific" verdict is thereby
+a K-specific verdict: the column ships c(K) rather than per-tuple identity, and "one number ships" is not restored.
+C_in is not separable from K in the 3x3 legs (declared); U1 separates them and lands on T1's magnitude, which is why depth
+carries and channel count does not. frac_vs_ref exactly 0.0 through u=384 (U1) / u=185 (U2), rising only to 6e-4/3.5e-3
+at the top points while frac_A reaches 0.789/0.786.
+Next: (1) LEAD the choice between E3 merge-tree sweep (fifth deferral) and a third-family K point — the column now needs
+either a slope across families or a tree-shape check, and E3 is the older debt; (2) the benchmark-wide reference-error
+audit pilot (stratified 24 non-conv tasks, both gates, chunked fp64 anchors; predeclared kill at >=90% of tasks with
+rho_ref<0.1 => audit narrows to conv and the ambitious attempt becomes a scoping note) — the bounded block the 18:31Z
+reflection committed to; (3) home sweep + sylve novelty; (4) reflection 21:31Z; (5) package repack when a submission
+reopens; (6) s51 does not cover s97/s98/s100/s101/s102/s103 (declared); (7) 24h-E1/CTA-edge/bt parked.

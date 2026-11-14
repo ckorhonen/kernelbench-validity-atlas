@@ -380,3 +380,15 @@ TUPLE_SPECIFIC; frac_vs_ref stays exactly 0.0 while frac_A reaches 0.789, and th
 737 < u < 1473. Column consequence: the order term ships as a per-tuple entry (negligible everywhere measured, but its
 magnitude is not portable), and the dispatch probe adds that the 1x1 family at this shape does not leave FP32_SIMT
 until C_in=192 — engine class is a decision over the whole tuple, not a C_in threshold.
+
+
+s103/s103b (GB10, discriminating tuple): the order term's magnitude is owned by the reference's accumulation depth,
+not by the engine instance. Holding T2's spatial extent, output count and engine instance fixed (the reference
+dispatched the same cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1 at C_in 192/384/576/768) and raising K from
+192 to 576 moves the cost ratio from 0.0010 to 0.00220-0.00275 — 2.10-2.72x T2 at matched u, median 2.44, and within
+1.2x of T1's recorded 0.00219-0.00233. A declared post-hoc leg at K=1728 (3x3, cudnn fprop instance) gives
+0.00663-0.00968, i.e. 2.88-4.13x T1, and the two log-log steps (0.83, 1.19) bracket an overall slope of 1.01. Column
+consequence: the order term ships as c(K), approximately linear in accumulation depth on this population
+(0.001 at K=192, 0.0025 at K=576, 0.0094 at K=1728), not as a per-tuple entry and not as one number; C_in is not
+separable from K in the 3x3 legs, so depth is the coordinate that carries and channel count is not claimed. frac_vs_ref
+stays exactly 0.0 through u=384, so the permutation still inherits none of the reference's exceedance set.

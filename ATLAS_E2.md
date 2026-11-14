@@ -183,3 +183,44 @@ raised to 576) or T1 at C_in=192. Also recorded: T2's measured rho_A at g=1 is 1
 coordinate, the known cross-gate offset carried rather than corrected. Domain: GB10 sm_120, fp32/TF32 tensorop, two
 tuples, one draw per point, contiguous channel-order chunks, fp64 anchor as truth proxy. Not claimed: other families,
 split-K or non-contiguous trees, the draw axis, timing (descriptive only).
+
+
+## s103/s103b (2026-11-14) — the order term's magnitude is owned by accumulation depth, not by the engine instance
+
+Prereg lab/s103_prereg.md was committed with the runner (7659e82) before any row. U1 = 1x1 conv, B=2, C_in=576 ->
+C_out=160, 211x211, seed 1068: T2's spatial extent, T2's output count (14,246,720), T2's engine family, and T1's
+accumulation depth K=576. 7/7 rows ok. U2 is the prereg's declared post-hoc secondary leg: 3x3 conv, B=2,
+C_in=192 -> 64, 151x151, K=1728, seed 1085, 6/6 rows ok.
+
+**Controls.** K1 A-repeat bit-identical on 7/7 and 6/6 rows. K2 fp64-anchor self-check after an empty_cache() was
+bit-identical (rel 0.0) on the row where it ran. K3 the reference class was TF32_TENSOROP at every profiled level
+(g=1 and g=32 for U1, g=1 and g=16 for U2), K4 the permutation's class equalled the reference's at those levels.
+**Instance control, not merely family control:** U1's reference dispatched
+`cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1`, the same instance s102 recorded for T2's C_in=192 reference,
+and the dispatch probe at C_in 192/384/576/768 returned that instance unchanged — so raising C_in on this family
+does not change the engine. U2 dispatched `cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4`,
+the instance s101b's probe recorded for T1's reference at C_in=32/64.
+
+**Primary result, frozen branch BRANCH_DEPTH_OWNS_MAGNITUDE.** U1's cost ratio above u=10 is 0.00220-0.00275
+(spread 1.25x, 12 cells). Against T2's recorded curve at matched u, all 9 evaluable comparisons fall outside the
+prereg's 1.5x band: ratios 2.10-2.72, median 2.44. Changing only K (192 -> 576) on the same engine instance, at the
+same spatial extent and output count, reproduces T1's magnitude (0.00219-0.00233 from s101b) to within 1.2x. The
+engine-instance hypothesis is therefore not supported; the accumulation-depth hypothesis is.
+
+**Secondary leg, descriptive.** U2 at K=1728 gives 0.00663-0.00968 above u=10 (spread 1.46x) and 2.88-4.13x T1's
+matched-u values (median 3.60). The two log-log steps are slope 0.83 for K 192->576 and 1.19 for K 576->1728, with
+1.01 overall, so on this population the order-term cost ratio is approximately linear in the reference's accumulation
+depth across three tuples and two engine instances: c ~ 0.001 at K=192, 0.0025 at K=576, 0.0094 at K=1728.
+
+**What this does to s102's verdict.** "Tuple-specific" was a K-specific verdict. The column does not restore "one
+number ships": a K-indexed number ships. C_in co-varies with K in both 3x3 legs (K = 9*C_in), so channel count is not
+separable from depth there; U1 separates them (C_in=576, K=576) and lands on T1's magnitude, which is why depth is
+the coordinate the column carries and channel count is not.
+
+**Reading and validity domain.** The (u, depth) shape is unchanged and the magnitude is now indexed rather than
+attributed to tuple identity: in the binding regime a declared contiguous-channel permutation still consumes
+0.2-1.0% of the reference's own deviation depending on depth, and inherits none of its exceedance set —
+frac_vs_ref is exactly 0.0 through u=384 (U1) and u=185 (U2), rising only to 6e-4 and 3.5e-3 at the top points while
+frac_A reaches 0.789 and 0.786. Domain: GB10 sm_120, fp32/TF32 tensorop, three tuples, one draw per g, one seed per
+tuple, contiguous channel-order chunks, fp64 anchor as truth proxy. Not claimed: other families, split-K or
+non-contiguous trees, the draw axis, the C_in axis independently of K, timing.
