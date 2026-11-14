@@ -98,3 +98,53 @@ nothing; the exchange rate is nonetheless now measured: 4.24 percentage points o
 accuracy moving the opposite way. Domain: GB10 sm_120, fp32, LN family, unit-scale Gaussian inputs, eps 1e-5, one
 shape for the ladder, sum/sumsq and Welford estimators only, 16 draws. Not claimed: conv, scale, other arches,
 other families.
+
+## s101/s101b — the tree axis priced where the budget binds: a declared permutation costs 0.2-0.3% of the
+## reference's own deviation, and the apparent exchange rate of 1.0000 was an engine-class artifact
+
+Prereg lab/s101_prereg.md + lab/s101_tree_perm_conv.py committed a6f6a7e before any row; the extension
+lab/s101b_tree_perm_zeropad.py (post-hoc, declared after s101's numbers, no threshold changed) committed
+separately. Tuple: T1 from s91's crossing population (conv 3x3 s1 p1, B=2, C=64->64, 151x151, seed 1085,
+TF32_TENSOROP), reference held fixed, candidate = declared chunked input-channel accumulation, scale swept so
+u = 2.2e-4*|A|max/atol spans both gates' rho=1 crossings.
+
+**s101 (chunked at 4/16/64 channels, fan-in-2 over 16 boundaries; 13/13 rows, K1 tie-out to s91 0.1395 exact,
+repeat 13/13 bit-identical, P1 single-chunk control bit-identical to A).** The cost ratio c = rho_P_ref/rho_A_x
+came out 0.99983-1.00004 across u 0.33..1360 at 1e-4 and 0.0033..13.6 at 1e-2, and the coded rule printed
+BRANCH_COMPOSE. That verdict is superseded: its own K_ENGINE control fired. Every chunked arm dispatched
+`implicit_convolve_sgemm` (FP32_SIMT) while A stayed `cutlass_tensorop_s1688fprop_optimized_tf32` on 13/13
+points, and the chunked arms sat 100-1000x closer to the fp64 anchor than the reference (rho_vs_fp64 0.0005 vs
+A's 0.466 at g=0.03125). So |P-A| ~ |A-X| and c ~ 1 is the signature of a class change, not of a tree
+permutation; the prereg's K_ENGINE clause said to scope rather than pool and the coded branch did not, a
+prereg coding slip recorded here (third of its class in this lane after e2b's direction and s100's direction).
+
+**s101b (engine class held by zero-padding each chunk back to C_in=64 so the same tensorop engine is
+dispatched; 6/6 rows, K1 tie-out exact, repeat 6/6, K3 class held TF32_TENSOROP for A and P16z at g=1 and
+g=64).** Measured, 1e-4 gate, rho_P_ref for the declared sequential trees:
+
+- P4z (depth 4): 0.0041 / 0.0108 / 0.0325 / 0.1138 / 0.4432 / 1.6713 at u 0.66 / 2.66 / 10.6 / 42.5 / 170 / 680.
+- P16z: 0.0042 / 0.0111 / 0.0376 / 0.1294 / 0.4754 / 1.7611; P64z: 0.0045 / 0.0121 / 0.0437 / 0.1504 / 0.4560 /
+  1.7431. Log-log slope of the cost against u is 0.875/0.880/0.865, i.e. sublinear; frac_vs_ref stays exactly 0.0
+  until u=680, where it reaches 3-5e-5.
+- Cost ratio c: 0.00444 down to 0.00219 across the sweep (P4z), 0.00485 -> 0.00228 (P64z); the 1e-4 spread is
+  2.12x and the 1e-2 spread 1.06-1.37x, so the prereg's 10% bar fires BRANCH_SURFACE_FIXED_CLASS. The variation is
+  confined to the low-u end (u < 3, where rho_A is 0.9-3.6, near the gate); above u=10 the ratio is 0.0022-0.0031,
+  one number within 1.5x.
+- Depth: P64z/P4z = 1.09 / 1.12 / 1.34 / 1.32 / 1.03 / 1.04 — a 9-34% increment in the mid range, non-monotone at
+  the top, so depth is a weak second axis on this tuple rather than a strong one.
+- The permutation's own gate crossing is bracketed 170 < u < 680 (rho 0.443 -> 1.671), i.e. |A|max ~170-310, some
+  400x above the reference's own crossing at u ~ 0.68.
+
+**The class confound, mechanized (K4 dispatch probe):** single convs at the same spatial shape dispatch
+`implicit_convolve_sgemm` FP32_SIMT at C_in 8 and 16, and `cutlass_tensorop_s1688fprop` TF32_TENSOROP at C_in 32
+and 64. So any chunked permutation with chunks below 32 channels silently changes engine class; only zero-padding
+(or chunks of >= 32) holds it.
+
+**Reading and validity domain.** In the binding regime a declared arithmetic-tree permutation on this conv tuple
+consumes 0.22-0.45% of the reference's own deviation — it inherits almost none of the reference's exceedance set
+(frac 0.0 against frac_A up to 0.787), unlike a class-changing candidate, which inherits all of it. The exchange
+rate between tree deviation and admissible margin is therefore nearly one number above u ~ 10, but it is a shallow
+surface rather than a constant (2.1x at the low-u end), and the permutation becomes first-order only near u ~ 400.
+Domain: GB10 sm_120, fp32/TF32 tensorop class, this one conv tuple, one draw per point, contiguous channel-order
+chunks, fp64 anchor as truth proxy, timing descriptive only. Not claimed: other tuples, other families, non-contiguous
+or split-K trees, the draw axis (s79a DRAW_STABLE is relied on, not re-tested).

@@ -931,3 +931,17 @@ property, not an estimator property). Prose: ATLAS_E2.md section + column-note a
 ## 10% => coordinates compose into one exchange rate, else it is a surface and the column carries (u, depth); (2) E3
 ## merge-tree sweep; (3) home sweep + sylve novelty; (4) reflection 11:43Z; (5) package repack when a submission
 ## reopens; (6) s51 does not cover s97/s98/s100 (declared); (7) 24h-E1/CTA-edge/bt parked.
+
+## DONE ~12:2xZ 11-14: s101/s101b — the tree axis is priced in the binding regime and the s101 "c = 1.0000" is retracted as an
+## engine-class artifact. s101 (prereg a6f6a7e pre-run, 13/13 rows, K1 exact, repeat 13/13, P1 control 13/13): chunked
+## permutation at 4/16/64 channels changes engine class (implicit_convolve_sgemm FP32_SIMT vs cutlass tensorop TF32 on 13/13
+## points; chunked arms 100-1000x closer to fp64 than the reference), so |P-A| ~ |A-X| and c ~ 1 is a class signature, not a
+## tree measurement — coded BRANCH_COMPOSE superseded by its own K_ENGINE control (scope-not-pool clause; third prereg coding
+## slip of this class, recorded). s101b (zero-padded chunks hold the class; 6/6 rows, K1 exact, K3 class held at g=1/64):
+## rho_P_ref 0.0041->1.6713 across u 0.66->680 (slope 0.87, sublinear), frac_vs_ref 0.0 until u=680; cost ratio 0.0044->0.0022
+## (spread 2.12x at 1e-4, 1.06-1.37x at 1e-2) => BRANCH_SURFACE_FIXED_CLASS, variation confined to u<3, one number within 1.5x
+## above u=10; depth increment P64/P4 1.09-1.34 weak and non-monotone at the top; permutation's own crossing bracketed
+## 170<u<680. K4 dispatch probe: C_in 8/16 -> FP32_SIMT, 32/64 -> TF32 tensorop (the confound's mechanism).
+## Next: (1) LEAD T2 (1x1, C_in=192) under the same declared trees to test whether the low-u spread and depth increment are
+## tuple-specific; (2) E3 merge-tree sweep; (3) home sweep + sylve novelty; (4) reflection 14:54Z; (5) package repack when a
+## submission reopens; (6) s51 does not cover s97/s98/s100/s101 (declared); (7) 24h-E1/CTA-edge/bt parked.

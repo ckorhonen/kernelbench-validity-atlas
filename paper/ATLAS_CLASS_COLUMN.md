@@ -364,3 +364,11 @@ budget and never approaches it. A Welford estimator on the identical tree moves 
 ratio not at all (0.01319->0.01325) at 2.3x the time, so bit identity is a tree/order property, not an estimator
 property. Column consequence: where the reference margin is slack the admission rule can ignore arithmetic order
 entirely; where it binds (conv/TF32 rows) the order term still has to be priced, which is the s101 leg.
+
+s101/s101b (conv/TF32 binding regime, GB10): the order axis is now priced where the budget binds. Chunked
+permutations change engine class below C_in=32 (probe: 8/16 channels -> implicit_convolve_sgemm FP32_SIMT; 32/64 ->
+cutlass tensorop TF32), which makes a chunked candidate look exactly as wrong as the reference (c ~ 1.0000). With
+the class held by zero-padding, the declared trees cost 0.22-0.45% of the reference's own deviation across u
+0.66-680 at 1e-4, inherit none of its exceedance set (frac 0.0 vs frac_A up to 0.787), and reach the gate
+themselves only near u ~ 400. Column consequence: the order term is a shallow surface in (u, depth), not a constant,
+and it is negligible until the reference's own margin is hundreds of times the budget.
