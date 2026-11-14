@@ -13,7 +13,7 @@ otherwise), ships the A6/A7 producers and the S55/S56 legs, carries `r1_times.js
 it, and pins the public source:
 
     https://github.com/ckorhonen/kernelbench-validity-atlas
-    commit 8af7ef72d2b6bad517696c7fbf6cb5371ebbd3dd
+    commit 4f634e70e23b39839fd5f19eb8ef7f7d0769e466
 
 That commit is the exact tree this package was built from. Anything omitted here is retrievable there at
 that revision, so no essential evidence depends on private access.

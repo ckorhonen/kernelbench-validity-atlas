@@ -148,3 +148,38 @@ surface rather than a constant (2.1x at the low-u end), and the permutation beco
 Domain: GB10 sm_120, fp32/TF32 tensorop class, this one conv tuple, one draw per point, contiguous channel-order
 chunks, fp64 anchor as truth proxy, timing descriptive only. Not claimed: other tuples, other families, non-contiguous
 or split-K trees, the draw axis (s79a DRAW_STABLE is relied on, not re-tested).
+
+**s102 (second tuple under the identical fixed-class machinery; prereg lab/s102_prereg.md committed with the runner
+before any row; 7/7 rows ok, K1 repeat 7/7 bit-identical, K2 tie-out to s91's T2 record 0.1473403 vs 0.14734 (rel
+2.3e-6), K3 class held TF32_TENSOROP for A and P16z at g=1 and g=64, K4 probe recorded).** T2 = s91's other crossing
+tuple: 1x1 conv, B=2, C=192 -> 160, 211x211, seed 1068, 14,246,720 outputs (4.88x T1). Frozen branch evaluated on 24
+matched-u comparisons against T1's recorded curve (log-u interpolation inside T1's own range): **BRANCH_TUPLE_SPECIFIC**.
+
+- 1e-4 cost ratio c by u: P4z 0.00178 (0.72) / 0.00116 (2.88) / 0.00108 (11.5) / 0.00097 (46.0) / 0.00105 (184) /
+  0.00105 (737) / 0.00096 (1473). P16z 0.00179/0.00145/0.00104/0.00105/0.00105/0.00105/0.00096; P64z
+  0.00244/0.00157/0.00130/0.00117/0.00111/0.00111/0.00106. Pooled spread 2.51x at 1e-4 (2.51x confined to u<3) and
+  1.34x at 1e-2.
+- Above u=10 the ratio is flat within 1.13x (0.00096-0.00130) — the same *shape* as T1 — but every matched-u ratio to
+  T1 is 0.39-0.51, i.e. the order term on this tuple costs 2.0-2.6x less than on T1. All 24 comparisons fall outside
+  the prereg's 1.5x band.
+- frac_vs_ref is exactly 0.0 at every 1e-4 point except u=1473 (1e-6) while frac_A reaches 0.789, so the permutation
+  still inherits none of the reference's exceedance set; the permutation's own crossing is bracketed 737 < u < 1473
+  (rho 1.404 -> 1.566), about 2x above T1's bracket and ~1000x above the reference's own crossing.
+- Depth increment P64z/P4z 1.37/1.35/1.20/1.20/1.06/1.06/1.12: larger than T1's at the low-u end and non-monotone at
+  the top, so depth is a weak axis here too but its ordering differs.
+- K4 dispatch probe on the 1x1 family at this shape: C_in 8/16/32/64 all dispatch `magma_sgemmEx_kernel` (FP32_SIMT via
+  cublas) and only C_in=192 reaches `cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1` (TF32_TENSOROP). The
+  dispatch boundary is therefore not a function of C_in alone — the 3x3 family crossed at 32/64 and this family does not
+  cross until 192 at the same spatial extent — which is one more reason engine class is a dispatch decision over the
+  whole tuple rather than a coordinate.
+
+**Reading and validity domain.** The qualitative surface replicates on a second tuple: negligible absolute cost
+(0.1% of the reference's deviation), no inherited exceedance, first-order only near u ~ 10^3. The magnitude does not:
+2.4x lower than T1 at matched u, so "one number ships" is falsified and the column must carry tuple identity. Mechanism
+is a hypothesis, not a claim: the difference tracks either the reference's accumulation depth (K=576 vs 192) or the
+engine instance (cudnn fprop nhwc with layout transforms vs a single cutlass GEMM) — the two are confounded in this
+comparison, and the discriminating test is one tuple with the same engine instance at a different K (T2 with C_in
+raised to 576) or T1 at C_in=192. Also recorded: T2's measured rho_A at g=1 is 14.73 against u=11.51, 28% above the
+coordinate, the known cross-gate offset carried rather than corrected. Domain: GB10 sm_120, fp32/TF32 tensorop, two
+tuples, one draw per point, contiguous channel-order chunks, fp64 anchor as truth proxy. Not claimed: other families,
+split-K or non-contiguous trees, the draw axis, timing (descriptive only).

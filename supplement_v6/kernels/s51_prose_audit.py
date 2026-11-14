@@ -34,6 +34,25 @@ Checks (fixed list, no post-hoc additions):
  C28 a7b: Q1 ratios .0016/.0022/.0007 (99.9% cut)
  C29 r1 conv: gate torch 52/56
  C30 paper sections present: s2,s3,s3b,s4,s5,s6,s7,s8 and each cites at least one results/ artifact
+ C32 s94 population: 5/5 rows ok, tids T1-T5, M=N in {1024,512}
+ C33 s94 share: pooled 300 fail / 168 ref / 132 cand = 0.560, per-tuple .600/.562015503875969/.5405405405405406, spread .05946
+ C34 s94 depth: rho_ref .5798813114391407/.5585034175067228/1.2346484213295181/2.449441385699855, T5 1.6524742737102525,
+     slope .7380331925187715, resid .321516695619999, crossing bracket 2048<->4096
+ C35 s94 controls: C3 bit-identical 5/5, ratio_cand_over_ref 1.0094/1.1081/.9562/.9858/1.1487
+ C36 s95 population: 33/33 rows ok, instrument repeat bit-identical (rho, rho_cand, frac)
+ C37 s95 floor branch: dip in 1/8 draws, means .5042261951375578/.6263878155027611, FLOOR_NOISE, K2 fired
+     (CV .12702/.14305), law claim not permitted
+ C38 s95 slope/share: slope mean .7713786472806671 sd .08076628792149573, share mean .5024039188035422 sd .13447622897245026
+     min .25 max .75 n 16, SHARE_UNSTABLE, frac_over_ref at 1e-2 exactly 0.0 on all rows
+ C39 s96 population: 33 rows, 32 main ok, instrument repeat bit-identical on rho and frac_over, kills K1 ok / K2 no / K3 no
+ C40 s96 amplitude: rho_ref min 1.0455225225704408 max 1.4736522134189658 cv .09041688922578099 spread 1.4094887308558006
+ C41 s96 covariates + verdict: sigma_max(a) cv .002022155853666543, kappa cv .005147098612922159, spearman arms
+     -.19208211143695014/-.12573313782991202/-.008064516129032258/-.21664222873900293/-.005498533724340176/.050219941348973604,
+     verdict AMPLITUDE_LOTTERY, tail clause TAIL_INDETERMINATE, engine clause ENGINE_STABLE with 1 distinct kernel set
+ C42 s96 tail ladder cv: p99 .007459945025920637, p99.9 .010655803116466073, p99.99 .02017463592490212,
+     p99.999 .03154449842052123
+ C43 s96b: 32/32 ok, identity residual <= 1e-6, e at ratio-argmax 1.075415514217859e-4-1.7380212578776977e-4,
+     spearman rho-vs-e .6612903225806451, rho-vs-depth -.020894428152492667
 """
 import gzip, json, os, re, sys
 
@@ -239,7 +258,13 @@ e2_n = sum(len(v.get("max_abs_err", [])) for r in e2_rows for v in r.get("varian
 ck("C26", e2_n == 1260, e2_n)
 
 b2c = os.path.join(RES, "b2_failure_corpus.jsonl")
-n_rows = sum(1 for _ in open(b2c)) if os.path.exists(b2c) else None
+if os.path.exists(b2c):
+    n_rows = sum(1 for _ in open(b2c))
+elif os.path.exists(b2c + ".gz"):
+    import gzip as _gz
+    n_rows = sum(1 for _ in _gz.open(b2c + ".gz", "rt"))
+else:
+    n_rows = None
 ck("C27", n_rows == 180, n_rows)
 
 a7b = load("a7b_precision_policy.json")
@@ -283,6 +308,166 @@ for f in want:
     txt = open(p).read() if os.path.exists(p) else ""
     present[f] = bool(txt) and ("results/" in txt)
 ck("C30", all(present.values()), present)
+
+# --- §4.5e / §4.5f extension (declared extension of the fixed list; adds s94 and s95 to the audited set) ---
+s94rows = []
+try:
+    s94rows = [json.loads(l) for l in open(os.path.join(RES, "s94_nonconv_decomp.jsonl"))]
+except Exception:
+    pass
+s94 = load("s94_analysis.json")
+ck("C32", len(s94rows) == 5 and all(r.get("status") == "ok" for r in s94rows)
+   and [r["tid"] for r in s94rows] == ["T1", "T2", "T3", "T4", "T5"]
+   and all(r["M"] == r["N"] and r["M"] in (1024, 512) for r in s94rows),
+   {"n": len(s94rows), "tids": [r.get("tid") for r in s94rows], "status": sorted({r.get("status") for r in s94rows})})
+
+pool = (s94 or {}).get("pooled", {})
+stab = (s94 or {}).get("share_stability", {})
+sh = {r["tid"]: r.get("share_ref_induced") for r in ((s94 or {}).get("table") or [])}
+ck("C33", pool.get("n_fail") == 300 and pool.get("n_ref_induced") == 168 and pool.get("n_cand_induced") == 132
+   and abs(pool.get("share_ref_induced", 0) - 0.56) < 1e-9
+   and abs(sh.get("T3", 0) - 0.6) < 1e-9 and abs(sh.get("T4", 0) - 0.562015503875969) < 1e-9
+   and abs(sh.get("T5", 0) - 0.5405405405405406) < 1e-9
+   and abs(stab.get("spread", 0) - 0.05945945945945941) < 1e-9,
+   {"pooled": pool, "per_tuple": sh, "spread": stab.get("spread")})
+
+df = (s94 or {}).get("depth_fit", {})
+rho = {r["tid"]: r.get("rho_ref_1e4") for r in ((s94 or {}).get("table") or [])}
+ck("C34", abs(rho.get("T1", 0) - 0.5798813114391407) < 1e-9 and abs(rho.get("T2", 0) - 0.5585034175067228) < 1e-9
+   and abs(rho.get("T3", 0) - 1.2346484213295181) < 1e-9 and abs(rho.get("T4", 0) - 2.449441385699855) < 1e-9
+   and abs(rho.get("T5", 0) - 1.6524742737102525) < 1e-9
+   and abs(df.get("slope", 0) - 0.7380331925187715) < 1e-9
+   and abs(df.get("max_log_resid", 0) - 0.321516695619999) < 1e-9
+   and df.get("crossing_bracket", {}).get("below") == [1024, 2048]
+   and df.get("crossing_bracket", {}).get("above") == [4096, 8192],
+   {"rho": rho, "slope": df.get("slope"), "resid": df.get("max_log_resid")})
+
+rat = {r["tid"]: r.get("ratio_cand_over_ref") for r in ((s94 or {}).get("table") or [])}
+ck("C35", all(r.get("C3_compile_bit_identical_to_A") is True for r in s94rows)
+   and all(abs(rat.get(t, 0) - v) < 1e-9 for t, v in
+           [("T1", 1.009449598816413), ("T2", 1.1080781174169432), ("T3", 0.9561703800873281),
+            ("T4", 0.9858347803504247), ("T5", 1.148717664180466)]),
+   {"c3_bit_identical": sorted({r.get("C3_compile_bit_identical_to_A") for r in s94rows}), "ratios": rat})
+
+s95rows = []
+try:
+    s95rows = [json.loads(l) for l in open(os.path.join(RES, "s95_draw_repeat.jsonl"))]
+except Exception:
+    pass
+s95 = load("s95_analysis.json") or {}
+ck("C36", len(s95rows) == 33 and all(r.get("status") == "ok" for r in s95rows)
+   and s95.get("instrument_pass") is True
+   and all(s95.get("instrument", {}).values()),
+   {"n": len(s95rows), "status": sorted({r.get("status") for r in s95rows}), "instrument": s95.get("instrument")})
+
+dip = s95.get("dip", {})
+pk = s95.get("per_k", {})
+ck("C37", dip.get("n_draws_with_dip") == 1 and dip.get("n_draws") == 8 and dip.get("branch") == "FLOOR_NOISE"
+   and abs(dip.get("mean_1024", 0) - 0.5042261951375578) < 1e-9
+   and abs(dip.get("mean_2048", 0) - 0.6263878155027611) < 1e-9
+   and s95.get("k2_fired") is True and s95.get("law_claim_permitted") is False
+   and abs(pk.get("1024", {}).get("cv", 0) - 0.12702075847137118) < 1e-9
+   and abs(pk.get("8192", {}).get("cv", 0) - 0.14305243267233525) < 1e-9,
+   {"dip": dip, "cv_1024": pk.get("1024", {}).get("cv"), "cv_8192": pk.get("8192", {}).get("cv"),
+    "k2": s95.get("k2_fired")})
+
+sl = s95.get("slope_descriptive", {})
+shs = s95.get("share", {})
+ck("C38", abs(sl.get("mean", 0) - 0.7713786472806671) < 1e-9 and abs(sl.get("sd", 0) - 0.08076628792149573) < 1e-9
+   and abs(shs.get("mean", 0) - 0.5024039188035422) < 1e-9 and abs(shs.get("sd", 0) - 0.13447622897245026) < 1e-9
+   and shs.get("min") == 0.25 and shs.get("max") == 0.75 and shs.get("n") == 16
+   and s95.get("share_branch") == "SHARE_UNSTABLE"
+   and all(r.get("frac_over_ref_ship") == 0.0 for r in s95rows),
+   {"slope": (sl.get("mean"), sl.get("sd")), "share": shs, "branch": s95.get("share_branch")})
+
+s96rows = []
+try:
+    s96rows = [json.loads(l) for l in open(os.path.join(RES, "s96_amplitude_mechanism.jsonl"))]
+except Exception:
+    pass
+s96 = load("s96_analysis.json") or {}
+s96b = load("s96b_analysis.json") or {}
+ck("C39", len(s96rows) == 33 and len([r for r in s96rows[:-1] if r.get("status") == "ok"]) == 32
+   and s96rows[-1].get("rho_ref") == s96rows[0].get("rho_ref")
+   and s96rows[-1].get("frac_over_ref_strict") == s96rows[0].get("frac_over_ref_strict")
+   and s96.get("kills") == {"K1_instrument_ok": True, "K2_vacuous_fired": False, "K3_degenerate_fired": False},
+   {"n": len(s96rows), "kills": s96.get("kills")})
+
+rr = s96.get("rho_ref", {})
+ck("C40", abs(rr.get("min", 0) - 1.0455225225704408) < 1e-9 and abs(rr.get("max", 0) - 1.4736522134189658) < 1e-9
+   and abs(rr.get("cv", 0) - 0.09041688922578099) < 1e-9
+   and abs(rr.get("spread_ratio", 0) - 1.4094887308558006) < 1e-9,
+   {"rho": rr})
+
+cv = s96.get("covariates", {})
+sp = {k: v.get("spearman_vs_rho") for k, v in cv.items()}
+ck("C41", abs(cv.get("sigma_max_a", {}).get("cv", 0) - 0.002022155853666543) < 1e-9
+   and abs(cv.get("kappa_proxy", {}).get("cv", 0) - 0.005147098612922159) < 1e-9
+   and abs(sp.get("sigma_max_a", 0) - -0.19208211143695014) < 1e-9
+   and abs(sp.get("kappa_proxy", 0) - -0.12573313782991202) < 1e-9
+   and abs(sp.get("median_abs_x", 0) - -0.008064516129032258) < 1e-9
+   and abs(sp.get("max_abs_x", 0) - -0.21664222873900293) < 1e-9
+   and abs(sp.get("max_abs_ref_err", 0) - -0.005498533724340176) < 1e-9
+   and abs(sp.get("extremum_rel_to_median", 0) - 0.050219941348973604) < 1e-9
+   and s96.get("verdict") == "AMPLITUDE_LOTTERY" and s96.get("tail_clause") == "TAIL_INDETERMINATE"
+   and s96.get("engine_clause") == "ENGINE_STABLE" and s96.get("engine", {}).get("distinct_sets") == 1,
+   {"spearman": sp, "verdict": s96.get("verdict"), "tail": s96.get("tail_clause"), "engine": s96.get("engine_clause")})
+
+lad = s96.get("tail_ladder", {})
+ck("C42", abs(lad.get("p99", {}).get("cv", 0) - 0.007459945025920637) < 1e-9
+   and abs(lad.get("p99.9", {}).get("cv", 0) - 0.010655803116466073) < 1e-9
+   and abs(lad.get("p99.99", {}).get("cv", 0) - 0.02017463592490212) < 1e-9
+   and abs(lad.get("p99.999", {}).get("cv", 0) - 0.03154449842052123) < 1e-9,
+   {"ladder": {k: v.get("cv") for k, v in lad.items()}})
+
+ck("C43", s96b.get("n_ok") == 32 and s96b.get("resid_max", 1) < 1e-6
+   and abs(s96b.get("e_at_ratio_argmax", {}).get("min", 0) - 1.075415514217859e-4) < 1e-12
+   and abs(s96b.get("e_at_ratio_argmax", {}).get("max", 0) - 1.7380212578776977e-4) < 1e-12
+   and abs(s96b.get("spearman", {}).get("rho_vs_e_at_ratio_argmax", 0) - 0.6612903225806451) < 1e-9
+   and abs(s96b.get("spearman", {}).get("rho_vs_depth_at_ratio_argmax", 0) - -0.020894428152492667) < 1e-9,
+   {"s96b": s96b.get("spearman"), "resid": s96b.get("resid_max"), "e": s96b.get("e_at_ratio_argmax")})
+
+try:
+    s99rows = [json.loads(l) for l in open(os.path.join(RES, "s99_conditioning.jsonl"))]
+except Exception:
+    s99rows = []
+s99 = load("s99_analysis.json") or {}
+s99sum = load("s99_conditioning_summary.json") or {}
+s99inst = load("s99_instrument.json") or {}
+ck("C44", len(s99rows) == 25 and sorted({r.get("level_kappa") for r in s99rows}) == [1.0, 10.0, 100.0, 1000.0, 10000.0]
+   and s99inst.get("k1_bit_identical") is True
+   and s99sum.get("k1_instrument_bit_identical") is True and s99sum.get("k2_engine_identical_across_levels") is True
+   and s99sum.get("k3_construction_ok") is True and s99sum.get("k3_construction_worst_rel", 1) < 1e-3
+   and s99.get("kills") == {"K1": True, "K2": True, "K3": True},
+   {"n": len(s99rows), "kills": s99.get("kills"), "k3": s99sum.get("k3_construction_worst_rel")})
+
+d99 = s99.get("descriptive", {})
+means = [d99.get(str(l), {}).get("rho_mean") for l in (1.0, 10.0, 100.0, 1000.0, 10000.0)]
+ck("C45", all(m is not None for m in means)
+   and abs(means[0] - 1.341282429171134) < 1e-9 and abs(means[1] - 1.3011537045723727) < 1e-9
+   and abs(means[2] - 1.356215893077395) < 1e-9 and abs(means[3] - 1.167914424888174) < 1e-9
+   and abs(means[4] - 1.2084304498531317) < 1e-9
+   and abs(max(means) / min(means) - 1.1613) < 5e-4
+   and s99.get("verdict") == "P2_RETIRE_H1",
+   {"level_means": means, "verdict": s99.get("verdict")})
+
+ck("C46", abs(s99.get("primary", {}).get("spearman_kappa_rho", 0) - -0.35) < 1e-9
+   and abs(s99.get("primary", {}).get("span", 0) - 1.9229777788469817) < 1e-9
+   and abs(d99.get("within_level_cv_median", 0) - 0.09121691255868244) < 1e-9
+   and abs(d99.get("within_level_cv_max", 0) - 0.2271600803478701) < 1e-9
+   and abs(d99.get("rho_min", 0) - 1.0198520021760438) < 1e-9
+   and abs(d99.get("rho_max", 0) - 1.9611527378971358) < 1e-9
+   and abs(d99.get("spearman_median_absX_rho", 0) - 0.37615384615384617) < 1e-9
+   and abs(d99.get("spearman_depth_rho", 0) - -0.10538461538461538) < 1e-9
+   and abs(d99.get("spearman_sigma_max_b_rho", 0) - -0.3192307692307692) < 1e-9,
+   {"primary": s99.get("primary"), "cv": d99.get("within_level_cv_median")})
+
+ck("C47", all(v.get("frac_ship_mean") == 0.0 for v in d99.values() if isinstance(v, dict) and "frac_ship_mean" in v)
+   and all(len(v.get("engine") or []) == 1 for v in d99.values() if isinstance(v, dict) and "engine" in v)
+   and len({json.dumps(v.get("engine")) for v in d99.values() if isinstance(v, dict) and "engine" in v}) == 1
+   and all(1e-6 <= v.get("frac_strict_mean", 0) <= 1e-5
+           for v in d99.values() if isinstance(v, dict) and "frac_strict_mean" in v),
+   {"engines": {k: v.get("engine") for k, v in d99.items() if isinstance(v, dict) and "engine" in v}})
 
 n_pass = sum(1 for c in checks if c["ok"])
 out = {"prereg": "docstring of lab/s51_prose_audit.py, frozen before run",

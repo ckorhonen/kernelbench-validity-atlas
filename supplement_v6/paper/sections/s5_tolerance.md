@@ -142,19 +142,54 @@ at $\varepsilon \in \{10^{-4}, 10^{-3}, 10^{-2}, 10^{-1}\}$ (`results/e59c_epsil
 `results/e59b_budget_ratios.jsonl`, which reproduced all 672 arm-checks of `results/r1_conv_gated.jsonl`
 exactly, 0 mismatches) gives a frontier that moves:
 
-| $\varepsilon$ | admissible arms | shapes with an admissible hand arm | hand arm faster than best non-hand | frontier composition | flips vs $10^{-4}$ |
+| $\varepsilon$ | admissible arms | shapes with an admissible hand arm | hand arm faster than best non-hand | frontier composition | frontier flips vs $10^{-4}$ (strict / tie / higher) |
 |---|---|---|---|---|---|
 | 1e-4 | 128 | 4 | 2 | torch 45 / compile 8 / hand 3 | — |
-| 1e-3 | 203 | 19 | 10 | torch 37 / hand 13 / compile 6 | 10/56 |
-| 1e-2 | 293 | 32 | 24 | torch 25 / hand 21 / compile 6 / hand-tf32 4 | 24/56 |
-| 1e-1 | 672 | 56 | 27 | torch 21 / hand-tf32 28 / compile 7 | 30/56 |
+| 1e-3 | 203 | 19 | 10 | torch 37 / hand 13 / compile 6 | 10 (8 / 2 / 0) |
+| 1e-2 | 293 | 32 | 24 | torch 25 / hand 21 / compile 6 / hand-tf32 4 | 24 (23 / 1 / 0) |
+| 1e-1 | 672 | 56 | 27 | torch 21 / hand-tf32 28 / compile 7 | 30 (29 / 1 / 0) |
 
-The first flip appears at $10^{-3}$. At the benchmark's own fp16/bf16 tolerance ($10^{-2}$) the fastest
-admissible arm changes on 24 of 56 conv shapes and 24 shapes have a hand arm that is both admissible and
-faster than the best admissible torch or compiled arm. Pairwise class dominance moves while the 1e-4
-engine-class partition stays fixed: hand-ieee beats hand-tf32 on 4 shapes at 1e-4 and 27 at 1e-2, and torch
-beats hand-ieee on 52 shapes at 1e-4 and 24 at 1e-2. No arm-class rule can produce that movement, which is
-what rules out the reading that the effect is class dominance.
+Normalised by behaviour rather than by arm name, the same record is smaller: across the 12 nominal arms per
+shape there are 3-4 distinct candidate-scaled budget ratios (median 3, max 4, mean 3.07), because the five
+`imp_*[ieee]` tiles share one ratio, the five `imp_*[tf32]` tiles another, and `torch`/`torch_cmp` a third
+(`results/s60_pool_diversity.json`, computed from `results/e59b_budget_ratios.jsonl`). The signature there is a
+**ratio-class signature** — the rounded candidate-scaled budget ratio — not a distinct output tensor; four shapes
+carry four such classes rather than three (`m3m2` (1,4,256), (4,4,64), (4,4,256), (1,7,64)), so the error-axis
+classes sum to **172** across the 56 shapes. Under the same convention the admissible class-cells are
+**60 / 75 / 93 / 172** at $\varepsilon$ = 1e-4 / 1e-3 / 1e-2 / 1e-1 (`results/s62_resolution.json`, which
+reproduces both counts from the committed rows), so the arm growth 128→203→293→672 is 60→172 class-cells, not
+32→168. The arm counts stay in the table above because they are what a pool reports; the class-cell counts are
+the honest denominator for any claim about how many distinct *behaviours* become admissible.
+
+The speed axis is **not** aliased at the resolution at which the pool was measured, but the count is
+resolution-dependent and must be quoted with its resolution. At exact recorded precision 654 of 672 joint
+(error, median-time) signatures are distinct; collapsing pairs whose median times differ by less than the
+recorded 12-repetition spread leaves **600 of 672**, and at a 5% decision resolution (the scale of the delivery
+deltas this paper argues about) **518 of 672** (`results/s62_resolution.json`, prereg in the script's docstring;
+class-cell counts are resolution-free because they are exact ratio classes). So selection inside an admitted
+class remains a measurement problem rather than an aliased lookup, but the honest statement is "654 at exact
+precision, 600 at measurement resolution, 518 at 5%" rather than a bare count. Scope: this conv pool, this arch,
+this revision.
+
+The first flip appears at $10^{-3}$. Of the 10/24/30 identity changes, 8/23/29 move to an arm with a strictly
+lower recorded median and 2/1/1 are exact ties; no flip is to a slower arm. A tie is an admission change, not
+a performance change — at $10^{-2}$ the shape `a2` (2, 6, 48) moves from torch to an IEEE hand arm at the same
+recorded median of 0.028384 ms — and some non-tied changes have overlapping timing IQRs, so the strict column
+is the count of resolved speed changes and IQR separation alone is not a significance test. At the benchmark's
+own fp16/bf16 tolerance ($10^{-2}$) the fastest admissible arm changes on 24 of 56 conv shapes, 23 of them to
+a strictly faster arm, and 24 shapes have a hand arm that is both admissible and faster than the best
+admissible torch or compiled arm.
+
+Pairwise class dominance moves while the 1e-4 engine-class partition stays fixed: hand-ieee beats hand-tf32 on
+4 shapes at 1e-4 and 27 at 1e-2, and torch beats hand-ieee on 52 shapes at 1e-4 and 24 at 1e-2. These counts
+are admission counts rather than speed comparisons: each counts shapes where the named class has an admissible
+member and the other does not, or where its admissible member is faster, and the second reading applies only
+where both classes are admitted. What the movement rules out is a single fixed, tolerance-independent
+admission rule. It does not rule out a shape-and-tolerance-conditioned precision-class rule: the five IEEE arms
+carry one candidate-scaled ratio per shape and the five TF32 arms likewise, so a rule keyed on (shape,
+$\varepsilon$, precision class) reproduces every hand admission in the record, with recorded timings then
+selecting among the admitted arms. That class-conditioned rule is the alternative the measurement leaves
+standing, and the paper states it as such rather than as excluded.
 
 The kill clause was written before the run: invariant frontier identity at every $\varepsilon$ would mean the
 gate framing is adequate and the "tolerance is a free variable" disagreement gets withdrawn. It did not fire,

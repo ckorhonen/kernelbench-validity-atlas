@@ -112,19 +112,31 @@ contribution relative to Du is not the observation but the dispatch map that exp
 realizations produce it on GB10 (§2.5, Table 1).
 
 **Zhang et al.** (arXiv:2607.16241, "KernelBench-Verified") measure how speedups move when the baseline is a
-TF32 kernel under hidden input distributions — 1.43x under their protocol falling to 0.88x. That is a
-statement about a *speedup number* under a fixed tolerance. §5.4 asks the orthogonal question: given a
-declared tolerance, which arm is fastest among those that satisfy it, and how does that set change with the
-tolerance itself.
+TF32 kernel under hidden input distributions — 1.43x under their protocol falling to 0.88x — and their
+Appendix J Table 6 evaluates tolerance sensitivity directly, reporting correctness and speedup at 1e-3 and
+1e-4 (99%/0.90x to 83%/1.25x on their GPT-5.5 Level-1 results) and explaining the selection effect from the
+changing admitted population. Tolerance-dependent admissibility and performance summaries are therefore
+already studied there, and this paper does not claim that variable. The object here is narrower: the per-shape
+minimum over a fixed candidate pool at a declared tolerance. What the GB10 map adds is a matched measurement on the reference axis rather than an
+explanation of the aggregate curve: at fixed shapes, inputs and candidate outputs, changing only the reference
+realization changes the delivered arm on 21 of 56 conv rows (48/56 admissible-set membership), and a pure
+engine-class swap accounts for 11 of those rows (`results/gate_stability.jsonl`, prereg sha 5ff93b20). The
+engine class is a categorical dispatch decision over the declared tuple (Table 1), so the reference realization
+is a measured admission determinant at a different explanatory level from an aggregate sensitivity curve. Its scope is stated rather than implied: the
+dispatch map is measured on the 48-shape lattice, and only **2 of the 56 frontier shapes exactly match Table 1's
+default-layout tuples**, so the map explains the mechanism where it was measured and does not predict the
+frontier population row by row. A matched engine-class analysis over the frontier population is a declared
+extension, not a result of this paper.
 
 **Agarwal et al.** (arXiv:2609.21058) measure workload coverage and report that zeros pass on 4 of 60 L1
 problems. Coverage asks whether a kernel set exercises the operator; §5.4 asks whether the fastest arm is
 still the same arm when the tolerance moves, and finds it is not on 24 of 56 shapes at 1e-2.
 
 The measured distinction, then, is the frontier table in §5.4: admissible arms 128 -> 203 -> 293 -> 672,
-shapes with an admissible hand arm 4 -> 19 -> 32 -> 56, frontier flips 10/24/30 of 56 at 1e-3/1e-2/1e-1, with
-the 1e-4 engine-class partition unchanged. None of the three papers reports that object, and the atlas's
-1e-4 result is one slice of it.
+shapes with an admissible hand arm 4 -> 19 -> 32 -> 56, frontier flips 10/24/30 of 56 at 1e-3/1e-2/1e-1
+(8/23/29 of those to a strictly faster arm, 2/1/1 exact ties), with the 1e-4 engine-class partition
+unchanged. None of the three papers reports that object per shape, and none attributes its movement to a
+measured engine-class dispatch; the atlas's 1e-4 result is one slice of it.
 
 ## References
 

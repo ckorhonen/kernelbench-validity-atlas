@@ -21,7 +21,7 @@
   "class_derived": {
    "spearman_logrho": 0.9862136343899262,
    "bulk_acc": 1.0,
-   "frac_mae": 0.003415904811512077
+   "frac_mae": 0.0034159048115119986
   },
   "derived_only": {
    "spearman_logrho": 0.8327181936604429,
@@ -420,7 +420,7 @@
    {
     "row": "conv_C16_H7_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.8146907316426986,
+    "pred_logrho": 1.8146907316427003,
     "meas_logrho": 1.7576477594515807,
     "pred_frac": 0.7659387173710496,
     "meas_frac": 0.7608418367346939
@@ -428,7 +428,7 @@
    {
     "row": "conv_C16_H13_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.898973258194983,
+    "pred_logrho": 1.8989732581949825,
     "meas_logrho": 1.9042207908394861,
     "pred_frac": 0.7677310835841422,
     "meas_frac": 0.7657174556213018
@@ -436,7 +436,7 @@
    {
     "row": "conv_C16_H21_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.9732362112481892,
+    "pred_logrho": 1.9732362112481878,
     "meas_logrho": 1.9556098486001623,
     "pred_frac": 0.7679592374455289,
     "meas_frac": 0.7766439909297053
@@ -444,23 +444,23 @@
    {
     "row": "conv_C16_H7_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.6024235935743831,
+    "pred_logrho": 1.6024235935743836,
     "meas_logrho": 1.9011982555947942,
-    "pred_frac": 0.7664053074595727,
+    "pred_frac": 0.766405307459573,
     "meas_frac": 0.767578125
    },
    {
     "row": "conv_C16_H13_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.7137379294656943,
+    "pred_logrho": 1.7137379294656954,
     "meas_logrho": 1.7789733231777558,
-    "pred_frac": 0.7685985172046101,
+    "pred_frac": 0.76859851720461,
     "meas_frac": 0.7729591836734693
    },
    {
     "row": "conv_C16_H21_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.7701620790694557,
+    "pred_logrho": 1.7701620790694559,
     "meas_logrho": 1.940437560704894,
     "pred_frac": 0.7710610106769882,
     "meas_frac": 0.7652376033057852
@@ -468,7 +468,7 @@
    {
     "row": "conv_C16_H7_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.8161075796858257,
+    "pred_logrho": 1.8161075796858253,
     "meas_logrho": 1.7475017605981789,
     "pred_frac": 0.7663840170805089,
     "meas_frac": 0.7576530612244897
@@ -476,23 +476,23 @@
    {
     "row": "conv_C16_H13_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.8924847274232441,
+    "pred_logrho": 1.8924847274232428,
     "meas_logrho": 1.9594056448652963,
-    "pred_frac": 0.7674701854136884,
+    "pred_frac": 0.767470185413688,
     "meas_frac": 0.7679363905325444
    },
    {
     "row": "conv_C16_H21_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.9533647205280131,
+    "pred_logrho": 1.9533647205280127,
     "meas_logrho": 2.071812812809357,
-    "pred_frac": 0.7697526755354867,
+    "pred_frac": 0.7697526755354865,
     "meas_frac": 0.766156462585034
    },
    {
     "row": "conv_C16_H7_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": -2.187481683201007,
+    "pred_logrho": -2.1874816832010064,
     "meas_logrho": -2.277272888751101,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -500,7 +500,7 @@
    {
     "row": "conv_C16_H13_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": -2.0830563341812782,
+    "pred_logrho": -2.0830563341812764,
     "meas_logrho": -2.251286409164943,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -508,7 +508,7 @@
    {
     "row": "conv_C16_H21_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": -2.0219239886280604,
+    "pred_logrho": -2.0219239886280627,
     "meas_logrho": -2.108755142173603,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -516,7 +516,7 @@
    {
     "row": "conv_C64_H7_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "W",
-    "pred_logrho": 0.4666880494858536,
+    "pred_logrho": 0.4666880494858524,
     "meas_logrho": 0.14707684100575996,
     "pred_frac": 0.0,
     "meas_frac": 0.00031887755102040814
@@ -524,103 +524,103 @@
    {
     "row": "conv_C64_H13_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "W",
-    "pred_logrho": 0.4475871075711427,
+    "pred_logrho": 0.4475871075711441,
     "meas_logrho": 0.4515266991749911,
-    "pred_frac": 0.00211534184663148,
+    "pred_frac": 0.002115341846631924,
     "meas_frac": 0.0005085059171597633
    },
    {
     "row": "conv_C64_H21_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.3858925639541466,
+    "pred_logrho": 2.3858925639541493,
     "meas_logrho": 2.2764685780344056,
-    "pred_frac": 0.7751442728684409,
+    "pred_frac": 0.7751442728684415,
     "meas_frac": 0.7806299603174603
    },
    {
     "row": "conv_C64_H7_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.0517028855082393,
+    "pred_logrho": 2.0517028855082398,
     "meas_logrho": 2.035231108650577,
-    "pred_frac": 0.774045755757809,
+    "pred_frac": 0.7740457557578092,
     "meas_frac": 0.7646484375
    },
    {
     "row": "conv_C64_H13_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.124384422964972,
+    "pred_logrho": 2.1243844229649707,
     "meas_logrho": 2.121275071130819,
-    "pred_frac": 0.776305419254474,
+    "pred_frac": 0.7763054192544734,
     "meas_frac": 0.7570153061224489
    },
    {
     "row": "conv_C64_H21_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.1747395943474994,
+    "pred_logrho": 2.1747395943475007,
     "meas_logrho": 2.4243661264213117,
-    "pred_frac": 0.7770147690849286,
+    "pred_frac": 0.777014769084929,
     "meas_frac": 0.7779571280991736
    },
    {
     "row": "conv_C64_H7_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.2180700229199752,
+    "pred_logrho": 2.2180700229199766,
     "meas_logrho": 2.1445829293935237,
-    "pred_frac": 0.7712960837017595,
+    "pred_frac": 0.7712960837017598,
     "meas_frac": 0.7779017857142857
    },
    {
     "row": "conv_C64_H13_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.3102510994750136,
+    "pred_logrho": 2.3102510994750145,
     "meas_logrho": 2.2007474850121755,
-    "pred_frac": 0.7736716916428776,
+    "pred_frac": 0.7736716916428772,
     "meas_frac": 0.7789386094674556
    },
    {
     "row": "conv_C64_H21_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.3779340319885494,
+    "pred_logrho": 2.377934031988551,
     "meas_logrho": 2.361620735702777,
-    "pred_frac": 0.7755250900941713,
+    "pred_frac": 0.7755250900941718,
     "meas_frac": 0.7765554138321996
    },
    {
     "row": "conv_C64_H7_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": -1.8325669075490163,
+    "pred_logrho": -1.8325669075490147,
     "meas_logrho": -1.6406761186959542,
-    "pred_frac": 0.0014827408791885655,
+    "pred_frac": 0.001482740879188288,
     "meas_frac": 0.0
    },
    {
     "row": "conv_C64_H13_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": -1.7118961156632218,
+    "pred_logrho": -1.7118961156632233,
     "meas_logrho": -1.6783049729893804,
-    "pred_frac": 0.004123432387184073,
+    "pred_frac": 0.004123432387183407,
     "meas_frac": 0.0
    },
    {
     "row": "conv_C64_H21_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": -1.6723056524918156,
+    "pred_logrho": -1.6723056524918132,
     "meas_logrho": -1.500661326013363,
-    "pred_frac": 0.0065515669491800765,
+    "pred_frac": 0.006551566949180354,
     "meas_frac": 0.0
    },
    {
     "row": "conv_C256_H7_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "W",
-    "pred_logrho": 0.6476863515151633,
+    "pred_logrho": 0.6476863515151665,
     "meas_logrho": 0.9705902008378745,
-    "pred_frac": 0.005693729354941196,
+    "pred_frac": 0.00569372935494164,
     "meas_frac": 0.005779655612244898
    },
    {
     "row": "conv_C256_H13_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.7234008383221475,
+    "pred_logrho": 2.7234008383221453,
     "meas_logrho": 2.554327522703092,
     "pred_frac": 0.7801004180978798,
     "meas_frac": 0.7827524038461539
@@ -628,87 +628,87 @@
    {
     "row": "conv_C256_H21_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.798660652229791,
+    "pred_logrho": 2.7986606522297883,
     "meas_logrho": 2.655242933587568,
-    "pred_frac": 0.7816600047944828,
+    "pred_frac": 0.7816600047944826,
     "meas_frac": 0.7846513605442177
    },
    {
     "row": "conv_C256_H7_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.4670247183352596,
+    "pred_logrho": 2.467024718335259,
     "meas_logrho": 2.4045754716762153,
-    "pred_frac": 0.7781819937952399,
+    "pred_frac": 0.7781819937952397,
     "meas_frac": 0.7845458984375
    },
    {
     "row": "conv_C256_H13_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.5527924289994735,
+    "pred_logrho": 2.5527924289994743,
     "meas_logrho": 2.368010036983343,
-    "pred_frac": 0.7817766247778101,
+    "pred_frac": 0.7817766247778102,
     "meas_frac": 0.7809709821428571
    },
    {
     "row": "conv_C256_H21_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.6008229312762983,
+    "pred_logrho": 2.6008229312762987,
     "meas_logrho": 2.53843545322445,
-    "pred_frac": 0.7831565921124,
+    "pred_frac": 0.7831565921123999,
     "meas_frac": 0.7855275051652892
    },
    {
     "row": "conv_C256_H7_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.631606961141799,
+    "pred_logrho": 2.631606961141798,
     "meas_logrho": 2.4936082526051186,
-    "pred_frac": 0.7772526754760164,
+    "pred_frac": 0.7772526754760171,
     "meas_frac": 0.7867107780612245
    },
    {
     "row": "conv_C256_H13_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.7143230119280095,
+    "pred_logrho": 2.714323011928009,
     "meas_logrho": 2.671879814814485,
-    "pred_frac": 0.7799781495729491,
+    "pred_frac": 0.7799781495729495,
     "meas_frac": 0.7843357063609467
    },
    {
     "row": "conv_C256_H21_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.806256926802847,
+    "pred_logrho": 2.806256926802845,
     "meas_logrho": 2.5957697869167977,
-    "pred_frac": 0.781648125504572,
+    "pred_frac": 0.7816481255045714,
     "meas_frac": 0.7847443664965986
    },
    {
     "row": "conv_C256_H7_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.9112751901151073,
+    "pred_logrho": 1.9112751901151075,
     "meas_logrho": 2.2652500062282885,
-    "pred_frac": 0.7748319409112088,
+    "pred_frac": 0.7748319409112087,
     "meas_frac": 0.7719626913265305
    },
    {
     "row": "conv_C256_H13_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.0481813915981366,
+    "pred_logrho": 2.048181391598137,
     "meas_logrho": 2.149105736537716,
-    "pred_frac": 0.7770094984614131,
+    "pred_frac": 0.7770094984614135,
     "meas_frac": 0.77318324704142
    },
    {
     "row": "conv_C256_H21_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.1204114158784004,
+    "pred_logrho": 2.120411415878401,
     "meas_logrho": 2.199132583713382,
-    "pred_frac": 0.7787757161350142,
+    "pred_frac": 0.7787757161350135,
     "meas_frac": 0.7750274589002267
    },
    {
     "row": "mm_M256_K128",
     "cls": "GEMM_FP32",
-    "pred_logrho": -1.1597725274210193,
+    "pred_logrho": -1.159772527421019,
     "meas_logrho": -1.2919198071411144,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -716,7 +716,7 @@
    {
     "row": "mm_M256_K512",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.7557076152828961,
+    "pred_logrho": -0.7557076152828959,
     "meas_logrho": -0.8490395181287226,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -724,7 +724,7 @@
    {
     "row": "mm_M256_K2048",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.35604759673551795,
+    "pred_logrho": -0.35604759673551845,
     "meas_logrho": -0.3421676985553378,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -732,15 +732,15 @@
    {
     "row": "mm_M256_K8192",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.07117350856852,
+    "pred_logrho": 0.07117350856852023,
     "meas_logrho": 0.0234836563123389,
-    "pred_frac": 0.00152507456251888,
+    "pred_frac": 0.0015250745625191298,
     "meas_frac": 1.52587890625e-05
    },
    {
     "row": "mm_M1024_K128",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.9517403160902078,
+    "pred_logrho": -0.951740316090208,
     "meas_logrho": -1.1217897510116015,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -748,7 +748,7 @@
    {
     "row": "mm_M1024_K512",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.564399014804746,
+    "pred_logrho": -0.5643990148047471,
     "meas_logrho": -0.600714759771379,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -756,23 +756,23 @@
    {
     "row": "mm_M1024_K2048",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.14795363822790542,
+    "pred_logrho": -0.14795363822790775,
     "meas_logrho": -0.23626291119707346,
-    "pred_frac": 0.0013666270718919182,
+    "pred_frac": 0.0013666270718921958,
     "meas_frac": 0.0
    },
    {
     "row": "mm_M1024_K8192",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.23152887978275472,
+    "pred_logrho": 0.2315288797827545,
     "meas_logrho": 0.35937368388562535,
-    "pred_frac": 0.004330772274107358,
+    "pred_frac": 0.00433077227410672,
     "meas_frac": 0.00020599365234375
    },
    {
     "row": "mm_M4096_K128",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.7171540180945306,
+    "pred_logrho": -0.7171540180945328,
     "meas_logrho": -0.9313399563716426,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -780,25 +780,25 @@
    {
     "row": "mm_M4096_K512",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.3745165107994257,
+    "pred_logrho": -0.37451651079942905,
     "meas_logrho": -0.34966368185201463,
-    "pred_frac": 0.001691488801959462,
+    "pred_frac": 0.001691488801959684,
     "meas_frac": 0.0
    },
    {
     "row": "mm_M4096_K2048",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.016386790874334922,
+    "pred_logrho": 0.016386790874338475,
     "meas_logrho": 0.19231983774689332,
-    "pred_frac": 0.004338839266131239,
+    "pred_frac": 0.004338839266131822,
     "meas_frac": 2.9206275939941406e-06
    },
    {
     "row": "mm_M4096_K8192",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.3832275295372507,
+    "pred_logrho": 0.38322752953724715,
     "meas_logrho": 0.7651112520424344,
-    "pred_frac": 0.007203289391692208,
+    "pred_frac": 0.007203289391690404,
     "meas_frac": 0.0009412765502929688
    }
   ],
@@ -806,23 +806,23 @@
    {
     "row": "conv_C16_H7_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 0.39876749970305614,
+    "pred_logrho": 0.3987674997030526,
     "meas_logrho": 1.7576477594515807,
-    "pred_frac": 0.4142500145673961,
+    "pred_frac": 0.41425001456739563,
     "meas_frac": 0.7608418367346939
    },
    {
     "row": "conv_C16_H13_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 0.7668385158626698,
+    "pred_logrho": 0.7668385158626734,
     "meas_logrho": 1.9042207908394861,
-    "pred_frac": 0.49306563455502683,
+    "pred_frac": 0.49306563455502705,
     "meas_frac": 0.7657174556213018
    },
    {
     "row": "conv_C16_H21_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.0021570871200778,
+    "pred_logrho": 1.0021570871200725,
     "meas_logrho": 1.9556098486001623,
     "pred_frac": 0.5398020363613373,
     "meas_frac": 0.7766439909297053
@@ -830,15 +830,15 @@
    {
     "row": "conv_C16_H7_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 0.5011851044169484,
+    "pred_logrho": 0.501185104416944,
     "meas_logrho": 1.9011982555947942,
-    "pred_frac": 0.46884560391871877,
+    "pred_frac": 0.46884560391871866,
     "meas_frac": 0.767578125
    },
    {
     "row": "conv_C16_H13_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 0.9781073570773549,
+    "pred_logrho": 0.9781073570773557,
     "meas_logrho": 1.7789733231777558,
     "pred_frac": 0.5696676503776925,
     "meas_frac": 0.7729591836734693
@@ -846,57 +846,57 @@
    {
     "row": "conv_C16_H21_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.2596887476898626,
+    "pred_logrho": 1.2596887476898644,
     "meas_logrho": 1.940437560704894,
-    "pred_frac": 0.6322279405162116,
+    "pred_frac": 0.6322279405162115,
     "meas_frac": 0.7652376033057852
    },
    {
     "row": "conv_C16_H7_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 0.3996720966130036,
+    "pred_logrho": 0.39967209661300274,
     "meas_logrho": 1.7475017605981789,
-    "pred_frac": 0.414534319396789,
+    "pred_frac": 0.4145343193967893,
     "meas_frac": 0.7576530612244897
    },
    {
     "row": "conv_C16_H13_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 0.7621545150563254,
+    "pred_logrho": 0.7621545150563209,
     "meas_logrho": 1.9594056448652963,
-    "pred_frac": 0.49287729496263366,
+    "pred_frac": 0.49287729496263355,
     "meas_frac": 0.7679363905325444
    },
    {
     "row": "conv_C16_H21_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 0.9851743945864726,
+    "pred_logrho": 0.9851743945864744,
     "meas_logrho": 2.071812812809357,
-    "pred_frac": 0.5413347551738656,
+    "pred_frac": 0.5413347551738655,
     "meas_frac": 0.766156462585034
    },
    {
     "row": "conv_C16_H7_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.7892177947376209,
+    "pred_logrho": -0.7892177947376204,
     "meas_logrho": -2.277272888751101,
-    "pred_frac": 0.303890911895003,
+    "pred_frac": 0.3038909118950034,
     "meas_frac": 0.0
    },
    {
     "row": "conv_C16_H13_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.4439993483835929,
+    "pred_logrho": -0.44399934838359645,
     "meas_logrho": -2.251286409164943,
-    "pred_frac": 0.3763849756363903,
+    "pred_frac": 0.3763849756363895,
     "meas_frac": 0.0
    },
    {
     "row": "conv_C16_H21_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.08517022788183937,
+    "pred_logrho": -0.08517022788183848,
     "meas_logrho": -2.108755142173603,
-    "pred_frac": 0.45604302619393733,
+    "pred_frac": 0.45604302619393755,
     "meas_frac": 0.0
    },
    {
@@ -904,13 +904,13 @@
     "cls": "W",
     "pred_logrho": 1.4375155273283973,
     "meas_logrho": 0.14707684100575996,
-    "pred_frac": 0.5686867694819424,
+    "pred_frac": 0.5686867694819423,
     "meas_frac": 0.00031887755102040814
    },
    {
     "row": "conv_C64_H13_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "W",
-    "pred_logrho": 1.774074100200985,
+    "pred_logrho": 1.7740741002009877,
     "meas_logrho": 0.4515266991749911,
     "pred_frac": 0.6383804519636544,
     "meas_frac": 0.0005085059171597633
@@ -918,33 +918,33 @@
    {
     "row": "conv_C64_H21_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.9690929348397441,
+    "pred_logrho": 1.9690929348397432,
     "meas_logrho": 2.2764685780344056,
-    "pred_frac": 0.6611896520122942,
+    "pred_frac": 0.6611896520122938,
     "meas_frac": 0.7806299603174603
    },
    {
     "row": "conv_C64_H7_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.4745719162765685,
+    "pred_logrho": 1.474571916276565,
     "meas_logrho": 2.035231108650577,
-    "pred_frac": 0.5854709205075108,
+    "pred_frac": 0.5854709205075107,
     "meas_frac": 0.7646484375
    },
    {
     "row": "conv_C64_H13_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.8846966366911726,
+    "pred_logrho": 1.8846966366911717,
     "meas_logrho": 2.121275071130819,
-    "pred_frac": 0.6789359471425342,
+    "pred_frac": 0.6789359471425341,
     "meas_frac": 0.7570153061224489
    },
    {
     "row": "conv_C64_H21_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.1589720300816806,
+    "pred_logrho": 2.1589720300816824,
     "meas_logrho": 2.4243661264213117,
-    "pred_frac": 0.7394378833217818,
+    "pred_frac": 0.7394378833217824,
     "meas_frac": 0.7779571280991736
    },
    {
@@ -958,31 +958,31 @@
    {
     "row": "conv_C64_H13_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.7086035822619667,
+    "pred_logrho": 1.708603582261965,
     "meas_logrho": 2.2007474850121755,
-    "pred_frac": 0.6092450663843141,
+    "pred_frac": 0.6092450663843142,
     "meas_frac": 0.7789386094674556
    },
    {
     "row": "conv_C64_H21_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.9614966233519464,
+    "pred_logrho": 1.9614966233519509,
     "meas_logrho": 2.361620735702777,
-    "pred_frac": 0.6615531369212041,
+    "pred_frac": 0.6615531369212044,
     "meas_frac": 0.7765554138321996
    },
    {
     "row": "conv_C64_H7_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.031882127438485064,
+    "pred_logrho": 0.03188212743848684,
     "meas_logrho": -1.6406761186959542,
-    "pred_frac": 0.400372144281819,
+    "pred_frac": 0.40037214428181933,
     "meas_frac": 0.0
    },
    {
     "row": "conv_C64_H13_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.3517310169330692,
+    "pred_logrho": 0.3517310169330701,
     "meas_logrho": -1.6783049729893804,
     "pred_frac": 0.4645218464633395,
     "meas_frac": 0.0
@@ -990,33 +990,33 @@
    {
     "row": "conv_C64_H21_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.6945130227527221,
+    "pred_logrho": 0.6945130227527248,
     "meas_logrho": -1.500661326013363,
-    "pred_frac": 0.5409252033310689,
+    "pred_frac": 0.540925203331069,
     "meas_frac": 0.0
    },
    {
     "row": "conv_C256_H7_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "W",
-    "pred_logrho": 2.3620661592237333,
+    "pred_logrho": 2.3620661592237306,
     "meas_logrho": 0.9705902008378745,
-    "pred_frac": 0.6999315021565334,
+    "pred_frac": 0.6999315021565333,
     "meas_frac": 0.005779655612244898
    },
    {
     "row": "conv_C256_H13_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.599962079072765,
+    "pred_logrho": 2.5999620790727676,
     "meas_logrho": 2.554327522703092,
-    "pred_frac": 0.7115496947819852,
+    "pred_frac": 0.7115496947819854,
     "meas_frac": 0.7827524038461539
    },
    {
     "row": "conv_C256_H21_k3_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.8906005615667576,
+    "pred_logrho": 2.8906005615667585,
     "meas_logrho": 2.655242933587568,
-    "pred_frac": 0.7703774710128601,
+    "pred_frac": 0.7703774710128607,
     "meas_frac": 0.7846513605442177
    },
    {
@@ -1024,21 +1024,21 @@
     "cls": "TF32",
     "pred_logrho": 2.4042946242363117,
     "meas_logrho": 2.4045754716762153,
-    "pred_frac": 0.6892870712284221,
+    "pred_frac": 0.6892870712284211,
     "meas_frac": 0.7845458984375
    },
    {
     "row": "conv_C256_H13_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.8151982199717516,
+    "pred_logrho": 2.8151982199717507,
     "meas_logrho": 2.368010036983343,
-    "pred_frac": 0.7839264943145391,
+    "pred_frac": 0.783926494314539,
     "meas_frac": 0.7809709821428571
    },
    {
     "row": "conv_C256_H21_k3_s2_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 3.1017773792147967,
+    "pred_logrho": 3.101777379214803,
     "meas_logrho": 2.53843545322445,
     "pred_frac": 0.8489475986236532,
     "meas_frac": 0.7855275051652892
@@ -1046,7 +1046,7 @@
    {
     "row": "conv_C256_H7_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.2300509507484225,
+    "pred_logrho": 2.2300509507484234,
     "meas_logrho": 2.4936082526051186,
     "pred_frac": 0.6322403905407955,
     "meas_frac": 0.7867107780612245
@@ -1054,31 +1054,31 @@
    {
     "row": "conv_C256_H13_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.591488244674763,
+    "pred_logrho": 2.5914882446747614,
     "meas_logrho": 2.671879814814485,
-    "pred_frac": 0.7114355613774273,
+    "pred_frac": 0.7114355613774267,
     "meas_frac": 0.7843357063609467
    },
    {
     "row": "conv_C256_H21_k3_s1_d2_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 2.897922164705303,
+    "pred_logrho": 2.897922164705305,
     "meas_logrho": 2.5957697869167977,
-    "pred_frac": 0.7703660212626632,
+    "pred_frac": 0.770366021262663,
     "meas_frac": 0.7847443664965986
    },
    {
     "row": "conv_C256_H7_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 0.5281902523899564,
+    "pred_logrho": 0.5281902523899573,
     "meas_logrho": 2.2652500062282885,
-    "pred_frac": 0.4196057178250123,
+    "pred_frac": 0.4196057178250119,
     "meas_frac": 0.7719626913265305
    },
    {
     "row": "conv_C256_H13_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 0.9844123081706222,
+    "pred_logrho": 0.9844123081706257,
     "meas_logrho": 2.149105736537716,
     "pred_frac": 0.5114974464017634,
     "meas_frac": 0.77318324704142
@@ -1086,15 +1086,15 @@
    {
     "row": "conv_C256_H21_k1_s1_d1_cudnnTrue_tf32None",
     "cls": "TF32",
-    "pred_logrho": 1.2468685840704934,
+    "pred_logrho": 1.246868584070496,
     "meas_logrho": 2.199132583713382,
-    "pred_frac": 0.5665036534438801,
+    "pred_frac": 0.56650365344388,
     "meas_frac": 0.7750274589002267
    },
    {
     "row": "mm_M256_K128",
     "cls": "GEMM_FP32",
-    "pred_logrho": -1.5112966958955592,
+    "pred_logrho": -1.5112966958955596,
     "meas_logrho": -1.2919198071411144,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -1102,7 +1102,7 @@
    {
     "row": "mm_M256_K512",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.498800064506562,
+    "pred_logrho": -0.4988000645065629,
     "meas_logrho": -0.8490395181287226,
     "pred_frac": 0.03449883486783434,
     "meas_frac": 0.0
@@ -1110,23 +1110,23 @@
    {
     "row": "mm_M256_K2048",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.5337907652943121,
+    "pred_logrho": 0.5337907652943148,
     "meas_logrho": -0.3421676985553378,
-    "pred_frac": 0.16761485501628182,
+    "pred_frac": 0.16761485501628148,
     "meas_frac": 0.0
    },
    {
     "row": "mm_M256_K8192",
     "cls": "GEMM_FP32",
-    "pred_logrho": 1.7629827156997786,
+    "pred_logrho": 1.7629827156997848,
     "meas_logrho": 0.0234836563123389,
-    "pred_frac": 0.33587155461469975,
+    "pred_frac": 0.3358715546147001,
     "meas_frac": 1.52587890625e-05
    },
    {
     "row": "mm_M1024_K128",
     "cls": "GEMM_FP32",
-    "pred_logrho": -1.859058934023817,
+    "pred_logrho": -1.859058934023814,
     "meas_logrho": -1.1217897510116015,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -1134,7 +1134,7 @@
    {
     "row": "mm_M1024_K512",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.8226992006497929,
+    "pred_logrho": -0.8226992006497893,
     "meas_logrho": -0.600714759771379,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -1142,23 +1142,23 @@
    {
     "row": "mm_M1024_K2048",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.18634498752217432,
+    "pred_logrho": 0.18634498752217077,
     "meas_logrho": -0.23626291119707346,
-    "pred_frac": 0.06248518782382495,
+    "pred_frac": 0.062485187823824506,
     "meas_frac": 0.0
    },
    {
     "row": "mm_M1024_K8192",
     "cls": "GEMM_FP32",
-    "pred_logrho": 1.23643349321849,
+    "pred_logrho": 1.2364334932184908,
     "meas_logrho": 0.35937368388562535,
-    "pred_frac": 0.20291409427650398,
+    "pred_frac": 0.20291409427650353,
     "meas_frac": 0.00020599365234375
    },
    {
     "row": "mm_M4096_K128",
     "cls": "GEMM_FP32",
-    "pred_logrho": -2.3878114915787116,
+    "pred_logrho": -2.387811491578714,
     "meas_logrho": -0.9313399563716426,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -1166,7 +1166,7 @@
    {
     "row": "mm_M4096_K512",
     "cls": "GEMM_FP32",
-    "pred_logrho": -1.2168642638067935,
+    "pred_logrho": -1.216864263806797,
     "meas_logrho": -0.34966368185201463,
     "pred_frac": 0.0,
     "meas_frac": 0.0
@@ -1174,7 +1174,7 @@
    {
     "row": "mm_M4096_K2048",
     "cls": "GEMM_FP32",
-    "pred_logrho": -0.17431179479267556,
+    "pred_logrho": -0.1743117947926791,
     "meas_logrho": 0.19231983774689332,
     "pred_frac": 0.0,
     "meas_frac": 2.9206275939941406e-06
@@ -1182,9 +1182,9 @@
    {
     "row": "mm_M4096_K8192",
     "cls": "GEMM_FP32",
-    "pred_logrho": 0.8421629356067495,
+    "pred_logrho": 0.8421629356067521,
     "meas_logrho": 0.7651112520424344,
-    "pred_frac": 0.09988045140565216,
+    "pred_frac": 0.09988045140565283,
     "meas_frac": 0.0009412765502929688
    }
   ]

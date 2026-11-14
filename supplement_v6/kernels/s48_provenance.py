@@ -40,17 +40,29 @@ def sha256(path):
 
 
 def cited_artifacts():
+    """Scan the canonical prose set only: MANUSCRIPT.md, sections/, APPENDIX_HISTORY.md.
+
+    N3 repair: walking all of paper/ made the count depend on which auxiliary notes happened to sit in the
+    directory, so the repo and the package reported different provenance totals (52 vs 51) for the same
+    manuscript. The canonical set exists identically in both, so the two counts now agree by construction.
+    """
+    targets = []
+    for fn in ("MANUSCRIPT.md", "APPENDIX_HISTORY.md"):
+        p = os.path.join(PAPER, fn)
+        if os.path.exists(p):
+            targets.append(p)
+    secdir = os.path.join(PAPER, "sections")
+    if os.path.isdir(secdir):
+        for fn in sorted(os.listdir(secdir)):
+            if fn.endswith(".md"):
+                targets.append(os.path.join(secdir, fn))
     cited = {}
-    for dirpath, _dirs, files in os.walk(PAPER):
-        for fn in files:
-            if not fn.endswith(".md") or fn == "PROVENANCE.md":
-                continue  # PROVENANCE.md is generated; scanning it would self-poison
-            p = os.path.join(dirpath, fn)
-            with open(p, encoding="utf-8", errors="replace") as f:
-                text = f.read()
-            for m in ART_RE.finditer(text):
-                name = m.group(1)
-                cited.setdefault(name, set()).add(os.path.relpath(p, ROOT))
+    for p in targets:
+        with open(p, encoding="utf-8", errors="replace") as f:
+            text = f.read()
+        for m in ART_RE.finditer(text):
+            name = m.group(1)
+            cited.setdefault(name, set()).add(os.path.relpath(p, ROOT))
     return cited
 
 
@@ -174,6 +186,15 @@ def main():
         json.dump({"date": __import__("datetime").datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
                    "n_cited": len(cited), "n_found": len(entries), "missing": missing,
                    "entries": entries}, f, indent=1)
+    # N3 repair: the repo-root results/ shim held a stale copy of this file, which is how the manuscript,
+    # the shipped json and PACKAGE_MANIFEST came to disagree on provenance counts. Write both locations
+    # from the same run so no second copy can drift.
+    root_res = os.path.join(ROOT, "results")
+    if os.path.isdir(root_res) and os.path.abspath(root_res) != os.path.abspath(RES):
+        with open(os.path.join(root_res, "s48_provenance.json"), "w", encoding="utf-8") as f:
+            json.dump({"date": __import__("datetime").datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                       "n_cited": len(cited), "n_found": len(entries), "missing": missing,
+                       "entries": entries}, f, indent=1)
     print("cited=%d found=%d missing=%d" % (len(cited), len(entries), len(missing)))
     for e in entries:
         print("  %-34s %s %8s %s" % (e["artifact"],

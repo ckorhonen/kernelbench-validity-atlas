@@ -3,10 +3,13 @@
   {
    "id": "A1",
    "name": "abstract numbers present in audited manuscript",
-   "pass": true,
+   "pass": false,
    "detail": {
     "n_numbers": 22,
-    "absent": []
+    "absent": [
+     "0.9231",
+     "78.2"
+    ]
    }
   },
   {
@@ -59,7 +62,7 @@
    }
   }
  ],
- "pass": 6,
- "fail": 0,
+ "pass": 5,
+ "fail": 1,
  "total": 6
 }

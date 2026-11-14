@@ -372,3 +372,11 @@ the class held by zero-padding, the declared trees cost 0.22-0.45% of the refere
 0.66-680 at 1e-4, inherit none of its exceedance set (frac 0.0 vs frac_A up to 0.787), and reach the gate
 themselves only near u ~ 400. Column consequence: the order term is a shallow surface in (u, depth), not a constant,
 and it is negligible until the reference's own margin is hundreds of times the budget.
+
+s102 (second tuple, GB10): the same declared fixed-class permutation on T2 (1x1, C=192->160, 211x211) reproduces the
+shape of the surface and falsifies its single number. Above u=10 the ratio is flat within 1.13x (0.00096-0.00130) but
+2.0-2.6x below T1's matched-u values, all 24 comparisons outside the prereg's 1.5x band, so the frozen branch fires
+TUPLE_SPECIFIC; frac_vs_ref stays exactly 0.0 while frac_A reaches 0.789, and the permutation's own crossing sits at
+737 < u < 1473. Column consequence: the order term ships as a per-tuple entry (negligible everywhere measured, but its
+magnitude is not portable), and the dispatch probe adds that the 1x1 family at this shape does not leave FP32_SIMT
+until C_in=192 — engine class is a decision over the whole tuple, not a C_in threshold.

@@ -945,3 +945,15 @@ property, not an estimator property). Prose: ATLAS_E2.md section + column-note a
 ## Next: (1) LEAD T2 (1x1, C_in=192) under the same declared trees to test whether the low-u spread and depth increment are
 ## tuple-specific; (2) E3 merge-tree sweep; (3) home sweep + sylve novelty; (4) reflection 14:54Z; (5) package repack when a
 ## submission reopens; (6) s51 does not cover s97/s98/s100/s101 (declared); (7) 24h-E1/CTA-edge/bt parked.
+
+## DONE ~10:2xZ EST 11-14: s102 — second tuple: the fixed-class order surface replicates in shape, its single number does not
+## T2 (1x1, C=192->160, 211x211, 14.2M outputs) under the identical s101b machinery: controls clean (repeat 7/7, tie-out
+## 2.3e-6, class held), frozen BRANCH_TUPLE_SPECIFIC — 24 matched-u ratios 0.39-0.51, c flat within 1.13x above u=10
+## (0.00096-0.00130) but 2.0-2.6x below T1; frac_vs_ref 0.0 while frac_A 0.789; permutation crossing 737<u<1473 vs
+## 170-680; depth increment 1.37->1.06 non-monotone; K4: 1x1 family stays magma_sgemmEx FP32_SIMT through C_in 64 and
+## only reaches cutlass tensorop at C_in=192 => engine class is a whole-tuple decision. Order term ships per-tuple.
+## Next: (1) LEAD the discriminating tuple for the magnitude (same engine instance at T1's K=576, or T1 at C_in=192),
+## prereg first, kill: ratio stays at T2's level => engine instance owns the magnitude and the column carries engine
+## identity; (2) E3 merge-tree sweep (third deferral); (3) home sweep + sylve novelty; (4) reflection 18:08Z;
+## (5) package repack when a submission reopens; (6) s51 does not cover s97/s98/s100/s101/s102 (declared);
+## (7) 24h-E1/CTA-edge/bt parked.

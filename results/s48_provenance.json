@@ -1,5 +1,5 @@
 {
- "date": "2026-11-14T05:38:17Z",
+ "date": "2026-11-14T15:17:38Z",
  "n_cited": 85,
  "n_found": 85,
  "missing": [],
@@ -1255,9 +1255,9 @@
    "cited_in": [
     "paper/sections/s3b_conv_anchor.md"
    ],
-   "sha256": "adae9e7fc93496ff7961138964a7ab358064d227963ce795d4f6d93f5f8fd270",
-   "bytes": 3289,
-   "mtime_utc": "2026-10-25T18:07:35Z",
+   "sha256": "35324194ca7a95ede49bf1cfb2e3272dbfaa963d835d386c3540a92262791e5e",
+   "bytes": 3288,
+   "mtime_utc": "2026-11-14T15:17:38Z",
    "producers": [
     "lab/s48_prose_audit.py"
    ],
@@ -1311,7 +1311,7 @@
    ],
    "sha256": "9d1c86ae0a795cf17471c5f2005f974446e95acc773d8db55d0ee88345513212",
    "bytes": 7782,
-   "mtime_utc": "2026-11-14T05:37:50Z",
+   "mtime_utc": "2026-11-14T15:17:36Z",
    "producers": [
     "lab/s50_prose_audit.py"
    ],
@@ -1344,7 +1344,7 @@
    ],
    "sha256": "531f90793b9bb8f5f8780db733961dcddfe0afbddec623ef723a50cc488f6b6b",
    "bytes": 10626,
-   "mtime_utc": "2026-11-14T05:38:00Z",
+   "mtime_utc": "2026-11-14T15:17:36Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],
@@ -1369,7 +1369,7 @@
    ],
    "sha256": "9fbcd0b3b68e5308b37c3844f1fa35dd6a046a13b9527bab7c82de86b2f02e6e",
    "bytes": 1764,
-   "mtime_utc": "2026-11-14T05:38:00Z",
+   "mtime_utc": "2026-11-14T15:17:38Z",
    "producers": [
     "lab/s53_intro_audit.py"
    ],

@@ -21,14 +21,22 @@ implementations can match it, on shapes that a kernel author would reasonably tr
 does not decide a candidate's verdict by itself: on the 56 conv shapes of the held-out contract set every row
 has both passing and failing arms against the same recorded reference
 (`results/r57_candidate_admission.json`), so what separates a pass from a failure is the candidate's
-arithmetic relative to that reference, and the engine sets how much of the budget the candidate must clear.
+arithmetic relative to that reference. The check compares $|e_c - e_r|$ with the element budget, where $e_r$ is
+the reference's own deviation from exact arithmetic: the engine sets $e_r$, and agreement is a property of the
+difference rather than of either error magnitude alone. Nothing here subtracts the reference's error from a
+shared allowance; a candidate that matches the reference closely passes whatever the reference's absolute
+error is.
 
-The paper answers that question with three measured objects: a dispatch map over declared coordinates, a
-magnitude surface that predicts how much of the budget the reference consumes, and a candidate-level
-admission study whose verdicts are predictable out of fold from declared features (AUC 0.9747 over 672
-arm-checks, matching a two-line arm-class baseline) while the operating threshold inside a class is measured
-rather than predicted. It also reports where the continuous form of the
-original hypothesis failed, because that failure is the reason the deliverable changed shape.
+The paper's contribution is one statement about one object: a benchmark row's verdict is a function of the
+reference realization as well as of the candidate, so a delivery claim needs the reference's own accuracy as a
+measured quantity beside it. Four quantities carry that statement, each defined in §1.2 and each reported once
+with its population and the inference it supports — reference accuracy (how far the recorded reference sits
+from an fp64 anchor: `rho_max`, `frac_over`), candidate agreement (the evaluator's own whole-tensor check of a
+candidate against that reference), engine prediction (whether the dispatched numerical engine is recoverable
+from declared coordinates), and selection cost (what a zero-probe rule versus a budgeted autotune costs under
+one stated policy). The dispatch map is the measurement behind engine prediction; the tolerance-conditional
+frontier is descriptive. The paper also reports where the continuous form of the original hypothesis failed,
+because that failure is why the deliverable changed shape.
 
 ## 1.2 Definitions
 
@@ -69,8 +77,10 @@ executably in §6.5.
 
 ## 1.4 Supported findings
 
-**The dispatch map is measured, deterministic and categorical.** Across 17 cells and two repeats each, the
-engine class agreed 34/34 times (`results/tuple_surface.json`). It is a step function of declared coordinates,
+**The dispatch map is measured, categorical and repeat-consistent.** Across 17 cells and two repeats each, the
+engine class agreed 34/34 times within one process (`results/tuple_surface.json`). Repeat consistency is what
+those data support; a fresh process or a contended device could distinguish a deterministic dispatch from a
+cached decision, and that is the open condition named in §7.3. Within that scope it is a step function of declared coordinates,
 and the steps are one unit wide: stride 2, dilation 2, real channels-last layout and C=16 each leave the
 winograd corner, while pad, batch and C=64 stay inside it. The fp64 anchor is class O in every cell. Table 1
 (§2.5) is the map itself.
@@ -123,8 +133,8 @@ available, so architecture-level statements remain reanalysis of published numbe
 here. The selector's economics in §6 are eager-only by construction and support no compile claim.
 
 The two open questions the paper does not answer are named rather than buried: whether the frozen class
-predictor beats a majority baseline out of family (untested), and whether $\rho_{\max}$ is a bias statistic
-rather than a tail statistic under a within-class geometry sweep (untested). Both are registered as the next
+predictor beats a majority baseline out of family (untested), and whether $\rho_{\max}$'s rank/ordering compressibility (§4.5, LOO Spearman) also holds as a magnitude law
+under a within-class geometry sweep (untested: the compression result is a rank result, not a bias statistic). Both are registered as the next
 measurements.
 
 ## 1.6 What a reader should do with this
@@ -142,15 +152,29 @@ require a GPU.
 Three 2026 papers already measure parts of this premise, and the paper's claim is stated so that it does not
 collide with them. Du et al. (arXiv:2609.22220) measure what a checker fails to detect: 16.9% of witnessed
 faults are missed, the blind band grows with reduction size, and official references violate their own
-tolerance on two problems. Zhang et al. (arXiv:2607.16241) measure how speedups move under a TF32 baseline
-with hidden input distributions, from 1.43x to 0.88x. Agarwal et al. (arXiv:2609.21058) measure workload
+tolerance on two problems. Zhang et al. (arXiv:2607.16241) build a verified benchmark that enables TF32 as the reference
+baseline rather than replacing a TF32 baseline with a stricter one, and report speedups moving from 1.43x to
+0.88x under hidden input distributions, and
+their Appendix J Table 6 evaluates tolerance sensitivity directly at 1e-3 and 1e-4, with correctness and
+speedup moving together (99%/0.90x to 83%/1.25x on their GPT-5.5 Level-1 results) and the selection effect
+from the changing admitted population explained. Agarwal et al. (arXiv:2609.21058) measure workload
 coverage and report a zeros-pass hole on 4 of 60 L1 problems. Each scores the *protocol*: what faults a
 checker catches, how a speedup moves when the baseline changes, which workloads a kernel set governs.
 
-The distinct object here is the *admissible-set frontier*: which candidate arm is fastest among the arms that
-satisfy a declared tolerance, as a function of that tolerance. It is measured in §5.4 and it is not implied by
-any of the three: on 56 conv shapes, relaxing the gate from 1e-4 to 1e-2 moves the fastest admissible arm on
-24 shapes while the reference's own engine-class partition is unchanged. That makes the 1e-4 atlas a slice of
+Tolerance-dependent admissibility is therefore already studied in the cited literature, and this paper does
+not claim that variable as new. The object here is narrower: the per-shape minimum over a fixed candidate
+pool at a declared tolerance, reported shape by shape rather than aggregated over a suite, together with the
+dispatch map that says which reference realization set the budget in the first place. What the map adds
+beyond an aggregate sensitivity curve is a matched measurement of the reference axis: holding shapes, inputs and
+candidate outputs fixed and changing only the reference realization, the delivered arm changes on **21 of 56
+conv rows** against the fp64 anchor, and on **11 of 56** from an engine-class swap alone (default dispatch to
+the fp32-SIMT route), with admissible-set membership changing on 48 and 15 rows respectively
+(`results/gate_stability.jsonl`, prereg `lab/r41_gate_stability_prereg.md`, sha 5ff93b20, run 2026-10-22). So
+the reference realization is a measured first-order determinant of admission, not an assumed baseline. The
+stepwise shape of the finite-pool frontier is a separate descriptive fact, reported as such in §5.4; the 1e-4
+engine-class partition is unchanged across tolerances. Measured: on 56 conv shapes,
+relaxing the gate from 1e-4 to 1e-2 moves the fastest admissible arm on 24 shapes (23 to a strictly faster
+arm, 1 tie) while the reference's engine-class partition is unchanged. That makes the 1e-4 atlas a slice of
 a family rather than the whole object, and it is the reason the paper is framed as a slice atlas. The three
 papers are cited and distinguished in §9.5.
 

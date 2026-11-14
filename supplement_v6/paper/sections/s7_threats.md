@@ -89,7 +89,10 @@ peer with cudnn internals access — stated here rather than buried.
 
 ## 7.4 What would make us withdraw the primary claim
 
-The certificate is the contribution. It withdraws if any of the following holds:
+The contribution is one statement — a benchmark row's verdict is a function of the reference realization as
+well as of the candidate, so a delivery claim needs the reference's own accuracy as a measured quantity beside
+it (§1.1) — carried by the four quantities defined there. The certificate is the form that makes it checkable,
+not a separate contribution (§9). The statement withdraws if any of the following holds:
 
 1. An anchor-declared rerun shows delivery invariant across all three reference realizations — then the
    lattice is ceremony and the certificate reduces to a flag.

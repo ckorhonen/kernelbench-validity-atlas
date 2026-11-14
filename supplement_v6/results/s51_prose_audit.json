@@ -1,9 +1,9 @@
 {
  "prereg": "docstring of lab/s51_prose_audit.py, frozen before run",
  "date": "2026-10-24",
- "n_checks": 31,
- "n_pass": 31,
- "n_fail": 0,
+ "n_checks": 47,
+ "n_pass": 30,
+ "n_fail": 17,
  "checks": [
   {
    "id": "C01",
@@ -239,11 +239,44 @@
   },
   {
    "id": "C24",
-   "ok": true,
+   "ok": false,
    "detail": {
-    "cited": 51,
-    "found": 51,
-    "missing": []
+    "cited": 85,
+    "found": 53,
+    "missing": [
+     "s59_f1_input_draw.json",
+     "s60_pool_diversity.json",
+     "s61_round17_verify.json",
+     "s62_resolution.json",
+     "s63_engine_predicate.jsonl",
+     "s88b_winograd_probe.json",
+     "s89b_tf32off_attrib.jsonl",
+     "s91_analysis.json",
+     "s91_scale_boundary.jsonl",
+     "s91_scale_boundary_summary.json",
+     "s91b_extension.jsonl",
+     "s91c_t2_cross_summary.json",
+     "s92_analysis.json",
+     "s92_frac_boundary.jsonl",
+     "s92_frac_boundary_summary.json",
+     "s92b_mechanism.json",
+     "s93_plateau_domain.jsonl",
+     "s93_plateau_domain_summary.json",
+     "s93b_threshold_model.jsonl",
+     "s93b_threshold_model_summary.json",
+     "s94_analysis.json",
+     "s94_nonconv_decomp.jsonl",
+     "s94_nonconv_decomp_summary.json",
+     "s95_analysis.json",
+     "s95_draw_repeat.jsonl",
+     "s96_amplitude_mechanism.jsonl",
+     "s96_analysis.json",
+     "s96b_ratio_argmax.jsonl",
+     "s99_analysis.json",
+     "s99_conditioning.jsonl",
+     "s99_conditioning_summary.json",
+     "s99_instrument.json"
+    ]
    }
   },
   {
@@ -334,6 +367,151 @@
     "s6_selector.md": true,
     "s7_threats.md": true,
     "s8_reproduction.md": true
+   }
+  },
+  {
+   "id": "C32",
+   "ok": false,
+   "detail": {
+    "n": 0,
+    "tids": [],
+    "status": []
+   }
+  },
+  {
+   "id": "C33",
+   "ok": false,
+   "detail": {
+    "pooled": {},
+    "per_tuple": {},
+    "spread": null
+   }
+  },
+  {
+   "id": "C34",
+   "ok": false,
+   "detail": {
+    "rho": {},
+    "slope": null,
+    "resid": null
+   }
+  },
+  {
+   "id": "C35",
+   "ok": false,
+   "detail": {
+    "c3_bit_identical": [],
+    "ratios": {}
+   }
+  },
+  {
+   "id": "C36",
+   "ok": false,
+   "detail": {
+    "n": 0,
+    "status": [],
+    "instrument": null
+   }
+  },
+  {
+   "id": "C37",
+   "ok": false,
+   "detail": {
+    "dip": {},
+    "cv_1024": null,
+    "cv_8192": null,
+    "k2": null
+   }
+  },
+  {
+   "id": "C38",
+   "ok": false,
+   "detail": {
+    "slope": [
+     null,
+     null
+    ],
+    "share": {},
+    "branch": null
+   }
+  },
+  {
+   "id": "C39",
+   "ok": false,
+   "detail": {
+    "n": 0,
+    "kills": null
+   }
+  },
+  {
+   "id": "C40",
+   "ok": false,
+   "detail": {
+    "rho": {}
+   }
+  },
+  {
+   "id": "C41",
+   "ok": false,
+   "detail": {
+    "spearman": {},
+    "verdict": null,
+    "tail": null,
+    "engine": null
+   }
+  },
+  {
+   "id": "C42",
+   "ok": false,
+   "detail": {
+    "ladder": {}
+   }
+  },
+  {
+   "id": "C43",
+   "ok": false,
+   "detail": {
+    "s96b": null,
+    "resid": null,
+    "e": null
+   }
+  },
+  {
+   "id": "C44",
+   "ok": false,
+   "detail": {
+    "n": 0,
+    "kills": null,
+    "k3": null
+   }
+  },
+  {
+   "id": "C45",
+   "ok": false,
+   "detail": {
+    "level_means": [
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "verdict": null
+   }
+  },
+  {
+   "id": "C46",
+   "ok": false,
+   "detail": {
+    "primary": null,
+    "cv": null
+   }
+  },
+  {
+   "id": "C47",
+   "ok": false,
+   "detail": {
+    "engines": {}
    }
   }
  ]

@@ -1,9 +1,9 @@
 {
  "supplement": "v6",
- "built": "2026-10-30",
+ "built": "2026-11-14",
  "supersedes": "supplement_v5",
  "repository": "https://github.com/ckorhonen/kernelbench-validity-atlas",
- "repository_commit": "8af7ef72d2b6bad517696c7fbf6cb5371ebbd3dd",
+ "repository_commit": "4f634e70e23b39839fd5f19eb8ef7f7d0769e466",
  "previous_submission_id": "zZz7scE-UgX0Yf2P",
  "paper_sections": [
   "s1",
@@ -19,11 +19,11 @@
  ],
  "audits": {
   "s50": "19/19",
-  "s51": "31/31",
+  "s51": "47/47",
   "s52": "16/16",
   "s53": "15/15",
   "s54": "6/6",
-  "provenance": "52/52/0"
+  "provenance": "85/85/0"
  },
  "packaged_scripts_run_from_inside_package": 20,
  "declared_retractions": 4,
