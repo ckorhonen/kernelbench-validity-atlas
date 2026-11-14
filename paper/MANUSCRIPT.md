@@ -252,6 +252,12 @@ the ratio) and not by cancellation depth (−0.021). The consequence for certifi
 per-shape reference margin is quoted with its draw distribution, and the statistic to rely on is the reference-clean
 verdict at the shipped gate, whose population tail moves 2% where the extremum moves 41%.
 
+The caveat that conditioning was only sampled, not designed, is discharged by construction: with the right operand
+built to a prescribed singular spectrum (kappa swept 1→1e4 at fixed Frobenius norm, five draws per level, engine
+identity checked at every level), the level means of the ratio move only 1.17-1.36 while the within-level draw spread
+stays at 5-23% — the spectral-amplification explanation is retired rather than left untested (§4.5h,
+`results/s99_analysis.json`).
+
 ## 2.5 Figure 1 — the configuration-to-verdict chain
 
 Figure 1 is a measured chain, not a diagram of a hypothesis. Each row is a configuration that was actually

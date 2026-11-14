@@ -427,6 +427,48 @@ ck("C43", s96b.get("n_ok") == 32 and s96b.get("resid_max", 1) < 1e-6
    and abs(s96b.get("spearman", {}).get("rho_vs_depth_at_ratio_argmax", 0) - -0.020894428152492667) < 1e-9,
    {"s96b": s96b.get("spearman"), "resid": s96b.get("resid_max"), "e": s96b.get("e_at_ratio_argmax")})
 
+try:
+    s99rows = [json.loads(l) for l in open(os.path.join(RES, "s99_conditioning.jsonl"))]
+except Exception:
+    s99rows = []
+s99 = load("s99_analysis.json") or {}
+s99sum = load("s99_conditioning_summary.json") or {}
+s99inst = load("s99_instrument.json") or {}
+ck("C44", len(s99rows) == 25 and sorted({r.get("level_kappa") for r in s99rows}) == [1.0, 10.0, 100.0, 1000.0, 10000.0]
+   and s99inst.get("k1_bit_identical") is True
+   and s99sum.get("k1_instrument_bit_identical") is True and s99sum.get("k2_engine_identical_across_levels") is True
+   and s99sum.get("k3_construction_ok") is True and s99sum.get("k3_construction_worst_rel", 1) < 1e-3
+   and s99.get("kills") == {"K1": True, "K2": True, "K3": True},
+   {"n": len(s99rows), "kills": s99.get("kills"), "k3": s99sum.get("k3_construction_worst_rel")})
+
+d99 = s99.get("descriptive", {})
+means = [d99.get(str(l), {}).get("rho_mean") for l in (1.0, 10.0, 100.0, 1000.0, 10000.0)]
+ck("C45", all(m is not None for m in means)
+   and abs(means[0] - 1.341282429171134) < 1e-9 and abs(means[1] - 1.3011537045723727) < 1e-9
+   and abs(means[2] - 1.356215893077395) < 1e-9 and abs(means[3] - 1.167914424888174) < 1e-9
+   and abs(means[4] - 1.2084304498531317) < 1e-9
+   and abs(max(means) / min(means) - 1.1613) < 5e-4
+   and s99.get("verdict") == "P2_RETIRE_H1",
+   {"level_means": means, "verdict": s99.get("verdict")})
+
+ck("C46", abs(s99.get("primary", {}).get("spearman_kappa_rho", 0) - -0.35) < 1e-9
+   and abs(s99.get("primary", {}).get("span", 0) - 1.9229777788469817) < 1e-9
+   and abs(d99.get("within_level_cv_median", 0) - 0.09121691255868244) < 1e-9
+   and abs(d99.get("within_level_cv_max", 0) - 0.2271600803478701) < 1e-9
+   and abs(d99.get("rho_min", 0) - 1.0198520021760438) < 1e-9
+   and abs(d99.get("rho_max", 0) - 1.9611527378971358) < 1e-9
+   and abs(d99.get("spearman_median_absX_rho", 0) - 0.37615384615384617) < 1e-9
+   and abs(d99.get("spearman_depth_rho", 0) - -0.10538461538461538) < 1e-9
+   and abs(d99.get("spearman_sigma_max_b_rho", 0) - -0.3192307692307692) < 1e-9,
+   {"primary": s99.get("primary"), "cv": d99.get("within_level_cv_median")})
+
+ck("C47", all(v.get("frac_ship_mean") == 0.0 for v in d99.values() if isinstance(v, dict) and "frac_ship_mean" in v)
+   and all(len(v.get("engine") or []) == 1 for v in d99.values() if isinstance(v, dict) and "engine" in v)
+   and len({json.dumps(v.get("engine")) for v in d99.values() if isinstance(v, dict) and "engine" in v}) == 1
+   and all(1e-6 <= v.get("frac_strict_mean", 0) <= 1e-5
+           for v in d99.values() if isinstance(v, dict) and "frac_strict_mean" in v),
+   {"engines": {k: v.get("engine") for k, v in d99.items() if isinstance(v, dict) and "engine" in v}})
+
 n_pass = sum(1 for c in checks if c["ok"])
 out = {"prereg": "docstring of lab/s51_prose_audit.py, frozen before run",
        "date": "2026-10-24", "n_checks": len(checks), "n_pass": n_pass,

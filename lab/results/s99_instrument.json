@@ -1,0 +1,59 @@
+{
+ "k1_bit_identical": true,
+ "base": {
+  "script": "s99_conditioning",
+  "level_kappa": 100.0,
+  "level_idx": 2,
+  "draw": 0,
+  "seed": 9920,
+  "shape": [
+   1024,
+   1024,
+   4096
+  ],
+  "rho_ref": 1.1675032919063182,
+  "frac_over_strict": 3.814697265625e-06,
+  "frac_over_shipped": 0.0,
+  "sigma_max_b_prescribed": 193.89862060546875,
+  "sigma_min_b_prescribed": 1.9389861822128296,
+  "sigma_max_b_measured": 193.8986065617674,
+  "sigma_min_b_measured": 1.938986046720832,
+  "kappa_measured": 100.00000097457338,
+  "b_frobenius": 2048.0001712422422,
+  "sigma_max_a": 96.02073274453357,
+  "median_absX": 43.002735346199294,
+  "max_absX": 305.5037924649957,
+  "extremum_absX": 0.04545973477014309,
+  "extremum_depth": 0.0010571358869188993,
+  "extremum_abs_err": 0.00012205776818996483,
+  "n_fail_strict": 4
+ },
+ "repeat": {
+  "script": "s99_conditioning",
+  "level_kappa": 100.0,
+  "level_idx": 2,
+  "draw": 0,
+  "seed": 9920,
+  "shape": [
+   1024,
+   1024,
+   4096
+  ],
+  "rho_ref": 1.1675032919063182,
+  "frac_over_strict": 3.814697265625e-06,
+  "frac_over_shipped": 0.0,
+  "sigma_max_b_prescribed": 193.89862060546875,
+  "sigma_min_b_prescribed": 1.9389861822128296,
+  "sigma_max_b_measured": 193.8986065617674,
+  "sigma_min_b_measured": 1.938986046720832,
+  "kappa_measured": 100.00000097457338,
+  "b_frobenius": 2048.0001712422422,
+  "sigma_max_a": 96.02073274453357,
+  "median_absX": 43.002735346199294,
+  "max_absX": 305.5037924649957,
+  "extremum_absX": 0.04545973477014309,
+  "extremum_depth": 0.0010571358869188993,
+  "extremum_abs_err": 0.00012205776818996483,
+  "n_fail_strict": 4
+ }
+}

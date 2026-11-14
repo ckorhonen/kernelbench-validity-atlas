@@ -331,3 +331,27 @@ it (−0.021). So the amplitude is an error-magnitude lottery at the worst-cance
 Column note addition: a per-shape rho_ref ships with its draw distribution and never as a shape property; at K=4096
 all 32 draws exceed rho_ref=1 (min 1.046), so the upper end of the 2048<K<4096 crossing is draw-robust while its
 magnitude is a sample. Scope: matmul, one geometry, fp32, 32 draws, GB10 sm_120.
+
+## s99 (2026-11-14): designed conditioning retires H1
+
+s96's null on spectral amplification had no leverage — iid Gaussian draws hold sigma_max inside 0.2% — so s99 designs
+the conditioning instead of sampling it: b = U·diag(s)·Vᵀ with orthonormal factors from QR of Gaussian draws,
+log-spaced singular values, Frobenius norm fixed at unit-RMS scale, kappa swept 1→1e4 at M=N=1024, K=4096 with the
+benchmark's fp32 flags, five draws per level (prereg `lab/s99_prereg.md` at `e35d699`, frozen pre-run; artifacts
+`results/s99_conditioning.jsonl` 25/25, `s99_instrument.json`, `s99_conditioning_summary.json`,
+`s99_analysis.json`).
+
+Kills all clean: instrument repeat bit-identical on rho_ref and frac_over; construction check reproduces the
+prescribed singular values to 7.8e-6 relative; and every level dispatches the same
+`cutlass_80_simt_sgemm_256x128_8x4_nn_align1` set, so conditioning does not perturb dispatch.
+
+Level means of rho_ref: 1.341 (kappa 1), 1.301 (10), 1.356 (100), 1.168 (1e3), 1.208 (1e4) — a 1.16x spread over four
+decades of conditioning, with sigma_max(b) rising only 64.0→273.6 at fixed Frobenius norm. Row-level span is 1.92x
+(1.020-1.961) and it sits entirely inside the levels: within-level CV is 9.1/11.8/22.7/8.8/5.1% (median 9.1%), the
+same spread s96 measured at Gaussian inputs. Frozen verdict **P2_RETIRE_H1** (Spearman(kappa, rho_ref) −0.35 < 0.40
+bar, span 1.92x clears the 1.3x clause). Descriptive: Spearman(median|X|) +0.376, sigma_max(b) −0.319, depth −0.105.
+Strict-gate population fraction 3-5e-6, shipped 1e-2 fraction exactly 0.0 on all rows.
+
+Column note addition: the amplitude lottery is now a statement that survives a designed intervention, not just a
+sampled null — a per-shape rho_ref ships with its draw distribution even when conditioning is fixed. Scope: matmul,
+M=N=1024 K=4096, fp32, GB10 sm_120, five draws per level.

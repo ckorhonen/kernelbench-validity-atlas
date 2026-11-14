@@ -1,0 +1,12 @@
+# Meta-reflection 91ShKEhKTS4BrOiF — "Persist or pivot"
+Answered 2026-11-14T05:33:05Z (next due 08:33:05Z).
+
+Follow-up, candidly. Last tick's plan named E2b (designed conditioning) for this tick and the depth bisection after it. Instead s98 ran E2, the lane's primary contrast, because the exploitation lane cannot be built on a school whose own 1.6x claim is unreproduced: E2 now returns a partial contrast (V1 rho_vs_ref .0132 [.0110,.0142] vs V2 .0584 [.0554,.0616], disjoint, ratio .214) with exact_frac only .479, so tree and estimator are not separated; an accuracy inversion (V2 is 7.9x closer to fp64 than the reference and 1.7x faster, compile faster than both); frac_over exactly 0.0 at 1e-4 on 32/32 rows; and the launch geometry grid[16,1,1] block[32,4,1], identical at both shapes, so per-thread sequential depth is 32,768 vs 4,096. Artifacts results/s98_cuda_pair.jsonl, s98_instrument.json, ATLAS_E2.md.
+
+What that means for persist-or-pivot. The lane's object has changed from "is bit identity necessary" to "what is the exchange rate between arithmetic-order deviation and admissible margin". E2 gives the exchange rate at one shape and shows the budget is not binding there, so the coordinate that carries the contrast is per-thread depth, and it is a two-point direction, not a located boundary.
+
+Missing information, named: (1) where the permutation cost becomes first-order in depth (bisection owed, monotonicity first); (2) whether conditioning (kappa of an operand) moves the reference amplitude at all - the s96 null had no leverage because Gaussian draws hold sigma_max inside 0.2%, and the probe is running this tick as s99 (prereg e35d699 frozen pre-run: kappa swept 1..1e4 at fixed M=N=1024 K=4096, Frobenius norm fixed, 5 draws/level, kill |Spearman|>=0.40 for a predictor, <0.40 with span>=1.3x retires H1); (3) whether a Welford V1 closes the 52% exact-fraction gap, which is the tree-vs-estimator separator.
+
+Decision: persist with the exploitation lane. Next substantive action: finish s99 and report its frozen branch, then bisect per-thread depth between 4,096 and 32,768 at fixed shape with a monotonicity check, then the Welford V1 arm.
+
+Reconsider if: s99 returns P2 or P3 (conditioning carries nothing) and the depth bisection is non-monotone - then the lane has no coordinate, and I pivot to the atlas (B), naming post/4's small-case regression edge in derived coordinates.

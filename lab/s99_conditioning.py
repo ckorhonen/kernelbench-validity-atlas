@@ -73,9 +73,10 @@ def build_b(kappa, seed):
     g = torch.Generator(device="cuda").manual_seed(seed)
     q1 = torch.linalg.qr(torch.randn(K, K, generator=g, device="cuda", dtype=torch.float32))[0]
     q2 = torch.linalg.qr(torch.randn(MN, MN, generator=g, device="cuda", dtype=torch.float32))[0]
-    s = torch.logspace(0.0, torch.log10(torch.tensor(kappa)).item(), K, device="cuda", dtype=torch.float32)
+    s = torch.logspace(0.0, torch.log10(torch.tensor(kappa)).item(), MN, device="cuda", dtype=torch.float32)
     s = s / s.norm() * (K * MN) ** 0.5  # ||b||_F = sqrt(K*N) => unit-RMS entries
-    b = (q1 * s.unsqueeze(0)) @ q2.t()
+    # b = U[:, :N] diag(s) V^T with U (KxK), V (NxN): singular values are exactly s, b is KxN.
+    b = (q1[:, :MN] * s.unsqueeze(0)) @ q2.t()
     return b, s
 
 

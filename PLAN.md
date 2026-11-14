@@ -893,3 +893,19 @@ sigma_max(b) returns -0.558 descriptively; (2) 64-draw extension at K=4096 to se
 ## Next: (1) E2b designed-conditioning probe (prereg first, sigma_max(b) over >=3 decades at M=N=1024 K=4096, kill |rho|<.4);
 ## (2) bisect per-thread depth 4,096->32,768 to locate the s98 collapse (prereg, monotonicity first); (3) home sweep + sylve
 ## novelty; (4) reflection 05:20Z; (5) 24h-E1/CTA-edge/bt parked.
+
+## DONE 00:45Z EST 11-14: s99 — conditioning DESIGNED, not sampled: kappa(b) swept 1..1e4 at fixed M=N=1024 K=4096
+## (Frobenius fixed, 5 draws/level, 25 rows, prereg e35d699 frozen pre-run) and the amplitude does not move:
+## Spearman(kappa,rho_ref) -0.35 < .40 bar, level means 1.341/1.301/1.356/1.168/1.208 (1.16x over four decades),
+## row span 1.92x entirely inside levels (within-level CV 9.1/11.8/22.7/8.8/5.1%, median 9.1% == s96's 9.04%).
+## Frozen verdict P2_RETIRE_H1: §4.5g's "untested where conditioning varies" caveat is discharged by construction.
+## Controls: K1 repeat bit-identical, K2 one kernel set at every level (cutlass_80_simt_sgemm_256x128_8x4_nn_align1),
+## K3 construction 7.8e-6 rel; shipped-gate frac_over exactly 0.0 on 25/25. Prose §4.5h + MANUSCRIPT §2.4 + ATLAS
+## column; s51 extended 43->47 (47/47), s50 exit 0, s52 16/16, s53 15/15, s54 6/6, provenance 85/85/0. Comment
+## RPGw4-LI37fgq1dr verified (915 chars, newest). FIXED: s52_manuscript regenerates DETAIL_SECTIONS from
+## paper/sections and had silently dropped §4.5b-4.5g (they lived only in the generated file) — blocks moved into
+## s4_certificates.md so regeneration is faithful; §8's hardcoded 44/44/0 provenance count replaced with non-numeric
+## wording (contradiction class removed, not the instance).
+## Next: (1) LEAD depth bisection 4,096->32,768 at fixed shape (prereg, monotonicity first) to locate s98's collapse;
+## (2) Welford V1 arm (tree vs estimator separator); (3) E3 merge-tree sweep; (4) home sweep + sylve novelty;
+## (5) reflection 08:33Z; (6) package repack when a submission reopens; (7) 24h-E1/CTA-edge/bt parked.

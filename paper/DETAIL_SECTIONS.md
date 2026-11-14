@@ -1,9 +1,9 @@
 # A validity-domain atlas for GPU kernels: conditional certificates, not band-global rules
 
 *Artifact status.* Every number in this manuscript is regenerated from committed artifacts by shipped
-auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 31/31, `s52_prose_audit.py` 16/16,
-`s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 5/6) and mapped to its file and field in
-`PROVENANCE.md` (58 cited / 58 found / 0 missing). The auditors exit nonzero on a cited value they cannot
+auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 47/47, `s52_prose_audit.py` 16/16,
+`s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 6/6) and mapped to its file and field in
+`PROVENANCE.md` (85 cited / 85 found / 0 missing). The auditors exit nonzero on a cited value they cannot
 reproduce, the supplement ships them together with the artifacts they read, and the build runs every
 CPU-only script from inside the shipped package and fails if any exits nonzero, so the package is
 re-runnable as delivered.
@@ -1166,6 +1166,38 @@ worst-cancelled output element, with no dependence on operand conditioning at Ga
 dispatch (one cutlass SIMT kernel across nine profiled draws), and no dependence on cancellation depth. Scoped to one
 geometry, fp32, 32 draws; the spectral hypothesis remains untested where sigma_max actually varies.
 
+## 4.5h Conditioning is designed, not sampled, and the amplitude does not move: H1 retired (s99, 2026-11-14)
+
+§4.5g's negative on spectral amplification carried an honest caveat: Gaussian draws hold sigma_max(a) inside 0.2%, so
+the hypothesis was untested exactly where conditioning varies. s99 designs the conditioning instead. At M=N=1024,
+K=4096 with the benchmark's fp32 flags, the right operand is constructed as b = U·diag(s)·Vᵀ with orthonormal factors
+from QR of Gaussian draws, log-spaced singular values, and Frobenius norm fixed at unit-RMS scale, so kappa(b) sweeps
+1, 10, 100, 1e3 and 1e4 while shape, output scale and engine are held; five independent draws per level give 25 rows
+(prereg `lab/s99_prereg.md` committed at `e35d699` before any row; artifacts `results/s99_conditioning.jsonl` 25/25,
+`s99_instrument.json`, `s99_conditioning_summary.json`, `s99_analysis.json`).
+
+- **Controls all clean.** Instrument repeat bit-identical on rho_ref and frac_over; the construction check reproduces
+  the prescribed singular values to 7.8e-6 relative; and every level dispatches the same kernel set,
+  `cutlass_80_simt_sgemm_256x128_8x4_nn_align1`, so conditioning does not perturb dispatch and the sweep is not an
+  engine test.
+- **The level means do not move.** rho_ref means are 1.341, 1.301, 1.356, 1.168 and 1.208 across kappa 1→1e4, a
+  1.16x spread over four decades of conditioning (sigma_max(b) 64.0 → 273.6, a 4.3x rise at fixed Frobenius norm).
+  The coded verdict is **P2_RETIRE_H1**: Spearman(kappa, rho_ref) = −0.35, below the 0.40 bar, while the row-level
+  span of 1.92x clears the 1.3x clause — so the amplitude varies, just not with conditioning.
+- **The variance is inside the levels, not between them.** Within-level CV of rho_ref is 9.1% at kappa=1, 11.8% at
+  10, 22.7% at 100, 8.8% at 1e3 and 5.1% at 1e4 (median 9.1%), against s96's 9.04% at Gaussian inputs. Fixing
+  conditioning therefore does not shrink the lottery: the draw-to-draw spread is the same quantity s96 measured.
+- **Descriptive, not a verdict arm.** Spearman(median |X|, rho_ref) = +0.376 is the closest of the recorded covariates
+  to the bar but was not predeclared; extremum cancellation depth gives −0.105 and sigma_max(b) −0.319. The strict-gate
+  population fraction stays at 3-5e-6 and the shipped 1e-2 fraction is exactly 0.0 on every row, so nothing here
+  changes any admission statement.
+
+Validity-domain statement: on GB10 sm_120, fp32 matmul, M=N=1024, K=4096, the reference's extremum-to-budget ratio is
+a draw-distributed quantity whose level mean is insensitive to operand conditioning across four decades (1.17-1.36),
+with a within-conditioning draw spread of 5-23%. H1 (spectral amplification) is retired on this geometry; the s96
+caveat is discharged rather than carried forward. Scoped to one geometry, one family, five draws per level.
+
+
 ## 4.6 Candidate admission: a class baseline plus a measured within-class threshold
 
 The result here is narrower than a predictive certificate and is stated that way. Admission is the
@@ -1259,18 +1291,6 @@ margin ≥800×). What decides a flip is the distance from the bar in units of t
 or the arm. The cf3 comparison is a tolerance sweep over the observed profiles, not a controlled sweep of every
 coordinate, so the law is scoped to those profiles. This is why §4's certificate carries a regret basis rather
 than a regret number.
-
-**The reference's own crossing of the bar is a scale, and it is gate-specific.** s91 measured where the default
-cudnn-TF32 conv reference's worst element crosses rho=1 on two fixed tuples whose element counts differ by 4.88x
-(`results/s91_analysis.json`; prereg `e390322`). At 1e-4 the crossing sits at |A|max 0.308 and 0.314 — 1.7% apart
-across the two tuples; at 1e-2 it sits at 40.33 and 38.38 — 5.1% apart. So the boundary is a surface across shape
-and element count at a fixed tolerance, and it moves by 22-31% when the tolerance moves from 1e-4 to 1e-2, which is
-why the certificate's operating threshold stays a per-gate measured constant rather than a universal coordinate.
-The worst element at the crossing is a cancelled output, not a near-zero one (|x|/atol 1.3-17.2, relative error
-5.8-74.7%), and frac_over is exactly 0.0 there: at 1e-2 the reference first fails a tensor on a single element at
-|A|max ~38-40 while fewer than 1% of elements are over budget even at |A|max 309. Any claim that "the reference is
-clean" therefore has to name which statistic it means — allclose, which fails on one element, or a population
-fraction, which stays small far longer.
 
 ## 5.2 Propagation through composed graphs
 
@@ -1827,7 +1847,7 @@ the class that let a unit error through — see the note above):
 
 | script | what it audits | status from inside the package |
 |---|---|---|
-| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, 44 cited / 44 found / 0 missing |
+| `s48_provenance.py` | number-to-artifact provenance table; hard-fails on a cited-but-absent artifact | exit 0, every cited artifact found, none missing |
 | `s50_prose_audit.py` | every number cited in §2 and §4 | exit 0, 19/19 |
 | `s51_prose_audit.py` | every number cited in §4.5-§8 | exit 0, 31/31 |
 | `s52_prose_audit.py` | §4.5 and §5.2 composition numbers, computed from the artifacts rather than string-matched | exit 0, 16/16 |
@@ -1846,7 +1866,7 @@ pinned public commit, which the package names explicitly.
 
 `lab/s48_provenance.py` scans every markdown file in `paper/` for cited results artifacts and emits
 `paper/PROVENANCE.md` with sha256, byte size, mtime, producer script, and top-level fields per artifact. It
-hard-fails when a cited artifact is absent. Current state after the round-5 repairs, the A10 crossing study and the A11 distribution study: 44 cited, 44 found, 0 missing.
+hard-fails when a cited artifact is absent. Current state: every cited artifact found, none missing; the count is emitted into the generated header of `PROVENANCE.md`, so the prose cannot go stale against it.
 Two defects in the generator itself were found and fixed before it was trusted: a regex alternation that
 truncated `.jsonl` names to `.json`, and self-poisoning when the generated `PROVENANCE.md` was included in
 the citation scan. A third was found at packaging: the table cites itself, so its own digest, byte size and

@@ -1,0 +1,36 @@
+{
+ "script": "s99_conditioning",
+ "prereg": "lab/s99_prereg.md",
+ "levels": [
+  1.0,
+  10.0,
+  100.0,
+  1000.0,
+  10000.0
+ ],
+ "ndraws": 5,
+ "n_rows": 25,
+ "k1_instrument_bit_identical": true,
+ "k2_engine_identical_across_levels": true,
+ "engines": {
+  "1.0": [
+   "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_nn_align1>(cutlass_80_simt_sgemm_256x128_8x4_nn_align1::Params)"
+  ],
+  "10.0": [
+   "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_nn_align1>(cutlass_80_simt_sgemm_256x128_8x4_nn_align1::Params)"
+  ],
+  "100.0": [
+   "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_nn_align1>(cutlass_80_simt_sgemm_256x128_8x4_nn_align1::Params)"
+  ],
+  "1000.0": [
+   "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_nn_align1>(cutlass_80_simt_sgemm_256x128_8x4_nn_align1::Params)"
+  ],
+  "10000.0": [
+   "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_nn_align1>(cutlass_80_simt_sgemm_256x128_8x4_nn_align1::Params)"
+  ]
+ },
+ "k3_construction_worst_rel": 7.759269293100668e-06,
+ "k3_construction_ok": true,
+ "wall_s": 52.63649225234985,
+ "date": "2026-11-14T05:33:41Z"
+}
