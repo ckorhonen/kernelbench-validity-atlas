@@ -992,3 +992,22 @@ reopens; (6) s51 does not cover s97/s98/s100/s101/s102/s103 (declared); (7) 24h-
 ## unrun debt; (2) membership second variant (stride 8/4, one tuple, prereg); (3) split-K across output/spatial axes;
 ## (4) home sweep + sylve novelty; (5) reflection 01:03Z; (6) package repack when a submission reopens; (7) s51 covers
 ## §4.5-§4.5h not s97-s104 (declared); (8) 24h-E1/CTA-edge/bt parked.
+
+## ACTIVE LANE: BENCHMARK-WIDE EVALUATOR MAP — opened 2026-11-15 02:06Z (strategic Moonshot cWm2MHRjDerB3_E6; plan
+## lab/understand_2026-11-15/plan_2026-11-15.md; next reflection 05:06Z)
+
+s105 (prereg b7f98c4) answered the base-rate question from committed records, not GPU: **M1_BASE_RATE_NARROW**
+(1/103 non-conv rows above rho 0.1 at 1e-4, and that row is conv-class => 0/95 true non-conv) and
+**M2_BENCH_GATE_NONBINDING** (0/200 exceed at the shipped 1e-2 gate, max rho 0.119). Strict-gate exceedances 55/200
+(25 conv, 28 convT, 1 gemm, 1 conv1D), max rho 11.94. s105b labelled the reference engine on 200/200 tasks (378 s,
+TF32 110 / OTHER 61 / SIMT 16 / FP64 12 / CUTLASS 1); s105c joined them and repaired a classifier defect (s63's FP64
+pattern matches "dgrad", which cuDNN uses for conv_TRANSPOSE forward => 10 convT rows mislabelled; relabelled by name,
+originals retained). Map: conv|TF32 26 rows/23 exceed/median rho 1.947; convT|TF32 31/24/1.660; conv|SIMT 16/0/0.00235;
+convT|SIMT 10/0/0.00110; gemm|TF32 46/1/0.02353 (max 0.0747); all other classes <=0.05.
+The decisive comparison: conv|TF32 vs gemm|TF32 are the SAME engine class and differ ~80x in median rho with gemm's max
+below conv's median => class necessary, not sufficient; depth alone does not explain it (gemm K often larger). Candidate
+mechanism (hypothesis): conv's layout-transforming/indexed im2col path vs a single GEMM tree.
+Next: (1) LEAD matched-K conv-vs-gemm attribution at one engine instance (s103 design, prereg first, kill: ratio stays
+>10x at matched K => map carries a conv-family flag, not a coordinate); (2) draw-repeat band on the 12 flagged conv rows;
+(3) home sweep + sylve novelty; (4) reflection 05:06Z; (5) package repack when a submission reopens. 24h-E1/CTA-edge/bt
+parked. Non-claims: one draw per task = survey; engine class is an observation per task, not an op-class property.

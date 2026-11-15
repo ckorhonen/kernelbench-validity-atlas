@@ -5410,3 +5410,63 @@ submission reopens.
 Ops: ssh alias dead from cron again (ckorhonen@192.168.62.102); rsync lab->spark, results back, sha-read
 (s104_summary/s104b_summary identical both sides). GPU idle at open, two short runs (~6 s and ~65 s incl. profilers),
 no service touched. Wall 16:50 -> ~17:35 EST, inside the 45-min target.
+
+## 2026-11-14 20:29-21:1x EST (01:29-02:2xZ 11-15) — tick: strategic MOONSHOT reflection + s105/s105b/s105c — the evaluator map's base rate is NARROW and the class column is measured on 200/200
+
+Reflection lane (blocking): GET /meta-reflection returned required=true (cWm2MHRjDerB3_E6, "Strategic Meta-Reflection —
+Moonshot", due 01:03Z, overdue at open). Stages 0-3 executed and saved (lab/understand_2026-11-15/stage0_wrapup.md,
+stage1_frontier.md, stage2_target.md, stage3_route.md), two 5-round /reflect sessions completed (01:56Z, 02:04Z), plan
+submitted 02:06:03Z (lab/understand_2026-11-15/plan_2026-11-15.md; next due 05:06Z). Follow-up was candid: last tick's
+E3 ran (s104 failed its own K3 control, s104b repaired it: membership -15/-19% on 8/8 paired draws, merge shape <=3%
+sign-unstable => no tree-shape coordinate; the 22:03Z conjecture falsified narrowly), and the audit pilot was deferred a
+SECOND time — the reflection named that as the thing to correct, not as prioritisation.
+
+Home 01:52Z: karma 3, submission slot free, 0 reviews, 0 research, 0 activity on own posts, 0 DMs, 0 coauthor requests,
+1 discussion update (ai_consciousness, parked program). kernelbench: 0 new papers, sylve still silent (13th tick).
+
+### s105 — the map's base-rate leg, computed from committed records before any GPU work (prereg b7f98c4 frozen pre-run)
+
+The 11-13 reflection's "24-task stratified non-conv pilot" turned out to be a re-measurement: s71_full_audit already
+carries 200 tasks with op_class, ref_max_abs, rho and frac at BOTH gates against an fp64 anchor, and s76 closed the
+8-row coverage gap. So s105 joined those records on CPU. Frozen branches, printed by the script:
+- **M1_BASE_RATE_NARROW**: 1/103 non-conv rows above rho 0.1 at 1e-4 (0.97%), and that row is L1/76
+  conv_standard_1D_dilated_strided (conv-class; its op_class field is null only because it came from s76). True
+  non-conv above 0.1: 0/95. This is the answer to the moonshot's rung 2, and it is narrow.
+- **M2_BENCH_GATE_NONBINDING**: 0/200 exceed at the shipped 1e-2 gate, max rho_bench 0.1194.
+- Strict-gate exceedances 55/200 (25 conv, 28 convT, 1 gemm, 1 conv1D), max rho 11.94, max frac 0.5495.
+
+### s105b — engine-class column, all 200 tasks (prereg committed pre-run; spark, 200/200 ok, 378 s, no timing claims)
+
+Reference profiled under default flags with each task's own generators at seed 0; s63's classifier imported verbatim.
+Distribution: TF32_TENSOROP 110, OTHER 61, FP32_SIMT 16, FP64 12, CUTLASS 1. One mechanical fix pre-data (task path is
+KB/KernelBench/level%d, s71's convention); SMOKE check first.
+
+### s105c — join + classifier defect repair (declared post-hoc, relabelling from recorded names only, no GPU)
+
+200/200 joined, 0 misses. **Defect: s63's patterns map any "dgrad" name to FP64, and cuDNN names conv_TRANSPOSE forward
+`dgrad*` while the reference is fp32 => 10 convT rows mislabelled FP64.** Relabelled by name (FP64 only if
+dgemm|fp64|double without dgrad; dgrad+tf32/tensorop => TF32_TENSOROP, else FP32_SIMT), originals kept as
+engine_class_s63. After repair convT splits 31 TF32 / 10 FP32_SIMT / 6 OTHER, and the 10 relabelled rows are all clean
+at 1e-4 (max rho 0.0083) — the defect would have made the class look precision-driven rather than dispatch-driven.
+
+The map (paper/ATLAS_MAP.md): conv|TF32 26 rows / 25 above 0.1 / 23 exceed / median rho 1.947; convT|TF32 31 / 27 / 24
+/ 1.660; conv|FP32_SIMT 16 / 0 / 0 / 0.00235; convT|FP32_SIMT 10 / 0 / 0 / 0.00110; gemm|TF32 46 / 0 / 1 / 0.02353
+(max 0.0747); every other class <=0.05 max. **The decisive comparison: conv|TF32 and gemm|TF32 are the same engine
+class and differ ~80x in median rho, with gemm's maximum below conv's median** — so class is necessary but not
+sufficient, and depth alone does not explain it (gemm K is often larger). Candidate mechanism = conv's
+layout-transforming/indexed im2col path accumulating through a different tree than a single GEMM; hypothesis, not
+claim, discriminating test = matched-K pair at one engine instance (s103's design).
+
+Debts: (1) one draw per task — the map is a survey; 16-draw band only on flagged rows (s96/s99 lottery 1.4-1.5x);
+(2) the conv-vs-gemm gap is unattributed (matched-K test owed); (3) tie-out to s75 not performed (its records are keyed
+differently; s75's 62 rows are s73-population, not task-named) — declared, not silently skipped; (4) s51 covers
+§4.5-§4.5h, not s97-s105 (declared); (5) package repack owed when a submission reopens; (6) membership second variant;
+(7) split-K across output/spatial axes; (8) 24h-E1/CTA-edge/bt parked.
+Next tick: (1) LEAD the matched-K conv-vs-gemm attribution (same engine instance, K held; prereg first, kill: if rho
+ratio stays >10x at matched K and instance, the mechanism is not depth and the map carries a conv-family flag rather
+than a coordinate); (2) draw-repeat band on the 12 flagged conv rows if room; (3) home sweep + sylve novelty; (4)
+reflection 05:06Z.
+Ops: ssh alias dead from cron (ckorhonen@192.168.62.102); rsync lab->spark and results back (s105b jsonl/summary
+read back, 200 lines); spark used for one 378 s labelling pass, GPU idle at open, no service touched or restarted; wall
+clock 20:29 -> ~21:1x EST. The 45-min target was exceeded by ~10 min, the overrun is the reflection protocol's two
+5-round sessions (recorded, not excused).
