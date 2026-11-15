@@ -1,0 +1,4580 @@
+{
+ "date": "2026-11-15T11:42:37Z",
+ "wall_s": 146.3,
+ "n_rows": 85,
+ "n_ok": 85,
+ "n_wall_capped": 0,
+ "n_timeout": 0,
+ "n_oom": 0,
+ "n_error": 0,
+ "k1_repeat": [
+  true,
+  true,
+  true
+ ],
+ "k2_anchor_rel": [
+  0.0
+ ],
+ "tie_out": [
+  0.018105929359558993,
+  0.06005162099814922,
+  0.1583483292476762,
+  0.0,
+  0.010962148375849813,
+  0.0,
+  0.0,
+  0.0,
+  0.03117001450678748,
+  0.0,
+  0.4107424719503993,
+  0.0930311707642996,
+  0.049003754322383956,
+  0.10943901319700196,
+  0.10249652482914212,
+  0.05986147601277592,
+  0.19067003979430217,
+  0.17597789851404275,
+  0.0,
+  0.0,
+  0.0,
+  0.006816075397502654,
+  0.994348072819891,
+  0.007938762243842537,
+  0.06955022204043777,
+  0.08991670744899427,
+  0.45745635136762297,
+  0.015263359050293836,
+  0.9860786611252277,
+  0.7694026159077809,
+  0.19293616334654556,
+  0.22056355760290067,
+  0.9890306847944128,
+  0.1227647867292929,
+  0.017973615485130243,
+  0.4872648436057019,
+  0.2366089015814535,
+  0.04726170415938116,
+  0.8628096605516409,
+  0.2139890538198323,
+  0.3189625173121883,
+  0.5334816351481799,
+  0.9769693644858563,
+  0.7875958028579939,
+  0.06880774150651413,
+  0.11585055027859623,
+  0.028076960604515002,
+  1.0,
+  0.1332569941192854,
+  0.08229560765158418,
+  0.02433109063952806,
+  0.13966974407420024,
+  0.13954067539192713,
+  0.050505088199623,
+  0.14333322015027583,
+  0.12032154792731065,
+  0.09053573419767999,
+  0.08691452938134424,
+  0.018000428228041244,
+  0.19520286257484482,
+  0.0021394482263574167,
+  0.2111488175302094,
+  0.029075832032155892,
+  2.8123220006064207,
+  0.2958792191848519,
+  0.12005709399700451,
+  0.3167781602012348,
+  0.9843116058283444,
+  7.530743205711482e-05,
+  0.12289279581135719,
+  0.08775841586071609,
+  0.019530655724169184,
+  0.29248979834543104,
+  0.008773816638148474,
+  0.237470452240829,
+  0.0,
+  0.1826023495043735,
+  0.011077908675970341,
+  0.05137290679750644,
+  0.10633080108092727,
+  0.22653156682615372,
+  0.034821125898664915
+ ],
+ "tie_out_status": "non_binding_inputs_differ",
+ "cols": {
+  "gemm": {
+   "n": 46,
+   "n_label_B_TF32": 46,
+   "n_label_B_other": 0,
+   "n_relabel": 0,
+   "med_rho_B_strict": 2.555501213817389,
+   "med_rho_A_strict": 0.030368460003572878,
+   "med_frac_B_strict": 0.0023113489151000977,
+   "med_rho_B_bench": 0.02555501213817389,
+   "med_u_strict": 38415.34494112414,
+   "n_exceed_B_strict": 28,
+   "n_exceed_B_bench": 2,
+   "labels_B": [
+    [
+     7,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x256_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_64x256_16x4_nn_align4::Params)"
+    ],
+    [
+     15,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4::Params)"
+    ],
+    [
+     13,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4::Params)"
+    ],
+    [
+     14,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4::Params)"
+    ],
+    [
+     8,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align1>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align1::Params)"
+    ],
+    [
+     37,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)"
+    ],
+    [
+     39,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4::Params)"
+    ],
+    [
+     41,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4::Params)"
+    ],
+    [
+     40,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4::Params)"
+    ],
+    [
+     18,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tt_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tt_align4::Params)"
+    ],
+    [
+     16,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_nt_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_nt_align4::Params)"
+    ],
+    [
+     17,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4>(cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4::Params)"
+    ],
+    [
+     14,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4>(cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4::Params)"
+    ],
+    [
+     22,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     30,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     33,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     62,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     63,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     75,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     80,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     84,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     88,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     12,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     97,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     99,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     51,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     53,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     28,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     81,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     86,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     29,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     70,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     76,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4>(cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4::Params)"
+    ],
+    [
+     64,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     98,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     18,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     94,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     95,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     9,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)"
+    ],
+    [
+     45,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4::Params)"
+    ],
+    [
+     66,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)"
+    ],
+    [
+     68,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)"
+    ],
+    [
+     6,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4::Params)"
+    ],
+    [
+     55,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)"
+    ],
+    [
+     59,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)"
+    ],
+    [
+     56,
+     "TF32_TENSOROP",
+     "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)"
+    ]
+   ]
+  },
+  "conv_transpose": {
+   "n": 31,
+   "n_label_B_TF32": 28,
+   "n_label_B_other": 3,
+   "n_relabel": 3,
+   "med_rho_B_strict": 2.7895667976088157,
+   "med_rho_A_strict": 2.7895667976088157,
+   "med_frac_B_strict": 0.03125,
+   "med_rho_B_bench": 0.027895667976088157,
+   "med_u_strict": 12265.47100316586,
+   "n_exceed_B_strict": 24,
+   "n_exceed_B_bench": 0,
+   "labels_B": [
+    [
+     81,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     15,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     49,
+     "OTHER",
+     "void at::native::(anonymous namespace)::cunn_SpatialSoftMaxForward<float, float, float, int, at::native::(anonymous namespace)::SoftMaxForwardEpilogue>(float*, float const*, int, int, int)"
+    ],
+    [
+     73,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     61,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn"
+    ],
+    [
+     58,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     79,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     61,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn"
+    ],
+    [
+     69,
+     "TF32_TENSOROP",
+     "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)"
+    ],
+    [
+     68,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     71,
+     "TF32_TENSOROP",
+     "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)"
+    ],
+    [
+     74,
+     "TF32_TENSOROP",
+     "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)"
+    ],
+    [
+     16,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     2,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     5,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     36,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     77,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     65,
+     "TF32_TENSOROP",
+     "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)"
+    ],
+    [
+     11,
+     "TF32_TENSOROP",
+     "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)"
+    ],
+    [
+     100,
+     "OTHER",
+     "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)"
+    ],
+    [
+     74,
+     "OTHER",
+     "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::leaky_relu_kernel(at::TensorIteratorBase&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::leaky_relu_kernel(at::TensorIteratorBase&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)"
+    ],
+    [
+     42,
+     "TF32_TENSOROP",
+     "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)"
+    ],
+    [
+     44,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     78,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     64,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn"
+    ],
+    [
+     10,
+     "TF32_TENSOROP",
+     "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)"
+    ],
+    [
+     13,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn"
+    ],
+    [
+     57,
+     "TF32_TENSOROP",
+     "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)"
+    ],
+    [
+     70,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn"
+    ],
+    [
+     3,
+     "TF32_TENSOROP",
+     "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn"
+    ],
+    [
+     19,
+     "TF32_TENSOROP",
+     "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)"
+    ]
+   ]
+  },
+  "conv": {
+   "n": 8,
+   "n_label_B_TF32": 0,
+   "n_label_B_other": 8,
+   "n_relabel": 0,
+   "med_rho_B_strict": 0.0015110882027337565,
+   "med_rho_A_strict": 0.0015110882027337565,
+   "med_frac_B_strict": 0.0,
+   "med_rho_B_bench": 1.5110882027337565e-05,
+   "med_u_strict": 14839.413580356799,
+   "n_exceed_B_strict": 2,
+   "n_exceed_B_bench": 0,
+   "labels_B": [
+    [
+     48,
+     "OTHER",
+     "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})"
+    ],
+    [
+     79,
+     "OTHER",
+     "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})"
+    ],
+    [
+     23,
+     "OTHER",
+     "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)"
+    ],
+    [
+     85,
+     "OTHER",
+     "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel_generic<float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)"
+    ],
+    [
+     83,
+     "OTHER",
+     "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel_generic<float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)"
+    ],
+    [
+     82,
+     "OTHER",
+     "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel<3, float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)"
+    ],
+    [
+     83,
+     "OTHER",
+     "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::(anonymous namespace)::GroupNormKernelImplInternal<float, float>(at::Tensor const&, at::Tensor const&, at::Tensor const&, long, long, long, long, float, at::Tensor&, at::Tensor&, at::Tensor&)::{lambda(float, float, float)#2}>(at::TensorIteratorBase&, at::native::(anonymous namespace)::GroupNormKernelImplInternal<float, float>(at::Tensor const&, at::Tensor const&, at::Tensor const&, long, long, long, long, float, at::Tensor&, at::Tensor&, at::Tensor&)::{lambda(float, float, float)#2} const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::(anonymous namespace)::GroupNormKernelImplInternal<float, float>(at::Tensor const&, at::Tensor const&, at::Tensor const&, long, long, long, long, float, at::Tensor&, at::Tensor&, at::Tensor&)::{lambda(float, float, float)#2}>(at::TensorIteratorBase&, at::native::(anonymous namespace)::GroupNormKernelImplInternal<float, float>(at::Tensor const&, at::Tensor const&, at::Tensor const&, long, long, long, long, float, at::Tensor&, at::Tensor&, at::Tensor&)::{lambda(float, float, float)#2} const&)::{lambda(int)#1})"
+    ],
+    [
+     84,
+     "OTHER",
+     "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel<3, float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)"
+    ]
+   ]
+  },
+  "spread": 1846.0648376197523,
+  "gap_gemm_over_conv": 1691.1661471475675,
+  "gap_convT_over_conv": 1846.0648376197523
+ },
+ "p3_n_tf32_under_B": 0,
+ "p3_branch": "CONV_OTHER_STANDS",
+ "relabel_branch": "BRANCH_RELABEL_MINOR",
+ "branch": "BRANCH_MAP_CLASS_GAP",
+ "rows": [
+  {
+   "level": 1,
+   "problem_id": 81,
+   "name": "81_conv_transposed_2D_asymmetric_input_square_kernel___dilated____padded____strided__.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.9521408884523317,
+   "s71_t_fp64_s": 0.003,
+   "status": "ok",
+   "k1_repeat_bit_identical": true,
+   "k2_anchor_rel": 0.0,
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 1.300849452697532,
+    "frac": 3.3501286449399656e-06,
+    "maxabs": 0.0001356887795643802,
+    "rho_global": 0.9693802841189973,
+    "total": 207753216
+   },
+   "B_strict": {
+    "rho_ew": 1.300849452697532,
+    "frac": 3.3501286449399656e-06,
+    "maxabs": 0.0001356887795643802,
+    "rho_global": 0.9693802841189973,
+    "total": 207753216
+   },
+   "A_bench": {
+    "rho_ew": 0.013008494526975322,
+    "frac": 0.0,
+    "maxabs": 0.0001356887795643802,
+    "rho_global": 0.009693802841189973,
+    "total": 207753216
+   },
+   "B_bench": {
+    "rho_ew": 0.013008494526975322,
+    "frac": 0.0,
+    "maxabs": 0.0001356887795643802,
+    "rho_global": 0.009693802841189973,
+    "total": 207753216
+   },
+   "ref_max_abs": 0.39974767165497216,
+   "u_strict_B": 3997.4767165497215,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.018105929359558993,
+   "wall_s": 2.17
+  },
+  {
+   "level": 2,
+   "problem_id": 15,
+   "name": "15_ConvTranspose3d_BatchNorm_Subtract.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.1056677943188233,
+   "s71_t_fp64_s": 0.003,
+   "status": "ok",
+   "k1_repeat_bit_identical": true,
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 1.6732870363824872,
+    "frac": 0.00018423401319906697,
+    "maxabs": 0.00018316760632203222,
+    "rho_global": 1.172064937653117,
+    "total": 62995968
+   },
+   "B_strict": {
+    "rho_ew": 1.6732870363824872,
+    "frac": 0.00018423401319906697,
+    "maxabs": 0.00018316760632203222,
+    "rho_global": 1.172064937653117,
+    "total": 62995968
+   },
+   "A_bench": {
+    "rho_ew": 0.016732870363824873,
+    "frac": 0.0,
+    "maxabs": 0.00018316760632203222,
+    "rho_global": 0.01172064937653117,
+    "total": 62995968
+   },
+   "B_bench": {
+    "rho_ew": 0.016732870363824873,
+    "frac": 0.0,
+    "maxabs": 0.00018316760632203222,
+    "rho_global": 0.01172064937653117,
+    "total": 62995968
+   },
+   "ref_max_abs": 0.5627769455231522,
+   "u_strict_B": 5627.7694552315215,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.06005162099814922,
+   "wall_s": 0.43
+  },
+  {
+   "level": 2,
+   "problem_id": 49,
+   "name": "49_ConvTranspose3d_Softmax_Sigmoid.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.005521960194714023,
+   "s71_t_fp64_s": 0.003,
+   "status": "ok",
+   "k1_repeat_bit_identical": true,
+   "label_A": "OTHER",
+   "top1_A": "void at::native::(anonymous namespace)::cunn_SpatialSoftMaxForward<float, float, float, int, at::native::(anonymous namespace)::SoftMaxForwardEpilogue>(float*, float const*, int, int, int)",
+   "label_B": "OTHER",
+   "top1_B": "void at::native::(anonymous namespace)::cunn_SpatialSoftMaxForward<float, float, float, int, at::native::(anonymous namespace)::SoftMaxForwardEpilogue>(float*, float const*, int, int, int)",
+   "A_strict": {
+    "rho_ew": 0.006402876973225939,
+    "frac": 0.0,
+    "maxabs": 9.636121756084748e-07,
+    "rho_global": 0.006396353365719161,
+    "total": 134217728
+   },
+   "B_strict": {
+    "rho_ew": 0.006402876973225939,
+    "frac": 0.0,
+    "maxabs": 9.636121756084748e-07,
+    "rho_global": 0.006396353365719161,
+    "total": 134217728
+   },
+   "A_bench": {
+    "rho_ew": 6.402876973225938e-05,
+    "frac": 0.0,
+    "maxabs": 9.636121756084748e-07,
+    "rho_global": 6.396353365719161e-05,
+    "total": 134217728
+   },
+   "B_bench": {
+    "rho_ew": 6.402876973225938e-05,
+    "frac": 0.0,
+    "maxabs": 9.636121756084748e-07,
+    "rho_global": 6.396353365719161e-05,
+    "total": 134217728
+   },
+   "ref_max_abs": 0.5065024092835325,
+   "u_strict_B": 5065.024092835325,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.1583483292476762,
+   "wall_s": 0.92
+  },
+  {
+   "level": 1,
+   "problem_id": 7,
+   "name": "7_Matmul_with_small_K_dimension_.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.004891284685639463,
+   "s71_t_fp64_s": 0.005,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x64_8x5_nn_align1>(cutlass_80_simt_sgemm_128x64_8x5_nn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x256_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_64x256_16x4_nn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.007131940509287631,
+    "frac": 0.0,
+    "maxabs": 1.3857494291613648e-05,
+    "rho_global": 0.004891284685639463,
+    "total": 1073741824
+   },
+   "B_strict": {
+    "rho_ew": 2.555501213817389,
+    "frac": 0.014472204260528088,
+    "maxabs": 0.0046257464163090845,
+    "rho_global": 1.6327513567468745,
+    "total": 1073741824
+   },
+   "A_bench": {
+    "rho_ew": 7.131940509287632e-05,
+    "frac": 0.0,
+    "maxabs": 1.3857494291613648e-05,
+    "rho_global": 4.891284685639463e-05,
+    "total": 1073741824
+   },
+   "B_bench": {
+    "rho_ew": 0.02555501213817389,
+    "frac": 0.0,
+    "maxabs": 0.0046257464163090845,
+    "rho_global": 0.016327513567468744,
+    "total": 1073741824
+   },
+   "ref_max_abs": 27.330991104031366,
+   "u_strict_B": 273309.91104031366,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.0,
+   "wall_s": 5.25
+  },
+  {
+   "level": 2,
+   "problem_id": 48,
+   "name": "48_Conv3d_Scaling_Tanh_Multiply_Sigmoid.py",
+   "op_class": "conv",
+   "label_s105c": "OTHER",
+   "s71_rho_global_strict": 0.9315312940584621,
+   "s71_t_fp64_s": 0.008,
+   "status": "ok",
+   "label_A": "OTHER",
+   "top1_A": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+   "label_B": "OTHER",
+   "top1_B": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+   "A_strict": {
+    "rho_ew": 1.1002360489260508,
+    "frac": 1.8146322654972497e-08,
+    "maxabs": 0.00016086892646172135,
+    "rho_global": 0.9213197097962459,
+    "total": 110215168
+   },
+   "B_strict": {
+    "rho_ew": 1.1002360489260508,
+    "frac": 1.8146322654972497e-08,
+    "maxabs": 0.00016086892646172135,
+    "rho_global": 0.9213197097962459,
+    "total": 110215168
+   },
+   "A_bench": {
+    "rho_ew": 0.011002360489260508,
+    "frac": 0.0,
+    "maxabs": 0.00016086892646172135,
+    "rho_global": 0.009213197097962457,
+    "total": 110215168
+   },
+   "B_bench": {
+    "rho_ew": 0.011002360489260508,
+    "frac": 0.0,
+    "maxabs": 0.00016086892646172135,
+    "rho_global": 0.009213197097962457,
+    "total": 110215168
+   },
+   "ref_max_abs": 0.7460706066659343,
+   "u_strict_B": 7460.7060666593425,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.010962148375849813,
+   "wall_s": 1.02
+  },
+  {
+   "level": 1,
+   "problem_id": 15,
+   "name": "15_Matmul_for_lower_triangular_matrices.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.03652019172134425,
+   "s71_t_fp64_s": 0.009,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x128_8x4_nn_align1>(cutlass_80_simt_sgemm_128x128_8x4_nn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.042487409491845055,
+    "frac": 0.0,
+    "maxabs": 0.0038591506820466748,
+    "rho_global": 0.03652019172134425,
+    "total": 16777216
+   },
+   "B_strict": {
+    "rho_ew": 3.211138306544073,
+    "frac": 0.0014691352844238281,
+    "maxabs": 0.04940926860876971,
+    "rho_global": 0.46757333700344017,
+    "total": 16777216
+   },
+   "A_bench": {
+    "rho_ew": 0.00042487409491845065,
+    "frac": 0.0,
+    "maxabs": 0.0038591506820466748,
+    "rho_global": 0.0003652019172134425,
+    "total": 16777216
+   },
+   "B_bench": {
+    "rho_ew": 0.03211138306544073,
+    "frac": 0.0,
+    "maxabs": 0.04940926860876971,
+    "rho_global": 0.004675733370034401,
+    "total": 16777216
+   },
+   "ref_max_abs": 1055.7169831672027,
+   "u_strict_B": 10557169.831672026,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.0,
+   "wall_s": 0.52
+  },
+  {
+   "level": 1,
+   "problem_id": 13,
+   "name": "13_Matmul_for_symmetric_matrices.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.04684517766096383,
+   "s71_t_fp64_s": 0.01,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x128_8x4_nn_align1>(cutlass_80_simt_sgemm_128x128_8x4_nn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.048820840296245865,
+    "frac": 0.0,
+    "maxabs": 0.005038311747284752,
+    "rho_global": 0.04684517766096383,
+    "total": 16777216
+   },
+   "B_strict": {
+    "rho_ew": 0.5418797615122362,
+    "frac": 0.0,
+    "maxabs": 0.05584980814614937,
+    "rho_global": 0.5192799326772676,
+    "total": 16777216
+   },
+   "A_bench": {
+    "rho_ew": 0.0004882084029624587,
+    "frac": 0.0,
+    "maxabs": 0.005038311747284752,
+    "rho_global": 0.0004684517766096383,
+    "total": 16777216
+   },
+   "B_bench": {
+    "rho_ew": 0.005418797615122362,
+    "frac": 0.0,
+    "maxabs": 0.05584980814614937,
+    "rho_global": 0.0051927993267726754,
+    "total": 16777216
+   },
+   "ref_max_abs": 1074.5240984992968,
+   "u_strict_B": 10745240.984992968,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.0,
+   "wall_s": 0.54
+  },
+  {
+   "level": 1,
+   "problem_id": 14,
+   "name": "14_Matmul_for_upper_triangular_matrices.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.03416306186405263,
+   "s71_t_fp64_s": 0.01,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x128_8x4_nn_align1>(cutlass_80_simt_sgemm_128x128_8x4_nn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.039346413928893424,
+    "frac": 0.0,
+    "maxabs": 0.0036504286608760594,
+    "rho_global": 0.03416306186405263,
+    "total": 16777216
+   },
+   "B_strict": {
+    "rho_ew": 2.973695227912556,
+    "frac": 0.001437842845916748,
+    "maxabs": 0.048614110680659905,
+    "rho_global": 0.4549621496371641,
+    "total": 16777216
+   },
+   "A_bench": {
+    "rho_ew": 0.0003934641392889343,
+    "frac": 0.0,
+    "maxabs": 0.0036504286608760594,
+    "rho_global": 0.00034163061864052633,
+    "total": 16777216
+   },
+   "B_bench": {
+    "rho_ew": 0.029736952279125563,
+    "frac": 0.0,
+    "maxabs": 0.048614110680659905,
+    "rho_global": 0.004549621496371641,
+    "total": 16777216
+   },
+   "ref_max_abs": 1067.530881512452,
+   "u_strict_B": 10675308.81512452,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.0,
+   "wall_s": 0.52
+  },
+  {
+   "level": 1,
+   "problem_id": 73,
+   "name": "73_conv_transposed_3D_asymmetric_input_square_kernel__strided_padded__grouped.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.5180756338870394,
+   "s71_t_fp64_s": 0.011,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 2.432533470922077,
+    "frac": 0.004370551260749269,
+    "maxabs": 0.0002585978529420774,
+    "rho_global": 1.4707571943563797,
+    "total": 261152640
+   },
+   "B_strict": {
+    "rho_ew": 2.432533470922077,
+    "frac": 0.004370551260749269,
+    "maxabs": 0.0002585978529420774,
+    "rho_global": 1.4707571943563797,
+    "total": 261152640
+   },
+   "A_bench": {
+    "rho_ew": 0.024325334709220773,
+    "frac": 0.0,
+    "maxabs": 0.0002585978529420774,
+    "rho_global": 0.014707571943563796,
+    "total": 261152640
+   },
+   "B_bench": {
+    "rho_ew": 0.024325334709220773,
+    "frac": 0.0,
+    "maxabs": 0.0002585978529420774,
+    "rho_global": 0.014707571943563796,
+    "total": 261152640
+   },
+   "ref_max_abs": 0.7582633893233666,
+   "u_strict_B": 7582.633893233666,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.03117001450678748,
+   "wall_s": 1.6
+  },
+  {
+   "level": 1,
+   "problem_id": 8,
+   "name": "8_Matmul_with_irregular_shapes_.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.043462370198143266,
+   "s71_t_fp64_s": 0.011,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x128_8x4_nn_align1>(cutlass_80_simt_sgemm_128x128_8x4_nn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align1>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align1::Params)",
+   "A_strict": {
+    "rho_ew": 0.0464827845664818,
+    "frac": 0.0,
+    "maxabs": 0.0035145854751590377,
+    "rho_global": 0.043462370198143266,
+    "total": 48581805
+   },
+   "B_strict": {
+    "rho_ew": 0.5843693654314694,
+    "frac": 0.0,
+    "maxabs": 0.04297608364026928,
+    "rho_global": 0.5314545541833011,
+    "total": 48581805
+   },
+   "A_bench": {
+    "rho_ew": 0.000464827845664818,
+    "frac": 0.0,
+    "maxabs": 0.0035145854751590377,
+    "rho_global": 0.0004346237019814327,
+    "total": 48581805
+   },
+   "B_bench": {
+    "rho_ew": 0.005843693654314695,
+    "frac": 0.0,
+    "maxabs": 0.04297608364026928,
+    "rho_global": 0.005314545541833012,
+    "total": 48581805
+   },
+   "ref_max_abs": 807.6502091662692,
+   "u_strict_B": 8076502.091662691,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.0,
+   "wall_s": 1.08
+  },
+  {
+   "level": 2,
+   "problem_id": 37,
+   "name": "37_Matmul_Swish_Sum_GroupNorm.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.010573503408183306,
+   "s71_t_fp64_s": 0.011,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.020505485567846038,
+    "frac": 0.0,
+    "maxabs": 3.099767864389591e-06,
+    "rho_global": 0.006230516481130123,
+    "total": 134217728
+   },
+   "B_strict": {
+    "rho_ew": 3.3967781772294408,
+    "frac": 0.007298082113265991,
+    "maxabs": 0.00041301913450775274,
+    "rho_global": 0.8301662050681958,
+    "total": 134217728
+   },
+   "A_bench": {
+    "rho_ew": 0.00020505485567846036,
+    "frac": 0.0,
+    "maxabs": 3.099767864389591e-06,
+    "rho_global": 6.230516481130122e-05,
+    "total": 134217728
+   },
+   "B_bench": {
+    "rho_ew": 0.033967781772294404,
+    "frac": 0.0,
+    "maxabs": 0.00041301913450775274,
+    "rho_global": 0.008301662050681958,
+    "total": 134217728
+   },
+   "ref_max_abs": 3.9751378939091406,
+   "u_strict_B": 39751.3789390914,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.4107424719503993,
+   "wall_s": 1.55
+  },
+  {
+   "level": 2,
+   "problem_id": 61,
+   "name": "61_ConvTranspose3d_ReLU_GroupNorm.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 3.381724413748498,
+   "s71_t_fp64_s": 0.011,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 29.835843383465136,
+    "frac": 0.35571108926174816,
+    "maxabs": 0.0035289651005743217,
+    "rho_global": 3.6963301951617353,
+    "total": 80494592
+   },
+   "B_strict": {
+    "rho_ew": 29.835843383465136,
+    "frac": 0.35571108926174816,
+    "maxabs": 0.0035289651005743217,
+    "rho_global": 3.6963301951617353,
+    "total": 80494592
+   },
+   "A_bench": {
+    "rho_ew": 0.2983584338346514,
+    "frac": 0.0,
+    "maxabs": 0.0035289651005743217,
+    "rho_global": 0.03696330195161736,
+    "total": 80494592
+   },
+   "B_bench": {
+    "rho_ew": 0.2983584338346514,
+    "frac": 0.0,
+    "maxabs": 0.0035289651005743217,
+    "rho_global": 0.03696330195161736,
+    "total": 80494592
+   },
+   "ref_max_abs": 8.54721281446532,
+   "u_strict_B": 85472.1281446532,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.0930311707642996,
+   "wall_s": 1.45
+  },
+  {
+   "level": 1,
+   "problem_id": 58,
+   "name": "58_conv_transposed_3D__asymmetric_input__asymmetric_kernel.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 2.2050304139798746,
+   "s71_t_fp64_s": 0.016,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 5.4250056435481016,
+    "frac": 0.20626128127755733,
+    "maxabs": 0.0005890371043414389,
+    "rho_global": 2.0969756452998203,
+    "total": 11612160
+   },
+   "B_strict": {
+    "rho_ew": 5.4250056435481016,
+    "frac": 0.20626128127755733,
+    "maxabs": 0.0005890371043414389,
+    "rho_global": 2.0969756452998203,
+    "total": 11612160
+   },
+   "A_bench": {
+    "rho_ew": 0.05425005643548101,
+    "frac": 0.0,
+    "maxabs": 0.0005890371043414389,
+    "rho_global": 0.0209697564529982,
+    "total": 11612160
+   },
+   "B_bench": {
+    "rho_ew": 0.05425005643548101,
+    "frac": 0.0,
+    "maxabs": 0.0005890371043414389,
+    "rho_global": 0.0209697564529982,
+    "total": 11612160
+   },
+   "ref_max_abs": 1.808984003518171,
+   "u_strict_B": 18089.84003518171,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.049003754322383956,
+   "wall_s": 0.5
+  },
+  {
+   "level": 1,
+   "problem_id": 79,
+   "name": "79_conv_transposed_1D_asymmetric_input_square_kernel___padded____strided____dilated__.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.6950875438149655,
+   "s71_t_fp64_s": 0.017,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 3.6639056785461377,
+    "frac": 0.05165433923138912,
+    "maxabs": 0.00038798896781575,
+    "rho_global": 1.8805962518926052,
+    "total": 268436480
+   },
+   "B_strict": {
+    "rho_ew": 3.6639056785461377,
+    "frac": 0.05165433923138912,
+    "maxabs": 0.00038798896781575,
+    "rho_global": 1.8805962518926052,
+    "total": 268436480
+   },
+   "A_bench": {
+    "rho_ew": 0.03663905678546138,
+    "frac": 0.0,
+    "maxabs": 0.00038798896781575,
+    "rho_global": 0.018805962518926054,
+    "total": 268436480
+   },
+   "B_bench": {
+    "rho_ew": 0.03663905678546138,
+    "frac": 0.0,
+    "maxabs": 0.00038798896781575,
+    "rho_global": 0.018805962518926054,
+    "total": 268436480
+   },
+   "ref_max_abs": 1.0631167770609105,
+   "u_strict_B": 10631.167770609103,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.10943901319700196,
+   "wall_s": 1.59
+  },
+  {
+   "level": 2,
+   "problem_id": 39,
+   "name": "39_Gemm_Scale_BatchNorm.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.020680237270798655,
+   "s71_t_fp64_s": 0.019,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.05595757174555871,
+    "frac": 0.0,
+    "maxabs": 1.079804236336912e-05,
+    "rho_global": 0.02279988972369762,
+    "total": 67108864
+   },
+   "B_strict": {
+    "rho_ew": 11.32179884783622,
+    "frac": 0.10879296064376831,
+    "maxabs": 0.0011660862158426877,
+    "rho_global": 2.4621719599590257,
+    "total": 67108864
+   },
+   "A_bench": {
+    "rho_ew": 0.0005595757174555871,
+    "frac": 0.0,
+    "maxabs": 1.079804236336912e-05,
+    "rho_global": 0.00022799889723697616,
+    "total": 67108864
+   },
+   "B_bench": {
+    "rho_ew": 0.1132179884783622,
+    "frac": 0.0,
+    "maxabs": 0.0011660862158426877,
+    "rho_global": 0.024621719599590256,
+    "total": 67108864
+   },
+   "ref_max_abs": 3.736006399252849,
+   "u_strict_B": 37360.06399252849,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.10249652482914212,
+   "wall_s": 2.07
+  },
+  {
+   "level": 2,
+   "problem_id": 79,
+   "name": "79_Conv3d_Multiply_InstanceNorm_Clamp_Multiply_Max.py",
+   "op_class": "conv",
+   "label_s105c": "OTHER",
+   "s71_rho_global_strict": 11.937019451959705,
+   "s71_t_fp64_s": 0.019,
+   "status": "ok",
+   "label_A": "OTHER",
+   "top1_A": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+   "label_B": "OTHER",
+   "top1_B": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+   "A_strict": {
+    "rho_ew": 20.65338083795524,
+    "frac": 0.23527901785714286,
+    "maxabs": 0.003898570933591916,
+    "rho_global": 12.65158705554723,
+    "total": 1612800
+   },
+   "B_strict": {
+    "rho_ew": 20.65338083795524,
+    "frac": 0.23527901785714286,
+    "maxabs": 0.003898570933591916,
+    "rho_global": 12.65158705554723,
+    "total": 1612800
+   },
+   "A_bench": {
+    "rho_ew": 0.2065338083795524,
+    "frac": 0.0,
+    "maxabs": 0.003898570933591916,
+    "rho_global": 0.1265158705554723,
+    "total": 1612800
+   },
+   "B_bench": {
+    "rho_ew": 0.2065338083795524,
+    "frac": 0.0,
+    "maxabs": 0.003898570933591916,
+    "rho_global": 0.1265158705554723,
+    "total": 1612800
+   },
+   "ref_max_abs": 2.0814876556396484,
+   "u_strict_B": 20814.876556396484,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.05986147601277592,
+   "wall_s": 0.18
+  },
+  {
+   "level": 2,
+   "problem_id": 41,
+   "name": "41_Gemm_BatchNorm_GELU_ReLU.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.029374958304567045,
+   "s71_t_fp64_s": 0.02,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.030368460003572878,
+    "frac": 0.0,
+    "maxabs": 6.024660667902637e-06,
+    "rho_global": 0.02377403383567928,
+    "total": 67108864
+   },
+   "B_strict": {
+    "rho_ew": 2.8577759271266165,
+    "frac": 0.02598056197166443,
+    "maxabs": 0.00042965767198932525,
+    "rho_global": 1.6954807240935357,
+    "total": 67108864
+   },
+   "A_bench": {
+    "rho_ew": 0.00030368460003572876,
+    "frac": 0.0,
+    "maxabs": 6.024660667902637e-06,
+    "rho_global": 0.0002377403383567928,
+    "total": 67108864
+   },
+   "B_bench": {
+    "rho_ew": 0.028577759271266167,
+    "frac": 0.0,
+    "maxabs": 0.00042965767198932525,
+    "rho_global": 0.016954807240935357,
+    "total": 67108864
+   },
+   "ref_max_abs": 1.5341348083979869,
+   "u_strict_B": 15341.348083979869,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.19067003979430217,
+   "wall_s": 2.1
+  },
+  {
+   "level": 2,
+   "problem_id": 40,
+   "name": "40_Matmul_Scaling_ResidualAdd.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.029486994577760717,
+   "s71_t_fp64_s": 0.021,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.03780763351191288,
+    "frac": 0.0,
+    "maxabs": 8.866096572246462e-06,
+    "rho_global": 0.024297935238471412,
+    "total": 67108864
+   },
+   "B_strict": {
+    "rho_ew": 6.836051477329685,
+    "frac": 0.2934147119522095,
+    "maxabs": 0.0007406317602102197,
+    "rho_global": 2.0297345509945517,
+    "total": 67108864
+   },
+   "A_bench": {
+    "rho_ew": 0.0003780763351191289,
+    "frac": 0.0,
+    "maxabs": 8.866096572246462e-06,
+    "rho_global": 0.00024297935238471412,
+    "total": 67108864
+   },
+   "B_bench": {
+    "rho_ew": 0.06836051477329685,
+    "frac": 0.0,
+    "maxabs": 0.0007406317602102197,
+    "rho_global": 0.020297345509945514,
+    "total": 67108864
+   },
+   "ref_max_abs": 2.6489094588615876,
+   "u_strict_B": 26489.094588615873,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.17597789851404275,
+   "wall_s": 2.09
+  },
+  {
+   "level": 1,
+   "problem_id": 18,
+   "name": "18_Matmul_with_transposed_both.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.007254245350427406,
+   "s71_t_fp64_s": 0.024,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x128_8x4_tt_align1>(cutlass_80_simt_sgemm_128x128_8x4_tt_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tt_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tt_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.007717524876778923,
+    "frac": 0.0,
+    "maxabs": 0.0015600026713400439,
+    "rho_global": 0.007254245350427406,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 0.41281943782070907,
+    "frac": 0.0,
+    "maxabs": 0.08489247461511695,
+    "rho_global": 0.3947626825112994,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 7.717524876778922e-05,
+    "frac": 0.0,
+    "maxabs": 0.0015600026713400439,
+    "rho_global": 7.254245350427406e-05,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.00412819437820709,
+    "frac": 0.0,
+    "maxabs": 0.08489247461511695,
+    "rho_global": 0.0039476268251129945,
+    "total": 8388608
+   },
+   "ref_max_abs": 2149.46858216359,
+   "u_strict_B": 21494685.8216359,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.0,
+   "wall_s": 0.52
+  },
+  {
+   "level": 1,
+   "problem_id": 16,
+   "name": "16_Matmul_with_transposed_A.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.023832847468827596,
+   "s71_t_fp64_s": 0.025,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x128_8x4_nt_align1>(cutlass_80_simt_sgemm_128x128_8x4_nt_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_nt_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_nt_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.025120687261375396,
+    "frac": 0.0,
+    "maxabs": 0.005121225582342959,
+    "rho_global": 0.023832847468827596,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 0.4288419299435856,
+    "frac": 0.0,
+    "maxabs": 0.08729090616816393,
+    "rho_global": 0.4062290986154558,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.00025120687261375395,
+    "frac": 0.0,
+    "maxabs": 0.005121225582342959,
+    "rho_global": 0.0002383284746882759,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.004288419299435855,
+    "frac": 0.0,
+    "maxabs": 0.08729090616816393,
+    "rho_global": 0.004062290986154558,
+    "total": 8388608
+   },
+   "ref_max_abs": 2147.8097840769196,
+   "u_strict_B": 21478097.840769194,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.0,
+   "wall_s": 0.53
+  },
+  {
+   "level": 1,
+   "problem_id": 17,
+   "name": "17_Matmul_with_transposed_B.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.05587498340096771,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4>(cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.05968697763599242,
+    "frac": 0.0,
+    "maxabs": 0.012036026654186571,
+    "rho_global": 0.05587498340096771,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 0.7597366712670152,
+    "frac": 0.0,
+    "maxabs": 0.15606679200254803,
+    "rho_global": 0.7245106431823525,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0005968697763599241,
+    "frac": 0.0,
+    "maxabs": 0.012036026654186571,
+    "rho_global": 0.000558749834009677,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.0075973667126701516,
+    "frac": 0.0,
+    "maxabs": 0.15606679200254803,
+    "rho_global": 0.007245106431823523,
+    "total": 8388608
+   },
+   "ref_max_abs": 2153.0993699835476,
+   "u_strict_B": 21530993.699835476,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.0,
+   "wall_s": 0.57
+  },
+  {
+   "level": 2,
+   "problem_id": 14,
+   "name": "14_Gemm_Divide_Sum_Scaling.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.013856733296352721,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4>(cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 6.03059581062949,
+    "frac": 0.0048828125,
+    "maxabs": 0.011559590976162326,
+    "rho_global": 0.013762284757441696,
+    "total": 1024
+   },
+   "B_strict": {
+    "rho_ew": 1647.7939423259418,
+    "frac": 0.8662109375,
+    "maxabs": 3.3481551554611997,
+    "rho_global": 3.9861500944604398,
+    "total": 1024
+   },
+   "A_bench": {
+    "rho_ew": 0.06030595810629491,
+    "frac": 0.0,
+    "maxabs": 0.011559590976162326,
+    "rho_global": 0.00013762284757441696,
+    "total": 1024
+   },
+   "B_bench": {
+    "rho_ew": 16.477939423259418,
+    "frac": 0.01953125,
+    "maxabs": 3.3481551554611997,
+    "rho_global": 0.039861500944604396,
+    "total": 1024
+   },
+   "ref_max_abs": 8398.470858144898,
+   "u_strict_B": 83984708.58144897,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.006816075397502654,
+   "wall_s": 0.76
+  },
+  {
+   "level": 2,
+   "problem_id": 22,
+   "name": "22_Matmul_Scale_ResidualAdd_Clamp_LogSumExp_Mish.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.0019413655653453955,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0038717586738854877,
+    "frac": 0.0,
+    "maxabs": 3.931194787298864e-05,
+    "rho_global": 0.0038717586738854877,
+    "total": 1024
+   },
+   "B_strict": {
+    "rho_ew": 0.18391751998469255,
+    "frac": 0.0,
+    "maxabs": 0.0018409237427903236,
+    "rho_global": 0.18130906390440085,
+    "total": 1024
+   },
+   "A_bench": {
+    "rho_ew": 3.871758673885487e-05,
+    "frac": 0.0,
+    "maxabs": 3.931194787298864e-05,
+    "rho_global": 3.871758673885487e-05,
+    "total": 1024
+   },
+   "B_bench": {
+    "rho_ew": 0.0018391751998469257,
+    "frac": 0.0,
+    "maxabs": 0.0018409237427903236,
+    "rho_global": 0.0018130906390440083,
+    "total": 1024
+   },
+   "ref_max_abs": 100.53511926800256,
+   "u_strict_B": 1005351.1926800256,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.994348072819891,
+   "wall_s": 0.7
+  },
+  {
+   "level": 2,
+   "problem_id": 30,
+   "name": "30_Gemm_GroupNorm_Hardtanh.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.05801328967140288,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.09998224318215872,
+    "frac": 0.0,
+    "maxabs": 1.7542153015526196e-05,
+    "rho_global": 0.058473843385087314,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 13.237398931252956,
+    "frac": 0.5258811712265015,
+    "maxabs": 0.0014573434180867872,
+    "rho_global": 4.857811393622623,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0009998224318215872,
+    "frac": 0.0,
+    "maxabs": 1.7542153015526196e-05,
+    "rho_global": 0.0005847384338508732,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.13237398931252958,
+    "frac": 0.0,
+    "maxabs": 0.0014573434180867872,
+    "rho_global": 0.04857811393622624,
+    "total": 8388608
+   },
+   "ref_max_abs": 2.0,
+   "u_strict_B": 20000.0,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.007938762243842537,
+   "wall_s": 0.66
+  },
+  {
+   "level": 2,
+   "problem_id": 33,
+   "name": "33_Gemm_Scale_BatchNorm.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.02896913221078958,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP64",
+   "top1_A": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::batch_norm_calc_invstd(at::Tensor const&, at::Tensor const&, double)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::batch_norm_calc_invstd(at::Tensor const&, at::Tensor const&, double)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.054812033552992134,
+    "frac": 0.0,
+    "maxabs": 1.2751023886981017e-05,
+    "rho_global": 0.026954322633210365,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 12.896344195803682,
+    "frac": 0.1316664218902588,
+    "maxabs": 0.0014059615207402398,
+    "rho_global": 2.972054697396077,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0005481203355299214,
+    "frac": 0.0,
+    "maxabs": 1.2751023886981017e-05,
+    "rho_global": 0.0002695432263321037,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.12896344195803683,
+    "frac": 0.0,
+    "maxabs": 0.0014059615207402398,
+    "rho_global": 0.029720546973960767,
+    "total": 8388608
+   },
+   "ref_max_abs": 3.7306044601805373,
+   "u_strict_B": 37306.04460180537,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.06955022204043777,
+   "wall_s": 0.62
+  },
+  {
+   "level": 2,
+   "problem_id": 62,
+   "name": "62_Matmul_GroupNorm_LeakyReLU_Sum.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.04157418829884434,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.2583730118346151,
+    "frac": 0.0,
+    "maxabs": 3.637729466776651e-05,
+    "rho_global": 0.04531240242554093,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 37.147201676902505,
+    "frac": 0.3221461772918701,
+    "maxabs": 0.004093761039833943,
+    "rho_global": 5.0992837528219,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.002583730118346151,
+    "frac": 0.0,
+    "maxabs": 3.637729466776651e-05,
+    "rho_global": 0.0004531240242554093,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.371472016769025,
+    "frac": 0.0,
+    "maxabs": 0.004093761039833943,
+    "rho_global": 0.050992837528219,
+    "total": 8388608
+   },
+   "ref_max_abs": 7.028109903804609,
+   "u_strict_B": 70281.09903804609,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.08991670744899427,
+   "wall_s": 0.64
+  },
+  {
+   "level": 2,
+   "problem_id": 63,
+   "name": "63_Gemm_ReLU_Divide.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.03227740836451822,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.02323178850745052,
+    "frac": 0.0,
+    "maxabs": 3.433004766684178e-06,
+    "rho_global": 0.01751190290248292,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 2.288380117431224,
+    "frac": 0.009436964988708496,
+    "maxabs": 0.00024038714359995994,
+    "rho_global": 1.2262250138946533,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.00023231788507450517,
+    "frac": 0.0,
+    "maxabs": 3.433004766684178e-06,
+    "rho_global": 0.00017511902902482917,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.02288380117431224,
+    "frac": 0.0,
+    "maxabs": 0.00024038714359995994,
+    "rho_global": 0.012262250138946532,
+    "total": 8388608
+   },
+   "ref_max_abs": 0.9603836235281035,
+   "u_strict_B": 9603.836235281035,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.45745635136762297,
+   "wall_s": 0.63
+  },
+  {
+   "level": 2,
+   "problem_id": 75,
+   "name": "75_Gemm_GroupNorm_Min_BiasAdd.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.007811918216872401,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.06621813355125199,
+    "frac": 0.0,
+    "maxabs": 6.8620392728035995e-06,
+    "rho_global": 0.007931154329488056,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 7.7864570575719645,
+    "frac": 0.04716193675994873,
+    "maxabs": 0.000781374658974876,
+    "rho_global": 0.903113894151304,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0006621813355125199,
+    "frac": 0.0,
+    "maxabs": 6.8620392728035995e-06,
+    "rho_global": 7.931154329488057e-05,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.07786457057571965,
+    "frac": 0.0,
+    "maxabs": 0.000781374658974876,
+    "rho_global": 0.009031138941513042,
+    "total": 8388608
+   },
+   "ref_max_abs": 7.652005732999692,
+   "u_strict_B": 76520.05732999691,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.015263359050293836,
+   "wall_s": 0.64
+  },
+  {
+   "level": 2,
+   "problem_id": 80,
+   "name": "80_Gemm_Max_Subtract_GELU.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.0,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 1024
+   },
+   "B_strict": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 1024
+   },
+   "A_bench": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 1024
+   },
+   "B_bench": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 1024
+   },
+   "ref_max_abs": 0.0,
+   "u_strict_B": 0.0,
+   "A_B_bit_identical": true,
+   "wall_s": 0.59
+  },
+  {
+   "level": 2,
+   "problem_id": 84,
+   "name": "84_Gemm_BatchNorm_Scaling_Softmax.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.0021918053955433895,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 3.0512865658913657e-05,
+    "frac": 0.0,
+    "maxabs": 3.0536775591895673e-09,
+    "rho_global": 3.0512865658913657e-05,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 0.0015770978704362322,
+    "frac": 0.0,
+    "maxabs": 1.5779324285939735e-07,
+    "rho_global": 0.0015766969262239116,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 3.051286565891366e-07,
+    "frac": 0.0,
+    "maxabs": 3.0536775591895673e-09,
+    "rho_global": 3.051286565891366e-07,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 1.577097870436232e-05,
+    "frac": 0.0,
+    "maxabs": 1.5779324285939735e-07,
+    "rho_global": 1.576696926223912e-05,
+    "total": 8388608
+   },
+   "ref_max_abs": 0.0007836016862292889,
+   "u_strict_B": 7.8360168622928885,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.9860786611252277,
+   "wall_s": 0.64
+  },
+  {
+   "level": 2,
+   "problem_id": 88,
+   "name": "88_Gemm_GroupNorm_Swish_Multiply_Swish.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.017511420627511005,
+   "s71_t_fp64_s": 0.026,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.11556001016436057,
+    "frac": 0.0,
+    "maxabs": 3.2344451970311994e-05,
+    "rho_global": 0.030984753466579446,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 16.318644507739332,
+    "frac": 0.09192228317260742,
+    "maxabs": 0.004119471537875619,
+    "rho_global": 3.9462968836455974,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0011556001016436058,
+    "frac": 0.0,
+    "maxabs": 3.2344451970311994e-05,
+    "rho_global": 0.00030984753466579447,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.16318644507739333,
+    "frac": 0.0,
+    "maxabs": 0.004119471537875619,
+    "rho_global": 0.039462968836455975,
+    "total": 8388608
+   },
+   "ref_max_abs": 9.438828246672719,
+   "u_strict_B": 94388.28246672718,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.7694026159077809,
+   "wall_s": 0.65
+  },
+  {
+   "level": 2,
+   "problem_id": 12,
+   "name": "12_Gemm_Multiply_LeakyReLU.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.03514337605427649,
+   "s71_t_fp64_s": 0.027,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.06567945688597629,
+    "frac": 0.0,
+    "maxabs": 1.3732019066736711e-05,
+    "rho_global": 0.028362947911319523,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 9.061400893315385,
+    "frac": 0.21659433841705322,
+    "maxabs": 0.0009615485743998398,
+    "rho_global": 1.98604094542575,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0006567945688597628,
+    "frac": 0.0,
+    "maxabs": 1.3732019066736711e-05,
+    "rho_global": 0.0002836294791131952,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.09061400893315386,
+    "frac": 0.0,
+    "maxabs": 0.0009615485743998398,
+    "rho_global": 0.019860409454257495,
+    "total": 8388608
+   },
+   "ref_max_abs": 3.841534494112414,
+   "u_strict_B": 38415.34494112414,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.19293616334654556,
+   "wall_s": 0.63
+  },
+  {
+   "level": 2,
+   "problem_id": 97,
+   "name": "97_Matmul_BatchNorm_BiasAdd_Divide_Swish.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.030889521679144896,
+   "s71_t_fp64_s": 0.027,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0355177548035009,
+    "frac": 0.0,
+    "maxabs": 6.792722414883379e-06,
+    "rho_global": 0.024076418884940772,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 2.6927102748710623,
+    "frac": 0.03774154186248779,
+    "maxabs": 0.00039083977411524806,
+    "rho_global": 1.3853093860977244,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.000355177548035009,
+    "frac": 0.0,
+    "maxabs": 6.792722414883379e-06,
+    "rho_global": 0.00024076418884940777,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.026927102748710626,
+    "frac": 0.0,
+    "maxabs": 0.00039083977411524806,
+    "rho_global": 0.013853093860977245,
+    "total": 8388608
+   },
+   "ref_max_abs": 1.821317591850034,
+   "u_strict_B": 18213.17591850034,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.22056355760290067,
+   "wall_s": 0.64
+  },
+  {
+   "level": 2,
+   "problem_id": 99,
+   "name": "99_Matmul_GELU_Softmax.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.002743409813507388,
+   "s71_t_fp64_s": 0.027,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 3.009332698246375e-05,
+    "frac": 0.0,
+    "maxabs": 3.0115673630001435e-09,
+    "rho_global": 3.009332698246375e-05,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 0.0016125753662569497,
+    "frac": 0.0,
+    "maxabs": 1.613347457753568e-07,
+    "rho_global": 0.0016121503101341197,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 3.0093326982463754e-07,
+    "frac": 0.0,
+    "maxabs": 3.0115673630001435e-09,
+    "rho_global": 3.0093326982463754e-07,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 1.61257536625695e-05,
+    "frac": 0.0,
+    "maxabs": 1.613347457753568e-07,
+    "rho_global": 1.6121503101341197e-05,
+    "total": 8388608
+   },
+   "ref_max_abs": 0.000742578165275821,
+   "u_strict_B": 7.425781652758209,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.9890306847944128,
+   "wall_s": 0.63
+  },
+  {
+   "level": 1,
+   "problem_id": 61,
+   "name": "61_conv_transposed_3D__square_input__square_kernel.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.9397791935723543,
+   "s71_t_fp64_s": 0.029,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 4.424531498618509,
+    "frac": 0.12468115498418529,
+    "maxabs": 0.0004433634754977614,
+    "rho_global": 1.7016426145715244,
+    "total": 110398464
+   },
+   "B_strict": {
+    "rho_ew": 4.424531498618509,
+    "frac": 0.12468115498418529,
+    "maxabs": 0.0004433634754977614,
+    "rho_global": 1.7016426145715244,
+    "total": 110398464
+   },
+   "A_bench": {
+    "rho_ew": 0.04424531498618509,
+    "frac": 0.0,
+    "maxabs": 0.0004433634754977614,
+    "rho_global": 0.017016426145715243,
+    "total": 110398464
+   },
+   "B_bench": {
+    "rho_ew": 0.04424531498618509,
+    "frac": 0.0,
+    "maxabs": 0.0004433634754977614,
+    "rho_global": 0.017016426145715243,
+    "total": 110398464
+   },
+   "ref_max_abs": 1.6055028929173876,
+   "u_strict_B": 16055.028929173875,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.1227647867292929,
+   "wall_s": 1.89
+  },
+  {
+   "level": 2,
+   "problem_id": 51,
+   "name": "51_Gemm_Subtract_GlobalAvgPool_LogSumExp_GELU_ResidualAdd.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.0003322759872344843,
+   "s71_t_fp64_s": 0.029,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.00033905936811647974,
+    "frac": 0.0,
+    "maxabs": 6.7813136439554e-08,
+    "rho_global": 0.00033824818806397897,
+    "total": 16777216
+   },
+   "B_strict": {
+    "rho_ew": 0.01631060214700083,
+    "frac": 0.0,
+    "maxabs": 1.6458224805226962e-06,
+    "rho_global": 0.008209271848205739,
+    "total": 16777216
+   },
+   "A_bench": {
+    "rho_ew": 3.390593681164798e-06,
+    "frac": 0.0,
+    "maxabs": 6.7813136439554e-08,
+    "rho_global": 3.38248188063979e-06,
+    "total": 16777216
+   },
+   "B_bench": {
+    "rho_ew": 0.00016310602147000827,
+    "frac": 0.0,
+    "maxabs": 1.6458224805226962e-06,
+    "rho_global": 8.209271848205738e-05,
+    "total": 16777216
+   },
+   "ref_max_abs": 1.0048336940899525,
+   "u_strict_B": 10048.336940899524,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.017973615485130243,
+   "wall_s": 1.03
+  },
+  {
+   "level": 2,
+   "problem_id": 53,
+   "name": "53_Gemm_Scaling_Hardtanh_GELU.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.011925872604847648,
+   "s71_t_fp64_s": 0.029,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.022411180027341188,
+    "frac": 0.0,
+    "maxabs": 3.1855060582119954e-06,
+    "rho_global": 0.017736931054510262,
+    "total": 16777216
+   },
+   "B_strict": {
+    "rho_ew": 1.377986088113659,
+    "frac": 0.00010204315185546875,
+    "maxabs": 0.00018034719359560913,
+    "rho_global": 1.004175060484802,
+    "total": 16777216
+   },
+   "A_bench": {
+    "rho_ew": 0.0002241118002734119,
+    "frac": 0.0,
+    "maxabs": 3.1855060582119954e-06,
+    "rho_global": 0.00017736931054510266,
+    "total": 16777216
+   },
+   "B_bench": {
+    "rho_ew": 0.013779860881136587,
+    "frac": 0.0,
+    "maxabs": 0.00018034719359560913,
+    "rho_global": 0.010041750604848023,
+    "total": 16777216
+   },
+   "ref_max_abs": 0.7959736373908743,
+   "u_strict_B": 7959.736373908743,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.4872648436057019,
+   "wall_s": 1.02
+  },
+  {
+   "level": 2,
+   "problem_id": 28,
+   "name": "28_BMM_InstanceNorm_Sum_ResidualAdd_Multiply.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.022779686986269497,
+   "s71_t_fp64_s": 0.03,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.11869643769168918,
+    "frac": 0.0,
+    "maxabs": 1.861015244841724e-05,
+    "rho_global": 0.028169563702460054,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 11.13301034431776,
+    "frac": 0.26650309562683105,
+    "maxabs": 0.0013115900837255001,
+    "rho_global": 1.985309927870186,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.001186964376916892,
+    "frac": 0.0,
+    "maxabs": 1.861015244841724e-05,
+    "rho_global": 0.00028169563702460054,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.11133010344317762,
+    "frac": 0.0,
+    "maxabs": 0.0013115900837255001,
+    "rho_global": 0.01985309927870186,
+    "total": 8388608
+   },
+   "ref_max_abs": 5.606475217360931,
+   "u_strict_B": 56064.752173609304,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.2366089015814535,
+   "wall_s": 0.66
+  },
+  {
+   "level": 2,
+   "problem_id": 81,
+   "name": "81_Gemm_Swish_Divide_Clamp_Tanh_Clamp.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.016090945072287168,
+   "s71_t_fp64_s": 0.031,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.020676801082528073,
+    "frac": 0.0,
+    "maxabs": 2.83874609297019e-06,
+    "rho_global": 0.016851430557938456,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 1.4735331203961504,
+    "frac": 0.00016009807586669922,
+    "maxabs": 0.00016691300546764487,
+    "rho_global": 0.990832863784537,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.00020676801082528077,
+    "frac": 0.0,
+    "maxabs": 2.83874609297019e-06,
+    "rho_global": 0.00016851430557938458,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.014735331203961505,
+    "frac": 0.0,
+    "maxabs": 0.00016691300546764487,
+    "rho_global": 0.009908328637845371,
+    "total": 8388608
+   },
+   "ref_max_abs": 0.6845727626565801,
+   "u_strict_B": 6845.7276265658,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.04726170415938116,
+   "wall_s": 0.64
+  },
+  {
+   "level": 2,
+   "problem_id": 86,
+   "name": "86_Matmul_Divide_GELU.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.026470533274958415,
+   "s71_t_fp64_s": 0.031,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0038149848406879142,
+    "frac": 0.0,
+    "maxabs": 4.03338781138074e-07,
+    "rho_global": 0.0036315014453706307,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 0.2494464583464003,
+    "frac": 0.0,
+    "maxabs": 2.5511606114386742e-05,
+    "rho_global": 0.22969632182829103,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 3.8149848406879144e-05,
+    "frac": 0.0,
+    "maxabs": 4.03338781138074e-07,
+    "rho_global": 3.631501445370631e-05,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.0024944645834640033,
+    "frac": 0.0,
+    "maxabs": 2.5511606114386742e-05,
+    "rho_global": 0.0022969632182829104,
+    "total": 8388608
+   },
+   "ref_max_abs": 0.11066672340786914,
+   "u_strict_B": 1106.6672340786913,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.8628096605516409,
+   "wall_s": 0.63
+  },
+  {
+   "level": 2,
+   "problem_id": 29,
+   "name": "29_Matmul_Mish_Mish.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.034133134206921975,
+   "s71_t_fp64_s": 0.032,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.04194612581208717,
+    "frac": 0.0,
+    "maxabs": 7.492502619887986e-06,
+    "rho_global": 0.02682901711407739,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 2.6510316471773,
+    "frac": 0.016640543937683105,
+    "maxabs": 0.00044185433917176553,
+    "rho_global": 1.582183981638151,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.00041946125812087167,
+    "frac": 0.0,
+    "maxabs": 7.492502619887986e-06,
+    "rho_global": 0.0002682901711407739,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.026510316471773005,
+    "frac": 0.0,
+    "maxabs": 0.00044185433917176553,
+    "rho_global": 0.015821839816381512,
+    "total": 8388608
+   },
+   "ref_max_abs": 1.7926862128529535,
+   "u_strict_B": 17926.862128529534,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.2139890538198323,
+   "wall_s": 0.64
+  },
+  {
+   "level": 2,
+   "problem_id": 70,
+   "name": "70_Gemm_Sigmoid_Scaling_ResidualAdd.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.03051495948599203,
+   "s71_t_fp64_s": 0.032,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.07996600716277617,
+    "frac": 0.0,
+    "maxabs": 9.695171438117711e-06,
+    "rho_global": 0.020781831192660572,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 5.788412604033955,
+    "frac": 0.17615699768066406,
+    "maxabs": 0.0007569015165990733,
+    "rho_global": 1.6224364517771344,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0007996600716277618,
+    "frac": 0.0,
+    "maxabs": 9.695171438117711e-06,
+    "rho_global": 0.00020781831192660571,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.05788412604033956,
+    "frac": 0.0,
+    "maxabs": 0.0007569015165990733,
+    "rho_global": 0.01622436451777134,
+    "total": 8388608
+   },
+   "ref_max_abs": 3.665215181586939,
+   "u_strict_B": 36652.15181586939,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.3189625173121883,
+   "wall_s": 0.63
+  },
+  {
+   "level": 2,
+   "problem_id": 76,
+   "name": "76_Gemm_Add_ReLU.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.011137484424322117,
+   "s71_t_fp64_s": 0.032,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4>(cutlass_80_tensorop_s1688gemm_64x256_16x4_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.021644789353845367,
+    "frac": 0.0,
+    "maxabs": 2.7172794845320425e-06,
+    "rho_global": 0.005195841022197369,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 4.275507563806659,
+    "frac": 0.04764580726623535,
+    "maxabs": 0.0004807831347644065,
+    "rho_global": 0.9193285963441319,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.00021644789353845366,
+    "frac": 0.0,
+    "maxabs": 2.7172794845320425e-06,
+    "rho_global": 5.1958410221973686e-05,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.04275507563806659,
+    "frac": 0.0,
+    "maxabs": 0.0004807831347644065,
+    "rho_global": 0.009193285963441319,
+    "total": 8388608
+   },
+   "ref_max_abs": 4.229720218388977,
+   "u_strict_B": 42297.20218388976,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.5334816351481799,
+   "wall_s": 0.6
+  },
+  {
+   "level": 2,
+   "problem_id": 64,
+   "name": "64_Gemm_LogSumExp_LeakyReLU_LeakyReLU_GELU_GELU.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.03388564022461348,
+   "s71_t_fp64_s": 0.033,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0007810251401218103,
+    "frac": 0.0,
+    "maxabs": 7.8641208567376e-07,
+    "rho_global": 0.0007804078291764827,
+    "total": 1024
+   },
+   "B_strict": {
+    "rho_ew": 0.005597207086122481,
+    "frac": 0.0,
+    "maxabs": 5.6385982816209435e-06,
+    "rho_global": 0.005595547582140717,
+    "total": 1024
+   },
+   "A_bench": {
+    "rho_ew": 7.810251401218104e-06,
+    "frac": 0.0,
+    "maxabs": 7.8641208567376e-07,
+    "rho_global": 7.804078291764827e-06,
+    "total": 1024
+   },
+   "B_bench": {
+    "rho_ew": 5.597207086122481e-05,
+    "frac": 0.0,
+    "maxabs": 5.6385982816209435e-06,
+    "rho_global": 5.595547582140717e-05,
+    "total": 1024
+   },
+   "ref_max_abs": 9.076937420061677,
+   "u_strict_B": 90769.37420061676,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.9769693644858563,
+   "wall_s": 0.6
+  },
+  {
+   "level": 2,
+   "problem_id": 98,
+   "name": "98_Matmul_AvgPool_GELU_Scale_Max.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.025783639710521295,
+   "s71_t_fp64_s": 0.033,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.006063200604424786,
+    "frac": 0.0,
+    "maxabs": 7.756014511750564e-07,
+    "rho_global": 0.005476553292112022,
+    "total": 1024
+   },
+   "B_strict": {
+    "rho_ew": 0.8138242266857457,
+    "frac": 0.0,
+    "maxabs": 0.00010784194409496628,
+    "rho_global": 0.7614763395120916,
+    "total": 1024
+   },
+   "A_bench": {
+    "rho_ew": 6.0632006044247864e-05,
+    "frac": 0.0,
+    "maxabs": 7.756014511750564e-07,
+    "rho_global": 5.476553292112023e-05,
+    "total": 1024
+   },
+   "B_bench": {
+    "rho_ew": 0.008138242266857457,
+    "frac": 0.0,
+    "maxabs": 0.00010784194409496628,
+    "rho_global": 0.007614763395120918,
+    "total": 1024
+   },
+   "ref_max_abs": 0.41622186401832145,
+   "u_strict_B": 4162.218640183214,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.7875958028579939,
+   "wall_s": 0.6
+  },
+  {
+   "level": 2,
+   "problem_id": 18,
+   "name": "18_Matmul_Sum_Max_AvgPool_LogSumExp_LogSumExp.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.02323005396525384,
+   "s71_t_fp64_s": 0.034,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.5162829629684408,
+    "frac": 0.0,
+    "maxabs": 0.00017388738691792582,
+    "rho_global": 0.02163164641683028,
+    "total": 1024
+   },
+   "B_strict": {
+    "rho_ew": 122.31567471646204,
+    "frac": 0.8388671875,
+    "maxabs": 0.029048161392321248,
+    "rho_global": 3.6136005459343457,
+    "total": 1024
+   },
+   "A_bench": {
+    "rho_ew": 0.005162829629684409,
+    "frac": 0.0,
+    "maxabs": 0.00017388738691792582,
+    "rho_global": 0.00021631646416830273,
+    "total": 1024
+   },
+   "B_bench": {
+    "rho_ew": 1.2231567471646203,
+    "frac": 0.0009765625,
+    "maxabs": 0.029048161392321248,
+    "rho_global": 0.03613600545934345,
+    "total": 1024
+   },
+   "ref_max_abs": 79.38564590378778,
+   "u_strict_B": 793856.4590378777,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.06880774150651413,
+   "wall_s": 0.6
+  },
+  {
+   "level": 2,
+   "problem_id": 94,
+   "name": "94_Gemm_BiasAdd_Hardtanh_Mish_GroupNorm.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.03473340651802339,
+   "s71_t_fp64_s": 0.034,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.11731582526477566,
+    "frac": 0.0,
+    "maxabs": 1.2924144409343086e-05,
+    "rho_global": 0.0307095222598602,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 7.486477770826957,
+    "frac": 0.146384596824646,
+    "maxabs": 0.0010955378733137344,
+    "rho_global": 2.603146764804532,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0011731582526477565,
+    "frac": 0.0,
+    "maxabs": 1.2924144409343086e-05,
+    "rho_global": 0.000307095222598602,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.07486477770826958,
+    "frac": 0.0,
+    "maxabs": 0.0010955378733137344,
+    "rho_global": 0.026031467648045318,
+    "total": 8388608
+   },
+   "ref_max_abs": 3.2085136655596806,
+   "u_strict_B": 32085.136655596805,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.11585055027859623,
+   "wall_s": 0.64
+  },
+  {
+   "level": 2,
+   "problem_id": 95,
+   "name": "95_Matmul_Add_Swish_Tanh_GELU_Hardtanh.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.01936814842508324,
+   "s71_t_fp64_s": 0.034,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.02705287839572341,
+    "frac": 0.0,
+    "maxabs": 3.666041691607891e-06,
+    "rho_global": 0.019911947165396703,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 1.9859459325148932,
+    "frac": 0.0023113489151000977,
+    "maxabs": 0.0002668778004131789,
+    "rho_global": 1.4495352504062249,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0002705287839572341,
+    "frac": 0.0,
+    "maxabs": 3.666041691607891e-06,
+    "rho_global": 0.00019911947165396704,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.019859459325148935,
+    "frac": 0.0,
+    "maxabs": 0.0002668778004131789,
+    "rho_global": 0.01449535250406225,
+    "total": 8388608
+   },
+   "ref_max_abs": 0.8411266668981506,
+   "u_strict_B": 8411.266668981505,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.028076960604515002,
+   "wall_s": 0.64
+  },
+  {
+   "level": 2,
+   "problem_id": 9,
+   "name": "9_Matmul_Subtract_Multiply_ReLU.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.039632610141268884,
+   "s71_t_fp64_s": 0.034,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void magma_sgemmEx_kernel<float, float, float, true, false, 6, 4, 6, 3, 4>(int, int, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, BatchedTensor, int, int, int, float const*, float const*, float, float, int, cublasLtEpilogue_t, int, void const*, long)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4>(cutlass_80_tensorop_s1688gemm_128x128_16x5_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 8388608
+   },
+   "ref_max_abs": 0.0,
+   "u_strict_B": 0.0,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 1.0,
+   "wall_s": 0.63
+  },
+  {
+   "level": 1,
+   "problem_id": 69,
+   "name": "69_conv_transposed_2D__asymmetric_input__asymmetric_kernel.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.5606232391223058,
+   "s71_t_fp64_s": 0.038,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "A_strict": {
+    "rho_ew": 3.828121115727915,
+    "frac": 0.0855542497804179,
+    "maxabs": 0.0003979462292468816,
+    "rho_global": 1.768587200920447,
+    "total": 276889600
+   },
+   "B_strict": {
+    "rho_ew": 3.828121115727915,
+    "frac": 0.0855542497804179,
+    "maxabs": 0.0003979462292468816,
+    "rho_global": 1.768587200920447,
+    "total": 276889600
+   },
+   "A_bench": {
+    "rho_ew": 0.03828121115727916,
+    "frac": 0.0,
+    "maxabs": 0.0003979462292468816,
+    "rho_global": 0.017685872009204472,
+    "total": 276889600
+   },
+   "B_bench": {
+    "rho_ew": 0.03828121115727916,
+    "frac": 0.0,
+    "maxabs": 0.0003979462292468816,
+    "rho_global": 0.017685872009204472,
+    "total": 276889600
+   },
+   "ref_max_abs": 1.2500797757655018,
+   "u_strict_B": 12500.797757655017,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.1332569941192854,
+   "wall_s": 3.87
+  },
+  {
+   "level": 1,
+   "problem_id": 68,
+   "name": "68_conv_transposed_3D__square_input__asymmetric_kernel.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.7632059636592614,
+   "s71_t_fp64_s": 0.04,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 3.3162703535371136,
+    "frac": 0.059786745071211136,
+    "maxabs": 0.0003602779998755634,
+    "rho_global": 1.6181018574650254,
+    "total": 312508416
+   },
+   "B_strict": {
+    "rho_ew": 3.3162703535371136,
+    "frac": 0.059786745071211136,
+    "maxabs": 0.0003602779998755634,
+    "rho_global": 1.6181018574650254,
+    "total": 312508416
+   },
+   "A_bench": {
+    "rho_ew": 0.03316270353537114,
+    "frac": 0.0,
+    "maxabs": 0.0003602779998755634,
+    "rho_global": 0.016181018574650256,
+    "total": 312508416
+   },
+   "B_bench": {
+    "rho_ew": 0.03316270353537114,
+    "frac": 0.0,
+    "maxabs": 0.0003602779998755634,
+    "rho_global": 0.016181018574650256,
+    "total": 312508416
+   },
+   "ref_max_abs": 1.226547100316586,
+   "u_strict_B": 12265.47100316586,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.08229560765158418,
+   "wall_s": 6.67
+  },
+  {
+   "level": 1,
+   "problem_id": 71,
+   "name": "71_conv_transposed_2D__asymmetric_input__square_kernel.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 2.0418551028264837,
+   "s71_t_fp64_s": 0.04,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "A_strict": {
+    "rho_ew": 4.603328128469756,
+    "frac": 0.16368871435336882,
+    "maxabs": 0.00048430117663909866,
+    "rho_global": 1.9921745412468297,
+    "total": 135005184
+   },
+   "B_strict": {
+    "rho_ew": 4.603328128469756,
+    "frac": 0.16368871435336882,
+    "maxabs": 0.00048430117663909866,
+    "rho_global": 1.9921745412468297,
+    "total": 135005184
+   },
+   "A_bench": {
+    "rho_ew": 0.046033281284697566,
+    "frac": 0.0,
+    "maxabs": 0.00048430117663909866,
+    "rho_global": 0.0199217454124683,
+    "total": 135005184
+   },
+   "B_bench": {
+    "rho_ew": 0.046033281284697566,
+    "frac": 0.0,
+    "maxabs": 0.00048430117663909866,
+    "rho_global": 0.0199217454124683,
+    "total": 135005184
+   },
+   "ref_max_abs": 1.4310177979485275,
+   "u_strict_B": 14310.177979485274,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.02433109063952806,
+   "wall_s": 1.15
+  },
+  {
+   "level": 1,
+   "problem_id": 74,
+   "name": "74_conv_transposed_1D_dilated.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.9435815726187136,
+   "s71_t_fp64_s": 0.04,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "A_strict": {
+    "rho_ew": 3.2963422756795917,
+    "frac": 0.06294469561860143,
+    "maxabs": 0.00034734918203525866,
+    "rho_global": 1.6721220317837262,
+    "total": 268460032
+   },
+   "B_strict": {
+    "rho_ew": 3.2963422756795917,
+    "frac": 0.06294469561860143,
+    "maxabs": 0.00034734918203525866,
+    "rho_global": 1.6721220317837262,
+    "total": 268460032
+   },
+   "A_bench": {
+    "rho_ew": 0.03296342275679592,
+    "frac": 0.0,
+    "maxabs": 0.00034734918203525866,
+    "rho_global": 0.016721220317837262,
+    "total": 268460032
+   },
+   "B_bench": {
+    "rho_ew": 0.03296342275679592,
+    "frac": 0.0,
+    "maxabs": 0.00034734918203525866,
+    "rho_global": 0.016721220317837262,
+    "total": 268460032
+   },
+   "ref_max_abs": 1.0772956484804284,
+   "u_strict_B": 10772.956484804283,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.13966974407420024,
+   "wall_s": 1.8
+  },
+  {
+   "level": 2,
+   "problem_id": 16,
+   "name": "16_ConvTranspose2d_Mish_Add_Hardtanh_Scaling.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.659770478651031,
+   "s71_t_fp64_s": 0.04,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 2.3220369902926685,
+    "frac": 0.002873701974749565,
+    "maxabs": 0.0005674127916712735,
+    "rho_global": 1.891375972237578,
+    "total": 536870912
+   },
+   "B_strict": {
+    "rho_ew": 2.3220369902926685,
+    "frac": 0.002873701974749565,
+    "maxabs": 0.0005674127916712735,
+    "rho_global": 1.891375972237578,
+    "total": 536870912
+   },
+   "A_bench": {
+    "rho_ew": 0.023220369902926682,
+    "frac": 0.0,
+    "maxabs": 0.0005674127916712735,
+    "rho_global": 0.018913759722375783,
+    "total": 536870912
+   },
+   "B_bench": {
+    "rho_ew": 0.023220369902926682,
+    "frac": 0.0,
+    "maxabs": 0.0005674127916712735,
+    "rho_global": 0.018913759722375783,
+    "total": 536870912
+   },
+   "ref_max_abs": 2.0,
+   "u_strict_B": 20000.0,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.13954067539192713,
+   "wall_s": 4.22
+  },
+  {
+   "level": 2,
+   "problem_id": 23,
+   "name": "23_Conv3d_GroupNorm_Mean.py",
+   "op_class": "conv",
+   "label_s105c": "OTHER",
+   "s71_rho_global_strict": 0.0002543131395569515,
+   "s71_t_fp64_s": 0.04,
+   "status": "ok",
+   "label_A": "OTHER",
+   "top1_A": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "label_B": "OTHER",
+   "top1_B": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "A_strict": {
+    "rho_ew": 0.00026715724710059836,
+    "frac": 0.0,
+    "maxabs": 2.671572471005984e-08,
+    "rho_global": 0.00026715724710059836,
+    "total": 128
+   },
+   "B_strict": {
+    "rho_ew": 0.00026715724710059836,
+    "frac": 0.0,
+    "maxabs": 2.671572471005984e-08,
+    "rho_global": 0.00026715724710059836,
+    "total": 128
+   },
+   "A_bench": {
+    "rho_ew": 2.671572471005984e-06,
+    "frac": 0.0,
+    "maxabs": 2.671572471005984e-08,
+    "rho_global": 2.671572471005984e-06,
+    "total": 128
+   },
+   "B_bench": {
+    "rho_ew": 2.671572471005984e-06,
+    "frac": 0.0,
+    "maxabs": 2.671572471005984e-08,
+    "rho_global": 2.671572471005984e-06,
+    "total": 128
+   },
+   "ref_max_abs": 5.646063489541537e-17,
+   "u_strict_B": 5.646063489541537e-13,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.050505088199623,
+   "wall_s": 0.25
+  },
+  {
+   "level": 2,
+   "problem_id": 2,
+   "name": "2_ConvTranspose2d_BiasAdd_Clamp_Scaling_Clamp_Divide.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 2.2515007796578925,
+   "s71_t_fp64_s": 0.04,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 2.7895667976088157,
+    "frac": 0.0014601703733205795,
+    "maxabs": 0.00028931788841080053,
+    "rho_global": 1.9287859227386701,
+    "total": 536870912
+   },
+   "B_strict": {
+    "rho_ew": 2.7895667976088157,
+    "frac": 0.0014601703733205795,
+    "maxabs": 0.00028931788841080053,
+    "rho_global": 1.9287859227386701,
+    "total": 536870912
+   },
+   "A_bench": {
+    "rho_ew": 0.027895667976088157,
+    "frac": 0.0,
+    "maxabs": 0.00028931788841080053,
+    "rho_global": 0.019287859227386704,
+    "total": 536870912
+   },
+   "B_bench": {
+    "rho_ew": 0.027895667976088157,
+    "frac": 0.0,
+    "maxabs": 0.00028931788841080053,
+    "rho_global": 0.019287859227386704,
+    "total": 536870912
+   },
+   "ref_max_abs": 0.5,
+   "u_strict_B": 5000.0,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.14333322015027583,
+   "wall_s": 4.17
+  },
+  {
+   "level": 2,
+   "problem_id": 5,
+   "name": "5_ConvTranspose2d_Subtract_Tanh.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.2854476631485166,
+   "s71_t_fp64_s": 0.04,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 2.2272599940645845,
+    "frac": 0.0014135663240636245,
+    "maxabs": 0.00022532231696696658,
+    "rho_global": 1.1307806105389429,
+    "total": 538970112
+   },
+   "B_strict": {
+    "rho_ew": 2.2272599940645845,
+    "frac": 0.0014135663240636245,
+    "maxabs": 0.00022532231696696658,
+    "rho_global": 1.1307806105389429,
+    "total": 538970112
+   },
+   "A_bench": {
+    "rho_ew": 0.022272599940645843,
+    "frac": 0.0,
+    "maxabs": 0.00022532231696696658,
+    "rho_global": 0.011307806105389428,
+    "total": 538970112
+   },
+   "B_bench": {
+    "rho_ew": 0.022272599940645843,
+    "frac": 0.0,
+    "maxabs": 0.00022532231696696658,
+    "rho_global": 0.011307806105389428,
+    "total": 538970112
+   },
+   "ref_max_abs": 0.992626287247492,
+   "u_strict_B": 9926.26287247492,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.12032154792731065,
+   "wall_s": 4.44
+  },
+  {
+   "level": 2,
+   "problem_id": 36,
+   "name": "36_ConvTranspose2d_Min_Sum_GELU_Add.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.0,
+   "s71_t_fp64_s": 0.046,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 4096
+   },
+   "B_strict": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 4096
+   },
+   "A_bench": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 4096
+   },
+   "B_bench": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 4096
+   },
+   "ref_max_abs": 0.23383499681949615,
+   "u_strict_B": 2338.3499681949615,
+   "A_B_bit_identical": true,
+   "wall_s": 0.29
+  },
+  {
+   "level": 2,
+   "problem_id": 77,
+   "name": "77_ConvTranspose3d_Scale_BatchNorm_GlobalAvgPool.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.7715261035884707,
+   "s71_t_fp64_s": 0.049,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 1.1470089282607188,
+    "frac": 0.03125,
+    "maxabs": 0.00012392317015216814,
+    "rho_global": 0.7016754213474132,
+    "total": 2048
+   },
+   "B_strict": {
+    "rho_ew": 1.1470089282607188,
+    "frac": 0.03125,
+    "maxabs": 0.00012392317015216814,
+    "rho_global": 0.7016754213474132,
+    "total": 2048
+   },
+   "A_bench": {
+    "rho_ew": 0.011470089282607187,
+    "frac": 0.0,
+    "maxabs": 0.00012392317015216814,
+    "rho_global": 0.007016754213474131,
+    "total": 2048
+   },
+   "B_bench": {
+    "rho_ew": 0.011470089282607187,
+    "frac": 0.0,
+    "maxabs": 0.00012392317015216814,
+    "rho_global": 0.007016754213474131,
+    "total": 2048
+   },
+   "ref_max_abs": 0.7661039047684038,
+   "u_strict_B": 7661.039047684038,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.09053573419767999,
+   "wall_s": 2.18
+  },
+  {
+   "level": 2,
+   "problem_id": 45,
+   "name": "45_Gemm_Sigmoid_LogSumExp.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.0007162225575899966,
+   "s71_t_fp64_s": 0.051,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x256_8x4_tn_align1>(cutlass_80_simt_sgemm_128x256_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_128x256_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0007786317289164696,
+    "frac": 0.0,
+    "maxabs": 6.212058352161876e-07,
+    "rho_global": 0.0007784727041152339,
+    "total": 16384
+   },
+   "B_strict": {
+    "rho_ew": 0.011641886976341418,
+    "frac": 0.0,
+    "maxabs": 9.285575226058995e-06,
+    "rho_global": 0.011636347319532078,
+    "total": 16384
+   },
+   "A_bench": {
+    "rho_ew": 7.786317289164697e-06,
+    "frac": 0.0,
+    "maxabs": 6.212058352161876e-07,
+    "rho_global": 7.78472704115234e-06,
+    "total": 16384
+   },
+   "B_bench": {
+    "rho_ew": 0.00011641886976341419,
+    "frac": 0.0,
+    "maxabs": 9.285575226058995e-06,
+    "rho_global": 0.0001163634731953208,
+    "total": 16384
+   },
+   "ref_max_abs": 6.97980239939451,
+   "u_strict_B": 69798.0239939451,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.08691452938134424,
+   "wall_s": 1.25
+  },
+  {
+   "level": 1,
+   "problem_id": 65,
+   "name": "65_conv_transposed_2D__square_input__asymmetric_kernel.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 2.0598547621500343,
+   "s71_t_fp64_s": 0.056,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "A_strict": {
+    "rho_ew": 5.194893786502106,
+    "frac": 0.1899542289236325,
+    "maxabs": 0.0005503760495191579,
+    "rho_global": 2.096933029956305,
+    "total": 136321024
+   },
+   "B_strict": {
+    "rho_ew": 5.194893786502106,
+    "frac": 0.1899542289236325,
+    "maxabs": 0.0005503760495191579,
+    "rho_global": 2.096933029956305,
+    "total": 136321024
+   },
+   "A_bench": {
+    "rho_ew": 0.051948937865021055,
+    "frac": 0.0,
+    "maxabs": 0.0005503760495191579,
+    "rho_global": 0.02096933029956305,
+    "total": 136321024
+   },
+   "B_bench": {
+    "rho_ew": 0.051948937865021055,
+    "frac": 0.0,
+    "maxabs": 0.0005503760495191579,
+    "rho_global": 0.02096933029956305,
+    "total": 136321024
+   },
+   "ref_max_abs": 1.624671563929852,
+   "u_strict_B": 16246.715639298518,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.018000428228041244,
+   "wall_s": 1.92
+  },
+  {
+   "level": 2,
+   "problem_id": 11,
+   "name": "11_ConvTranspose2d_BatchNorm_Tanh_MaxPool_GroupNorm.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 3.985023170301035,
+   "s71_t_fp64_s": 0.056,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "A_strict": {
+    "rho_ew": 21.71993966616336,
+    "frac": 0.576252234435824,
+    "maxabs": 0.0023589061698030545,
+    "rho_global": 4.76291110057088,
+    "total": 18939904
+   },
+   "B_strict": {
+    "rho_ew": 21.71993966616336,
+    "frac": 0.576252234435824,
+    "maxabs": 0.0023589061698030545,
+    "rho_global": 4.76291110057088,
+    "total": 18939904
+   },
+   "A_bench": {
+    "rho_ew": 0.2171993966616336,
+    "frac": 0.0,
+    "maxabs": 0.0023589061698030545,
+    "rho_global": 0.04762911100570881,
+    "total": 18939904
+   },
+   "B_bench": {
+    "rho_ew": 0.2171993966616336,
+    "frac": 0.0,
+    "maxabs": 0.0023589061698030545,
+    "rho_global": 0.04762911100570881,
+    "total": 18939904
+   },
+   "ref_max_abs": 3.952656306182823,
+   "u_strict_B": 39526.56306182822,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.19520286257484482,
+   "wall_s": 1.08
+  },
+  {
+   "level": 2,
+   "problem_id": 100,
+   "name": "100_ConvTranspose3d_Clamp_Min_Divide.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.7477400512498829,
+   "s71_t_fp64_s": 0.058,
+   "status": "ok",
+   "label_A": "OTHER",
+   "top1_A": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "label_B": "OTHER",
+   "top1_B": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, false, (cudnnKernelDataType_t)0>(cudnn::engines_precompiled::nhwc2nchw_params_t<float>, float const*, float*)",
+   "A_strict": {
+    "rho_ew": 0.9444898440971159,
+    "frac": 0.0,
+    "maxabs": 9.810429168213841e-05,
+    "rho_global": 0.7493398023763058,
+    "total": 868710400
+   },
+   "B_strict": {
+    "rho_ew": 0.9444898440971159,
+    "frac": 0.0,
+    "maxabs": 9.810429168213841e-05,
+    "rho_global": 0.7493398023763058,
+    "total": 868710400
+   },
+   "A_bench": {
+    "rho_ew": 0.009444898440971159,
+    "frac": 0.0,
+    "maxabs": 9.810429168213841e-05,
+    "rho_global": 0.007493398023763058,
+    "total": 868710400
+   },
+   "B_bench": {
+    "rho_ew": 0.009444898440971159,
+    "frac": 0.0,
+    "maxabs": 9.810429168213841e-05,
+    "rho_global": 0.007493398023763058,
+    "total": 868710400
+   },
+   "ref_max_abs": 0.30920967191426585,
+   "u_strict_B": 3092.0967191426585,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.0021394482263574167,
+   "wall_s": 5.39
+  },
+  {
+   "level": 2,
+   "problem_id": 74,
+   "name": "74_ConvTranspose3d_LeakyReLU_Multiply_LeakyReLU_Max.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.583485313237324,
+   "s71_t_fp64_s": 0.058,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "OTHER",
+   "top1_B": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::leaky_relu_kernel(at::TensorIteratorBase&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::leaky_relu_kernel(at::TensorIteratorBase&, c10::Scalar const&)::{lambda()#1}::operator()() const::{lambda()#2}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+   "A_strict": {
+    "rho_ew": 2.6510021631953062,
+    "frac": 0.0029343366622924805,
+    "maxabs": 0.0003079011194965231,
+    "rho_global": 1.9178363647038383,
+    "total": 8388608
+   },
+   "B_strict": {
+    "rho_ew": 2.6510021631953062,
+    "frac": 0.0029343366622924805,
+    "maxabs": 0.0003079011194965231,
+    "rho_global": 1.9178363647038383,
+    "total": 8388608
+   },
+   "A_bench": {
+    "rho_ew": 0.02651002163195306,
+    "frac": 0.0,
+    "maxabs": 0.0003079011194965231,
+    "rho_global": 0.019178363647038385,
+    "total": 8388608
+   },
+   "B_bench": {
+    "rho_ew": 0.02651002163195306,
+    "frac": 0.0,
+    "maxabs": 0.0003079011194965231,
+    "rho_global": 0.019178363647038385,
+    "total": 8388608
+   },
+   "ref_max_abs": 0.6054608472504937,
+   "u_strict_B": 6054.608472504936,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.2111488175302094,
+   "wall_s": 0.21
+  },
+  {
+   "level": 1,
+   "problem_id": 85,
+   "name": "85_conv_depthwise_2D_asymmetric_input_asymmetric_kernel.py",
+   "op_class": "conv",
+   "label_s105c": "OTHER",
+   "s71_rho_global_strict": 0.001707504097440145,
+   "s71_t_fp64_s": 0.074,
+   "status": "ok",
+   "label_A": "OTHER",
+   "top1_A": "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel_generic<float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)",
+   "label_B": "OTHER",
+   "top1_B": "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel_generic<float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)",
+   "A_strict": {
+    "rho_ew": 0.0022274614100964343,
+    "frac": 0.0,
+    "maxabs": 4.846381156387025e-07,
+    "rho_global": 0.0016578569951087574,
+    "total": 129024000
+   },
+   "B_strict": {
+    "rho_ew": 0.0022274614100964343,
+    "frac": 0.0,
+    "maxabs": 4.846381156387025e-07,
+    "rho_global": 0.0016578569951087574,
+    "total": 129024000
+   },
+   "A_bench": {
+    "rho_ew": 2.227461410096435e-05,
+    "frac": 0.0,
+    "maxabs": 4.846381156387025e-07,
+    "rho_global": 1.6578569951087576e-05,
+    "total": 129024000
+   },
+   "B_bench": {
+    "rho_ew": 2.227461410096435e-05,
+    "frac": 0.0,
+    "maxabs": 4.846381156387025e-07,
+    "rho_global": 1.6578569951087576e-05,
+    "total": 129024000
+   },
+   "ref_max_abs": 1.9232805788952236,
+   "u_strict_B": 19232.805788952235,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.029075832032155892,
+   "wall_s": 0.94
+  },
+  {
+   "level": 2,
+   "problem_id": 42,
+   "name": "42_ConvTranspose2d_GlobalAvgPool_BiasAdd_LogSumExp_Sum_Multiply.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.0033522430522284815,
+   "s71_t_fp64_s": 0.078,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_256x64_16x4_nhwc_unity_stride_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.01277997926195479,
+    "frac": 0.0,
+    "maxabs": 6.856774992769488e-05,
+    "rho_global": 0.012779829939390659,
+    "total": 16
+   },
+   "B_strict": {
+    "rho_ew": 0.01277997926195479,
+    "frac": 0.0,
+    "maxabs": 6.856774992769488e-05,
+    "rho_global": 0.012779829939390659,
+    "total": 16
+   },
+   "A_bench": {
+    "rho_ew": 0.0001277997926195479,
+    "frac": 0.0,
+    "maxabs": 6.856774992769488e-05,
+    "rho_global": 0.0001277982993939066,
+    "total": 16
+   },
+   "B_bench": {
+    "rho_ew": 0.0001277997926195479,
+    "frac": 0.0,
+    "maxabs": 6.856774992769488e-05,
+    "rho_global": 0.0001277982993939066,
+    "total": 16
+   },
+   "ref_max_abs": 52.65310043473409,
+   "u_strict_B": 526531.0043473409,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 2.8123220006064207,
+   "wall_s": 2.65
+  },
+  {
+   "level": 1,
+   "problem_id": 83,
+   "name": "83_conv_depthwise_2D_square_input_asymmetric_kernel.py",
+   "op_class": "conv",
+   "label_s105c": "OTHER",
+   "s71_rho_global_strict": 0.0005380268611376853,
+   "s71_t_fp64_s": 0.08,
+   "status": "ok",
+   "label_A": "OTHER",
+   "top1_A": "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel_generic<float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)",
+   "label_B": "OTHER",
+   "top1_B": "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel_generic<float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)",
+   "A_strict": {
+    "rho_ew": 0.0004910792210091336,
+    "frac": 0.0,
+    "maxabs": 7.396442924800795e-08,
+    "rho_global": 0.00037883589356379024,
+    "total": 133693440
+   },
+   "B_strict": {
+    "rho_ew": 0.0004910792210091336,
+    "frac": 0.0,
+    "maxabs": 7.396442924800795e-08,
+    "rho_global": 0.00037883589356379024,
+    "total": 133693440
+   },
+   "A_bench": {
+    "rho_ew": 4.910792210091335e-06,
+    "frac": 0.0,
+    "maxabs": 7.396442924800795e-08,
+    "rho_global": 3.7883589356379024e-06,
+    "total": 133693440
+   },
+   "B_bench": {
+    "rho_ew": 4.910792210091335e-06,
+    "frac": 0.0,
+    "maxabs": 7.396442924800795e-08,
+    "rho_global": 3.7883589356379024e-06,
+    "total": 133693440
+   },
+   "ref_max_abs": 0.952413446154976,
+   "u_strict_B": 9524.13446154976,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.2958792191848519,
+   "wall_s": 0.93
+  },
+  {
+   "level": 2,
+   "problem_id": 44,
+   "name": "44_ConvTranspose2d_Multiply_GlobalAvgPool_GlobalAvgPool_Mean.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.13076491846653682,
+   "s71_t_fp64_s": 0.086,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 0.12236227876502194,
+    "frac": 0.0,
+    "maxabs": 1.253901820016945e-05,
+    "rho_global": 0.11506566235868917,
+    "total": 2048
+   },
+   "B_strict": {
+    "rho_ew": 0.12236227876502194,
+    "frac": 0.0,
+    "maxabs": 1.253901820016945e-05,
+    "rho_global": 0.11506566235868917,
+    "total": 2048
+   },
+   "A_bench": {
+    "rho_ew": 0.0012236227876502193,
+    "frac": 0.0,
+    "maxabs": 1.253901820016945e-05,
+    "rho_global": 0.0011506566235868917,
+    "total": 2048
+   },
+   "B_bench": {
+    "rho_ew": 0.0012236227876502193,
+    "frac": 0.0,
+    "maxabs": 1.253901820016945e-05,
+    "rho_global": 0.0011506566235868917,
+    "total": 2048
+   },
+   "ref_max_abs": 0.08972719950823513,
+   "u_strict_B": 897.2719950823513,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.12005709399700451,
+   "wall_s": 0.32
+  },
+  {
+   "level": 2,
+   "problem_id": 78,
+   "name": "78_ConvTranspose3d_Max_Max_Sum.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.7074973294095758,
+   "s71_t_fp64_s": 0.086,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 0.4833776270519234,
+    "frac": 0.0,
+    "maxabs": 0.0006867745913012868,
+    "rho_global": 0.4833776270519234,
+    "total": 16000
+   },
+   "B_strict": {
+    "rho_ew": 0.4833776270519234,
+    "frac": 0.0,
+    "maxabs": 0.0006867745913012868,
+    "rho_global": 0.4833776270519234,
+    "total": 16000
+   },
+   "A_bench": {
+    "rho_ew": 0.004833776270519234,
+    "frac": 0.0,
+    "maxabs": 0.0006867745913012868,
+    "rho_global": 0.004833776270519234,
+    "total": 16000
+   },
+   "B_bench": {
+    "rho_ew": 0.004833776270519234,
+    "frac": 0.0,
+    "maxabs": 0.0006867745913012868,
+    "rho_global": 0.004833776270519234,
+    "total": 16000
+   },
+   "ref_max_abs": 13.20782743897071,
+   "u_strict_B": 132078.2743897071,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.3167781602012348,
+   "wall_s": 1.4
+  },
+  {
+   "level": 2,
+   "problem_id": 66,
+   "name": "66_Matmul_Dropout_Softmax.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.0010690957548767593,
+   "s71_t_fp64_s": 0.089,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_tn_align1>(cutlass_80_simt_sgemm_256x128_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 1.67741068597467e-05,
+    "frac": 0.0,
+    "maxabs": 1.677743182663255e-09,
+    "rho_global": 1.6772395609750157e-05,
+    "total": 2097152
+   },
+   "B_strict": {
+    "rho_ew": 0.0006622578004541338,
+    "frac": 0.0,
+    "maxabs": 6.624170981352337e-08,
+    "rho_global": 0.0006622182550579805,
+    "total": 2097152
+   },
+   "A_bench": {
+    "rho_ew": 1.67741068597467e-07,
+    "frac": 0.0,
+    "maxabs": 1.677743182663255e-09,
+    "rho_global": 1.677239560975016e-07,
+    "total": 2097152
+   },
+   "B_bench": {
+    "rho_ew": 6.622578004541339e-06,
+    "frac": 0.0,
+    "maxabs": 6.624170981352337e-08,
+    "rho_global": 6.6221825505798045e-06,
+    "total": 2097152
+   },
+   "ref_max_abs": 0.0003002681906372455,
+   "u_strict_B": 3.002681906372455,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.9843116058283444,
+   "wall_s": 0.89
+  },
+  {
+   "level": 2,
+   "problem_id": 68,
+   "name": "68_Matmul_Min_Subtract.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.01852821038263868,
+   "s71_t_fp64_s": 0.091,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_tn_align1>(cutlass_80_simt_sgemm_256x128_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0483580289751262,
+    "frac": 0.0,
+    "maxabs": 8.545281286131967e-06,
+    "rho_global": 0.01852960569458321,
+    "total": 2097152
+   },
+   "B_strict": {
+    "rho_ew": 1.862667844621947,
+    "frac": 0.0013518333435058594,
+    "maxabs": 0.0004368311135758418,
+    "rho_global": 0.9472254942411549,
+    "total": 2097152
+   },
+   "A_bench": {
+    "rho_ew": 0.000483580289751262,
+    "frac": 0.0,
+    "maxabs": 8.545281286131967e-06,
+    "rho_global": 0.0001852960569458321,
+    "total": 2097152
+   },
+   "B_bench": {
+    "rho_ew": 0.01862667844621947,
+    "frac": 0.0,
+    "maxabs": 0.0004368311135758418,
+    "rho_global": 0.00947225494241155,
+    "total": 2097152
+   },
+   "ref_max_abs": 3.6116908405827663,
+   "u_strict_B": 36116.908405827664,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 7.530743205711482e-05,
+   "wall_s": 0.91
+  },
+  {
+   "level": 1,
+   "problem_id": 82,
+   "name": "82_conv_depthwise_2D_square_input_square_kernel.py",
+   "op_class": "conv",
+   "label_s105c": "OTHER",
+   "s71_rho_global_strict": 0.0010087256279205765,
+   "s71_t_fp64_s": 0.153,
+   "status": "ok",
+   "label_A": "OTHER",
+   "top1_A": "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel<3, float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)",
+   "label_B": "OTHER",
+   "top1_B": "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel<3, float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)",
+   "A_strict": {
+    "rho_ew": 0.001206776581158042,
+    "frac": 0.0,
+    "maxabs": 2.239229006661958e-07,
+    "rho_global": 0.00088476051529885,
+    "total": 266342400
+   },
+   "B_strict": {
+    "rho_ew": 0.001206776581158042,
+    "frac": 0.0,
+    "maxabs": 2.239229006661958e-07,
+    "rho_global": 0.00088476051529885,
+    "total": 266342400
+   },
+   "A_bench": {
+    "rho_ew": 1.206776581158042e-05,
+    "frac": 0.0,
+    "maxabs": 2.239229006661958e-07,
+    "rho_global": 8.8476051529885e-06,
+    "total": 266342400
+   },
+   "B_bench": {
+    "rho_ew": 1.206776581158042e-05,
+    "frac": 0.0,
+    "maxabs": 2.239229006661958e-07,
+    "rho_global": 8.8476051529885e-06,
+    "total": 266342400
+   },
+   "ref_max_abs": 1.5308871360580576,
+   "u_strict_B": 15308.871360580575,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.12289279581135719,
+   "wall_s": 1.84
+  },
+  {
+   "level": 1,
+   "problem_id": 64,
+   "name": "64_conv_transposed_1D.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 1.9563701644659377,
+   "s71_t_fp64_s": 0.154,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 4.9679227891886315,
+    "frac": 0.17576511439749173,
+    "maxabs": 0.0005455526908432207,
+    "rho_global": 2.128058110936637,
+    "total": 536887296
+   },
+   "B_strict": {
+    "rho_ew": 4.9679227891886315,
+    "frac": 0.17576511439749173,
+    "maxabs": 0.0005455526908432207,
+    "rho_global": 2.128058110936637,
+    "total": 536887296
+   },
+   "A_bench": {
+    "rho_ew": 0.049679227891886314,
+    "frac": 0.0,
+    "maxabs": 0.0005455526908432207,
+    "rho_global": 0.02128058110936637,
+    "total": 536887296
+   },
+   "B_bench": {
+    "rho_ew": 0.049679227891886314,
+    "frac": 0.0,
+    "maxabs": 0.0005455526908432207,
+    "rho_global": 0.02128058110936637,
+    "total": 536887296
+   },
+   "ref_max_abs": 1.5636174502918192,
+   "u_strict_B": 15636.174502918191,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.08775841586071609,
+   "wall_s": 4.66
+  },
+  {
+   "level": 2,
+   "problem_id": 10,
+   "name": "10_ConvTranspose2d_MaxPool_Hardtanh_Mean_Tanh.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.9063852557432663,
+   "s71_t_fp64_s": 0.154,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "A_strict": {
+    "rho_ew": 1.322703152852366,
+    "frac": 0.03125,
+    "maxabs": 0.00014570233773041064,
+    "rho_global": 0.8886829573598816,
+    "total": 8192
+   },
+   "B_strict": {
+    "rho_ew": 1.322703152852366,
+    "frac": 0.03125,
+    "maxabs": 0.00014570233773041064,
+    "rho_global": 0.8886829573598816,
+    "total": 8192
+   },
+   "A_bench": {
+    "rho_ew": 0.01322703152852366,
+    "frac": 0.0,
+    "maxabs": 0.00014570233773041064,
+    "rho_global": 0.008886829573598817,
+    "total": 8192
+   },
+   "B_bench": {
+    "rho_ew": 0.01322703152852366,
+    "frac": 0.0,
+    "maxabs": 0.00014570233773041064,
+    "rho_global": 0.008886829573598817,
+    "total": 8192
+   },
+   "ref_max_abs": 0.6395311345146785,
+   "u_strict_B": 6395.311345146784,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.019530655724169184,
+   "wall_s": 3.38
+  },
+  {
+   "level": 2,
+   "problem_id": 13,
+   "name": "13_ConvTranspose3d_Mean_Add_Softmax_Tanh_Scaling.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.09764591622375324,
+   "s71_t_fp64_s": 0.182,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 0.07578419812058364,
+    "frac": 0.0,
+    "maxabs": 8.713457837011829e-06,
+    "rho_global": 0.0690854818782128,
+    "total": 16777216
+   },
+   "B_strict": {
+    "rho_ew": 0.07578419812058364,
+    "frac": 0.0,
+    "maxabs": 8.713457837011829e-06,
+    "rho_global": 0.0690854818782128,
+    "total": 16777216
+   },
+   "A_bench": {
+    "rho_ew": 0.0007578419812058365,
+    "frac": 0.0,
+    "maxabs": 8.713457837011829e-06,
+    "rho_global": 0.000690854818782128,
+    "total": 16777216
+   },
+   "B_bench": {
+    "rho_ew": 0.0007578419812058365,
+    "frac": 0.0,
+    "maxabs": 8.713457837011829e-06,
+    "rho_global": 0.000690854818782128,
+    "total": 16777216
+   },
+   "ref_max_abs": 0.2612574451419953,
+   "u_strict_B": 2612.5744514199528,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.29248979834543104,
+   "wall_s": 3.12
+  },
+  {
+   "level": 1,
+   "problem_id": 57,
+   "name": "57_conv_transposed_2D__square_input__square_kernel.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 2.147440278596021,
+   "s71_t_fp64_s": 0.185,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "A_strict": {
+    "rho_ew": 5.0292404410259115,
+    "frac": 0.19684501169519397,
+    "maxabs": 0.000533169603555983,
+    "rho_global": 2.166281525841797,
+    "total": 538970112
+   },
+   "B_strict": {
+    "rho_ew": 5.0292404410259115,
+    "frac": 0.19684501169519397,
+    "maxabs": 0.000533169603555983,
+    "rho_global": 2.166281525841797,
+    "total": 538970112
+   },
+   "A_bench": {
+    "rho_ew": 0.05029240441025911,
+    "frac": 0.0,
+    "maxabs": 0.000533169603555983,
+    "rho_global": 0.021662815258417966,
+    "total": 538970112
+   },
+   "B_bench": {
+    "rho_ew": 0.05029240441025911,
+    "frac": 0.0,
+    "maxabs": 0.000533169603555983,
+    "rho_global": 0.021662815258417966,
+    "total": 538970112
+   },
+   "ref_max_abs": 1.461220285524977,
+   "u_strict_B": 14612.202855249769,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.008773816638148474,
+   "wall_s": 5.23
+  },
+  {
+   "level": 1,
+   "problem_id": 70,
+   "name": "70_conv_transposed_3D__asymmetric_input__square_kernel.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 2.1177336415386296,
+   "s71_t_fp64_s": 0.186,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 7.975669033053892,
+    "frac": 0.29515911294755304,
+    "maxabs": 0.0008156825472745433,
+    "rho_global": 2.6206328071204257,
+    "total": 180708864
+   },
+   "B_strict": {
+    "rho_ew": 7.975669033053892,
+    "frac": 0.29515911294755304,
+    "maxabs": 0.0008156825472745433,
+    "rho_global": 2.6206328071204257,
+    "total": 180708864
+   },
+   "A_bench": {
+    "rho_ew": 0.07975669033053892,
+    "frac": 0.0,
+    "maxabs": 0.0008156825472745433,
+    "rho_global": 0.02620632807120426,
+    "total": 180708864
+   },
+   "B_bench": {
+    "rho_ew": 0.07975669033053892,
+    "frac": 0.0,
+    "maxabs": 0.0008156825472745433,
+    "rho_global": 0.02620632807120426,
+    "total": 180708864
+   },
+   "ref_max_abs": 2.11254039504612,
+   "u_strict_B": 21125.403950461197,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.237470452240829,
+   "wall_s": 3.62
+  },
+  {
+   "level": 1,
+   "problem_id": 6,
+   "name": "6_Matmul_with_large_K_dimension_.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.024830315450387525,
+   "s71_t_fp64_s": 0.247,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_128x64_8x5_nn_align1>(cutlass_80_simt_sgemm_128x64_8x5_nn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4>(cutlass_80_tensorop_s1688gemm_128x128_32x3_nn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.024948318746741385,
+    "frac": 0.0,
+    "maxabs": 0.32722900723456405,
+    "rho_global": 0.024830315450387525,
+    "total": 65536
+   },
+   "B_strict": {
+    "rho_ew": 3.3701846600700316,
+    "frac": 1.0,
+    "maxabs": 44.209206083236495,
+    "rho_global": 3.354618657236216,
+    "total": 65536
+   },
+   "A_bench": {
+    "rho_ew": 0.0002494831874674139,
+    "frac": 0.0,
+    "maxabs": 0.32722900723456405,
+    "rho_global": 0.00024830315450387525,
+    "total": 65536
+   },
+   "B_bench": {
+    "rho_ew": 0.03370184660070031,
+    "frac": 0.0,
+    "maxabs": 44.209206083236495,
+    "rho_global": 0.03354618657236216,
+    "total": 65536
+   },
+   "ref_max_abs": 131785.08539564768,
+   "u_strict_B": 1317850853.9564767,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.0,
+   "wall_s": 0.88
+  },
+  {
+   "level": 2,
+   "problem_id": 3,
+   "name": "3_ConvTranspose3d_Sum_LayerNorm_AvgPool_GELU.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 2.4579661168123077,
+   "s71_t_fp64_s": 0.25,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+   "A_strict": {
+    "rho_ew": 5.624093020548974,
+    "frac": 0.08319905400276184,
+    "maxabs": 0.0007711562683971884,
+    "rho_global": 2.9067965047443765,
+    "total": 33554432
+   },
+   "B_strict": {
+    "rho_ew": 5.624093020548974,
+    "frac": 0.08319905400276184,
+    "maxabs": 0.0007711562683971884,
+    "rho_global": 2.9067965047443765,
+    "total": 33554432
+   },
+   "A_bench": {
+    "rho_ew": 0.05624093020548974,
+    "frac": 0.0,
+    "maxabs": 0.0007711562683971884,
+    "rho_global": 0.029067965047443762,
+    "total": 33554432
+   },
+   "B_bench": {
+    "rho_ew": 0.05624093020548974,
+    "frac": 0.0,
+    "maxabs": 0.0007711562683971884,
+    "rho_global": 0.029067965047443762,
+    "total": 33554432
+   },
+   "ref_max_abs": 1.6529420519755438,
+   "u_strict_B": 16529.420519755437,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.1826023495043735,
+   "wall_s": 1.15
+  },
+  {
+   "level": 2,
+   "problem_id": 19,
+   "name": "19_ConvTranspose2d_GELU_GroupNorm.py",
+   "op_class": "conv_transpose",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 3.5923511784357993,
+   "s71_t_fp64_s": 0.307,
+   "status": "ok",
+   "label_A": "TF32_TENSOROP",
+   "top1_A": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4>(cutlass_tensorop_s1688dgrad_optimized_tf32_128x64_32x3_nhwc_unity_stride_align4::Params)",
+   "A_strict": {
+    "rho_ew": 18.630938634850786,
+    "frac": 0.5169414462725722,
+    "maxabs": 0.003296829817235558,
+    "rho_global": 3.6321469167225255,
+    "total": 545292288
+   },
+   "B_strict": {
+    "rho_ew": 18.630938634850786,
+    "frac": 0.5169414462725722,
+    "maxabs": 0.003296829817235558,
+    "rho_global": 3.6321469167225255,
+    "total": 545292288
+   },
+   "A_bench": {
+    "rho_ew": 0.18630938634850785,
+    "frac": 0.0,
+    "maxabs": 0.003296829817235558,
+    "rho_global": 0.03632146916722526,
+    "total": 545292288
+   },
+   "B_bench": {
+    "rho_ew": 0.18630938634850785,
+    "frac": 0.0,
+    "maxabs": 0.003296829817235558,
+    "rho_global": 0.03632146916722526,
+    "total": 545292288
+   },
+   "ref_max_abs": 8.076807444260703,
+   "u_strict_B": 80768.07444260703,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.011077908675970341,
+   "wall_s": 5.64
+  },
+  {
+   "level": 2,
+   "problem_id": 55,
+   "name": "55_Matmul_MaxPool_Sum_Scale.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.001642520425947747,
+   "s71_t_fp64_s": 0.339,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_tn_align1>(cutlass_80_simt_sgemm_256x128_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0017554045641187687,
+    "frac": 0.0,
+    "maxabs": 0.00026708772270467307,
+    "rho_global": 0.0017269014747029613,
+    "total": 128
+   },
+   "B_strict": {
+    "rho_ew": 0.7263556976428817,
+    "frac": 0.0,
+    "maxabs": 0.109978804784987,
+    "rho_global": 0.7110868228835296,
+    "total": 128
+   },
+   "A_bench": {
+    "rho_ew": 1.7554045641187686e-05,
+    "frac": 0.0,
+    "maxabs": 0.00026708772270467307,
+    "rho_global": 1.726901474702961e-05,
+    "total": 128
+   },
+   "B_bench": {
+    "rho_ew": 0.007263556976428817,
+    "frac": 0.0,
+    "maxabs": 0.109978804784987,
+    "rho_global": 0.007110868228835296,
+    "total": 128
+   },
+   "ref_max_abs": 1545.629767923581,
+   "u_strict_B": 15456297.67923581,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.05137290679750644,
+   "wall_s": 3.46
+  },
+  {
+   "level": 2,
+   "problem_id": 59,
+   "name": "59_Matmul_Swish_Scaling.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.07472735121114507,
+   "s71_t_fp64_s": 0.339,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_tn_align1>(cutlass_80_simt_sgemm_256x128_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.11543471523275195,
+    "frac": 0.0,
+    "maxabs": 3.1876225478733033e-05,
+    "rho_global": 0.08267317032808193,
+    "total": 4194304
+   },
+   "B_strict": {
+    "rho_ew": 4.825290405562088,
+    "frac": 0.2053234577178955,
+    "maxabs": 0.0008132945878009945,
+    "rho_global": 2.109335122787294,
+    "total": 4194304
+   },
+   "A_bench": {
+    "rho_ew": 0.0011543471523275198,
+    "frac": 0.0,
+    "maxabs": 3.1876225478733033e-05,
+    "rho_global": 0.0008267317032808194,
+    "total": 4194304
+   },
+   "B_bench": {
+    "rho_ew": 0.048252904055620875,
+    "frac": 0.0,
+    "maxabs": 0.0008132945878009945,
+    "rho_global": 0.021093351227872936,
+    "total": 4194304
+   },
+   "ref_max_abs": 2.8556916775097356,
+   "u_strict_B": 28556.916775097354,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.10633080108092727,
+   "wall_s": 3.48
+  },
+  {
+   "level": 2,
+   "problem_id": 56,
+   "name": "56_Matmul_Sigmoid_Sum.py",
+   "op_class": "gemm",
+   "label_s105c": "TF32_TENSOROP",
+   "s71_rho_global_strict": 0.0008440973068235255,
+   "s71_t_fp64_s": 0.34,
+   "status": "ok",
+   "label_A": "FP32_SIMT",
+   "top1_A": "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_tn_align1>(cutlass_80_simt_sgemm_256x128_8x4_tn_align1::Params)",
+   "label_B": "TF32_TENSOROP",
+   "top1_B": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4>(cutlass_80_tensorop_s1688gemm_256x128_16x3_tn_align4::Params)",
+   "A_strict": {
+    "rho_ew": 0.0006535270114046305,
+    "frac": 0.0,
+    "maxabs": 0.001069701749656815,
+    "rho_global": 0.0006528826213550557,
+    "total": 128
+   },
+   "B_strict": {
+    "rho_ew": 0.008293536821563266,
+    "frac": 0.0,
+    "maxabs": 0.013558447411924135,
+    "rho_global": 0.008275273636452075,
+    "total": 128
+   },
+   "A_bench": {
+    "rho_ew": 6.5352701140463045e-06,
+    "frac": 0.0,
+    "maxabs": 0.001069701749656815,
+    "rho_global": 6.528826213550556e-06,
+    "total": 128
+   },
+   "B_bench": {
+    "rho_ew": 8.293536821563267e-05,
+    "frac": 0.0,
+    "maxabs": 0.013558447411924135,
+    "rho_global": 8.275273636452075e-05,
+    "total": 128
+   },
+   "ref_max_abs": 16383.288916078862,
+   "u_strict_B": 163832889.1607886,
+   "A_B_bit_identical": false,
+   "tie_out_rel": 0.22653156682615372,
+   "wall_s": 3.45
+  },
+  {
+   "level": 2,
+   "problem_id": 83,
+   "name": "83_Conv3d_GroupNorm_Min_Clamp_Dropout.py",
+   "op_class": "conv",
+   "label_s105c": "OTHER",
+   "s71_rho_global_strict": 0.0,
+   "s71_t_fp64_s": 0.369,
+   "status": "ok",
+   "label_A": "OTHER",
+   "top1_A": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, false>(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+   "label_B": "OTHER",
+   "top1_B": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::(anonymous namespace)::GroupNormKernelImplInternal<float, float>(at::Tensor const&, at::Tensor const&, at::Tensor const&, long, long, long, long, float, at::Tensor&, at::Tensor&, at::Tensor&)::{lambda(float, float, float)#2}>(at::TensorIteratorBase&, at::native::(anonymous namespace)::GroupNormKernelImplInternal<float, float>(at::Tensor const&, at::Tensor const&, at::Tensor const&, long, long, long, long, float, at::Tensor&, at::Tensor&, at::Tensor&)::{lambda(float, float, float)#2} const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::(anonymous namespace)::GroupNormKernelImplInternal<float, float>(at::Tensor const&, at::Tensor const&, at::Tensor const&, long, long, long, long, float, at::Tensor&, at::Tensor&, at::Tensor&)::{lambda(float, float, float)#2}>(at::TensorIteratorBase&, at::native::(anonymous namespace)::GroupNormKernelImplInternal<float, float>(at::Tensor const&, at::Tensor const&, at::Tensor const&, long, long, long, long, float, at::Tensor&, at::Tensor&, at::Tensor&)::{lambda(float, float, float)#2} const&)::{lambda(int)#1})",
+   "A_strict": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 110215168
+   },
+   "B_strict": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 110215168
+   },
+   "A_bench": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 110215168
+   },
+   "B_bench": {
+    "rho_ew": 0.0,
+    "frac": 0.0,
+    "maxabs": 0.0,
+    "rho_global": 0.0,
+    "total": 110215168
+   },
+   "ref_max_abs": 0.0,
+   "u_strict_B": 0.0,
+   "A_B_bit_identical": true,
+   "wall_s": 1.0
+  },
+  {
+   "level": 1,
+   "problem_id": 84,
+   "name": "84_conv_depthwise_2D_asymmetric_input_square_kernel.py",
+   "op_class": "conv",
+   "label_s105c": "OTHER",
+   "s71_rho_global_strict": 0.0012301581015611133,
+   "s71_t_fp64_s": 0.601,
+   "status": "ok",
+   "label_A": "OTHER",
+   "top1_A": "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel<3, float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)",
+   "label_B": "OTHER",
+   "top1_B": "void at::native::(anonymous namespace)::conv_depthwise2d_forward_kernel<3, float, int>(torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 3ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<4ul, int>, float const, 4ul, torch::headeronly::DefaultPtrTraits, int>, torch::headeronly::detail::GenericPackedTensorAccessor<torch::headeronly::detail::TensorAccessor<c10::ArrayRef<long>, float const, 0ul, torch::headeronly::DefaultPtrTraits, int>, at::detail::IndexBoundsCheck<1ul, int>, float const, 1ul, torch::headeronly::DefaultPtrTraits, int>, bool, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)",
+   "A_strict": {
+    "rho_ew": 0.0015110882027337565,
+    "frac": 0.0,
+    "maxabs": 3.162041430915252e-07,
+    "rho_global": 0.0012729935916908355,
+    "total": 1061191680
+   },
+   "B_strict": {
+    "rho_ew": 0.0015110882027337565,
+    "frac": 0.0,
+    "maxabs": 3.162041430915252e-07,
+    "rho_global": 0.0012729935916908355,
+    "total": 1061191680
+   },
+   "A_bench": {
+    "rho_ew": 1.5110882027337565e-05,
+    "frac": 0.0,
+    "maxabs": 3.162041430915252e-07,
+    "rho_global": 1.2729935916908355e-05,
+    "total": 1061191680
+   },
+   "B_bench": {
+    "rho_ew": 1.5110882027337565e-05,
+    "frac": 0.0,
+    "maxabs": 3.162041430915252e-07,
+    "rho_global": 1.2729935916908355e-05,
+    "total": 1061191680
+   },
+   "ref_max_abs": 1.48394135803568,
+   "u_strict_B": 14839.413580356799,
+   "A_B_bit_identical": true,
+   "tie_out_rel": 0.034821125898664915,
+   "wall_s": 7.01
+  }
+ ]
+}

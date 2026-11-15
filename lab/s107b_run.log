@@ -1,0 +1,429 @@
+picked 107
+USDT:2026-11-15 07:01:35 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:35 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 9 ok TF32_TENSOROP 3.1427935007252423 0.06622266676276922 12.79
+USDT:2026-11-15 07:01:47 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:47 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 72 ok FP64 0.0010984935882874616 0.0 0.52
+USDT:2026-11-15 07:01:48 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:48 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 77 ok FP64 0.0018800001086133843 0.0 1.47
+USDT:2026-11-15 07:01:49 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:49 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 66 ok TF32_TENSOROP 4.839172166866513 0.1563413982675219 1.34
+USDT:2026-11-15 07:01:51 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:51 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+gemm 12 ok OTHER 0.0001986381098518047 0.0 0.2
+USDT:2026-11-15 07:01:51 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:51 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 60 ok TF32_TENSOROP 4.566568268705461 0.1507528483978147 2.58
+USDT:2026-11-15 07:01:54 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:54 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 75 ok FP64 0.0007359432113223175 0.0 1.84
+USDT:2026-11-15 07:01:56 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:56 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 57 ok FP32_SIMT 0.003523859858585986 0.0 1.58
+USDT:2026-11-15 07:01:57 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:57 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 69 ok FP32_SIMT 0.0037904705362284048 0.0 1.36
+USDT:2026-11-15 07:01:59 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:01:59 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 73 ok FP32_SIMT 0.007145070905512385 0.0 1.33
+USDT:2026-11-15 07:02:00 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:01 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 34 ok OTHER 18.33358600804077 0.32449403032660484 4.47
+USDT:2026-11-15 07:02:05 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:05 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 71 ok FP32_SIMT 0.0022600853254938977 0.0 0.64
+USDT:2026-11-15 07:02:05 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:06 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 59 ok FP32_SIMT 0.00226111103363857 0.0 1.85
+USDT:2026-11-15 07:02:08 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:08 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 1 ok TF32_TENSOROP 0.5633361309601264 0.0 1.01
+USDT:2026-11-15 07:02:09 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:09 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 91 ok OTHER 0.005497603647278848 0.0 3.5
+USDT:2026-11-15 07:02:12 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:12 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 6 ok OTHER 0.361247698911574 0.0 0.3
+USDT:2026-11-15 07:02:13 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:13 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 56 ok TF32_TENSOROP 4.844513907612702 0.19620481668307085 7.01
+USDT:2026-11-15 07:02:20 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:20 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 80 ok TF32_TENSOROP 4.651351648600673 0.15146460810499746 3.22
+USDT:2026-11-15 07:02:23 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:23 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 21 ok FP32_SIMT 0.030574027539924272 0.0 3.3
+USDT:2026-11-15 07:02:27 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:27 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 52 ok TF32_TENSOROP 3.205476160766507 0.06704672700243292 3.05
+USDT:2026-11-15 07:02:30 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:30 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 90 ok FP32_SIMT 0.00900872676950182 0.0 6.01
+USDT:2026-11-15 07:02:36 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:36 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 62 ok TF32_TENSOROP 4.67737844462221 0.152098327796916 3.3
+USDT:2026-11-15 07:02:40 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:40 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 7 ok FP32_SIMT 0.002362579432545585 0.0 4.48
+USDT:2026-11-15 07:02:44 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:45 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 87 ok FP32_SIMT 0.0052014869443277115 0.0 4.13
+USDT:2026-11-15 07:02:48 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:48 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 24 ok TF32_TENSOROP 0.2975186460644341 0.0 0.24
+USDT:2026-11-15 07:02:49 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:49 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 88 ok OTHER 0.0006344840685347361 0.0 0.93
+USDT:2026-11-15 07:02:50 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:50 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+norm 40 ok OTHER 0.01243906899209288 0.0 0.83
+USDT:2026-11-15 07:02:50 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:51 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 54 ok TF32_TENSOROP 4.853874603118525 0.16929848501198977 2.47
+USDT:2026-11-15 07:02:53 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:53 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 2 ok TF32_TENSOROP 0.39312198224606254 0.0 0.98
+USDT:2026-11-15 07:02:54 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:54 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 78 ok FP64 0.012667166976118685 0.0 2.38
+USDT:2026-11-15 07:02:57 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:57 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 50 ok FP32_SIMT 0.010092797685237315 0.0 1.46
+USDT:2026-11-15 07:02:58 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:02:58 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 47 ok TF32_TENSOROP 3.384487368797624 0.045790636245881026 3.3
+USDT:2026-11-15 07:03:02 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:02 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 43 ok TF32_TENSOROP 0.08893259274501689 0.0 1.71
+USDT:2026-11-15 07:03:04 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:04 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 55 ok TF32_TENSOROP 5.208630974001384 0.20850539996606518 11.08
+USDT:2026-11-15 07:03:15 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:15 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 89 ok FP64 0.0012732161945945692 0.0 0.78
+USDT:2026-11-15 07:03:16 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:17 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 67 ok TF32_TENSOROP 4.782185690464808 0.1916375586667668 6.33
+USDT:2026-11-15 07:03:23 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:24 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 63 ok TF32_TENSOROP 5.346083684828771 0.1946069683653304 8.16
+USDT:2026-11-15 07:03:31 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:31 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 85 ok FP32_SIMT 0.009597622830083514 0.0 0.29
+USDT:2026-11-15 07:03:31 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:31 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 60 ok FP64 0.006467720830972964 0.0 0.93
+USDT:2026-11-15 07:03:32 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:32 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 20 ok OTHER 4.87929368751712 0.01925697922706604 0.62
+USDT:2026-11-15 07:03:33 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:33 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 8 ok FP32_SIMT 0.0015450846801811143 0.0 1.11
+USDT:2026-11-15 07:03:34 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:34 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 31 ok TF32_TENSOROP 8.968115068005364 0.23134613229333978 2.36
+USDT:2026-11-15 07:03:37 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:37 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 17 ok TF32_TENSOROP 12.887756774457761 0.5184067206888543 2.34
+USDT:2026-11-15 07:03:39 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:39 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 1 ok TF32_TENSOROP 4.489338235634384 0.046883008077001055 2.3
+USDT:2026-11-15 07:03:41 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:42 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 35 ok TF32_TENSOROP 1.9283809228440052 0.0003921689480190224 2.05
+USDT:2026-11-15 07:03:44 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:44 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 46 ok TF32_TENSOROP 2.948019009942748 0.016473756205317776 2.07
+USDT:2026-11-15 07:03:46 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:46 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 95 error None None None None
+USDT:2026-11-15 07:03:46 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:46 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 27 ok TF32_TENSOROP 2.808629129320277 0.4375 0.64
+USDT:2026-11-15 07:03:47 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:47 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 38 ok OTHER 1.4000641316445705e-05 0.0 1.37
+USDT:2026-11-15 07:03:48 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:49 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 54 ok TF32_TENSOROP 5.958886247042943 0.05571092965916401 2.78
+USDT:2026-11-15 07:03:51 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:51 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 58 ok FP64 0.0010559350098529308 0.0 0.49
+USDT:2026-11-15 07:03:52 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:53 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+pool 44 ok OTHER 0.0009208721285250179 0.0 2.52
+USDT:2026-11-15 07:03:54 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:54 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 72 ok FP64 0.00014516684668573643 0.0 0.42
+USDT:2026-11-15 07:03:55 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:55 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 50 ok FP64 0.0003947927218309729 0.0 0.44
+USDT:2026-11-15 07:03:55 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:55 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 96 ok FP64 6.535966591459425e-05 0.0 0.39
+USDT:2026-11-15 07:03:56 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:56 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 10 ok TF32_TENSOROP 0.5115328749604259 0.0 0.25
+USDT:2026-11-15 07:03:56 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:56 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 25 ok TF32_TENSOROP 1.7572122943236397 0.00045240715481430964 2.0
+USDT:2026-11-15 07:03:58 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:03:59 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 3 ok TF32_TENSOROP 0.6871297279797429 0.0 1.75
+USDT:2026-11-15 07:04:00 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:00 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 4 ok TF32_TENSOROP 3.512955920548453 0.021670748114445446 5.0
+USDT:2026-11-15 07:04:05 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:06 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 32 ok TF32_TENSOROP 3.5171483211945875 0.13871849618699236 3.8
+USDT:2026-11-15 07:04:09 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:09 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 86 ok TF32_TENSOROP 3.106326738175045 0.033398089930415154 2.12
+USDT:2026-11-15 07:04:13 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:13 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+pool 41 ok OTHER 0.0 0.0 3.82
+USDT:2026-11-15 07:04:15 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:15 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 92 ok OTHER 0.000981776926304716 0.0 0.48
+USDT:2026-11-15 07:04:17 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:17 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+pool 42 ok OTHER 0.0 0.0 2.57
+USDT:2026-11-15 07:04:18 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:19 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 67 ok FP32_SIMT 0.0005279131990740308 0.0 1.05
+USDT:2026-11-15 07:04:20 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:20 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 82 ok FP32_SIMT 0.00824709271316866 0.0 1.16
+USDT:2026-11-15 07:04:23 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:23 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 90 ok OTHER 0.00043533295304628883 0.0 4.88
+USDT:2026-11-15 07:04:28 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:29 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 91 ok OTHER 0.05231326533570925 0.0 5.59
+USDT:2026-11-15 07:04:34 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:34 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 5 ok OTHER 0.0006198818407376079 0.0 4.82
+USDT:2026-11-15 07:04:39 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:39 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 89 ok OTHER 0.04548751201248784 0.0 4.85
+USDT:2026-11-15 07:04:44 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:45 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 92 ok OTHER 0.04548751201248784 0.0 5.59
+USDT:2026-11-15 07:04:50 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:50 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+norm 33 ok OTHER 0.00048063330897069804 0.0 4.83
+USDT:2026-11-15 07:04:55 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:04:56 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 87 ok TF32_TENSOROP 5.31543746653886 0.1670007100328803 8.12
+USDT:2026-11-15 07:05:06 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:07 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 93 ok OTHER 0.040001679730711226 0.0 8.27
+USDT:2026-11-15 07:05:11 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:11 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv 65 ok FP32_SIMT 0.0010457269550096914 0.0 1.89
+USDT:2026-11-15 07:05:12 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:13 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 93 ok OTHER 1.541681398755662 2.3113905325443787e-07 1.27
+USDT:2026-11-15 07:05:17 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:17 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 26 ok OTHER 0.0004829058889954231 0.0 7.52
+USDT:2026-11-15 07:05:25 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:25 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 27 ok OTHER 0.000463553327348843 0.0 7.26
+USDT:2026-11-15 07:05:33 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:33 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 28 ok OTHER 0.0002980231972316015 0.0 7.21
+USDT:2026-11-15 07:05:40 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:40 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 29 ok OTHER 0.000789160520577981 0.0 7.58
+USDT:2026-11-15 07:05:48 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:48 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 32 ok OTHER 0.0 0.0 7.22
+USDT:2026-11-15 07:05:53 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:53 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+conv_transpose 26 ok OTHER 1.6617822488260856 5.6546181440353394e-05 1.78
+USDT:2026-11-15 07:05:58 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:05:58 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 22 ok OTHER 0.0006956194283982778 0.0 7.42
+USDT:2026-11-15 07:06:05 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:06:06 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+softmax 23 ok OTHER 9.051712722487994e-09 0.0 7.57
+USDT:2026-11-15 07:06:13 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:06:14 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 31 ok OTHER 0.0 0.0 7.28
+USDT:2026-11-15 07:06:21 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:06:21 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+softmax 24 ok OTHER 0.0007844641624334287 0.0 7.48
+USDT:2026-11-15 07:06:29 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:06:29 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 21 ok OTHER 0.0005124251161926887 0.0 7.28
+USDT:2026-11-15 07:06:35 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:06:35 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+pool 43 ok OTHER 0.0 0.0 2.97
+USDT:2026-11-15 07:06:40 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:06:40 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 20 ok OTHER 0.0 0.0 7.25
+USDT:2026-11-15 07:06:45 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:06:46 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 99 ok OTHER 0.0002832015348228711 0.0 2.44
+USDT:2026-11-15 07:06:48 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:06:48 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 98 ok OTHER 1.5613889032250915e-05 0.0 2.06
+USDT:2026-11-15 07:06:52 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:06:53 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 30 ok OTHER 0.0002111466253799761 0.0 8.39
+USDT:2026-11-15 07:07:01 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:01 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 25 ok OTHER 0.0006332681939011673 0.0 8.12
+USDT:2026-11-15 07:07:07 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:07 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 11 ok TF32_TENSOROP 1.3652466808625843 4.130105177561442e-06 3.5
+USDT:2026-11-15 07:07:14 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:14 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 51 ok OTHER 0.0 0.0 5.39
+USDT:2026-11-15 07:07:20 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:20 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+pool 46 ok OTHER 0.0015671787154427506 0.0 5.87
+USDT:2026-11-15 07:07:26 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:26 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 47 ok OTHER 0.0021065054237084492 0.0 5.38
+USDT:2026-11-15 07:07:32 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:32 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 49 ok OTHER 0.0 0.0 5.4
+USDT:2026-11-15 07:07:37 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:37 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 52 ok OTHER 0.0 0.0 5.42
+USDT:2026-11-15 07:07:43 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:43 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 48 ok OTHER 0.0007062881366449726 0.0 5.38
+USDT:2026-11-15 07:07:49 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:49 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+reduction 53 ok OTHER 0.0 0.0 5.37
+USDT:2026-11-15 07:07:54 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:54 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 4 ok OTHER 0.0017139930260727458 0.0 5.44
+USDT:2026-11-15 07:07:58 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:07:58 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 100 ok OTHER 0.00026668200953824944 0.0 3.94
+USDT:2026-11-15 07:08:04 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:08:05 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 96 ok FP64 8.877013363334187e-06 0.0 6.44
+USDT:2026-11-15 07:08:11 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:08:12 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+other 94 ok OTHER 1.648172960495533e-05 0.0 6.56
+USDT:2026-11-15 07:08:17 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:08:17 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+attention 97 ok CUTLASS 0.003217541665943516 0.0 8.19
+USDT:2026-11-15 07:08:26 279546:279546 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 07:08:26 279546:279546 SyncActivityProfilerHandler.cpp:46] profiler_stop
+elementwise 19 ok OTHER 0.0 0.0 7.24
+{
+ "n_ok": 106,
+ "n_wall_capped": 0,
+ "k1_repeat": [
+  true,
+  false,
+  false
+ ],
+ "k2_anchor_rel": [
+  0.0
+ ],
+ "instrument_ok": false,
+ "n_undescribed_tf32": 0,
+ "wall_s": 416.5
+}
+{
+ "attention": {
+  "n": 1,
+  "n_label_B_TF32": 0,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 0.003217541665943516,
+  "med_rho_B_bench": 3.217541665943516e-05,
+  "n_exceed_B_strict": 0,
+  "n_exceed_B_bench": 0
+ },
+ "conv": {
+  "n": 42,
+  "n_label_B_TF32": 25,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 2.808629129320277,
+  "med_rho_B_bench": 0.028086291293202767,
+  "n_exceed_B_strict": 23,
+  "n_exceed_B_bench": 0
+ },
+ "conv_transpose": {
+  "n": 16,
+  "n_label_B_TF32": 0,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 0.0018800001086133843,
+  "med_rho_B_bench": 1.8800001086133844e-05,
+  "n_exceed_B_strict": 4,
+  "n_exceed_B_bench": 0
+ },
+ "elementwise": {
+  "n": 16,
+  "n_label_B_TF32": 6,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 0.0006956194283982778,
+  "med_rho_B_bench": 6.9561942839827786e-06,
+  "n_exceed_B_strict": 2,
+  "n_exceed_B_bench": 0
+ },
+ "gemm": {
+  "n": 1,
+  "n_label_B_TF32": 0,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 0.0001986381098518047,
+  "med_rho_B_bench": 1.986381098518047e-06,
+  "n_exceed_B_strict": 0,
+  "n_exceed_B_bench": 0
+ },
+ "norm": {
+  "n": 2,
+  "n_label_B_TF32": 0,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 0.01243906899209288,
+  "med_rho_B_bench": 0.0001243906899209288,
+  "n_exceed_B_strict": 0,
+  "n_exceed_B_bench": 0
+ },
+ "other": {
+  "n": 9,
+  "n_label_B_TF32": 0,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 0.00026668200953824944,
+  "med_rho_B_bench": 2.6668200953824944e-06,
+  "n_exceed_B_strict": 0,
+  "n_exceed_B_bench": 0
+ },
+ "pool": {
+  "n": 5,
+  "n_label_B_TF32": 0,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 0.0,
+  "med_rho_B_bench": 0.0,
+  "n_exceed_B_strict": 0,
+  "n_exceed_B_bench": 0
+ },
+ "reduction": {
+  "n": 12,
+  "n_label_B_TF32": 0,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 0.0007062881366449726,
+  "med_rho_B_bench": 7.062881366449727e-06,
+  "n_exceed_B_strict": 0,
+  "n_exceed_B_bench": 0
+ },
+ "softmax": {
+  "n": 2,
+  "n_label_B_TF32": 0,
+  "n_relabel_tf32": 0,
+  "med_rho_B_strict": 0.0007844641624334287,
+  "med_rho_B_bench": 7.844641624334287e-06,
+  "n_exceed_B_strict": 0,
+  "n_exceed_B_bench": 0
+ }
+}

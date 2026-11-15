@@ -1040,3 +1040,30 @@ Next: (1) LEAD re-key the map's gemm column under ONE flag regime — re-measure
 8 conv|OTHER rows (rho up to 11.9) before any class statement returns; (3) membership second variant (stride 8/4);
 (4) home sweep + sylve novelty; (5) reflection 09:10Z; (6) package repack when a submission reopens.
 24h-E1/CTA-edge/bt parked.
+
+## DONE ~12:3xZ EST 11-15: s107/s107b — the map re-keyed under ONE procedure; the 80x class gap does not survive
+
+Preregs frozen pre-run (s107 33ce98a; s107b declared extension). Artifacts results/s107_rekey_map.jsonl (85/85 ok, 146 s),
+s107_summary.json, s107b_rekey_rest.jsonl (107 rows, 106 ok, 1 dtype error L1/95), s107b_summary.json; sha read-back 4/4.
+Procedure A = s71 default (cudnn tf32 on, matmul off); B = the benchmark's own flags (both on).
+(1) 80x GAP GONE: under B the TF32-tensorop columns are gemm 2.42 / convT 3.31 / conv 4.57 (spread 1.89x, gemm lowest);
+conv|SIMT 0.0038, convT|SIMT 0.0011, all non-conv classes <=0.0065. Frozen P1's coded rule printed BRANCH_MAP_CLASS_GAP
+because it compared gemm against the 8-row conv|OTHER column rather than the conv|TF32 baseline the prereg named (prereg
+coding slip, recorded not repaired); intent-consistent reading = BRANCH_MAP_MIXED. Class is not a magnitude coordinate.
+(2) M2_BENCH_GATE_NONBINDING RETRACTED as universal: under B, 2/191 tasks have elements violating the shipped 1e-2
+allclose predicate against an exact fp64 computation — L2/14 Gemm_Divide_Sum_Scaling (rho_ew 16.48, frac 1.95%) and
+L2/18 Matmul_Sum_Max_AvgPool_LogSumExp (1.22, 0.098%); the global max-margin proxy still reports 0/191 (max 0.127), so
+the old headline holds only for that proxy. The reference fails its own gate on 2/191 tasks under the benchmark's flags.
+(3) Strict-gate counts are procedure-dependent: 55/200 (A) -> 83/191 element-wise / 71/191 global (B); gemm moves
+1 -> 21/28 while conv moves 25 -> 23, the discriminator that makes it a procedure effect.
+Instrument: repeat-consistency is kernel-class-conditional — K1 failed 2/3 on cuDNN dgrad convT rows (L1/72, L1/77 not
+bit-identical across in-process repeats), so the paper's "repeat-consistent over the declared tuple" needs its scope
+narrowed; classifier slip re-introduced (s63 dgrad->FP64) and repaired by name for the table; s71 tie-out non-binding
+(input draws differ, declared).
+Prose: paper/ATLAS_MAP.md status line + new s107/s107b section with table, findings, instrument findings, non-claims.
+No MANUSCRIPT change (map is lane-level). Audits not re-run (paper untouched).
+Next: (1) LEAD the shipped-gate decomposition on L2/14 and L2/18 at 1e-2 (compile/tf32-off arms, s73 design, prereg
+first; kill: failing elements reference-carried on both arms => the shipped gate binds on the reference itself and §4.5
+gains a third instance); (2) dgrad non-determinism magnitude |Δ| and affected-task count; (3) 16-draw band on flagged
+rows (fifth deferral); (4) L1/95 dtype error; (5) home sweep + sylve novelty; (6) reflection 14:23Z; (7) package repack
+when a submission reopens. 24h-E1/CTA-edge/bt parked.

@@ -2,7 +2,9 @@
 
 Status: base rate + engine-class column measured on 200/200 tasks at rev 423217d, GB10. One draw per task, inputs from
 each task's own generators under seed 0 (s71's convention), reference at the benchmark's default flags, fp64 anchor
-element-chunked. This is a survey, not a precision measurement.
+element-chunked. This is a survey, not a precision measurement. **s107/s107b re-keyed 191 of those tasks under ONE
+declared procedure (benchmark flags, both tf32 on); the M2 and strict-gate counts below are procedure-A statements and
+are superseded by the re-keyed table at the end of this file.**
 
 ## What was measured (s105, from committed records)
 
@@ -123,3 +125,74 @@ weight normalization, as s90 established (11/24 exceed at unit scale).
 `python3 lab/s105_map_base_rate.py` (CPU, joins committed s71/s76 records), then on spark
 `python3 lab/s105b_map_engine_class.py` (GPU, 378 s), then `python3 lab/s105c_map_join.py` (CPU join + relabel).
 Artifacts: results/s105_map_base_rate.{json,csv}, s105b_map_engine_class.{jsonl,json}, s105c_map_join.{json,csv}.
+
+## s107/s107b — the map re-keyed under ONE procedure (2026-11-15)
+
+Preregs frozen pre-run and committed before any row: lab/s107_prereg.md (33ce98a), lab/s107b_prereg.md (declared
+extension). Runners lab/s107_rekey_map.py, lab/s107b_rekey_rest.py. Artifacts results/s107_rekey_map.jsonl (85/85 ok,
+146.3 s), s107_summary.json, s107b_rekey_rest.jsonl (107 rows, 106 ok, 1 dtype error L1/95), s107b_summary.json.
+Procedure A = s71 default (cudnn tf32 on, matmul tf32 off). Procedure B = the benchmark's own flags (both on).
+Element-wise rho is the evaluator predicate's own normalized margin; the global proxy is s71's
+maxabs/(atol+rtol*ref_max).
+
+### Re-keyed map, 191 tasks, one procedure (B)
+
+| column | n | med rho_ew 1e-4 | med frac_over | exceed ew 1e-4 | exceed ew 1e-2 | exceed global 1e-4 |
+|---|---|---|---|---|---|---|
+| gemm TF32 | 46 | 2.42 | 0.0019 | 28 | **2** | 21 |
+| conv_transpose TF32 | 28 | 3.31 | 0.0557 | 23 | 0 | 20 |
+| conv TF32 | 25 | 4.57 | 0.1508 | 23 | 0 | 23 |
+| conv_transpose OTHER | 9 | 1.54 | 0.0 | 5 | 0 | 5 |
+| conv OTHER | 10 | 0.0014 | 0.0 | 2 | 0 | 1 |
+| elementwise TF32 | 6 | 0.63 | 0.0 | 2 | 0 | 1 |
+| conv FP32_SIMT | 15 | 0.0038 | 0.0 | 0 | 0 | 0 |
+| conv_transpose FP32_SIMT | 10 | 0.0011 | 0.0 | 0 | 0 | 0 |
+| reduction OTHER | 12 | 0.0007 | 0.0 | 0 | 0 | 0 |
+| all other classes | 30 | <=0.0065 | 0.0 | 0 | 0 | 0 |
+
+Totals under B: 83/191 element-wise exceedances at 1e-4, 2/191 at 1e-2; global proxy 71/191 at 1e-4 and 0/191 at 1e-2
+(max 0.127). Procedure A totals for comparison (s105c): 55/200 at 1e-4, 0/200 at 1e-2.
+
+### Three findings
+
+1. **The 80x class gap does not survive the re-key.** Under one procedure the three TF32-tensorop columns are
+   2.42 / 3.31 / 4.57 (spread 1.89x), gemm lowest. Frozen P1's coded rule printed BRANCH_MAP_CLASS_GAP because it
+   compared gemm against the 8-row conv|OTHER column (median 0.0015) instead of the conv|TF32 baseline the prereg
+   named — a prereg coding slip, recorded not repaired. Intent-consistent reading: spread 1.89x > the 1.5x homogeneity
+   bar and both gaps < 3x => **BRANCH_MAP_MIXED**: the op-class gap is gone, the columns are of one order, and class is
+   not a magnitude coordinate. Magnitude is per-task and per-procedure.
+2. **M2_BENCH_GATE_NONBINDING is statistic-dependent and is retracted as a universal statement.** Under B, two gemm
+   tasks have elements violating the benchmark's own shipped 1e-2 allclose predicate against an exact fp64 computation:
+   L2/14 `14_Gemm_Divide_Sum_Scaling` (rho_ew 16.48, frac_over 1.95%) and L2/18
+   `18_Matmul_Sum_Max_AvgPool_LogSumExp_LogSumExp` (1.22, 0.098%). The global max-margin proxy reports 0/191 with max
+   0.127, so the old headline holds only for that proxy. The reference fails its own gate on 2/191 tasks when it runs
+   with the benchmark's flags.
+3. **The strict-gate exceedance count is procedure-dependent, not a population property**: 55/200 under A becomes
+   83/191 under B (element-wise), 71/191 by the global proxy. The gemm column moves 1 -> 21 (global) / 28 (element-wise);
+   conv columns barely move (conv 25 -> 23 by the global proxy), which is the discriminator that makes this a procedure
+   effect rather than a measurement change.
+
+### Instrument findings
+
+- **Repeat-consistency is kernel-class-conditional.** s107b's K1 (procedure-B repeat bit-identical on the first three
+  rows) failed 2/3: L1/72 and L1/77 conv_transpose dispatch `convolveNd_dgrad_float_engine` and are NOT bit-identical
+  across two calls in one process with fixed inputs and flags. s107's K1 held 3/3 and s66/s72 held 26/26, all on conv
+  forward (fprop) rows. The paper's "repeat-consistent over the declared tuple" therefore needs its scope narrowed to
+  the populations measured; cuDNN's dgrad engine is a named exception. Magnitude of the difference is not yet recorded
+  (debt).
+- Classifier slip re-introduced: s107/s107b copied s63's patterns, where `dgrad` -> FP64, which s105c had repaired for
+  conv_transpose forward. Relabelled by name for this table (dgrad float engine -> FP32_SIMT; three convT tasks whose
+  top-1 kernel is a softmax / layout transform / elementwise kernel stay OTHER). Relabelling, not re-measurement.
+- Tie-out to s71 is non-binding (median tie_out_rel 0.10, 66% of rows > 0.05): inputs differ from s71's draw, as
+  declared in the prereg. The ordering is unaffected.
+- One row errored: L1/95 (op_class other) raises "expected target dtype to be Long or Byte, but got Float" under the
+  fp64 anchor cast. Declared, not silently dropped: 106/107.
+
+### Non-claims
+
+One draw per task; one arch (GB10 sm_120); one repo rev (423217d); no timing claims. Engine labels are per-task
+observations under a named procedure. The two shipped-gate failures are single-draw statements; the 16-draw band on
+flagged rows remains owed (fifth deferral).
+
+Reproduce: rsync lab/ to spark, then `~/kernelbench/.venv/bin/python s107_rekey_map.py` (146 s) and
+`s107b_rekey_rest.py` (417 s); artifacts read back with sha verification.
