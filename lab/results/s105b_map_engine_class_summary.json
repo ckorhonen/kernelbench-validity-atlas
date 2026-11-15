@@ -1,0 +1,57 @@
+{
+ "date": "2026-11-15T02:26:00Z",
+ "n_attempted": 200,
+ "n_ok": 200,
+ "status_counts": {
+  "ok": 200
+ },
+ "engine_distribution": {
+  "OTHER": 61,
+  "TF32_TENSOROP": 110,
+  "FP64": 12,
+  "FP32_SIMT": 16,
+  "CUTLASS": 1
+ },
+ "engine_by_op_class": {
+  "other": {
+   "OTHER": 12,
+   "FP64": 1
+  },
+  "elementwise": {
+   "TF32_TENSOROP": 6,
+   "OTHER": 10
+  },
+  "gemm": {
+   "OTHER": 1,
+   "TF32_TENSOROP": 46
+  },
+  "softmax": {
+   "OTHER": 2
+  },
+  "norm": {
+   "OTHER": 4,
+   "FP64": 1
+  },
+  "pool": {
+   "OTHER": 6
+  },
+  "reduction": {
+   "OTHER": 12
+  },
+  "conv": {
+   "FP32_SIMT": 16,
+   "TF32_TENSOROP": 27,
+   "OTHER": 8
+  },
+  "conv_transpose": {
+   "TF32_TENSOROP": 31,
+   "FP64": 10,
+   "OTHER": 6
+  },
+  "attention": {
+   "CUTLASS": 1
+  }
+ },
+ "coverage_branch": "K3_COMPLETE",
+ "wall_total_s": 378.2
+}

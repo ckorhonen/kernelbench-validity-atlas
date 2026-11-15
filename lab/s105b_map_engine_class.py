@@ -104,7 +104,7 @@ def main():
                 print("DEADLINE at row", i, flush=True)
                 break
             lvl, pid, name = r["level"], r["problem_id"], r["name"]
-            path = os.path.join(KB, "level%d" % lvl, name)
+            path = os.path.join(KB, "KernelBench", "level%d" % lvl, name)
             rec = {"level": lvl, "problem_id": pid, "name": name,
                    "op_class": r.get("op_class"), "date": DATE, "status": "ok"}
             tw = time.time()
