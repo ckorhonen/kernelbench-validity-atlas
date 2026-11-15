@@ -195,9 +195,11 @@ def main():
                 rec["mech"] = dict(
                     rho_row_med=float(rho.median().item()), rho_row_max=float(rho.max().item()),
                     d_med=float(d.median().item()), d_max=float(d.max().item()),
-                    d_q=[float(v) for v in torch.quantile(d, torch.tensor([0.1, 0.5, 0.9]).double()).tolist()],
+                    d_q=[float(v) for v in torch.quantile(
+                        d, torch.tensor([0.1, 0.5, 0.9], dtype=torch.float64, device=d.device)).tolist()],
                     x_med=float(xm.median().item()), x_min=float(xm.min().item()),
-                    x_p01=float(torch.quantile(xm, torch.tensor([0.01]).double()).item()),
+                    x_p01=float(torch.quantile(
+                        xm, torch.tensor([0.01], dtype=torch.float64, device=xm.device)).item()),
                     spearman_x_rho=spearman(xm, rho), spearman_x_d=spearman(xm, d),
                     n_rows=int(rho.numel()), n_fail_rows=int((rho > 1).sum().item()))
                 thr = rec["mech"]["d_med"] / BENCH - 1.0
