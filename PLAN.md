@@ -1011,3 +1011,32 @@ Next: (1) LEAD matched-K conv-vs-gemm attribution at one engine instance (s103 d
 >10x at matched K => map carries a conv-family flag, not a coordinate); (2) draw-repeat band on the 12 flagged conv rows;
 (3) home sweep + sylve novelty; (4) reflection 05:06Z; (5) package repack when a submission reopens. 24h-E1/CTA-edge/bt
 parked. Non-claims: one draw per task = survey; engine class is an observation per task, not an op-class property.
+
+
+## DONE 01:5xZ EST 11-15: s106/s106b/s106c/s106d — the map's 80x conv-vs-gemm gap is a FLAGS-CROSSING JOIN, not an op-class
+## property; retracted s105c's "class necessary, not sufficient"
+
+Preregs frozen pre-run: s106 b7c0f5d-style commit (lab/s106_prereg.md + runner), s106b (lab/s106b_prereg.md), s106d
+(lab/s106d_prereg.md); s106c declared post-hoc (no GPU, committed records). Artifacts: results/s106_conv_gemm_matched.jsonl
+(24/24), s106_summary.json, s106b_scale_sweep.jsonl (36/36), s106b_summary.json, s106c_map_scale_check.json,
+s106d_gemm_flags.jsonl (13/13), s106d_summary.json.
+s106 matched ladder (K=1728, 2.917M outputs, |A|max 5.17/5.11/5.18, benchmark flags both tf32 on, 8 paired draws):
+rho_1e-4 medians G 13.04 / C1 13.29 / C3 13.79, ratios 1.02/1.06/1.04 => BRANCH_SCALE_DEPTH_ONLY; K1 24/24 bit-identical,
+K2 anchor 0.0, K3 all TF32_TENSOROP every draw. s106b scale sweep g 0.0156..16 (u .18..183): ratios 1.03-1.13 at every
+level, slopes .946/.961/.973 => BRANCH_CLASS_GAP_INVARIANT (replicates s91's .965/.948). s106c: map conv|TF32 rho/u .558 vs
+gemm|TF32 5e-4 (1147x) with u medians 3.41 vs 40.47 (11.9x) => BRANCH_MAP_PARTIAL, u alone does not explain it.
+s106d on the benchmark's own tasks (10 gemm|TF32 + 3 conv controls, cheapest by s71 t_fp64_s, both flag modes vs chunked
+fp64 anchors): all 10 gemm rows FP32_SIMT/FP64 under s71's set_cfg(True,False) and TF32_TENSOROP under set_cfg(True,True),
+median rho .039 -> 2.974, ratios 11-358 (10/10 >= 10x) => BRANCH_FLAGS_ARTIFACT; conv controls unmoved (rho_a == rho_b
+exactly). CAUSE: s71 default is cudnn tf32 on + cublas matmul tf32 OFF (s71_full_audit.py:184) while s105b labelled engines
+with matmul tf32 ON (s105b_map_engine_class.py:98), so s105c joined a fp32-SIMT gemm deviation to a TF32 engine label.
+Under one regime gemm rho 2.97 is within 1.5x of conv's 1.947. ATLAS_MAP decisive-comparison section retracted and replaced;
+ATLAS_CLASS_COLUMN s106 note added; audits s50 n_failed 0, s51 47/47, s52 16/16, s53 15/15, s54 6/6, provenance 85/85/0
+(s106 artifacts outside provenance scope — declared). Prereg slip recorded: s106d's K1 tie-out clause compared my
+element-wise rho with s71's global maxabs/(atol+rtol*refmx) — different statistics, tie_out_rel .03-1.71, clause
+uninformative, branch independent of it.
+Next: (1) LEAD re-key the map's gemm column under ONE flag regime — re-measure all 46 gemm|TF32 rows with matmul tf32 on
+(the s106d harness generalised), so ATLAS_MAP's table is homogeneous; (2) same test on the conv_transpose column and the
+8 conv|OTHER rows (rho up to 11.9) before any class statement returns; (3) membership second variant (stride 8/4);
+(4) home sweep + sylve novelty; (5) reflection 09:10Z; (6) package repack when a submission reopens.
+24h-E1/CTA-edge/bt parked.

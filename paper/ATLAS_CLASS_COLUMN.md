@@ -404,3 +404,18 @@ by <=3% with unstable sign. The same engine instance (cutlass_tensorop_s1688fpro
 this is not a class artifact. The quantity is draw-distributed (c spans 1.42-1.55x across eight draws at fixed
 configuration) and gate-invariant (identical at 1e-4 and 1e-2, because both numerator and denominator scale with 1/atol).
 Non-claims: one tuple, channel-axis chunking only, fp32 partial accumulation, no timing claim.
+
+
+### Column note addition (s106/s106b/s106c/s106d, 2026-11-15)
+
+The map's "same engine class, 80x apart" comparison is withdrawn: it was a flags-crossing join. Under one flag regime,
+conv and gemm references at matched accumulation depth (K=1728), matched output count (2.917M) and matched scale are
+indistinguishable — rho_1e-4 medians 13.04/13.29/13.79 for matmul, 1x1-conv and 3x3-conv arms, ratios 1.02-1.06, all
+three TF32_TENSOROP, K1-K3 clean — and the ratios stay 1.03-1.13 across a scale sweep from u=0.18 to u=183 with
+log-log slopes 0.946/0.961/0.973 (s91's extremum law replicated on three new arms). On the benchmark's own tasks the
+gemm references run FP32_SIMT (or FP64) under s71's default set_cfg(True, False) and TF32_TENSOROP under
+set_cfg(True, True), with median rho moving 0.039 -> 2.974 (10/10 rows, ratios 11-358), while conv controls do not move
+at all. Column consequence: the reference's deviation is set by the arithmetic the reference actually runs (flag
+regime) and by the scale u; the class column remains an observation per task, but it is not a coordinate and the 80x
+statement does not survive. Non-claims: one tuple per arm, one arch, no timing claim; the flag regime is a
+record-join defect in the map, not a property of the benchmark's tasks.
