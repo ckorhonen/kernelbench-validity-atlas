@@ -1,0 +1,676 @@
+{
+ "schema": "MAP_ROW_SCHEMA.md v1",
+ "rows": [
+  {
+   "task": {
+    "level": 1,
+    "problem_id": 66,
+    "name": "66_conv_standard_3D__asymmetric_input__asymmetric_kernel.py"
+   },
+   "op_class": "conv",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "7078c6d"
+   },
+   "reference": {
+    "engine_label": "TF32_TENSOROP",
+    "top1_kernel": "TF32_TENSOROP_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 4.632035759023681,
+    "frac": 0.16791563415181524,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 16,
+    "cv": 0.053320095125753426,
+    "min": 4.215254550302983,
+    "max": 4.978112915407828,
+    "exceed_rate": 1.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109_draw_band.jsonl"
+   },
+   "verdict": {
+    "kind": "label",
+    "value": true,
+    "rule": "label iff rho_ew>1 and exceed_rate==1 else rate"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 16,
+    "notes": "away from boundary; bench frac 0.0 on 16/16"
+   },
+   "artifact": "s109_summary.json"
+  },
+  {
+   "task": {
+    "level": 1,
+    "problem_id": 60,
+    "name": "60_conv_standard_3D__square_input__asymmetric_kernel.py"
+   },
+   "op_class": "conv",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "7078c6d"
+   },
+   "reference": {
+    "engine_label": "TF32_TENSOROP",
+    "top1_kernel": "TF32_TENSOROP_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 4.752497588874642,
+    "frac": 0.1640433996396459,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 16,
+    "cv": 0.045726391261219065,
+    "min": 4.51356156016451,
+    "max": 5.373208231519511,
+    "exceed_rate": 1.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109_draw_band.jsonl"
+   },
+   "verdict": {
+    "kind": "label",
+    "value": true,
+    "rule": "label iff rho_ew>1 and exceed_rate==1 else rate"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 16,
+    "notes": "away from boundary; bench frac 0.0 on 16/16"
+   },
+   "artifact": "s109_summary.json"
+  },
+  {
+   "task": {
+    "level": 1,
+    "problem_id": 56,
+    "name": "56_conv_standard_2D__asymmetric_input__asymmetric_kernel.py"
+   },
+   "op_class": "conv",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "7078c6d"
+   },
+   "reference": {
+    "engine_label": "TF32_TENSOROP",
+    "top1_kernel": "TF32_TENSOROP_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 4.949495234868747,
+    "frac": 0.19041763185516117,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 16,
+    "cv": 0.05399979073962972,
+    "min": 4.586394911680028,
+    "max": 5.680832145379275,
+    "exceed_rate": 1.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109_draw_band.jsonl"
+   },
+   "verdict": {
+    "kind": "label",
+    "value": true,
+    "rule": "label iff rho_ew>1 and exceed_rate==1 else rate"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 16,
+    "notes": "away from boundary; bench frac 0.0 on 16/16"
+   },
+   "artifact": "s109_summary.json"
+  },
+  {
+   "task": {
+    "level": 1,
+    "problem_id": 81,
+    "name": "81_conv_transposed_2D_asymmetric_input_square_kernel___dilated____padded____strided__.py"
+   },
+   "op_class": "conv_transpose",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "7078c6d"
+   },
+   "reference": {
+    "engine_label": "TF32_TENSOROP",
+    "top1_kernel": "TF32_TENSOROP_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 1.3170021174197517,
+    "frac": 3.592302994722354e-06,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 16,
+    "cv": 0.0512546920222885,
+    "min": 1.2253702931263075,
+    "max": 1.4701329818521522,
+    "exceed_rate": 1.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109_draw_band.jsonl"
+   },
+   "verdict": {
+    "kind": "label",
+    "value": true,
+    "rule": "label iff rho_ew>1 and exceed_rate==1 else rate"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 16,
+    "notes": "away from boundary; bench frac 0.0 on 16/16"
+   },
+   "artifact": "s109_summary.json"
+  },
+  {
+   "task": {
+    "level": 2,
+    "problem_id": 15,
+    "name": "15_ConvTranspose3d_BatchNorm_Subtract.py"
+   },
+   "op_class": "conv_transpose",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "7078c6d"
+   },
+   "reference": {
+    "engine_label": "OTHER,TF32_TENSOROP",
+    "top1_kernel": "OTHER,TF32_TENSOROP_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 1.6783606255948227,
+    "frac": 0.00019753744398371653,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 16,
+    "cv": 0.07449022363146157,
+    "min": 1.4996749154624505,
+    "max": 2.028219273350122,
+    "exceed_rate": 1.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109_draw_band.jsonl"
+   },
+   "verdict": {
+    "kind": "label",
+    "value": true,
+    "rule": "label iff rho_ew>1 and exceed_rate==1 else rate"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 16,
+    "notes": "away from boundary; bench frac 0.0 on 16/16"
+   },
+   "artifact": "s109_summary.json"
+  },
+  {
+   "task": {
+    "level": 1,
+    "problem_id": 73,
+    "name": "73_conv_transposed_3D_asymmetric_input_square_kernel__strided_padded__grouped.py"
+   },
+   "op_class": "conv_transpose",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "7078c6d"
+   },
+   "reference": {
+    "engine_label": "TF32_TENSOROP",
+    "top1_kernel": "TF32_TENSOROP_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 2.5674165837478884,
+    "frac": 0.003995570607672203,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 16,
+    "cv": 0.06702685673568078,
+    "min": 2.358879333507359,
+    "max": 3.0024790335456597,
+    "exceed_rate": 1.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109_draw_band.jsonl"
+   },
+   "verdict": {
+    "kind": "label",
+    "value": true,
+    "rule": "label iff rho_ew>1 and exceed_rate==1 else rate"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 16,
+    "notes": "away from boundary; bench frac 0.0 on 16/16"
+   },
+   "artifact": "s109_summary.json"
+  },
+  {
+   "task": {
+    "level": 1,
+    "problem_id": 7,
+    "name": "7_Matmul_with_small_K_dimension_.py"
+   },
+   "op_class": "gemm",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "7078c6d"
+   },
+   "reference": {
+    "engine_label": "TF32_TENSOROP",
+    "top1_kernel": "TF32_TENSOROP_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 2.4786830404057274,
+    "frac": 0.014486366009805351,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 16,
+    "cv": 0.03554858712699443,
+    "min": 2.3511445523948478,
+    "max": 2.638916522713213,
+    "exceed_rate": 1.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109_draw_band.jsonl"
+   },
+   "verdict": {
+    "kind": "label",
+    "value": true,
+    "rule": "label iff rho_ew>1 and exceed_rate==1 else rate"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 16,
+    "notes": "away from boundary; bench frac 0.0 on 16/16"
+   },
+   "artifact": "s109_summary.json"
+  },
+  {
+   "task": {
+    "level": 1,
+    "problem_id": 15,
+    "name": "15_Matmul_for_lower_triangular_matrices.py"
+   },
+   "op_class": "gemm",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "7078c6d"
+   },
+   "reference": {
+    "engine_label": "TF32_TENSOROP",
+    "top1_kernel": "TF32_TENSOROP_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 3.123014321315711,
+    "frac": 0.0014417096972465515,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 16,
+    "cv": 0.045232635372538944,
+    "min": 2.7961564201584106,
+    "max": 3.3454013327780805,
+    "exceed_rate": 1.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109_draw_band.jsonl"
+   },
+   "verdict": {
+    "kind": "label",
+    "value": true,
+    "rule": "label iff rho_ew>1 and exceed_rate==1 else rate"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 16,
+    "notes": "away from boundary; bench frac 0.0 on 16/16"
+   },
+   "artifact": "s109_summary.json"
+  },
+  {
+   "task": {
+    "level": 2,
+    "problem_id": 77,
+    "name": "77_ConvTranspose3d_Scale_BatchNorm_GlobalAvgPool.py"
+   },
+   "op_class": "conv_transpose",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "9322321"
+   },
+   "reference": {
+    "engine_label": "TF32_TENSOROP",
+    "top1_kernel": "TF32_TENSOROP_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 1.2428816079862246,
+    "frac": 0.0,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 16,
+    "cv": 0.1442059403588847,
+    "min": 0.9580273550689085,
+    "max": 1.6478873022179483,
+    "exceed_rate": 0.9375,
+    "draw_axis": "task_instance_seed",
+    "source": "s109b_draw_boundary.jsonl"
+   },
+   "verdict": {
+    "kind": "rate",
+    "value": 0.9375,
+    "rule": "label iff rho_ew>1 and exceed_rate==1 else rate"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 16,
+    "notes": "boundary row; 1/16 draws below gate; 1e-2 gate not re-measured (declared)"
+   },
+   "artifact": "s109b_summary.json"
+  },
+  {
+   "task": {
+    "level": 1,
+    "problem_id": 72,
+    "name": "72_conv_transposed_3D_asymmetric_input_asymmetric_kernel___strided_padded_grouped_.py"
+   },
+   "op_class": "conv_transpose",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "9322321"
+   },
+   "reference": {
+    "engine_label": "FP64",
+    "top1_kernel": "FP64_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 0.0011028330825108182,
+    "frac": 0.0,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 8,
+    "cv": null,
+    "min": null,
+    "max": null,
+    "exceed_rate": 0.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109b_draw_boundary.jsonl"
+   },
+   "verdict": {
+    "kind": "diagnostic",
+    "value": false,
+    "rule": "magnitude row: repeat delta_rho <= 0.0018"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 8,
+    "notes": "dgrad repeat non-determinism magnitude row; 0/16 bit-identical; max delta_rho 0.00108"
+   },
+   "artifact": "s109b_summary.json"
+  },
+  {
+   "task": {
+    "level": 1,
+    "problem_id": 77,
+    "name": "77_conv_transposed_3D_square_input_square_kernel___padded____dilated____strided__.py"
+   },
+   "op_class": "conv_transpose",
+   "procedure": {
+    "id": "B",
+    "cudnn_tf32": true,
+    "matmul_tf32": true,
+    "dtype": "fp32",
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "commit": "9322321"
+   },
+   "reference": {
+    "engine_label": "FP64",
+    "top1_kernel": "FP64_observed",
+    "label_basis": "profiler_top1_dominance"
+   },
+   "deviation": {
+    "statistic": "evaluator_exact_rho",
+    "gate": 0.0001,
+    "rho_ew": 0.0019097706989610794,
+    "frac": 0.0,
+    "anchor": "chunked_fp64",
+    "anchor_selfcheck_rel": 0.0
+   },
+   "type_b": {
+    "quantity": "rho_ew",
+    "procedure_pair": [
+     "A",
+     "B"
+    ],
+    "ratio": null,
+    "source": "s106d (gemm 11-358x; conv 1.000) / s107"
+   },
+   "type_a": {
+    "n_draws": 8,
+    "cv": null,
+    "min": null,
+    "max": null,
+    "exceed_rate": 0.0,
+    "draw_axis": "task_instance_seed",
+    "source": "s109b_draw_boundary.jsonl"
+   },
+   "verdict": {
+    "kind": "diagnostic",
+    "value": false,
+    "rule": "magnitude row: repeat delta_rho <= 0.0018"
+   },
+   "scope": {
+    "arch": "sm_120",
+    "repo_rev": "423217d",
+    "procedure": "B",
+    "n_draws": 8,
+    "notes": "dgrad repeat non-determinism magnitude row; 0/16 bit-identical; max delta_rho 0.00180"
+   },
+   "artifact": "s109b_summary.json"
+  }
+ ]
+}

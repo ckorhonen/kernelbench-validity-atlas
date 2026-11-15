@@ -1,0 +1,129 @@
+{
+ "date": "2026-11-15T21:34:31Z",
+ "n_rows": 11,
+ "n_pass": 11,
+ "n_fail": 0,
+ "results": [
+  {
+   "i": 0,
+   "task": {
+    "level": 1,
+    "problem_id": 66,
+    "name": "66_conv_standard_3D__asymmetric_input__asymmetric_kernel.py"
+   },
+   "verdict": "label",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 1,
+   "task": {
+    "level": 1,
+    "problem_id": 60,
+    "name": "60_conv_standard_3D__square_input__asymmetric_kernel.py"
+   },
+   "verdict": "label",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 2,
+   "task": {
+    "level": 1,
+    "problem_id": 56,
+    "name": "56_conv_standard_2D__asymmetric_input__asymmetric_kernel.py"
+   },
+   "verdict": "label",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 3,
+   "task": {
+    "level": 1,
+    "problem_id": 81,
+    "name": "81_conv_transposed_2D_asymmetric_input_square_kernel___dilated____padded____strided__.py"
+   },
+   "verdict": "label",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 4,
+   "task": {
+    "level": 2,
+    "problem_id": 15,
+    "name": "15_ConvTranspose3d_BatchNorm_Subtract.py"
+   },
+   "verdict": "label",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 5,
+   "task": {
+    "level": 1,
+    "problem_id": 73,
+    "name": "73_conv_transposed_3D_asymmetric_input_square_kernel__strided_padded__grouped.py"
+   },
+   "verdict": "label",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 6,
+   "task": {
+    "level": 1,
+    "problem_id": 7,
+    "name": "7_Matmul_with_small_K_dimension_.py"
+   },
+   "verdict": "label",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 7,
+   "task": {
+    "level": 1,
+    "problem_id": 15,
+    "name": "15_Matmul_for_lower_triangular_matrices.py"
+   },
+   "verdict": "label",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 8,
+   "task": {
+    "level": 2,
+    "problem_id": 77,
+    "name": "77_ConvTranspose3d_Scale_BatchNorm_GlobalAvgPool.py"
+   },
+   "verdict": "rate",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 9,
+   "task": {
+    "level": 1,
+    "problem_id": 72,
+    "name": "72_conv_transposed_3D_asymmetric_input_asymmetric_kernel___strided_padded_grouped_.py"
+   },
+   "verdict": "diagnostic",
+   "fails": [],
+   "pass": true
+  },
+  {
+   "i": 10,
+   "task": {
+    "level": 1,
+    "problem_id": 77,
+    "name": "77_conv_transposed_3D_square_input_square_kernel___padded____dilated____strided__.py"
+   },
+   "verdict": "diagnostic",
+   "fails": [],
+   "pass": true
+  }
+ ]
+}

@@ -1,0 +1,155 @@
+USDT:2026-11-15 16:24:14 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:24:14 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 0 ok TF32_TENSOROP 1.1470089282607188 None 11.04
+USDT:2026-11-15 16:24:23 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:24:23 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 1 ok TF32_TENSOROP 1.2302119460158834 None 5.12
+USDT:2026-11-15 16:24:28 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:24:28 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 2 ok TF32_TENSOROP 1.588096265545144 None 5.08
+USDT:2026-11-15 16:24:33 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:24:33 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 3 ok TF32_TENSOROP 1.6478873022179483 None 5.07
+USDT:2026-11-15 16:24:38 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:24:38 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 4 ok TF32_TENSOROP 1.3813584090578606 None 5.1
+USDT:2026-11-15 16:24:43 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:24:43 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 5 ok TF32_TENSOROP 0.9580273550689085 None 5.09
+USDT:2026-11-15 16:24:48 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:24:48 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 6 ok TF32_TENSOROP 1.2240463493766145 None 5.09
+USDT:2026-11-15 16:24:53 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:24:53 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 7 ok TF32_TENSOROP 1.2985311965015156 None 5.09
+USDT:2026-11-15 16:24:59 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:24:59 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 8 ok TF32_TENSOROP 1.2112492522393583 None 5.11
+USDT:2026-11-15 16:25:04 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:04 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 9 ok TF32_TENSOROP 1.077609833242779 None 3.28
+USDT:2026-11-15 16:25:07 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:07 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 10 ok TF32_TENSOROP 1.0269384772255754 None 5.09
+USDT:2026-11-15 16:25:12 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:12 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 11 ok TF32_TENSOROP 1.0659575787031887 None 5.08
+USDT:2026-11-15 16:25:17 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:17 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 12 ok TF32_TENSOROP 1.3279470939945655 None 5.09
+USDT:2026-11-15 16:25:22 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:23 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 13 ok TF32_TENSOROP 1.2075348373448234 None 5.1
+USDT:2026-11-15 16:25:28 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:28 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 14 ok TF32_TENSOROP 1.2088419856636514 None 5.1
+USDT:2026-11-15 16:25:33 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:33 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2 77 15 ok TF32_TENSOROP 1.284858917321059 None 5.09
+USDT:2026-11-15 16:25:38 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:38 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 72 0 ok FP64 0.0011028330825108182 0.0008667162842898834 0.43
+USDT:2026-11-15 16:25:38 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:38 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 72 1 ok FP64 0.001126801025725494 0.001053011052994542 0.41
+USDT:2026-11-15 16:25:39 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:39 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 72 2 ok FP64 0.0014839112046770703 0.0010178262799339327 0.4
+USDT:2026-11-15 16:25:39 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:39 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 72 3 ok FP64 0.001132156008963669 0.0010845251692744248 0.41
+USDT:2026-11-15 16:25:40 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:40 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 72 4 ok FP64 0.0012852166539085122 0.0010737217807526241 0.41
+USDT:2026-11-15 16:25:40 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:40 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 72 5 ok FP64 0.0011721770320739584 0.0010680533779033265 0.41
+USDT:2026-11-15 16:25:40 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:40 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 72 6 ok FP64 0.0012201549480375584 0.0010747259802157045 0.41
+USDT:2026-11-15 16:25:41 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:41 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 72 7 ok FP64 0.0011455876129853855 0.0009282284326747514 0.42
+USDT:2026-11-15 16:25:41 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:41 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 77 0 ok FP64 0.0019097706989610794 0.0014480747782148796 1.29
+USDT:2026-11-15 16:25:43 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:43 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 77 1 ok FP64 0.0021157833947611678 0.0013772855336353646 1.29
+USDT:2026-11-15 16:25:44 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:44 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 77 2 ok FP64 0.0019343226853504988 0.001470394176766684 1.3
+USDT:2026-11-15 16:25:46 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:46 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 77 3 ok FP64 0.0024981292585590955 0.0013620697673189823 1.3
+USDT:2026-11-15 16:25:47 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:47 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 77 4 ok FP64 0.0019761794360615304 0.0014829973759294594 1.3
+USDT:2026-11-15 16:25:48 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:48 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 77 5 ok FP64 0.0019261793906679714 0.0014898981101652202 1.48
+USDT:2026-11-15 16:25:50 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:50 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 77 6 ok FP64 0.0018375318036555216 0.00179910902804789 0.75
+USDT:2026-11-15 16:25:51 930313:930313 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-15 16:25:51 930313:930313 SyncActivityProfilerHandler.cpp:46] profiler_stop
+1 77 7 ok FP64 0.0019557461442444926 0.0015094793875520397 0.5
+{
+ "branch_b1": "BRANCH_BOUNDARY_RATE",
+ "branch_b2": {
+  "branch": "BRANCH_REPEAT_MAGNITUDE",
+  "n_cells": 16,
+  "n_bit_identical": 0,
+  "max_delta_rho": 0.00179910902804789,
+  "per_row": {
+   "1/72": [
+    0.0008667162842898834,
+    0.001053011052994542,
+    0.0010178262799339327,
+    0.0010845251692744248,
+    0.0010737217807526241,
+    0.0010680533779033265,
+    0.0010747259802157045,
+    0.0009282284326747514
+   ],
+   "1/77": [
+    0.0014480747782148796,
+    0.0013772855336353646,
+    0.001470394176766684,
+    0.0013620697673189823,
+    0.0014829973759294594,
+    0.0014898981101652202,
+    0.00179910902804789,
+    0.0015094793875520397
+   ]
+  }
+ },
+ "instrument_ok": true,
+ "k_anchor_rel": [
+  1.4491807413000736e-16,
+  0.0,
+  0.0
+ ],
+ "tie_out": [
+  0.0,
+  0.003950404690228378,
+  0.015835419482849274
+ ],
+ "n_ok": 32,
+ "wall_s": 99.8
+}
+{
+ "id": "2/77",
+ "rho": {
+  "n": 16,
+  "mean": 1.2428816079862246,
+  "sd": 0.17923091103441624,
+  "cv": 0.1442059403588847,
+  "min": 0.9580273550689085,
+  "max": 1.6478873022179483
+ },
+ "exceed_rate": 0.9375,
+ "labels": [
+  "TF32_TENSOROP"
+ ]
+}

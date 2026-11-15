@@ -224,3 +224,43 @@ K2 anchor 0.0.
 
 Non-claims: two tasks, one draw each, one arch, one repo rev, no timing claims; the conditioning model is a model
 (scalar error scale), and it is reported as failing on L2/18 rather than fitted.
+
+
+## s109/s109b — the map's type-A band and the boundary is a rate, not a label (2026-11-15)
+
+Preregs frozen pre-run (lab/s109_prereg.md, lab/s109b_prereg.md). Artifacts results/s109_draw_band.jsonl
+(128/128 ok), s109_summary.json, s109b_draw_boundary.jsonl (32/32 ok), s109b_summary.json, sha read-back 4/4.
+
+Draw axis = a benchmark task instance (`torch.manual_seed(d)`, `get_init_inputs()`, `get_inputs()`,
+`Model(*init)`), d = 0..15; procedure B throughout; evaluator-exact rho at 1e-4 against a chunked fp64
+anchor. Instrument: K1 8/8 bit-identical at draw 0, K2 anchor self-check 0.0/1.4e-16, tie-out to the
+s107/s107b recorded rows 0.0 on 8/8 and 0.000/0.004/0.016 on s109b's three rows.
+
+**Away from the boundary the label is draw-stable and the band is small.** Eight flagged rows
+(3 conv, 3 conv_transpose, 2 gemm, the cheapest by s71 t_fp64_s) x 16 draws: every row exceeds at
+every draw (exceed rate 1.0), rho CV 3.6-7.5%, per-row max/min 1.18-1.35x. Frozen branch
+BRANCH_DRAW_STABLE (max CV 0.0745 <= 0.10). The single-draw rows of this population are therefore
+draw-stable at 10% CV, and the schema can carry the measured band instead of an unqualified number.
+
+**At the boundary the label is not stable, and the map must ship a rate.** Of the whole 191-row map
+exactly 3 rows lie in rho [0.85, 1.30]; the flagged one, L2/77 conv_transpose (recorded 1.147), over
+16 draws gives rho 0.958-1.648 (mean 1.243, CV 14.4%), frac at 1e-4 up to 5.13%, and **exceed rate
+0.9375** — 1 of 16 draws falls under the gate. Frozen branch **BRANCH_BOUNDARY_RATE**. So a
+boundary-adjacent row cannot ship a pass/fail label at 1e-4; it ships a rate, and the 83/191 strict-gate
+count is draw-conditional only on those 3 rows (±3 at most, since 20 more rows sit in [0.5, 2]).
+
+**dgrad repeat non-determinism has a magnitude and it is immaterial in rho units.** s107b's K1 failed on
+L1/72 and L1/77 (cuDNN dgrad conv_transpose). 8 draws x 2 in-process repeats each: 0/16 bit-identical,
+delta_rho_repeat 0.00087-0.00180 (mean 0.0010 / 0.0015 per row), i.e. **<=0.18% of the budget** — the
+repeat noise is bit-level and ~500x below the gate margin, so it cannot flip a verdict by itself.
+BRANCH_REPEAT_MAGNITUDE. s109's 8/8 identical rows confirm the non-determinism is row-specific, not a
+conv_transpose class property.
+
+**Class labels are a dominance observation with a known failure mode.** On L2/15 two of 16 draws put
+`at::native::elementwise_kernel` in the profiler's top slot, so the label read OTHER while rho stayed
+1.67-1.71. The label is "the dominant kernel in the call", not "the conv engine"; it must be quoted with
+its top-1 name, which the row schema now requires.
+
+Non-claims: one arch (GB10), rev 423217d, procedure B, 11 rows and 16 draws; no timing claim; the
+[0.5, 2] band is scoped by the 3 rows measured in it, not by all 23; s109b did not re-measure the 1e-2
+gate on L2/77 (declared).

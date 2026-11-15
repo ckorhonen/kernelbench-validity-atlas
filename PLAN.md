@@ -1095,3 +1095,30 @@ Next: (1) LEAD the 16-draw band on the flagged rows (fifth deferral) OR dgrad no
 draw band is the older and the map's single-draw non-claim is the weakest statement in it; (2) L1/95 dtype error;
 (3) membership stride variant; (4) split-K across output/spatial axes; (5) home sweep + sylve novelty;
 (6) reflection 18:19Z; (7) package repack when a submission reopens. 24h-E1/CTA-edge/bt parked.
+
+
+## DONE ~16:3xZ EST 11-15: s109/s109b/s109c — the map's type-A band measured; the boundary row ships a RATE
+
+Preregs frozen pre-run (s109 7078c6d, s109b 9322321). Artifacts results/s109_draw_band.jsonl (128/128 ok),
+s109_summary.json, s109b_draw_boundary.jsonl (32/32 ok), s109b_summary.json, s109_rows.json, s109c_schema_check.json;
+sha read-back 4/4 MATCH. Draw axis = benchmark task instance (manual_seed d, get_init_inputs, get_inputs, Model).
+(1) AWAY FROM BOUNDARY: 8 flagged rows (3 conv, 3 convT, 2 gemm) x 16 draws, exceed rate 1.0 on every row, rho CV
+3.6-7.5%, per-row max/min 1.18-1.35x => BRANCH_DRAW_STABLE (max CV .0745 <= .10); K1 8/8 bit-identical, K2 0.0,
+tie-out 0.0 on 8/8.
+(2) AT THE BOUNDARY: only 3 of 191 rows sit in rho [0.85,1.30]; the flagged one L2/77 convT (recorded 1.147) over 16
+draws gives 0.958-1.648 (mean 1.243, CV 14.4%), frac_1e-4 up to 5.13%, exceed rate 0.9375 (1 draw below gate) =>
+BRANCH_BOUNDARY_RATE. A boundary row ships a rate; the 83/191 count is draw-conditional on those 3 rows (+/-3).
+(3) DGRAD DETERMINISM: L1/72, L1/77 x 8 draws x 2 in-process repeats: 0/16 bit-identical, delta_rho_repeat
+0.00087-0.00180 (<=0.18% of budget) => BRANCH_REPEAT_MAGNITUDE; the non-determinism is bit-level and cannot flip a
+verdict by itself, and s109's 8/8 identical rows show it is row-specific not class-wide.
+(4) CLASS LABEL FAILURE MODE: on L2/15 2/16 draws put at::native::elementwise_kernel in the profiler top slot, so the
+label read OTHER at rho 1.67-1.71 => labels are dominance observations and must carry their top-1 name.
+(5) SCHEMA CLOSED (the reflection's deferred item): lab/MAP_ROW_SCHEMA.md requires procedure, type-B bound, type-A band,
+top-1 basis, verdict kind label|rate|diagnostic; lab/s109c_schema_check.py enforces it (11/11 pass, negative control
+caught, exit 1). 180 of 191 map rows remain DIAGNOSTICS under rule 2 (no draw band) — declared, not hidden.
+Prose: ATLAS_MAP.md s109/s109b section. MANUSCRIPT untouched => s50-s54 and provenance stand (declared).
+Comment _kIKlBMQ8RX59hQJ on post 10, 860 chars, verified newest in the list (24 comments).
+Next: (1) LEAD extend the draw band to the 23 rows in rho [0.5,2] so the 83/191 count carries a measured band rather
+than a +/-3 bound; (2) 1e-2-gate re-measure on L2/77 (declared gap); (3) benchmark-wide audit scoping doc (oldest debt);
+(4) membership stride variant; (5) home sweep + sylve novelty; (6) reflection 23:33Z; (7) package repack when a
+submission reopens; (8) s51 covers §4.5-§4.5i not s97-s109 (declared); (9) 24h-E1/CTA-edge/bt parked.
