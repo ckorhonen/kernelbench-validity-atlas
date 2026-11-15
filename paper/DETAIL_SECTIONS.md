@@ -1,9 +1,9 @@
 # A validity-domain atlas for GPU kernels: conditional certificates, not band-global rules
 
 *Artifact status.* Every number in this manuscript is regenerated from committed artifacts by shipped
-auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 47/47, `s52_prose_audit.py` 16/16,
+auditors (`s50_prose_audit.py` 19/19, `s51_prose_audit.py` 51/51, `s52_prose_audit.py` 16/16,
 `s53_intro_audit.py` 15/15, `s54_metadata_audit.py` 6/6) and mapped to its file and field in
-`PROVENANCE.md` (85 cited / 85 found / 0 missing). The auditors exit nonzero on a cited value they cannot
+`PROVENANCE.md` (88 cited / 88 found / 0 missing). The auditors exit nonzero on a cited value they cannot
 reproduce, the supplement ships them together with the artifacts they read, and the build runs every
 CPU-only script from inside the shipped package and fails if any exits nonzero, so the package is
 re-runnable as delivered.
@@ -1196,6 +1196,43 @@ Validity-domain statement: on GB10 sm_120, fp32 matmul, M=N=1024, K=4096, the re
 a draw-distributed quantity whose level mean is insensitive to operand conditioning across four decades (1.17-1.36),
 with a within-conditioning draw spread of 5-23%. H1 (spectral amplification) is retired on this geometry; the s96
 caveat is discharged rather than carried forward. Scoped to one geometry, one family, five draws per level.
+
+
+## 4.5i The shipped gate is procedure-carried and certifies agreement, not accuracy (s108, 2026-11-15)
+
+The s107 re-key left two tasks whose reference violates the shipped 1e-2 allclose predicate against exact fp64
+(L2/14 rho_ew 16.48 frac 1.95%; L2/18 1.22 frac 0.098%). s108 decomposes them with five arms per task — reference
+under the benchmark's own flags (B), reference with matmul tf32 off (A), torch.compile under each, and a chunked
+fp64 anchor — prereg `lab/s108_prereg.md` committed at `253151a` before any row (artifacts
+`results/s108_gate_decomp.jsonl` 2/2 ok, `s108_summary.json`, `s108_screen.json`; sha read-back 3/3 MATCH; K1
+reference repeat bit-identical 2/2, K2 anchor self-check 0.0).
+
+- **Ownership: procedure-carried, not reference-carried.** Under A the reference's shipped-gate fraction is exactly
+  0.0 on both tasks (rho_ew 0.0603 and 0.00516) against 0.0195 and 0.00098 under B (16.48 and 1.22). The failing
+  elements do not survive the flag change, so the shipped gate binds on the arithmetic the reference runs, not on
+  the reference's algorithm. The paper's §4.5 gains a procedure-dependence instance rather than the third
+  algorithm instance the debt anticipated.
+- **The predicate measures agreement between two approximations.** torch.compile under the same flags passes the
+  benchmark's own check against the reference on both tasks (vs-reference rho_ew 0.0275 and 0.0004) while the
+  reference itself sits 16.48x and 1.22x the gate away from exact fp64. On L2/14 the compile arm's deviation from
+  the anchor is identical to the reference's to every printed digit (rho_ew 16.4779 in both), so the deviation is
+  a property of the shared TF32 arithmetic, not of either implementation.
+- **Mechanism: cancellation, and only partly a single coordinate.** Both tasks are `gemm -> sum(dim=1)` with a
+  one-scalar-per-row output. Per-row |Δ| is uncorrelated with |X| (Spearman 0.054 and 0.013) while per-row rho is
+  (Spearman −0.610 and −0.581): the error scale comes from TF32 accumulation and the failure from the row's
+  cancellation. On L2/14 the scalar conditioning model predicts frac 0.01855 against 0.01953 measured (20/1024
+  rows, threshold |X| < 94.6, d_med 0.956, x_min 1.46) — within 5%. On L2/18 the frozen rule prints
+  **MECH_NOT_CANCELLATION**: frac_pred 0.0 against 1/1024 measured, because the error has a tail (d_max 0.029 =
+  3.3x d_med) and a scalar error scale under-predicts. Conditioning is necessary but not sufficient there.
+- **The text screen is a hypothesis generator.** The declared K4 pattern ("matmul-ish token, then a full-axis
+  keepdim reduction") hits 5/250 sources with recall 2/2 and precision 2/5: L2/51 sits at rho 1.6e-4, L2/56 at
+  8.3e-5, L2/80 at 0. Token order therefore does not separate the failures; what does is whether the reduction's
+  own magnitude can approach the per-element error scale.
+
+Validity-domain statement: on GB10 sm_120, fp32, a 1024x8192 gemm followed by a full-axis reduction, the
+reference's deviation from exact fp64 is TF32-procedure-carried and can exceed the shipped 1e-2 gate on rows whose
+sum is small, so a gate pass certifies agreement with the recorded reference realization rather than numerical
+accuracy. Scoped to two tasks, one draw per task, no timing claims.
 
 
 ## 4.6 Candidate admission: a class baseline plus a measured within-class threshold

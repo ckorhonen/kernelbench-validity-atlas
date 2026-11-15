@@ -1,7 +1,7 @@
 {
- "date": "2026-11-15T07:50:53Z",
- "n_cited": 85,
- "n_found": 85,
+ "date": "2026-11-15T16:55:00Z",
+ "n_cited": 88,
+ "n_found": 88,
  "missing": [],
  "entries": [
   {
@@ -1223,6 +1223,89 @@
    "compressed": false
   },
   {
+   "artifact": "results/s108_gate_decomp.jsonl",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/sections/s4_certificates.md"
+   ],
+   "sha256": "16afbf71768534060ecd3fde376deb07c2fed4b9873cedc51f7c8474397d15d2",
+   "bytes": 6790,
+   "mtime_utc": "2026-11-15T16:42:50Z",
+   "producers": [
+    "lab/s108_gate_decomp.py"
+   ],
+   "content": {
+    "kind": "jsonl",
+    "rows": 2,
+    "row_keys": [
+     "C_A",
+     "C_B",
+     "R_A",
+     "R_B",
+     "in_shape",
+     "k1_repeat_bit_identical",
+     "k2_anchor_rel",
+     "label_A",
+     "label_B",
+     "level",
+     "mech",
+     "name",
+     "out_numel",
+     "ref_max_abs",
+     "status",
+     "top1_A",
+     "top1_B",
+     "wall_s"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s108_screen.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/sections/s4_certificates.md"
+   ],
+   "sha256": "ed5d5de522c2eda6a30c9bd58cd0276f69dd3428dd81b8fd1c28feb7953e0f8b",
+   "bytes": 341,
+   "mtime_utc": "2026-11-15T16:42:37Z",
+   "producers": [
+    "lab/s108_gate_decomp.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "hits",
+     "n_hits",
+     "scanned"
+    ]
+   },
+   "compressed": false
+  },
+  {
+   "artifact": "results/s108_summary.json",
+   "sha256_note": null,
+   "cited_in": [
+    "paper/sections/s4_certificates.md"
+   ],
+   "sha256": "a70a1906e47ec31541cbc93d4755e6ac44d12de709ed7a37521e3e6939ca1c5a",
+   "bytes": 1915,
+   "mtime_utc": "2026-11-15T16:42:50Z",
+   "producers": [
+    "lab/s108_gate_decomp.py",
+    "lab/s51_prose_audit.py"
+   ],
+   "content": {
+    "kind": "json",
+    "keys": [
+     "rows",
+     "rules",
+     "screen"
+    ]
+   },
+   "compressed": false
+  },
+  {
    "artifact": "results/s46_e2_recount.json",
    "sha256_note": null,
    "cited_in": [
@@ -1342,9 +1425,9 @@
     "paper/sections/s5_tolerance.md",
     "paper/sections/s8_reproduction.md"
    ],
-   "sha256": "531f90793b9bb8f5f8780db733961dcddfe0afbddec623ef723a50cc488f6b6b",
-   "bytes": 10626,
-   "mtime_utc": "2026-11-15T07:50:08Z",
+   "sha256": "9913348a07b2ea655ac1517666272504d98814d9f9f186c54dad050080fd5dc3",
+   "bytes": 11689,
+   "mtime_utc": "2026-11-15T16:52:45Z",
    "producers": [
     "lab/s51_prose_audit.py"
    ],

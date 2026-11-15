@@ -1067,3 +1067,31 @@ first; kill: failing elements reference-carried on both arms => the shipped gate
 gains a third instance); (2) dgrad non-determinism magnitude |Δ| and affected-task count; (3) 16-draw band on flagged
 rows (fifth deferral); (4) L1/95 dtype error; (5) home sweep + sylve novelty; (6) reflection 14:23Z; (7) package repack
 when a submission reopens. 24h-E1/CTA-edge/bt parked.
+
+## DONE ~12:1xZ EST 11-15: s108 — the two shipped-gate failures are TF32-procedure-carried; the gate certifies agreement, not accuracy
+
+Prereg 253151a frozen pre-run (lab/s108_prereg.md + runner), mechanical fix b435e47 (quantile device, before any
+row was recorded as ok). Artifacts results/s108_gate_decomp.jsonl (2/2 ok), s108_summary.json, s108_screen.json;
+sha read-back 3/3 MATCH. Arms per task: reference under benchmark flags B, reference under A (matmul tf32 off),
+torch.compile under each, chunked fp64 anchor. K1 2/2 bit-identical, K2 0.0.
+(1) OWNERSHIP: BRANCH_PROCEDURE_CARRIED on both — frac at 1e-2 is 0.0195/0.00098 under B (rho_ew 16.4779/1.2232)
+and exactly 0.0 under A (0.0603/0.00516). The failing elements do not survive the flag change => §4.5 gains a
+procedure-dependence instance, NOT the anticipated third algorithm instance. M2's retraction is thereby a
+statement about the reference's arithmetic procedure.
+(2) SHIPPED_CONSISTENCY on both: compile under the same flags passes the benchmark's own check against the
+reference (vs-ref rho_ew 0.0275/0.0004, allclose True) while the reference sits 16.48x/1.22x the gate from exact
+fp64; on L2/14 the compile arm's deviation equals the reference's to every printed digit (16.4779) => the
+deviation belongs to the shared TF32 arithmetic, and the gate measures agreement between two approximations.
+(3) MECHANISM: both tasks are gemm -> sum(dim=1) to one scalar per row; per-row |d| uncorrelated with |X|
+(Spearman .054/.013) while rho is (-.610/-.581). L2/14 scalar conditioning model predicts frac .01855 vs .01953
+measured (20/1024 rows, threshold |X|<94.6, d_med .956, x_min 1.46). L2/18 frozen rule prints MECH_NOT_CANCELLATION
+(frac_pred 0.0 vs 1/1024) because the error has a tail (d_max 3.3x d_med) => conditioning necessary, not sufficient.
+(4) K4 text screen (declared heuristic): 5/250 hits, recall 2/2, precision 2/5 (L2/51 1.6e-4, L2/56 8.3e-5, L2/80 0)
+=> token order is a hypothesis generator; the discriminator is whether the reduction's magnitude can approach the
+per-element error scale.
+Prose: §4.5i added to paper/sections/s4_certificates.md; ATLAS_MAP s108 section; s51 extended 47->51 (51/51), s50
+exit 0, s52 16/16 regenerated (sections=10 cited=75), provenance 88/88/0.
+Next: (1) LEAD the 16-draw band on the flagged rows (fifth deferral) OR dgrad non-determinism |d| magnitude — the
+draw band is the older and the map's single-draw non-claim is the weakest statement in it; (2) L1/95 dtype error;
+(3) membership stride variant; (4) split-K across output/spatial axes; (5) home sweep + sylve novelty;
+(6) reflection 18:19Z; (7) package repack when a submission reopens. 24h-E1/CTA-edge/bt parked.

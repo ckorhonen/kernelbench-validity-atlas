@@ -196,3 +196,31 @@ flagged rows remains owed (fifth deferral).
 
 Reproduce: rsync lab/ to spark, then `~/kernelbench/.venv/bin/python s107_rekey_map.py` (146 s) and
 `s107b_rekey_rest.py` (417 s); artifacts read back with sha verification.
+
+### s108 — the two shipped-gate failures are TF32-procedure-carried, and the gate certifies agreement (2026-11-15)
+
+Decomposition of the two tasks s107 found violating the shipped 1e-2 predicate against exact fp64. Prereg
+`lab/s108_prereg.md` @ `253151a`; artifacts `results/s108_gate_decomp.jsonl` (2/2 ok), `s108_summary.json`,
+`s108_screen.json`; sha read-back 3/3 MATCH. Arms per task: reference under the benchmark's flags (B), reference
+with matmul tf32 off (A), torch.compile under each, chunked fp64 anchor. K1 reference repeat bit-identical 2/2,
+K2 anchor 0.0.
+
+- Ownership: **BRANCH_PROCEDURE_CARRIED** on both. Under A the reference's shipped-gate fraction is exactly 0.0
+  (rho_ew 0.0603, 0.00516) against 0.0195 / 0.00098 under B (16.48 / 1.22). The failing elements do not survive the
+  flag change, so the map's 2/191 statement is a statement about the reference's arithmetic procedure, not about
+  its algorithm. §4.5 gains a procedure-dependence instance, not a third algorithm instance.
+- **SHIPPED_CONSISTENCY** on both: compile under the same flags passes the benchmark's own check against the
+  reference (vs-ref rho_ew 0.0275 / 0.0004, allclose True) while the reference is 16.48x / 1.22x the gate away from
+  exact fp64. On L2/14 the compile arm's deviation from the anchor equals the reference's to every printed digit
+  (rho_ew 16.4779), so the deviation belongs to the shared TF32 arithmetic.
+- Mechanism: both are `gemm -> sum(dim=1)` to one scalar per row; per-row |Δ| is uncorrelated with |X|
+  (Spearman 0.054 / 0.013) while rho is (−0.610 / −0.581). L2/14's scalar conditioning model predicts frac
+  0.01855 vs 0.01953 measured (20/1024 rows, |X| < 94.6). L2/18 prints **MECH_NOT_CANCELLATION** under the frozen
+  rule (frac_pred 0.0 vs 1/1024) because its error has a tail (d_max = 3.3x d_med): conditioning is necessary but
+  not sufficient.
+- K4 text screen (declared heuristic): "matmul then full-axis keepdim reduction" hits 5/250 sources, recall 2/2,
+  precision 2/5 (L2/51 1.6e-4, L2/56 8.3e-5, L2/80 0). Token order is a hypothesis generator; the discriminator is
+  whether the reduction's magnitude can approach the per-element error scale.
+
+Non-claims: two tasks, one draw each, one arch, one repo rev, no timing claims; the conditioning model is a model
+(scalar error scale), and it is reported as failing on L2/18 rather than fitted.
