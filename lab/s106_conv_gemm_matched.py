@@ -213,14 +213,15 @@ def main():
 
     ok = [r for r in rows if r.get("status") == "ok" and r.get("matched_k")]
     by = {a: [r for r in ok if r["arm"] == a] for a in ("G", "C1", "C3")}
-    med = {a: dict(n=len(v), rho_1e-4=median([r["rho_1e-4"] for r in v]),
-                   rho_1e-2=median([r["rho_1e-2"] for r in v]),
-                   frac_1e-4=median([r["frac_over_1e-4"] for r in v]),
-                   maxabs=median([r["maxabs_out"] for r in v]),
-                   exact_frac=median([r["exact_frac_vs_anchor"] for r in v]),
-                   classes=sorted(set(r.get("class") for r in v)),
-                   instances=sorted(set(r.get("top1") for r in v)))
-            for a, v in by.items()}
+    med = {a: {"n": len(v),
+               "rho_1e-4": median([r["rho_1e-4"] for r in v]),
+               "rho_1e-2": median([r["rho_1e-2"] for r in v]),
+               "frac_1e-4": median([r["frac_over_1e-4"] for r in v]),
+               "maxabs": median([r["maxabs_out"] for r in v]),
+               "exact_frac": median([r["exact_frac_vs_anchor"] for r in v]),
+               "classes": sorted(set(r.get("class") for r in v)),
+               "instances": sorted(set(r.get("top1") for r in v))}
+           for a, v in by.items()}
 
     summary = dict(date=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), script_sha=sha,
                    prereg_sha=prereg_sha, draws=DRAWS, rows=len(rows), ok_rows=len(ok), medians=med,
@@ -229,9 +230,10 @@ def main():
                                                       if "anchor_selfcheck_rel" in r],
                                  k3_classes_per_draw=[[r.get("class") for r in ok if r["draw"] == d]
                                                       for d in range(DRAWS)]),
-                   per_draw=[[dict(arm=r["arm"], rho_1e-4=r["rho_1e-4"], rho_1e-2=r["rho_1e-2"],
-                                   frac_1e-4=r["frac_over_1e-4"], cls=r.get("class"), top1=r.get("top1"),
-                                   maxabs=r["maxabs_out"]) for r in ok if r["draw"] == d]
+                   per_draw=[[{"arm": r["arm"], "rho_1e-4": r["rho_1e-4"], "rho_1e-2": r["rho_1e-2"],
+                               "frac_1e-4": r["frac_over_1e-4"], "cls": r.get("class"),
+                               "top1": r.get("top1"), "maxabs": r["maxabs_out"]}
+                              for r in ok if r["draw"] == d]
                              for d in range(DRAWS)])
 
     # frozen branch rules

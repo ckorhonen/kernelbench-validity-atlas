@@ -1,0 +1,343 @@
+{
+ "date": "2026-11-15T07:14:03Z",
+ "script_sha": "299dbc317829ee154a15db44d2e877454da2fa7aa044d95c1f62c1317c61db34",
+ "prereg_sha": "112582a53a43aebc0aa945626008da5a6b1d6e6ceeb8ad38e5aab26bdc02148f",
+ "draws": 8,
+ "rows": 24,
+ "ok_rows": 24,
+ "medians": {
+  "G": {
+   "n": 8,
+   "rho_1e-4": 13.038658707227757,
+   "rho_1e-2": 0.13038658707227757,
+   "frac_1e-4": 0.5481901877923973,
+   "maxabs": 5.169782400131226,
+   "exact_frac": 9.495198240543194e-05,
+   "classes": [
+    "TF32_TENSOROP"
+   ],
+   "instances": [
+    "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)"
+   ]
+  },
+  "C1": {
+   "n": 8,
+   "rho_1e-4": 13.288273379221625,
+   "rho_1e-2": 0.13288273379221627,
+   "frac_1e-4": 0.5480226675913338,
+   "maxabs": 5.114142417907715,
+   "exact_frac": 9.611009385553265e-05,
+   "classes": [
+    "TF32_TENSOROP"
+   ],
+   "instances": [
+    "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1::Params)"
+   ]
+  },
+  "C3": {
+   "n": 8,
+   "rho_1e-4": 13.793408641559527,
+   "rho_1e-2": 0.13793408641559526,
+   "frac_1e-4": 0.5468249747818079,
+   "maxabs": 5.175818681716919,
+   "exact_frac": 9.114183588439104e-05,
+   "classes": [
+    "TF32_TENSOROP"
+   ],
+   "instances": [
+    "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)"
+   ]
+  }
+ },
+ "controls": {
+  "k1_repeat_bit_identical_all": true,
+  "k2_anchor_selfcheck": [
+   0.0
+  ],
+  "k3_classes_per_draw": [
+   [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ],
+   [
+    "TF32_TENSOROP",
+    "TF32_TENSOROP",
+    "TF32_TENSOROP"
+   ]
+  ]
+ },
+ "per_draw": [
+  [
+   {
+    "arm": "G",
+    "rho_1e-4": 12.545176205828431,
+    "rho_1e-2": 0.12545176205828432,
+    "frac_1e-4": 0.5480786106433974,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)",
+    "maxabs": 5.145487308502197
+   },
+   {
+    "arm": "C1",
+    "rho_1e-4": 13.100887004429639,
+    "rho_1e-2": 0.1310088700442964,
+    "frac_1e-4": 0.5479796664619973,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1::Params)",
+    "maxabs": 4.955310821533203
+   },
+   {
+    "arm": "C3",
+    "rho_1e-4": 13.480531222721364,
+    "rho_1e-2": 0.13480531222721365,
+    "frac_1e-4": 0.5454328346344458,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+    "maxabs": 5.444170951843262
+   }
+  ],
+  [
+   {
+    "arm": "G",
+    "rho_1e-4": 12.77755881370686,
+    "rho_1e-2": 0.1277755881370686,
+    "frac_1e-4": 0.5479075599602916,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)",
+    "maxabs": 5.3835320472717285
+   },
+   {
+    "arm": "C1",
+    "rho_1e-4": 13.117853053551016,
+    "rho_1e-2": 0.13117853053551018,
+    "frac_1e-4": 0.5466176785009429,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1::Params)",
+    "maxabs": 5.451518535614014
+   },
+   {
+    "arm": "C3",
+    "rho_1e-4": 14.810204570937048,
+    "rho_1e-2": 0.1481020457093705,
+    "frac_1e-4": 0.546650229156616,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+    "maxabs": 5.255550861358643
+   }
+  ],
+  [
+   {
+    "arm": "G",
+    "rho_1e-4": 13.299758600748655,
+    "rho_1e-2": 0.13299758600748654,
+    "frac_1e-4": 0.5481831606601254,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)",
+    "maxabs": 5.026251792907715
+   },
+   {
+    "arm": "C1",
+    "rho_1e-4": 14.28320164529038,
+    "rho_1e-2": 0.1428320164529038,
+    "frac_1e-4": 0.5488640163808605,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1::Params)",
+    "maxabs": 4.920294284820557
+   },
+   {
+    "arm": "C3",
+    "rho_1e-4": 14.097259188157128,
+    "rho_1e-2": 0.14097259188157127,
+    "frac_1e-4": 0.5470302152317881,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+    "maxabs": 5.08086633682251
+   }
+  ],
+  [
+   {
+    "arm": "G",
+    "rho_1e-4": 12.123531826178397,
+    "rho_1e-2": 0.12123531826178396,
+    "frac_1e-4": 0.5488570797843458,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)",
+    "maxabs": 5.194077491760254
+   },
+   {
+    "arm": "C1",
+    "rho_1e-4": 13.61769444157386,
+    "rho_1e-2": 0.1361769444157386,
+    "frac_1e-4": 0.5480656687206702,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1::Params)",
+    "maxabs": 4.990982532501221
+   },
+   {
+    "arm": "C3",
+    "rho_1e-4": 13.18146311037031,
+    "rho_1e-2": 0.1318146311037031,
+    "frac_1e-4": 0.5475917997017674,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+    "maxabs": 5.385832786560059
+   }
+  ],
+  [
+   {
+    "arm": "G",
+    "rho_1e-4": 13.992844650708289,
+    "rho_1e-2": 0.1399284465070829,
+    "frac_1e-4": 0.5482544603436644,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)",
+    "maxabs": 5.65452766418457
+   },
+   {
+    "arm": "C1",
+    "rho_1e-4": 13.458693704892235,
+    "rho_1e-2": 0.13458693704892236,
+    "frac_1e-4": 0.5489678358405333,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1::Params)",
+    "maxabs": 5.383787155151367
+   },
+   {
+    "arm": "C3",
+    "rho_1e-4": 13.068974851169417,
+    "rho_1e-2": 0.13068974851169418,
+    "frac_1e-4": 0.5465669680057892,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+    "maxabs": 5.389898777008057
+   }
+  ],
+  [
+   {
+    "arm": "G",
+    "rho_1e-4": 13.407599135873049,
+    "rho_1e-2": 0.1340759913587305,
+    "frac_1e-4": 0.5486911709053415,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)",
+    "maxabs": 5.211931228637695
+   },
+   {
+    "arm": "C1",
+    "rho_1e-4": 13.85599804315113,
+    "rho_1e-2": 0.1385599804315113,
+    "frac_1e-4": 0.5476380558966712,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1::Params)",
+    "maxabs": 5.1075119972229
+   },
+   {
+    "arm": "C3",
+    "rho_1e-4": 13.840878899121957,
+    "rho_1e-2": 0.13840878899121956,
+    "frac_1e-4": 0.54656285634402,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+    "maxabs": 4.917065143585205
+   }
+  ],
+  [
+   {
+    "arm": "G",
+    "rho_1e-4": 12.393588857332217,
+    "rho_1e-2": 0.12393588857332219,
+    "frac_1e-4": 0.5481972149246691,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)",
+    "maxabs": 4.968355178833008
+   },
+   {
+    "arm": "C1",
+    "rho_1e-4": 12.035953575226166,
+    "rho_1e-2": 0.12035953575226166,
+    "frac_1e-4": 0.5476428528354019,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1::Params)",
+    "maxabs": 5.120772838592529
+   },
+   {
+    "arm": "C3",
+    "rho_1e-4": 13.973740635730678,
+    "rho_1e-2": 0.13973740635730678,
+    "frac_1e-4": 0.5469997204069997,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+    "maxabs": 5.096086502075195
+   }
+  ],
+  [
+   {
+    "arm": "G",
+    "rho_1e-4": 14.011030036137333,
+    "rho_1e-2": 0.14011030036137334,
+    "frac_1e-4": 0.5473364769180986,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align4::Params)",
+    "maxabs": 5.13568115234375
+   },
+   {
+    "arm": "C1",
+    "rho_1e-4": 12.68601095631324,
+    "rho_1e-2": 0.1268601095631324,
+    "frac_1e-4": 0.5498439624358581,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1>(cutlass_80_tensorop_s1688gemm_256x64_16x4_nn_align1::Params)",
+    "maxabs": 5.326657295227051
+   },
+   {
+    "arm": "C3",
+    "rho_1e-4": 13.745938383997096,
+    "rho_1e-2": 0.13745938383997097,
+    "frac_1e-4": 0.5480917092452086,
+    "cls": "TF32_TENSOROP",
+    "top1": "void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4>(cutlass_tensorop_s1688fprop_optimized_tf32_128x64_32x3_nhwc_align4::Params)",
+    "maxabs": 4.932192802429199
+   }
+  ]
+ ],
+ "ratios": {
+  "R1": 1.0191441986172625,
+  "R3": 1.0578855502915638,
+  "R13": 1.0380136115447296
+ },
+ "branch": "BRANCH_SCALE_DEPTH_ONLY",
+ "classes_held": true,
+ "order_consistent_all_draws": false,
+ "wall_s": 4.2
+}
