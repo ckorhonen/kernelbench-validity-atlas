@@ -119,7 +119,7 @@ def main():
             tw = time.time()
             try:
                 signal.alarm(ALARM)
-                path = os.path.join(KB, "level%d" % r["level"], r["name"])
+                path = os.path.join(KB, "KernelBench", "level%d" % r["level"], r["name"])
                 mod = load_task(path)
                 torch.manual_seed(0)
                 init = mod.get_init_inputs() if hasattr(mod, "get_init_inputs") else []
