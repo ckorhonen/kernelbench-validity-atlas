@@ -1,8 +1,8 @@
 {
  "prereg": "docstring of lab/s51_prose_audit.py, frozen before run",
  "date": "2026-10-24",
- "n_checks": 47,
- "n_pass": 47,
+ "n_checks": 51,
+ "n_pass": 51,
  "n_fail": 0,
  "checks": [
   {
@@ -595,6 +595,76 @@
       "void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_nn_align1>(cutlass_80_simt_sgemm_256x128_8x4_nn_align1::Params)"
      ]
     }
+   }
+  },
+  {
+   "id": "C48",
+   "ok": true,
+   "detail": {
+    "n": 2,
+    "k1": [
+     true,
+     true
+    ]
+   }
+  },
+  {
+   "id": "C49",
+   "ok": true,
+   "detail": {
+    "14": [
+     "BRANCH_PROCEDURE_CARRIED",
+     0.01953125,
+     0.0
+    ],
+    "18": [
+     "BRANCH_PROCEDURE_CARRIED",
+     0.0009765625,
+     0.0
+    ]
+   }
+  },
+  {
+   "id": "C50",
+   "ok": true,
+   "detail": {
+    "vs_ref": [
+     {
+      "rho_ew": 0.027470732345273533,
+      "frac": 0.0,
+      "maxabs": 0.001708984375,
+      "rho_global": 2.0347067487618518e-05,
+      "total": 1024
+     },
+     {
+      "rho_ew": 0.00036904015762371454,
+      "frac": 0.0,
+      "maxabs": 1.52587890625e-05,
+      "rho_global": 1.8984637062150198e-05,
+      "total": 1024
+     }
+    ],
+    "rho_B": [
+     16.477939423243555,
+     1.2231567471632419
+    ]
+   }
+  },
+  {
+   "id": "C51",
+   "ok": true,
+   "detail": {
+    "14": [
+     -0.6102859385420594,
+     0.0185546875,
+     0.01953125,
+     "MECH_CANCELLATION"
+    ],
+    "18": [
+     0.0,
+     0.0009765625,
+     "MECH_NOT_CANCELLATION"
+    ]
    }
   }
  ]

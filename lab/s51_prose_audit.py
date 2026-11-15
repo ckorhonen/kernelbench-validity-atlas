@@ -53,6 +53,11 @@ Checks (fixed list, no post-hoc additions):
      p99.999 .03154449842052123
  C43 s96b: 32/32 ok, identity residual <= 1e-6, e at ratio-argmax 1.075415514217859e-4-1.7380212578776977e-4,
      spearman rho-vs-e .6612903225806451, rho-vs-depth -.020894428152492667
+ C48 s108 population: 2/2 rows ok, K1 bit-identical both, K2 anchor rel 0.0
+ C49 s108 ownership: R_B frac 1e-2 .01953125 / .0009765625, R_A frac 1e-2 0.0 / 0.0, verdicts PROCEDURE_CARRIED
+ C50 s108 shipped: compile vs ref rho 1e-2 .0275 / .0004 with allclose True on both, ref-vs-anchor rho 16.4779 / 1.2232
+ C51 s108 mechanism: L2/14 spearman_x_rho -.6102859385420594, frac_pred .0185546875 vs meas .01953125; L2/18
+     verdict MECH_NOT_CANCELLATION, frac_pred 0.0 vs meas .0009765625
 """
 import gzip, json, os, re, sys
 
@@ -468,6 +473,45 @@ ck("C47", all(v.get("frac_ship_mean") == 0.0 for v in d99.values() if isinstance
    and all(1e-6 <= v.get("frac_strict_mean", 0) <= 1e-5
            for v in d99.values() if isinstance(v, dict) and "frac_strict_mean" in v),
    {"engines": {k: v.get("engine") for k, v in d99.items() if isinstance(v, dict) and "engine" in v}})
+
+try:
+    s108rows = [json.loads(l) for l in open(os.path.join(RES, "s108_gate_decomp.jsonl"))]
+except Exception:
+    s108rows = []
+s108 = load("s108_summary.json") or {}
+ck("C48", len(s108rows) == 2 and all(r.get("status") == "ok" for r in s108rows)
+   and all(r.get("k1_repeat_bit_identical") is True for r in s108rows)
+   and all(r.get("k2_anchor_rel") == 0.0 for r in s108rows),
+   {"n": len(s108rows), "k1": [r.get("k1_repeat_bit_identical") for r in s108rows]})
+
+r14 = s108.get("rules", {}).get("14_Gemm_Divide_Sum_Scaling.py", {})
+r18 = s108.get("rules", {}).get("18_Matmul_Sum_Max_AvgPool_LogSumExp_LogSumExp.py", {})
+ck("C49", r14.get("ownership") == "BRANCH_PROCEDURE_CARRIED" and r18.get("ownership") == "BRANCH_PROCEDURE_CARRIED"
+   and abs(r14.get("frac_B", 0) - 0.01953125) < 1e-12 and abs(r18.get("frac_B", 0) - 0.0009765625) < 1e-12
+   and r14.get("frac_A") == 0.0 and r18.get("frac_A") == 0.0,
+   {"14": [r14.get("ownership"), r14.get("frac_B"), r14.get("frac_A")],
+    "18": [r18.get("ownership"), r18.get("frac_B"), r18.get("frac_A")]})
+
+c14 = [r for r in s108rows if r.get("name", "").startswith("14_")]
+c18 = [r for r in s108rows if r.get("name", "").startswith("18_")]
+cb14 = (c14[0].get("C_B") or {}) if c14 else {}
+cb18 = (c18[0].get("C_B") or {}) if c18 else {}
+ck("C50", cb14.get("shipped_allclose") is True and cb18.get("shipped_allclose") is True
+   and abs(cb14.get("vs_ref", {}).get("0.01", {}).get("rho_ew", 0) - 0.0275) < 5e-4
+   and abs(cb18.get("vs_ref", {}).get("0.01", {}).get("rho_ew", 0) - 0.0004) < 5e-5
+   and abs(r14.get("rho_ew_B", 0) - 16.477939423243555) < 1e-9
+   and abs(r18.get("rho_ew_B", 0) - 1.2231567471632419) < 1e-9,
+   {"vs_ref": [cb14.get("vs_ref", {}).get("0.01"), cb18.get("vs_ref", {}).get("0.01")],
+    "rho_B": [r14.get("rho_ew_B"), r18.get("rho_ew_B")]})
+
+ck("C51", abs(r14.get("spearman_x_rho", 0) - -0.6102859385420594) < 1e-9
+   and abs(r14.get("frac_pred", 0) - 0.0185546875) < 1e-12
+   and abs(r14.get("frac_meas", 0) - 0.01953125) < 1e-12
+   and r14.get("mechanism") == "MECH_CANCELLATION"
+   and r18.get("mechanism") == "MECH_NOT_CANCELLATION"
+   and r18.get("frac_pred") == 0.0 and abs(r18.get("frac_meas", 0) - 0.0009765625) < 1e-12,
+   {"14": [r14.get("spearman_x_rho"), r14.get("frac_pred"), r14.get("frac_meas"), r14.get("mechanism")],
+    "18": [r18.get("frac_pred"), r18.get("frac_meas"), r18.get("mechanism")]})
 
 n_pass = sum(1 for c in checks if c["ok"])
 out = {"prereg": "docstring of lab/s51_prose_audit.py, frozen before run",

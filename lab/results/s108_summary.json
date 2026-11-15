@@ -1,0 +1,82 @@
+{
+ "rows": [
+  {
+   "name": "14_Gemm_Divide_Sum_Scaling.py",
+   "branch": "BRANCH_PROCEDURE_CARRIED",
+   "mech": "MECH_CANCELLATION",
+   "ship": "SHIPPED_CONSISTENCY"
+  },
+  {
+   "name": "18_Matmul_Sum_Max_AvgPool_LogSumExp_LogSumExp.py",
+   "branch": "BRANCH_PROCEDURE_CARRIED",
+   "mech": "MECH_NOT_CANCELLATION",
+   "ship": "SHIPPED_CONSISTENCY"
+  }
+ ],
+ "rules": {
+  "14_Gemm_Divide_Sum_Scaling.py": {
+   "ownership": "BRANCH_PROCEDURE_CARRIED",
+   "mechanism": "MECH_CANCELLATION",
+   "shipped": "SHIPPED_CONSISTENCY",
+   "frac_B": 0.01953125,
+   "frac_A": 0.0,
+   "frac_pred": 0.0185546875,
+   "frac_meas": 0.01953125,
+   "spearman_x_rho": -0.6102859385420594,
+   "spearman_x_d": 0.05419123579816083,
+   "rho_ew_B": 16.477939423243555,
+   "rho_ew_A": 0.06030595811924046,
+   "d_med": 0.9561216770212013,
+   "d_max": 3.3481551554673388,
+   "x_p01": 64.39968384987417,
+   "x_min": 1.4582904293231422,
+   "k1": true,
+   "k2": 0.0
+  },
+  "18_Matmul_Sum_Max_AvgPool_LogSumExp_LogSumExp.py": {
+   "ownership": "BRANCH_PROCEDURE_CARRIED",
+   "mechanism": "MECH_NOT_CANCELLATION",
+   "shipped": "SHIPPED_CONSISTENCY",
+   "frac_B": 0.0009765625,
+   "frac_A": 0.0,
+   "frac_pred": 0.0,
+   "frac_meas": 0.0009765625,
+   "spearman_x_rho": -0.5808616042718614,
+   "spearman_x_d": 0.012795700445407683,
+   "rho_ew_B": 1.2231567471632419,
+   "rho_ew_A": 0.005162829625120528,
+   "d_med": 0.008681040578423449,
+   "d_max": 0.029048161392253746,
+   "x_p01": 1.2615348546583791,
+   "x_min": 0.05899889847085582,
+   "k1": true,
+   "k2": 0.0
+  }
+ },
+ "screen": {
+  "scanned": 250,
+  "hits": [
+   [
+    2,
+    "14_Gemm_Divide_Sum_Scaling.py"
+   ],
+   [
+    2,
+    "18_Matmul_Sum_Max_AvgPool_LogSumExp_LogSumExp.py"
+   ],
+   [
+    2,
+    "51_Gemm_Subtract_GlobalAvgPool_LogSumExp_GELU_ResidualAdd.py"
+   ],
+   [
+    2,
+    "56_Matmul_Sigmoid_Sum.py"
+   ],
+   [
+    2,
+    "80_Gemm_Max_Subtract_GELU.py"
+   ]
+  ],
+  "n_hits": 5
+ }
+}
