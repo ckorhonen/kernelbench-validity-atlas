@@ -1,0 +1,72 @@
+{
+ "1/1": {
+  "level": 1,
+  "problem_id": 1,
+  "name": "1_Square_matrix_multiplication_.py",
+  "op_class": "elementwise",
+  "rho_recorded": 0.5633361309601264
+ },
+ "1/40": {
+  "level": 1,
+  "problem_id": 40,
+  "name": "40_LayerNorm.py",
+  "op_class": "norm",
+  "rho_recorded": 0.01243906899209288
+ },
+ "1/72": {
+  "level": 1,
+  "problem_id": 72,
+  "name": "72_conv_transposed_3D_asymmetric_input_asymmetric_kernel___strided_padded_grouped_.py",
+  "op_class": "conv_transpose",
+  "rho_recorded": 0.0010984935882874616
+ },
+ "1/77": {
+  "level": 1,
+  "problem_id": 77,
+  "name": "77_conv_transposed_3D_square_input_square_kernel___padded____dilated____strided__.py",
+  "op_class": "conv_transpose",
+  "rho_recorded": 0.0018800001086133843
+ },
+ "2/14": {
+  "level": 2,
+  "problem_id": 14,
+  "name": "14_Gemm_Divide_Sum_Scaling.py",
+  "op_class": "gemm",
+  "rho_recorded": 1647.7939423259418
+ },
+ "2/18": {
+  "level": 2,
+  "problem_id": 18,
+  "name": "18_Matmul_Sum_Max_AvgPool_LogSumExp_LogSumExp.py",
+  "op_class": "gemm",
+  "rho_recorded": 122.31567471646204
+ },
+ "2/48": {
+  "level": 2,
+  "problem_id": 48,
+  "name": "48_Conv3d_Scaling_Tanh_Multiply_Sigmoid.py",
+  "op_class": "conv",
+  "rho_recorded": 1.1002360489260508
+ },
+ "2/77": {
+  "level": 2,
+  "problem_id": 77,
+  "name": "77_ConvTranspose3d_Scale_BatchNorm_GlobalAvgPool.py",
+  "op_class": "conv_transpose",
+  "rho_recorded": 1.1470089282607188
+ },
+ "2/93": {
+  "level": 2,
+  "problem_id": 93,
+  "name": "93_ConvTranspose2d_Add_Min_GELU_Multiply.py",
+  "op_class": "conv_transpose",
+  "rho_recorded": 1.541681398755662
+ },
+ "2/100": {
+  "level": 2,
+  "problem_id": 100,
+  "name": "100_ConvTranspose3d_Clamp_Min_Divide.py",
+  "op_class": "conv_transpose",
+  "rho_recorded": 0.9444898440971159
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "date": "2026-11-16",
+ "artifact": "r1_conv_gated.jsonl",
+ "n_rows": 56,
+ "K1": {
+  "hand_pass": 20,
+  "hand_total": 560,
+  "ieee_pass": 20,
+  "ieee_total": 280,
+  "tf32_pass": 0,
+  "tf32_total": 280
+ },
+ "K1_ok": true,
+ "K2": {
+  "arm_checks": 672,
+  "hand": 560,
+  "hand_fail": 540
+ },
+ "K2_ok": true,
+ "n_q_rows": 540,
+ "by_precision": {
+  "ieee": {
+   "n": 260,
+   "med_q": 0.024372368299581074,
+   "q25": 0.0018230501908505668,
+   "q75": 1.0,
+   "classes": {
+    "REFERENCE_OWNED": 175,
+    "SHARED": 85
+   }
+  },
+  "tf32": {
+   "n": 280,
+   "med_q": 0.9172704325854495,
+   "q25": 0.8681778169014085,
+   "q75": 1.0,
+   "classes": {
+    "SHARED": 280
+   }
+  }
+ },
+ "class_counts": {
+  "REFERENCE_OWNED": 175,
+  "SHARED": 365
+ },
+ "reference_owned_frac": 0.32407407407407407,
+ "branch": "BRANCH_OWNERSHIP_MIXED",
+ "rows_with_reference_owned_failure": 35,
+ "non_claims": [
+  "one draw per row",
+  "conv rows only",
+  "declared precision not named engine",
+  "q is a ratio of maxima"
+ ]
+}
