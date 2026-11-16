@@ -1161,3 +1161,21 @@ bellatrix as a same-arch control and label the arch claim GB10-only (the produce
 d16b0ef); (3) affected-task count for dgrad non-determinism; (4) L1/95 dtype error; (5) membership stride
 variant; (6) split-K; (7) package repack when a submission reopens; (8) s51 covers §4.5-§4.5i not s97-s113
 (declared); (9) 24h-E1/CTA-edge/bt parked. Reflection next due 09:01Z 11-16.
+
+
+## DONE ~11:1xZ EST 11-16: s114/s114b — the label column is relabelled by measurement; every exceeding blind row carries a TF32 tensorop engine
+
+Prereg 89949d2 frozen pre-run; corrected runner 0b43e27 after two declared post-hoc instrument fixes (fp32 anchor that made K2
+vacuous; exclusion regexes that matched "nhwc" inside the engine's own tile descriptor and ate every conv engine), v0 artifact kept.
+15/15 ok, 22.6 s, K1 3/3, K2 0.0, tie-out to recorded rows rel 0.0 on 12/12. Frozen rule BRANCH_RELABEL_COMPLETE (13/15 compute
+kernels at >=1% share; top-1 on only 2/15). s114b (post-hoc, committed events): engine present 13/15 and ALL SIX exceeding blind
+rows are TF32 tensorop at 8.0-13.5% share — L2/48 fprop tf32 10.0% (1.100), L2/79 fprop tf32 8.0% (20.653), L2/74 dgrad tf32
+13.5% (2.651), L2/20 dgrad tf32 8.4% (4.879), L2/93 dgrad tf32 11.8% (1.542), L2/26 dgrad tf32 13.1% (1.662) => the OTHER bucket
+adds no separate mechanism to the 82-task count; counterexample L2/23 (same engine, 12.3%, rho 0.0003) keeps presence necessary
+not sufficient (s108 conditioning hypothesis). 2/92 FP32_SIMT 10.7% (0.0010); 1/91+1/93 scan kernels; 1/12+1/88 pointwise-only.
+Prose ATLAS_MAP s114/s114b; comment AqCQ21EhML4nS8gx on post 11 (2,078 chars, verified newest, 25 comments) ships the column and
+the reflection's bounded CUPTI counter ask. MANUSCRIPT untouched => s50-s54/provenance stand (declared).
+Next: (1) LEAD bellatrix same-arch control on the 10 published task ids — the two-tick fallback is now DUE, not optional;
+(2) ncu tensor-pipe counter test on L2/48 if silence continues (the reflection's fallback); (3) affected-task count for dgrad
+non-determinism; (4) L1/95 dtype error; (5) membership stride variant; (6) split-K; (7) package repack when a submission
+reopens; (8) s51 covers §4.5-§4.5i not s97-s114 (declared); (9) 24h-E1/CTA-edge/bt parked. Reflection next 13:22Z.
