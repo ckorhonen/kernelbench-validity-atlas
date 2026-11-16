@@ -4,7 +4,7 @@ Prereg: lab/s116_prereg.md (frozen pre-run). Self-contained; runs on the lab hos
 import glob, importlib.util, json, os, re, signal, time
 import torch
 
-KB = os.path.expanduser("~/kernelbench/KernelBench")
+KB = os.path.expanduser("~/kernelbench/KernelBench/KernelBench")
 LAB = os.path.expanduser("~/kb-lab")
 OUT = os.path.join(LAB, "results", "s116_bellatrix.jsonl")
 SUM = os.path.join(LAB, "results", "s116_summary.json")

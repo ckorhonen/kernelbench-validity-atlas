@@ -1,0 +1,147 @@
+{
+ "date": "2026-11-16",
+ "host": "bellatrix",
+ "n_rows": 10,
+ "n_ok": 10,
+ "n_reproduced": 10,
+ "K1": [
+  true,
+  true,
+  false
+ ],
+ "K2": [
+  0.0
+ ],
+ "K_ok": false,
+ "branch": "INVALID",
+ "non_claims": [
+  "one draw per task (seed 0)",
+  "procedure B only",
+  "no timing claim",
+  "same arch = same GPU model + same torch/CUDA stack, not identical driver state"
+ ],
+ "rows": [
+  {
+   "level": 1,
+   "problem_id": 1,
+   "name": "1_Square_matrix_multiplication_.py",
+   "op_class": "elementwise",
+   "rho_recorded": 0.5633361309601264,
+   "status": "ok",
+   "label_B": "TF32_TENSOROP",
+   "reproduced": true,
+   "rel_diff": 0.0
+  },
+  {
+   "level": 1,
+   "problem_id": 40,
+   "name": "40_LayerNorm.py",
+   "op_class": "norm",
+   "rho_recorded": 0.01243906899209288,
+   "status": "ok",
+   "label_B": "OTHER",
+   "reproduced": true,
+   "rel_diff": 0.0
+  },
+  {
+   "level": 1,
+   "problem_id": 72,
+   "name": "72_conv_transposed_3D_asymmetric_input_asymmetric_kernel___strided_padded_grouped_.py",
+   "op_class": "conv_transpose",
+   "rho_recorded": 0.0010984935882874616,
+   "status": "ok",
+   "label_B": "FP64",
+   "reproduced": true,
+   "rel_diff": 0.02075419927830391
+  },
+  {
+   "level": 1,
+   "problem_id": 77,
+   "name": "77_conv_transposed_3D_square_input_square_kernel___padded____dilated____strided__.py",
+   "op_class": "conv_transpose",
+   "rho_recorded": 0.0018800001086133843,
+   "status": "ok",
+   "label_B": "FP64",
+   "reproduced": true,
+   "rel_diff": 0.05946628918941439
+  },
+  {
+   "level": 2,
+   "problem_id": 14,
+   "name": "14_Gemm_Divide_Sum_Scaling.py",
+   "op_class": "gemm",
+   "rho_recorded": 1647.7939423259418,
+   "status": "ok",
+   "label_B": "TF32_TENSOROP",
+   "reproduced": true,
+   "rel_diff": 0.0
+  },
+  {
+   "level": 2,
+   "problem_id": 18,
+   "name": "18_Matmul_Sum_Max_AvgPool_LogSumExp_LogSumExp.py",
+   "op_class": "gemm",
+   "rho_recorded": 122.31567471646204,
+   "status": "ok",
+   "label_B": "TF32_TENSOROP",
+   "reproduced": true,
+   "rel_diff": 0.0
+  },
+  {
+   "level": 2,
+   "problem_id": 48,
+   "name": "48_Conv3d_Scaling_Tanh_Multiply_Sigmoid.py",
+   "op_class": "conv",
+   "rho_recorded": 1.1002360489260508,
+   "status": "ok",
+   "label_B": "OTHER",
+   "reproduced": true,
+   "rel_diff": 0.0
+  },
+  {
+   "level": 2,
+   "problem_id": 77,
+   "name": "77_ConvTranspose3d_Scale_BatchNorm_GlobalAvgPool.py",
+   "op_class": "conv_transpose",
+   "rho_recorded": 1.1470089282607188,
+   "status": "ok",
+   "label_B": "TF32_TENSOROP",
+   "reproduced": true,
+   "rel_diff": 2.942503682145105e-14
+  },
+  {
+   "level": 2,
+   "problem_id": 93,
+   "name": "93_ConvTranspose2d_Add_Min_GELU_Multiply.py",
+   "op_class": "conv_transpose",
+   "rho_recorded": 1.541681398755662,
+   "status": "ok",
+   "label_B": "TF32_TENSOROP",
+   "reproduced": true,
+   "rel_diff": 0.0
+  },
+  {
+   "level": 2,
+   "problem_id": 100,
+   "name": "100_ConvTranspose3d_Clamp_Min_Divide.py",
+   "op_class": "conv_transpose",
+   "rho_recorded": 0.9444898440971159,
+   "status": "ok",
+   "label_B": "TF32_TENSOROP",
+   "reproduced": true,
+   "rel_diff": 0.0
+  }
+ ],
+ "rho_new": {
+  "1/1": 0.5633361309601264,
+  "1/40": 0.01243906899209288,
+  "1/72": 0.0011212919431247187,
+  "1/77": 0.0019917967387483183,
+  "2/14": 1647.7939423259418,
+  "2/18": 122.31567471646204,
+  "2/48": 1.1002360489260508,
+  "2/77": 1.147008928260685,
+  "2/93": 1.541681398755662,
+  "2/100": 0.9444898440971159
+ }
+}

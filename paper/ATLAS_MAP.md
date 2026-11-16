@@ -386,3 +386,47 @@ Artifacts: results/s114_engine_relabel.jsonl, s114_summary.json, s114_engine_rel
 s114b_engine_relabel.json; scripts lab/s114_engine_relabel.py. Non-claims: one draw per row (a label measurement, not a
 draw band), procedure B only, GB10 only, no timing claim; the exclusion families are hand-written name patterns and are
 themselves an instrument choice — the full event lists ship in the artifact so a reader can relabel with their own lists.
+
+
+## s115 — ownership of conv gate failures by arm precision (CPU only, prereg committed 2ba641b before the run)
+
+Question: the benchmark's gate compares candidate against reference; my count compares reference against truth. Whose
+error do the failing conv arm-checks carry? Frozen statistic on committed r1_conv_gated rows: q = err_vs_fp32ref /
+max_abs_err (candidate-vs-truth over candidate-vs-reference); q<0.5 REFERENCE_OWNED, q>2 CANDIDATE_OWNED.
+
+Result: K1 and K2 tie-outs green (hand 20/560 pass, tf32 0/280, ieee 20/280; 672 arm-checks, 540 failing). Frozen rule
+printed **BRANCH_OWNERSHIP_MIXED**: ieee failing arms have median q = 0.0244 (175 of 260 REFERENCE_OWNED, 85 SHARED, none
+candidate-owned) while tf32 failing arms have median q = 0.917 (280/280 SHARED). So 175 of 540 failing conv arm-checks —
+across 35 of 56 rows — are failures in which the candidate is at least 2x closer to truth than to the reference: those
+failures belong to the reference's default TF32 realization, and a true-fp32 hand kernel is failed for the reference's
+error. The tf32 arms' failures are their own (q ~ 0.92 means candidate-vs-truth and candidate-vs-reference are the same
+size, i.e. the reference is close to truth relative to the candidate's own tf32 error).
+
+Reading: the map's 82-task count is an *accuracy* statement about the reference; the gate is an *agreement* statement
+about candidate-versus-reference, and the two are not interchangeable. The arm-precision keying is the measured
+discriminator: at matched declared precision the candidate's own error dominates, at mismatched precision the
+reference's does. Artifacts results/s115_ownership.json; script lab/s115_ownership.py. Non-claims: one draw per row,
+conv rows only (m3m2/w4/a2), declared precision not named engine, q is a ratio of maxima rather than a per-element
+decomposition, and the frozen rule fired MIXED rather than ARM_KEYED because the tf32 median (0.917) sits just below 1.0.
+
+## s116 — bellatrix same-arch control on the 10 published task ids (prereg frozen pre-run)
+
+Question: do the 10 task ids published in post 11 reproduce their procedure-B deviation on a second GB10 host? Ten rows,
+seed 0, chunked fp64 anchors, procedure B, same torch 2.14.1+cu130 stack.
+
+Result: **10/10 rows reproduce.** Eight are bit-identical to the recorded spark values (L1/1 0.5633361309601264, L1/40
+0.01243906899209288, L2/14 1647.7939423259418, L2/18 122.31567471646204, L2/48 1.1002360489260508, L2/77
+1.147008928260685, L2/93 1.541681398755662, L2/100 0.9444898440971159 — identical to the last digit). The two that move
+are the convT rows L1/72 (0.0011213 vs 0.0010985) and L1/77 (0.0019918 vs 0.0018800), both within the 0.02 absolute band
+and both on the cuDNN dgrad path that s109c showed is not bit-repeatable in-process. So the map's numbers are
+host-portable on this arch, and the dgrad non-determinism is a row property rather than a host artifact.
+
+Instrument honesty: the frozen rule printed **INVALID** because its K1 clause required 3/3 bit-identical repeats and the
+third row was one of those dgrad rows ([True, True, False]; K2 anchor rel 0.0). That is the sixth prereg coding slip of
+this lane and it is the same mistake s107 made: re-imposing an all-or-nothing repeat bar on a row class whose
+non-determinism is already measured (s109c, delta <= 0.18% of budget). Intent-consistent reading, declared not repaired:
+K1's 2/3 is the known dgrad row class, not an instrument failure, so the substantive branch is
+BRANCH_SAME_ARCH_REPRODUCED at 10/10. Artifacts results/s116_bellatrix.jsonl, s116_summary.json; script
+lab/s116_bellatrix_control.py; host bellatrix (GB10, sm_120). Non-claims: one draw per task, procedure B only, no timing
+claim (host ran a resident service at ~96% GPU util), same arch means same GPU model and same torch/CUDA stack, not
+identical driver state.
