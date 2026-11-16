@@ -247,7 +247,8 @@ exactly 3 rows lie in rho [0.85, 1.30]; the flagged one, L2/77 conv_transpose (r
 16 draws gives rho 0.958-1.648 (mean 1.243, CV 14.4%), frac at 1e-4 up to 5.13%, and **exceed rate
 0.9375** — 1 of 16 draws falls under the gate. Frozen branch **BRANCH_BOUNDARY_RATE**. So a
 boundary-adjacent row cannot ship a pass/fail label at 1e-4; it ships a rate, and the 83/191 strict-gate
-count is draw-conditional only on those 3 rows (±3 at most, since 20 more rows sit in [0.5, 2]).
+count is draw-conditional only on those 3 rows. s110 (next section) measured all 23 rows in [0.5, 2]
+and replaced the ±3 guess with a measured interval: 79.3–84.6 tasks.
 
 **dgrad repeat non-determinism has a magnitude and it is immaterial in rho units.** s107b's K1 failed on
 L1/72 and L1/77 (cuDNN dgrad conv_transpose). 8 draws x 2 in-process repeats each: 0/16 bit-identical,
