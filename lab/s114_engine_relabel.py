@@ -9,6 +9,7 @@ KB = os.path.expanduser("~/kernelbench/KernelBench/KernelBench")
 LAB = os.path.expanduser("~/kb-lab")
 RES = os.path.join(LAB, "results")
 OUT = os.path.join(RES, "s114_engine_relabel.jsonl")
+V0 = os.path.join(RES, "s114_engine_relabel_v0.jsonl")
 SUM = os.path.join(RES, "s114_summary.json")
 ALARM = 240
 WALL_CAP = 900
@@ -16,8 +17,14 @@ CHUNK = 1 << 22
 STRICT = 1e-4
 ROWS = [(2, 48), (2, 79), (2, 23), (2, 100), (2, 74), (2, 83), (1, 12), (2, 6), (1, 88),
         (2, 20), (2, 92), (1, 91), (1, 93), (2, 93), (2, 26)]
-LAYOUT = re.compile(r"nhwc|nchw|contiguous|catArrayBatchedCopy|cat|slice|transpose|permute|memcpy|Memcpy|Memset|copy|fill|zero|pad|reshape|view|clone|resize", re.I)
-POINTWISE = re.compile(r"elementwise|gpu_kernel|vectorized|unary|binary|tanh|sigmoid|gelu|relu|elu|silu|clamp|exp|log|pow|sqrt|rsqrt|abs|neg|mul|add|div|sub|masked|where|dropout|index|gather|scatter|topk|sort|argmax|argmin", re.I)
+# Name-anchored exclusion of the two families s113 called out (layout / pointwise). v0 used loose substrings
+# ("nhwc" matched the engine name's nhwckrsc_nhwc tile descriptor, "index" matched implicit_gemm_indexed), which
+# silently ate every conv engine; fixed post-hoc before the recorded rows were treated as final (s114a artifact).
+LAYOUT = re.compile(r"nhwcToNchwKernel|nchwToNhwcKernel|Memcpy|Memset|at::native::copy|contiguous|catArrayBatchedCopy|"
+                    r"at::native::cat|slice|permute|transpose|reshape|at::native::clone|::fill|zero_|at::native::pad", re.I)
+POINTWISE = re.compile(r"at::native::elementwise_kernel|at::native::vectorized_elementwise_kernel|"
+                       r"at::native::gpu_kernel_impl|at::native::unary_kernel|at::native::binary_kernel|"
+                       r"at::native::direct_copy_kernel", re.I)
 CLASS_PATTERNS = [("WINOGRAD", re.compile(r"winograd", re.I)),
                   ("TF32_TENSOROP", re.compile(r"tf32|tensorop|1688|16816|h1688", re.I)),
                   ("FP64", re.compile(r"dgrad|dgemm|dconv|fp64|double|_d_", re.I)),
@@ -130,13 +137,13 @@ def main():
                 ins = [x.cuda() if torch.is_tensor(x) else x for x in inputs]
                 ev = profile_events(lambda: run(model, ins, torch.float32, (True, True)))
                 out_b = run(model, ins, torch.float32, (True, True))
-                out_x = run(model, ins, torch.float32, (False, False))
+                out_x = run(model, ins, torch.float64, (False, False))
                 if (level, pid) in k1_targets:
                     out_b2 = run(model, ins, torch.float32, (True, True))
                     rec["k1_bit_identical"] = bool(torch.equal(out_b, out_b2))
                     del out_b2
                 if (level, pid) == ROWS[1]:
-                    out_x2 = run(model, ins, torch.float32, (False, False))
+                    out_x2 = run(model, ins, torch.float64, (False, False))
                     den = float(out_x.abs().max().item()) or 1.0
                     rec["k2_anchor_rel"] = float((out_x - out_x2).abs().max().item()) / den
                     del out_x2
