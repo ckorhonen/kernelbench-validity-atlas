@@ -1,0 +1,80 @@
+{
+ "note": "s112c declared post-hoc relabel: layout/pointwise kernels excluded from the conv-engine set per the s112 prereg text; computed from committed s112 rows",
+ "rows": {
+  "2/48": {
+   "n": 16,
+   "engine_present": 16,
+   "engine_names": [
+    "sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x32x16_stage1_warpsize4x1x1_g1_tensor16x8x8_aligna4_alignc8_execute_kernel__5x_cudnn"
+   ],
+   "n_distinct": 1,
+   "rho_min": 0.6689972269609845,
+   "rho_max": 2.9713616607173208,
+   "label_whole": [
+    "TF32_TENSOROP"
+   ],
+   "top1_whole": [
+    "Memset (Device)",
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)"
+   ],
+   "conv_share": [
+    0.17183621693269407,
+    0.15859958452502324,
+    0.14656117782107547,
+    0.1464027211583434
+   ]
+  },
+  "2/100": {
+   "n": 16,
+   "engine_present": 16,
+   "engine_names": [
+    "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+    "void xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::kernel_helper_stage_0<xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper>(xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper)",
+    "void xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::kernel_helper_stage_1<xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper>(xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper)",
+    "void xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::kernel_helper_stage_2<xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper>(xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper, int)",
+    "void xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::kernel_helper_stage_3<xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper>(xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper, int)"
+   ],
+   "n_distinct": 5,
+   "rho_min": 0.9286193115527958,
+   "rho_max": 1.1027616515634273,
+   "label_whole": [
+    "FP64"
+   ],
+   "top1_whole": [
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)"
+   ],
+   "conv_share": [
+    0.23619203591874888,
+    0.23575610507248823,
+    0.23438143054586372,
+    0.23322977574845918
+   ]
+  },
+  "2/93": {
+   "n": 16,
+   "engine_present": 16,
+   "engine_names": [
+    "sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_warpsize2x2x1_g1_tensor16x8x8_strided_execute_kernel__5x_cudnn",
+    "void xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::kernel_helper_stage_0<xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper>(xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper)",
+    "void xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::kernel_helper_stage_1<xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper>(xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper)",
+    "void xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::kernel_helper_stage_2<xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper>(xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper, int)",
+    "void xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::kernel_helper_stage_3<xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper>(xmma__5x_cudnn::implicit_gemm::strided_dgrad_indexed::Params_pre_hopper, int)"
+   ],
+   "n_distinct": 5,
+   "rho_min": 0.6081494012227558,
+   "rho_max": 1.541681398755662,
+   "label_whole": [
+    "FP64"
+   ],
+   "top1_whole": [
+    "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nchw2nhwc_params_t<float>, float const*, float*)"
+   ],
+   "conv_share": [
+    0.181368722647598,
+    0.17673370809218986,
+    0.177650327009797,
+    0.17712414810676416
+   ]
+  }
+ }
+}

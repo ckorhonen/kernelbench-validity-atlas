@@ -1,0 +1,257 @@
+{
+ "note": "s113 CPU label census: rows whose profiler top-1 is a layout/pointwise kernel (dominance blind spot) vs an engine kernel",
+ "n_rows": 191,
+ "n_blind_top1": 33,
+ "n_engine_top1": 131,
+ "n_neither": 27,
+ "blind_by_class_label": {
+  "conv|OTHER": 6,
+  "conv_transpose|OTHER": 5,
+  "gemm|OTHER": 1,
+  "reduction|OTHER": 3,
+  "elementwise|OTHER": 9,
+  "other|OTHER": 8,
+  "other|FP64": 1
+ },
+ "blind_exceeding": [
+  "L2/48",
+  "L2/79",
+  "L2/74",
+  "L2/20",
+  "L2/93",
+  "L2/26"
+ ],
+ "blind_rows": [
+  {
+   "task": "L2/48",
+   "op_class": "conv",
+   "label": "OTHER",
+   "top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<a",
+   "rho": 1.1002360489260508
+  },
+  {
+   "task": "L2/79",
+   "op_class": "conv",
+   "label": "OTHER",
+   "top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<a",
+   "rho": 20.65338083795524
+  },
+  {
+   "task": "L2/23",
+   "op_class": "conv",
+   "label": "OTHER",
+   "top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, fal",
+   "rho": 0.00026715724710059836
+  },
+  {
+   "task": "L2/100",
+   "op_class": "conv_transpose",
+   "label": "OTHER",
+   "top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, fal",
+   "rho": 0.9444898440971159
+  },
+  {
+   "task": "L2/74",
+   "op_class": "conv_transpose",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespa",
+   "rho": 2.6510021631953062
+  },
+  {
+   "task": "L2/83",
+   "op_class": "conv",
+   "label": "OTHER",
+   "top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<a",
+   "rho": 0.0
+  },
+  {
+   "task": "L1/12",
+   "op_class": "gemm",
+   "label": "OTHER",
+   "top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<a",
+   "rho": 0.0001986381098518047
+  },
+  {
+   "task": "L2/6",
+   "op_class": "conv",
+   "label": "OTHER",
+   "top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<a",
+   "rho": 0.361247698911574
+  },
+  {
+   "task": "L1/88",
+   "op_class": "reduction",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<floa",
+   "rho": 0.0006344840685347361
+  },
+  {
+   "task": "L2/20",
+   "op_class": "conv_transpose",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<fl",
+   "rho": 4.87929368751712
+  },
+  {
+   "task": "L2/92",
+   "op_class": "conv",
+   "label": "OTHER",
+   "top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<a",
+   "rho": 0.000981776926304716
+  },
+  {
+   "task": "L1/91",
+   "op_class": "reduction",
+   "label": "OTHER",
+   "top1": "void at::native::index_elementwise_kernel<128, 4, at::native::flip_kernel_impl<a",
+   "rho": 0.05231326533570925
+  },
+  {
+   "task": "L1/5",
+   "op_class": "elementwise",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<floa",
+   "rho": 0.0006198818407376079
+  },
+  {
+   "task": "L1/93",
+   "op_class": "reduction",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<floa",
+   "rho": 0.040001679730711226
+  },
+  {
+   "task": "L2/93",
+   "op_class": "conv_transpose",
+   "label": "OTHER",
+   "top1": "void cudnn::engines_precompiled::nhwcToNchwKernel<float, float, float, true, fal",
+   "rho": 1.541681398755662
+  },
+  {
+   "task": "L1/26",
+   "op_class": "elementwise",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::GeluCUDAKernelImpl",
+   "rho": 0.0004829058889954231
+  },
+  {
+   "task": "L1/27",
+   "op_class": "other",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespa",
+   "rho": 0.000463553327348843
+  },
+  {
+   "task": "L1/28",
+   "op_class": "elementwise",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespa",
+   "rho": 0.0002980231972316015
+  },
+  {
+   "task": "L1/29",
+   "op_class": "other",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespa",
+   "rho": 0.000789160520577981
+  },
+  {
+   "task": "L1/32",
+   "op_class": "elementwise",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespa",
+   "rho": 0.0
+  },
+  {
+   "task": "L2/26",
+   "op_class": "conv_transpose",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<fl",
+   "rho": 1.6617822488260856
+  },
+  {
+   "task": "L1/22",
+   "op_class": "elementwise",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::tanh_kernel_cuda(a",
+   "rho": 0.0006956194283982778
+  },
+  {
+   "task": "L1/31",
+   "op_class": "other",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespa",
+   "rho": 0.0
+  },
+  {
+   "task": "L1/21",
+   "op_class": "elementwise",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::sigmoid_kernel_cud",
+   "rho": 0.0005124251161926887
+  },
+  {
+   "task": "L1/20",
+   "op_class": "elementwise",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespa",
+   "rho": 0.0
+  },
+  {
+   "task": "L1/99",
+   "op_class": "other",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<fl",
+   "rho": 0.0002832015348228711
+  },
+  {
+   "task": "L1/98",
+   "op_class": "elementwise",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<floa",
+   "rho": 1.5613889032250915e-05
+  },
+  {
+   "task": "L1/30",
+   "op_class": "other",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<floa",
+   "rho": 0.0002111466253799761
+  },
+  {
+   "task": "L1/25",
+   "op_class": "other",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::BinaryFunctor<floa",
+   "rho": 0.0006332681939011673
+  },
+  {
+   "task": "L1/100",
+   "op_class": "other",
+   "label": "OTHER",
+   "top1": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<a",
+   "rho": 0.00026668200953824944
+  },
+  {
+   "task": "L1/96",
+   "op_class": "other",
+   "label": "FP64",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::smooth_l1_kernel_c",
+   "rho": 8.877013363334187e-06
+  },
+  {
+   "task": "L1/94",
+   "op_class": "other",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<fl",
+   "rho": 1.648172960495533e-05
+  },
+  {
+   "task": "L1/19",
+   "op_class": "elementwise",
+   "label": "OTHER",
+   "top1": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespa",
+   "rho": 0.0
+  }
+ ]
+}

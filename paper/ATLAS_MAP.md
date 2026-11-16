@@ -306,3 +306,44 @@ Non-claims: one arch (GB10), rev 423217d, procedure B; per-row rates carry +-1/1
 interval is a sum of Wilson intervals, not a joint bootstrap over draws; 16 draws samples the task's own seed
 space, not all of it; engine labels remain dominance observations; the layout-dominance mechanism is a hypothesis
 and the conv-only profile has not been run.
+
+## s112/s112b/s112c — the conv-only profile: the engine is present, per-draw stable, and invisible to a dominance label
+
+The hypothesis s110 left open ("the conv engine may be chosen per draw and is invisible in the top slot") is now
+measured, and only its second half survives. Prereg lab/s112_prereg.md frozen pre-run (commit 62709cf); the three
+mixed rows of s110 — L2/48 conv, L2/93 and L2/100 conv_transpose — 16 draws each, procedure B, one forward per
+draw, conv-engine-restricted profiling plus the evaluator-exact deviation joined to the same cell.
+
+**The engine is present on every draw and does not vary.** L2/48 dispatches
+`sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x32x16_stage1_..._aligna4_alignc8`
+on 16/16 draws (one distinct name); L2/93 and L2/100 dispatch
+`sm80_xmma_dgrad_implicit_gemm_indexed_tf32f32_tf32f32_f32_nhwckrsc_nhwc_tilesize128x128x16_stage4_..._strided`
+on 16/16, with the four `strided_dgrad_indexed::kernel_helper_stage_{0..3}` entries belonging to the same
+pipeline. Engine choice therefore does NOT explain the draw swing: L2/48 moves rho 0.669 -> 2.971 (4.4x) with
+one engine on every draw, which is an arithmetic-draw property, consistent with s79a's DRAW_STABLE at fixed
+tuple and with s110's label-conditional band.
+
+**Why the label failed.** The conv engine holds 9.7-23.4% of device time (L2/48 14.6-17.2%, L2/93 ~12%,
+L2/100 ~23.4%); the rest is pointwise (mul/add/tanh/sigmoid/clamp/gelu) and the NCHW<->NHWC transforms. A
+top-1 dominance label cannot see a 10-23% component, so the row reads OTHER — the label is an observation of
+what dominates the call, with a measured blind spot, not a dispatch fact. The row schema's `top1_kernel`
+requirement is what makes this visible.
+
+**Two instrument defects, both of the pattern-label class, both recorded not repaired.**
+(1) Prereg coding slip (fourth of this class): the coded CONV regex included the bare token `cudnn`, which pulls
+`cudnn::engines_precompiled::nhwcToNchwKernel` into the "conv engine" set that the prereg text excluded by
+construction. The coded rule consequently printed BRANCH_ENGINE_PER_DRAW (two distinct top names on L2/48, the
+fprop kernel and the layout transform alternating); s112c recomputes the same committed rows with layout and
+pointwise kernels excluded and gives n_distinct = 1 on all three rows, i.e. the intent-consistent branch is
+BRANCH_ENGINE_STABLE. Both are reported; the coded one is not threshold-repaired.
+(2) s63's FP64 classifier pattern matches `dgrad`, so the two conv_transpose rows read FP64 in the whole-model
+label while dispatching a TF32 dgrad kernel. This is the same defect s105c repaired by name for the map table;
+it re-enters here through the classifier rather than through the table.
+
+Artifacts: results/s112_conv_profile.jsonl (48/48 ok), s112_summary.json, s112b_event_names.json (full event
+lists for one draw per row), s112c_relabel.json; scripts lab/s112_conv_profile.py, s112b_event_names.py;
+instrument K1 3/3 bit-identical, K2 0.0, wall 180 s.
+
+Non-claims: three rows, one arch, one rev, procedure B; no timing claim (a resident process held the GPU at
+96% throughout); the engine names are per-draw observations of one dispatch pipeline, not a cudnn-version
+statement; the helper-stage grouping is read from names, not from counters.
