@@ -265,3 +265,44 @@ its top-1 name, which the row schema now requires.
 Non-claims: one arch (GB10), rev 423217d, procedure B, 11 rows and 16 draws; no timing claim; the
 [0.5, 2] band is scoped by the 3 rows measured in it, not by all 23; s109b did not re-measure the 1e-2
 gate on L2/77 (declared).
+
+
+## s110 — the 83/191 count measured as an interval, and where the draw instability actually sits
+
+Prereg lab/s110_prereg.md (commit ed66eeb, frozen before any row; runner path fix committed separately as a
+mechanical fix before any ok row). Population: every row of the re-keyed map with B_strict.rho_ew in [0.5, 2.0]
+— 23 rows, 14 recorded above the gate and 9 below — 16 draws each, procedure B, chunked fp64 anchor,
+evaluator-exact statistics. 368/368 cells ok in 910 s. Instrument: K1 23/23 in-process repeats bit-identical,
+K2 fp64 anchor self-check 0.0, tie-out to the recorded row 23/23 at <= 3e-14. Artifacts
+results/s110_band.jsonl, s110_summary.json, s110_picked.json, s110_analysis.json; sha read-back 3/3 MATCH.
+
+**The count is a band, not a point.** Seven rows exceed at 0/16 draws and eleven at 16/16; five are mixed:
+L2/98 gemm 1/16 (0.0625), L2/100 conv_transpose 3/16 (0.1875), L2/93 conv_transpose 7/16 (0.4375), L2/48 conv
+11/16 (0.6875), L2/77 conv_transpose 15/16 (0.9375). The summed exceed rate is 13.3125 against 14 recorded, so
+the ensemble count is 82.31 with a Wilson-summed 95% interval of 79.34-84.58; the single-draw 83 sits inside
+it. The strict-gate headline ships as **82 tasks (+-3)** at 1e-4, not 83. s109b's L2/77 rate replicates exactly
+(0.9375), which is the cross-tick replication a rate needs before it is quoted.
+
+**The instability is not where the recorded number suggested.** The prereg predicted the mixed rows would be
+those recorded in [0.72, 1.30]; there is one miss — L2/93 recorded 1.5417 but exceeds in only 7 of 16 draws, so
+a single draw overstates its exceedance probability. The pattern that does hold is by label: of the four
+OTHER-labelled rows in the band, three are mixed (L2/48, L2/93, L2/100), while the mixed TF32 rows sit at the
+low rates (L2/98 0.0625, L2/77 0.9375). Type-A band by label group: TF32-labelled rows span 1.06-1.86x with CV
+<= 0.194; OTHER-labelled rows span 1.19-4.44x with CV up to 0.439. L2/48 alone moves from rho 0.669 to 2.971
+across 16 draws — a 4.4x swing in the reference's own deviation at a fixed task with a stable label.
+
+**What the OTHER label means on those rows.** On all three mixed OTHER rows the top-1 kernel is stable across
+all 16 draws and it is not a conv engine: L2/48's top slot is at::native::elementwise_kernel (its pointwise chain
+dominates the call), L2/93 and L2/100 are cudnn::engines_precompiled::nhwcToNchwKernel layout conversions. So the
+label is stable while the deviation is not, which means the variation sits in a conv engine the profiler's top
+slot does not show. Hypothesis, not a measurement: where a layout or pointwise kernel dominates the call, the conv
+engine underneath is selected per draw and the row's recorded deviation is a sample from a mixture. The test is to
+profile the conv call in isolation (s63's design) on those three rows.
+
+**The shipped gate stays clean.** frac(1e-2) is exactly 0.0 on all 368 cells => BRANCH_BENCH_GATE_CLEAN, and
+s109b's declared 1e-2 gap on L2/77 is closed: that row is a strict-gate boundary row only.
+
+Non-claims: one arch (GB10), rev 423217d, procedure B; per-row rates carry +-1/16 resolution and the count
+interval is a sum of Wilson intervals, not a joint bootstrap over draws; 16 draws samples the task's own seed
+space, not all of it; engine labels remain dominance observations; the layout-dominance mechanism is a hypothesis
+and the conv-only profile has not been run.
