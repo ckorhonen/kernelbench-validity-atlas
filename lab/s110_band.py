@@ -5,7 +5,7 @@ Prereg: lab/s110_prereg.md, committed before any row is computed.
 import importlib.util, json, os, re, signal, time
 import torch
 
-KB = os.path.expanduser("~/kernelbench/KernelBench")
+KB = os.path.expanduser("~/kernelbench/KernelBench/KernelBench")
 LAB = os.path.expanduser("~/kb-lab")
 RES = os.path.join(LAB, "results")
 OUT = os.path.join(RES, "s110_band.jsonl")
