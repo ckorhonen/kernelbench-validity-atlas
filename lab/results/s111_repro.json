@@ -1,0 +1,90 @@
+{
+ "date": "s111_repro",
+ "n_checks": 8,
+ "n_pass": 8,
+ "verdict": "REPRO_ALL_PUBLISHED",
+ "checks": [
+  {
+   "id": "C1",
+   "label": "map rows ok",
+   "got": 191,
+   "want": 191,
+   "pass": true
+  },
+  {
+   "id": "C2",
+   "label": "strict-gate exceedances (1e-4, procedure B)",
+   "got": 83,
+   "want": 83,
+   "pass": true
+  },
+  {
+   "id": "C3",
+   "label": "benchmark-gate exceedances (1e-2, procedure B)",
+   "got": 2,
+   "want": 2,
+   "pass": true
+  },
+  {
+   "id": "C4",
+   "label": "the two shipped-gate tasks",
+   "got": [
+    "L2/14",
+    "L2/18"
+   ],
+   "want": [
+    "L2/14",
+    "L2/18"
+   ],
+   "pass": true
+  },
+  {
+   "id": "C5",
+   "label": "class medians rho_ew under B",
+   "got": {
+    "conv": 4.5666,
+    "conv_transpose": 3.3063,
+    "gemm": 2.4219
+   },
+   "want": {
+    "conv": 4.5666,
+    "conv_transpose": 3.3063,
+    "gemm": 2.4219
+   },
+   "pass": true
+  },
+  {
+   "id": "C6",
+   "label": "s110 ensemble strict-gate count",
+   "got": 82.3125,
+   "want": 82.3125,
+   "pass": true
+  },
+  {
+   "id": "C7",
+   "label": "s110 Wilson-summed 95% interval",
+   "got": [
+    79.339,
+    84.584
+   ],
+   "want": [
+    79.339,
+    84.584
+   ],
+   "pass": true
+  },
+  {
+   "id": "C8",
+   "label": "row-schema validator exit",
+   "got": 0,
+   "want": 0,
+   "pass": true
+  }
+ ],
+ "inputs": [
+  "results/s107_rekey_map.jsonl",
+  "results/s107b_rekey_rest.jsonl",
+  "results/s110_band.jsonl",
+  "s109c_schema_check.py"
+ ]
+}

@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 """s109c_schema_check.py — hard-fail validator for MAP_ROW_SCHEMA.md over a map row file.
-Usage: python s109c_schema_check.py results/s109_rows.json  (or - to read stdin)
-Writes results/s109c_schema_check.json and exits 1 if any row fails."""
+Usage: python s109c_schema_check.py results/s109_rows.json  (default: results/s109_rows.json next to this
+script; '-' reads stdin). Writes results/s109c_schema_check.json beside this script and exits 1 if any row fails.
+Portability note: the output directory is resolved relative to this file, so the check runs from inside an
+unpacked clone or package, not only from the author's home directory."""
 import json, os, sys, time
 
 REQ = ["task", "op_class", "procedure", "reference", "deviation", "verdict", "scope"]
@@ -49,8 +51,17 @@ def check(row):
     return fails
 
 
+def _res_dir():
+    here = os.path.dirname(os.path.abspath(__file__))
+    cand = os.path.join(here, "results")
+    if os.path.isdir(cand):
+        return cand
+    return os.path.join(os.path.expanduser("~/rstation/kernelbench/lab/results"))
+
+
 def main():
-    src = sys.argv[1] if len(sys.argv) > 1 else "-"
+    here = os.path.dirname(os.path.abspath(__file__))
+    src = sys.argv[1] if len(sys.argv) > 1 else os.path.join(here, "results", "s109_rows.json")
     rows = json.load(sys.stdin if src == "-" else open(src))
     if isinstance(rows, dict):
         rows = rows.get("rows", [])
@@ -62,8 +73,7 @@ def main():
     summary = dict(date=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                    n_rows=len(rows), n_pass=sum(1 for o in out if o["pass"]),
                    n_fail=sum(1 for o in out if not o["pass"]), results=out)
-    path = os.path.join(os.path.expanduser("~/rstation/kernelbench/lab/results"),
-                        "s109c_schema_check.json")
+    path = os.path.join(_res_dir(), "s109c_schema_check.json")
     json.dump(summary, open(path, "w"), indent=1)
     print(json.dumps({k: summary[k] for k in ("n_rows", "n_pass", "n_fail")}))
     for o in out:
