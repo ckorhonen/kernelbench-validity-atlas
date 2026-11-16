@@ -347,3 +347,42 @@ instrument K1 3/3 bit-identical, K2 0.0, wall 180 s.
 Non-claims: three rows, one arch, one rev, procedure B; no timing claim (a resident process held the GPU at
 96% throughout); the engine names are per-draw observations of one dispatch pipeline, not a cudnn-version
 statement; the helper-stage grouping is read from names, not from counters.
+
+
+## s114/s114b — the label column relabelled by measurement: every exceeding blind row carries a TF32 tensorop engine
+
+Prereg lab/s114_prereg.md (89949d2) frozen before the run; population = the 15 s113 blind rows whose op_class is conv,
+conv_transpose, gemm or reduction (the 18 elementwise/other blind rows are OTHER by construction and were not measured).
+Procedure B, seed 0, chunked fp64 anchor. Two runner defects were corrected post-hoc and declared (addendum
+lab/s114_prereg_addendum.md, 0b43e27): the first execution ran the anchor in float32 (so K2 passed vacuously and rho read
+0.0 on the six tf32-free rows) and used loose exclusion substrings that ate the engines they were meant to keep ("nhwc"
+matched the engine's own `nhwckrsc_nhwc` tile descriptor, "index" matched `implicit_gemm_indexed`). The defective run is
+kept as results/s114_engine_relabel_v0.jsonl; the corrected run is s114_engine_relabel.jsonl (15/15 ok, 22.6 s, K1 3/3
+bit-identical, K2 0.0) and its recomputed rho ties out to the recorded map rows at rel 0.0 on all 12 rows that have a
+recorded value — the relabel reproduces the map exactly rather than re-measuring it.
+
+Frozen rule printed BRANCH_RELABEL_COMPLETE: 13 of 15 rows carry a non-pointwise, non-layout compute kernel at >= 1% of
+device time, and that kernel is the top-1 on only 2 of 15, so the engine-restricted profile is adding information the
+dominance label could not have. s114b (declared post-hoc, computed from the committed event lists, no GPU) applies the
+engine-family restriction: an implicit-gemm/conv/tensorop kernel is present on 13/15 rows. **All six blind rows that
+exceed at 1e-4 carry a TF32 tensorop engine** — L2/48 fprop tf32 128x32x16 at 10.0% device time (rho 1.100), L2/79 fprop
+tf32 8.0% (20.653), L2/74 dgrad tf32 128x128x16 at 13.5% (2.651), L2/20 dgrad tf32 8.4% (4.879), L2/93 dgrad tf32 11.8%
+(1.542), L2/26 dgrad tf32 13.1% (1.662). The engine share on those rows is 8.0-13.5%, which is exactly the band in which
+s112 showed a top-1 label cannot see the engine. The map's OTHER bucket therefore contributes no separate mechanism to
+the exceedance count: under the engine-restricted relabel those six rows are TF32 rows whose label was a dominance
+artifact. The remaining blind rows are 2/92 (FP32_SIMT `implicit_convolve_sgemm` at 10.7%, rho 0.0010), 1/91 and 1/93
+(scan kernels, no tensor engine, rho 0.052/0.040) and 1/12, 1/88 (pointwise-only tasks with no engine at all).
+
+The counterexample is 2/23: the same fprop tf32 engine at 12.3% share, rho 0.0003. So engine presence is necessary, not
+sufficient — a TF32 engine under a following reduction whose conditioning keeps the relative deviation small produces no
+exceedance, which is the s108 conditioning reading rather than a class law. Recorded as a hypothesis, not a branch.
+
+Consequence for the published numbers: the exceedance count (82, Wilson 79.34-84.58) is unaffected — it was measured from
+the deviation, not from the label — but the column that carries it now ships measured engine names and shares on 13 of the
+33 blind rows instead of a dominance guess, and the 6 exceeding rows among them are labelled TF32-tensorop with the share
+in the row.
+
+Artifacts: results/s114_engine_relabel.jsonl, s114_summary.json, s114_engine_relabel_v0.jsonl, s114_summary_v0.json,
+s114b_engine_relabel.json; scripts lab/s114_engine_relabel.py. Non-claims: one draw per row (a label measurement, not a
+draw band), procedure B only, GB10 only, no timing claim; the exclusion families are hand-written name patterns and are
+themselves an instrument choice — the full event lists ship in the artifact so a reader can relabel with their own lists.
