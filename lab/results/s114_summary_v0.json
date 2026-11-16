@@ -1,0 +1,183 @@
+{
+ "date": "2026-11-16T10:38:27Z",
+ "wall_s": 17.1,
+ "n_cells": 15,
+ "n_ok": 15,
+ "k1": [
+  true,
+  true,
+  true
+ ],
+ "k2_anchor_rel": 0.0,
+ "instrument_ok": true,
+ "branch": "BRANCH_RELABEL_PARTIAL",
+ "n_found_share1pct": 8,
+ "n_compute_is_top1": 0,
+ "relabel": [
+  {
+   "task": "2/48",
+   "name": "48_Conv3d_Scaling_Tanh_Multiply_Sigmoid.py",
+   "label_before": "OTHER",
+   "compute_name": null,
+   "compute_class": "NO_COMPUTE",
+   "compute_share": 0.0,
+   "rho_ew": 1.100263463594809,
+   "frac": 1.8146322654972497e-08,
+   "tie_out_rel": 2.4917079189487137e-05
+  },
+  {
+   "task": "2/79",
+   "name": "79_Conv3d_Multiply_InstanceNorm_Clamp_Multiply_Max.py",
+   "label_before": "OTHER",
+   "compute_name": "void at::native::reduce_kernel<128, 4, at::native::ReduceOp<float, at::native::MaxOps<float>, unsigned int, float, 4, 4> >(at::native::ReduceOp<float, at::native::MaxOps<float>, unsigned int, float, 4, 4>)",
+   "compute_class": "OTHER",
+   "compute_share": 0.07153,
+   "rho_ew": 20.641258996415317,
+   "frac": 0.23527839781746032,
+   "tie_out_rel": 0.0005869180273694499
+  },
+  {
+   "task": "2/23",
+   "name": "23_Conv3d_GroupNorm_Mean.py",
+   "label_before": "OTHER",
+   "compute_name": "void at::native::(anonymous namespace)::RowwiseMomentsCUDAKernel<float, float>(long, float, float const*, float*, float*, float*, float*)",
+   "compute_class": "OTHER",
+   "compute_share": 0.12519,
+   "rho_ew": 0.0004007358635131726,
+   "frac": 0.0,
+   "tie_out_rel": 0.49999997328268264
+  },
+  {
+   "task": "2/100",
+   "name": "100_ConvTranspose3d_Clamp_Min_Divide.py",
+   "label_before": "OTHER",
+   "compute_name": null,
+   "compute_class": "NO_COMPUTE",
+   "compute_share": 0.0,
+   "rho_ew": 0.944541685072031,
+   "frac": 0.0,
+   "tie_out_rel": 5.4887805558798904e-05
+  },
+  {
+   "task": "2/74",
+   "name": "74_ConvTranspose3d_LeakyReLU_Multiply_LeakyReLU_Max.py",
+   "label_before": "OTHER",
+   "compute_name": "void at::native::(anonymous namespace)::max_pool3d_with_indices_single_out_frame<float>(float const*, float*, long*, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, bool)",
+   "compute_class": "OTHER",
+   "compute_share": 0.09885,
+   "rho_ew": 2.650887550240806,
+   "frac": 0.0029348134994506836,
+   "tie_out_rel": 4.3233821568176985e-05
+  },
+  {
+   "task": "2/83",
+   "name": "83_Conv3d_GroupNorm_Min_Clamp_Dropout.py",
+   "label_before": "OTHER",
+   "compute_name": "void at::native::(anonymous namespace)::RowwiseMomentsCUDAKernel<float, float>(long, float, float const*, float*, float*, float*, float*)",
+   "compute_class": "OTHER",
+   "compute_share": 0.08187,
+   "rho_ew": 0.0,
+   "frac": 0.0,
+   "tie_out_rel": null
+  },
+  {
+   "task": "1/12",
+   "name": "12_Matmul_with_diagonal_matrices_.py",
+   "label_before": "OTHER",
+   "compute_name": null,
+   "compute_class": "NO_COMPUTE",
+   "compute_share": 0.0,
+   "rho_ew": 0.0,
+   "frac": 0.0,
+   "tie_out_rel": 1.0
+  },
+  {
+   "task": "2/6",
+   "name": "6_Conv3d_Softmax_MaxPool_MaxPool.py",
+   "label_before": "OTHER",
+   "compute_name": "void at::native::(anonymous namespace)::max_pool3d_with_indices_single_out_frame<float>(float const*, float*, long*, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, bool)",
+   "compute_class": "OTHER",
+   "compute_share": 0.15596,
+   "rho_ew": 0.3612938203831181,
+   "frac": 0.0,
+   "tie_out_rel": 0.00012767270679662162
+  },
+  {
+   "task": "1/88",
+   "name": "88_MinGPTNewGelu.py",
+   "label_before": "OTHER",
+   "compute_name": null,
+   "compute_class": "NO_COMPUTE",
+   "compute_share": 0.0,
+   "rho_ew": 0.0,
+   "frac": 0.0,
+   "tie_out_rel": 1.0
+  },
+  {
+   "task": "2/20",
+   "name": "20_ConvTranspose3d_Sum_ResidualAdd_Multiply_ResidualAdd.py",
+   "label_before": "OTHER",
+   "compute_name": null,
+   "compute_class": "NO_COMPUTE",
+   "compute_share": 0.0,
+   "rho_ew": 4.879476743787391,
+   "frac": 0.01925639808177948,
+   "tie_out_rel": 3.751696085424233e-05
+  },
+  {
+   "task": "2/92",
+   "name": "92_Conv2d_GroupNorm_Tanh_HardSwish_ResidualAdd_LogSumExp.py",
+   "label_before": "OTHER",
+   "compute_name": "void implicit_convolve_sgemm<float, float, int, 1024, 5, 5, 3, 3, 3, 1, false, false, true>(int, int, int, float const*, int, float*, float const*, kernel_conv_params, unsigned long long, int, float, float, int, float const*, float const*, bool, bool, int, int)",
+   "compute_class": "FP32_SIMT",
+   "compute_share": 0.10067,
+   "rho_ew": 0.0,
+   "frac": 0.0,
+   "tie_out_rel": 1.0
+  },
+  {
+   "task": "1/91",
+   "name": "91_cumsum_reverse.py",
+   "label_before": "OTHER",
+   "compute_name": "void at::native::tensor_kernel_scan_innermost_dim<float, std::plus<float> >(float*, float const*, unsigned int, unsigned int, unsigned int, float, std::plus<float>)",
+   "compute_class": "OTHER",
+   "compute_share": 0.37628,
+   "rho_ew": 0.0,
+   "frac": 0.0,
+   "tie_out_rel": 1.0
+  },
+  {
+   "task": "1/93",
+   "name": "93_masked_cumsum.py",
+   "label_before": "OTHER",
+   "compute_name": "void at::native::tensor_kernel_scan_innermost_dim<float, std::plus<float> >(float*, float const*, unsigned int, unsigned int, unsigned int, float, std::plus<float>)",
+   "compute_class": "OTHER",
+   "compute_share": 0.35407,
+   "rho_ew": 0.0,
+   "frac": 0.0,
+   "tie_out_rel": 1.0
+  },
+  {
+   "task": "2/93",
+   "name": "93_ConvTranspose2d_Add_Min_GELU_Multiply.py",
+   "label_before": "OTHER",
+   "compute_name": null,
+   "compute_class": "NO_COMPUTE",
+   "compute_share": 0.0,
+   "rho_ew": 1.54126760259907,
+   "frac": 2.3113905325443787e-07,
+   "tie_out_rel": 0.00026840575291754243
+  },
+  {
+   "task": "2/26",
+   "name": "26_ConvTranspose3d_Add_HardSwish.py",
+   "label_before": "OTHER",
+   "compute_name": null,
+   "compute_class": "NO_COMPUTE",
+   "compute_share": 0.0,
+   "rho_ew": 1.6618931873907579,
+   "frac": 5.6531280279159546e-05,
+   "tie_out_rel": 6.675878548505821e-05
+  }
+ ]
+}
